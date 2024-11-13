@@ -1,6 +1,7 @@
 .pypirc
 
 research/
+_build/
 
 *.whl
 *.wheels
@@ -17,6 +18,7 @@ __pycache__/
 *$py.class
 
 # Virtual environment
+.venv/
 venv/
 env/
 .env
@@ -42,6 +44,8 @@ attachments/
 
 # Compiled Python files
 *.pyc
+
+
 
 # Distribution / packaging
 .Python
