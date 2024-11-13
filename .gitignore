@@ -1,7 +1,6 @@
 .pypirc
 
 research/
-_build/
 
 *.whl
 *.wheels

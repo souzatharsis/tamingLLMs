@@ -169,10 +169,8 @@
             </li>
         </ul>
         <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="nondeterminism.html">The Blessing and Curse of Non-determinism</a></li>
-<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nondeterminism.html">Non-determinism</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output_size_limit-NOTES.html">Understanding and Managing LLM Output Size Limitations</a></li>
 </ul>
 
     </div>
@@ -368,6 +366,13 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-deep-dive-sources-of-non-determinism">Technical Deep-dive: Sources of Non-determinism</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-and-sampling">Temperature and Sampling</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-temperature-spectrum">The Temperature Spectrum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evals">Evals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-meaningful-evals">Building Meaningful Evals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-use-case-alignment">Real-world Use Case Alignment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-frameworks">Testing Frameworks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-evaluation">Continuous Evaluation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metrics-that-matter">Metrics That Matter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-examples">Implementation Examples</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-solutions-and-implementation-patterns">Practical Solutions and Implementation Patterns</a><ul class="nav section-nav flex-column">
@@ -439,7 +444,60 @@
 <li><p>Temperature = 1: Balanced creativity and coherence</p></li>
 <li><p>Temperature &gt; 1: Increased randomness, potentially incoherent</p></li>
 </ul>
-<p>demonstrate_temperature_effects(“Suggest a name for a coffee shop”, temperatures=[0.0, 1.0, 2.0])</p>
+</section>
+<section id="evals">
+<h3>Evals<a class="headerlink" href="#evals" title="Link to this heading">#</a></h3>
+</section>
+<section id="building-meaningful-evals">
+<h3>Building Meaningful Evals<a class="headerlink" href="#building-meaningful-evals" title="Link to this heading">#</a></h3>
+<p>Evaluating LLM outputs requires a thoughtful approach that goes beyond simple accuracy metrics. Key considerations include:</p>
+<ul class="simple">
+<li><p>Defining clear success criteria aligned with business goals</p></li>
+<li><p>Creating comprehensive test suites that cover edge cases</p></li>
+<li><p>Establishing baseline performance metrics</p></li>
+</ul>
+</section>
+<section id="real-world-use-case-alignment">
+<h3>Real-world Use Case Alignment<a class="headerlink" href="#real-world-use-case-alignment" title="Link to this heading">#</a></h3>
+<p>Evaluations must reflect actual usage patterns:</p>
+<ul class="simple">
+<li><p>Collect and incorporate real user queries</p></li>
+<li><p>Consider domain-specific requirements</p></li>
+<li><p>Account for different user personas and contexts</p></li>
+</ul>
+</section>
+<section id="testing-frameworks">
+<h3>Testing Frameworks<a class="headerlink" href="#testing-frameworks" title="Link to this heading">#</a></h3>
+<p>A robust testing framework should include:</p>
+<ul class="simple">
+<li><p>Unit tests for individual components</p></li>
+<li><p>Integration tests for the full pipeline</p></li>
+<li><p>Load testing for performance validation</p></li>
+<li><p>Regression testing to catch degradation</p></li>
+</ul>
+</section>
+<section id="continuous-evaluation">
+<h3>Continuous Evaluation<a class="headerlink" href="#continuous-evaluation" title="Link to this heading">#</a></h3>
+<p>Implement ongoing monitoring:</p>
+<ul class="simple">
+<li><p>Automated testing pipelines</p></li>
+<li><p>Regular model performance reviews</p></li>
+<li><p>User feedback collection and analysis</p></li>
+<li><p>A/B testing of model variations</p></li>
+</ul>
+</section>
+<section id="metrics-that-matter">
+<h3>Metrics That Matter<a class="headerlink" href="#metrics-that-matter" title="Link to this heading">#</a></h3>
+<p>Focus on meaningful metrics:</p>
+<ul class="simple">
+<li><p>Response consistency scores</p></li>
+<li><p>Semantic similarity measures</p></li>
+<li><p>Business impact metrics (conversion, user satisfaction)</p></li>
+<li><p>Error rates and recovery metrics</p></li>
+</ul>
+</section>
+<section id="implementation-examples">
+<h3>Implementation Examples<a class="headerlink" href="#implementation-examples" title="Link to this heading">#</a></h3>
 </section>
 </section>
 <section id="practical-solutions-and-implementation-patterns">
@@ -610,6 +668,13 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-deep-dive-sources-of-non-determinism">Technical Deep-dive: Sources of Non-determinism</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-and-sampling">Temperature and Sampling</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-temperature-spectrum">The Temperature Spectrum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evals">Evals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-meaningful-evals">Building Meaningful Evals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-use-case-alignment">Real-world Use Case Alignment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-frameworks">Testing Frameworks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-evaluation">Continuous Evaluation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metrics-that-matter">Metrics That Matter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-examples">Implementation Examples</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-solutions-and-implementation-patterns">Practical Solutions and Implementation Patterns</a><ul class="nav section-nav flex-column">

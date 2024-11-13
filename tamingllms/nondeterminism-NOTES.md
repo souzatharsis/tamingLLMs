@@ -31,11 +31,44 @@ The primary source of non-determinism in LLMs comes from their sampling strategi
 - Temperature = 1: Balanced creativity and coherence
 - Temperature > 1: Increased randomness, potentially incoherent
 
-```{code-cell} python
 
-```
 
-demonstrate_temperature_effects("Suggest a name for a coffee shop", temperatures=[0.0, 1.0, 2.0])
+### Evals
+
+### Building Meaningful Evals
+Evaluating LLM outputs requires a thoughtful approach that goes beyond simple accuracy metrics. Key considerations include:
+- Defining clear success criteria aligned with business goals
+- Creating comprehensive test suites that cover edge cases
+- Establishing baseline performance metrics
+
+### Real-world Use Case Alignment
+Evaluations must reflect actual usage patterns:
+- Collect and incorporate real user queries
+- Consider domain-specific requirements
+- Account for different user personas and contexts
+
+### Testing Frameworks
+A robust testing framework should include:
+- Unit tests for individual components
+- Integration tests for the full pipeline
+- Load testing for performance validation
+- Regression testing to catch degradation
+
+### Continuous Evaluation
+Implement ongoing monitoring:
+- Automated testing pipelines
+- Regular model performance reviews
+- User feedback collection and analysis
+- A/B testing of model variations
+
+### Metrics That Matter
+Focus on meaningful metrics:
+- Response consistency scores
+- Semantic similarity measures
+- Business impact metrics (conversion, user satisfaction)
+- Error rates and recovery metrics
+
+### Implementation Examples
 
 ## Practical Solutions and Implementation Patterns
 
