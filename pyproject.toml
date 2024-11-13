@@ -9,6 +9,10 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 jupyter-book = "^1.0.3"
+pandas = "^2.2.3"
+openai = "^1.54.4"
+ipykernel = "^6.29.5"
+python-dotenv = "^1.0.1"
 
 
 [build-system]

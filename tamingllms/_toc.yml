@@ -4,6 +4,7 @@
 format: jb-book
 root: intro
 chapters:
+- file: nondeterminism
 - file: markdown
 - file: notebooks
 - file: markdown-notebooks
