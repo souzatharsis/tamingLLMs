@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "tamingllms"
+version = "0.1.0"
+description = "accompanying package to \"Taming Language Models\" book"
+authors = ["Tharsis T. P. Souza"]
+license = "Attribution-NonCommercial-ShareAlike 4.0 International"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+jupyter-book = "^1.0.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
