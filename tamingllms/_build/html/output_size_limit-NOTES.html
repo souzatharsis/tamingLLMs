@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Understanding and Managing LLM Output Size Limitations &#8212; Taming Language Models: A Practical Guide to LLM Pitfalls with Python Examples</title>
+    <title>Output Size Limitations &#8212; Taming Language Models: A Practical Guide to LLM Pitfalls with Python Examples</title>
   
   
   
@@ -63,7 +63,6 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'output_size_limit-NOTES';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Non-determinism" href="nondeterminism.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -115,6 +114,8 @@
       
       
       
+        
+      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -163,13 +164,13 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Introduction: The Hidden Challenges of Language Models
+                    Table of Contents
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="nondeterminism.html">Non-determinism</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Understanding and Managing LLM Output Size Limitations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output_size_limit.html">Output Size Limitations</a></li>
 </ul>
 
     </div>
@@ -347,7 +348,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Understanding and Managing LLM Output Size Limitations</h1>
+    <h1>Output Size Limitations</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -357,25 +358,16 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-token-limits">What are Token Limits?</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#token-length-comparison-across-models">Token Length Comparison Across Models</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-token-limits-matter">Why Token Limits Matter</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-solutions">Common Solutions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#content-chunking">1. Content Chunking</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#streaming-responses">2. Streaming Responses</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summarization">3. Summarization</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#context-window-management">4. Context Window Management</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#detailed-implementation-content-chunking-with-contextual-linking">Detailed Implementation: Content Chunking with Contextual Linking</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-token-limits">What are Token Limits?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-statement">Problem Statement</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#content-chunking-with-contextual-linking">Content Chunking with Contextual Linking</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-implementation">Testing the Implementation</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best Practices</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-and-performance-considerations">Cost and Performance Considerations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implications">Implications</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#future-considerations">Future Considerations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
@@ -388,110 +380,87 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="understanding-and-managing-llm-output-size-limitations">
-<h1>Understanding and Managing LLM Output Size Limitations<a class="headerlink" href="#understanding-and-managing-llm-output-size-limitations" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="output-size-limitations">
+<h1>Output Size Limitations<a class="headerlink" href="#output-size-limitations" title="Link to this heading">#</a></h1>
 <section id="what-are-token-limits">
 <h2>What are Token Limits?<a class="headerlink" href="#what-are-token-limits" title="Link to this heading">#</a></h2>
 <p>Tokens are the basic units that LLMs process text with. A token can be as short as a single character or as long as a complete word. In English, a general rule of thumb is that 1 token ≈ 4 characters or ¾ of a word.</p>
-<section id="token-length-comparison-across-models">
-<h3>Token Length Comparison Across Models<a class="headerlink" href="#token-length-comparison-across-models" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">max_output_tokens</span></code> is parameter often available in modern LLMs that determines the maximum length of text that an LLM can generate in a single response. Contrary to what one might expect, the model does not “summarizes the answer” such that it does not surpass <code class="docutils literal notranslate"><span class="pre">max_output_tokens</span></code> limit. Instead, it will stop once it reaches this limit, even mid-sentence, i.e. the response may be truncated.</p>
+<p>| <strong>Token Cost and Length Limitation Comparison Across Key Models</strong> | | | | |</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Model</p></th>
-<th class="head"><p>Input Token Limit</p></th>
-<th class="head"><p>Output Token Limit</p></th>
-<th class="head"><p>Total Context Window</p></th>
+<th class="head"><p>max_output_tokens</p></th>
+<th class="head"><p>max_input_tokens</p></th>
+<th class="head"><p>input_cost_per_token</p></th>
+<th class="head"><p>output_cost_per_token</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>GPT-3.5-turbo</p></td>
-<td><p>4,096</p></td>
-<td><p>4,096</p></td>
-<td><p>4,096</p></td>
+<tr class="row-even"><td><p>meta.llama3-2-11b-instruct-v1:0</p></td>
+<td><p>4096</p></td>
+<td><p>128000</p></td>
+<td><p>3.5e-7</p></td>
+<td><p>3.5e-7</p></td>
 </tr>
-<tr class="row-odd"><td><p>GPT-4</p></td>
-<td><p>8,192</p></td>
-<td><p>8,192</p></td>
-<td><p>8,192</p></td>
+<tr class="row-odd"><td><p>claude-3-5-sonnet-20241022</p></td>
+<td><p>8192</p></td>
+<td><p>200000</p></td>
+<td><p>3e-6</p></td>
+<td><p>1.5e-5</p></td>
 </tr>
-<tr class="row-even"><td><p>GPT-4-32k</p></td>
-<td><p>32,768</p></td>
-<td><p>32,768</p></td>
-<td><p>32,768</p></td>
+<tr class="row-even"><td><p>gpt-4-0613</p></td>
+<td><p>4096</p></td>
+<td><p>8192</p></td>
+<td><p>3e-5</p></td>
+<td><p>6e-5</p></td>
 </tr>
-<tr class="row-odd"><td><p>Claude 2</p></td>
-<td><p>100,000</p></td>
-<td><p>100,000</p></td>
-<td><p>100,000</p></td>
+<tr class="row-odd"><td><p>gpt-4-turbo-2024-04-09</p></td>
+<td><p>4096</p></td>
+<td><p>128000</p></td>
+<td><p>1e-5</p></td>
+<td><p>3e-5</p></td>
 </tr>
-<tr class="row-even"><td><p>Claude Instant</p></td>
-<td><p>100,000</p></td>
-<td><p>100,000</p></td>
-<td><p>100,000</p></td>
+<tr class="row-even"><td><p>gpt-4o-mini</p></td>
+<td><p>16384</p></td>
+<td><p>128000</p></td>
+<td><p>1.5e-7</p></td>
+<td><p>6e-7</p></td>
 </tr>
-<tr class="row-odd"><td><p>PaLM 2</p></td>
-<td><p>8,192</p></td>
-<td><p>8,192</p></td>
-<td><p>8,192</p></td>
+<tr class="row-odd"><td><p>gemini/gemini-1.5-flash-002</p></td>
+<td><p>8192</p></td>
+<td><p>1048576</p></td>
+<td><p>7.5e-8</p></td>
+<td><p>3e-7</p></td>
 </tr>
-<tr class="row-even"><td><p>Llama 2 (70B)</p></td>
-<td><p>4,096</p></td>
-<td><p>4,096</p></td>
-<td><p>4,096</p></td>
+<tr class="row-even"><td><p>gemini/gemini-1.5-pro-002</p></td>
+<td><p>8192</p></td>
+<td><p>2097152</p></td>
+<td><p>3.5e-6</p></td>
+<td><p>1.05e-5</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </section>
-</section>
-<section id="why-token-limits-matter">
-<h2>Why Token Limits Matter<a class="headerlink" href="#why-token-limits-matter" title="Link to this heading">#</a></h2>
-<p>Token limits are crucial for several reasons:</p>
+<section id="problem-statement">
+<h2>Problem Statement<a class="headerlink" href="#problem-statement" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">max_output_tokens</span></code> limit in LLMs poses a significant challenge for users who need to generate long outputs, as it may result in truncated content and/or incomplete information.</p>
 <ol class="arabic simple">
-<li><p><strong>Completeness of Response</strong>: Long inputs or required outputs may get truncated</p></li>
-<li><p><strong>Cost Implications</strong>: Longer outputs consume more tokens, increasing API costs</p></li>
-<li><p><strong>Context Management</strong>: Limited context windows affect the model’s ability to maintain coherence</p></li>
-<li><p><strong>Application Design</strong>: Applications need to handle content that exceeds token limits</p></li>
-<li><p><strong>User Experience</strong>: Truncated or incomplete responses can frustrate users</p></li>
+<li><p><strong>Truncated Content</strong>: Users aiming to generate extensive content, such as detailed reports or comprehensive articles, may find their outputs abruptly cut off due to the <code class="docutils literal notranslate"><span class="pre">max_output_tokens</span></code> limit. This truncation can result in incomplete information and disrupt the flow of the content.</p></li>
+<li><p><strong>Shallow Responses</strong>: When users expect a complete and thorough response but receive only a partial output, it can lead to dissatisfaction and frustration. This is especially true in applications where the completeness of information is critical, such as in educational tools or content creation platforms.</p></li>
 </ol>
-</section>
-<section id="common-solutions">
-<h2>Common Solutions<a class="headerlink" href="#common-solutions" title="Link to this heading">#</a></h2>
-<section id="content-chunking">
-<h3>1. Content Chunking<a class="headerlink" href="#content-chunking" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Break long content into smaller, manageable pieces</p></li>
-<li><p>Process chunks separately while maintaining context</p></li>
-<li><p>Recombine outputs intelligently</p></li>
-</ul>
-</section>
-<section id="streaming-responses">
-<h3>2. Streaming Responses<a class="headerlink" href="#streaming-responses" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Process and return content incrementally</p></li>
-<li><p>Allow for real-time user feedback</p></li>
-<li><p>Manage memory more efficiently</p></li>
-</ul>
-</section>
-<section id="summarization">
-<h3>3. Summarization<a class="headerlink" href="#summarization" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Condense long inputs before processing</p></li>
-<li><p>Focus on key information</p></li>
-<li><p>Reduce token usage</p></li>
-</ul>
-</section>
-<section id="context-window-management">
-<h3>4. Context Window Management<a class="headerlink" href="#context-window-management" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Implement sliding window approaches</p></li>
-<li><p>Prioritize recent/relevant context</p></li>
-<li><p>Use efficient prompt engineering</p></li>
-</ul>
-</section>
-</section>
-<section id="detailed-implementation-content-chunking-with-contextual-linking">
-<h2>Detailed Implementation: Content Chunking with Contextual Linking<a class="headerlink" href="#detailed-implementation-content-chunking-with-contextual-linking" title="Link to this heading">#</a></h2>
+<p>To effectively address these challenges, developers need to implement robust solutions that balance user expectations with technical and cost constraints, ensuring that long-form content generation remains feasible and efficient.</p>
+<section id="content-chunking-with-contextual-linking">
+<h3>Content Chunking with Contextual Linking<a class="headerlink" href="#content-chunking-with-contextual-linking" title="Link to this heading">#</a></h3>
+<p>Content chunking with contextual linking is a technique used to manage the <code class="docutils literal notranslate"><span class="pre">max_output_tokens</span></code> limitation by breaking down long-form content into smaller, manageable chunks. This approach allows the LLM to focus on smaller sections of the input, enabling it to generate more complete and detailed responses for each chunk while maintaining coherence and context across the entire output.</p>
+<ol class="arabic simple">
+<li><p><strong>Chunking the Content</strong>: The input content is split into smaller chunks. This allows the LLM to process each chunk individually, focusing on generating a complete and detailed response for that specific section of the input.</p></li>
+<li><p><strong>Maintaining Context</strong>: Each chunk is linked with contextual information from the previous chunks. This helps in maintaining the flow and coherence of the content across multiple chunks.</p></li>
+<li><p><strong>Generating Linked Prompts</strong>: For each chunk, a prompt is generated that includes the chunk’s content and its context. This prompt is then used to generate the output for that chunk.</p></li>
+<li><p><strong>Combining the Outputs</strong>: The outputs of all chunks are combined to form the final long-form content.</p></li>
+</ol>
+<p>By following these steps, developers can effectively manage the <code class="docutils literal notranslate"><span class="pre">max_output_tokens</span></code> limitation and generate coherent long-form content without truncation.</p>
 <p>Let’s examine a robust solution for handling long-form content generation:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
 <span class="kn">import</span> <span class="nn">json</span>
@@ -540,6 +509,7 @@
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Continuing from part </span><span class="si">{</span><span class="n">part_index</span><span class="si">}</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
+</section>
 <section id="testing-the-implementation">
 <h3>Testing the Implementation<a class="headerlink" href="#testing-the-implementation" title="Link to this heading">#</a></h3>
 <p>Here’s how to test the chunking functionality:</p>
@@ -599,34 +569,31 @@
 <li><p>Use compression techniques for long contexts</p></li>
 </ul>
 </section>
-<section id="cost-and-performance-considerations">
-<h2>Cost and Performance Considerations<a class="headerlink" href="#cost-and-performance-considerations" title="Link to this heading">#</a></h2>
+<section id="implications">
+<h2>Implications<a class="headerlink" href="#implications" title="Link to this heading">#</a></h2>
+<p>Implementing context chunking with contextual linking is a practical solution to manage the output size limitations of LLMs. However, this approach comes with its own set of implications that developers must consider.</p>
 <ol class="arabic simple">
-<li><p><strong>Token Usage Optimization</strong></p></li>
+<li><p><strong>Increased Development Complexity</strong>: Implementing strategies to overcome the maximum output token length introduces additional layers of complexity to the application design. It necessitates meticulous management of context across multiple outputs to maintain coherence. Ensuring that each chunk retains the necessary context for the conversation or document can be challenging and often requires advanced logic to handle transitions seamlessly.</p></li>
+<li><p><strong>Cost Implications</strong>: Attempting to circumvent the <code class="docutils literal notranslate"><span class="pre">max_output_tokens</span></code> limitation by making multiple requests can increase the number of tokens processed, thereby raising the operational costs associated with using LLM services. Each additional request contributes to the overall token usage, which can quickly escalate costs, especially for applications with high-frequency interactions or large volumes of data.</p></li>
+<li><p><strong>Performance Bottlenecks</strong>: Generating long outputs in segments can lead to performance bottlenecks, as each segment may require additional processing time and resources, impacting the overall efficiency of the application. The need to manage and link multiple chunks can introduce latency and reduce the responsiveness of the system, which is critical for real-time applications.</p></li>
 </ol>
-<ul class="simple">
-<li><p>Monitor token usage patterns</p></li>
-<li><p>Implement caching where appropriate</p></li>
-<li><p>Use efficient prompt engineering</p></li>
-</ul>
-<ol class="arabic simple" start="2">
-<li><p><strong>Performance Metrics</strong></p></li>
-</ol>
-<ul class="simple">
-<li><p>Track completion times</p></li>
-<li><p>Monitor error rates</p></li>
-<li><p>Measure context relevance</p></li>
-</ul>
+<p>By understanding these implications, developers can better prepare for the challenges associated with context chunking and contextual linking, ensuring that their applications remain efficient, cost-effective, and user-friendly.</p>
 </section>
 <section id="future-considerations">
 <h2>Future Considerations<a class="headerlink" href="#future-considerations" title="Link to this heading">#</a></h2>
-<p>As models evolve, we can expect:</p>
-<ul class="simple">
-<li><p>Larger context windows</p></li>
-<li><p>More efficient token usage</p></li>
-<li><p>Better handling of long-form content</p></li>
-<li><p>Improved compression techniques</p></li>
-</ul>
+<p>As models evolve, we can expect several advancements that will significantly impact how we handle output size limitations:</p>
+<ol class="arabic simple">
+<li><p><strong>Contextual Awareness</strong>: Future LLMs will likely have improved contextual awareness - or as Mustafa Suleyman would call “infinite memory”, enabling them to better understand and manage the context of a conversation or document over long interactions. This will reduce the need for repetitive context setting and improve the overall user experience.</p></li>
+<li><p><strong>More Efficient Token Usage</strong>: Advances in model architecture and tokenization strategies will lead to more efficient token usage. This means that models will be able to convey the same amount of information using fewer tokens, reducing costs and improving performance.</p></li>
+<li><p><strong>Improved Compression Techniques</strong>: As research progresses, we can expect the development of more sophisticated compression techniques that allow models to retain essential information while reducing the number of tokens required. This will be particularly useful for applications that need to summarize or condense large amounts of data.</p></li>
+<li><p><strong>Adaptive Token Limits</strong>: Future models may implement adaptive token limits that dynamically adjust based on the complexity and requirements of the task at hand. This will provide more flexibility and efficiency in handling diverse use cases.</p></li>
+<li><p><strong>Enhanced Memory Management</strong>: Innovations in memory management will allow models to handle larger outputs without a significant increase in computational resources. This will make it feasible to deploy advanced LLMs in resource-constrained environments.</p></li>
+</ol>
+<p>These advancements will collectively enhance the capabilities of LLMs, making them more powerful and versatile tools for a wide range of applications. However, they will also introduce new challenges and considerations that developers and researchers will need to address to fully harness their potential.</p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>In conclusion, while managing output size limitations in LLMs presents significant challenges, it also drives innovation in application design and optimization strategies. By implementing techniques such as context chunking, efficient prompt templates, and graceful fallbacks, developers can mitigate these limitations and enhance the performance and cost-effectiveness of their applications. As the technology evolves, advancements in contextual awareness, token efficiency, and memory management will further empower developers to build more robust and scalable LLM-powered systems. It is crucial to stay informed about these developments and continuously adapt to leverage the full potential of LLMs while addressing their inherent constraints.</p>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
@@ -669,15 +636,6 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="nondeterminism.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Non-determinism</p>
-      </div>
-    </a>
 </div>
                 </footer>
               
@@ -695,25 +653,16 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-token-limits">What are Token Limits?</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#token-length-comparison-across-models">Token Length Comparison Across Models</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-token-limits-matter">Why Token Limits Matter</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-solutions">Common Solutions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#content-chunking">1. Content Chunking</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#streaming-responses">2. Streaming Responses</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summarization">3. Summarization</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#context-window-management">4. Context Window Management</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#detailed-implementation-content-chunking-with-contextual-linking">Detailed Implementation: Content Chunking with Contextual Linking</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-token-limits">What are Token Limits?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-statement">Problem Statement</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#content-chunking-with-contextual-linking">Content Chunking with Contextual Linking</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-implementation">Testing the Implementation</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best Practices</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cost-and-performance-considerations">Cost and Performance Considerations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implications">Implications</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#future-considerations">Future Considerations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>

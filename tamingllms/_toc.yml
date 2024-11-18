@@ -5,7 +5,7 @@ format: jb-book
 root: intro
 chapters:
 - file: nondeterminism.ipynb
-- file: output_size_limit-NOTES.md
+- file: output_size_limit.ipynb
 #- file: markdown
 #- file: notebooks
 #- file: markdown-notebooks

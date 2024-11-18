@@ -13,6 +13,12 @@ pandas = "^2.2.3"
 openai = "^1.54.4"
 ipykernel = "^6.29.5"
 python-dotenv = "^1.0.1"
+requests = "^2.32.3"
+beautifulsoup4 = "^4.12.3"
+langchain = "^0.3.7"
+tiktoken = "^0.8.0"
+langchain-community = "^0.3.7"
+litellm = "^1.52.9"
 
 
 [build-system]

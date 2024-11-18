@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Introduction: The Hidden Challenges of Language Models &#8212; Taming Language Models: A Practical Guide to LLM Pitfalls with Python Examples</title>
+    <title>Table of Contents &#8212; Taming Language Models: A Practical Guide to LLM Pitfalls with Python Examples</title>
   
   
   
@@ -165,13 +165,13 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1 current active">
                 <a class="reference internal" href="#">
-                    Introduction: The Hidden Challenges of Language Models
+                    Table of Contents
                 </a>
             </li>
         </ul>
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="nondeterminism.html">Non-determinism</a></li>
-<li class="toctree-l1"><a class="reference internal" href="output_size_limit-NOTES.html">Understanding and Managing LLM Output Size Limitations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output_size_limit.html">Output Size Limitations</a></li>
 </ul>
 
     </div>
@@ -349,7 +349,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introduction: The Hidden Challenges of Language Models</h1>
+    <h1>Table of Contents</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -359,6 +359,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Table of Contents</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-challenges-we-ll-address">Core Challenges We’ll Address</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-practical-approach">A Practical Approach</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#who-this-book-is-for">Who This Book Is For</a></li>
@@ -373,6 +375,9 @@
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -383,16 +388,19 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="toctree-wrapper compound">
+  <section class="tex2jax_ignore mathjax_ignore" id="table-of-contents">
+<h1>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading">#</a></h1>
+<div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="nondeterminism.html">Non-determinism</a></li>
-<li class="toctree-l1"><a class="reference internal" href="output_size_limit-NOTES.html">Understanding and Managing LLM Output Size Limitations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output_size_limit.html">Output Size Limitations</a></li>
 </ul>
 </div>
-<section class="tex2jax_ignore mathjax_ignore" id="introduction-the-hidden-challenges-of-language-models">
-<h1>Introduction: The Hidden Challenges of Language Models<a class="headerlink" href="#introduction-the-hidden-challenges-of-language-models" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
 <p>In recent years, Large Language Models (LLMs) have emerged as a transformative force in technology, promising to revolutionize how we build products and interact with computers. From ChatGPT to GitHub Copilot, these systems have captured the public imagination and sparked a gold rush of AI-powered applications. However, beneath the surface of this technological revolution lies a complex landscape of challenges that practitioners must navigate.</p>
-<p>As we’ll explore in this book, the significant engineering effort required to manage these challenges - from handling non-deterministic outputs to preventing hallucinations - raises important questions about the true productivity gains promised by LLM technology. While the potential remains compelling, the hidden costs and complexities of building reliable LLM-powered systems may force us to reconsider our optimistic assumptions about their transformative impact.</p>
+<p>As we’ll explore in this book, the significant engineering effort required to manage these challenges - from handling non-deterministic outputs to preventing hallucinations - raises important questions about the true productivity gains promised by LLM technology. While the potential remains compelling, the hidden costs and complexities of building reliable LLM-powered systems should not be neglected and instead may force us to reconsider our overly-optimistic assumptions about their transformative impact.</p>
 <section id="core-challenges-we-ll-address">
 <h2>Core Challenges We’ll Address<a class="headerlink" href="#core-challenges-we-ll-address" title="Link to this heading">#</a></h2>
 <p>While the capabilities of LLMs are indeed remarkable, the prevailing narrative often glosses over fundamental problems that engineers, product managers, and organizations face when building real-world applications. This book aims to bridge that gap, offering a practical, clear-eyed examination of the pitfalls and challenges in working with LLMs.</p>
@@ -555,6 +563,8 @@ pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </s
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Table of Contents</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-challenges-we-ll-address">Core Challenges We’ll Address</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-practical-approach">A Practical Approach</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#who-this-book-is-for">Who This Book Is For</a></li>
@@ -569,6 +579,9 @@ pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </s
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
