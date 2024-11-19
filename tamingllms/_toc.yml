@@ -2,10 +2,14 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: intro
+root: markdown/toc.md
 chapters:
-- file: nondeterminism.ipynb
-- file: output_size_limit.ipynb
+- file: markdown/intro.md
+- file: notebooks/nondeterminism.ipynb
+- file: notebooks/output_size_limit.ipynb
+- file: nondeterminism-NOTES.md
 #- file: markdown
 #- file: notebooks
 #- file: markdown-notebooks
+
+

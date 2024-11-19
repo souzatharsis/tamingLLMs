@@ -3,12 +3,23 @@
 
 title: "Taming Language Models: A Practical Guide to LLM Pitfalls with Python Examples"
 author: Tharsis T. P. Souza
-logo: logo.png
+copyright: "2024"  # Copyright year to be placed in the footer
+logo: images/logo.png
+
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: 'off'
+
+only_build_toc_files: true
+
+html:
+  baseurl: https://souzatharsis.github.io/tamingllms/
+  extra_footer: |
+    <p>
+    Apache 2.0 License
+    </p>
 
 # Define the name of the latex output file for PDF builds
 latex:
@@ -19,14 +30,12 @@ latex:
 bibtex_bibfiles:
   - references.bib
 
-# Information about where the book exists on the web
-repository:
-  url: https://github.com/souzatharsis/tamingLLMs # Online location of your book
-  path_to_book: docs  # Optional path to your book, relative to the repository root
-  branch: master  # Which branch of the repository should be used when creating links (optional)
 
-# Add GitHub buttons to your book
-# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
-html:
-  use_issues_button: true
-  use_repository_button: true
+
+
+
+sphinx:
+  config:
+    html_theme: insipid
+    html_show_copyright: false
+    #html_sidebars: {'**': ['globaltoc.html']}

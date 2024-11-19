@@ -1,0 +1,336 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Table of Contents &#8212; Taming Language Models: A Practical Guide to LLM Pitfalls with Python Examples</title>
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/insipid.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/default.css" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script defer src="../_static/insipid.js"></script>
+    <script defer src="../_static/insipid-sidebar.js"></script>
+    <link rel="canonical" href="https://souzatharsis.github.io/tamingllms/markdown/intro.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Non-determinism" href="../notebooks/nondeterminism.html" />
+    <link rel="prev" title="Taming Language Models: A Practical Guide to LLM Pitfalls" href="toc.html" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+  </head><body>
+    <script type="text/javascript">
+        document.body.classList.add('js');
+    </script>
+    <input type="checkbox" id="sidebar-checkbox" style="display: none;">
+    <label id="overlay" for="sidebar-checkbox"></label>
+    <div class="sidebar-resize-handle"></div>
+    <script type="text/javascript">
+        try {
+            let sidebar = localStorage.getItem('sphinx-sidebar');
+            const sidebar_width = localStorage.getItem('sphinx-sidebar-width');
+            if (sidebar_width) {
+                document.documentElement.style.setProperty('--sidebar-width', sidebar_width);
+            }
+            // show sidebar on wide screen
+            if (!sidebar && window.matchMedia('(min-width: 100rem)').matches) {
+                sidebar = 'visible';
+                // NB: We don't store the value in localStorage!
+            }
+            if (sidebar === 'visible') {
+                document.getElementById('sidebar-checkbox').checked = true;
+            }
+        } catch(e) {
+            console.info(e);
+        }
+    </script>
+    <header id="topbar-placeholder">
+      <div id="topbar">
+        <div id="titlebar">
+          <div class="buttons">
+            <label for="sidebar-checkbox" id="sidebar-button" role="button" tabindex="0" aria-controls="sphinxsidebar" accesskey="M">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
+            </label>
+            <button id="search-button" type="button" title="Search" aria-label="Search" aria-expanded="false" aria-controls="search-form" accesskey="S">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+            </button>
+          </div>
+          <div class="title">
+            <a class="parent" href="toc.html" accesskey="U">Taming Language Models: A Practical Guide to LLM Pitfalls with Python Examples</a>
+            <a class="top" href="#">Table of Contents</a>
+          </div>
+          <div class="buttons">
+            <button id="fullscreen-button" type="button" aria-hidden="true">
+              <span class="enable">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M212.686 315.314L120 408l32.922 31.029c15.12 15.12 4.412 40.971-16.97 40.971h-112C10.697 480 0 469.255 0 456V344c0-21.382 25.803-32.09 40.922-16.971L72 360l92.686-92.686c6.248-6.248 16.379-6.248 22.627 0l25.373 25.373c6.249 6.248 6.249 16.378 0 22.627zm22.628-118.628L328 104l-32.922-31.029C279.958 57.851 290.666 32 312.048 32h112C437.303 32 448 42.745 448 56v112c0 21.382-25.803 32.09-40.922 16.971L376 152l-92.686 92.686c-6.248 6.248-16.379 6.248-22.627 0l-25.373-25.373c-6.249-6.248-6.249-16.378 0-22.627z"/></svg>
+              </span>
+              <span class="disable">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M4.686 427.314L104 328l-32.922-31.029C55.958 281.851 66.666 256 88.048 256h112C213.303 256 224 266.745 224 280v112c0 21.382-25.803 32.09-40.922 16.971L152 376l-99.314 99.314c-6.248 6.248-16.379 6.248-22.627 0L4.686 449.941c-6.248-6.248-6.248-16.379 0-22.627zM443.314 84.686L344 184l32.922 31.029c15.12 15.12 4.412 40.971-16.97 40.971h-112C234.697 256 224 245.255 224 232V120c0-21.382 25.803-32.09 40.922-16.971L296 136l99.314-99.314c6.248-6.248 16.379-6.248 22.627 0l25.373 25.373c6.248 6.248 6.248 16.379 0 22.627z"/></svg>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div id="searchbox" role="search">
+          <form id="search-form" class="search" style="display: none" action="../search.html" method="get">
+            <input type="search" name="q" placeholder="Search ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            <button>Go</button>
+          </form>
+        </div>
+      </div>
+    </header>
+    <nav>
+      <a href="toc.html" class="nav-icon previous" title="previous:&#13;Taming Language Models: A Practical Guide to LLM Pitfalls" aria-label="Previous topic" accesskey="P" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"/></svg>
+      </a>
+      <a href="../notebooks/nondeterminism.html" class="nav-icon next" title="next:&#13;Non-determinism" aria-label="Next topic" accesskey="N" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"/></svg>
+      </a>
+    </nav>
+
+    <nav class="relbar">
+      <a class="previous" href="toc.html" aria-label="Previous topic" >
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"/></svg>
+        </div>
+        <div class="title">
+          <span class="text">
+            <span class="direction">previous</span>
+            Taming Language Models: A Practical Guide to LLM Pitfalls
+          </span>
+        </div>
+      </a>
+      <a class="next" href="../notebooks/nondeterminism.html" aria-label="Next topic" >
+        <div class="title">
+          <span class="text">
+            <span class="direction">next</span>
+            Non-determinism
+          </span>
+        </div>
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"/></svg>
+        </div>
+      </a>
+    </nav>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<section class="tex2jax_ignore mathjax_ignore" id="table-of-contents">
+<h1>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">¶</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h1>
+<p>In recent years, Large Language Models (LLMs) have emerged as a transformative force in technology, promising to revolutionize how we build products and interact with computers. From ChatGPT to GitHub Copilot, these systems have captured the public imagination and sparked a gold rush of AI-powered applications. However, beneath the surface of this technological revolution lies a complex landscape of challenges that practitioners must navigate.</p>
+<p>As we’ll explore in this book, the significant engineering effort required to manage these challenges - from handling non-deterministic outputs to preventing hallucinations - raises important questions about the true productivity gains promised by LLM technology. While the potential remains compelling, the hidden costs and complexities of building reliable LLM-powered systems should not be neglected and instead may force us to reconsider our overly-optimistic assumptions about their transformative impact.</p>
+<section id="core-challenges-we-ll-address">
+<h2>Core Challenges We’ll Address<a class="headerlink" href="#core-challenges-we-ll-address" title="Permalink to this heading">¶</a></h2>
+<p>While the capabilities of LLMs are indeed remarkable, the prevailing narrative often glosses over fundamental problems that engineers, product managers, and organizations face when building real-world applications. This book aims to bridge that gap, offering a practical, clear-eyed examination of the pitfalls and challenges in working with LLMs.</p>
+<p>Throughout this book, we’ll tackle the following (non-exhaustive) list of critical challenges:</p>
+<ol class="arabic simple">
+<li><p><strong>Non-deterministic Behavior</strong>: Unlike traditional software systems, LLMs can produce different outputs for identical inputs, making testing and reliability assurance particularly challenging.</p></li>
+<li><p><strong>Structural Reliability</strong>: LLMs struggle to maintain consistent output formats, complicating their integration into larger systems and making error handling more complex.</p></li>
+<li><p><strong>Hallucination Management</strong>: These models can generate plausible-sounding but entirely fabricated information, creating significant risks for production applications.</p></li>
+<li><p><strong>Cost Optimization</strong>: The computational and financial costs of operating LLM-based systems can quickly become prohibitive without careful optimization.</p></li>
+<li><p><strong>Testing Complexity</strong>: Traditional testing methodologies break down when dealing with non-deterministic systems, requiring new approaches.</p></li>
+<li><p><strong>Integration Challenges</strong>: Incorporating LLMs into existing software architectures presents unique architectural and operational challenges.</p></li>
+</ol>
+</section>
+<section id="a-practical-approach">
+<h2>A Practical Approach<a class="headerlink" href="#a-practical-approach" title="Permalink to this heading">¶</a></h2>
+<p>This book takes a hands-on approach to these challenges, providing:</p>
+<ul class="simple">
+<li><p>Concrete Python examples that you can run and modify</p></li>
+<li><p>Real-world scenarios and solutions</p></li>
+<li><p>Testing strategies and best practices</p></li>
+<li><p>Cost optimization techniques</p></li>
+<li><p>Integration patterns and anti-patterns</p></li>
+</ul>
+</section>
+<section id="who-this-book-is-for">
+<h2>Who This Book Is For<a class="headerlink" href="#who-this-book-is-for" title="Permalink to this heading">¶</a></h2>
+<p>This book is designed for:</p>
+<ul class="simple">
+<li><p>Software Engineers building LLM-powered applications</p></li>
+<li><p>Product Managers overseeing AI initiatives</p></li>
+<li><p>Technical Leaders making architectural decisions</p></li>
+<li><p>Anyone seeking to understand the practical challenges of working with LLMs</p></li>
+</ul>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
+<p>To make the most of this book, you should have:</p>
+<ul class="simple">
+<li><p>Basic Python programming experience</p></li>
+<li><p>Access to LLM APIs (OpenAI, Anthropic, or similar)</p></li>
+<li><p>A desire to build reliable, production-grade AI systems</p></li>
+</ul>
+</section>
+<section id="how-to-use-this-book">
+<h2>How to Use This Book<a class="headerlink" href="#how-to-use-this-book" title="Permalink to this heading">¶</a></h2>
+<p>Each chapter focuses on a specific challenge, following this structure:</p>
+<ol class="arabic simple">
+<li><p>Problem explanation and real-world impact</p></li>
+<li><p>Technical deep-dive with code examples</p></li>
+<li><p>Practical solutions and implementation patterns</p></li>
+<li><p>Testing strategies and best practices</p></li>
+<li><p>Cost and performance considerations</p></li>
+<li><p>Conclusion</p></li>
+</ol>
+</section>
+<section id="a-note-on-perspective">
+<h2>A Note on Perspective<a class="headerlink" href="#a-note-on-perspective" title="Permalink to this heading">¶</a></h2>
+<p>While this book takes a critical look at LLM limitations, our goal is not to discourage their use but to enable more robust and reliable implementations. By understanding these challenges upfront, you’ll be better equipped to build systems that leverage LLMs effectively while avoiding common pitfalls.</p>
+<p>The current discourse around LLMs tends toward extremes—either uncritical enthusiasm or wholesale dismissal. This book takes a different approach:</p>
+<ul class="simple">
+<li><p><strong>Practical Implementation Focus</strong>: Rather than theoretical capabilities, we examine real-world challenges and their solutions.</p></li>
+<li><p><strong>Code-First Learning</strong>: Every concept is illustrated with executable Python examples, enabling immediate practical application.</p></li>
+<li><p><strong>Critical Analysis</strong>: We provide a balanced examination of both capabilities and limitations, helping readers make informed decisions about LLM integration.</p></li>
+</ul>
+</section>
+<section id="setting-up-your-environment">
+<h2>Setting Up Your Environment<a class="headerlink" href="#setting-up-your-environment" title="Permalink to this heading">¶</a></h2>
+<p>Before diving into the examples in this book, you’ll need to set up your development environment. Here’s how to get started:</p>
+<section id="python-environment-setup">
+<h3>1. Python Environment Setup<a class="headerlink" href="#python-environment-setup" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create and activate a virtual environment</span>
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>llm-book-env
+<span class="nb">source</span><span class="w"> </span>llm-book-env/bin/activate<span class="w">  </span><span class="c1"># On Windows, use: llm-book-env\Scripts\activate</span>
+
+<span class="c1"># Install required packages</span>
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</section>
+<section id="api-keys-configuration">
+<h3>2. API Keys Configuration<a class="headerlink" href="#api-keys-configuration" title="Permalink to this heading">¶</a></h3>
+<p>Set required API keys:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span>your-openai-key
+</pre></div>
+</div>
+</section>
+<section id="code-repository">
+<h3>3. Code Repository<a class="headerlink" href="#code-repository" title="Permalink to this heading">¶</a></h3>
+<p>Clone the book’s companion repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/yourusername/taming-llms.git
+<span class="nb">cd</span><span class="w"> </span>taming-llms
+</pre></div>
+</div>
+</section>
+<section id="troubleshooting-common-issues">
+<h3>Troubleshooting Common Issues<a class="headerlink" href="#troubleshooting-common-issues" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>If you encounter API rate limits, consider using smaller examples or implementing retry logic</p></li>
+<li><p>For package conflicts, try creating a fresh virtual environment or use a package manager like <code class="docutils literal notranslate"><span class="pre">poetry</span></code></p></li>
+<li><p>Check the book’s repository issues page for known problems and solutions</p></li>
+</ul>
+<p>Now that your environment is set up, let’s begin our exploration of LLM challenges.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./markdown"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+            <p class="logo"><a href="toc.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+          <div class="sidebar-resize-handle"></div>
+
+<h3><a href="toc.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/nondeterminism.html">Non-determinism</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/output_size_limit.html">Output Size Limitations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nondeterminism-NOTES.html">The Blessing and Curse of Non-determinism</a></li>
+</ul>
+
+<div><hr class="docutils"></div>
+<ul>
+  <li class="toctree-l1"><a class="reference internal" href="../genindex.html" accesskey="I">General Index</a></li>
+</ul>
+<div id="ethical-ad-placement"></div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <nav class="relbar">
+      <a class="previous" href="toc.html" aria-label="Previous topic" >
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"/></svg>
+        </div>
+        <div class="title">
+          <span class="text">
+            <span class="direction">previous</span>
+            Taming Language Models: A Practical Guide to LLM Pitfalls
+          </span>
+        </div>
+      </a>
+      <a class="next" href="../notebooks/nondeterminism.html" aria-label="Next topic" >
+        <div class="title">
+          <span class="text">
+            <span class="direction">next</span>
+            Non-determinism
+          </span>
+        </div>
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"/></svg>
+        </div>
+      </a>
+    </nav>
+
+    <footer role="contentinfo">
+      Created using <a class="reference external" href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+      <a class="reference external" href="https://insipid-sphinx-theme.readthedocs.io/">Insipid Theme</a>.
+<a class="reference internal" href="../_sources/markdown/intro.md" rel="nofollow">Show Source</a>.
+    </footer>
+  </body>
+</html>
