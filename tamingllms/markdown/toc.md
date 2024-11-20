@@ -1,5 +1,3 @@
-# Taming Language Models: A Practical Guide to LLM Pitfalls
-
 ## Chapter 1: Introduction
 - The Hidden Challenges of LLMs
 - Why This Book Matters

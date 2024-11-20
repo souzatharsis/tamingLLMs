@@ -1,3 +1,8 @@
+![Taming Language Models Logo](tamingllms/_static/logo.png)
+
+
+https://www.souzatharsis.com/tamingLLMs
+
 # Taming Language Models: A Practical Guide to LLM Pitfalls with Python Examples
 
 In recent years, Large Language Models (LLMs) have emerged as a transformative force in technology, promising to revolutionize how we build products and interact with computers. From ChatGPT to GitHub Copilot and Claude Artifacts, these systems have captured the public imagination and sparked a gold rush of AI-powered applications. However, beneath the surface of this technological revolution lies a complex landscape of challenges that practitioners must navigate. 

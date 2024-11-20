@@ -1,10 +1,10 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: "Taming Language Models: A Practical Guide to LLM Pitfalls with Python Examples"
+title: "Taming Large Language Models: A Practical Guide to LLM Pitfalls with Python Examples"
 author: Tharsis T. P. Souza
 copyright: "2024"  # Copyright year to be placed in the footer
-logo: images/logo.png
+logo: _static/logo.png
 
 
 # Force re-execution of notebooks on each build.
