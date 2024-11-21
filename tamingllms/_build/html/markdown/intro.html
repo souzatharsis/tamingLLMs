@@ -37,7 +37,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Non-determinism" href="../notebooks/nondeterminism.html" />
-    <link rel="prev" title="Chapter 1: Introduction" href="toc.html" />
+    <link rel="prev" title="Table of Contents" href="toc.html" />
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
   </head><body>
@@ -101,7 +101,7 @@
       </div>
     </header>
     <nav>
-      <a href="toc.html" class="nav-icon previous" title="previous:&#13;Chapter 1: Introduction" aria-label="Previous topic" accesskey="P" tabindex="-1">
+      <a href="toc.html" class="nav-icon previous" title="previous:&#13;Table of Contents" aria-label="Previous topic" accesskey="P" tabindex="-1">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"/></svg>
       </a>
       <a href="../notebooks/nondeterminism.html" class="nav-icon next" title="next:&#13;Non-determinism" aria-label="Next topic" accesskey="N" tabindex="-1">
@@ -117,7 +117,7 @@
         <div class="title">
           <span class="text">
             <span class="direction">previous</span>
-            Chapter 1: Introduction
+            Table of Contents
           </span>
         </div>
       </a>
@@ -141,20 +141,29 @@
             
 <section class="tex2jax_ignore mathjax_ignore" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h1>
-<p>In recent years, Large Language Models (LLMs) have emerged as a transformative force in technology, promising to revolutionize how we build products and interact with computers. From ChatGPT to GitHub Copilot, these systems have captured the public imagination and sparked a gold rush of AI-powered applications. However, beneath the surface of this technological revolution lies a complex landscape of challenges that practitioners must navigate.</p>
-<p>As we’ll explore in this book, the significant engineering effort required to manage these challenges - from handling non-deterministic outputs to preventing hallucinations - raises important questions about the true productivity gains promised by LLM technology. While the potential remains compelling, the hidden costs and complexities of building reliable LLM-powered systems should not be neglected and instead may force us to reconsider our overly-optimistic assumptions about their transformative impact.</p>
+<p>In recent years, Large Language Models (LLMs) have emerged as a transformative force in technology, promising to revolutionize how we build products and interact with computers. From ChatGPT to GitHub Copilot, Claude Artifacts, <a class="reference external" href="http://cursor.com">cursor.com</a>, replit, and others, these systems have captured the public imagination and sparked a gold rush of AI-powered applications. However, beneath the surface of this technological revolution lies a complex landscape of challenges that practitioners must navigate.</p>
+<p>As we’ll explore in this book, the engineering effort required to manage these challenges - from handling non-deterministic outputs to preventing hallucinations - cannot be overstated. While the potential of LLM technology remains compelling, understanding and addressing the hidden costs and complexities of building reliable LLM-powered systems will enable us to fully harness their transformative impact.</p>
 <section id="core-challenges-we-ll-address">
 <h2>Core Challenges We’ll Address<a class="headerlink" href="#core-challenges-we-ll-address" title="Permalink to this heading">¶</a></h2>
 <p>While the capabilities of LLMs are indeed remarkable, the prevailing narrative often glosses over fundamental problems that engineers, product managers, and organizations face when building real-world applications. This book aims to bridge that gap, offering a practical, clear-eyed examination of the pitfalls and challenges in working with LLMs.</p>
 <p>Throughout this book, we’ll tackle the following (non-exhaustive) list of critical challenges:</p>
 <ol class="arabic simple">
 <li><p><strong>Non-deterministic Behavior</strong>: Unlike traditional software systems, LLMs can produce different outputs for identical inputs, making testing and reliability assurance particularly challenging.</p></li>
-<li><p><strong>Structural Reliability</strong>: LLMs struggle to maintain consistent output formats, complicating their integration into larger systems and making error handling more complex.</p></li>
+<li><p><strong>Structural (un)Reliability</strong>: LLMs struggle to maintain consistent output formats, complicating their integration into larger systems and making error handling more complex.</p></li>
 <li><p><strong>Hallucination Management</strong>: These models can generate plausible-sounding but entirely fabricated information, creating significant risks for production applications.</p></li>
 <li><p><strong>Cost Optimization</strong>: The computational and financial costs of operating LLM-based systems can quickly become prohibitive without careful optimization.</p></li>
 <li><p><strong>Testing Complexity</strong>: Traditional testing methodologies break down when dealing with non-deterministic systems, requiring new approaches.</p></li>
-<li><p><strong>Integration Challenges</strong>: Incorporating LLMs into existing software architectures presents unique architectural and operational challenges.</p></li>
 </ol>
+</section>
+<section id="a-note-on-perspective">
+<h2>A Note on Perspective<a class="headerlink" href="#a-note-on-perspective" title="Permalink to this heading">¶</a></h2>
+<p>While this book takes a critical look at LLM limitations, our goal is not to discourage their use but to enable more robust and reliable implementations. By understanding these challenges upfront, you’ll be better equipped to build systems that leverage LLMs effectively while avoiding common pitfalls.</p>
+<p>The current discourse around LLMs tends toward extremes—either uncritical enthusiasm or wholesale dismissal. This book takes a different approach:</p>
+<ul class="simple">
+<li><p><strong>Practical Implementation Focus</strong>: Rather than theoretical capabilities, we examine real-world challenges and their solutions.</p></li>
+<li><p><strong>Code-First Learning</strong>: Every concept is illustrated with executable Python examples, enabling immediate practical application.</p></li>
+<li><p><strong>Critical Analysis</strong>: We provide a balanced examination of both capabilities and limitations, helping readers make informed decisions about LLM integration.</p></li>
+</ul>
 </section>
 <section id="a-practical-approach">
 <h2>A Practical Approach<a class="headerlink" href="#a-practical-approach" title="Permalink to this heading">¶</a></h2>
@@ -172,7 +181,7 @@
 <p>This book is designed for:</p>
 <ul class="simple">
 <li><p>Software Engineers building LLM-powered applications</p></li>
-<li><p>Product Managers overseeing AI initiatives</p></li>
+<li><p>Product Managers leading AI initiatives</p></li>
 <li><p>Technical Leaders making architectural decisions</p></li>
 <li><p>Anyone seeking to understand the practical challenges of working with LLMs</p></li>
 </ul>
@@ -182,30 +191,8 @@
 <p>To make the most of this book, you should have:</p>
 <ul class="simple">
 <li><p>Basic Python programming experience</p></li>
-<li><p>Access to LLM APIs (OpenAI, Anthropic, or similar)</p></li>
-<li><p>A desire to build reliable, production-grade AI systems</p></li>
-</ul>
-</section>
-<section id="how-to-use-this-book">
-<h2>How to Use This Book<a class="headerlink" href="#how-to-use-this-book" title="Permalink to this heading">¶</a></h2>
-<p>Each chapter focuses on a specific challenge, following this structure:</p>
-<ol class="arabic simple">
-<li><p>Problem explanation and real-world impact</p></li>
-<li><p>Technical deep-dive with code examples</p></li>
-<li><p>Practical solutions and implementation patterns</p></li>
-<li><p>Testing strategies and best practices</p></li>
-<li><p>Cost and performance considerations</p></li>
-<li><p>Conclusion</p></li>
-</ol>
-</section>
-<section id="a-note-on-perspective">
-<h2>A Note on Perspective<a class="headerlink" href="#a-note-on-perspective" title="Permalink to this heading">¶</a></h2>
-<p>While this book takes a critical look at LLM limitations, our goal is not to discourage their use but to enable more robust and reliable implementations. By understanding these challenges upfront, you’ll be better equipped to build systems that leverage LLMs effectively while avoiding common pitfalls.</p>
-<p>The current discourse around LLMs tends toward extremes—either uncritical enthusiasm or wholesale dismissal. This book takes a different approach:</p>
-<ul class="simple">
-<li><p><strong>Practical Implementation Focus</strong>: Rather than theoretical capabilities, we examine real-world challenges and their solutions.</p></li>
-<li><p><strong>Code-First Learning</strong>: Every concept is illustrated with executable Python examples, enabling immediate practical application.</p></li>
-<li><p><strong>Critical Analysis</strong>: We provide a balanced examination of both capabilities and limitations, helping readers make informed decisions about LLM integration.</p></li>
+<li><p>Access to and basic knowledge of LLM APIs (OpenAI, Anthropic, or similar)</p></li>
+<li><p>A desire to build reliable, production-grade LLM-powered products</p></li>
 </ul>
 </section>
 <section id="setting-up-your-environment">
@@ -232,8 +219,8 @@ pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </s
 <section id="code-repository">
 <h3>3. Code Repository<a class="headerlink" href="#code-repository" title="Permalink to this heading">¶</a></h3>
 <p>Clone the book’s companion repository:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/yourusername/taming-llms.git
-<span class="nb">cd</span><span class="w"> </span>taming-llms
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/souzatharsis/tamingllms.git
+<span class="nb">cd</span><span class="w"> </span>tamingllms
 </pre></div>
 </div>
 </section>
@@ -306,7 +293,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </s
         <div class="title">
           <span class="text">
             <span class="direction">previous</span>
-            Chapter 1: Introduction
+            Table of Contents
           </span>
         </div>
       </a>

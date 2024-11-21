@@ -1,3 +1,5 @@
+# Table of Contents
+
 ## Chapter 1: Introduction
 - The Hidden Challenges of LLMs
 - Why This Book Matters

@@ -1,5 +1,5 @@
-![Taming Language Models Logo](tamingllms/_static/logo.png#gh-light-mode-only)
-<img src="tamingllms/_static/logo.png" style="background-color:white;" alt="Taming Language Models Logo" />
+![Taming Language Models Logo](tamingllms/_static/logo_w.png#gh-light-mode-only)
+<img src="tamingllms/_static/logo_w.png" style="background-color:white;" alt="Taming Language Models Logo" />
 
 
 https://www.souzatharsis.com/tamingLLMs
