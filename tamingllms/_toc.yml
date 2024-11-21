@@ -7,7 +7,8 @@ chapters:
 - file: markdown/intro.md
 - file: notebooks/nondeterminism.ipynb
 - file: notebooks/output_size_limit.ipynb
-- file: nondeterminism-NOTES.md
+- file: notebooks/structured_output.ipynb
+#- file: nondeterminism-NOTES.md
 #- file: markdown
 #- file: notebooks
 #- file: markdown-notebooks

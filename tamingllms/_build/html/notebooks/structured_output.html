@@ -1,0 +1,542 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Wrestling with Structured Output &#8212; Taming Large Language Models: A Practical Guide to LLM Pitfalls with Python Examples</title>
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/insipid.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/default.css" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script defer src="../_static/insipid.js"></script>
+    <script defer src="../_static/insipid-sidebar.js"></script>
+    <link rel="canonical" href="https://souzatharsis.github.io/tamingllms/notebooks/structured_output.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Output Size Limitations" href="output_size_limit.html" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+  </head><body>
+    <script type="text/javascript">
+        document.body.classList.add('js');
+    </script>
+    <input type="checkbox" id="sidebar-checkbox" style="display: none;">
+    <label id="overlay" for="sidebar-checkbox"></label>
+    <div class="sidebar-resize-handle"></div>
+    <script type="text/javascript">
+        try {
+            let sidebar = localStorage.getItem('sphinx-sidebar');
+            const sidebar_width = localStorage.getItem('sphinx-sidebar-width');
+            if (sidebar_width) {
+                document.documentElement.style.setProperty('--sidebar-width', sidebar_width);
+            }
+            // show sidebar on wide screen
+            if (!sidebar && window.matchMedia('(min-width: 100rem)').matches) {
+                sidebar = 'visible';
+                // NB: We don't store the value in localStorage!
+            }
+            if (sidebar === 'visible') {
+                document.getElementById('sidebar-checkbox').checked = true;
+            }
+        } catch(e) {
+            console.info(e);
+        }
+    </script>
+    <header id="topbar-placeholder">
+      <div id="topbar">
+        <div id="titlebar">
+          <div class="buttons">
+            <label for="sidebar-checkbox" id="sidebar-button" role="button" tabindex="0" aria-controls="sphinxsidebar" accesskey="M">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
+            </label>
+            <button id="search-button" type="button" title="Search" aria-label="Search" aria-expanded="false" aria-controls="search-form" accesskey="S">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+            </button>
+          </div>
+          <div class="title">
+            <a class="parent" href="../markdown/toc.html" accesskey="U">Taming Large Language Models: A Practical Guide to LLM Pitfalls with Python Examples</a>
+            <a class="top" href="#">Wrestling with Structured Output</a>
+          </div>
+          <div class="buttons">
+            <button id="fullscreen-button" type="button" aria-hidden="true">
+              <span class="enable">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M212.686 315.314L120 408l32.922 31.029c15.12 15.12 4.412 40.971-16.97 40.971h-112C10.697 480 0 469.255 0 456V344c0-21.382 25.803-32.09 40.922-16.971L72 360l92.686-92.686c6.248-6.248 16.379-6.248 22.627 0l25.373 25.373c6.249 6.248 6.249 16.378 0 22.627zm22.628-118.628L328 104l-32.922-31.029C279.958 57.851 290.666 32 312.048 32h112C437.303 32 448 42.745 448 56v112c0 21.382-25.803 32.09-40.922 16.971L376 152l-92.686 92.686c-6.248 6.248-16.379 6.248-22.627 0l-25.373-25.373c-6.249-6.248-6.249-16.378 0-22.627z"/></svg>
+              </span>
+              <span class="disable">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M4.686 427.314L104 328l-32.922-31.029C55.958 281.851 66.666 256 88.048 256h112C213.303 256 224 266.745 224 280v112c0 21.382-25.803 32.09-40.922 16.971L152 376l-99.314 99.314c-6.248 6.248-16.379 6.248-22.627 0L4.686 449.941c-6.248-6.248-6.248-16.379 0-22.627zM443.314 84.686L344 184l32.922 31.029c15.12 15.12 4.412 40.971-16.97 40.971h-112C234.697 256 224 245.255 224 232V120c0-21.382 25.803-32.09 40.922-16.971L296 136l99.314-99.314c6.248-6.248 16.379-6.248 22.627 0l25.373 25.373c6.248 6.248 6.248 16.379 0 22.627z"/></svg>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div id="searchbox" role="search">
+          <form id="search-form" class="search" style="display: none" action="../search.html" method="get">
+            <input type="search" name="q" placeholder="Search ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            <button>Go</button>
+          </form>
+        </div>
+      </div>
+    </header>
+    <nav>
+      <a href="output_size_limit.html" class="nav-icon previous" title="previous:&#13;Output Size Limitations" aria-label="Previous topic" accesskey="P" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"/></svg>
+      </a>
+    </nav>
+
+    <nav class="relbar">
+      <a class="previous" href="output_size_limit.html" aria-label="Previous topic" >
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"/></svg>
+        </div>
+        <div class="title">
+          <span class="text">
+            <span class="direction">previous</span>
+            Output Size Limitations
+          </span>
+        </div>
+      </a>
+    </nav>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+<section class="tex2jax_ignore mathjax_ignore" id="wrestling-with-structured-output">
+<h1>Wrestling with Structured Output<a class="headerlink" href="#wrestling-with-structured-output" title="Permalink to this heading">¶</a></h1>
+<section id="the-structured-output-challenges">
+<h2>The Structured Output Challenges<a class="headerlink" href="#the-structured-output-challenges" title="Permalink to this heading">¶</a></h2>
+<p>Large language models (LLMs) excel at generating human-like text, but they often struggle to produce output in a structured format consistently. This poses a significant challenge when we need LLMs to generate data that can be easily processed by other systems, such as databases, APIs, or other software applications.</p>
+<p>Sometimes, even with a well-crafted prompt, an LLM might produce an unstructured response when a structured one is expected. This can be particularly challenging when integrating LLMs into systems that require specific data formats.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># Load environment variables from .env file</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the prompt expecting a structured JSON response</span>
+<span class="n">MAX_LENGTH</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/apple.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">sec_filing</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> 
+<span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Generate a two-person discussion about the key financial data from the following text in JSON format.</span>
+<span class="s2">TEXT: </span><span class="si">{</span><span class="n">sec_filing</span><span class="p">[:</span><span class="n">MAX_LENGTH</span><span class="p">]</span><span class="si">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span>
+    <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response_content</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response_content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Person 1: Wow, Apple Inc. seems to have a lot of different products and services they offer. It&#39;s interesting to see the breakdown of their revenue streams in their Form 10-K.
+
+Person 2: Absolutely, they have a diverse portfolio with iPhones, Macs, iPads, wearables, and even services. It&#39;s impressive to see how they have capitalized on different technology trends.
+
+Person 1: I noticed that they have a large market value of over $2.6 trillion as of March 29, 2024. That&#39;s a huge amount, and it shows the confidence investors have in the company.
+
+Person 2: Definitely, that&#39;s a significant figure. It&#39;s also good to see that they are complying with all the required SEC regulations and filing their reports in a timely manner.
+
+Person 1: Yes, it&#39;s crucial for investors to have access to accurate and up-to-date financial information. It helps in making informed decisions about their investments in the company.
+
+Person 2: Absolutely, transparency and compliance with regulations are key in the financial industry. It&#39;s good to see that Apple Inc. is taking those aspects seriously.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="k">def</span> <span class="nf">is_json</span><span class="p">(</span><span class="n">myjson</span><span class="p">):</span>
+  <span class="k">try</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">myjson</span><span class="p">)</span>
+  <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">return</span> <span class="kc">False</span>
+  <span class="k">return</span> <span class="kc">True</span>
+
+<span class="n">is_json</span><span class="p">(</span><span class="n">response_content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this example, despite the prompt clearly asking for a JSON object, the LLM generates a natural language sentence instead. This highlights the inconsistency and unpredictability of LLMs when it comes to producing structured output.</p>
+</section>
+<section id="problem-statement">
+<h2>Problem Statement<a class="headerlink" href="#problem-statement" title="Permalink to this heading">¶</a></h2>
+<p>Obtaining structured output from LLMs presents several significant challenges:</p>
+<ul class="simple">
+<li><p><strong>Inconsistency</strong>: LLMs often produce unpredictable results, sometimes generating well-structured output and other times deviating from the expected format.</p></li>
+<li><p><strong>Lack of Type Safety</strong>: LLMs do not inherently understand data types, which can lead to errors when their output is integrated with systems requiring specific data formats.</p></li>
+<li><p><strong>Prompt Engineering Complexity</strong>: Crafting prompts that effectively guide LLMs to produce the correct structured output is complex and requires extensive experimentation.</p></li>
+</ul>
+</section>
+<section id="solutions">
+<h2>Solutions<a class="headerlink" href="#solutions" title="Permalink to this heading">¶</a></h2>
+<p>Several strategies and tools can be employed to address the challenges of structured output from LLMs.</p>
+<section id="strategies">
+<h3>Strategies<a class="headerlink" href="#strategies" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Schema Guidance</strong>: Providing the LLM with a clear schema or blueprint of the desired output structure helps to constrain its generation and improve consistency. This can be achieved by using tools like Pydantic to define the expected data structure and then using that definition to guide the LLM’s output.</p></li>
+<li><p><strong>Output Parsing</strong>: When LLMs don’t natively support structured output, parsing their text output using techniques like regular expressions or dedicated parsing libraries can extract the desired information. For example, you can use regular expressions to extract specific patterns from the LLM’s output, or you can use libraries like Pydantic to parse the output into structured data objects.</p></li>
+<li><p><strong>Type Enforcement</strong>: Using tools that enforce data types, such as Pydantic in Python, can ensure that the LLM output adheres to the required data formats. This can help to prevent errors when integrating the LLM’s output with other systems.</p></li>
+</ul>
+</section>
+<section id="techniques-and-tools">
+<h3>Techniques and Tools<a class="headerlink" href="#techniques-and-tools" title="Permalink to this heading">¶</a></h3>
+<section id="one-shot-prompts">
+<h4>One-Shot Prompts<a class="headerlink" href="#one-shot-prompts" title="Permalink to this heading">¶</a></h4>
+<p>In one-shot prompting, you provide a single example of the desired output format within the prompt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Generate a two-person discussion about the key financial data from the following text in JSON format.</span>
+
+<span class="s2">&lt;JSON_FORMAT&gt;</span>
+<span class="se">{{</span>
+<span class="s2">   &quot;Person1&quot;: </span><span class="se">{{</span>
+<span class="s2">     &quot;name&quot;: &quot;Alice&quot;,</span>
+<span class="s2">     &quot;statement&quot;: &quot;The revenue for Q1 has increased by 20% compared to last year.&quot;</span>
+<span class="s2">   </span><span class="se">}}</span><span class="s2">,</span>
+<span class="s2">   &quot;Person2&quot;: </span><span class="se">{{</span>
+<span class="s2">     &quot;name&quot;: &quot;Bob&quot;,</span>
+<span class="s2">     &quot;statement&quot;: &quot;That&#39;s great news! What about the net profit margin?&quot;</span>
+<span class="s2">   </span><span class="se">}}</span>
+<span class="se">}}</span>
+<span class="s2">&lt;/JSON_FORMAT&gt;</span>
+
+<span class="s2">TEXT: </span><span class="si">{</span><span class="n">sec_filing</span><span class="p">[:</span><span class="n">MAX_LENGTH</span><span class="p">]</span><span class="si">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span>
+    <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response_content</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response_content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+   &quot;Person1&quot;: {
+     &quot;name&quot;: &quot;Alice&quot;,
+     &quot;statement&quot;: &quot;The revenue for Q1 has increased by 20% compared to last year.&quot;
+   },
+   &quot;Person2&quot;: {
+     &quot;name&quot;: &quot;Bob&quot;,
+     &quot;statement&quot;: &quot;That&#39;s great news! What about the net profit margin?&quot;
+   }
+}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">is_json</span><span class="p">(</span><span class="n">response_content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="structured-output-with-provider-specific-apis">
+<h4>Structured Output with Provider-Specific APIs<a class="headerlink" href="#structured-output-with-provider-specific-apis" title="Permalink to this heading">¶</a></h4>
+<p>Simple techniques such as one-shot prompting can lead to material improvements though may not be sufficient for complex (e.g. nested) structures and / or when the model’s output needs to be restricted to a specific set of options or types.</p>
+<p>Provider-specific APIs can offer ways to handle those challenges. For example, OpenAI’s API offers features specifically designed for generating JSON output or structured outputs, in general.</p>
+<p><strong>JSON Mode</strong></p>
+<p>JSON mode is a feature provided by some LLM APIs, such as OpenAI’s, that allows the model to generate output in JSON format. This is particularly useful when you need structured data as a result, such as when parsing the output programmatically or integrating it with other systems that require JSON input.</p>
+<p>When using JSON mode, you must always instruct the model to produce JSON via some message in the conversation, for example via your system message. If you don’t include an explicit instruction to generate JSON, the model may generate an unending stream of whitespace and the request may run continually until it reaches the token limit. To help ensure you don’t forget, the API will throw an error if the string “JSON” does not appear somewhere in the context.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Generate a two-person discussion about the key financial data from the following text in JSON format.</span>
+<span class="s2">TEXT: </span><span class="si">{</span><span class="n">sec_filing</span><span class="p">[:</span><span class="n">MAX_LENGTH</span><span class="p">]</span><span class="si">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span>
+    <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}],</span>
+<span class="n">response_format</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;json_object&quot;</span> <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response_content</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response_content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+  &quot;person1&quot;: &quot;I see that Apple Inc. reported a total market value of approximately $2,628,553,000,000 held by non-affiliates as of March 29, 2024. That&#39;s a significant amount!&quot;,
+  &quot;person2&quot;: &quot;Yes, it definitely shows the scale and value of the company in the market. It&#39;s impressive to see the sheer size of the market value.&quot;,
+  &quot;person1&quot;: &quot;Also, they mentioned having 15,115,823,000 shares of common stock issued and outstanding as of October 18, 2024. That&#39;s a large number of shares circulating in the market.&quot;,
+  &quot;person2&quot;: &quot;Absolutely, the number of shares outstanding plays a crucial role in determining the company&#39;s market capitalization and investor interest.&quot;
+}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">is_json</span><span class="p">(</span><span class="n">response_content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>JSON mode will not guarantee the output matches any specific schema, only that it is valid and parses without errors. For that purpose, we can leverage a new feature some modern LLM API offer called “Structured Outputs” to ensure the output data matches a target schema/typing.</p>
+<p><strong>Structured Output Mode</strong></p>
+<p>Structured Outputs is a feature that ensures the model will always generate responses that adhere to your supplied JSON Schema, so you don’t need to worry about the model omitting a required key, or hallucinating an invalid enum value.</p>
+<p>Some benefits of Structured Outputs include:</p>
+<ul class="simple">
+<li><p><strong>Reliable type-safety</strong>: No need to validate or retry incorrectly formatted responses.</p></li>
+<li><p><strong>Explicit refusals</strong>: Safety-based model refusals are now programmatically detectable.</p></li>
+<li><p><strong>Simpler prompting</strong>: No need for strongly worded prompts to achieve consistent formatting.</p></li>
+</ul>
+<p>Here’s a Python example demonstrating how to use the OpenAI API to generate a structured output in the form of a two-person conversation discussing financial statements from an input SEC filing. This example uses the <code class="docutils literal notranslate"><span class="pre">response_format</span></code> parameter within the OpenAI API call. This functionality is supported by GPT-4o models, specifically <code class="docutils literal notranslate"><span class="pre">gpt-4o-mini-2024-07-18</span></code>, <code class="docutils literal notranslate"><span class="pre">gpt-4o-2024-08-06</span></code>, and later versions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">SECExtraction</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">mentioned_entities</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">mentioned_places</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">extract_from_sec_filing</span><span class="p">(</span><span class="n">sec_filing_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SECExtraction</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts structured data from an input SEC filing text.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">completion</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini-2024-07-18&quot;</span><span class="p">,</span>
+        <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="p">(</span>
+                    <span class="s2">&quot;You are an expert at structured data extraction. You will be given unstructured text from a SEC filing and extracted names of mentioned entities and places and should convert the response into the given structure.&quot;</span>
+                <span class="p">)</span>
+            <span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">sec_filing_text</span><span class="p">}</span>
+        <span class="p">],</span>
+        <span class="n">response_format</span><span class="o">=</span><span class="n">SECExtraction</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">parsed</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Explanation:</strong></p>
+<ul class="simple">
+<li><p><strong>Data Structures:</strong> The code defines two Pydantic models, <code class="docutils literal notranslate"><span class="pre">DialogueTurn</span></code> and <code class="docutils literal notranslate"><span class="pre">FinancialStatementDiscussion</span></code>, to represent the structured output of the conversation. These models provide type hints and structure for the conversation.</p></li>
+<li><p><strong>API Interaction:</strong> The <code class="docutils literal notranslate"><span class="pre">generate_conversation</span></code> function uses the OpenAI client to send a chat completion request to the <code class="docutils literal notranslate"><span class="pre">gpt-4o-2024-08-06</span></code> model. The prompt instructs the model to simulate a dialogue about financial statements. The <code class="docutils literal notranslate"><span class="pre">response_format</span></code> is set to <code class="docutils literal notranslate"><span class="pre">FinancialStatementDiscussion</span></code>, ensuring the response conforms to the Pydantic model.</p></li>
+<li><p><strong>Output Processing:</strong> The returned response is parsed into the <code class="docutils literal notranslate"><span class="pre">FinancialStatementDiscussion</span></code> model. The code then iterates through the dialogue turns and prints the speaker and content of each turn.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conversation</span> <span class="o">=</span> <span class="n">extract_from_sec_filing</span><span class="p">(</span><span class="n">sec_filing</span><span class="p">[:</span><span class="n">MAX_LENGTH</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extracted entities:&quot;</span><span class="p">,</span> <span class="n">conversation</span><span class="o">.</span><span class="n">mentioned_entities</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extracted places:&quot;</span><span class="p">,</span> <span class="n">conversation</span><span class="o">.</span><span class="n">mentioned_places</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracted entities: [&#39;Apple Inc.&#39;, &#39;The Nasdaq Stock Market LLC&#39;]
+Extracted places: [&#39;Washington, D.C.&#39;, &#39;California&#39;, &#39;Cupertino, California&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Benefits</strong></p>
+<ul class="simple">
+<li><p><strong>Structured Output:</strong> The use of Pydantic models and the <code class="docutils literal notranslate"><span class="pre">response_format</span></code> parameter enforces the structure of the model’s output, making it more reliable and easier to process.</p></li>
+<li><p><strong>Schema Adherence:</strong>  Structured Outputs in OpenAI API guarantee that the response adheres to the provided schema.</p></li>
+</ul>
+<p>This structured approach improves the reliability and usability of your application by ensuring consistent, predictable output from the OpenAI API.</p>
+</section>
+</section>
+<section id="langchain">
+<h3>LangChain<a class="headerlink" href="#langchain" title="Permalink to this heading">¶</a></h3>
+<p>LangChain is a framework designed to simplify the development of LLM applications. It offers several tools for parsing structured output, including:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">with_structured_output</span></code></strong>: This method is used with LLMs that support structured output APIs, allowing you to enforce a schema directly within the prompt.</p></li>
+</ul>
+</section>
+<section id="outlines">
+<h3>Outlines<a class="headerlink" href="#outlines" title="Permalink to this heading">¶</a></h3>
+<p>Outlines is a library specifically focused on structured text generation from LLMs.  It provides several powerful features:</p>
+<ul class="simple">
+<li><p><strong>Multiple Choice Generation</strong>: Restrict the LLM output to a predefined set of options.</p></li>
+</ul>
+</section>
+<section id="comparing-solutions">
+<h3>Comparing Solutions<a class="headerlink" href="#comparing-solutions" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Simplicity vs. Control</strong>: One-shot prompts are simple but offer limited control.  Dedicated tools like Gemini’s structured output features, LangChain, and Outlines provide greater control but might have a steeper learning curve.</p></li>
+<li><p><strong>Native LLM Support</strong>:  <code class="docutils literal notranslate"><span class="pre">with_structured_output</span></code> in LangChain relies on the LLM having built-in support for structured output APIs. Other methods, like parsing or using Outlines, are more broadly applicable.</p></li>
+<li><p><strong>Flexibility</strong>:  Outlines and LangChain’s  <code class="docutils literal notranslate"><span class="pre">StructuredOutputParser</span></code>  offer the most flexibility for defining custom output structures.</p></li>
+</ul>
+</section>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Clear Schema Definition</strong>: Define the desired output structure clearly, using schemas, types, or grammars as appropriate. This ensures the LLM knows exactly what format is expected.</p></li>
+<li><p><strong>Descriptive Naming</strong>: Use meaningful names for fields and elements in your schema. This makes the output more understandable and easier to work with.</p></li>
+<li><p><strong>Detailed Prompting</strong>: Guide the LLM with well-crafted prompts that include examples and clear instructions.  A well-structured prompt improves the chances of getting the desired output.</p></li>
+<li><p><strong>Error Handling</strong>: Implement mechanisms to handle cases where the LLM deviates from the expected structure. LLMs are not perfect, so having error handling ensures your application remains robust.</p></li>
+<li><p><strong>Testing and Iteration</strong>: Thoroughly test your structured output generation process and refine your prompts and schemas based on the results. Continuous testing and refinement are key to achieving reliable structured output.</p></li>
+<li><p><strong>Structured Response</strong>: If you want to structure the model’s output when it responds to the user, then you should consider using a structured response_format (e.g. JSON format).</p></li>
+<li><p><strong>Function Calling</strong>: If you are connecting the model to tools, functions, data, etc. in your system, then you should use a typed structured output.</p></li>
+</ul>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
+<p>Extracting structured output from LLMs is crucial for integrating them into real-world applications. By understanding the challenges and employing appropriate strategies and tools, developers can improve the reliability and usability of LLM-powered systems, unlocking their potential to automate complex tasks and generate valuable insights.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+
+            <p class="logo"><a href="../markdown/toc.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+          <div class="sidebar-resize-handle"></div>
+
+<h3><a href="../markdown/toc.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../markdown/intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nondeterminism.html">Non-determinism</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output_size_limit.html">Output Size Limitations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Wrestling with Structured Output</a></li>
+</ul>
+
+<div><hr class="docutils"></div>
+<ul>
+  <li class="toctree-l1"><a class="reference internal" href="../genindex.html" accesskey="I">General Index</a></li>
+</ul>
+<div id="ethical-ad-placement"></div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <nav class="relbar">
+      <a class="previous" href="output_size_limit.html" aria-label="Previous topic" >
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"/></svg>
+        </div>
+        <div class="title">
+          <span class="text">
+            <span class="direction">previous</span>
+            Output Size Limitations
+          </span>
+        </div>
+      </a>
+    </nav>
+
+    <footer role="contentinfo">
+      Created using <a class="reference external" href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+      <a class="reference external" href="https://insipid-sphinx-theme.readthedocs.io/">Insipid Theme</a>.
+<a class="reference internal" href="../_sources/notebooks/structured_output.ipynb" rel="nofollow">Show Source</a>.
+    </footer>
+  </body>
+</html>
