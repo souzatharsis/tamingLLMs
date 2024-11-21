@@ -1,14 +1,14 @@
 ![Taming Language Models Logo](tamingllms/_static/logo_w.png#gh-light-mode-only)
-<img src="tamingllms/_static/logo_w.png" style="background-color:white;" alt="Taming Language Models Logo" />
+<img src="tamingllms/_static/logo_w.png" style="background-color:white; width:25%;" alt="Taming Language Models Logo" />
 
 
 https://www.souzatharsis.com/tamingLLMs
 
-# Taming Language Models: A Practical Guide to LLM Pitfalls with Python Examples
+# Taming Large Language Models: A Practical Guide to LLM Pitfalls with Python Examples
 
-In recent years, Large Language Models (LLMs) have emerged as a transformative force in technology, promising to revolutionize how we build products and interact with computers. From ChatGPT to GitHub Copilot and Claude Artifacts, these systems have captured the public imagination and sparked a gold rush of AI-powered applications. However, beneath the surface of this technological revolution lies a complex landscape of challenges that practitioners must navigate. 
+In recent years, Large Language Models (LLMs) have emerged as a transformative force in technology, promising to revolutionize how we build products and interact with computers. From ChatGPT to GitHub Copilot, Claude Artifacts, cursor.com, replit, and others, these systems have captured the public imagination and sparked a gold rush of AI-powered applications. However, beneath the surface of this technological revolution lies a complex landscape of challenges that practitioners must navigate. 
 
-As we'll explore in this book, the significant engineering effort required to manage these challenges - from handling non-deterministic outputs to preventing hallucinations - raises important questions about the true productivity gains promised by LLM technology. While the potential remains compelling, the hidden costs and complexities of building reliable LLM-powered systems should not be neglected and instead may force us to reconsider our overly-optimistic assumptions about their transformative impact.
+As we'll explore in this book, the engineering effort required to manage these challenges - from handling non-deterministic outputs to preventing hallucinations - cannot be overstated. While the potential of LLM technology remains compelling, understanding and addressing the hidden costs and complexities of building reliable LLM-powered systems will enable us to fully harness their transformative impact.
 
 ## Chapter 1: Introduction
 - The Hidden Challenges of LLMs
