@@ -4,7 +4,10 @@
 title: "Taming Large Language Models: A Practical Guide to LLM Pitfalls with Python Examples"
 author: Tharsis T. P. Souza
 copyright: "2024"  # Copyright year to be placed in the footer
-logo: _static/logo.png
+project: "tamingLLMs" 
+#logo: /home/tobias/src/tamingLLMs/tamingllms/tamingllms/_static/logo.png
+
+
 
 
 # Force re-execution of notebooks on each build.
@@ -36,6 +39,7 @@ bibtex_bibfiles:
 
 sphinx:
   config:
-    html_theme: insipid
+    html_theme: 'press' #insipid
+    #html_logo: '_static/logo_w.png'
     html_show_copyright: false
     #html_sidebars: {'**': ['globaltoc.html']}

@@ -4059,6 +4059,20 @@ rtd = ["myst-parser", "sphinx (>=3.0)", "sphinx-book-theme"]
 testing = ["coverage (<5.0)", "jupyter-book", "pytest (>=5.4,<6.0)", "pytest-cov (>=2.8,<3.0)", "pytest-regressions"]
 
 [[package]]
+name = "sphinx-press-theme"
+version = "0.9.1"
+description = "A Sphinx-doc theme based on Vuepress"
+optional = false
+python-versions = "*"
+files = [
+    {file = "sphinx_press_theme-0.9.1-py3-none-any.whl", hash = "sha256:eed3fdd8df249b67136b507dfc6a84d1a2c5feca5376960c6d4d28ada4f6cdf7"},
+    {file = "sphinx_press_theme-0.9.1.tar.gz", hash = "sha256:1643dee7365f7831d1d3971b389b7c255641a7aced75f0681f71574e380046cf"},
+]
+
+[package.dependencies]
+sphinx = ">=4.0.1"
+
+[[package]]
 name = "sphinx-thebe"
 version = "0.3.1"
 description = "Integrate interactive code blocks into your documentation with Thebe and Binder."
@@ -4955,4 +4969,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "0b236b9cad63be60064a1f66c0821ec90d05b6e87049914903f91d17ca4fc6b2"
+content-hash = "d3a6478a7fc388a3ef71279b755eb0e060ba481c886f715132bbbbb00cb520b8"

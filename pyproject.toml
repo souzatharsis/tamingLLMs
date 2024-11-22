@@ -26,6 +26,7 @@ sphinxext-rediraffe = "^0.2.7"
 sphinx-tojupyter = "^0.3.0"
 sphinx-togglebutton = "^0.3.2"
 insipid-sphinx-theme = "^0.4.2"
+sphinx-press-theme = "^0.9.1"
 
 
 [build-system]
