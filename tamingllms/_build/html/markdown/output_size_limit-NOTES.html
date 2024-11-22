@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+      <title>Output Size Limitations</title>
+    
+          <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/sphinx-thebe.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/scripts/sphinx-book-theme.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script src="../_static/design-tabs.js"></script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+        <script async="async" src="../_static/sphinx-thebe.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../_static/theme-vendors.js"></script> -->
+      <script src="../_static/theme.js" defer></script>
+      <link rel="canonical" href="https://souzatharsis.github.io/tamingllms/markdown/output_size_limit-NOTES.html" />
+    
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="toc.html" class="home-link">
+    
+      <span class="site-name">tamingLLMs</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="toc.html#taming-large-language-models">taming large language models</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="intro.html" class="reference internal ">Introduction</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../notebooks/nondeterminism.html" class="reference internal ">Non-determinism</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../notebooks/output_size_limit.html" class="reference internal ">Output Size Limitations</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../notebooks/structured_output.html" class="reference internal ">Wrestling with Structured Output</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="toc.html">Docs</a> &raquo;</li>
+    
+    <li>Output Size Limitations</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="output-size-limitations">
+<h1>Output Size Limitations<a class="headerlink" href="#output-size-limitations" title="Permalink to this heading">¶</a></h1>
+<section id="what-are-token-limits">
+<h2>What are Token Limits?<a class="headerlink" href="#what-are-token-limits" title="Permalink to this heading">¶</a></h2>
+<p>Tokens are the basic units that LLMs process text with. A token can be as short as a single character or as long as a complete word. In English, a general rule of thumb is that 1 token ≈ 4 characters or ¾ of a word.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">max_output_tokens</span></code> is parameter often available in modern LLMs that determines the maximum length of text that an LLM can generate in a single response. Contrary to what one might expect, the model does not “summarizes the answer” such that it does not surpass <code class="docutils literal notranslate"><span class="pre">max_output_tokens</span></code> limit. Instead, it will stop once it reaches this limit, even mid-sentence, i.e. the response may be truncated.</p>
+<p>| <strong>Token Cost and Length Limitation Comparison Across Key Models</strong> | | | | |</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>max_output_tokens</p></th>
+<th class="head"><p>max_input_tokens</p></th>
+<th class="head"><p>input_cost_per_token</p></th>
+<th class="head"><p>output_cost_per_token</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>meta.llama3-2-11b-instruct-v1:0</p></td>
+<td><p>4096</p></td>
+<td><p>128000</p></td>
+<td><p>3.5e-7</p></td>
+<td><p>3.5e-7</p></td>
+</tr>
+<tr class="row-odd"><td><p>claude-3-5-sonnet-20241022</p></td>
+<td><p>8192</p></td>
+<td><p>200000</p></td>
+<td><p>3e-6</p></td>
+<td><p>1.5e-5</p></td>
+</tr>
+<tr class="row-even"><td><p>gpt-4-0613</p></td>
+<td><p>4096</p></td>
+<td><p>8192</p></td>
+<td><p>3e-5</p></td>
+<td><p>6e-5</p></td>
+</tr>
+<tr class="row-odd"><td><p>gpt-4-turbo-2024-04-09</p></td>
+<td><p>4096</p></td>
+<td><p>128000</p></td>
+<td><p>1e-5</p></td>
+<td><p>3e-5</p></td>
+</tr>
+<tr class="row-even"><td><p>gpt-4o-mini</p></td>
+<td><p>16384</p></td>
+<td><p>128000</p></td>
+<td><p>1.5e-7</p></td>
+<td><p>6e-7</p></td>
+</tr>
+<tr class="row-odd"><td><p>gemini/gemini-1.5-flash-002</p></td>
+<td><p>8192</p></td>
+<td><p>1048576</p></td>
+<td><p>7.5e-8</p></td>
+<td><p>3e-7</p></td>
+</tr>
+<tr class="row-even"><td><p>gemini/gemini-1.5-pro-002</p></td>
+<td><p>8192</p></td>
+<td><p>2097152</p></td>
+<td><p>3.5e-6</p></td>
+<td><p>1.05e-5</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="problem-statement">
+<h2>Problem Statement<a class="headerlink" href="#problem-statement" title="Permalink to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">max_output_tokens</span></code> limit in LLMs poses a significant challenge for users who need to generate long outputs, as it may result in truncated content and/or incomplete information.</p>
+<ol class="arabic simple">
+<li><p><strong>Truncated Content</strong>: Users aiming to generate extensive content, such as detailed reports or comprehensive articles, may find their outputs abruptly cut off due to the <code class="docutils literal notranslate"><span class="pre">max_output_tokens</span></code> limit. This truncation can result in incomplete information and disrupt the flow of the content.</p></li>
+<li><p><strong>Shallow Responses</strong>: When users expect a complete and thorough response but receive only a partial output, it can lead to dissatisfaction and frustration. This is especially true in applications where the completeness of information is critical, such as in educational tools or content creation platforms.</p></li>
+</ol>
+<p>To effectively address these challenges, developers need to implement robust solutions that balance user expectations with technical and cost constraints, ensuring that long-form content generation remains feasible and efficient.</p>
+<section id="content-chunking-with-contextual-linking">
+<h3>Content Chunking with Contextual Linking<a class="headerlink" href="#content-chunking-with-contextual-linking" title="Permalink to this heading">¶</a></h3>
+<p>Content chunking with contextual linking is a technique used to manage the <code class="docutils literal notranslate"><span class="pre">max_output_tokens</span></code> limitation by breaking down long-form content into smaller, manageable chunks. This approach allows the LLM to focus on smaller sections of the input, enabling it to generate more complete and detailed responses for each chunk while maintaining coherence and context across the entire output.</p>
+<ol class="arabic simple">
+<li><p><strong>Chunking the Content</strong>: The input content is split into smaller chunks. This allows the LLM to process each chunk individually, focusing on generating a complete and detailed response for that specific section of the input.</p></li>
+<li><p><strong>Maintaining Context</strong>: Each chunk is linked with contextual information from the previous chunks. This helps in maintaining the flow and coherence of the content across multiple chunks.</p></li>
+<li><p><strong>Generating Linked Prompts</strong>: For each chunk, a prompt is generated that includes the chunk’s content and its context. This prompt is then used to generate the output for that chunk.</p></li>
+<li><p><strong>Combining the Outputs</strong>: The outputs of all chunks are combined to form the final long-form content.</p></li>
+</ol>
+<p>By following these steps, developers can effectively manage the <code class="docutils literal notranslate"><span class="pre">max_output_tokens</span></code> limitation and generate coherent long-form content without truncation.</p>
+<p>Let’s examine a robust solution for handling long-form content generation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="k">class</span> <span class="nc">ConversationGenerator</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api_client</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">api_client</span> <span class="o">=</span> <span class="n">api_client</span>
+        
+    <span class="k">def</span> <span class="nf">chunk_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_content</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Split input content into manageable chunks while preserving context.&quot;&quot;&quot;</span>
+        <span class="n">sentences</span> <span class="o">=</span> <span class="n">input_content</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;. &#39;</span><span class="p">)</span>
+        <span class="n">chunks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">current_chunk</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">current_length</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+            <span class="n">sentence_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">current_length</span> <span class="o">+</span> <span class="n">sentence_length</span> <span class="o">&gt;</span> <span class="n">chunk_size</span> <span class="ow">and</span> <span class="n">current_chunk</span><span class="p">:</span>
+                <span class="n">chunks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;. &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_chunk</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+                <span class="n">current_chunk</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">current_length</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">current_chunk</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+            <span class="n">current_length</span> <span class="o">+=</span> <span class="n">sentence_length</span>
+            
+        <span class="k">if</span> <span class="n">current_chunk</span><span class="p">:</span>
+            <span class="n">chunks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;. &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_chunk</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">chunks</span>
+
+    <span class="k">def</span> <span class="nf">generate_conversation_prompts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content_chunks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate linked conversation prompts.&quot;&quot;&quot;</span>
+        <span class="n">prompts</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">content_chunks</span><span class="p">):</span>
+            <span class="n">prompt</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;part&quot;</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="s2">&quot;total_parts&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">content_chunks</span><span class="p">),</span>
+                <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">chunk</span><span class="p">,</span>
+                <span class="s2">&quot;context&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_context</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">prompts</span><span class="p">)</span>
+            <span class="p">}</span>
+            <span class="n">prompts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">prompts</span>
+
+    <span class="k">def</span> <span class="nf">_get_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">previous_prompts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate context from previous parts.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">part_index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Start of conversation&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Continuing from part </span><span class="si">{</span><span class="n">part_index</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="testing-the-implementation">
+<h3>Testing the Implementation<a class="headerlink" href="#testing-the-implementation" title="Permalink to this heading">¶</a></h3>
+<p>Here’s how to test the chunking functionality:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">from</span> <span class="nn">conversation_generator</span> <span class="kn">import</span> <span class="n">ConversationGenerator</span>
+
+<span class="k">def</span> <span class="nf">test_content_chunking</span><span class="p">():</span>
+    <span class="n">generator</span> <span class="o">=</span> <span class="n">ConversationGenerator</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">long_content</span> <span class="o">=</span> <span class="s2">&quot;First sentence. Second sentence. &quot;</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="n">chunks</span> <span class="o">=</span> <span class="n">generator</span><span class="o">.</span><span class="n">chunk_content</span><span class="p">(</span><span class="n">long_content</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">100</span>
+        <span class="k">assert</span> <span class="n">chunk</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">test_prompt_generation</span><span class="p">():</span>
+    <span class="n">generator</span> <span class="o">=</span> <span class="n">ConversationGenerator</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">chunks</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Chunk 1.&quot;</span><span class="p">,</span> <span class="s2">&quot;Chunk 2.&quot;</span><span class="p">,</span> <span class="s2">&quot;Chunk 3.&quot;</span><span class="p">]</span>
+    <span class="n">prompts</span> <span class="o">=</span> <span class="n">generator</span><span class="o">.</span><span class="n">generate_conversation_prompts</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span>
+    
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">prompts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
+    <span class="k">assert</span> <span class="n">prompts</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;part&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="n">prompts</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;context&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">prompts</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;context&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Always Monitor Token Usage</strong></p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">estimate_tokens</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Rough token count estimation.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">())</span> <span class="o">*</span> <span class="mf">1.3</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Implement Graceful Fallbacks</strong></p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_with_fallback</span><span class="p">(</span><span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">max_retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_retries</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">generate_full_response</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">TokenLimitError</span><span class="p">:</span>
+            <span class="n">prompt</span> <span class="o">=</span> <span class="n">truncate_prompt</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">generate_summary</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Use Efficient Prompt Templates</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Keep system prompts concise</p></li>
+<li><p>Remove redundant context</p></li>
+<li><p>Use compression techniques for long contexts</p></li>
+</ul>
+</section>
+<section id="implications">
+<h2>Implications<a class="headerlink" href="#implications" title="Permalink to this heading">¶</a></h2>
+<p>Implementing context chunking with contextual linking is a practical solution to manage the output size limitations of LLMs. However, this approach comes with its own set of implications that developers must consider.</p>
+<ol class="arabic simple">
+<li><p><strong>Increased Development Complexity</strong>: Implementing strategies to overcome the maximum output token length introduces additional layers of complexity to the application design. It necessitates meticulous management of context across multiple outputs to maintain coherence. Ensuring that each chunk retains the necessary context for the conversation or document can be challenging and often requires advanced logic to handle transitions seamlessly.</p></li>
+<li><p><strong>Cost Implications</strong>: Attempting to circumvent the <code class="docutils literal notranslate"><span class="pre">max_output_tokens</span></code> limitation by making multiple requests can increase the number of tokens processed, thereby raising the operational costs associated with using LLM services. Each additional request contributes to the overall token usage, which can quickly escalate costs, especially for applications with high-frequency interactions or large volumes of data.</p></li>
+<li><p><strong>Performance Bottlenecks</strong>: Generating long outputs in segments can lead to performance bottlenecks, as each segment may require additional processing time and resources, impacting the overall efficiency of the application. The need to manage and link multiple chunks can introduce latency and reduce the responsiveness of the system, which is critical for real-time applications.</p></li>
+</ol>
+<p>By understanding these implications, developers can better prepare for the challenges associated with context chunking and contextual linking, ensuring that their applications remain efficient, cost-effective, and user-friendly.</p>
+</section>
+<section id="future-considerations">
+<h2>Future Considerations<a class="headerlink" href="#future-considerations" title="Permalink to this heading">¶</a></h2>
+<p>As models evolve, we can expect several advancements that will significantly impact how we handle output size limitations:</p>
+<ol class="arabic simple">
+<li><p><strong>Contextual Awareness</strong>: Future LLMs will likely have improved contextual awareness - or as Mustafa Suleyman would call “infinite memory”, enabling them to better understand and manage the context of a conversation or document over long interactions. This will reduce the need for repetitive context setting and improve the overall user experience.</p></li>
+<li><p><strong>More Efficient Token Usage</strong>: Advances in model architecture and tokenization strategies will lead to more efficient token usage. This means that models will be able to convey the same amount of information using fewer tokens, reducing costs and improving performance.</p></li>
+<li><p><strong>Improved Compression Techniques</strong>: As research progresses, we can expect the development of more sophisticated compression techniques that allow models to retain essential information while reducing the number of tokens required. This will be particularly useful for applications that need to summarize or condense large amounts of data.</p></li>
+<li><p><strong>Adaptive Token Limits</strong>: Future models may implement adaptive token limits that dynamically adjust based on the complexity and requirements of the task at hand. This will provide more flexibility and efficiency in handling diverse use cases.</p></li>
+<li><p><strong>Enhanced Memory Management</strong>: Innovations in memory management will allow models to handle larger outputs without a significant increase in computational resources. This will make it feasible to deploy advanced LLMs in resource-constrained environments.</p></li>
+</ol>
+<p>These advancements will collectively enhance the capabilities of LLMs, making them more powerful and versatile tools for a wide range of applications. However, they will also introduce new challenges and considerations that developers and researchers will need to address to fully harness their potential.</p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
+<p>In conclusion, while managing output size limitations in LLMs presents significant challenges, it also drives innovation in application design and optimization strategies. By implementing techniques such as context chunking, efficient prompt templates, and graceful fallbacks, developers can mitigate these limitations and enhance the performance and cost-effectiveness of their applications. As the technology evolves, advancements in contextual awareness, token efficiency, and memory management will further empower developers to build more robust and scalable LLM-powered systems. It is crucial to stay informed about these developments and continuously adapt to leverage the full potential of LLMs while addressing their inherent constraints.</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>OpenAI Token Limits Documentation</p></li>
+<li><p>Anthropic Claude Documentation</p></li>
+<li><p>Google PaLM 2 Technical Specifications</p></li>
+<li><p>Research papers on context window management</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./markdown"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2024.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 6.2.1 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.9.1.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

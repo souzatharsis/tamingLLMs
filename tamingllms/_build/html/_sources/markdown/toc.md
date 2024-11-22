@@ -4,7 +4,8 @@ author: "Tharsis T. P. Souza"
 date: "2024-11-22"
 ---
 
-# Taming Large Language Models: A Practical Guide to LLM Pitfalls with Python Examples
+# Taming Large Language Models 
+*A Practical Guide to LLM Pitfalls with Python Examples*
 
 ## Chapter 1: Introduction
 - The Hidden Challenges of LLMs

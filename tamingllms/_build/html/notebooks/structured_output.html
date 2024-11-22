@@ -85,7 +85,7 @@
   
     <div class="sidebar-group">
       <p class="caption">
-        <span class="caption-text"><a href="../markdown/toc.html#taming-large-language-models-a-practical-guide-to-llm-pitfalls-with-python-examples">taming large language models: a practical guide to llm pitfalls with python examples</a></span>
+        <span class="caption-text"><a href="../markdown/toc.html#taming-large-language-models">taming large language models</a></span>
       </p>
       <ul class="current">
         
@@ -172,30 +172,46 @@
 <h2>The Structured Output Challenges<a class="headerlink" href="#the-structured-output-challenges" title="Permalink to this heading">¶</a></h2>
 <p>Large language models (LLMs) excel at generating human-like text, but they often struggle to produce output in a structured format consistently. This poses a significant challenge when we need LLMs to generate data that can be easily processed by other systems, such as databases, APIs, or other software applications.</p>
 <p>Sometimes, even with a well-crafted prompt, an LLM might produce an unstructured response when a structured one is expected. This can be particularly challenging when integrating LLMs into systems that require specific data formats.</p>
+<p>Throughout this notebook, we will consider as input a segment of a sample SEC filing of Apple Inc.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
-<span class="kn">import</span> <span class="nn">os</span>
-
-<span class="c1"># Load environment variables from .env file</span>
-<span class="n">load_dotenv</span><span class="p">()</span>
-
-<span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
-
-<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MAX_LENGTH</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/apple.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">sec_filing</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> 
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the prompt expecting a structured JSON response</span>
-<span class="n">MAX_LENGTH</span> <span class="o">=</span> <span class="mi">10000</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/apple.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-    <span class="n">sec_filing</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># Load environment variables from .env file</span>
+<span class="n">load_dotenv</span><span class="p">(</span><span class="n">override</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+<span class="c1"># Define the prompt expecting a structured JSON response</span>
 <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">Generate a two-person discussion about the key financial data from the following text in JSON format.</span>
-<span class="s2">TEXT: </span><span class="si">{</span><span class="n">sec_filing</span><span class="p">[:</span><span class="n">MAX_LENGTH</span><span class="p">]</span><span class="si">}</span>
+<span class="s2">TEXT: </span><span class="si">{</span><span class="n">sec_filing</span><span class="si">}</span>
 <span class="s2">&quot;&quot;&quot;</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
@@ -239,13 +255,18 @@ Person 2: Absolutely, transparency and compliance with regulations are key in th
   <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
     <span class="k">return</span> <span class="kc">False</span>
   <span class="k">return</span> <span class="kc">True</span>
-
-<span class="n">is_json</span><span class="p">(</span><span class="n">response_content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">is_json</span><span class="p">(</span><span class="n">response_content</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
 </pre></div>
 </div>
 </div>
@@ -343,16 +364,22 @@ Person 2: Absolutely, transparency and compliance with regulations are key in th
 </section>
 <section id="structured-output-with-provider-specific-apis">
 <h4>Structured Output with Provider-Specific APIs<a class="headerlink" href="#structured-output-with-provider-specific-apis" title="Permalink to this heading">¶</a></h4>
-<p>Simple techniques such as one-shot prompting can lead to material improvements though may not be sufficient for complex (e.g. nested) structures and / or when the model’s output needs to be restricted to a specific set of options or types.</p>
-<p>Provider-specific APIs can offer ways to handle those challenges. For example, OpenAI’s API offers features specifically designed for generating JSON output or structured outputs, in general.</p>
-<p><strong>JSON Mode</strong></p>
+<p>One-shot prompting is a simple technique that can lead to material improvements in structured output, though may not be sufficient for complex (e.g. nested) structures and / or when the model’s output needs to be restricted to a specific set of options or types.</p>
+<p>Provider-specific APIs can offer ways to handle those challenges. We will explore two approaches here using OpenAI’s API:</p>
+<ul class="simple">
+<li><p><strong>JSON Mode</strong>: Some LLM APIs offer features specifically designed for generating JSON output.</p></li>
+<li><p><strong>Structured Outputs</strong>: Some LLM APIs offer features specifically designed for generating structured outputs with type safety.</p></li>
+</ul>
+</section>
+<section id="json-mode">
+<h4>JSON Mode<a class="headerlink" href="#json-mode" title="Permalink to this heading">¶</a></h4>
 <p>JSON mode is a feature provided by some LLM APIs, such as OpenAI’s, that allows the model to generate output in JSON format. This is particularly useful when you need structured data as a result, such as when parsing the output programmatically or integrating it with other systems that require JSON input.</p>
 <p>When using JSON mode, you must always instruct the model to produce JSON via some message in the conversation, for example via your system message. If you don’t include an explicit instruction to generate JSON, the model may generate an unending stream of whitespace and the request may run continually until it reaches the token limit. To help ensure you don’t forget, the API will throw an error if the string “JSON” does not appear somewhere in the context.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">Generate a two-person discussion about the key financial data from the following text in JSON format.</span>
-<span class="s2">TEXT: </span><span class="si">{</span><span class="n">sec_filing</span><span class="p">[:</span><span class="n">MAX_LENGTH</span><span class="p">]</span><span class="si">}</span>
+<span class="s2">TEXT: </span><span class="si">{</span><span class="n">sec_filing</span><span class="si">}</span>
 <span class="s2">&quot;&quot;&quot;</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span>
@@ -393,7 +420,12 @@ Person 2: Absolutely, transparency and compliance with regulations are key in th
 </div>
 </div>
 </div>
-<p>JSON mode will not guarantee the output matches any specific schema, only that it is valid and parses without errors. For that purpose, we can leverage a new feature some modern LLM API offer called “Structured Outputs” to ensure the output data matches a target schema/typing.</p>
+<p>This example solution is specific to OpenAI’s API. Other LLM providers offer similar functionality, for example:</p>
+<ul class="simple">
+<li><p>Google’s Vertex AI offers a <code class="docutils literal notranslate"><span class="pre">parse</span></code> method for structured outputs.</p></li>
+<li><p>Anthropic offers a <code class="docutils literal notranslate"><span class="pre">structured</span></code> method for structured outputs.</p></li>
+</ul>
+<p>JSON mode will not guarantee the output matches any specific schema, only that it is valid and parses without errors. For that purpose, we can leverage a new feature recently released by OpenAI called “Structured Outputs” to ensure the output data matches a target schema with type safety.</p>
 <p><strong>Structured Output Mode</strong></p>
 <p>Structured Outputs is a feature that ensures the model will always generate responses that adhere to your supplied JSON Schema, so you don’t need to worry about the model omitting a required key, or hallucinating an invalid enum value.</p>
 <p>Some benefits of Structured Outputs include:</p>
@@ -402,30 +434,27 @@ Person 2: Absolutely, transparency and compliance with regulations are key in th
 <li><p><strong>Explicit refusals</strong>: Safety-based model refusals are now programmatically detectable.</p></li>
 <li><p><strong>Simpler prompting</strong>: No need for strongly worded prompts to achieve consistent formatting.</p></li>
 </ul>
-<p>Here’s a Python example demonstrating how to use the OpenAI API to generate a structured output in the form of a two-person conversation discussing financial statements from an input SEC filing. This example uses the <code class="docutils literal notranslate"><span class="pre">response_format</span></code> parameter within the OpenAI API call. This functionality is supported by GPT-4o models, specifically <code class="docutils literal notranslate"><span class="pre">gpt-4o-mini-2024-07-18</span></code>, <code class="docutils literal notranslate"><span class="pre">gpt-4o-2024-08-06</span></code>, and later versions.</p>
+<p>Here’s a Python example demonstrating how to use the OpenAI API to generate a structured output. In this example, we aim at extracting structured data from our sample SEC filing, in particular: (i) entities and (ii) places mentioned in the input doc. This example uses the <code class="docutils literal notranslate"><span class="pre">response_format</span></code> parameter within the OpenAI API call. This functionality is supported by GPT-4o models, specifically <code class="docutils literal notranslate"><span class="pre">gpt-4o-mini-2024-07-18</span></code>, <code class="docutils literal notranslate"><span class="pre">gpt-4o-2024-08-06</span></code>, and later versions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
 <span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
 
-<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
-
 <span class="k">class</span> <span class="nc">SECExtraction</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">mentioned_entities</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
     <span class="n">mentioned_places</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
 
-<span class="k">def</span> <span class="nf">extract_from_sec_filing</span><span class="p">(</span><span class="n">sec_filing_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SECExtraction</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">extract_from_sec_filing</span><span class="p">(</span><span class="n">sec_filing_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SECExtraction</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Extracts structured data from an input SEC filing text.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
     <span class="n">completion</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
-        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini-2024-07-18&quot;</span><span class="p">,</span>
+        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
         <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
             <span class="p">{</span>
                 <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="p">(</span>
-                    <span class="s2">&quot;You are an expert at structured data extraction. You will be given unstructured text from a SEC filing and extracted names of mentioned entities and places and should convert the response into the given structure.&quot;</span>
-                <span class="p">)</span>
+                <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span>
             <span class="p">},</span>
             <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">sec_filing_text</span><span class="p">}</span>
         <span class="p">],</span>
@@ -438,21 +467,22 @@ Person 2: Absolutely, transparency and compliance with regulations are key in th
 </div>
 <p><strong>Explanation:</strong></p>
 <ul class="simple">
-<li><p><strong>Data Structures:</strong> The code defines two Pydantic models, <code class="docutils literal notranslate"><span class="pre">DialogueTurn</span></code> and <code class="docutils literal notranslate"><span class="pre">FinancialStatementDiscussion</span></code>, to represent the structured output of the conversation. These models provide type hints and structure for the conversation.</p></li>
-<li><p><strong>API Interaction:</strong> The <code class="docutils literal notranslate"><span class="pre">generate_conversation</span></code> function uses the OpenAI client to send a chat completion request to the <code class="docutils literal notranslate"><span class="pre">gpt-4o-2024-08-06</span></code> model. The prompt instructs the model to simulate a dialogue about financial statements. The <code class="docutils literal notranslate"><span class="pre">response_format</span></code> is set to <code class="docutils literal notranslate"><span class="pre">FinancialStatementDiscussion</span></code>, ensuring the response conforms to the Pydantic model.</p></li>
-<li><p><strong>Output Processing:</strong> The returned response is parsed into the <code class="docutils literal notranslate"><span class="pre">FinancialStatementDiscussion</span></code> model. The code then iterates through the dialogue turns and prints the speaker and content of each turn.</p></li>
+<li><p><strong>Data Structures:</strong> The code defines one Pydantic model, <code class="docutils literal notranslate"><span class="pre">SECExtraction</span></code>, to represent the structured output of our parser. This model provide type hints and structure for the response.</p></li>
+<li><p><strong>API Interaction:</strong> The <code class="docutils literal notranslate"><span class="pre">extract_from_sec_filing</span></code> function uses the OpenAI client to send a chat completion request to the <code class="docutils literal notranslate"><span class="pre">gpt-4o-mini-2024-07-18</span></code> model. The prompt instructs the model to extract our target attributes from input text. The <code class="docutils literal notranslate"><span class="pre">response_format</span></code> is set to <code class="docutils literal notranslate"><span class="pre">SECExtraction</span></code>, ensuring the response conforms to the specified Pydantic model.</p></li>
+<li><p><strong>Output Processing:</strong> The returned response is parsed into the <code class="docutils literal notranslate"><span class="pre">SECExtraction</span></code> model. The code then returns the parsed data.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conversation</span> <span class="o">=</span> <span class="n">extract_from_sec_filing</span><span class="p">(</span><span class="n">sec_filing</span><span class="p">[:</span><span class="n">MAX_LENGTH</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt_extraction</span> <span class="o">=</span> <span class="s2">&quot;You are an expert at structured data extraction. You will be given unstructured text from a SEC filing and extracted names of mentioned entities and places and should convert the response into the given structure.&quot;</span>
+<span class="n">sec_extraction</span> <span class="o">=</span> <span class="n">extract_from_sec_filing</span><span class="p">(</span><span class="n">sec_filing</span><span class="p">,</span> <span class="n">prompt_extraction</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extracted entities:&quot;</span><span class="p">,</span> <span class="n">conversation</span><span class="o">.</span><span class="n">mentioned_entities</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extracted places:&quot;</span><span class="p">,</span> <span class="n">conversation</span><span class="o">.</span><span class="n">mentioned_places</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extracted entities:&quot;</span><span class="p">,</span> <span class="n">sec_extraction</span><span class="o">.</span><span class="n">mentioned_entities</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extracted places:&quot;</span><span class="p">,</span> <span class="n">sec_extraction</span><span class="o">.</span><span class="n">mentioned_places</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -463,47 +493,170 @@ Extracted places: [&#39;Washington, D.C.&#39;, &#39;California&#39;, &#39;Cupert
 </div>
 </div>
 </div>
+<p>We observe that the model was able to extract the entities and places from the input text, and return them in the specified format.</p>
 <p><strong>Benefits</strong></p>
 <ul class="simple">
 <li><p><strong>Structured Output:</strong> The use of Pydantic models and the <code class="docutils literal notranslate"><span class="pre">response_format</span></code> parameter enforces the structure of the model’s output, making it more reliable and easier to process.</p></li>
 <li><p><strong>Schema Adherence:</strong>  Structured Outputs in OpenAI API guarantee that the response adheres to the provided schema.</p></li>
 </ul>
 <p>This structured approach improves the reliability and usability of your application by ensuring consistent, predictable output from the OpenAI API.</p>
+<p>This example solution is specific to OpenAI’s API. That begs the question: How can we solve this problem generally for widely available LLM providers? In the next sections, we will explore how <code class="docutils literal notranslate"><span class="pre">LangChain</span></code> and <code class="docutils literal notranslate"><span class="pre">Outlines</span></code> may serve as general purpose tools that can help us do just that.</p>
 </section>
 </section>
 <section id="langchain">
 <h3>LangChain<a class="headerlink" href="#langchain" title="Permalink to this heading">¶</a></h3>
-<p>LangChain is a framework designed to simplify the development of LLM applications. It offers several tools for parsing structured output, including:</p>
-<ul class="simple">
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">with_structured_output</span></code></strong>: This method is used with LLMs that support structured output APIs, allowing you to enforce a schema directly within the prompt.</p></li>
-</ul>
+<p>LangChain is a framework designed to simplify the development of LLM applications. It provider an abstraction layer over many LLM providers, including OpenAI, that offers several tools for parsing structured output.</p>
+<p>In particular, LangChain offers the <code class="docutils literal notranslate"><span class="pre">with_structured_output</span></code> method, which can be used with LLMs that support structured output APIs, allowing you to enforce a schema directly within the prompt.</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">with_structured_output</span></code> takes a schema as input which specifies the names, types, and descriptions of the desired output attributes. The method returns a model-like Runnable, except that instead of outputting strings or messages it outputs objects corresponding to the given schema. The schema can be specified as a TypedDict class, JSON Schema or a Pydantic class. If TypedDict or JSON Schema are used then a dictionary will be returned by the Runnable, and if a Pydantic class is used then a Pydantic object will be returned.</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-qU<span class="w"> </span>langchain-openai
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain_openai</span> <span class="kn">import</span> <span class="n">ChatOpenAI</span>
+<span class="kn">from</span> <span class="nn">langchain_core.prompts</span> <span class="kn">import</span> <span class="n">ChatPromptTemplate</span>
+<span class="k">def</span> <span class="nf">extract_from_sec_filing_langchain</span><span class="p">(</span><span class="n">sec_filing_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SECExtraction</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts structured data from an input SEC filing text using LangChain.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">llm</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">)</span>
+
+    <span class="n">structured_llm</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">with_structured_output</span><span class="p">(</span><span class="n">SECExtraction</span><span class="p">)</span>
+
+    <span class="n">prompt_template</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="n">prompt</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;human&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{sec_filing_text}</span><span class="s2">&quot;</span><span class="p">),</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">llm_chain</span> <span class="o">=</span> <span class="n">prompt_template</span> <span class="o">|</span> <span class="n">structured_llm</span>
+    
+    <span class="k">return</span> <span class="n">llm_chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">sec_filing_text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt_extraction</span> <span class="o">=</span> <span class="s2">&quot;You are an expert at structured data extraction. You will be given unstructured text from a SEC filing and extracted names of mentioned entities and places and should convert the response into the given structure.&quot;</span>
+<span class="n">sec_extraction_langchain</span> <span class="o">=</span> <span class="n">extract_from_sec_filing_langchain</span><span class="p">(</span><span class="n">sec_filing</span><span class="p">,</span> <span class="n">prompt_extraction</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extracted entities:&quot;</span><span class="p">,</span> <span class="n">sec_extraction_langchain</span><span class="o">.</span><span class="n">mentioned_entities</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extracted places:&quot;</span><span class="p">,</span> <span class="n">sec_extraction_langchain</span><span class="o">.</span><span class="n">mentioned_places</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracted entities: [&#39;Apple Inc.&#39;]
+Extracted places: [&#39;California&#39;, &#39;Cupertino&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We observe that the model was able to extract the entities and places from the input text, and return them in the specified format. A full list of models that support <code class="docutils literal notranslate"><span class="pre">.with_structured_output()</span></code> can be found <a class="reference external" href="https://python.langchain.com/docs/integrations/chat/#featured-providers">here</a>.</p>
 </section>
 <section id="outlines">
 <h3>Outlines<a class="headerlink" href="#outlines" title="Permalink to this heading">¶</a></h3>
 <p>Outlines is a library specifically focused on structured text generation from LLMs.  It provides several powerful features:</p>
 <ul class="simple">
 <li><p><strong>Multiple Choice Generation</strong>: Restrict the LLM output to a predefined set of options.</p></li>
+<li><p><strong>Regex-based structured generation</strong>: Guide the generation process using regular expressions.</p></li>
+<li><p><strong>Pydantic model</strong>: Ensure the LLM output follows a Pydantic model.</p></li>
+<li><p><strong>JSON Schema</strong>: Ensure the LLM output follows a JSON Schema.</p></li>
 </ul>
+<p>Outlines supports the OpenAI API. However, one of its key advantages is the ability to ensure structured output for Open Source models, which often lack such guarantees by default.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>outlines
+pip<span class="w"> </span>install<span class="w"> </span>transformers
+</pre></div>
+</div>
+<p>In this example, we will use a Qwen2.5-0.5B model, which is a Open Source model that we can run locally via Hugging Face’s <code class="docutils literal notranslate"><span class="pre">transformers</span></code> library.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">outlines</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">outlines</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">transformers</span><span class="p">(</span><span class="s2">&quot;Qwen/Qwen2.5-0.5B-Instruct&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="a-simple-example-multiple-choice-generation">
+<h4>A Simple Example: Multiple Choice Generation<a class="headerlink" href="#a-simple-example-multiple-choice-generation" title="Permalink to this heading">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TOP</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;You are a sentiment-labelling assistant specialized in Financial Statements.</span>
+<span class="s2">Is the following document positive or negative?</span>
+
+<span class="s2">Document: </span><span class="si">{</span><span class="n">sec_filing</span><span class="p">[:</span><span class="n">TOP</span><span class="p">]</span><span class="si">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">generator</span> <span class="o">=</span> <span class="n">outlines</span><span class="o">.</span><span class="n">generate</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Positive&quot;</span><span class="p">,</span> <span class="s2">&quot;Negative&quot;</span><span class="p">])</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Negative
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pydantic-model">
+<h4>Pydantic model<a class="headerlink" href="#pydantic-model" title="Permalink to this heading">¶</a></h4>
+<p>Outlines allows to guide the generation process so the output is guaranteed to follow a JSON schema or Pydantic model. Now we will go back to our example of extracting entities and places from a SEC filing. In order to do so, we simply need to pass our Pydantic model to the <code class="docutils literal notranslate"><span class="pre">json</span></code> method in Outlines’ <code class="docutils literal notranslate"><span class="pre">generate</span></code> module.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;You are an expert at structured data extraction. You will be given unstructured text from a SEC filing and extracted names of mentioned entities and places and should convert the response into the given structure. Document: </span><span class="si">{</span><span class="n">sec_filing</span><span class="p">[:</span><span class="n">TOP</span><span class="p">]</span><span class="si">}</span><span class="s2"> &quot;</span>
+<span class="n">generator</span> <span class="o">=</span> <span class="n">outlines</span><span class="o">.</span><span class="n">generate</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">SECExtraction</span><span class="p">)</span>
+<span class="n">sec_extraction_outlines</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extracted entities:&quot;</span><span class="p">,</span> <span class="n">sec_extraction_outlines</span><span class="o">.</span><span class="n">mentioned_entities</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extracted places:&quot;</span><span class="p">,</span> <span class="n">sec_extraction_outlines</span><span class="o">.</span><span class="n">mentioned_places</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracted entities: [&#39;Zsp&#39;, &#39;ZiCorp&#39;]
+Extracted places: [&#39;California&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We observe that the model was able to extract the entities and places from the input text, and return them in the specified format. However, it is interesting to see that the model hallucinates a few entities, a phenomenon that is common for smaller Open Source models that were not fine-tuned on the task of entity extraction.</p>
+</section>
 </section>
 <section id="comparing-solutions">
 <h3>Comparing Solutions<a class="headerlink" href="#comparing-solutions" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
-<li><p><strong>Simplicity vs. Control</strong>: One-shot prompts are simple but offer limited control.  Dedicated tools like Gemini’s structured output features, LangChain, and Outlines provide greater control but might have a steeper learning curve.</p></li>
-<li><p><strong>Native LLM Support</strong>:  <code class="docutils literal notranslate"><span class="pre">with_structured_output</span></code> in LangChain relies on the LLM having built-in support for structured output APIs. Other methods, like parsing or using Outlines, are more broadly applicable.</p></li>
+<li><p><strong>Simplicity vs. Control</strong>: One-shot prompts are simple but offer limited control.  <code class="docutils literal notranslate"><span class="pre">LangChain</span></code>, and Outlines provide greater control but might have a steeper learning curve though quite manageable.</p></li>
+<li><p><strong>Native LLM Support</strong>:  <code class="docutils literal notranslate"><span class="pre">with_structured_output</span></code> in LangChain relies on the underlying LLM having built-in support for structured output APIs, i.e. LangChain is just a wrapper around the LLM’s structured output API. Other methods, like parsing or using Outlines, are more broadly applicable with the fomer enabling a wider range of Open Source models.</p></li>
 <li><p><strong>Flexibility</strong>:  Outlines and LangChain’s  <code class="docutils literal notranslate"><span class="pre">StructuredOutputParser</span></code>  offer the most flexibility for defining custom output structures.</p></li>
+<li><p><strong>Performance</strong>: Outlines’ may offer performance benefits as it introduces no overhead during inference a feature not necessiraly shared by other methods.</p></li>
 </ul>
 </section>
 </section>
 <section id="best-practices">
 <h2>Best Practices<a class="headerlink" href="#best-practices" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><strong>Clear Schema Definition</strong>: Define the desired output structure clearly, using schemas, types, or grammars as appropriate. This ensures the LLM knows exactly what format is expected.</p></li>
+<li><p><strong>Clear Schema Definition</strong>: Define the desired output structure clearly. This can be done in several ways including schemas, types, or Pydantic models as appropriate. This ensures the LLM knows exactly what format is expected.</p></li>
 <li><p><strong>Descriptive Naming</strong>: Use meaningful names for fields and elements in your schema. This makes the output more understandable and easier to work with.</p></li>
 <li><p><strong>Detailed Prompting</strong>: Guide the LLM with well-crafted prompts that include examples and clear instructions.  A well-structured prompt improves the chances of getting the desired output.</p></li>
-<li><p><strong>Error Handling</strong>: Implement mechanisms to handle cases where the LLM deviates from the expected structure. LLMs are not perfect, so having error handling ensures your application remains robust.</p></li>
-<li><p><strong>Testing and Iteration</strong>: Thoroughly test your structured output generation process and refine your prompts and schemas based on the results. Continuous testing and refinement are key to achieving reliable structured output.</p></li>
-<li><p><strong>Structured Response</strong>: If you want to structure the model’s output when it responds to the user, then you should consider using a structured response_format (e.g. JSON format).</p></li>
-<li><p><strong>Function Calling</strong>: If you are connecting the model to tools, functions, data, etc. in your system, then you should use a typed structured output.</p></li>
+<li><p><strong>Integration</strong>: If you are connecting the model to tools, functions, data, etc. in your system, then you are highly encouraged to use a typed structured output (e.g. Pydantic models) to ensure the model’s output can be processed correctly by downstream systems.</p></li>
 </ul>
 </section>
 <section id="conclusion">
@@ -540,6 +693,7 @@ Extracted places: [&#39;Washington, D.C.&#39;, &#39;California&#39;, &#39;Cupert
        title="previous chapter">← Output Size Limitations</a>
   </li>
 </ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2024.
     <br>
     Created using <a href="http://sphinx-doc.org/">Sphinx</a> 6.2.1 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.9.1.
 </div>

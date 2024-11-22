@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+      <title>Wrestling with Structured Output</title>
+    
+          <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/sphinx-thebe.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/scripts/sphinx-book-theme.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script src="../_static/design-tabs.js"></script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+        <script async="async" src="../_static/sphinx-thebe.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../_static/theme-vendors.js"></script> -->
+      <script src="../_static/theme.js" defer></script>
+      <link rel="canonical" href="https://souzatharsis.github.io/tamingllms/markdown/structured_output.html" />
+    
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="toc.html" class="home-link">
+    
+      <span class="site-name">tamingLLMs</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="toc.html#taming-large-language-models">taming large language models</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="intro.html" class="reference internal ">Introduction</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../notebooks/nondeterminism.html" class="reference internal ">Non-determinism</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../notebooks/output_size_limit.html" class="reference internal ">Output Size Limitations</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../notebooks/structured_output.html" class="reference internal ">Wrestling with Structured Output</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="toc.html">Docs</a> &raquo;</li>
+    
+    <li>Wrestling with Structured Output</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="wrestling-with-structured-output">
+<h1>Wrestling with Structured Output<a class="headerlink" href="#wrestling-with-structured-output" title="Permalink to this heading">¶</a></h1>
+<section id="the-structured-output-challenges">
+<h2>The Structured Output Challenges<a class="headerlink" href="#the-structured-output-challenges" title="Permalink to this heading">¶</a></h2>
+<p>Large language models (LLMs) excel at generating human-like text, but they often struggle to produce output in a structured format consistently. This poses a significant challenge when we need LLMs to generate data that can be easily processed by other systems, such as databases, APIs, or other software applications.</p>
+<p>Sometimes, even with a well-crafted prompt, an LLM might produce an unstructured response when a structured one is expected. This can be particularly challenging when integrating LLMs into systems that require specific data formats.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```python
+import openai
+
+# Define the prompt expecting a structured JSON response
+prompt = &quot;&quot;&quot;
+Give me the name and capital of 5 random countries in a JSON object with the following keys:
+- name: a string representing the name the country
+- capital: a string representing the capital of the country
+&quot;&quot;&quot;
+
+# Call the OpenAI API
+response = openai.Completion.create(
+    engine=&quot;text-davinci-003&quot;,
+    prompt=prompt,
+    max_tokens=100
+)
+
+# Print the response
+print(response.choices[0].text.strip())
+```
+</pre></div>
+</div>
+<p>In this example, despite the prompt clearly asking for a JSON object, the LLM generates a natural language sentence instead. This highlights the inconsistency and unpredictability of LLMs when it comes to producing structured output.</p>
+</section>
+<section id="problem-statement">
+<h2>Problem Statement<a class="headerlink" href="#problem-statement" title="Permalink to this heading">¶</a></h2>
+<p>Obtaining structured output from LLMs presents several significant challenges:</p>
+<ul class="simple">
+<li><p><strong>Inconsistency</strong>: LLMs often produce unpredictable results, sometimes generating well-structured output and other times deviating from the expected format.</p></li>
+<li><p><strong>Lack of Type Safety</strong>: LLMs do not inherently understand data types, which can lead to errors when their output is integrated with systems requiring specific data formats.</p></li>
+<li><p><strong>Prompt Engineering Complexity</strong>: Crafting prompts that effectively guide LLMs to produce the correct structured output is complex and requires extensive experimentation.</p></li>
+</ul>
+</section>
+<section id="solutions">
+<h2>Solutions<a class="headerlink" href="#solutions" title="Permalink to this heading">¶</a></h2>
+<p>Several strategies and tools can be employed to address the challenges of structured output from LLMs.</p>
+<section id="strategies">
+<h3>Strategies<a class="headerlink" href="#strategies" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Schema Guidance</strong>: Providing the LLM with a clear schema or blueprint of the desired output structure helps to constrain its generation and improve consistency. This can be achieved by using tools like Pydantic to define the expected data structure and then using that definition to guide the LLM’s output.</p></li>
+<li><p><strong>Output Parsing</strong>: When LLMs don’t natively support structured output, parsing their text output using techniques like regular expressions or dedicated parsing libraries can extract the desired information. For example, you can use regular expressions to extract specific patterns from the LLM’s output, or you can use libraries like Pydantic to parse the output into structured data objects.</p></li>
+<li><p><strong>Type Enforcement</strong>: Using tools that enforce data types, such as Pydantic in Python, can ensure that the LLM output adheres to the required data formats. This can help to prevent errors when integrating the LLM’s output with other systems.</p></li>
+</ul>
+</section>
+<section id="tools">
+<h3>Tools<a class="headerlink" href="#tools" title="Permalink to this heading">¶</a></h3>
+<ul>
+<li><p><strong>One-Shot Prompts</strong>: In one-shot prompting, you provide a single example of the desired output format within the prompt.  While simple, this approach may not be sufficient for complex structures.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;A &quot;whatpu&quot; is a small, furry animal native to Tanzania. An example of a sentence that uses the word whatpu is:   We were traveling in Africa and we saw these very cute whatpus.   To do a &quot;farduddle&quot; means to jump up and down really fast. An example of a sentence that uses the word farduddle is:&quot;&quot;&quot;</span>
+<span class="c1"># The LLM should now be able to generate a sentence using &quot;farduddle&quot; correctly.</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Gemini-Specific Structured Outputs</strong>: Google’s Gemini API offers features specifically designed for generating JSON output. You can provide a schema either within the prompt or through model configuration.  Gemini also supports using enums to restrict the model’s output to specific options.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">enum</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">TypedDict</span>
+<span class="kn">import</span> <span class="nn">google.generativeai</span> <span class="k">as</span> <span class="nn">genai</span>
+
+<span class="k">class</span> <span class="nc">Grade</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">A_PLUS</span> <span class="o">=</span> <span class="s2">&quot;a+&quot;</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="s2">&quot;b&quot;</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="s2">&quot;c&quot;</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="s2">&quot;d&quot;</span>
+    <span class="n">F</span> <span class="o">=</span> <span class="s2">&quot;f&quot;</span>
+
+<span class="k">class</span> <span class="nc">Recipe</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+    <span class="n">recipe_name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">grade</span><span class="p">:</span> <span class="n">Grade</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">genai</span><span class="o">.</span><span class="n">GenerativeModel</span><span class="p">(</span><span class="s2">&quot;gemini-1.5-pro-latest&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate_content</span><span class="p">(</span>
+    <span class="s2">&quot;List about 10 cookie recipes, grade them based on popularity&quot;</span><span class="p">,</span>
+    <span class="n">generation_config</span><span class="o">=</span><span class="n">genai</span><span class="o">.</span><span class="n">GenerationConfig</span><span class="p">(</span>
+        <span class="n">response_mime_type</span><span class="o">=</span><span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+        <span class="n">response_schema</span><span class="o">=</span><span class="nb">list</span><span class="p">[</span><span class="n">Recipe</span><span class="p">]</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> 
+<span class="c1"># Example Output: [{&quot;grade&quot;: &quot;a+&quot;, &quot;recipe_name&quot;: &quot;Chocolate Chip Cookies&quot;}, ...]</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>LangChain</strong>:  LangChain is a framework designed to simplify the development of LLM applications. It offers several tools for parsing structured output, including:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">with_structured_output</span></code></strong>: This method is used with LLMs that support structured output APIs, allowing you to enforce a schema directly within the prompt.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain.llms</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="kn">from</span> <span class="nn">langchain.prompts</span> <span class="kn">import</span> <span class="n">PromptTemplate</span>
+<span class="kn">from</span> <span class="nn">langchain.output_parsers</span> <span class="kn">import</span> <span class="n">PydanticOutputParser</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+
+<span class="k">class</span> <span class="nc">WeatherForecast</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">city</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;City for the forecast&quot;</span><span class="p">)</span>
+    <span class="n">date</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Date of the forecast&quot;</span><span class="p">)</span>
+    <span class="n">condition</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Weather condition&quot;</span><span class="p">)</span>
+    <span class="n">temperature</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Temperature in Celsius&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define your LLM</span>
+<span class="n">llm</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Define the prompt template</span>
+<span class="n">template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Provide the weather forecast for the following city: </span><span class="si">{city}</span>
+<span class="s2">Format your response like this:</span>
+<span class="s2">```json</span>
+<span class="s2">{{</span>
+<span class="s2">&quot;city&quot;: &quot;...&quot;,</span>
+<span class="s2">&quot;date&quot;: &quot;...&quot;,</span>
+<span class="s2">&quot;condition&quot;: &quot;...&quot;,</span>
+<span class="s2">&quot;temperature&quot;: ...</span>
+<span class="s2">}}</span>
+<span class="s2">```&quot;&quot;&quot;</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">(</span><span class="n">template</span><span class="o">=</span><span class="n">template</span><span class="p">,</span> <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;city&quot;</span><span class="p">])</span>
+
+<span class="c1"># Define the output parser</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">PydanticOutputParser</span><span class="p">(</span><span class="n">pydantic_object</span><span class="o">=</span><span class="n">WeatherForecast</span><span class="p">)</span>
+
+<span class="c1"># Create a chain</span>
+<span class="n">chain</span> <span class="o">=</span> <span class="n">prompt</span> <span class="o">|</span> <span class="n">llm</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parser</span><span class="p">)</span>
+
+<span class="c1"># Run the chain</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;London&quot;</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">PydanticOutputParser</span></code></strong>: This class leverages Pydantic models to enforce type safety and validate LLM output against a predefined schema.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain.llms</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="kn">from</span> <span class="nn">langchain.prompts</span> <span class="kn">import</span> <span class="n">PromptTemplate</span>
+<span class="kn">from</span> <span class="nn">langchain.output_parsers</span> <span class="kn">import</span> <span class="n">PydanticOutputParser</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+
+<span class="k">class</span> <span class="nc">Movie</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">director</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">runtime_minutes</span><span class="p">:</span> <span class="nb">int</span>
+
+<span class="k">class</span> <span class="nc">FilmFestival</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">movies</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Movie</span><span class="p">]</span>
+
+<span class="c1"># Define your LLM</span>
+<span class="n">llm</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Define the prompt template</span>
+<span class="n">template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Tell me about the movies playing at </span><span class="si">{festival_name}</span><span class="s2"> film festival.</span>
+<span class="s2">Provide the title, director, and runtime in minutes for each movie.&quot;&quot;&quot;</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">(</span><span class="n">template</span><span class="o">=</span><span class="n">template</span><span class="p">,</span> <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;festival_name&quot;</span><span class="p">])</span>
+
+<span class="c1"># Define the output parser</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">PydanticOutputParser</span><span class="p">(</span><span class="n">pydantic_object</span><span class="o">=</span><span class="n">FilmFestival</span><span class="p">)</span>
+
+<span class="c1"># Create a chain</span>
+<span class="n">chain</span> <span class="o">=</span> <span class="n">prompt</span> <span class="o">|</span> <span class="n">llm</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">parser</span><span class="p">)</span>
+
+<span class="c1"># Run the chain</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;festival_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Cannes&quot;</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> 
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">StructuredOutputParser</span></code></strong>: This class offers flexibility in defining custom schemas using <code class="docutils literal notranslate"><span class="pre">ResponseSchema</span></code> objects, making it suitable for extracting information that doesn’t fit into pre-built structures.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain.llms</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="kn">from</span> <span class="nn">langchain.prompts</span> <span class="kn">import</span> <span class="n">PromptTemplate</span>
+<span class="kn">from</span> <span class="nn">langchain.output_parsers</span> <span class="kn">import</span> <span class="n">StructuredOutputParser</span><span class="p">,</span> <span class="n">ResponseSchema</span>
+
+<span class="c1"># Define your LLM</span>
+<span class="n">llm</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Define the output parser</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">StructuredOutputParser</span><span class="o">.</span><span class="n">from_response_schemas</span><span class="p">([</span>
+    <span class="n">ResponseSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;recipe&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The name of the recipe.&quot;</span><span class="p">),</span>
+    <span class="n">ResponseSchema</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;ingredients&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A list of ingredients.&quot;</span><span class="p">),</span>
+<span class="p">])</span>
+
+<span class="c1"># Define the prompt template</span>
+<span class="n">format_instructions</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">get_format_instructions</span><span class="p">()</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">(</span>
+    <span class="n">template</span><span class="o">=</span><span class="s2">&quot;Provide a recipe and its ingredients. </span><span class="si">{format_instructions}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;format_instructions&quot;</span><span class="p">],</span>
+    <span class="n">partial_variables</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;format_instructions&quot;</span><span class="p">:</span> <span class="n">format_instructions</span><span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># Create a chain</span>
+<span class="n">chain</span> <span class="o">=</span> <span class="n">prompt</span> <span class="o">|</span> <span class="n">llm</span> <span class="o">|</span> <span class="n">parser</span>
+
+<span class="c1"># Run the chain</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">({})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> 
+</pre></div>
+</div>
+</li>
+<li><p><strong>Outlines</strong>: Outlines is a library specifically focused on structured text generation from LLMs.  It provides several powerful features:</p>
+<ul class="simple">
+<li><p><strong>Multiple Choice Generation</strong>: Restrict the LLM output to a predefined set of options.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">outlines</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">outlines</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">transformers</span><span class="p">(</span><span class="s2">&quot;microsoft/Phi-3-mini-4k-instruct&quot;</span><span class="p">)</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;You are a sentiment-labelling assistant.</span>
+
+<span class="s2">Is the following review positive or negative?</span>
+
+<span class="s2">Review: This restaurant is just awesome!</span>
+
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">generator</span> <span class="o">=</span> <span class="n">outlines</span><span class="o">.</span><span class="n">generate</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Positive&quot;</span><span class="p">,</span> <span class="s2">&quot;Negative&quot;</span><span class="p">])</span>
+
+<span class="n">answer</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Type Constraints</strong>:  Force the output to be integers, floats, or other specific types.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">outlines</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">outlines</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">transformers</span><span class="p">(</span><span class="s2">&quot;WizardLM/WizardMath-7B-V1.1&quot;</span><span class="p">)</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&lt;s&gt;result of 9 + 9 = 18&lt;/s&gt;&lt;s&gt;result of 1 + 2 = &quot;</span>
+
+<span class="n">answer</span> <span class="o">=</span> <span class="n">outlines</span><span class="o">.</span><span class="n">generate</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="nb">int</span><span class="p">)(</span><span class="n">prompt</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+
+<span class="c1"># Output: 3</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Regex-Structured Generation</strong>: Efficiently extract information using regular expressions.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">outlines</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">outlines</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">transformers</span><span class="p">(</span><span class="s2">&quot;microsoft/Phi-3-mini-4k-instruct&quot;</span><span class="p">)</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;What is the IP address of the Google DNS servers? &quot;</span>
+
+<span class="n">generator</span> <span class="o">=</span> <span class="n">outlines</span><span class="o">.</span><span class="n">generate</span><span class="o">.</span><span class="n">regex</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;((25|2\d|?\d\d?)\.)</span><span class="si">{3}</span><span class="s2">(25|2\d|?\d\d?)&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">structured</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">structured</span><span class="p">)</span>
+
+<span class="c1"># Example Output: 8.8.8.8</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>JSON Generation with Pydantic or JSON Schema</strong>: Guarantee that the output conforms to a given Pydantic model or JSON schema.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">constr</span>
+<span class="kn">import</span> <span class="nn">outlines</span>
+
+<span class="k">class</span> <span class="nc">Weapon</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+    <span class="n">sword</span> <span class="o">=</span> <span class="s2">&quot;sword&quot;</span>
+    <span class="n">axe</span> <span class="o">=</span> <span class="s2">&quot;axe&quot;</span>
+    <span class="n">mace</span> <span class="o">=</span> <span class="s2">&quot;mace&quot;</span>
+    <span class="n">spear</span> <span class="o">=</span> <span class="s2">&quot;spear&quot;</span>
+    <span class="n">bow</span> <span class="o">=</span> <span class="s2">&quot;bow&quot;</span>
+    <span class="n">crossbow</span> <span class="o">=</span> <span class="s2">&quot;crossbow&quot;</span>
+
+<span class="k">class</span> <span class="nc">Armor</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+    <span class="n">leather</span> <span class="o">=</span> <span class="s2">&quot;leather&quot;</span>
+    <span class="n">chainmail</span> <span class="o">=</span> <span class="s2">&quot;chainmail&quot;</span>
+    <span class="n">plate</span> <span class="o">=</span> <span class="s2">&quot;plate&quot;</span>
+
+<span class="k">class</span> <span class="nc">Character</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">constr</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">armor</span><span class="p">:</span> <span class="n">Armor</span>
+    <span class="n">weapon</span><span class="p">:</span> <span class="n">Weapon</span>
+    <span class="n">strength</span><span class="p">:</span> <span class="nb">int</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">outlines</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">transformers</span><span class="p">(</span><span class="s2">&quot;microsoft/Phi-3-mini-4k-instruct&quot;</span><span class="p">)</span>
+
+<span class="n">generator</span> <span class="o">=</span> <span class="n">outlines</span><span class="o">.</span><span class="n">generate</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">Character</span><span class="p">)</span>
+
+<span class="n">character</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="s2">&quot;Give me a character description&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">character</span><span class="p">))</span>
+
+<span class="c1"># Example Output: Character(name=&#39;Aaliyah&#39;, age=35, armor=&lt;Armor.plate: &#39;plate&#39;&gt;, weapon=&lt;Weapon.bow: &#39;bow&#39;&gt;, strength=10)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Context-Free Grammar (CFG) Guidance</strong>: Use formal grammars to define the valid structure of the output.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">outlines</span>
+
+<span class="n">arithmetic_grammar</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">?start: expression</span>
+<span class="s2">?expression: term ((&quot;+&quot; | &quot;-&quot;) term)*</span>
+<span class="s2">?term: factor ((&quot;*&quot; | &quot;/&quot;) factor)*</span>
+<span class="s2">?factor: NUMBER</span>
+<span class="s2">| &quot;-&quot; factor</span>
+<span class="s2">| &quot;(&quot; expression &quot;)&quot;</span>
+<span class="si">%i</span><span class="s2">mport common.NUMBER</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">outlines</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">transformers</span><span class="p">(</span><span class="s2">&quot;WizardLM/WizardMath-7B-V1.1&quot;</span><span class="p">)</span>
+
+<span class="n">generator</span> <span class="o">=</span> <span class="n">outlines</span><span class="o">.</span><span class="n">generate</span><span class="o">.</span><span class="n">cfg</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">arithmetic_grammar</span><span class="p">)</span>
+
+<span class="n">sequence</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="s2">&quot;Alice had 4 apples and Bob ate 2. Write an expression for Alice&#39;s apples:&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+
+<span class="c1"># Output: 4-2 </span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="comparing-solutions">
+<h3>Comparing Solutions<a class="headerlink" href="#comparing-solutions" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Simplicity vs. Control</strong>: One-shot prompts are simple but offer limited control.  Dedicated tools like Gemini’s structured output features, LangChain, and Outlines provide greater control but might have a steeper learning curve.</p></li>
+<li><p><strong>Native LLM Support</strong>:  <code class="docutils literal notranslate"><span class="pre">with_structured_output</span></code> in LangChain relies on the LLM having built-in support for structured output APIs. Other methods, like parsing or using Outlines, are more broadly applicable.</p></li>
+<li><p><strong>Flexibility</strong>:  Outlines and LangChain’s  <code class="docutils literal notranslate"><span class="pre">StructuredOutputParser</span></code>  offer the most flexibility for defining custom output structures.</p></li>
+</ul>
+</section>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Clear Schema Definition</strong>: Define the desired output structure clearly, using schemas, types, or grammars as appropriate. This ensures the LLM knows exactly what format is expected.</p></li>
+<li><p><strong>Descriptive Naming</strong>: Use meaningful names for fields and elements in your schema. This makes the output more understandable and easier to work with.</p></li>
+<li><p><strong>Detailed Prompting</strong>: Guide the LLM with well-crafted prompts that include examples and clear instructions.  A well-structured prompt improves the chances of getting the desired output.</p></li>
+<li><p><strong>Error Handling</strong>: Implement mechanisms to handle cases where the LLM deviates from the expected structure. LLMs are not perfect, so having error handling ensures your application remains robust.</p></li>
+<li><p><strong>Testing and Iteration</strong>: Thoroughly test your structured output generation process and refine your prompts and schemas based on the results. Continuous testing and refinement are key to achieving reliable structured output.</p></li>
+</ul>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
+<p>Extracting structured output from LLMs is crucial for integrating them into real-world applications. By understanding the challenges and employing appropriate strategies and tools, developers can improve the reliability and usability of LLM-powered systems, unlocking their potential to automate complex tasks and generate valuable insights.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./markdown"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2024.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 6.2.1 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.9.1.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

@@ -7,15 +7,10 @@ copyright: "2024"  # Copyright year to be placed in the footer
 project: "tamingLLMs" 
 #logo: /home/tobias/src/tamingLLMs/tamingllms/tamingllms/_static/logo.png
 
-
-
-
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: 'off'
-
-only_build_toc_files: true
 
 html:
   baseurl: https://souzatharsis.github.io/tamingllms/
@@ -41,5 +36,5 @@ sphinx:
   config:
     html_theme: 'press' #insipid
     #html_logo: '_static/logo_w.png'
-    html_show_copyright: false
+    html_show_copyright: true
     #html_sidebars: {'**': ['globaltoc.html']}

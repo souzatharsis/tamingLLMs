@@ -27,6 +27,9 @@ sphinx-tojupyter = "^0.3.0"
 sphinx-togglebutton = "^0.3.2"
 insipid-sphinx-theme = "^0.4.2"
 sphinx-press-theme = "^0.9.1"
+langchain-openai = "^0.2.9"
+outlines = "^0.1.5"
+transformers = "^4.46.3"
 
 
 [build-system]
