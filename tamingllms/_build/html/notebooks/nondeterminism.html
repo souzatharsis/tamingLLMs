@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-      <title>Non-determinism</title>
+      <title>Non-determinism &amp; Evals</title>
     
           <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
@@ -38,8 +38,7 @@
     
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
-  <link rel="next" title="Output Size Limitations" href="output_size_limit.html" />
-  <link rel="prev" title="Introduction" href="../markdown/intro.html" /> 
+  <link rel="prev" title="Wrestling with Structured Output" href="structured_output.html" /> 
   </head>
 
   <body>
@@ -99,23 +98,6 @@
           </li>
 
         
-          <li class="toctree-l1 current">
-            
-              <a href="#" class="reference internal current">Non-determinism</a>
-            
-
-            
-              <ul>
-                
-                  <li class="toctree-l2"><a href="#understanding-the-challenge" class="reference internal">Understanding the Challenge</a></li>
-                
-                  <li class="toctree-l2"><a href="#technical-deep-dive-sources-of-non-determinism" class="reference internal">Technical Deep-dive: Sources of Non-determinism</a></li>
-                
-              </ul>
-            
-          </li>
-
-        
           <li class="toctree-l1 ">
             
               <a href="output_size_limit.html" class="reference internal ">Output Size Limitations</a>
@@ -134,6 +116,25 @@
           </li>
 
         
+          <li class="toctree-l1 current">
+            
+              <a href="#" class="reference internal current">Non-determinism & Evals</a>
+            
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#understanding-the-challenge" class="reference internal">Understanding the Challenge</a></li>
+                
+                  <li class="toctree-l2"><a href="#technical-deep-dive-sources-of-non-determinism" class="reference internal">Technical Deep-dive: Sources of Non-determinism</a></li>
+                
+                  <li class="toctree-l2"><a href="#evaluating-non-deterministic" class="reference internal">Evaluating Non-deterministic</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
       </ul>
     </div>
   
@@ -146,18 +147,14 @@
   <ul class="breadcrumbs">
     <li><a href="../markdown/toc.html">Docs</a> &raquo;</li>
     
-    <li>Non-determinism</li>
+    <li>Non-determinism &amp; Evals</li>
   </ul>
   
 
   <ul class="page-nav">
   <li class="prev">
-    <a href="../markdown/intro.html"
-       title="previous chapter">← Introduction</a>
-  </li>
-  <li class="next">
-    <a href="output_size_limit.html"
-       title="next chapter">Output Size Limitations →</a>
+    <a href="structured_output.html"
+       title="previous chapter">← Wrestling with Structured Output</a>
   </li>
 </ul>
   
@@ -165,8 +162,8 @@
 <hr>
           <div class="content" role="main" v-pre>
             
-  <section class="tex2jax_ignore mathjax_ignore" id="non-determinism">
-<h1>Non-determinism<a class="headerlink" href="#non-determinism" title="Permalink to this heading">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="non-determinism-evals">
+<h1>Non-determinism &amp; Evals<a class="headerlink" href="#non-determinism-evals" title="Permalink to this heading">¶</a></h1>
 <p>One of the most fundamental challenges when building products with Large Language Models (LLMs) is their non-deterministic nature. Unlike traditional software systems where the same input reliably produces the same output, LLMs can generate different responses each time they’re queried - even with identical prompts. This characteristic is both a strength and a significant engineering challenge.</p>
 <section id="understanding-the-challenge">
 <h2>Understanding the Challenge<a class="headerlink" href="#understanding-the-challenge" title="Permalink to this heading">¶</a></h2>
@@ -289,6 +286,10 @@ Attempt 3: &quot;Beans &amp; Birch: Grab a Brew&quot;
 </div>
 </section>
 </section>
+<section id="evaluating-non-deterministic">
+<h2>Evaluating Non-deterministic<a class="headerlink" href="#evaluating-non-deterministic" title="Permalink to this heading">¶</a></h2>
+<p>Evaluating non-deterministic LLM systems can be challenging due to the inherent variability in their responses. Here are some strategies to effectively evaluate these systems.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -315,15 +316,11 @@ Attempt 3: &quot;Beans &amp; Birch: Grab a Brew&quot;
           <div class="page-nav">
             <div class="inner"><ul class="page-nav">
   <li class="prev">
-    <a href="../markdown/intro.html"
-       title="previous chapter">← Introduction</a>
-  </li>
-  <li class="next">
-    <a href="output_size_limit.html"
-       title="next chapter">Output Size Limitations →</a>
+    <a href="structured_output.html"
+       title="previous chapter">← Wrestling with Structured Output</a>
   </li>
 </ul><div class="footer" role="contentinfo">
-      &#169; Copyright 2024.
+      &#169; Copyright Tharsis T. P. Souza, 2024.
     <br>
     Created using <a href="http://sphinx-doc.org/">Sphinx</a> 6.2.1 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.9.1.
 </div>
