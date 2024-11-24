@@ -1,10 +1,18 @@
 # Introduction
 
+```{epigraph}
+Too often we enjoy the comfort of opinion without the discomfort of thought.
+
+-- John F. Kennedy
+```
+```{contents}
+```
+
+## Core Challenges We'll Address
 In recent years, Large Language Models (LLMs) have emerged as a transformative force in technology, promising to revolutionize how we build products and interact with computers. From ChatGPT to GitHub Copilot, Claude Artifacts, cursor.com, replit, and others, these systems have captured the public imagination and sparked a gold rush of AI-powered applications. However, beneath the surface of this technological revolution lies a complex landscape of challenges that practitioners must navigate. 
 
 As we'll explore in this book, the engineering effort required to manage these challenges - from handling non-deterministic outputs to preventing hallucinations - cannot be overstated. While the potential of LLM technology remains compelling, understanding and addressing the hidden costs and complexities of building reliable LLM-powered systems will enable us to fully harness their transformative impact.
 
-## Core Challenges We'll Address
 While the capabilities of LLMs are indeed remarkable, the prevailing narrative often glosses over fundamental problems that engineers, product managers, and organizations face when building real-world applications. This book aims to bridge that gap, offering a practical, clear-eyed examination of the pitfalls and challenges in working with LLMs.
 
 Throughout this book, we'll tackle the following (non-exhaustive) list of critical challenges:
@@ -73,9 +81,15 @@ pip install -r requirements.txt
 ```
 
 ### 2. API Keys Configuration
-Set required API keys:
-```bash
-export OPENAI_API_KEY=your-openai-key
+1. Create a `.env` file in the root directory of the project.
+2. Add your API keys and other sensitive information to the `.env` file. For example:
+
+   ```
+   OPENAI_API_KEY=your_openai_api_key_here
+   ```
+
+```{warning}
+Never share your `.env` file or commit it to version control. It contains sensitive information that should be kept private.
 ```
 
 ### 3. Code Repository
@@ -85,11 +99,11 @@ git clone https://github.com/souzatharsis/tamingllms.git
 cd tamingllms
 ```
 
+
+
 ### Troubleshooting Common Issues
 - If you encounter API rate limits, consider using smaller examples or implementing retry logic
 - For package conflicts, try creating a fresh virtual environment or use a package manager like `poetry`
 - Check the book's repository issues page for known problems and solutions
 
 Now that your environment is set up, let's begin our exploration of LLM challenges.
-
-

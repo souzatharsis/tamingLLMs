@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-      <title>Introduction</title>
+      <title>1. Introduction</title>
     
           <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
@@ -38,7 +38,7 @@
     
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
-  <link rel="next" title="Output Size Limitations" href="../notebooks/output_size_limit.html" />
+  <link rel="next" title="2. Output Size Limitations" href="../notebooks/output_size_limit.html" />
   <link rel="prev" title="Taming Large Language Models" href="toc.html" /> 
   </head>
 
@@ -154,7 +154,7 @@
   <ul class="breadcrumbs">
     <li><a href="toc.html">Docs</a> &raquo;</li>
     
-    <li>Introduction</li>
+    <li><span class="section-number">1. </span>Introduction</li>
   </ul>
   
 
@@ -165,7 +165,7 @@
   </li>
   <li class="next">
     <a href="../notebooks/output_size_limit.html"
-       title="next chapter">Output Size Limitations →</a>
+       title="next chapter"><span class="section-number">2. </span>Output Size Limitations →</a>
   </li>
 </ul>
   
@@ -174,11 +174,37 @@
           <div class="content" role="main" v-pre>
             
   <section class="tex2jax_ignore mathjax_ignore" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h1>
+<h1><a class="toc-backref" href="#id1" role="doc-backlink"><span class="section-number">1. </span>Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h1>
+<blockquote class="epigraph">
+<div><p>Too often we enjoy the comfort of opinion without the discomfort of thought.</p>
+<p class="attribution">—John F. Kennedy</p>
+</div></blockquote>
+<nav class="contents" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#introduction" id="id1">Introduction</a></p>
+<ul>
+<li><p><a class="reference internal" href="#core-challenges-we-ll-address" id="id2">Core Challenges We’ll Address</a></p></li>
+<li><p><a class="reference internal" href="#a-note-on-perspective" id="id3">A Note on Perspective</a></p></li>
+<li><p><a class="reference internal" href="#a-practical-approach" id="id4">A Practical Approach</a></p></li>
+<li><p><a class="reference internal" href="#who-this-book-is-for" id="id5">Who This Book Is For</a></p></li>
+<li><p><a class="reference internal" href="#prerequisites" id="id6">Prerequisites</a></p></li>
+<li><p><a class="reference internal" href="#setting-up-your-environment" id="id7">Setting Up Your Environment</a></p>
+<ul>
+<li><p><a class="reference internal" href="#python-environment-setup" id="id8">1. Python Environment Setup</a></p></li>
+<li><p><a class="reference internal" href="#api-keys-configuration" id="id9">2. API Keys Configuration</a></p></li>
+<li><p><a class="reference internal" href="#code-repository" id="id10">3. Code Repository</a></p></li>
+<li><p><a class="reference internal" href="#troubleshooting-common-issues" id="id11">Troubleshooting Common Issues</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="core-challenges-we-ll-address">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink"><span class="section-number">1.1. </span>Core Challenges We’ll Address</a><a class="headerlink" href="#core-challenges-we-ll-address" title="Permalink to this heading">¶</a></h2>
 <p>In recent years, Large Language Models (LLMs) have emerged as a transformative force in technology, promising to revolutionize how we build products and interact with computers. From ChatGPT to GitHub Copilot, Claude Artifacts, <a class="reference external" href="http://cursor.com">cursor.com</a>, replit, and others, these systems have captured the public imagination and sparked a gold rush of AI-powered applications. However, beneath the surface of this technological revolution lies a complex landscape of challenges that practitioners must navigate.</p>
 <p>As we’ll explore in this book, the engineering effort required to manage these challenges - from handling non-deterministic outputs to preventing hallucinations - cannot be overstated. While the potential of LLM technology remains compelling, understanding and addressing the hidden costs and complexities of building reliable LLM-powered systems will enable us to fully harness their transformative impact.</p>
-<section id="core-challenges-we-ll-address">
-<h2>Core Challenges We’ll Address<a class="headerlink" href="#core-challenges-we-ll-address" title="Permalink to this heading">¶</a></h2>
 <p>While the capabilities of LLMs are indeed remarkable, the prevailing narrative often glosses over fundamental problems that engineers, product managers, and organizations face when building real-world applications. This book aims to bridge that gap, offering a practical, clear-eyed examination of the pitfalls and challenges in working with LLMs.</p>
 <p>Throughout this book, we’ll tackle the following (non-exhaustive) list of critical challenges:</p>
 <ol class="arabic simple">
@@ -190,7 +216,7 @@
 </ol>
 </section>
 <section id="a-note-on-perspective">
-<h2>A Note on Perspective<a class="headerlink" href="#a-note-on-perspective" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">1.2. </span>A Note on Perspective</a><a class="headerlink" href="#a-note-on-perspective" title="Permalink to this heading">¶</a></h2>
 <p>While this book takes a critical look at LLM limitations, our goal is not to discourage their use but to enable more robust and reliable implementations. By understanding these challenges upfront, you’ll be better equipped to build systems that leverage LLMs effectively while avoiding common pitfalls.</p>
 <p>The current discourse around LLMs tends toward extremes—either uncritical enthusiasm or wholesale dismissal. This book takes a different approach:</p>
 <ul class="simple">
@@ -200,7 +226,7 @@
 </ul>
 </section>
 <section id="a-practical-approach">
-<h2>A Practical Approach<a class="headerlink" href="#a-practical-approach" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">1.3. </span>A Practical Approach</a><a class="headerlink" href="#a-practical-approach" title="Permalink to this heading">¶</a></h2>
 <p>This book takes a hands-on approach to these challenges, providing:</p>
 <ul class="simple">
 <li><p>Concrete Python examples that you can run and modify</p></li>
@@ -211,7 +237,7 @@
 </ul>
 </section>
 <section id="who-this-book-is-for">
-<h2>Who This Book Is For<a class="headerlink" href="#who-this-book-is-for" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">1.4. </span>Who This Book Is For</a><a class="headerlink" href="#who-this-book-is-for" title="Permalink to this heading">¶</a></h2>
 <p>This book is designed for:</p>
 <ul class="simple">
 <li><p>Software Engineers building LLM-powered applications</p></li>
@@ -221,7 +247,7 @@
 </ul>
 </section>
 <section id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">1.5. </span>Prerequisites</a><a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
 <p>To make the most of this book, you should have:</p>
 <ul class="simple">
 <li><p>Basic Python programming experience</p></li>
@@ -230,10 +256,10 @@
 </ul>
 </section>
 <section id="setting-up-your-environment">
-<h2>Setting Up Your Environment<a class="headerlink" href="#setting-up-your-environment" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">1.6. </span>Setting Up Your Environment</a><a class="headerlink" href="#setting-up-your-environment" title="Permalink to this heading">¶</a></h2>
 <p>Before diving into the examples in this book, you’ll need to set up your development environment. Here’s how to get started:</p>
 <section id="python-environment-setup">
-<h3>1. Python Environment Setup<a class="headerlink" href="#python-environment-setup" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">1.6.1. </span>1. Python Environment Setup</a><a class="headerlink" href="#python-environment-setup" title="Permalink to this heading">¶</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create and activate a virtual environment</span>
 python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>llm-book-env
 <span class="nb">source</span><span class="w"> </span>llm-book-env/bin/activate<span class="w">  </span><span class="c1"># On Windows, use: llm-book-env\Scripts\activate</span>
@@ -244,14 +270,22 @@ pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </s
 </div>
 </section>
 <section id="api-keys-configuration">
-<h3>2. API Keys Configuration<a class="headerlink" href="#api-keys-configuration" title="Permalink to this heading">¶</a></h3>
-<p>Set required API keys:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span>your-openai-key
+<h3><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">1.6.2. </span>2. API Keys Configuration</a><a class="headerlink" href="#api-keys-configuration" title="Permalink to this heading">¶</a></h3>
+<ol class="arabic">
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file in the root directory of the project.</p></li>
+<li><p>Add your API keys and other sensitive information to the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">OPENAI_API_KEY</span><span class="o">=</span><span class="n">your_openai_api_key_here</span>
 </pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Never share your <code class="docutils literal notranslate"><span class="pre">.env</span></code> file or commit it to version control. It contains sensitive information that should be kept private.</p>
 </div>
 </section>
 <section id="code-repository">
-<h3>3. Code Repository<a class="headerlink" href="#code-repository" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">1.6.3. </span>3. Code Repository</a><a class="headerlink" href="#code-repository" title="Permalink to this heading">¶</a></h3>
 <p>Clone the book’s companion repository:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/souzatharsis/tamingllms.git
 <span class="nb">cd</span><span class="w"> </span>tamingllms
@@ -259,7 +293,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </s
 </div>
 </section>
 <section id="troubleshooting-common-issues">
-<h3>Troubleshooting Common Issues<a class="headerlink" href="#troubleshooting-common-issues" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">1.6.4. </span>Troubleshooting Common Issues</a><a class="headerlink" href="#troubleshooting-common-issues" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>If you encounter API rate limits, consider using smaller examples or implementing retry logic</p></li>
 <li><p>For package conflicts, try creating a fresh virtual environment or use a package manager like <code class="docutils literal notranslate"><span class="pre">poetry</span></code></p></li>
@@ -299,7 +333,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </s
   </li>
   <li class="next">
     <a href="../notebooks/output_size_limit.html"
-       title="next chapter">Output Size Limitations →</a>
+       title="next chapter"><span class="section-number">2. </span>Output Size Limitations →</a>
   </li>
 </ul><div class="footer" role="contentinfo">
       &#169; Copyright Tharsis T. P. Souza, 2024.

@@ -3,6 +3,8 @@
 
 format: jb-book
 root: markdown/toc.md
+options:
+  numbered: true
 chapters:
 - file: markdown/intro.md
 - file: notebooks/output_size_limit.ipynb
