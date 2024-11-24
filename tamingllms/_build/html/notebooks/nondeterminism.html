@@ -38,6 +38,7 @@
     
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="5. The Challenge of Evaluating LLMs" href="../markdown/evals.html" />
   <link rel="prev" title="3. Wrestling with Structured Output" href="structured_output.html" /> 
   </head>
 
@@ -135,6 +136,15 @@
           </li>
 
         
+          <li class="toctree-l1 ">
+            
+              <a href="../markdown/evals.html" class="reference internal ">The Challenge of Evaluating LLMs</a>
+            
+
+            
+          </li>
+
+        
       </ul>
     </div>
   
@@ -156,6 +166,10 @@
     <a href="structured_output.html"
        title="previous chapter">← <span class="section-number">3. </span>Wrestling with Structured Output</a>
   </li>
+  <li class="next">
+    <a href="../markdown/evals.html"
+       title="next chapter"><span class="section-number">5. </span>The Challenge of Evaluating LLMs →</a>
+  </li>
 </ul>
   
 </div>
@@ -173,19 +187,9 @@
 <ul class="simple">
 <li><p><a class="reference internal" href="#non-determinism-evals" id="id1">Non-determinism &amp; Evals</a></p>
 <ul>
-<li><p><a class="reference internal" href="#understanding-the-challenge" id="id2">Understanding the Challenge</a></p>
-<ul>
-<li><p><a class="reference internal" href="#what-is-non-determinism-in-llms" id="id3">What is Non-determinism in LLMs?</a></p></li>
-<li><p><a class="reference internal" href="#real-world-impact" id="id4">Real-world Impact</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#technical-deep-dive-sources-of-non-determinism" id="id5">Technical Deep-dive: Sources of Non-determinism</a></p>
-<ul>
-<li><p><a class="reference internal" href="#temperature-and-sampling" id="id6">Temperature and Sampling</a></p></li>
-<li><p><a class="reference internal" href="#the-temperature-spectrum" id="id7">The Temperature Spectrum</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#evaluating-non-deterministic" id="id8">Evaluating Non-deterministic</a></p></li>
+<li><p><a class="reference internal" href="#understanding-the-challenge" id="id2">Understanding the Challenge</a></p></li>
+<li><p><a class="reference internal" href="#technical-deep-dive-sources-of-non-determinism" id="id3">Technical Deep-dive: Sources of Non-determinism</a></p></li>
+<li><p><a class="reference internal" href="#evaluating-non-deterministic" id="id4">Evaluating Non-deterministic</a></p></li>
 </ul>
 </li>
 </ul>
@@ -194,11 +198,11 @@
 <h2><a class="toc-backref" href="#id2" role="doc-backlink"><span class="section-number">4.1. </span>Understanding the Challenge</a><a class="headerlink" href="#understanding-the-challenge" title="Permalink to this heading">¶</a></h2>
 <p>One of the most fundamental challenges when building products with Large Language Models (LLMs) is their non-deterministic nature. Unlike traditional software systems where the same input reliably produces the same output, LLMs can generate different responses each time they’re queried - even with identical prompts. This characteristic is both a strength and a significant engineering challenge.</p>
 <section id="what-is-non-determinism-in-llms">
-<h3><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">4.1.1. </span>What is Non-determinism in LLMs?</a><a class="headerlink" href="#what-is-non-determinism-in-llms" title="Permalink to this heading">¶</a></h3>
+<h3><span class="section-number">4.1.1. </span>What is Non-determinism in LLMs?<a class="headerlink" href="#what-is-non-determinism-in-llms" title="Permalink to this heading">¶</a></h3>
 <p>When you ask ChatGPT or any other LLM the same question multiple times, you’ll likely get different responses. This isn’t a bug - it’s a fundamental feature of how these models work. The “temperature” parameter, which controls the randomness of outputs, allows models to be creative and generate diverse responses. However, this same feature makes it incredibly difficult to build reliable, testable systems.</p>
 </section>
 <section id="real-world-impact">
-<h3><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">4.1.2. </span>Real-world Impact</a><a class="headerlink" href="#real-world-impact" title="Permalink to this heading">¶</a></h3>
+<h3><span class="section-number">4.1.2. </span>Real-world Impact<a class="headerlink" href="#real-world-impact" title="Permalink to this heading">¶</a></h3>
 <p>Consider a financial services company using LLMs to generate investment advice summaries. The non-deterministic nature of these models means that:</p>
 <ul class="simple">
 <li><p>The same market data could yield different analysis conclusions</p></li>
@@ -209,9 +213,9 @@
 </section>
 </section>
 <section id="technical-deep-dive-sources-of-non-determinism">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">4.2. </span>Technical Deep-dive: Sources of Non-determinism</a><a class="headerlink" href="#technical-deep-dive-sources-of-non-determinism" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">4.2. </span>Technical Deep-dive: Sources of Non-determinism</a><a class="headerlink" href="#technical-deep-dive-sources-of-non-determinism" title="Permalink to this heading">¶</a></h2>
 <section id="temperature-and-sampling">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">4.2.1. </span>Temperature and Sampling</a><a class="headerlink" href="#temperature-and-sampling" title="Permalink to this heading">¶</a></h3>
+<h3><span class="section-number">4.2.1. </span>Temperature and Sampling<a class="headerlink" href="#temperature-and-sampling" title="Permalink to this heading">¶</a></h3>
 <p>The primary source of non-determinism in LLMs comes from their sampling strategies. During text generation, the model:</p>
 <ol class="arabic simple">
 <li><p>Calculates probability distributions for each next token</p></li>
@@ -220,7 +224,7 @@
 </ol>
 </section>
 <section id="the-temperature-spectrum">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">4.2.2. </span>The Temperature Spectrum</a><a class="headerlink" href="#the-temperature-spectrum" title="Permalink to this heading">¶</a></h3>
+<h3><span class="section-number">4.2.2. </span>The Temperature Spectrum<a class="headerlink" href="#the-temperature-spectrum" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Temperature = 0: Most deterministic, but potentially repetitive</p></li>
 <li><p>Temperature = 1: Balanced creativity and coherence</p></li>
@@ -313,7 +317,7 @@ Attempt 3: &quot;Beans &amp; Birch: Grab a Brew&quot;
 </section>
 </section>
 <section id="evaluating-non-deterministic">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">4.3. </span>Evaluating Non-deterministic</a><a class="headerlink" href="#evaluating-non-deterministic" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">4.3. </span>Evaluating Non-deterministic</a><a class="headerlink" href="#evaluating-non-deterministic" title="Permalink to this heading">¶</a></h2>
 <p>Evaluating non-deterministic LLM systems can be challenging due to the inherent variability in their responses. Here are some strategies to effectively evaluate these systems.</p>
 </section>
 </section>
@@ -344,6 +348,10 @@ Attempt 3: &quot;Beans &amp; Birch: Grab a Brew&quot;
   <li class="prev">
     <a href="structured_output.html"
        title="previous chapter">← <span class="section-number">3. </span>Wrestling with Structured Output</a>
+  </li>
+  <li class="next">
+    <a href="../markdown/evals.html"
+       title="next chapter"><span class="section-number">5. </span>The Challenge of Evaluating LLMs →</a>
   </li>
 </ul><div class="footer" role="contentinfo">
       &#169; Copyright Tharsis T. P. Souza, 2024.

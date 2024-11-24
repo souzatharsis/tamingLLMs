@@ -88,7 +88,7 @@ pip install -r requirements.txt
    OPENAI_API_KEY=your_openai_api_key_here
    ```
 
-```{warning}
+```{note}
 Never share your `.env` file or commit it to version control. It contains sensitive information that should be kept private.
 ```
 

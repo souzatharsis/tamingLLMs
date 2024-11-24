@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+      <title>5. The Challenge of Evaluating LLMs</title>
+    
+          <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/sphinx-thebe.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/scripts/sphinx-book-theme.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script src="../_static/design-tabs.js"></script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+        <script async="async" src="../_static/sphinx-thebe.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../_static/theme-vendors.js"></script> -->
+      <script src="../_static/theme.js" defer></script>
+      <link rel="canonical" href="https://souzatharsis.github.io/tamingllms/markdown/evals.html" />
+    
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="prev" title="4. Non-determinism &amp; Evals" href="../notebooks/nondeterminism.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="toc.html" class="home-link">
+    
+      <span class="site-name">tamingLLMs</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="toc.html#taming-large-language-models">taming large language models</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="intro.html" class="reference internal ">Introduction</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../notebooks/output_size_limit.html" class="reference internal ">Output Size Limitations</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../notebooks/structured_output.html" class="reference internal ">Wrestling with Structured Output</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../notebooks/nondeterminism.html" class="reference internal ">Non-determinism & Evals</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 current">
+            
+              <a href="#" class="reference internal current">The Challenge of Evaluating LLMs</a>
+            
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#introduction" class="reference internal">Introduction</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="toc.html">Docs</a> &raquo;</li>
+    
+    <li><span class="section-number">5. </span>The Challenge of Evaluating LLMs</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="../notebooks/nondeterminism.html"
+       title="previous chapter">← <span class="section-number">4. </span>Non-determinism &amp; Evals</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="the-challenge-of-evaluating-llms">
+<h1><span class="section-number">5. </span>The Challenge of Evaluating LLMs<a class="headerlink" href="#the-challenge-of-evaluating-llms" title="Permalink to this heading">¶</a></h1>
+<section id="introduction">
+<h2><span class="section-number">5.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>Evaluating Large Language Models is a critical process for understanding their capabilities, limitations, and potential impact. As LLMs become increasingly integrated into various applications, it’s essential to have robust evaluation methods to ensure their responsible and effective use.</p>
+<p>LLM evaluation presents unique challenges compared to traditional software evaluation methods:</p>
+<ul class="simple">
+<li><p><strong>Focus on Capabilities, Not Just Functionality</strong>: Traditional software evaluation verifies if the software performs its intended functions, while LLM evaluation assesses a broader range of capabilities, such as creative content generation and language translation, making it difficult to define success criteria.</p></li>
+<li><p><strong>Subjectivity and Difficulty in Measurement</strong>: Traditional software success is often binary and easy to measure with metrics like speed and efficiency. In contrast, LLM evaluation involves subjective assessments of outputs like text quality and creativity, often requiring human judgment.</p></li>
+<li><p><strong>The Problem of Overfitting and Contamination</strong>: Traditional software is less susceptible to overfitting, whereas LLMs risk contamination due to massive training datasets, potentially leading to inflated performance scores.</p></li>
+<li><p><strong>Evolving Benchmarks and Evaluation Methods</strong>: Traditional software testing methodologies remain stable, but LLM evaluation methods and benchmarks are constantly evolving, complicating model comparisons over time.</p></li>
+<li><p><strong>Human Evaluation Plays a Crucial Role</strong>: In traditional software, human involvement is limited, whereas LLM evaluation often relies on human judgment to assess complex, subjective qualities using methods like “Vibes-Checks” and “Systematic Annotations”.</p></li>
+</ul>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspect</p></th>
+<th class="head"><p>Traditional Software</p></th>
+<th class="head"><p>LLMs</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Capabilities vs. Functionality</strong></p></td>
+<td><p>Focus on function verification.</p></td>
+<td><p>Assess broader capabilities beyond basic functions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Measurement</strong></p></td>
+<td><p>Binary success, easy metrics.</p></td>
+<td><p>Subjective, often requires human judgment.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Overfitting</strong></p></td>
+<td><p>Less risk due to distinct controlled dataset.</p></td>
+<td><p>High risk due to large datasets.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Benchmarks</strong></p></td>
+<td><p>Stable over time.</p></td>
+<td><p>Constantly evolving, hard to standardize.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Human Evaluation</strong></p></td>
+<td><p>Limited role.</p></td>
+<td><p>Crucial for subjective assessment.</p></td>
+</tr>
+</tbody>
+</table>
+<p>In conclusion, evaluating LLMs demands a different approach than traditional software due to the focus on capabilities, the subjective nature of output, the risk of contamination, and the evolving nature of benchmarks. Traditional software development focuses on clear-cut functionality and measurable metrics, while LLM evaluation requires a combination of automated, human-based, and model-based approaches to capture their full range of capabilities and limitations.</p>
+<p>LLM evaluation encompasses various approaches to assess how well these models perform on different tasks and exhibit desired qualities. This involves measuring their performance on specific tasks, such as question answering or text summarisation, understanding their ability to perform more general tasks like reasoning or code generation, and analysing their potential for bias and susceptibility to adversarial attacks.</p>
+<p>LLM evaluation serves several crucial purposes. Firstly, non-regression testing ensures that updates and modifications to LLMs don’t negatively affect their performance or introduce new issues. Tracking evaluation scores helps developers maintain and improve model reliability. Secondly, evaluation results contribute to establishing benchmarks and ranking different LLMs based on their capabilities. These rankings inform users about the relative strengths and weaknesses of various models. Lastly, through evaluation, researchers can gain a deeper understanding of the specific abilities and limitations of LLMs. This helps identify areas for improvement and guide the development of new models with enhanced capabilities.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./markdown"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="../notebooks/nondeterminism.html"
+       title="previous chapter">← <span class="section-number">4. </span>Non-determinism &amp; Evals</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright Tharsis T. P. Souza, 2024.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 6.2.1 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.9.1.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

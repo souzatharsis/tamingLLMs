@@ -146,6 +146,15 @@
           </li>
 
         
+          <li class="toctree-l1 ">
+            
+              <a href="../markdown/evals.html" class="reference internal ">The Challenge of Evaluating LLMs</a>
+            
+
+            
+          </li>
+
+        
       </ul>
     </div>
   
@@ -190,24 +199,12 @@
 <ul>
 <li><p><a class="reference internal" href="#what-are-token-limits" id="id2">What are Token Limits?</a></p></li>
 <li><p><a class="reference internal" href="#problem-statement" id="id3">Problem Statement</a></p></li>
-<li><p><a class="reference internal" href="#content-chunking-with-contextual-linking" id="id4">Content Chunking with Contextual Linking</a></p>
-<ul>
-<li><p><a class="reference internal" href="#generating-long-form-content" id="id5">Generating long-form content</a></p>
-<ul>
-<li><p><a class="reference internal" href="#step-1-chunking-the-content" id="id6">Step 1: Chunking the Content</a></p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#example-usage" id="id7">Example Usage</a></p>
-<ul>
-<li><p><a class="reference internal" href="#discussion" id="id8">Discussion</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#implications" id="id9">Implications</a></p></li>
-<li><p><a class="reference internal" href="#future-considerations" id="id10">Future Considerations</a></p></li>
-<li><p><a class="reference internal" href="#conclusion" id="id11">Conclusion</a></p></li>
-<li><p><a class="reference internal" href="#references" id="id12">References</a></p></li>
+<li><p><a class="reference internal" href="#content-chunking-with-contextual-linking" id="id4">Content Chunking with Contextual Linking</a></p></li>
+<li><p><a class="reference internal" href="#example-usage" id="id5">Example Usage</a></p></li>
+<li><p><a class="reference internal" href="#implications" id="id6">Implications</a></p></li>
+<li><p><a class="reference internal" href="#future-considerations" id="id7">Future Considerations</a></p></li>
+<li><p><a class="reference internal" href="#conclusion" id="id8">Conclusion</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id9">References</a></p></li>
 </ul>
 </li>
 </ul>
@@ -293,13 +290,13 @@
 <p>By following these steps, developers can effectively manage the <code class="docutils literal notranslate"><span class="pre">max_output_tokens</span></code> limitation and generate coherent long-form content without truncation.</p>
 <p>Let’s examine an example implementation of this technique.</p>
 <section id="generating-long-form-content">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">2.3.1. </span>Generating long-form content</a><a class="headerlink" href="#generating-long-form-content" title="Permalink to this heading">¶</a></h3>
+<h3><span class="section-number">2.3.1. </span>Generating long-form content<a class="headerlink" href="#generating-long-form-content" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Goal: Generate a long-form report analyzing a company’s financial statement.</p></li>
 <li><p>Input: A company’s 10K SEC filing.</p></li>
 </ul>
 <section id="step-1-chunking-the-content">
-<h4><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">2.3.1.1. </span>Step 1: Chunking the Content</a><a class="headerlink" href="#step-1-chunking-the-content" title="Permalink to this heading">¶</a></h4>
+<h4><span class="section-number">2.3.1.1. </span>Step 1: Chunking the Content<a class="headerlink" href="#step-1-chunking-the-content" title="Permalink to this heading">¶</a></h4>
 <p>There are different methods for chunking, and each of them might be appropriate for different situations. However, we can broadly group chunking strategies in two types:</p>
 <ul class="simple">
 <li><p><strong>Fixed-size Chunking</strong>: This is the most common and straightforward approach to chunking. We simply decide the number of tokens in our chunk and, optionally, whether there should be any overlap between them. In general, we will want to keep some overlap between chunks to make sure that the semantic context doesn’t get lost between chunks. Fixed-sized chunking may be a reasonable path in many common cases. Compared to other forms of chunking, fixed-sized chunking is computationally cheap and simple to use since it doesn’t require the use of any specialied techniques or libraries.</p></li>
@@ -508,7 +505,7 @@
 </section>
 </section>
 <section id="example-usage">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">2.4. </span>Example Usage</a><a class="headerlink" href="#example-usage" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">2.4. </span>Example Usage</a><a class="headerlink" href="#example-usage" title="Permalink to this heading">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the text from sample 10K SEC filing</span>
@@ -574,7 +571,7 @@ luation.  The significant short-term obligations, while manageable given Apple&#
 </div>
 </div>
 <section id="discussion">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">2.4.1. </span>Discussion</a><a class="headerlink" href="#discussion" title="Permalink to this heading">¶</a></h3>
+<h3><span class="section-number">2.4.1. </span>Discussion<a class="headerlink" href="#discussion" title="Permalink to this heading">¶</a></h3>
 <p>Results from the generated report present a few interesting aspects:</p>
 <ul class="simple">
 <li><p><strong>Coherence</strong>: The generated report demonstrates a high level of coherence. The sections are logically structured, and the flow of information is smooth. Each part of the report builds upon the previous sections, providing a comprehensive analysis of Apple Inc.’s financial performance and key risk factors. The use of headings and subheadings helps in maintaining clarity and organization throughout the document.</p></li>
@@ -588,7 +585,7 @@ luation.  The significant short-term obligations, while manageable given Apple&#
 </section>
 </section>
 <section id="implications">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">2.5. </span>Implications</a><a class="headerlink" href="#implications" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">2.5. </span>Implications</a><a class="headerlink" href="#implications" title="Permalink to this heading">¶</a></h2>
 <p>Implementing context chunking with contextual linking is a practical solution to manage the output size limitations of LLMs. However, this approach comes with its own set of implications that developers must consider.</p>
 <ol class="arabic simple">
 <li><p><strong>Increased Development Complexity</strong>: Implementing strategies to overcome the maximum output token length introduces additional layers of complexity to the application design. It necessitates meticulous management of context across multiple outputs to maintain coherence. Ensuring that each chunk retains the necessary context for the conversation or document can be challenging and often requires advanced logic to handle transitions seamlessly.</p></li>
@@ -598,7 +595,7 @@ luation.  The significant short-term obligations, while manageable given Apple&#
 <p>By understanding these implications, developers can better prepare for the challenges associated with context chunking and contextual linking, ensuring that their applications remain efficient, cost-effective, and user-friendly.</p>
 </section>
 <section id="future-considerations">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">2.6. </span>Future Considerations</a><a class="headerlink" href="#future-considerations" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">2.6. </span>Future Considerations</a><a class="headerlink" href="#future-considerations" title="Permalink to this heading">¶</a></h2>
 <p>As models evolve, we can expect several advancements that will significantly impact how we handle output size limitations:</p>
 <ol class="arabic simple">
 <li><p><strong>Contextual Awareness</strong>: Future LLMs will likely have improved contextual awareness - or as Mustafa Suleyman would call “infinite memory”, enabling them to better understand and manage the context of a conversation or document over long interactions. This will reduce the need for repetitive context setting and improve the overall user experience.</p></li>
@@ -610,11 +607,11 @@ luation.  The significant short-term obligations, while manageable given Apple&#
 <p>These advancements will collectively enhance the capabilities of LLMs, making them more powerful and versatile tools for a wide range of applications. However, they will also introduce new challenges and considerations that developers and researchers will need to address to fully harness their potential.</p>
 </section>
 <section id="conclusion">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">2.7. </span>Conclusion</a><a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">2.7. </span>Conclusion</a><a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
 <p>In conclusion, while managing output size limitations in LLMs presents significant challenges, it also drives innovation in application design and optimization strategies. By implementing techniques such as context chunking, efficient prompt templates, and graceful fallbacks, developers can mitigate these limitations and enhance the performance and cost-effectiveness of their applications. As the technology evolves, advancements in contextual awareness, token efficiency, and memory management will further empower developers to build more robust and scalable LLM-powered systems. It is crucial to stay informed about these developments and continuously adapt to leverage the full potential of LLMs while addressing their inherent constraints.</p>
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink"><span class="section-number">2.8. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">2.8. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://langchain.readthedocs.io/en/latest/modules/text_splitter.html">LangChain Text Splitter</a>.</p></li>
 </ul>
