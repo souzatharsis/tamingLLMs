@@ -38,7 +38,7 @@
     
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
-  <link rel="next" title="4. Non-determinism &amp; Evals" href="nondeterminism.html" />
+  <link rel="next" title="4. The Challenge of Evaluating LLMs" href="evals.html" />
   <link rel="prev" title="2. Output Size Limitations" href="output_size_limit.html" /> 
   </head>
 
@@ -133,16 +133,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="nondeterminism.html" class="reference internal ">Non-determinism & Evals</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
-              <a href="../markdown/evals.html" class="reference internal ">The Challenge of Evaluating LLMs</a>
+              <a href="evals.html" class="reference internal ">The Challenge of Evaluating LLMs</a>
             
 
             
@@ -171,8 +162,8 @@
        title="previous chapter">← <span class="section-number">2. </span>Output Size Limitations</a>
   </li>
   <li class="next">
-    <a href="nondeterminism.html"
-       title="next chapter"><span class="section-number">4. </span>Non-determinism &amp; Evals →</a>
+    <a href="evals.html"
+       title="next chapter"><span class="section-number">4. </span>The Challenge of Evaluating LLMs →</a>
   </li>
 </ul>
   
@@ -226,9 +217,10 @@
 <p>Throughout this notebook, we will consider as input a segment of a sample SEC filing of Apple Inc.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MAX_LENGTH</span> <span class="o">=</span> <span class="mi">10000</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MAX_LENGTH</span> <span class="o">=</span> <span class="mi">10000</span> <span class="c1"># We limit the input length to avoid token issues</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/apple.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-    <span class="n">sec_filing</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> 
+    <span class="n">sec_filing</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">sec_filing</span> <span class="o">=</span> <span class="n">sec_filing</span><span class="p">[:</span><span class="n">MAX_LENGTH</span><span class="p">]</span> 
 </pre></div>
 </div>
 </div>
@@ -355,19 +347,19 @@ Person 2: Absolutely, transparency and compliance with regulations are key in th
 <span class="s2">Generate a two-person discussion about the key financial data from the following text in JSON format.</span>
 
 <span class="s2">&lt;JSON_FORMAT&gt;</span>
-<span class="se">{{</span>
-<span class="s2">   &quot;Person1&quot;: </span><span class="se">{{</span>
-<span class="s2">     &quot;name&quot;: &quot;Alice&quot;,</span>
+<span class="si">{</span>
+<span class="w">   </span><span class="s2">&quot;Person1&quot;</span><span class="si">:</span><span class="s2"> </span><span class="si">{</span>
+<span class="w">     </span><span class="s2">&quot;name&quot;</span><span class="si">:</span><span class="s2"> &quot;Alice&quot;,</span>
 <span class="s2">     &quot;statement&quot;: &quot;The revenue for Q1 has increased by 20% compared to last year.&quot;</span>
-<span class="s2">   </span><span class="se">}}</span><span class="s2">,</span>
-<span class="s2">   &quot;Person2&quot;: </span><span class="se">{{</span>
-<span class="s2">     &quot;name&quot;: &quot;Bob&quot;,</span>
+<span class="s2">   </span><span class="si">}</span><span class="s2">,</span>
+<span class="s2">   &quot;Person2&quot;: </span><span class="si">{</span>
+<span class="w">     </span><span class="s2">&quot;name&quot;</span><span class="si">:</span><span class="s2"> &quot;Bob&quot;,</span>
 <span class="s2">     &quot;statement&quot;: &quot;That&#39;s great news! What about the net profit margin?&quot;</span>
-<span class="s2">   </span><span class="se">}}</span>
-<span class="se">}}</span>
+<span class="s2">   </span><span class="si">}</span>
+<span class="si">}</span>
 <span class="s2">&lt;/JSON_FORMAT&gt;</span>
 
-<span class="s2">TEXT: </span><span class="si">{</span><span class="n">sec_filing</span><span class="p">[:</span><span class="n">MAX_LENGTH</span><span class="p">]</span><span class="si">}</span>
+<span class="s2">TEXT: </span><span class="si">{</span><span class="n">sec_filing</span><span class="si">}</span>
 <span class="s2">&quot;&quot;&quot;</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
@@ -628,7 +620,7 @@ Extracted places: [&#39;California&#39;, &#39;Cupertino&#39;]
 pip<span class="w"> </span>install<span class="w"> </span>transformers
 </pre></div>
 </div>
-<p>In this example, we will use a Qwen2.5-0.5B model, which is a Open Source model that we can run locally via Hugging Face’s <code class="docutils literal notranslate"><span class="pre">transformers</span></code> library.</p>
+<p>In this example, we will use a Qwen2.5-0.5B model, a lightweight open source model from Alibaba Cloud known for its strong performance despite its small size. The model excels at instruction following and structured generation tasks while being efficient enough to run locally via Hugging Face’s <code class="docutils literal notranslate"><span class="pre">transformers</span></code> library.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">outlines</span>
@@ -744,8 +736,8 @@ Extracted places: [&#39;California&#39;]
        title="previous chapter">← <span class="section-number">2. </span>Output Size Limitations</a>
   </li>
   <li class="next">
-    <a href="nondeterminism.html"
-       title="next chapter"><span class="section-number">4. </span>Non-determinism &amp; Evals →</a>
+    <a href="evals.html"
+       title="next chapter"><span class="section-number">4. </span>The Challenge of Evaluating LLMs →</a>
   </li>
 </ul><div class="footer" role="contentinfo">
       &#169; Copyright Tharsis T. P. Souza, 2024.
