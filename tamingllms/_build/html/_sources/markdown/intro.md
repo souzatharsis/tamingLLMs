@@ -28,17 +28,6 @@ Throughout this book, we'll tackle the following (non-exhaustive) list of critic
 
 5. **Testing Complexity**: Traditional testing methodologies break down when dealing with non-deterministic systems, requiring new approaches.
 
-## A Note on Perspective
-
-While this book takes a critical look at LLM limitations, our goal is not to discourage their use but to enable more robust and reliable implementations. By understanding these challenges upfront, you'll be better equipped to build systems that leverage LLMs effectively while avoiding common pitfalls.
-
-The current discourse around LLMs tends toward extremes—either uncritical enthusiasm or wholesale dismissal. This book takes a different approach:
-
-- **Practical Implementation Focus**: Rather than theoretical capabilities, we examine real-world challenges and their solutions.
-- **Code-First Learning**: Every concept is illustrated with executable Python examples, enabling immediate practical application.
-- **Critical Analysis**: We provide a balanced examination of both capabilities and limitations, helping readers make informed decisions about LLM integration. 
-
-
 ## A Practical Approach
 
 This book takes a hands-on approach to these challenges, providing:
@@ -49,6 +38,16 @@ This book takes a hands-on approach to these challenges, providing:
 - Cost optimization techniques
 - Integration patterns and anti-patterns
 
+## A Note on Perspective
+
+While this book takes a critical look at LLM limitations, our goal is not to discourage their use but to enable more robust and reliable implementations. By understanding these challenges upfront, you'll be better equipped to build systems that leverage LLMs effectively while avoiding common pitfalls.
+
+The current discourse around LLMs tends toward extremes—either uncritical enthusiasm or wholesale dismissal. This book takes a different approach:
+
+- **Practical Implementation Focus**: Rather than theoretical capabilities, we examine real-world challenges and their solutions.
+- **Code-First Learning**: Every concept is illustrated with executable Python examples, enabling immediate practical application.
+- **Critical Analysis**: We provide a balanced examination of both capabilities and limitations, helping readers make informed decisions about LLM integration.
+
 ## Who This Book Is For
 
 This book is designed for:
@@ -57,6 +56,31 @@ This book is designed for:
 - Product Managers leading AI initiatives
 - Technical Leaders making architectural decisions
 - Anyone seeking to understand the practical challenges of working with LLMs
+
+Typical job roles:
+
+- Software Engineers building AI-powered platforms
+- Backend Developers integrating LLMs into existing systems
+- ML Engineers transitioning to LLM implementation
+- Technical Leads making architectural decisions
+- Product Managers overseeing GenAI initiatives
+
+Reader motivation:
+
+- Need to build reliable, production-ready LLM applications
+- Desire to understand and overcome common LLM implementation challenges
+- Requirement to optimize costs and performance
+- Need to ensure safety and reliability in LLM-powered systems
+
+## Outcomes
+
+After reading this book, the reader will be able to:
+- Build reliable LLM-powered applications
+- Implement effective strategies for managing LLMs limitations
+- Create robust testing frameworks for LLM-based systems
+- Deploy proper LLM safeguards
+- Make realistic effort estimations for LLM-based projects
+- Understand the hidden complexities that impact development timelines
 
 ## Prerequisites
 
@@ -99,8 +123,6 @@ Clone the book's companion repository:
 git clone https://github.com/souzatharsis/tamingllms.git
 cd tamingllms
 ```
-
-
 
 ### Troubleshooting Common Issues
 - If you encounter API rate limits, consider using smaller examples or implementing retry logic

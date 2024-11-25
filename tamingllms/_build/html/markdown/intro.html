@@ -100,11 +100,13 @@
                 
                   <li class="toctree-l2"><a href="#core-challenges-we-ll-address" class="reference internal">Core Challenges We’ll Address</a></li>
                 
-                  <li class="toctree-l2"><a href="#a-note-on-perspective" class="reference internal">A Note on Perspective</a></li>
-                
                   <li class="toctree-l2"><a href="#a-practical-approach" class="reference internal">A Practical Approach</a></li>
                 
+                  <li class="toctree-l2"><a href="#a-note-on-perspective" class="reference internal">A Note on Perspective</a></li>
+                
                   <li class="toctree-l2"><a href="#who-this-book-is-for" class="reference internal">Who This Book Is For</a></li>
+                
+                  <li class="toctree-l2"><a href="#outcomes" class="reference internal">Outcomes</a></li>
                 
                   <li class="toctree-l2"><a href="#prerequisites" class="reference internal">Prerequisites</a></li>
                 
@@ -185,16 +187,17 @@
 <li><p><a class="reference internal" href="#introduction" id="id1">Introduction</a></p>
 <ul>
 <li><p><a class="reference internal" href="#core-challenges-we-ll-address" id="id2">Core Challenges We’ll Address</a></p></li>
-<li><p><a class="reference internal" href="#a-note-on-perspective" id="id3">A Note on Perspective</a></p></li>
-<li><p><a class="reference internal" href="#a-practical-approach" id="id4">A Practical Approach</a></p></li>
+<li><p><a class="reference internal" href="#a-practical-approach" id="id3">A Practical Approach</a></p></li>
+<li><p><a class="reference internal" href="#a-note-on-perspective" id="id4">A Note on Perspective</a></p></li>
 <li><p><a class="reference internal" href="#who-this-book-is-for" id="id5">Who This Book Is For</a></p></li>
-<li><p><a class="reference internal" href="#prerequisites" id="id6">Prerequisites</a></p></li>
-<li><p><a class="reference internal" href="#setting-up-your-environment" id="id7">Setting Up Your Environment</a></p>
+<li><p><a class="reference internal" href="#outcomes" id="id6">Outcomes</a></p></li>
+<li><p><a class="reference internal" href="#prerequisites" id="id7">Prerequisites</a></p></li>
+<li><p><a class="reference internal" href="#setting-up-your-environment" id="id8">Setting Up Your Environment</a></p>
 <ul>
-<li><p><a class="reference internal" href="#python-environment-setup" id="id8">1. Python Environment Setup</a></p></li>
-<li><p><a class="reference internal" href="#api-keys-configuration" id="id9">2. API Keys Configuration</a></p></li>
-<li><p><a class="reference internal" href="#code-repository" id="id10">3. Code Repository</a></p></li>
-<li><p><a class="reference internal" href="#troubleshooting-common-issues" id="id11">Troubleshooting Common Issues</a></p></li>
+<li><p><a class="reference internal" href="#python-environment-setup" id="id9">1. Python Environment Setup</a></p></li>
+<li><p><a class="reference internal" href="#api-keys-configuration" id="id10">2. API Keys Configuration</a></p></li>
+<li><p><a class="reference internal" href="#code-repository" id="id11">3. Code Repository</a></p></li>
+<li><p><a class="reference internal" href="#troubleshooting-common-issues" id="id12">Troubleshooting Common Issues</a></p></li>
 </ul>
 </li>
 </ul>
@@ -215,18 +218,8 @@
 <li><p><strong>Testing Complexity</strong>: Traditional testing methodologies break down when dealing with non-deterministic systems, requiring new approaches.</p></li>
 </ol>
 </section>
-<section id="a-note-on-perspective">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">1.2. </span>A Note on Perspective</a><a class="headerlink" href="#a-note-on-perspective" title="Permalink to this heading">¶</a></h2>
-<p>While this book takes a critical look at LLM limitations, our goal is not to discourage their use but to enable more robust and reliable implementations. By understanding these challenges upfront, you’ll be better equipped to build systems that leverage LLMs effectively while avoiding common pitfalls.</p>
-<p>The current discourse around LLMs tends toward extremes—either uncritical enthusiasm or wholesale dismissal. This book takes a different approach:</p>
-<ul class="simple">
-<li><p><strong>Practical Implementation Focus</strong>: Rather than theoretical capabilities, we examine real-world challenges and their solutions.</p></li>
-<li><p><strong>Code-First Learning</strong>: Every concept is illustrated with executable Python examples, enabling immediate practical application.</p></li>
-<li><p><strong>Critical Analysis</strong>: We provide a balanced examination of both capabilities and limitations, helping readers make informed decisions about LLM integration.</p></li>
-</ul>
-</section>
 <section id="a-practical-approach">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">1.3. </span>A Practical Approach</a><a class="headerlink" href="#a-practical-approach" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">1.2. </span>A Practical Approach</a><a class="headerlink" href="#a-practical-approach" title="Permalink to this heading">¶</a></h2>
 <p>This book takes a hands-on approach to these challenges, providing:</p>
 <ul class="simple">
 <li><p>Concrete Python examples that you can run and modify</p></li>
@@ -234,6 +227,16 @@
 <li><p>Testing strategies and best practices</p></li>
 <li><p>Cost optimization techniques</p></li>
 <li><p>Integration patterns and anti-patterns</p></li>
+</ul>
+</section>
+<section id="a-note-on-perspective">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">1.3. </span>A Note on Perspective</a><a class="headerlink" href="#a-note-on-perspective" title="Permalink to this heading">¶</a></h2>
+<p>While this book takes a critical look at LLM limitations, our goal is not to discourage their use but to enable more robust and reliable implementations. By understanding these challenges upfront, you’ll be better equipped to build systems that leverage LLMs effectively while avoiding common pitfalls.</p>
+<p>The current discourse around LLMs tends toward extremes—either uncritical enthusiasm or wholesale dismissal. This book takes a different approach:</p>
+<ul class="simple">
+<li><p><strong>Practical Implementation Focus</strong>: Rather than theoretical capabilities, we examine real-world challenges and their solutions.</p></li>
+<li><p><strong>Code-First Learning</strong>: Every concept is illustrated with executable Python examples, enabling immediate practical application.</p></li>
+<li><p><strong>Critical Analysis</strong>: We provide a balanced examination of both capabilities and limitations, helping readers make informed decisions about LLM integration.</p></li>
 </ul>
 </section>
 <section id="who-this-book-is-for">
@@ -245,9 +248,36 @@
 <li><p>Technical Leaders making architectural decisions</p></li>
 <li><p>Anyone seeking to understand the practical challenges of working with LLMs</p></li>
 </ul>
+<p>Typical job roles:</p>
+<ul class="simple">
+<li><p>Software Engineers building AI-powered platforms</p></li>
+<li><p>Backend Developers integrating LLMs into existing systems</p></li>
+<li><p>ML Engineers transitioning to LLM implementation</p></li>
+<li><p>Technical Leads making architectural decisions</p></li>
+<li><p>Product Managers overseeing GenAI initiatives</p></li>
+</ul>
+<p>Reader motivation:</p>
+<ul class="simple">
+<li><p>Need to build reliable, production-ready LLM applications</p></li>
+<li><p>Desire to understand and overcome common LLM implementation challenges</p></li>
+<li><p>Requirement to optimize costs and performance</p></li>
+<li><p>Need to ensure safety and reliability in LLM-powered systems</p></li>
+</ul>
+</section>
+<section id="outcomes">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">1.5. </span>Outcomes</a><a class="headerlink" href="#outcomes" title="Permalink to this heading">¶</a></h2>
+<p>After reading this book, the reader will be able to:</p>
+<ul class="simple">
+<li><p>Build reliable LLM-powered applications</p></li>
+<li><p>Implement effective strategies for managing LLMs limitations</p></li>
+<li><p>Create robust testing frameworks for LLM-based systems</p></li>
+<li><p>Deploy proper LLM safeguards</p></li>
+<li><p>Make realistic effort estimations for LLM-based projects</p></li>
+<li><p>Understand the hidden complexities that impact development timelines</p></li>
+</ul>
 </section>
 <section id="prerequisites">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">1.5. </span>Prerequisites</a><a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">1.6. </span>Prerequisites</a><a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
 <p>To make the most of this book, you should have:</p>
 <ul class="simple">
 <li><p>Basic Python programming experience</p></li>
@@ -256,10 +286,10 @@
 </ul>
 </section>
 <section id="setting-up-your-environment">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">1.6. </span>Setting Up Your Environment</a><a class="headerlink" href="#setting-up-your-environment" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">1.7. </span>Setting Up Your Environment</a><a class="headerlink" href="#setting-up-your-environment" title="Permalink to this heading">¶</a></h2>
 <p>Before diving into the examples in this book, you’ll need to set up your development environment. Here’s how to get started:</p>
 <section id="python-environment-setup">
-<h3><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">1.6.1. </span>1. Python Environment Setup</a><a class="headerlink" href="#python-environment-setup" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">1.7.1. </span>1. Python Environment Setup</a><a class="headerlink" href="#python-environment-setup" title="Permalink to this heading">¶</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create and activate a virtual environment</span>
 python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>llm-book-env
 <span class="nb">source</span><span class="w"> </span>llm-book-env/bin/activate<span class="w">  </span><span class="c1"># On Windows, use: llm-book-env\Scripts\activate</span>
@@ -270,7 +300,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </s
 </div>
 </section>
 <section id="api-keys-configuration">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">1.6.2. </span>2. API Keys Configuration</a><a class="headerlink" href="#api-keys-configuration" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">1.7.2. </span>2. API Keys Configuration</a><a class="headerlink" href="#api-keys-configuration" title="Permalink to this heading">¶</a></h3>
 <ol class="arabic">
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file in the root directory of the project.</p></li>
 <li><p>Add your API keys and other sensitive information to the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file. For example:</p>
@@ -285,7 +315,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </s
 </div>
 </section>
 <section id="code-repository">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">1.6.3. </span>3. Code Repository</a><a class="headerlink" href="#code-repository" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">1.7.3. </span>3. Code Repository</a><a class="headerlink" href="#code-repository" title="Permalink to this heading">¶</a></h3>
 <p>Clone the book’s companion repository:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/souzatharsis/tamingllms.git
 <span class="nb">cd</span><span class="w"> </span>tamingllms
@@ -293,7 +323,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </s
 </div>
 </section>
 <section id="troubleshooting-common-issues">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">1.6.4. </span>Troubleshooting Common Issues</a><a class="headerlink" href="#troubleshooting-common-issues" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id12" role="doc-backlink"><span class="section-number">1.7.4. </span>Troubleshooting Common Issues</a><a class="headerlink" href="#troubleshooting-common-issues" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>If you encounter API rate limits, consider using smaller examples or implementing retry logic</p></li>
 <li><p>For package conflicts, try creating a fresh virtual environment or use a package manager like <code class="docutils literal notranslate"><span class="pre">poetry</span></code></p></li>
