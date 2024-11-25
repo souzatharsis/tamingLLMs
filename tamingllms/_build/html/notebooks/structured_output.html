@@ -626,7 +626,7 @@ Extracted places: [&#39;California&#39;, &#39;Cupertino&#39;]
 </section>
 <section id="outlines">
 <h3><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">3.3.4. </span>Outlines</a><a class="headerlink" href="#outlines" title="Permalink to this heading">¶</a></h3>
-<p>Outlines is a library specifically focused on structured text generation from LLMs.  It provides several powerful features:</p>
+<p>Outlines is a library specifically focused on structured text generation from LLMs. Under the hood, Outlines works by adjusting the probability distribution of the model’s output logits - the raw scores from the final layer of the neural network that are normally converted into text tokens. By introducing carefully crafted logit biases, Outlines can guide the model to prefer certain tokens over others, effectively constraining its outputs to a predefined set of valid options. This provides fine-grained control over the model’s generation process. In that way, Outlines provides several powerful features:</p>
 <ul class="simple">
 <li><p><strong>Multiple Choice Generation</strong>: Restrict the LLM output to a predefined set of options.</p></li>
 <li><p><strong>Regex-based structured generation</strong>: Guide the generation process using regular expressions.</p></li>
