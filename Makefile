@@ -5,3 +5,7 @@ build:
 
 clean:
 	poetry run jupyter-book clean tamingllms/
+
+
+convert:
+	poetry run jupyter nbconvert --to markdown $(file)

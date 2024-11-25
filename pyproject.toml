@@ -30,6 +30,7 @@ sphinx-press-theme = "^0.9.1"
 langchain-openai = "^0.2.9"
 outlines = "^0.1.5"
 transformers = "^4.46.3"
+nbconvert = "^7.16.4"
 
 
 [build-system]

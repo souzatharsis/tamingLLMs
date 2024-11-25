@@ -1,0 +1,143 @@
+# Define the main container
+container: {
+  label: Multiple LLM Applications Evaluation {
+    style.font-color: "#dd0000"
+    style.font-size: 20
+  }
+  examples: Examples {
+    shape: document
+    style.multiple: true
+  }
+
+  # Multiple Applications section
+  apps: {
+    app1: {
+      run: Run LLM_1 {
+        shape: sequence_diagram
+        style.font-color: "#dd0000"
+      }
+    }
+    app2: {
+      run: Run LLM_2 {
+        shape: sequence_diagram
+        style.font-color: "#dd0000"
+      }
+    }
+    dots: |md
+      ...
+    |
+    appN: {
+      run: Run LLM_N {
+        shape: sequence_diagram
+        style.font-color: "#dd0000"
+      }
+    }
+    label: LLM Apps {
+      style.font-color: "#dd0000"
+      style.font-size: 20
+    }
+  }
+
+  # Evaluator section
+  evaluator: {
+    output: Output {
+      shape: rectangle
+      style.stroke: "#00aa00"
+      style.fill: "#e6ffe6"
+      style.font-size: 16
+    }
+
+    label: Evaluator {
+      style.font-color: "#00aa00"
+      style.font-size: 20
+    }
+  }
+
+  # Score outputs
+  scores: {
+    score1: Score 1 {
+      style.font-color: "#ff8800"
+      style.font-size: 18
+    }
+    score2: Score 2 {
+      style.font-color: "#ff8800"
+      style.font-size: 18
+    }
+    dots: |md
+      ...
+    |
+    scoreN: Score N {
+      style.font-color: "#ff8800"
+      style.font-size: 18
+    }
+  }
+
+  # Ranking section
+  ranking: {
+    label: Leaderboard {
+      style.font-color: "#6600cc"
+      style.font-size: 20
+    }
+
+    board: {
+      shape: page
+      style.stroke: "#6600cc"
+      style.fill: "#f5f0ff"
+
+      label: "1. App 2 (0.95)\n2. App 1 (0.92)\n...\nN. App k (0.88)"
+    }
+  }
+
+  # Connections
+  examples -> evaluator.output: "(Optional)" {
+    style.stroke: "#0066cc"
+    style.stroke-dash: 5
+  }
+
+  # Input connections
+  examples -> apps.app1.run: Input {
+    style.stroke: "#dd0000"
+  }
+  examples -> apps.app2.run: Input {
+    style.stroke: "#dd0000"
+  }
+  examples -> apps.appN.run: Input {
+    style.stroke: "#dd0000"
+  }
+
+  # Output connections
+  apps.app1.run -> evaluator.output: Output {
+    style.stroke: "#dd0000"
+  }
+  apps.app2.run -> evaluator.output: Output {
+    style.stroke: "#dd0000"
+  }
+  apps.appN.run -> evaluator.output: Output {
+    style.stroke: "#dd0000"
+  }
+
+  # Score connections
+  evaluator.output -> scores.score1
+  evaluator.output -> scores.score2
+  evaluator.output -> scores.scoreN
+
+  # Ranking connections
+  scores.score1 -> ranking.board: {
+    style.stroke: "#6600cc"
+  }
+  scores.score2 -> ranking.board: {
+    style.stroke: "#6600cc"
+  }
+  scores.scoreN -> ranking.board: {
+    style.stroke: "#6600cc"
+  }
+}
+
+# Container styling
+container.style: {
+  stroke-width: 2
+  border-radius: 10
+}
+
+# Global styling
+direction: right

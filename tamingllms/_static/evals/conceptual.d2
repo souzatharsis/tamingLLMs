@@ -1,0 +1,70 @@
+# Define the main container
+container: {
+  label: LLM Application Evaluation {
+    style.font-color: "#dd0000"
+    style.font-size: 20
+  }
+  examples: Examples {
+    shape: document
+    style.multiple: true
+  }
+
+  # Application section
+  app: {
+    run: Run {
+      shape: sequence_diagram
+      style.font-color: "#dd0000"
+    }
+
+    label: LLM App {
+      style.font-color: "#dd0000"
+      style.font-size: 20
+    }
+  }
+
+  # Evaluator section
+  evaluator: {
+    output: Output {
+      shape: rectangle
+      style.stroke: "#00aa00"
+      style.fill: "#e6ffe6"
+      style.font-size: 16
+    }
+
+    label: Evaluator {
+      style.font-color: "#00aa00"
+      style.font-size: 20
+    }
+  }
+
+  # Score output
+  score: Score {
+    style.font-color: "#ff8800"
+    style.font-size: 18
+  }
+
+  # Connections
+  examples -> evaluator.output: "(Optional)" {
+    style.stroke: "#0066cc"
+    style.stroke-dash: 5
+  }
+
+  examples -> app.run: Input {
+    style.stroke: "#dd0000"
+  }
+
+  app.run -> evaluator.output: Output {
+    style.stroke: "#dd0000"
+  }
+
+  evaluator.output -> score
+}
+
+# Container styling
+container.style: {
+  stroke-width: 2
+  border-radius: 10
+}
+
+# Global styling
+direction: right

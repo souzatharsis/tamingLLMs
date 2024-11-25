@@ -1,3 +1,14 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
 (intro)=
 # Introduction
 
@@ -109,7 +120,7 @@ pip install -r requirements.txt
 1. Create a `.env` file in the root directory of the project.
 2. Add your API keys and other sensitive information to the `.env` file. For example:
 
-   ```
+   ```bash
    OPENAI_API_KEY=your_openai_api_key_here
    ```
 

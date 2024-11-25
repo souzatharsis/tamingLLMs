@@ -1,0 +1,51 @@
+# Input and initialization
+input: Input Content {
+  shape: page
+}
+
+split: Split into Chunks {
+  shape: hexagon
+  style.fill: "#e1e8ff"
+}
+
+process_chunks: Process Each Chunk {
+  shape: package
+  style.fill: "#d1e7dd"
+}
+
+combine: Combine Outputs {
+  shape: square
+  style.fill: "#fff3cd"
+}
+
+final_report: Final Report {
+  shape: page
+  style.fill: "#f8d7da"
+}
+
+# Process details for chunks
+process_chunks_detail: {
+  shape: square
+  style.stroke-dash: 5
+
+  update_context: Update Context
+  generate_prompt: Generate Dynamic Prompt
+  llm_call: Call LLM Chain
+  store_response: Store Response Part
+}
+
+# Flow connections
+input -> split: CharacterTextSplitter\nwith tiktoken
+split -> process_chunks: Chunks Array
+
+process_chunks -> process_chunks_detail.update_context: For each chunk
+process_chunks_detail.update_context -> process_chunks_detail.generate_prompt: Add previous\ncontext
+process_chunks_detail.generate_prompt -> process_chunks_detail.llm_call: Dynamic prompt\nwith params
+process_chunks_detail.llm_call -> process_chunks_detail.store_response: Generate\nresponse
+process_chunks_detail.store_response -> process_chunks_detail.update_context: Next chunk
+
+process_chunks -> combine: All chunks\nprocessed
+combine -> final_report: Join with\nnewlines
+
+# Styling
+direction: down

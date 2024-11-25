@@ -130,6 +130,10 @@
                 
                   <li class="toctree-l2"><a href="#problem-statement" class="reference internal">Problem Statement</a></li>
                 
+                  <li class="toctree-l2"><a href="#solutions" class="reference internal">Solutions</a></li>
+                
+                  <li class="toctree-l2"><a href="#references" class="reference internal">References</a></li>
+                
               </ul>
             
           </li>
@@ -163,7 +167,7 @@
           <div class="content" role="main" v-pre>
             
   <section class="tex2jax_ignore mathjax_ignore" id="the-challenge-of-evaluating-llms">
-<h1><a class="toc-backref" href="#id1" role="doc-backlink"><span class="section-number">4. </span>The Challenge of Evaluating LLMs</a><a class="headerlink" href="#the-challenge-of-evaluating-llms" title="Permalink to this heading">¶</a></h1>
+<h1><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">4. </span>The Challenge of Evaluating LLMs</a><a class="headerlink" href="#the-challenge-of-evaluating-llms" title="Permalink to this heading">¶</a></h1>
 <blockquote class="epigraph">
 <div><p>Evals are surprisingly often all you need.</p>
 <p class="attribution">—Greg Brockman, OpenAI’s President</p>
@@ -171,17 +175,19 @@
 <nav class="contents" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#the-challenge-of-evaluating-llms" id="id1">The Challenge of Evaluating LLMs</a></p>
+<li><p><a class="reference internal" href="#the-challenge-of-evaluating-llms" id="id5">The Challenge of Evaluating LLMs</a></p>
 <ul>
-<li><p><a class="reference internal" href="#non-deterministic-machines" id="id2">Non-Deterministic Machines</a></p></li>
-<li><p><a class="reference internal" href="#emerging-properties" id="id3">Emerging Properties</a></p></li>
-<li><p><a class="reference internal" href="#problem-statement" id="id4">Problem Statement</a></p></li>
+<li><p><a class="reference internal" href="#non-deterministic-machines" id="id6">Non-Deterministic Machines</a></p></li>
+<li><p><a class="reference internal" href="#emerging-properties" id="id7">Emerging Properties</a></p></li>
+<li><p><a class="reference internal" href="#problem-statement" id="id8">Problem Statement</a></p></li>
+<li><p><a class="reference internal" href="#solutions" id="id9">Solutions</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id10">References</a></p></li>
 </ul>
 </li>
 </ul>
 </nav>
 <section id="non-deterministic-machines">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink"><span class="section-number">4.1. </span>Non-Deterministic Machines</a><a class="headerlink" href="#non-deterministic-machines" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">4.1. </span>Non-Deterministic Machines</a><a class="headerlink" href="#non-deterministic-machines" title="Permalink to this heading">¶</a></h2>
 <p>One of the most fundamental challenges when building products with Large Language Models (LLMs) is their non-deterministic nature. Unlike traditional software systems where the same input reliably produces the same output, LLMs can generate different responses each time they’re queried - even with identical prompts and input data. This characteristic is both a strength and a significant engineering challenge.</p>
 <p>When you ask ChatGPT or any other LLM the same question multiple times, you’ll likely get different responses. This isn’t a bug - it’s a fundamental feature of how these models work. The “temperature” parameter, which controls the randomness of outputs, allows models to be creative and generate diverse responses. However, this same feature makes it incredibly difficult to build reliable, testable systems.</p>
 <p>Consider a financial services company using LLMs to generate investment advice. The non-deterministic nature of these models means that:</p>
@@ -300,13 +306,19 @@ Attempt 3: Apple Inc&#39;s Form 10-K provides a comprehensive overview of the co
 </section>
 </section>
 <section id="emerging-properties">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">4.2. </span>Emerging Properties</a><a class="headerlink" href="#emerging-properties" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">4.2. </span>Emerging Properties</a><a class="headerlink" href="#emerging-properties" title="Permalink to this heading">¶</a></h2>
 <p>Beyond their non-deterministic nature, LLMs present another fascinating challenge: emergent abilities that spontaneously arise as models scale up in size. These abilities - from basic question answering to complex reasoning - aren’t explicitly programmed but rather emerge “naturally” as the models grow larger and are trained on more data. This makes evaluation fundamentally different from traditional software testing, where capabilities are explicitly coded and can be tested against clear specifications.</p>
-<p>The relationship between model scale and emergent abilities follows a fascinating non-linear pattern. Below certain size thresholds, specific abilities may be completely absent from the model - it simply cannot perform certain tasks, no matter how much you try to coax them out. However, once the model reaches critical points in its scaling journey, these abilities can suddenly manifest in what researchers call a phase transition - a dramatic shift from inability to capability. This unpredictable emergence of capabilities stands in stark contrast to traditional software development, where features are deliberately implemented and can be systematically tested.</p>
+<figure class="align-center" id="id2">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/emerging.png"><img alt="Emerging Properties" class="bg-primary mb-1" src="../_images/emerging.png" style="width: 931.1999999999999px; height: 664.8px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Emergent abilities of large language models and the scale <span id="id1">[<a class="reference internal" href="#id4" title="Jason Wei, Yi Tay, Rishi Bommasani, Colin Raffel, Barret Zoph, Sebastian Borgeaud, Dani Yogatama, Maarten Bosma, Denny Zhou, Donald Metzler, Ed H. Chi, Tatsunori Hashimoto, Oriol Vinyals, Percy Liang, Jeff Dean, and William Fedus. Emergent abilities of large language models. 2022. URL: https://arxiv.org/abs/2206.07682, arXiv:2206.07682.">WTB+22</a>]</span>.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><a class="reference internal" href="#id2"><span class="std std-numref">Fig. 4.1</span></a> provides a list of emergent abilities of large language models and the scale. The relationship between model scale and emergent abilities follows a fascinating non-linear pattern. Below certain size thresholds, specific abilities may be completely absent from the model - it simply cannot perform certain tasks, no matter how much you try to coax them out. However, once the model reaches critical points in its scaling journey, these abilities can suddenly manifest in what researchers call a phase transition - a dramatic shift from inability to capability. This unpredictable emergence of capabilities stands in stark contrast to traditional software development, where features are deliberately implemented and can be systematically tested.</p>
 <p>The implications for evaluation are profound. While conventional software testing relies on stable test suites and well-defined acceptance criteria, LLM evaluation must contend with a constantly shifting landscape of capabilities. What worked to evaluate a 7B parameter model may be completely inadequate for a 70B parameter model that has developed new emergent abilities. This dynamic nature of LLM capabilities forces us to fundamentally rethink our approach to testing and evaluation.</p>
 </section>
 <section id="problem-statement">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">4.3. </span>Problem Statement</a><a class="headerlink" href="#problem-statement" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">4.3. </span>Problem Statement</a><a class="headerlink" href="#problem-statement" title="Permalink to this heading">¶</a></h2>
 <p>Consider a practical example that illustrates these challenges: building a customer support chatbot powered by an LLM. In traditional software development, you would define specific features (like handling refund requests or tracking orders) and write tests to verify each function. But with LLMs, you’re not just testing predefined features - you’re trying to evaluate emergent capabilities like understanding context, maintaining conversation coherence, and generating appropriate emotional responses.</p>
 <p>This fundamental difference raises critical questions about evaluation:</p>
 <ul class="simple">
@@ -353,6 +365,54 @@ Attempt 3: Apple Inc&#39;s Form 10-K provides a comprehensive overview of the co
 </tr>
 </tbody>
 </table>
+</section>
+<section id="solutions">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">4.4. </span>Solutions</a><a class="headerlink" href="#solutions" title="Permalink to this heading">¶</a></h2>
+<section id="approaches">
+<h3><span class="section-number">4.4.1. </span>Approaches<a class="headerlink" href="#approaches" title="Permalink to this heading">¶</a></h3>
+<figure class="align-center" id="conceptual">
+<a class="reference internal image-reference" href="../_images/conceptual.png"><img alt="Conceptual Overview" src="../_images/conceptual.png" style="width: 992.8000000000001px; height: 424.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.2 </span><span class="caption-text">Conceptual overview of LLM-based application evaluation.</span><a class="headerlink" href="#conceptual" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><a class="reference internal" href="#conceptual"><span class="std std-numref">Fig. 4.2</span></a></p>
+<figure class="align-center" id="conceptual-multi">
+<a class="reference internal image-reference" href="../_images/conceptual-multi.svg"><img alt="Conceptual Overview" height="470" src="../_images/conceptual-multi.svg" width="740" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.3 </span><span class="caption-text">Conceptual overview of Multiple LLM-based applications evaluation.</span><a class="headerlink" href="#conceptual-multi" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><a class="reference internal" href="#conceptual-multi"><span class="std std-numref">Fig. 4.3</span></a></p>
+</section>
+<section id="evals-design">
+<h3><span class="section-number">4.4.2. </span>Evals Design<a class="headerlink" href="#evals-design" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="human-based-evaluation">
+<h3><span class="section-number">4.4.3. </span>Human-Based Evaluation<a class="headerlink" href="#human-based-evaluation" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="metrics-based-evaluation">
+<h3><span class="section-number">4.4.4. </span>Metrics-Based Evaluation<a class="headerlink" href="#metrics-based-evaluation" title="Permalink to this heading">¶</a></h3>
+<p>A metrics-based approach enables automated benchmarking for evaluating LLM performance on specific tasks and capabilities. It provides a quantifiable and repeatable way to measure progress and identify areas for improvement. This is particularly useful for well-defined tasks, such as spam classification, data extraction or translation, where clear and objective evaluation criteria can be established.</p>
+<p>The core approach involves using pre-existing datasets (golden datasets) and establishing objective metrics to evaluate model performance. The process typically involves the following steps:</p>
+<ol class="arabic simple">
+<li><p><strong>Selecting a relevant benchmark dataset:</strong> The choice of dataset depends on the specific task or capability being evaluated.  For example, the HumanEval dataset is used to evaluate code generation capabilities, while ChartQA focuses on chart understanding.</p></li>
+<li><p><strong>Providing input to the LLM:</strong>  The LLM is given input from the selected dataset, prompting it to perform the specific task, such as answering questions, generating text, or translating languages.</p></li>
+<li><p><strong>Comparing outputs to expected answers:</strong> The LLM’s outputs are compared to the expected or correct answers provided in the benchmark dataset.</p></li>
+<li><p><strong>Quantifying the comparison using metrics:</strong> The comparison is quantified using pre-defined metrics relevant to the task, providing a numerical score that reflects the LLM’s performance.  For instance, accuracy, precision, and recall are common metrics for classification tasks.</p></li>
+</ol>
+<p>The LLM is given input from the dataset, and its outputs are compared to expected or correct answers. The comparison is quantified using specific metrics relevant to the task. This approach enables efficient and automated evaluation, allowing for large-scale comparisons and tracking of progress over time.</p>
+</section>
+</section>
+<section id="references">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">4.5. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<div class="docutils container" id="id3">
+<div class="citation" id="id4" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">WTB+22</a><span class="fn-bracket">]</span></span>
+<p>Jason Wei, Yi Tay, Rishi Bommasani, Colin Raffel, Barret Zoph, Sebastian Borgeaud, Dani Yogatama, Maarten Bosma, Denny Zhou, Donald Metzler, Ed H. Chi, Tatsunori Hashimoto, Oriol Vinyals, Percy Liang, Jeff Dean, and William Fedus. Emergent abilities of large language models. 2022. URL: <a class="reference external" href="https://arxiv.org/abs/2206.07682">https://arxiv.org/abs/2206.07682</a>, <a class="reference external" href="https://arxiv.org/abs/2206.07682">arXiv:2206.07682</a>.</p>
+</div>
+</div>
+</div>
 </section>
 </section>
 
