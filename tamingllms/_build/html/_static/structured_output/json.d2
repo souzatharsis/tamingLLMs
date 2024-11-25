@@ -1,0 +1,109 @@
+schema: {
+  shape: rectangle
+  style.stroke: "#E8DCCA"
+  style.fill: "#FFFAF0"
+  label: |md
+    ```json
+    {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "level": {
+          "type": "integer"
+        },
+        "skill": {
+          "type": "string",
+          "enum": [
+            "Python",
+            "Java",
+            "JavaScript",
+            "Rust"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "level",
+        "skill"
+      ]
+    }
+    ```
+  |
+}
+
+llm: Large\nLanguage\nModels {
+  shape: rectangle
+  style.fill: "#E6EEF8"
+  style.stroke: "#B8D1F3"
+}
+
+outputs: {
+  shape: rectangle
+  style.stroke: "#E8DCCA"
+  style.fill: "#FFFAF0"
+
+  json1: {
+    label: |md
+      ```json
+      {
+        "name": "Alice",
+        "level": 5,
+        "skill": "Python"
+      }
+      ```
+    |
+  }
+
+  json2: {
+    label: |md
+      ```json
+      {
+        "name": "Bob",
+        "level": 3,
+        "skill": "Java"
+      }
+      ```
+    |
+  }
+
+  json3: {
+    label: |md
+      ```json
+      {
+        "name": "Carol",
+        "level": 4,
+        "skill": "Rust"
+      }
+      ```
+    |
+  }
+}
+
+# Labels
+schema_label: JSON Schema {
+  style.font-size: 16
+}
+
+output_label: Generated JSONs {
+  style.font-size: 16
+}
+
+# Connections
+schema -> llm: + {
+  style.stroke: "#8B4513"
+  style.stroke-width: 2
+}
+
+llm -> outputs: Constrained\nGeneration {
+  style.stroke: "#D35400"
+  style.stroke-width: 2
+}
+
+# Label connections
+schema_label -> schema
+output_label -> outputs
+
+# Layout
+direction: right
