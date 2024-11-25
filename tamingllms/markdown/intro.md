@@ -13,9 +13,9 @@ kernelspec:
 # Introduction
 
 ```{epigraph}
-Too often we enjoy the comfort of opinion without the discomfort of thought.
+I am always doing that which I cannot do, in order that I may learn how to do it.
 
--- John F. Kennedy
+-- Pablo Picasso
 ```
 ```{contents}
 ```
