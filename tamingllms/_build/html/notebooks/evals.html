@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+      <title>4. The Challenge of Evaluating LLM-based Applications</title>
+    
+          <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/sphinx-thebe.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/scripts/sphinx-book-theme.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script src="../_static/design-tabs.js"></script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+        <script async="async" src="../_static/sphinx-thebe.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../_static/theme-vendors.js"></script> -->
+      <script src="../_static/theme.js" defer></script>
+      <link rel="canonical" href="https://souzatharsis.github.io/tamingllms/notebooks/evals.html" />
+    
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="prev" title="3. Wrestling with Structured Output" href="structured_output.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../markdown/toc.html" class="home-link">
+    
+      <span class="site-name">tamingLLMs</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/souzatharsis/tamingllms"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/souzatharsis/tamingllms"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../markdown/toc.html#taming-large-language-models">taming large language models</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../markdown/intro.html" class="reference internal ">Introduction</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="output_size_limit.html" class="reference internal ">Output Size Limitations</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="structured_output.html" class="reference internal ">Wrestling with Structured Output</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 current">
+            
+              <a href="#" class="reference internal current">The Challenge of Evaluating LLM-based Applications</a>
+            
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#non-deterministic-machines" class="reference internal">Non-Deterministic Machines</a></li>
+                
+                  <li class="toctree-l2"><a href="#emerging-properties" class="reference internal">Emerging Properties</a></li>
+                
+                  <li class="toctree-l2"><a href="#problem-statement" class="reference internal">Problem Statement</a></li>
+                
+                  <li class="toctree-l2"><a href="#evals-design" class="reference internal">Evals Design</a></li>
+                
+                  <li class="toctree-l2"><a href="#key-components" class="reference internal">Key Components</a></li>
+                
+                  <li class="toctree-l2"><a href="#tools" class="reference internal">Tools</a></li>
+                
+                  <li class="toctree-l2"><a href="#references" class="reference internal">References</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../markdown/toc.html">Docs</a> &raquo;</li>
+    
+    <li><span class="section-number">4. </span>The Challenge of Evaluating LLM-based Applications</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="structured_output.html"
+       title="previous chapter">← <span class="section-number">3. </span>Wrestling with Structured Output</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="the-challenge-of-evaluating-llm-based-applications">
+<h1><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">4. </span>The Challenge of Evaluating LLM-based Applications</a><a class="headerlink" href="#the-challenge-of-evaluating-llm-based-applications" title="Permalink to this heading">¶</a></h1>
+<blockquote class="epigraph">
+<div><p>Evals are surprisingly often all you need.</p>
+<p class="attribution">—Greg Brockman, OpenAI’s President</p>
+</div></blockquote>
+<nav class="contents" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#the-challenge-of-evaluating-llm-based-applications" id="id5">The Challenge of Evaluating LLM-based Applications</a></p>
+<ul>
+<li><p><a class="reference internal" href="#non-deterministic-machines" id="id6">Non-Deterministic Machines</a></p></li>
+<li><p><a class="reference internal" href="#emerging-properties" id="id7">Emerging Properties</a></p></li>
+<li><p><a class="reference internal" href="#problem-statement" id="id8">Problem Statement</a></p></li>
+<li><p><a class="reference internal" href="#evals-design" id="id9">Evals Design</a></p></li>
+<li><p><a class="reference internal" href="#key-components" id="id10">Key Components</a></p></li>
+<li><p><a class="reference internal" href="#tools" id="id11">Tools</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id12">References</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="non-deterministic-machines">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">4.1. </span>Non-Deterministic Machines</a><a class="headerlink" href="#non-deterministic-machines" title="Permalink to this heading">¶</a></h2>
+<p>One of the most fundamental challenges when building products with Large Language Models (LLMs) is their non-deterministic nature. Unlike traditional software systems where the same input reliably produces the same output, LLMs can generate different responses each time they’re queried - even with identical prompts and input data. This characteristic is both a strength and a significant engineering challenge.</p>
+<p>When you ask ChatGPT or any other LLM the same question multiple times, you’ll likely get different responses. This isn’t a bug - it’s a fundamental feature of how these models work. The “temperature” parameter, which controls the randomness of outputs, allows models to be creative and generate diverse responses. However, this same feature makes it incredibly difficult to build reliable, testable systems.</p>
+<p>Consider a financial services company using LLMs to generate investment advice. The non-deterministic nature of these models means that:</p>
+<ul class="simple">
+<li><p>The same market data could yield different analysis conclusions</p></li>
+<li><p>Testing becomes exceedingly more complex compared to traditional software</p></li>
+<li><p>Regulatory compliance becomes challenging to guarantee</p></li>
+<li><p>User trust may be affected by inconsistent responses</p></li>
+</ul>
+<section id="temperature-and-sampling">
+<h3><span class="section-number">4.1.1. </span>Temperature and Sampling<a class="headerlink" href="#temperature-and-sampling" title="Permalink to this heading">¶</a></h3>
+<p>The primary source of non-determinism in LLMs comes from their sampling strategies. During text generation, the model:</p>
+<ol class="arabic simple">
+<li><p>Calculates probability distributions for each next token</p></li>
+<li><p>Samples from these distributions based on temperature settings</p></li>
+<li><p>Uses techniques like nucleus sampling to balance creativity and coherence</p></li>
+</ol>
+</section>
+<section id="the-temperature-spectrum">
+<h3><span class="section-number">4.1.2. </span>The Temperature Spectrum<a class="headerlink" href="#the-temperature-spectrum" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Temperature = 0: Most deterministic, but potentially repetitive</p></li>
+<li><p>Temperature = 1: Balanced creativity and coherence</p></li>
+<li><p>Temperature &gt; 1: Increased randomness, potentially incoherent</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># Load environment variables from .env file</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="k">def</span> <span class="nf">generate_responses</span><span class="p">(</span>
+    <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">temperatures</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
+    <span class="n">attempts</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate multiple responses at different temperature settings</span>
+<span class="sd">    to demonstrate non-deterministic behavior.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">temp</span> <span class="ow">in</span> <span class="n">temperatures</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">attempts</span><span class="p">):</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">model</span><span class="o">=</span><span class="n">model_name</span><span class="p">,</span>
+                <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}],</span>
+                <span class="n">temperature</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span>
+                <span class="n">max_tokens</span><span class="o">=</span><span class="mi">50</span>
+            <span class="p">)</span>
+            
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s1">&#39;temperature&#39;</span><span class="p">:</span> <span class="n">temp</span><span class="p">,</span>
+                <span class="s1">&#39;attempt&#39;</span><span class="p">:</span> <span class="n">attempt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="s1">&#39;response&#39;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+            <span class="p">})</span>
+
+    <span class="c1"># Display results grouped by temperature</span>
+    <span class="n">df_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">temp</span> <span class="ow">in</span> <span class="n">temperatures</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Temperature = </span><span class="si">{</span><span class="n">temp</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+        <span class="n">temp_responses</span> <span class="o">=</span> <span class="n">df_results</span><span class="p">[</span><span class="n">df_results</span><span class="p">[</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">temp</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">temp_responses</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Attempt </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;attempt&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;response&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">df_results</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MAX_LENGTH</span> <span class="o">=</span> <span class="mi">10000</span> <span class="c1"># We limit the input length to avoid token issues</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/apple.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">sec_filing</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">sec_filing</span> <span class="o">=</span> <span class="n">sec_filing</span><span class="p">[:</span><span class="n">MAX_LENGTH</span><span class="p">]</span> 
+<span class="n">df_results</span> <span class="o">=</span> <span class="n">generate_responses</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span> 
+                                <span class="n">prompt</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Write a single-statement executive summary of the following text: </span><span class="si">{</span><span class="n">sec_filing</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> 
+                                <span class="n">temperatures</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Temperature = 0.0
+----------------------------------------
+Attempt 1: Apple Inc. filed its Form 10-K for the fiscal year ended September 28, 2024 with the SEC, detailing its business operations and financial performance.
+Attempt 2: Apple Inc. filed its Form 10-K with the SEC for the fiscal year ended September 28, 2024, detailing its business operations, products, and financial information.
+Attempt 3: Apple Inc. filed its Form 10-K with the SEC for the fiscal year ended September 28, 2024, detailing its business operations, products, and financial information.
+
+Temperature = 1.0
+----------------------------------------
+Attempt 1: Apple Inc., a well-known seasoned issuer based in California, designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories, with a focus on innovation and technology.
+Attempt 2: Apple Inc. filed its Form 10-K with the SEC for the fiscal year ended September 28, 2024, reporting on its business operations, products, and financial performance.
+Attempt 3: Apple Inc., a well-known seasoned issuer, filed its Form 10-K for the fiscal year ended September 28, 2024, reporting on its financial condition and operations.
+
+Temperature = 2.0
+----------------------------------------
+Attempt 1: The Form 10-K for Apple Inc. for the fiscal year ended September 28, 2024, filed with the Securities and Exchange Commission, outlines the company&#39;s financial performance, products, and risk factors affecting future results.
+Attempt 2: Apple Inc., a California-based company and leading technology manufacturer invDestacksmeticsisdiction setIspection-$20cyan evaluationseld anvisions droitEntering discernminerval Versbobprefversible vo该 Option和 meio forecast времCisco dellaischenpoihsCapabilities Geme.getTime future
+Attempt 3: Apple Inc&#39;s Form 10-K provides a comprehensive overview of the company&#39;s financial reporting, business operations, products and market information.
+</pre></div>
+</div>
+</div>
+</div>
+<p>This simple experiment reveals a fundamental challenge in LLM evaluation: even a simple parameter like temperature can dramatically alter model behavior in ways that are difficult to systematically assess. At temperature 0.0, responses are consistent but potentially too rigid. At 1.0, outputs become more varied but less predictable. At 2.0, responses can be wildly different and often incoherent. This non-deterministic behavior makes traditional software testing approaches inadequate.</p>
+<p>The implications for evaluation are profound. How can one effectively test an LLM-powered system when the same prompt can yield radically different outputs based on a single parameter? Traditional testing relies on predictable inputs and outputs, but LLMs force us to grapple with probabilistic behavior. While lower temperatures may seem safer for critical applications, they don’t eliminate the underlying uncertainty - they merely mask it. This highlights the need for new evaluation paradigms that can handle both deterministic and probabilistic aspects of LLM behavior.</p>
+</section>
+</section>
+<section id="emerging-properties">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">4.2. </span>Emerging Properties</a><a class="headerlink" href="#emerging-properties" title="Permalink to this heading">¶</a></h2>
+<p>Beyond their non-deterministic nature, LLMs present another fascinating challenge: emergent abilities that spontaneously arise as models scale up in size. These abilities - from basic question answering to complex reasoning - aren’t explicitly programmed but rather emerge “naturally” as the models grow larger and are trained on more data. This makes evaluation fundamentally different from traditional software testing, where capabilities are explicitly coded and can be tested against clear specifications.</p>
+<figure class="align-center" id="id2">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/emerging.png"><img alt="Emerging Properties" class="bg-primary mb-1" src="../_images/emerging.png" style="width: 931.1999999999999px; height: 664.8px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Emergent abilities of large language models and the scale <span id="id1">[<a class="reference internal" href="#id4" title="Jason Wei, Yi Tay, Rishi Bommasani, Colin Raffel, Barret Zoph, Sebastian Borgeaud, Dani Yogatama, Maarten Bosma, Denny Zhou, Donald Metzler, Ed H. Chi, Tatsunori Hashimoto, Oriol Vinyals, Percy Liang, Jeff Dean, and William Fedus. Emergent abilities of large language models. 2022. URL: https://arxiv.org/abs/2206.07682, arXiv:2206.07682.">WTB+22</a>]</span>.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><a class="reference internal" href="#id2"><span class="std std-numref">Fig. 4.1</span></a> provides a list of emergent abilities of large language models and the scale. The relationship between model scale and emergent abilities follows a fascinating non-linear pattern. Below certain size thresholds, specific abilities may be completely absent from the model - it simply cannot perform certain tasks, no matter how much you try to coax them out. However, once the model reaches critical points in its scaling journey, these abilities can suddenly manifest in what researchers call a phase transition - a dramatic shift from inability to capability. This unpredictable emergence of capabilities stands in stark contrast to traditional software development, where features are deliberately implemented and can be systematically tested.</p>
+<p>The implications for evaluation are profound. While conventional software testing relies on stable test suites and well-defined acceptance criteria, LLM evaluation must contend with a constantly shifting landscape of capabilities. What worked to evaluate a 7B parameter model may be completely inadequate for a 70B parameter model that has developed new emergent abilities. This dynamic nature of LLM capabilities forces us to fundamentally rethink our approach to testing and evaluation.</p>
+</section>
+<section id="problem-statement">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">4.3. </span>Problem Statement</a><a class="headerlink" href="#problem-statement" title="Permalink to this heading">¶</a></h2>
+<p>Consider a practical example that illustrates these challenges: building a customer support chatbot powered by an LLM. In traditional software development, you would define specific features (like handling refund requests or tracking orders) and write tests to verify each function. But with LLMs, you’re not just testing predefined features - you’re trying to evaluate emergent capabilities like understanding context, maintaining conversation coherence, and generating appropriate emotional responses.</p>
+<p>This fundamental difference raises critical questions about evaluation:</p>
+<ul class="simple">
+<li><p>How do we measure capabilities that weren’t explicitly programmed?</p></li>
+<li><p>How can we ensure consistent performance when abilities may suddenly emerge or evolve?</p></li>
+<li><p>What metrics can capture both the technical accuracy and the subjective quality of responses?</p></li>
+</ul>
+<p>The challenge becomes even more complex when we consider that traditional software evaluation methods simply weren’t designed for these kinds of systems. We need new frameworks that can account for both the deterministic aspects we’re used to testing and the emergent properties that make LLMs unique. Let’s explore how LLM evaluation differs from traditional software testing across several key dimensions:</p>
+<ul class="simple">
+<li><p><strong>Capability Assessment vs Functional Testing</strong>: Traditional software testing validates specific functionality against predefined requirements. LLM evaluation must assess not necessiraly pre-defined “emergent properties” like reasoning, creativity, and language understanding that extend beyond explicit programming.</p></li>
+<li><p><strong>Metrics and Measurement Challenges</strong>: While traditional software metrics can usually be precisely defined and measured, LLM evaluation often involves subjective qualities like “helpfulness” or “naturalness” that resist straightforward quantification. Even when we try to break these down into numeric scores, the underlying judgment remains inherently human and context-dependent.</p></li>
+<li><p><strong>Dataset Contamination</strong>: Traditional software testing uses carefully crafted test cases with known inputs and expected outputs (e.g., unit tests, integration tests). In contrast, LLMs trained on massive internet-scale datasets risk having already seen and memorized evaluation examples during training, which can lead to artificially inflated performance scores. This requires careful dataset curation to ensure test sets are truly unseen by the model and rigorous cross-validation approaches.</p></li>
+<li><p><strong>Benchmark Evolution</strong>: Traditional software maintains stable test suites over time. LLM benchmarks continuously evolve as capabilities advance, making longitudinal performance comparisons difficult and potentially obsoleting older evaluation methods.</p></li>
+<li><p><strong>Human Evaluation Requirements</strong>: Traditional software testing automates most validation. LLM evaluation may demand significant human oversight to assess output quality, appropriateness, and potential biases through structured annotation and systematic review processes.</p></li>
+</ul>
+<table class="docutils align-default" id="evals-table">
+<caption><span class="caption-number">Table 4.1 </span><span class="caption-text">Evals of Traditional Software vs LLMs</span><a class="headerlink" href="#evals-table" title="Permalink to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspect</p></th>
+<th class="head"><p>Traditional Software</p></th>
+<th class="head"><p>LLMs</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Capability Assessment</strong></p></td>
+<td><p>Validates specific functionality against requirements</p></td>
+<td><p>May assess emergent properties like reasoning and creativity</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Metrics and Measurement</strong></p></td>
+<td><p>Precisely defined and measurable metrics</p></td>
+<td><p>Subjective qualities that resist straightforward quantification</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Dataset Contamination</strong></p></td>
+<td><p>Uses carefully crafted test cases</p></td>
+<td><p>Risk of memorized evaluation examples from training</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Benchmark Evolution</strong></p></td>
+<td><p>Maintains stable test suites</p></td>
+<td><p>Continuously evolving benchmarks as capabilities advance</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Human Evaluation</strong></p></td>
+<td><p>Mostly automated validation</p></td>
+<td><p>May require significant human oversight</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evals-design">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">4.4. </span>Evals Design</a><a class="headerlink" href="#evals-design" title="Permalink to this heading">¶</a></h2>
+<p>First, it’s important to make a distinction between evaluating an LLM versus evaluating an LLM-based application (our focus). While the latter offers foundation capabilities and are typically general-purpose, the former is more specific and tailored to a particular use case. Here, we define an LLM-based application as a system that uses one or more LLMs to perform a specific task. More specifically, an LLM-based application is the combination of one or more LLM models, their associated prompts and parameters to solve a particular business problem.</p>
+<p>That differentiation is important because it changes the scope of evaluation. LLMs are usually evaluated based on their capabilities, which include things like language understanding, reasoning and knowledge. LLM-based applications are evaluated based on their end-to-end functionality, performance, and how well they meet business requirements. That distinction has key implications for the design of evaluation systems:</p>
+<ol class="arabic simple">
+<li><p>Application requirements are closely tied to LLM evaluations</p></li>
+<li><p>The same LLM can yield different results in different applications</p></li>
+<li><p>Evaluation must align with business objectives</p></li>
+<li><p>A great LLM doesn’t guarantee a great application!</p></li>
+</ol>
+<section id="conceptual-overview">
+<h3><span class="section-number">4.4.1. </span>Conceptual Overview<a class="headerlink" href="#conceptual-overview" title="Permalink to this heading">¶</a></h3>
+<p><a class="reference internal" href="#conceptual"><span class="std std-numref">Fig. 4.2</span></a> demonstrates a conceptual design of key components of LLM Application evaluation.</p>
+<figure class="align-center" id="conceptual">
+<a class="reference internal image-reference" href="../_images/conceptual.png"><img alt="Conceptual Overview" src="../_images/conceptual.png" style="width: 992.8000000000001px; height: 424.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.2 </span><span class="caption-text">Conceptual overview of LLM-based application evaluation.</span><a class="headerlink" href="#conceptual" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>We observe three key components:
+<strong>1. Examples (Input Dataset):</strong></p>
+<ul class="simple">
+<li><p>Input:  Query to LLM App, e.g. user message, input file, image, audio, etc.</p></li>
+<li><p>Output: A reference expected outcome from the LLM application. Provide ground truth for comparison (<em>Optional</em>).</p></li>
+<li><p>Purpose: Provides standardized test cases for evaluation.</p></li>
+</ul>
+<p><strong>2. LLM Application (Processing Layer):</strong></p>
+<ul class="simple">
+<li><p>Input: Test cases input from Examples</p></li>
+<li><p>Output: Generated responses/results</p></li>
+<li><p>Purpose:</p>
+<ul>
+<li><p>Represents different LLM implementations/vendors solving a specific task</p></li>
+<li><p>Could be different models (GPT-4, Claude, PaLM, etc.)</p></li>
+<li><p>Could be different configurations of same model</p></li>
+<li><p>Could be different prompting strategies</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>3. Evaluator (Assessment Layer):</strong></p>
+<ul class="simple">
+<li><p>Input:</p>
+<ul>
+<li><p>Outputs from LLM application</p></li>
+<li><p>Reference data from Examples (<em>Optional</em>)</p></li>
+</ul>
+</li>
+<li><p>Output: Individual scores for target LLM application</p></li>
+<li><p>Purpose:</p>
+<ul>
+<li><p>Measures LLM Application performance across defined metrics</p></li>
+<li><p>Applies standardized scoring criteria</p></li>
+</ul>
+</li>
+</ul>
+<p>Note that Examples must provide input data to the LLM Application for further evaluation. However, ground truth data is optional. We will return to this in more detail below, where we will see that ground truth data is not always available or practical. Additionally, there are approaches where one can evaluate LLM Applications without ground truth data.</p>
+<p>A more general conceptual design is shown in <a class="reference internal" href="#conceptual-multi"><span class="std std-numref">Fig. 4.3</span></a>, where multiple LLM Applications are evaluated. This design allows for a more comprehensive evaluation of different configurations of LLM-based applications, e.g.:</p>
+<ul class="simple">
+<li><p>Fixing all application parameters and evaluating different LLM models with their default configurations</p></li>
+<li><p>Fixing all parameters of an LLM model and evaluating different prompting strategies</p></li>
+</ul>
+<figure class="align-center" id="conceptual-multi">
+<a class="reference internal image-reference" href="../_images/conceptual-multi.svg"><img alt="Conceptual Overview" height="588" src="../_images/conceptual-multi.svg" width="925" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.3 </span><span class="caption-text">Conceptual overview of Multiple LLM-based applications evaluation.</span><a class="headerlink" href="#conceptual-multi" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>In this evaluation framework, the same inputs are provided to all LLM applications, ensuring that responses are evaluated consistently. Performance is quantified objectively for each LLM Application, and results are ranked for easy comparison. This design leads to two additional components:
+<strong>1. Scores (Metrics Layer):</strong></p>
+<ul class="simple">
+<li><p>Input: Evaluation results from Evaluator</p></li>
+<li><p>Output: Quantified performance metrics</p></li>
+<li><p>Purpose:</p>
+<ul>
+<li><p>Represents performance in numerical form</p></li>
+<li><p>Enables quantitative comparison among LLM applications</p></li>
+<li><p>May include multiple metrics per LLM application</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>2. Leaderboard (Ranking Layer):</strong></p>
+<ul class="simple">
+<li><p>Input: Scores per LLM application</p></li>
+<li><p>Output: Ordered ranking of LLMs with scores</p></li>
+<li><p>Purpose:</p>
+<ul>
+<li><p>Aggregates and ranks performances across LLM applications</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="design-considerations">
+<h3><span class="section-number">4.4.2. </span>Design Considerations<a class="headerlink" href="#design-considerations" title="Permalink to this heading">¶</a></h3>
+<p>The design of an LLM application evaluation system depends heavily on the specific use case and business requirements. Here we list important questions for planning an LLM application evaluation system pertaining to each of the key components previously discussed:</p>
+<p><strong>1. Examples (Input Dataset):</strong></p>
+<ul class="simple">
+<li><p>What types of examples should be included in the test set?</p>
+<ul>
+<li><p>Does it cover all important use cases?</p></li>
+<li><p>Are edge cases represented?</p></li>
+<li><p>Is there a good balance of simple and complex examples?</p></li>
+</ul>
+</li>
+<li><p>How do we ensure data quality?</p>
+<ul>
+<li><p>Are the examples representative of real-world scenarios?</p></li>
+<li><p>Is there any bias in the test set?</p></li>
+</ul>
+</li>
+<li><p>Should we have separate test sets for different business requirements?</p></li>
+<li><p>Do we need human-validated ground truth for all examples?</p></li>
+<li><p>Can we use synthetic data to augment the test set?</p></li>
+<li><p>How can business updates be reflected in the dataset post-launch?</p></li>
+</ul>
+<p><strong>2. LLM Applications:</strong></p>
+<ul class="simple">
+<li><p>What aspects of each LLM app should be standardized for fair comparison?</p>
+<ul>
+<li><p>Prompt templates</p></li>
+<li><p>Context length</p></li>
+<li><p>Temperature and other parameters</p></li>
+<li><p>Rate limiting and timeout handling</p></li>
+</ul>
+</li>
+<li><p>What specific configurations impact business requirements?</p>
+<ul>
+<li><p>Which LLM application variations should be tested to maximize what we learn?</p></li>
+<li><p>Which LLM capabilities provide the most value for the business and how can we measure that?</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>3. Evaluator Design:</strong></p>
+<ul class="simple">
+<li><p>How do we define success for different types of tasks?</p>
+<ul>
+<li><p>Task-specific evaluation criteria</p></li>
+<li><p>Objective metrics vs subjective assessment</p></li>
+</ul>
+</li>
+<li><p>Should evaluation be automated or involve human review?</p>
+<ul>
+<li><p>Balance between automation and human judgment</p></li>
+<li><p>Inter-rater reliability for human evaluation</p></li>
+<li><p>Cost and scalability considerations</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>4. Scoring System:</strong></p>
+<ul class="simple">
+<li><p>How should different metrics be weighted?</p>
+<ul>
+<li><p>Relative importance of different factors</p></li>
+<li><p>Task-specific prioritization</p></li>
+<li><p>Business requirements alignment</p></li>
+</ul>
+</li>
+<li><p>Should scores be normalized or absolute?</p></li>
+<li><p>How to handle failed responses?</p></li>
+<li><p>Should we consider confidence scores from the LLMs?</p></li>
+</ul>
+<p><strong>5. Leaderboard/Ranking:</strong></p>
+<ul class="simple">
+<li><p>How often should rankings be updated?</p></li>
+<li><p>Should ranking include confidence intervals?</p></li>
+<li><p>How to handle ties or very close scores?</p></li>
+<li><p>Should we maintain separate rankings for different:</p>
+<ul>
+<li><p>Business requirements</p></li>
+<li><p>Cost tiers</p></li>
+<li><p>LLM Models</p></li>
+</ul>
+</li>
+</ul>
+<p>Hollistically, you evaluation design should be built with scalability in mind to handle growing evaluation needs as the combination of (Example X LLM Applications X Evaluators X Scores X Leaderboards) may grow very fast, particularly for an organization that promotes rapid experimentation and iterative development (good properties!). Finally, one should keep in mind that the evaluation system itself requires validation to confirm its accuracy and reliability vis-a-vis the business requirements!</p>
+</section>
+</section>
+<section id="key-components">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">4.5. </span>Key Components</a><a class="headerlink" href="#key-components" title="Permalink to this heading">¶</a></h2>
+<section id="examples-the-dataset">
+<h3><span class="section-number">4.5.1. </span>Examples: The Dataset<a class="headerlink" href="#examples-the-dataset" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="metrics-the-metrics-layer">
+<h3><span class="section-number">4.5.2. </span>Metrics: The Metrics Layer<a class="headerlink" href="#metrics-the-metrics-layer" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="evaluator-the-assessment-layer">
+<h3><span class="section-number">4.5.3. </span>Evaluator: The Assessment Layer<a class="headerlink" href="#evaluator-the-assessment-layer" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="leaderboard-the-ranking-layer">
+<h3><span class="section-number">4.5.4. </span>Leaderboard: The Ranking Layer<a class="headerlink" href="#leaderboard-the-ranking-layer" title="Permalink to this heading">¶</a></h3>
+</section>
+</section>
+<section id="tools">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">4.6. </span>Tools</a><a class="headerlink" href="#tools" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="references">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink"><span class="section-number">4.7. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<div class="docutils container" id="id3">
+<div class="citation" id="id4" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">WTB+22</a><span class="fn-bracket">]</span></span>
+<p>Jason Wei, Yi Tay, Rishi Bommasani, Colin Raffel, Barret Zoph, Sebastian Borgeaud, Dani Yogatama, Maarten Bosma, Denny Zhou, Donald Metzler, Ed H. Chi, Tatsunori Hashimoto, Oriol Vinyals, Percy Liang, Jeff Dean, and William Fedus. Emergent abilities of large language models. 2022. URL: <a class="reference external" href="https://arxiv.org/abs/2206.07682">https://arxiv.org/abs/2206.07682</a>, <a class="reference external" href="https://arxiv.org/abs/2206.07682">arXiv:2206.07682</a>.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="structured_output.html"
+       title="previous chapter">← <span class="section-number">3. </span>Wrestling with Structured Output</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 6.2.1 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.9.1.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>
