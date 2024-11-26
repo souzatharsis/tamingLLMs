@@ -41,6 +41,7 @@ sphinx:
     html_theme: 'press' #insipid
     #html_logo: '_static/logo_w.png'
     html_show_copyright: false
+    pygments_style: 'material'
     #html_sidebars: {'**': ['globaltoc.html']}
     html_theme_options:
       external_links:
