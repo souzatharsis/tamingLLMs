@@ -72,7 +72,7 @@ As we'll explore in this book, the engineering effort required to manage these c
 - Monitoring and Alerts
 - Best Practices
 
-[## Chapter 7: Size and Length Limitations](https://www.souzatharsis.com/tamingLLMs/notebooks/output_size_limit.html)
+## [Chapter 7: Size and Length Limitations](https://www.souzatharsis.com/tamingLLMs/notebooks/output_size_limit.html)
 - Context Window Constraints
 - Handling Long Inputs
 - Managing Token Limits
