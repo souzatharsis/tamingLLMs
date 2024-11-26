@@ -4,18 +4,18 @@
 
 https://www.souzatharsis.com/tamingLLMs
 
-# Taming Large Language Models: A Practical Guide to LLM Pitfalls with Python Examples
+# [Taming Large Language Models: A Practical Guide to LLM Pitfalls with Python Examples](https://www.souzatharsis.com/tamingLLMs)
 
 In recent years, Large Language Models (LLMs) have emerged as a transformative force in technology, promising to revolutionize how we build products and interact with computers. From ChatGPT to GitHub Copilot, Claude Artifacts, cursor.com, replit, and others, these systems have captured the public imagination and sparked a gold rush of AI-powered applications. However, beneath the surface of this technological revolution lies a complex landscape of challenges that practitioners must navigate. 
 
 As we'll explore in this book, the engineering effort required to manage these challenges - from handling non-deterministic outputs to preventing hallucinations - cannot be overstated. While the potential of LLM technology remains compelling, understanding and addressing the hidden costs and complexities of building reliable LLM-powered systems will enable us to fully harness their transformative impact.
 
-## Chapter 1: Introduction
+## [Chapter 1: Introduction](https://www.souzatharsis.com/tamingLLMs/markdown/intro.html)
 - The Hidden Challenges of LLMs
 - Why This Book Matters
 - Overview of Key Problems
 
-## Chapter 2: Non-determinism & Evals
+## [Chapter 2: Non-determinism & Evals](https://www.souzatharsis.com/tamingLLMs/notebooks/evals.html)
 - Understanding Non-deterministic Behavior in LLMs
 - Temperature and Randomness Effects
 - Evaluation Challenges
@@ -29,7 +29,7 @@ As we'll explore in this book, the engineering effort required to manage these c
   - Implementing Deterministic Workflows
   - Testing Strategies
 
-## Chapter 3: Wrestling with Structured Output
+## [Chapter 3: Wrestling with Structured Output](https://www.souzatharsis.com/tamingLLMs/notebooks/structured_output.html)
 - The Structured Output Challenge
 - Common Failure Modes
 - Text Output Inconsistencies
@@ -72,7 +72,7 @@ As we'll explore in this book, the engineering effort required to manage these c
 - Monitoring and Alerts
 - Best Practices
 
-## Chapter 7: Size and Length Limitations
+[## Chapter 7: Size and Length Limitations](https://www.souzatharsis.com/tamingLLMs/notebooks/output_size_limit.html)
 - Context Window Constraints
 - Handling Long Inputs
 - Managing Token Limits
