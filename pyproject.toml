@@ -31,6 +31,10 @@ langchain-openai = "^0.2.9"
 outlines = "^0.1.5"
 transformers = "^4.46.3"
 nbconvert = "^7.16.4"
+evaluate = "^0.4.3"
+absl-py = "^2.1.0"
+rouge-score = "^0.1.2"
+matplotlib = "^3.9.2"
 
 
 [build-system]

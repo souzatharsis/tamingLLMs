@@ -215,14 +215,23 @@
 </li>
 <li><p><a class="reference internal" href="#key-components" id="id19">Key Components</a></p>
 <ul>
-<li><p><a class="reference internal" href="#examples-the-dataset" id="id20">Examples: The Dataset</a></p></li>
-<li><p><a class="reference internal" href="#metrics-the-metrics-layer" id="id21">Metrics: The Metrics Layer</a></p></li>
-<li><p><a class="reference internal" href="#evaluator-the-assessment-layer" id="id22">Evaluator: The Assessment Layer</a></p></li>
-<li><p><a class="reference internal" href="#leaderboard-the-ranking-layer" id="id23">Leaderboard: The Ranking Layer</a></p></li>
+<li><p><a class="reference internal" href="#metrics" id="id20">Metrics</a></p>
+<ul>
+<li><p><a class="reference internal" href="#example-bleu-and-rouge-for-sec-filing-summarization" id="id21">Example: BLEU and ROUGE for SEC Filing Summarization</a></p></li>
+<li><p><a class="reference internal" href="#considerations" id="id22">Considerations</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#tools" id="id24">Tools</a></p></li>
-<li><p><a class="reference internal" href="#references" id="id25">References</a></p></li>
+<li><p><a class="reference internal" href="#evaluator" id="id23">Evaluator</a></p>
+<ul>
+<li><p><a class="reference internal" href="#model-based-evaluation" id="id24">Model-based Evaluation</a></p></li>
+<li><p><a class="reference internal" href="#human-evaluation" id="id25">Human Evaluation</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#leaderboard" id="id26">Leaderboard</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#tools" id="id27">Tools</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id28">References</a></p></li>
 </ul>
 </li>
 </ul>
@@ -585,24 +594,385 @@ Attempt 3: Apple Inc&#39;s Form 10-K provides a comprehensive overview of the co
 </section>
 <section id="key-components">
 <h2><a class="toc-backref" href="#id19" role="doc-backlink"><span class="section-number">4.5. </span>Key Components</a><a class="headerlink" href="#key-components" title="Permalink to this heading">¶</a></h2>
-<section id="examples-the-dataset">
-<h3><a class="toc-backref" href="#id20" role="doc-backlink"><span class="section-number">4.5.1. </span>Examples: The Dataset</a><a class="headerlink" href="#examples-the-dataset" title="Permalink to this heading">¶</a></h3>
+<section id="metrics">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink"><span class="section-number">4.5.1. </span>Metrics</a><a class="headerlink" href="#metrics" title="Permalink to this heading">¶</a></h3>
+<p>The choice of metric depends on the specific task and desired evaluation criteria. However, one can categorize metrics into two broad categories: <strong>intrinsic</strong> and <strong>extrinsic</strong>:</p>
+<ul class="simple">
+<li><p><strong>Intrinsic metrics</strong> focus on the model’s performance on its primary training objective, which is typically to predict the next token in a sequence.  Perplexity is a common intrinsic metric that measures how well the model predicts a given sample of text.</p></li>
+<li><p><strong>Extrinsic metrics</strong> assess the model’s performance on various downstream tasks, which can range from question answering to code generation.  These metrics are not directly tied to the training objective, but they provide valuable insights into the model’s ability to generalise to real-world applications.</p></li>
+</ul>
+<p>Here, we are particularly interested in extrinsic metrics, since we are evaluating LLM-based applications.</p>
+<p>Another way to think about metrics is in terms of the type of the task we evaluate:</p>
+<ol class="arabic simple">
+<li><p><strong>Discriminative Task</strong>:</p>
+<ul class="simple">
+<li><p>Involves distinguishing or classifying between existing data points.</p></li>
+<li><p>Examples: Sentiment analysis, classification, or identifying whether a statement is true or false.</p></li>
+</ul>
+</li>
+<li><p><strong>Generative Task</strong>:</p>
+<ul class="simple">
+<li><p>Involves creating or producing new data or outputs.</p></li>
+<li><p>Examples: Text generation, image synthesis, or summarization.</p></li>
+</ul>
+</li>
+</ol>
+<p>For discriminative LLM-based applications may produce log-probabilities or discrete predictions, traditional machine learning metrics like accuracy, precision, recall, and F1 score can be applied. However, generative tasks may output text or images which require different evaluation approaches.</p>
+<p>For generative tasks, a range of specialized metrics should be considered. These include match-based metrics such as exact match and prefix match, as well as metrics designed specifically for tasks like summarization and translation, including ROUGE, BLEU, and character n-gram comparisons. The selection of appropriate metrics should align with the specific requirements and characteristics of the task being evaluated. A detailed discussion of metric selection guidelines will be provided in a subsequent section.</p>
+<p>In <a class="reference internal" href="#key-metrics"><span class="std std-numref">Table 4.2</span></a> we provide a short list of widely used extrinsic metrics that can be used to evaluate generative tasks of LLM-based applications, along with their definitions, use cases, and limitations.</p>
+<table class="docutils align-default" id="key-metrics">
+<caption><span class="caption-number">Table 4.2 </span><span class="caption-text">Key Metrics for Evaluating Generative Tasks</span><a class="headerlink" href="#key-metrics" title="Permalink to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Metric</p></th>
+<th class="head"><p>Definition</p></th>
+<th class="head"><p>Use Case</p></th>
+<th class="head"><p>Limitations</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>BLEU (Bilingual Evaluation Understudy)</strong></p></td>
+<td><p>Measures overlap of n-grams between generated text and reference text</p></td>
+<td><p>Machine translation and text summarization</p></td>
+<td><p>- Favors short outputs due to brevity penalty<br>- Insensitive to semantic meaning<br>- Requires high-quality reference texts</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>ROUGE (Recall-Oriented Understudy for Gisting Evaluation)</strong></p></td>
+<td><p>Measures overlap between n-grams, words, or sentences of generated text and references, focusing on recall</p></td>
+<td><p>Text summarization tasks</p></td>
+<td><p>- Biases toward long outputs<br>- Ignores semantic equivalence<br>- Heavily influenced by reference quality</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>METEOR (Metric for Evaluation of Translation with Explicit ORdering)</strong></p></td>
+<td><p>Considers synonyms, stemming, and paraphrases alongside n-gram overlap</p></td>
+<td><p>Machine translation, where semantic equivalence matters</p></td>
+<td><p>- Computationally expensive<br>- Subjective design of synonym/stemming databases</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>CIDEr (Consensus-based Image Description Evaluation)</strong></p></td>
+<td><p>Measures n-gram overlap weighted by TF-IDF, tailored for image captioning</p></td>
+<td><p>Image caption generation</p></td>
+<td><p>- Limited applicability outside captioning<br>- Heavily reliant on corpus statistics</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>TER (Translation Edit Rate)</strong></p></td>
+<td><p>Computes number of edits needed to convert hypothesis into reference text</p></td>
+<td><p>Translation quality evaluation</p></td>
+<td><p>- Doesn’t consider semantic correctness<br>- Penalizes valid paraphrasing</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>BERTScore</strong></p></td>
+<td><p>Uses contextual embeddings from pre-trained BERT to calculate token similarity</p></td>
+<td><p>Tasks requiring semantic equivalence</p></td>
+<td><p>- High computational cost<br>- Performance varies with model used</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>SPICE (Semantic Propositional Image Caption Evaluation)</strong></p></td>
+<td><p>Focuses on scene graphs in image captions to evaluate semantic content</p></td>
+<td><p>Image captioning with emphasis on semantic accuracy</p></td>
+<td><p>- Designed only for image captions<br>- Less effective in purely textual tasks</p></td>
+</tr>
+</tbody>
+</table>
+<section id="example-bleu-and-rouge-for-sec-filing-summarization">
+<h4><a class="toc-backref" href="#id21" role="doc-backlink"><span class="section-number">4.5.1.1. </span>Example: BLEU and ROUGE for SEC Filing Summarization</a><a class="headerlink" href="#example-bleu-and-rouge-for-sec-filing-summarization" title="Permalink to this heading">¶</a></h4>
+<p>When working with SEC filings, you may want to evaluate the quality of summaries or extracted key sections against reference summaries (e.g., analyst-prepared highlights). Below is a Python example demonstrating BLEU and ROUGE score computations tailored for this scenario.</p>
+<p><strong>Reference Summary</strong>: Represents the ideal summary, typically prepared by analysts or human experts.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>evaluate<span class="w"> </span>absl-py<span class="w"> </span>rouge_score
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">evaluate</span>
+
+<span class="n">reference_summary</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">The company&#39;s revenue grew by 15% year-over-year, with the software business being the key driver.</span>
+<span class="s2">Higher expenses impacted net income, but there was still a slight improvement.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tobias/src/tamingLLMs/tamingllms/.venv/lib/python3.12/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Generated Summary</strong>: Could be extracted from the SEC filing using an automated system or a summarization algorithm.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example: Generated summary from the SEC filing vs. Reference summary</span>
+<span class="n">generated_summary</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">The company reported a 15</span><span class="si">% i</span><span class="s2">ncrease in revenue compared to the previous year, primarily driven by growth in its software segment.</span>
+<span class="s2">Net income also saw a marginal rise despite higher operating expenses.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Evaluate the example summaries</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">evaluate</span>
+<span class="k">def</span> <span class="nf">evaluate_summaries</span><span class="p">(</span><span class="n">generated_summary</span><span class="p">,</span> <span class="n">reference_summary</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Evaluate generated summaries against reference summaries using multiple metrics.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        generated_summary (str): The summary generated by the model</span>
+<span class="sd">        reference_summary (str): The reference/ground truth summary</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: Dictionary containing scores for different metrics</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Initialize metrics</span>
+    <span class="n">bleu</span> <span class="o">=</span> <span class="n">evaluate</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;google_bleu&quot;</span><span class="p">)</span>
+    <span class="n">rouge</span> <span class="o">=</span> <span class="n">evaluate</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;rouge&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Format inputs for BLEU (expects list of str for predictions and list of list of str for references)</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="p">[</span><span class="n">generated_summary</span><span class="p">]</span>
+    <span class="n">references</span> <span class="o">=</span> <span class="p">[</span><span class="n">reference_summary</span><span class="p">]</span>
+    
+    <span class="c1"># Compute BLEU score</span>
+    <span class="n">bleu_score</span> <span class="o">=</span> <span class="n">bleu</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">predictions</span><span class="o">=</span><span class="n">predictions</span><span class="p">,</span> <span class="n">references</span><span class="o">=</span><span class="p">[</span><span class="n">references</span><span class="p">])</span>
+    
+    <span class="c1"># Compute ROUGE scores</span>
+    <span class="n">rouge_score</span> <span class="o">=</span> <span class="n">rouge</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">predictions</span><span class="o">=</span><span class="n">predictions</span><span class="p">,</span> <span class="n">references</span><span class="o">=</span><span class="n">references</span><span class="p">)</span>
+    
+    <span class="c1"># Compute Character metric    </span>
+    <span class="c1"># Combine all scores into a single dictionary</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;bleu&#39;</span><span class="p">:</span> <span class="n">bleu_score</span><span class="p">[</span><span class="s2">&quot;google_bleu&quot;</span><span class="p">],</span>
+        <span class="s1">&#39;rouge1&#39;</span><span class="p">:</span> <span class="n">rouge_score</span><span class="p">[</span><span class="s1">&#39;rouge1&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;rouge2&#39;</span><span class="p">:</span> <span class="n">rouge_score</span><span class="p">[</span><span class="s1">&#39;rouge2&#39;</span><span class="p">]</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="n">scores</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sentence1</span> <span class="o">=</span> <span class="s2">&quot;the cat sat on the mat&quot;</span>
+<span class="n">sentence2</span> <span class="o">=</span> <span class="s2">&quot;the cat ate the mat&quot;</span>
+<span class="n">evaluate_summaries</span><span class="p">(</span><span class="n">sentence1</span><span class="p">,</span> <span class="n">sentence2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;bleu&#39;: 0.3333333333333333,
+ &#39;rouge1&#39;: 0.7272727272727272,
+ &#39;rouge2&#39;: 0.4444444444444445}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">visualize_prompt_comparison</span><span class="p">(</span><span class="n">evaluation_results</span><span class="p">,</span> <span class="n">model_names</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a radar plot comparing different prompt variations</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        evaluation_results (list): List of dictionaries containing evaluation metrics</span>
+<span class="sd">        model_names (list): List of names for each prompt variation</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">evaluate.visualization</span> <span class="kn">import</span> <span class="n">radar_plot</span>
+    
+    <span class="c1"># Format data for visualization</span>
+    <span class="n">plot</span> <span class="o">=</span> <span class="n">radar_plot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">evaluation_results</span><span class="p">,</span> <span class="n">model_names</span><span class="o">=</span><span class="n">model_names</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">plot</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">generate_summary</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+        <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">},</span>
+                 <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="nb">input</span><span class="p">}]</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MAX_LENGTH</span> <span class="o">=</span> <span class="mi">10000</span> <span class="c1"># We limit the input length to avoid token issues</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/apple.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">sec_filing</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">sec_filing</span> <span class="o">=</span> <span class="n">sec_filing</span><span class="p">[:</span><span class="n">MAX_LENGTH</span><span class="p">]</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># Load environment variables from .env file</span>
+<span class="n">load_dotenv</span><span class="p">(</span><span class="n">override</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TASK</span> <span class="o">=</span> <span class="s2">&quot;Generate a 1-liner summary of the following excerpt from an SEC filing.&quot;</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">ROLE: You are an expert analyst tasked with summarizing SEC filings.</span>
+<span class="s2">TASK: </span><span class="si">{</span><span class="n">TASK</span><span class="si">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_benchmark</span> <span class="o">=</span> <span class="s2">&quot;gpt-4o&quot;</span>
+<span class="n">models_test</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span> <span class="s2">&quot;gpt-4-turbo&quot;</span><span class="p">,</span> <span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generate_summary</span><span class="p">(</span><span class="n">model_benchmark</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">sec_filing</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;Apple Inc.&#39;s 10-K filing for the fiscal year ending September 28, 2024, outlines its operational and financial condition, detailing the company&#39;s diverse product lines, market activities, and compliance with SEC requirements.&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate_summary_models</span><span class="p">(</span><span class="n">model_benchmark</span><span class="p">,</span> <span class="n">models_test</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Evaluate summaries generated by multiple models</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">benchmark_summary</span> <span class="o">=</span> <span class="n">generate_summary</span><span class="p">(</span><span class="n">model_benchmark</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+
+    <span class="c1"># Generate summaries for all test models using list comprehension</span>
+    <span class="n">model_summaries</span> <span class="o">=</span> <span class="p">[</span><span class="n">generate_summary</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span> <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models_test</span><span class="p">]</span>
+    
+    <span class="c1"># Evaluate each model&#39;s summary against the benchmark</span>
+    <span class="n">evaluation_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">evaluate_summaries</span><span class="p">(</span><span class="n">summary</span><span class="p">,</span> <span class="n">benchmark_summary</span><span class="p">)</span> <span class="k">for</span> <span class="n">summary</span> <span class="ow">in</span> <span class="n">model_summaries</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">evaluation_results</span><span class="p">,</span> <span class="n">model_summaries</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">evals</span><span class="p">,</span> <span class="n">model_summaries</span> <span class="o">=</span> <span class="n">evaluate_summary_models</span><span class="p">(</span><span class="n">model_benchmark</span><span class="p">,</span> <span class="n">models_test</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">sec_filing</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print each model name and its summary</span>
+<span class="k">for</span> <span class="n">model</span><span class="p">,</span> <span class="n">summary</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">models_test</span><span class="p">,</span> <span class="n">model_summaries</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">: </span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">summary</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">---------------&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gpt-4o-mini: 
+ Apple Inc. filed its Annual Report on Form 10-K for the fiscal year ending September 28, 2024, detailing its business operations, risks, and financial condition. 
+---------------
+gpt-4-turbo: 
+ Apple Inc.&#39;s Form 10-K for the fiscal year ended September 28, 2024, details its annual report as a well-known seasoned issuer, confirming compliance with SEC regulations and reporting on stock performances, securities, and corporate governance, while also including forward-looking statements subject to various risks. 
+---------------
+gpt-3.5-turbo: 
+ Apple Inc. filed its Form 10-K with the SEC, revealing financial information for the fiscal year ended September 28, 2024, including details on its products and market performance. 
+---------------
+</pre></div>
+</div>
+</div>
+</div>
+<p>The benchmark summary from gpt-4o provides a balanced overview of Apple’s 10-K filing, focusing on operational status, financial condition, product lines, and regulatory compliance.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">gpt-4o-mini</span></code> demonstrates superior performance with a concise yet comprehensive summary that closely aligns with the benchmark’s core message. While it omits product lines, it effectively captures the essential elements of the filing including business operations, risks, and financial condition. Its brevity and focus make it the most effective of the test models.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gpt-4-turbo</span></code> performs adequately but tends toward verbosity. While it includes relevant information about SEC compliance, it introduces peripheral details about seasoned issuer status and forward-looking statements that, while accurate, dilute the core message. The additional complexity makes the summary less focused than gpt-4o-mini’s version.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gpt-3.5-turbo</span></code> shows the most room for improvement. Its summary, while factually correct, is overly simplified and misses key aspects of the filing. The model captures basic financial information but fails to convey the breadth of operational and compliance details present in the benchmark summary.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>matplotlib
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create and display visualization</span>
+<span class="n">plot</span> <span class="o">=</span> <span class="n">visualize_prompt_comparison</span><span class="p">(</span><span class="n">evals</span><span class="p">,</span> <span class="n">models_test</span><span class="p">)</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1652501/940173201.py:3: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+  plot.show()
+</pre></div>
+</div>
+<img alt="../_images/08a72483c61f624c6ca08db7d58620028acadc7df987d17f40ae7c6e04fa94d2.png" src="../_images/08a72483c61f624c6ca08db7d58620028acadc7df987d17f40ae7c6e04fa94d2.png" />
+</div>
+</div>
+<p>The evaluation metrics confirm this ranking, with gpt-4o-mini achieving the closest semantic alignment to the benchmark, followed by gpt-4-turbo, and gpt-3.5-turbo showing the largest deviation. While evaluating language model outputs inherently involves subjective judgment, establishing a high-quality benchmark model and using quantifiable metrics like BLEU and ROUGE scores provides a more objective framework for comparing model performance. This approach transforms an otherwise qualitative assessment into a measurable, data-driven evaluation process.</p>
 </section>
-<section id="metrics-the-metrics-layer">
-<h3><a class="toc-backref" href="#id21" role="doc-backlink"><span class="section-number">4.5.2. </span>Metrics: The Metrics Layer</a><a class="headerlink" href="#metrics-the-metrics-layer" title="Permalink to this heading">¶</a></h3>
+<section id="considerations">
+<h4><a class="toc-backref" href="#id22" role="doc-backlink"><span class="section-number">4.5.1.2. </span>Considerations</a><a class="headerlink" href="#considerations" title="Permalink to this heading">¶</a></h4>
+<p>While these metrics provide quantifiable measures of performance, they have limitations:</p>
+<ul class="simple">
+<li><p><strong>Task-specific nature</strong>:  Metrics like accuracy might not fully capture the nuances of complex tasks, especially those involving subjective human judgment.</p></li>
+<li><p><strong>Sensitivity to data distribution</strong>: Performance on these metrics can be influenced by the specific dataset used for evaluation, which might not represent real-world data distribution.</p></li>
+<li><p><strong>Inability to assess reasoning or factual accuracy</strong>: These metrics primarily focus on surface-level matching and might not reveal the underlying reasoning process of the LLM or its ability to generate factually correct information.</p></li>
+</ul>
+<p>In conclusion, selecting the appropriate extrinsic metric depends on the specific NLP task and desired evaluation granularity.  Understanding the limitations of these metrics and considering alternative approaches like human evaluation can provide a more comprehensive assessment of LLM performance in real-world applications.</p>
+<p>To address these limitations, alternative approaches like <strong>human evaluation</strong> and <strong>model-based evaluation</strong> are often used, which will be discussed in the following sections.</p>
 </section>
-<section id="evaluator-the-assessment-layer">
-<h3><a class="toc-backref" href="#id22" role="doc-backlink"><span class="section-number">4.5.3. </span>Evaluator: The Assessment Layer</a><a class="headerlink" href="#evaluator-the-assessment-layer" title="Permalink to this heading">¶</a></h3>
 </section>
-<section id="leaderboard-the-ranking-layer">
-<h3><a class="toc-backref" href="#id23" role="doc-backlink"><span class="section-number">4.5.4. </span>Leaderboard: The Ranking Layer</a><a class="headerlink" href="#leaderboard-the-ranking-layer" title="Permalink to this heading">¶</a></h3>
+<section id="evaluator">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink"><span class="section-number">4.5.2. </span>Evaluator</a><a class="headerlink" href="#evaluator" title="Permalink to this heading">¶</a></h3>
+<section id="model-based-evaluation">
+<h4><a class="toc-backref" href="#id24" role="doc-backlink"><span class="section-number">4.5.2.1. </span>Model-based Evaluation</a><a class="headerlink" href="#model-based-evaluation" title="Permalink to this heading">¶</a></h4>
+</section>
+<section id="human-evaluation">
+<h4><a class="toc-backref" href="#id25" role="doc-backlink"><span class="section-number">4.5.2.2. </span>Human Evaluation</a><a class="headerlink" href="#human-evaluation" title="Permalink to this heading">¶</a></h4>
+<p>Human assessors can judge aspects like fluency, coherence, and factual accuracy, providing a more comprehensive evaluation. However, human evaluation can be subjective and resource-intensive.</p>
+</section>
+</section>
+<section id="leaderboard">
+<h3><a class="toc-backref" href="#id26" role="doc-backlink"><span class="section-number">4.5.3. </span>Leaderboard</a><a class="headerlink" href="#leaderboard" title="Permalink to this heading">¶</a></h3>
+<p>Benchmark datasets provide a standardised way to evaluate the performance of LLMs on a variety of downstream tasks. Some popular benchmark datasets include:</p>
+<ul class="simple">
+<li><p><strong>GLUE (General Language Understanding Evaluation)</strong>: A collection of diverse natural language understanding tasks, such as sentiment analysis, question answering, and textual entailment. GLUE scores provide a holistic view of a model’s language understanding capabilities.</p></li>
+<li><p><strong>SuperGLUE</strong>: A successor to GLUE with more challenging tasks designed to push the boundaries of language understanding.</p></li>
+<li><p><strong>BIG-bench</strong>: A collaborative benchmark with a wide range of tasks, encompassing language modeling, reasoning, and common sense.</p></li>
+<li><p><strong>HELM (Holistic Evaluation of Language Models)</strong>: A comprehensive evaluation framework that considers multiple factors, including accuracy, robustness, fairness, and efficiency.</p></li>
+<li><p><strong>FLASK</strong>: A benchmark focused on evaluating the factual accuracy and consistency of language models.</p></li>
+<li><p><strong>Massive Multitask Language Understanding (MMLU):</strong> This benchmark tests a model’s knowledge and reasoning abilities across 57 subjects, including STEM, humanities, and social sciences.</p></li>
+<li><p><strong>HumanEval:</strong> This dataset evaluates code generation capabilities by asking a model to write code based on a given description.</p></li>
+<li><p><strong>LiveBench:</strong>  This benchmark attempts to mitigate the problem of data contamination by releasing new questions monthly.</p></li>
+</ul>
+<p>However, benchmark datasets have limitations.  It can be difficult to prevent data from the benchmarks leaking into the training data, which can inflate the model’s performance.  Additionally, some benchmarks may contain incorrect answers or ambiguous questions.  It’s also important to remember that benchmark performance does not always translate directly to real-world performance.</p>
 </section>
 </section>
 <section id="tools">
-<h2><a class="toc-backref" href="#id24" role="doc-backlink"><span class="section-number">4.6. </span>Tools</a><a class="headerlink" href="#tools" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id27" role="doc-backlink"><span class="section-number">4.6. </span>Tools</a><a class="headerlink" href="#tools" title="Permalink to this heading">¶</a></h2>
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id25" role="doc-backlink"><span class="section-number">4.7. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id28" role="doc-backlink"><span class="section-number">4.7. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <div class="docutils container" id="id3">
 <div class="citation" id="id4" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">WTB+22</a><span class="fn-bracket">]</span></span>
