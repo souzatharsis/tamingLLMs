@@ -232,11 +232,13 @@
 <p>While the capabilities of LLMs are indeed remarkable, the prevailing narrative often glosses over fundamental problems that engineers, product managers, and organizations face when building real-world applications. This book aims to bridge that gap, offering a practical, clear-eyed examination of the pitfalls and challenges in working with LLMs while providing a set of open source solutions to overcome them.</p>
 <p>Throughout this book, we’ll tackle the following (non-exhaustive) list of critical challenges:</p>
 <ol class="arabic simple">
-<li><p><strong>Non-deterministic Behavior</strong>: Unlike traditional software systems, LLMs can produce different outputs for identical inputs, making testing and reliability assurance particularly challenging.</p></li>
 <li><p><strong>Structural (un)Reliability</strong>: LLMs struggle to maintain consistent output formats, complicating their integration into larger systems and making error handling more complex.</p></li>
+<li><p><strong>Size and Length Constraints</strong>: LLMs have strict token limits for both inputs and outputs, requiring careful chunking and management strategies to handle long-form content effectively.</p></li>
+<li><p><strong>Testing Complexity</strong>: Traditional software testing methodologies break down when dealing with non-deterministic and generative systems, requiring new approaches.</p></li>
 <li><p><strong>Hallucination Management</strong>: These models can generate plausible-sounding but entirely fabricated information, creating significant risks for production applications.</p></li>
-<li><p><strong>Cost Optimization</strong>: The computational and financial costs of operating LLM-based systems can quickly become prohibitive without careful optimization.</p></li>
-<li><p><strong>Testing Complexity</strong>: Traditional testing methodologies break down when dealing with non-deterministic systems, requiring new approaches.</p></li>
+<li><p><strong>Safety and Security</strong>: LLMs can generate harmful, biased, or inappropriate content, requiring robust safeguards and monitoring systems to ensure safe deployment.</p></li>
+<li><p><strong>Cost Optimization</strong>: The computational and financial costs of operating LLM-based systems can quickly become prohibitive without careful management, observability and optimization.</p></li>
+<li><p><strong>Vendor Lock-in</strong>: Cloud-based LLM providers can create significant dependencies and lock-in through their proprietary APIs and infrastructure, making it difficult to switch providers or self-host solutions.</p></li>
 </ol>
 </section>
 <section id="a-practical-approach">

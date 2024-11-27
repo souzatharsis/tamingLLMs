@@ -30,15 +30,20 @@ While the capabilities of LLMs are indeed remarkable, the prevailing narrative o
 
 Throughout this book, we'll tackle the following (non-exhaustive) list of critical challenges:
 
-1. **Non-deterministic Behavior**: Unlike traditional software systems, LLMs can produce different outputs for identical inputs, making testing and reliability assurance particularly challenging.
+1. **Structural (un)Reliability**: LLMs struggle to maintain consistent output formats, complicating their integration into larger systems and making error handling more complex.
 
-2. **Structural (un)Reliability**: LLMs struggle to maintain consistent output formats, complicating their integration into larger systems and making error handling more complex.
+2. **Size and Length Constraints**: LLMs have strict token limits for both inputs and outputs, requiring careful chunking and management strategies to handle long-form content effectively.
 
-3. **Hallucination Management**: These models can generate plausible-sounding but entirely fabricated information, creating significant risks for production applications.
+3. **Testing Complexity**: Traditional software testing methodologies break down when dealing with non-deterministic and generative systems, requiring new approaches.
 
-4. **Cost Optimization**: The computational and financial costs of operating LLM-based systems can quickly become prohibitive without careful optimization.
+4. **Hallucination Management**: These models can generate plausible-sounding but entirely fabricated information, creating significant risks for production applications.
 
-5. **Testing Complexity**: Traditional testing methodologies break down when dealing with non-deterministic systems, requiring new approaches.
+5. **Safety and Security**: LLMs can generate harmful, biased, or inappropriate content, requiring robust safeguards and monitoring systems to ensure safe deployment.
+
+6. **Cost Optimization**: The computational and financial costs of operating LLM-based systems can quickly become prohibitive without careful management, observability and optimization.
+
+7. **Vendor Lock-in**: Cloud-based LLM providers can create significant dependencies and lock-in through their proprietary APIs and infrastructure, making it difficult to switch providers or self-host solutions.
+
 
 ## A Practical Approach
 
