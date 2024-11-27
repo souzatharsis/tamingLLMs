@@ -176,147 +176,204 @@
 <section id="chapter-1-introduction">
 <h2>Chapter 1: Introduction<a class="headerlink" href="#chapter-1-introduction" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>The Hidden Challenges of LLMs</p></li>
-<li><p>Why This Book Matters</p></li>
-<li><p>Overview of Key Problems</p></li>
+<li><p>1.1 Core Challenges We’ll Address</p></li>
+<li><p>1.2 A Practical Approach</p></li>
+<li><p>1.3 A Note on Perspective</p></li>
+<li><p>1.4 Who This Book Is For</p></li>
+<li><p>1.5 Outcomes</p></li>
+<li><p>1.6 Prerequisites</p></li>
+<li><p>1.7 Setting Up Your Environment</p>
+<ul>
+<li><p>1.7.1 Python Environment Setup</p></li>
+<li><p>1.7.2 API Keys Configuration</p></li>
+<li><p>1.7.3 Code Repository</p></li>
+<li><p>1.7.4 Troubleshooting Common Issues</p></li>
+</ul>
+</li>
+<li><p>1.8 About the Author(s)</p></li>
 </ul>
 </section>
-<section id="chapter-2-non-determinism-evals">
-<h2>Chapter 2: Non-determinism &amp; Evals<a class="headerlink" href="#chapter-2-non-determinism-evals" title="Permalink to this heading">¶</a></h2>
+<section id="chapter-2-wrestling-with-structured-output">
+<h2>Chapter 2: Wrestling with Structured Output<a class="headerlink" href="#chapter-2-wrestling-with-structured-output" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Understanding Non-deterministic Behavior in LLMs</p></li>
-<li><p>Temperature and Randomness Effects</p></li>
-<li><p>Evaluation Challenges</p>
+<li><p>2.1 The Structured Output Challenge</p></li>
+<li><p>2.2 Problem Statement</p></li>
+<li><p>2.3 Solutions</p>
 <ul>
-<li><p>Measuring Consistency</p></li>
-<li><p>Testing Non-deterministic Systems</p></li>
+<li><p>2.3.1 Strategies</p></li>
+<li><p>2.3.2 Techniques and Tools</p>
+<ul>
+<li><p>2.3.2.1 One-Shot Prompts</p></li>
+<li><p>2.3.2.2 Structured Output with Provider-Specific APIs</p>
+<ul>
+<li><p>2.3.2.2.1 JSON Mode</p></li>
+<li><p>2.3.2.2.2 Structured Output Mode</p></li>
 </ul>
 </li>
-<li><p>Observability</p>
+<li><p>2.3.2.3 LangChain</p></li>
+<li><p>2.3.2.4 Outlines</p>
 <ul>
-<li><p>Logging Strategies</p></li>
-<li><p>Monitoring Solutions</p></li>
-<li><p>Debugging Non-deterministic Responses</p></li>
-</ul>
-</li>
-<li><p>Practical Solutions and Patterns</p>
-<ul>
-<li><p>Implementing Deterministic Workflows</p></li>
-<li><p>Testing Strategies</p></li>
-</ul>
-</li>
-</ul>
-</section>
-<section id="chapter-3-wrestling-with-structured-output">
-<h2>Chapter 3: Wrestling with Structured Output<a class="headerlink" href="#chapter-3-wrestling-with-structured-output" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>The Structured Output Challenge</p></li>
-<li><p>Common Failure Modes</p></li>
-<li><p>Text Output Inconsistencies</p></li>
-<li><p>Implementation Patterns</p>
-<ul>
-<li><p>Output Validation</p></li>
-<li><p>Error Recovery</p></li>
-<li><p>Format Enforcement</p></li>
-</ul>
-</li>
-<li><p>Best Practices for Reliable Output</p></li>
-<li><p>Testing Structured Responses</p></li>
-</ul>
-</section>
-<section id="chapter-4-hallucination-the-reality-gap">
-<h2>Chapter 4: Hallucination: The Reality Gap<a class="headerlink" href="#chapter-4-hallucination-the-reality-gap" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>Understanding Hallucination Types</p></li>
-<li><p>Detection Strategies</p></li>
-<li><p>Grounding Techniques</p></li>
-<li><p>Retrieval-Augmented Generation (RAG)</p>
-<ul>
-<li><p>Context Selection</p></li>
-<li><p>Indexing Strategies</p></li>
-<li><p>Vector Stores</p></li>
-<li><p>Chunking Methods</p></li>
-</ul>
-</li>
-<li><p>Practical Implementation</p>
-<ul>
-<li><p>Building a RAG Pipeline</p></li>
-<li><p>Testing and Validation</p></li>
+<li><p>2.3.2.4.1 Multiple Choice Generation</p></li>
+<li><p>2.3.2.4.2 Pydantic model</p></li>
 </ul>
 </li>
 </ul>
-</section>
-<section id="chapter-5-the-cost-factor">
-<h2>Chapter 5: The Cost Factor<a class="headerlink" href="#chapter-5-the-cost-factor" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>Understanding LLM Costs</p></li>
-<li><p>Token Optimization</p></li>
-<li><p>Caching Strategies</p>
-<ul>
-<li><p>Implementation Patterns</p></li>
-<li><p>Cache Invalidation</p></li>
+</li>
 </ul>
 </li>
-<li><p>Output Prediction Techniques</p></li>
-<li><p>Cost Monitoring</p></li>
-<li><p>Optimization Strategies</p></li>
-</ul>
-</section>
-<section id="chapter-6-safety-concerns">
-<h2>Chapter 6: Safety Concerns<a class="headerlink" href="#chapter-6-safety-concerns" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>Common Safety Issues</p></li>
-<li><p>Implementation of Safety Guards</p></li>
-<li><p>Content Filtering</p></li>
-<li><p>Input Validation</p></li>
-<li><p>Output Sanitization</p></li>
-<li><p>Monitoring and Alerts</p></li>
-<li><p>Best Practices</p></li>
-</ul>
-</section>
-<section id="chapter-7-size-and-length-limitations">
-<h2>Chapter 7: Size and Length Limitations<a class="headerlink" href="#chapter-7-size-and-length-limitations" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>Context Window Constraints</p></li>
-<li><p>Handling Long Inputs</p></li>
-<li><p>Managing Token Limits</p></li>
-<li><p>Chunking Strategies</p></li>
-<li><p>Implementation Patterns</p></li>
-<li><p>Testing Long-form Content</p></li>
-</ul>
-</section>
-<section id="chapter-8-breaking-free-from-cloud-providers">
-<h2>Chapter 8: Breaking Free from Cloud Providers<a class="headerlink" href="#chapter-8-breaking-free-from-cloud-providers" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>The Vendor Lock-in Problem</p></li>
-<li><p>Self-hosting Solutions</p>
+<li><p>2.4 Discussion</p>
 <ul>
-<li><p>Llama 2 Implementation</p></li>
-<li><p>Llamafile Setup and Usage</p></li>
-<li><p>Ollama Deployment</p></li>
+<li><p>2.4.1 Comparing Solutions</p></li>
+<li><p>2.4.2 Best Practices</p></li>
+<li><p>2.4.3 Research &amp; Ongoing Debate</p></li>
 </ul>
 </li>
-<li><p>Performance Considerations</p></li>
-<li><p>Cost Analysis</p></li>
-<li><p>Migration Strategies</p></li>
+<li><p>2.5 Conclusion</p></li>
+<li><p>2.6 Acknowledgements</p></li>
+<li><p>2.7 References</p></li>
 </ul>
 </section>
-<section id="appendix-a-code-examples">
-<h2>Appendix A: Code Examples<a class="headerlink" href="#appendix-a-code-examples" title="Permalink to this heading">¶</a></h2>
+<section id="chapter-3-input-size-and-length-limitations">
+<h2>Chapter 3: Input Size and Length Limitations<a class="headerlink" href="#chapter-3-input-size-and-length-limitations" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Complete Implementation Examples</p></li>
-<li><p>Testing Scripts</p></li>
-<li><p>Utility Functions</p></li>
-<li><p>Configuration Templates</p></li>
+<li><p>3.1 Context Window Constraints</p></li>
+<li><p>3.2 Handling Long Inputs</p></li>
+<li><p>3.3 Managing Token Limits</p></li>
+<li><p>3.4 Chunking Strategies</p></li>
+<li><p>3.5 Implementation Patterns</p></li>
+<li><p>3.6 Testing Long-form Content</p></li>
 </ul>
 </section>
-<section id="appendix-b-tools-and-resources">
-<h2>Appendix B: Tools and Resources<a class="headerlink" href="#appendix-b-tools-and-resources" title="Permalink to this heading">¶</a></h2>
+<section id="chapter-4-output-size-and-length-limitations">
+<h2>Chapter 4: Output Size and Length Limitations<a class="headerlink" href="#chapter-4-output-size-and-length-limitations" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Recommended Libraries</p></li>
-<li><p>Testing Tools</p></li>
-<li><p>Monitoring Solutions</p></li>
-<li><p>Community Resources</p></li>
+<li><p>4.1 What are Token Limits?</p></li>
+<li><p>4.2 Problem Statement</p></li>
+<li><p>4.3 Content Chunking with Contextual Linking</p>
+<ul>
+<li><p>4.3.1 Generating long-form content</p></li>
+<li><p>4.3.2 Step 1: Chunking the Content</p></li>
+<li><p>4.3.3 Step 2: Writing the Base Prompt Template</p></li>
+<li><p>4.3.4 Step 3: Constructing Dynamic Prompt Parameters</p></li>
+<li><p>4.3.5 Step 4: Generating the Report</p></li>
+<li><p>4.3.6 Example Usage</p></li>
+</ul>
+</li>
+<li><p>4.4 Discussion</p></li>
+<li><p>4.5 Implications</p></li>
+<li><p>4.6 Future Considerations</p></li>
+<li><p>4.7 Conclusion</p></li>
+<li><p>4.8 References</p></li>
+</ul>
+</section>
+<section id="chapter-5-challenges-of-evaluating-llm-based-applications">
+<h2>Chapter 5: Challenges of Evaluating LLM-based Applications<a class="headerlink" href="#chapter-5-challenges-of-evaluating-llm-based-applications" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>5.1 Non-Deterministic Machines</p>
+<ul>
+<li><p>5.1.1 Temperature and Sampling</p></li>
+<li><p>5.1.2 The Temperature Spectrum</p></li>
+</ul>
+</li>
+<li><p>5.2 Emerging Properties</p></li>
+<li><p>5.3 Problem Statement</p></li>
+<li><p>5.4 Evals Design</p>
+<ul>
+<li><p>5.4.1 Conceptual Overview</p></li>
+<li><p>5.4.2 Design Considerations</p></li>
+<li><p>5.4.3 Key Components</p></li>
+<li><p>5.4.4 Metrics</p>
+<ul>
+<li><p>5.4.4.1 Working Example</p></li>
+<li><p>5.4.4.2 Considerations</p></li>
+</ul>
+</li>
+<li><p>5.4.5 Evaluators</p>
+<ul>
+<li><p>5.4.5.1 Model-Based Evaluation</p></li>
+<li><p>5.4.5.2 Human-Based Evaluation</p></li>
+</ul>
+</li>
+<li><p>5.4.6 Leaderboards</p></li>
+<li><p>5.4.7 Tools</p></li>
+</ul>
+</li>
+<li><p>5.5 References</p></li>
+</ul>
+</section>
+<section id="chapter-6-hallucination-the-reality-gap">
+<h2>Chapter 6: Hallucination: The Reality Gap<a class="headerlink" href="#chapter-6-hallucination-the-reality-gap" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>6.1 Understanding Hallucination Types</p></li>
+<li><p>6.2 Detection Strategies</p></li>
+<li><p>6.3 Grounding Techniques</p></li>
+<li><p>6.4 Retrieval-Augmented Generation (RAG)</p>
+<ul>
+<li><p>6.4.1 Context Selection</p></li>
+<li><p>6.4.2 Indexing Strategies</p></li>
+<li><p>6.4.3 Vector Stores</p></li>
+<li><p>6.4.4 Chunking Methods</p></li>
+</ul>
+</li>
+<li><p>6.5 Practical Implementation</p>
+<ul>
+<li><p>6.5.1 Building a RAG Pipeline</p></li>
+<li><p>6.5.2 Testing and Validation</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="chapter-7-safety-concerns">
+<h2>Chapter 7: Safety Concerns<a class="headerlink" href="#chapter-7-safety-concerns" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>7.1 Common Safety Issues</p></li>
+<li><p>7.2 Implementation of Safety Guards</p></li>
+<li><p>7.3 Content Filtering</p></li>
+<li><p>7.4 Input Validation</p></li>
+<li><p>7.5 Output Sanitization</p></li>
+<li><p>7.6 Monitoring and Alerts</p></li>
+<li><p>7.7 Best Practices</p></li>
+</ul>
+</section>
+<section id="chapter-8-the-cost-factor">
+<h2>Chapter 8: The Cost Factor<a class="headerlink" href="#chapter-8-the-cost-factor" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>8.1 Understanding LLM Costs</p></li>
+<li><p>8.2 Token Optimization</p></li>
+<li><p>8.3 Caching Strategies</p>
+<ul>
+<li><p>8.3.1 Implementation Patterns</p></li>
+<li><p>8.3.2 Cache Invalidation</p></li>
+</ul>
+</li>
+<li><p>8.4 Output Prediction Techniques</p></li>
+<li><p>8.5 Cost Monitoring</p></li>
+<li><p>8.6 Optimization Strategies</p></li>
+</ul>
+</section>
+<section id="chapter-9-breaking-free-from-cloud-providers">
+<h2>Chapter 9: Breaking Free from Cloud Providers<a class="headerlink" href="#chapter-9-breaking-free-from-cloud-providers" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>9.1 The Vendor Lock-in Problem</p></li>
+<li><p>9.2 Self-hosting Solutions</p>
+<ul>
+<li><p>9.2.1 Llama Implementation</p></li>
+<li><p>9.2.2 Llamafile Setup and Usage</p></li>
+<li><p>9.2.3 Ollama Deployment</p></li>
+</ul>
+</li>
+<li><p>9.3 Performance Considerations</p></li>
+<li><p>9.4 Cost Analysis</p></li>
+<li><p>9.5 Migration Strategies</p></li>
+</ul>
+</section>
+<section id="appendix-a-tools-and-resources">
+<h2>Appendix A: Tools and Resources<a class="headerlink" href="#appendix-a-tools-and-resources" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>A.1 Evaluation Tools</p></li>
+<li><p>A.2 Monitoring Solutions</p></li>
+<li><p>A.3 Open Source Models</p></li>
+<li><p>A.4 Community Resources</p></li>
 </ul>
 </section>
 <div class="toctree-wrapper compound">

@@ -106,7 +106,7 @@ To make the most of this book, you should have:
 
 Before diving into the examples in this book, you'll need to set up your development environment. Here's how to get started:
 
-### 1. Python Environment Setup
+### Python Environment Setup
 ```bash
 # Create and activate a virtual environment
 python -m venv llm-book-env
@@ -116,7 +116,7 @@ source llm-book-env/bin/activate  # On Windows, use: llm-book-env\Scripts\activa
 pip install -r requirements.txt
 ```
 
-### 2. API Keys Configuration
+### API Keys Configuration
 1. Create a `.env` file in the root directory of the project.
 2. Add your API keys and other sensitive information to the `.env` file. For example:
 
@@ -128,7 +128,7 @@ pip install -r requirements.txt
 Never share your `.env` file or commit it to version control. It contains sensitive information that should be kept private.
 ```
 
-### 3. Code Repository
+### Code Repository
 Clone the book's companion repository:
 ```bash
 git clone https://github.com/souzatharsis/tamingllms.git
@@ -141,3 +141,11 @@ cd tamingllms
 - Check the book's repository issues page for known problems and solutions
 
 Now that your environment is set up, let's begin our exploration of LLM challenges.
+
+## About the Author(s)
+
+Dr. Tharsis Souza is a computer scientist and product leader specializing in AI-based product development. He is a Lecturer at Columbia University's Master of Science program in Applied Analytics, Head of Product, Equities at Citadel, and former Senior VP at Two Sigma Investments. 
+
+With over 15 years of experience delivering technology products across startups and Fortune 500 companies globally, Dr. Souza is also an author of numerous scholarly publications and is a frequent speaker at academic and business conferences. Grounded on academic background and drawing from practical experience building and scaling up products powered by language models at early-stage startups, major institutions as well as advising non-profit organizations, and contributing to open source projects, he brings a unique perspective on bridging the gap between LLMs promised potential and their practical limitations using open source tools to enable the next generation of AI-powered products.
+
+Dr. Tharsis holds a Ph.D. in Computer Science from UCL, University of London following an M.Phil. and M.Sc. in Computer Science and a B.Sc. in Computer Engineering.

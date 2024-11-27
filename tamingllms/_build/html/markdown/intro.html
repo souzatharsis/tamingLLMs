@@ -130,6 +130,8 @@
                 
                   <li class="toctree-l2"><a href="#setting-up-your-environment" class="reference internal">Setting Up Your Environment</a></li>
                 
+                  <li class="toctree-l2"><a href="#about-the-author-s" class="reference internal">About the Author(s)</a></li>
+                
               </ul>
             
           </li>
@@ -212,12 +214,13 @@
 <li><p><a class="reference internal" href="#prerequisites" id="id7">Prerequisites</a></p></li>
 <li><p><a class="reference internal" href="#setting-up-your-environment" id="id8">Setting Up Your Environment</a></p>
 <ul>
-<li><p><a class="reference internal" href="#python-environment-setup" id="id9">1. Python Environment Setup</a></p></li>
-<li><p><a class="reference internal" href="#api-keys-configuration" id="id10">2. API Keys Configuration</a></p></li>
-<li><p><a class="reference internal" href="#code-repository" id="id11">3. Code Repository</a></p></li>
+<li><p><a class="reference internal" href="#python-environment-setup" id="id9">Python Environment Setup</a></p></li>
+<li><p><a class="reference internal" href="#api-keys-configuration" id="id10">API Keys Configuration</a></p></li>
+<li><p><a class="reference internal" href="#code-repository" id="id11">Code Repository</a></p></li>
 <li><p><a class="reference internal" href="#troubleshooting-common-issues" id="id12">Troubleshooting Common Issues</a></p></li>
 </ul>
 </li>
+<li><p><a class="reference internal" href="#about-the-author-s" id="id13">About the Author(s)</a></p></li>
 </ul>
 </li>
 </ul>
@@ -307,7 +310,7 @@
 <h2><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">1.7. </span>Setting Up Your Environment</a><a class="headerlink" href="#setting-up-your-environment" title="Permalink to this heading">¶</a></h2>
 <p>Before diving into the examples in this book, you’ll need to set up your development environment. Here’s how to get started:</p>
 <section id="python-environment-setup">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">1.7.1. </span>1. Python Environment Setup</a><a class="headerlink" href="#python-environment-setup" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">1.7.1. </span>Python Environment Setup</a><a class="headerlink" href="#python-environment-setup" title="Permalink to this heading">¶</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create and activate a virtual environment</span>
 python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>llm-book-env
 <span class="nb">source</span><span class="w"> </span>llm-book-env/bin/activate<span class="w">  </span><span class="c1"># On Windows, use: llm-book-env\Scripts\activate</span>
@@ -318,7 +321,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </s
 </div>
 </section>
 <section id="api-keys-configuration">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">1.7.2. </span>2. API Keys Configuration</a><a class="headerlink" href="#api-keys-configuration" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">1.7.2. </span>API Keys Configuration</a><a class="headerlink" href="#api-keys-configuration" title="Permalink to this heading">¶</a></h3>
 <ol class="arabic">
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file in the root directory of the project.</p></li>
 <li><p>Add your API keys and other sensitive information to the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file. For example:</p>
@@ -333,7 +336,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </s
 </div>
 </section>
 <section id="code-repository">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">1.7.3. </span>3. Code Repository</a><a class="headerlink" href="#code-repository" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">1.7.3. </span>Code Repository</a><a class="headerlink" href="#code-repository" title="Permalink to this heading">¶</a></h3>
 <p>Clone the book’s companion repository:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/souzatharsis/tamingllms.git
 <span class="nb">cd</span><span class="w"> </span>tamingllms
@@ -349,6 +352,12 @@ pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </s
 </ul>
 <p>Now that your environment is set up, let’s begin our exploration of LLM challenges.</p>
 </section>
+</section>
+<section id="about-the-author-s">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink"><span class="section-number">1.8. </span>About the Author(s)</a><a class="headerlink" href="#about-the-author-s" title="Permalink to this heading">¶</a></h2>
+<p>Dr. Tharsis Souza is a computer scientist and product leader specializing in AI-based product development. He is a Lecturer at Columbia University’s Master of Science program in Applied Analytics, Head of Product, Equities at Citadel, and former Senior VP at Two Sigma Investments.</p>
+<p>With over 15 years of experience delivering technology products across startups and Fortune 500 companies globally, Dr. Souza is also an author of numerous scholarly publications and is a frequent speaker at academic and business conferences. Grounded on academic background and drawing from practical experience building and scaling up products powered by language models at early-stage startups, major institutions as well as advising non-profit organizations, and contributing to open source projects, he brings a unique perspective on bridging the gap between LLMs promised potential and their practical limitations using open source tools to enable the next generation of AI-powered products.</p>
+<p>Dr. Tharsis holds a Ph.D. in Computer Science from UCL, University of London following an M.Phil. and <a class="reference external" href="http://M.Sc">M.Sc</a>. in Computer Science and a <a class="reference external" href="http://B.Sc">B.Sc</a>. in Computer Engineering.</p>
 </section>
 </section>
 
