@@ -1,10 +1,10 @@
 ---
-title: "Taming Large Language Models: A Practical Guide to LLM Pitfalls with Python Examples"
+title: "Taming Large Language Models with Open Source Software: A Practical Guide to LLM Pitfalls with Python Examples"
 author: "Tharsis T. P. Souza"
 date: "2024-11-22"
 ---
 
-# Taming Large Language Models 
+# Taming Large Language Models with Open Source Software
 *A Practical Guide to LLM Pitfalls with Python Examples*
 
 ## Chapter 1: Introduction

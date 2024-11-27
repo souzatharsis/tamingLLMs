@@ -39,7 +39,7 @@
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
   <link rel="next" title="2. Output Size Limitations" href="../notebooks/output_size_limit.html" />
-  <link rel="prev" title="Taming Large Language Models" href="toc.html" /> 
+  <link rel="prev" title="Taming Large Language Models with Open Source Software" href="toc.html" /> 
   </head>
 
   <body>
@@ -104,7 +104,7 @@
   
     <div class="sidebar-group">
       <p class="caption">
-        <span class="caption-text"><a href="toc.html#taming-large-language-models">taming large language models</a></span>
+        <span class="caption-text"><a href="toc.html#taming-large-language-models-with-open-source-software">taming large language models with open source software</a></span>
       </p>
       <ul class="current">
         
@@ -183,7 +183,7 @@
   <ul class="page-nav">
   <li class="prev">
     <a href="toc.html"
-       title="previous chapter">← Taming Large Language Models</a>
+       title="previous chapter">← Taming Large Language Models with Open Source Software</a>
   </li>
   <li class="next">
     <a href="../notebooks/output_size_limit.html"
@@ -228,8 +228,8 @@
 <section id="core-challenges-we-ll-address">
 <h2><a class="toc-backref" href="#id2" role="doc-backlink"><span class="section-number">1.1. </span>Core Challenges We’ll Address</a><a class="headerlink" href="#core-challenges-we-ll-address" title="Permalink to this heading">¶</a></h2>
 <p>In recent years, Large Language Models (LLMs) have emerged as a transformative force in technology, promising to revolutionize how we build products and interact with computers. From ChatGPT to GitHub Copilot, Claude Artifacts, <a class="reference external" href="http://cursor.com">cursor.com</a>, replit, and others, these systems have captured the public imagination and sparked a gold rush of AI-powered applications. However, beneath the surface of this technological revolution lies a complex landscape of challenges that practitioners must navigate.</p>
-<p>As we’ll explore in this book, the engineering effort required to manage these challenges - from handling non-deterministic outputs to preventing hallucinations - cannot be overstated. While the potential of LLM technology remains compelling, understanding and addressing the hidden costs and complexities of building reliable LLM-powered systems will enable us to fully harness their transformative impact.</p>
-<p>While the capabilities of LLMs are indeed remarkable, the prevailing narrative often glosses over fundamental problems that engineers, product managers, and organizations face when building real-world applications. This book aims to bridge that gap, offering a practical, clear-eyed examination of the pitfalls and challenges in working with LLMs.</p>
+<p>As we’ll explore in this book, the engineering effort required to manage these challenges - from handling non-deterministic outputs to preventing hallucinations - cannot be overstated. While the potential of LLM technology remains compelling, understanding and addressing the hidden costs and complexities of building reliable LLM-powered systems will enable us to fully harness their transformative impact. Fortunately, a growing ecosystem of open source solutions and best practices have emerged to help tackle these limitations. Ranging from model families such as Llama and Mistral, to frameworks such as Ollama and LangChain, packages such as outlines and promptfoo, formats such as llamafile and /llms.txt and hubs like HuggingFace, practitioners will be equipped with a set of battle-tested tools and solutions for overcoming LLM limitations to develop, test and launch robust LLM-based applications.</p>
+<p>While the capabilities of LLMs are indeed remarkable, the prevailing narrative often glosses over fundamental problems that engineers, product managers, and organizations face when building real-world applications. This book aims to bridge that gap, offering a practical, clear-eyed examination of the pitfalls and challenges in working with LLMs while providing a set of open source solutions to overcome them.</p>
 <p>Throughout this book, we’ll tackle the following (non-exhaustive) list of critical challenges:</p>
 <ol class="arabic simple">
 <li><p><strong>Non-deterministic Behavior</strong>: Unlike traditional software systems, LLMs can produce different outputs for identical inputs, making testing and reliability assurance particularly challenging.</p></li>
@@ -287,10 +287,10 @@
 </section>
 <section id="outcomes">
 <h2><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">1.5. </span>Outcomes</a><a class="headerlink" href="#outcomes" title="Permalink to this heading">¶</a></h2>
-<p>After reading this book, the reader will be able to:</p>
+<p>After reading this book, the reader will understand critical LLM limitations and their implications and have practical experience on recommended open source tools and frameworks to help navigate common LLM pitfalls. The reader will be able to:</p>
 <ul class="simple">
-<li><p>Build reliable LLM-powered applications</p></li>
 <li><p>Implement effective strategies for managing LLMs limitations</p></li>
+<li><p>Build reliable LLM-powered applications</p></li>
 <li><p>Create robust testing frameworks for LLM-based systems</p></li>
 <li><p>Deploy proper LLM safeguards</p></li>
 <li><p>Make realistic effort estimations for LLM-based projects</p></li>
@@ -302,6 +302,8 @@
 <p>To make the most of this book, you should have:</p>
 <ul class="simple">
 <li><p>Basic Python programming experience</p></li>
+<li><p>Basic knowledge of LLMs and their capabilities</p></li>
+<li><p>Introductory experience with LangChain (e.g. Chat Models and Prompt Templates)</p></li>
 <li><p>Access to and basic knowledge of LLM APIs (OpenAI, Anthropic, or similar)</p></li>
 <li><p>A desire to build reliable, production-grade LLM-powered products</p></li>
 </ul>
@@ -386,7 +388,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </s
             <div class="inner"><ul class="page-nav">
   <li class="prev">
     <a href="toc.html"
-       title="previous chapter">← Taming Large Language Models</a>
+       title="previous chapter">← Taming Large Language Models with Open Source Software</a>
   </li>
   <li class="next">
     <a href="../notebooks/output_size_limit.html"
