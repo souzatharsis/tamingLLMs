@@ -69,11 +69,14 @@ The current discourse around LLMs tends toward extremes—either uncritical enth
 
 This book is intended for Software Developers taking their first steps with Large Language Models. It provides critical insights into the practical challenges of LLM implementation, along with guidance on leveraging open source tools and frameworks to avoid common pitfalls that could derail projects. The goal is to help developers understand and address these challenges early, before they become costly problems too late in the software development lifecycle. 
 
-A broader audience for this book includes:
+This book is designed for: 
 
-- Technical Product Managers leading AI initiatives
+- Software Engineers building LLM-powered applications 
+- Technical Product Managers leading GenAI initiatives 
 - Technical Leaders making architectural decisions
-- Anyone seeking to understand the practical challenges of working with LLMs
+- Open Source advocates and/or developers building LLM Applications 
+- Anyone seeking to understand the practical challenges of working with LLMs 
+
 
 Typical job roles:
 
