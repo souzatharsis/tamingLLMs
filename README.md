@@ -4,7 +4,7 @@
 https://www.souzatharsis.com/tamingLLMs
 
 # [Taming Large Language Models with Open Source Software](https://www.souzatharsis.com/tamingLLMs)
-*A Practical Guide to LLM Pitfalls with Python Examples*
+### *A Practical Guide to LLM Pitfalls with Python Examples*
 
 Abstract: *This book provides an introduction to open source solutions to overcome key limitations of Large Language Models (LLMs) for building robust AI-powered products. It offers a critical perspective on implementation challenges, backed by practical and reproducible Python examples. While many resources cover the capabilities of LLMs, this book specifically addresses the hidden complexities and pitfalls that engineers and technical product managers face when building LLM-powered applications while offering a comprehensive guide on how to leverage battle-tested open source tools and solutions.*
 
