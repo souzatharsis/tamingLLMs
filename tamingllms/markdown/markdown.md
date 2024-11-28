@@ -55,38 +55,39 @@ This is just a simple starter to get you started.
 You can learn a lot more at [jupyterbook.org](https://jupyterbook.org).
 
 
+Hands-On Large Language Models is poised to become the main introductory reference to LLMs. The book does an excellent job of covering what LLMs are, key components, how they work, their architectures, their capabilities and key use cases. 
 
-I am Tharsis Souza, a computer scientist holding a Doctorate in Computer Science (Ph.D.) from University College London (UCL), University of London, specializing in Artificial Intelligence (AI)-driven systems and data-driven products. My academic background encompasses a Ph.D., Master of Philosophy (M.Phil.), Master of Science (M.Sc.) in Computer Science, and a Bachelor of Science (B.Sc.) in Computer Engineering. I have authored or co-authored more than 12 scholarly publications, garnering approximately 500 citations in the fields of Natural Language Processing (NLP), Financial Computing, and Applied Computer Science. Additionally, I am frequently invited as a speaker at academic and business conferences. 
-Professionally, I possess experience in developing Technology and AI-powered products at a variety of companies from start-ups to Fortune 500’s in the U.S., Brazil, and the U.K. I have built AI-based products at both a Silicon Valley startup and in Wall Street. Recently, I held the position of Senior VP at Two Sigma Investments, where I played a pivotal role in fostering the adoption of Large Language Models (LLMs) across the organization. Currently, I serve as a Lecturer at Columbia University's Master of Science (MSc.) program in Applied Analytics, where I teach the course "Solving Real-World Problems with Analytics". I also provide advisory services to Code.org on the subject of GenAI and mentor underrepresented groups in the "LatinX in AI" program. Moreover, I am an advocate for Open Source Software (OSS) (e.g. see www.podcastfy.ai, an open source alternative to Google's NotebookLM, powered by GenAI). 
-Most recently, I have accepted the position of Head of Product, Equities at Citadel. 
-
-
-
- 
-Unique characteristics or experiences: 
-1. Balanced Perspective: 
-○ Bridge between academic research and industry implementation 
-○ Experience scaling systems from proof-of-concept to production 
-○ Understanding of technical, product and business considerations 
-2. Teaching and Communication: 
-○ Active faculty member teaching applied analytics at the Graduate level ○ Regular conference speaker on AI and technology 
-○ Experience mentoring diverse groups of students and professionals 3. Cross-Industry Experience:
-○ Built systems across different scales (startup to enterprise) 
-○ Worked in multiple countries and technology ecosystems 
-○ Direct experience with the challenges this book addresses 
-This combination of academic depth, practical implementation experience, and teaching ability uniquely positions me to guide readers through the complexities of building reliable LLM-powered systems. My background enables me to present both theoretical foundations and practical solutions in an accessible, actionable way. 
+AI Engineering is an exceptionally written exceedignly detailed book that covers more practical aspects of building and deploying LLMs-based applications. It covers a wide range of topics from model evaluation to deployment, observability to cost optimization.
+- Little to no code making it less practical for beginners
 
 
-This book focuses on the practical challenges and solutions in implementing Large Language Models (LLMs)-powered products. While many resources cover the capabilities of LLMs, this book specifically addresses the hidden complexities and pitfalls that engineers and technical product managers face when building reliable LLM-powered applications. 
-In recent years, Large Language Models (LLMs) have emerged as a transformative force in technology, promising to revolutionize how we build products and interact with computers. From ChatGPT to GitHub Copilot, Claude Artifacts, cursor.com, replit, and others, these systems have captured the public imagination and sparked a gold rush of AI-powered applications. However, beneath the surface of this technological revolution lies a complex landscape of challenges that practitioners must navigate. 
-As we’ll explore in this book, the engineering effort required to manage these challenges - from handling non-deterministic outputs to preventing hallucinations - cannot be overstated. While the potential of LLM technology remains compelling, understanding and addressing the hidden costs and complexities of building reliable LLM-powered systems will enable us to fully harness their transformative impact. 
+However, the books still presents a major gap covering the practical limitations of LLMs.
 
-Large Language Models (LLMs) promise to revolutionize how we build software, but implementing them reliably remains challenging. In "Taming Language Models with Open Source," Dr. Tharsis Souza provides a practical guide to overcoming LLM limitations using open source solutions.
+| LLM Limitation | Problem Statement | Hands-On LLMs |
+|----------------|-------------|---------------|
+| **Structural (un)Reliability** | LLMs struggle to maintain consistent output formats, complicating their integration into larger systems and making error handling more complex. | Little to no coverage |
+| **Size and Length Constraints** | LLMs have strict token limits for both inputs and outputs, requiring careful chunking and management strategies to handle long-form content effectively. | No coverage for output token limits. Limited coverage for input token limits implicitly coverage as a use case of RAGs in Chapter 8 |
+| **Testing Complexity** | Traditional software testing methodologies break down when dealing with non-deterministic and generative systems, requiring new approaches. | Very limited coverage. While the topic is pertinent to LLMs in general, in the book it is briefly mentioned in the chapter about "Fine-Tuning Generation Models" |
+| **Hallucination Management** | These models can generate plausible-sounding but entirely fabricated information, creating significant risks for production applications. | Very limited coverage. In Chapter 8, managing hallucinations is mentioned as a potential use case for RAGs, but no further details are provided. |
+| **Safety and Security** | LLMs can generate harmful, biased, or inappropriate content, requiring robust safeguards and monitoring systems to ensure safe deployment. | No coverage |
+| **Cost Optimization** | The computational and financial costs of operating LLM-based systems can quickly become prohibitive without careful management, observability and optimization. | No coverage |
+| **Vendor Lock-in** | Cloud-based LLM providers can create significant dependencies and lock-in through their proprietary APIs and infrastructure, making it difficult to switch providers or self-host solutions. | Limited coverage. The book has a bias towards proprietary cloud-based solutions and does not cover self-hosting or alternative providers. |
 
 
 
-Dr. Tharsis Souza is a computer scientist and product leader specializing in AI-based product development. He is a Lecturer at Columbia University's Master of Science program in Applied Analytics, Head of Product, Equities at Citadel, and former Senior VP at Two Sigma Investments. 
+This Book: 
+- Centred on practical challenges and pitfalls in LLM-based applications 
+- Emphasis on reliability and robustness 
+- Offers balanced examination of both capabilities and limitations, helping readers make informed decisions about LLM integration. 
+Competition: 
+- Broader coverage of LLM fundamentals and theory 
+- More focus on technical implementation 
+- Heavy emphasis on tutorials and frameworks 
+- Coverage of model architectures 
 
-With over 15 years of experience delivering technology products across startups and Fortune 500 companies globally, Dr. Souza is also an author of numerous scholarly publications and is a frequent speaker at academic and business conferences. Grounded on academic background and drawing from practical experience building and scaling up language models-based products at major institutions, early-stage startups as well as advising non-profit organizations, and contributing to open source projects, he brings a unique perspective on bridging the gap between LLMs potential and their practical limitations using open source tools to enable the next generation of AI-powered products.
 
-Dr. Tharsis holds a Ph.D. in Computer Science from UCL, University of London following an M.Phil. and M.Sc. in Computer Science and a B.Sc. in Computer Engineering.
+
+
+Evaluating Generative Models inside Fine-Tuning Generation Models
+
+One limitation of Transformer language models is that they are limited in context sizes inside Semantic Search and Retrieval-Augmented Generation
