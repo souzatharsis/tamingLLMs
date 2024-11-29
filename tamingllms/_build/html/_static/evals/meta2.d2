@@ -1,0 +1,104 @@
+container: {
+  label: LLM Judge Pairwise Evaluation System
+
+  # Pool of LLM Judges
+  judges_pool: {
+    shape: cylinder
+    style.fill: "#E8F6F3"
+    style.stroke: "#48C9B0"
+    label: "Pool of LLM Judges"
+  }
+
+  # Pairwise Selection
+  pair_selector: {
+    shape: rectangle
+    style.fill: "#FCF3CF"
+    style.stroke: "#F4D03F"
+    label: "Pairwise\nSelector"
+  }
+
+  # LLM Response
+  llm: {
+    shape: rectangle
+    style.fill: "#E8F6F3"
+    style.stroke: "#48C9B0"
+
+    prompt: Prompt {
+      shape: document
+      style.fill: "#FFFFFF"
+    }
+
+    response: LLM Response {
+      shape: document
+      style.fill: "#FFFFFF"
+    }
+
+    prompt -> response
+  }
+
+  # Single comparison pair
+  comparison_pair: {
+    shape: rectangle
+    style.fill: "#EBF5FB"
+    style.stroke: "#3498DB"
+
+    judge1: Judge A {
+      shape: rectangle
+      style.fill: "#EBF5FB"
+    }
+
+    vs: "vs" {
+      style.font-size: 14
+    }
+
+    judge2: Judge B {
+      shape: rectangle
+      style.fill: "#EBF5FB"
+    }
+  }
+
+  # Human Evaluation
+  human_eval: {
+    shape: rectangle
+    style.fill: "#F4ECF7"
+    style.stroke: "#BB8FCE"
+    label: "Human\nEvaluators"
+  }
+
+  # Ranking System
+  ranking: {
+    shape: rectangle
+    style.fill: "#D5F5E3"
+    style.stroke: "#2ECC71"
+    label: "Ranking\nAlgorithm"
+  }
+
+  # Leaderboard
+  leaderboard: {
+    shape: page
+    style.fill: "#EAECEE"
+    style.stroke: "#2C3E50"
+    label: |md
+      ```
+      LLM Judges Leaderboard
+      ---------------------
+      1. Judge C (0.95)
+      2. Judge A (0.92)
+      3. Judge B (0.89)
+         ...
+      N. Judge X (0.75)
+      ```
+    |
+  }
+
+  # Flow connections
+  judges_pool -> pair_selector: Draw Judges
+  pair_selector -> comparison_pair: Generate Pair
+  llm -> comparison_pair: Input for\nEvaluation
+
+  comparison_pair -> human_eval: Evaluate
+  human_eval -> ranking: Preferences
+  ranking -> leaderboard: Generate\nRankings
+}
+
+direction: down

@@ -1,0 +1,92 @@
+# Main container
+container: {
+  label: LLM Judge Evaluation System {
+    style.font-size: 20
+    style.font-color: "#2C3E50"
+  }
+
+  # Base LLM section
+  base_llm: Base LLM {
+    shape: rectangle
+    style.fill: "#E8F6F3"
+    style.stroke: "#48C9B0"
+    style.stroke-width: 2
+    label: "LLM-Judge"
+  }
+
+  # Evaluation components section
+  components: {
+    prompt: Evaluation Prompt {
+      shape: document
+      style.fill: "#E8F8F5"
+      style.stroke: "#76D7C4"
+      label: |md
+        ```
+        Task description
+        Scoring guidelines
+        Output format
+        ```
+      |
+    }
+
+    reference: Reference Data {
+      shape: cylinder
+      style.fill: "#F4ECF7"
+      style.stroke: "#BB8FCE"
+      label: "(Optional)\nGround Truth"
+    }
+  }
+
+  # Input section - LLM Apps
+  apps: {
+    app1: LLM App 1 {
+      shape: rectangle
+      style.fill: "#EBF5FB"
+      style.stroke: "#3498DB"
+    }
+
+    app2: LLM App 2 {
+      shape: rectangle
+      style.fill: "#EBF5FB"
+      style.stroke: "#3498DB"
+    }
+
+    dots: |md
+      ...
+    |
+
+    appN: LLM App N {
+      shape: rectangle
+      style.fill: "#EBF5FB"
+      style.stroke: "#3498DB"
+    }
+  }
+
+  # Output section
+  output: Evaluation Results {
+    shape: page
+    style.fill: "#EAFAF1"
+    style.stroke: "#2ECC71"
+    label: |md
+      ```
+      App Rankings
+      Detailed Scores
+      Analysis Report
+      ```
+    |
+  }
+
+  # Connections between components
+  base_llm -> output: Generate Evaluation
+
+  components.prompt -> base_llm: Prompt
+  components.reference -> base_llm: Compare Results {
+    style.stroke-dash: 5
+  }
+
+  apps.app1 -> base_llm: Submit for Review
+  apps.app2 -> base_llm
+  apps.appN -> base_llm
+}
+
+direction: right

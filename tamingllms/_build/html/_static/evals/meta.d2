@@ -1,0 +1,103 @@
+container: {
+  label: Meta Evaluation Flow
+
+  # Source components
+  llm_app: LLM Apps {
+    shape: rectangle
+    style.fill: "#E8F6F3"
+    style.stroke: "#48C9B0"
+  }
+
+  golden: Golden Dataset {
+    shape: cylinder
+    style.fill: "#FCF3CF"
+    style.stroke: "#F4D03F"
+  }
+
+  # Three levels of evaluation
+  human_level: {
+    humans: Humans {
+      shape: rectangle
+      style.fill: "#F4ECF7"
+      style.stroke: "#BB8FCE"
+    }
+
+    human_scores: Human\nScores {
+      shape: page
+      style.fill: "#F4ECF7"
+      style.stroke: "#BB8FCE"
+    }
+  }
+
+  eval_level: {
+    eval: Evaluator {
+      shape: rectangle
+      style.fill: "#EBF5FB"
+      style.stroke: "#3498DB"
+    }
+
+    eval_scores: Evaluator\nScores {
+      shape: page
+      style.fill: "#EBF5FB"
+      style.stroke: "#3498DB"
+    }
+  }
+
+  metric_level: {
+    metric: Metric-based\nEvaluator {
+      shape: rectangle
+      style.fill: "#FADBD8"
+      style.stroke: "#E74C3C"
+    }
+
+    metric_scores: Metric-based\nScores {
+      shape: page
+      style.fill: "#FADBD8"
+      style.stroke: "#E74C3C"
+    }
+  }
+
+  # Meta Evaluations
+  meta: Meta Evaluations {
+    shape: rectangle
+    style.stroke: "#2C3E50"
+    style.fill: "#EAECEE"
+
+    human_based: Human-based\nApproach {
+      shape: rectangle
+      style.fill: "#F4ECF7"
+      style.stroke: "#BB8FCE"
+      label: "Performance =\nCorr(Evaluator, Human)"
+    }
+
+    metric_based: Metric-based\nApproach {
+      shape: rectangle
+      style.fill: "#FADBD8"
+      style.stroke: "#E74C3C"
+      label: "Performance =\nCorr(Evaluator, Metric)"
+    }
+  }
+
+  # Connections from LLM App
+  llm_app -> human_level.humans: Output
+  llm_app -> eval_level.eval: Output
+  llm_app -> metric_level.metric: Output
+
+  # Golden Dataset connection
+  golden -> metric_level.metric: Input
+
+  # Score generation connections
+  human_level.humans -> human_level.human_scores
+  eval_level.eval -> eval_level.eval_scores
+  metric_level.metric -> metric_level.metric_scores
+
+  # Meta evaluation connections
+  human_level.human_scores -> meta.human_based
+  eval_level.eval_scores -> meta.human_based
+
+  eval_level.eval_scores -> meta.metric_based
+  metric_level.metric_scores -> meta.metric_based
+}
+
+# Layout direction
+direction: right
