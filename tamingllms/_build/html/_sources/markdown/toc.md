@@ -1,14 +1,14 @@
 ---
-title: "Taming Large Language Models with Open Source Software: A Practical Guide to LLM Pitfalls with Python Examples"
+title: "Taming LLMs: A Practical Guide to LLM Pitfalls with Open Source Software"
 author: "Tharsis T. P. Souza"
 date: "2024-11-22"
 ---
 
-# Taming Large Language Models with Open Source Software
-## *A Practical Guide to LLM Pitfalls with Python Examples*
+# Taming LLMs
+## *A Practical Guide to LLM Pitfalls with Open Source Software*
 
 
-Abstract: *This book provides an introduction to open source solutions to overcome key limitations of Large Language Models (LLMs) for building robust AI-powered products. It offers a critical perspective on implementation challenges, backed by practical and reproducible Python examples. While many resources cover the capabilities of LLMs, this book specifically addresses the hidden complexities and pitfalls that engineers and technical product managers face when building LLM-powered applications while offering a comprehensive guide on how to leverage battle-tested open source tools and solutions to overcome them.*
+Abstract: *The current discourse around Large Language Models (LLMs) tends to focus heavily on their capabilities while glossing over fundamental challenges. Conversely, this book takes a critical look at the key limitations and implementation pitfalls that engineers and technical product managers encounter when building LLM-powered applications. Through practical Python examples and proven open source solutions, it provides an introductory yet comprehensive guide for navigating these challenges. The focus is on concrete problems - from handling unstructured output to managing context windows - with reproducible code examples and battle-tested open source tools. By understanding these pitfalls upfront, readers will be better equipped to build products that harness the power of LLMs while sidestepping their inherent limitations.*
 
 
 ## Chapter 1: Introduction
