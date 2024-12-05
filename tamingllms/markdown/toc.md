@@ -71,7 +71,7 @@ Abstract: *The current discourse around Large Language Models (LLMs) tends to fo
 - 4.7 Conclusion
 - 4.8 References
 
-## Chapter 5: Challenges of Evaluating LLM-based Applications
+## Chapter 5: The Evals Gap
 - 5.1 Non-Deterministic Machines
   - 5.1.1 Temperature and Sampling
   - 5.1.2 The Temperature Spectrum
@@ -87,7 +87,7 @@ Abstract: *The current discourse around Large Language Models (LLMs) tends to fo
   - 5.4.5 Evaluators
     - 5.4.5.1 Model-Based Evaluation
     - 5.4.5.2 Human-Based Evaluation
-  - 5.4.6 Leaderboards
+  - 5.4.6 Benchmarks & Leaderboards
   - 5.4.7 Tools
 - 5.5 References
 
