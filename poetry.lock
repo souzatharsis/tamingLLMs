@@ -6757,6 +6757,22 @@ test = ["pre-commit", "pytest (>=7.0)", "pytest-timeout"]
 typing = ["mypy (>=1.6,<2.0)", "traitlets (>=5.11.1)"]
 
 [[package]]
+name = "text-generation"
+version = "0.7.0"
+description = "Hugging Face Text Generation Python Client"
+optional = false
+python-versions = "<4.0,>=3.7"
+files = [
+    {file = "text_generation-0.7.0-py3-none-any.whl", hash = "sha256:02ab337a0ee0e7c70e04a607b311c261caae74bde46a7d837c6fdd150108f4d8"},
+    {file = "text_generation-0.7.0.tar.gz", hash = "sha256:689200cd1f0d4141562af2515393c2c21cdbd9fac21c8398bf3043cdcc14184e"},
+]
+
+[package.dependencies]
+aiohttp = ">=3.8,<4.0"
+huggingface-hub = ">=0.12,<1.0"
+pydantic = ">2,<3"
+
+[[package]]
 name = "thinc"
 version = "8.2.5"
 description = "A refreshing functional take on deep learning, compatible with your favorite libraries"
@@ -7737,4 +7753,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "62d97d0172cdc12b587696a8d6c300147b52c8bb8e1c8c7d814e3cf9ea8832f6"
+content-hash = "70baadbca4878735eb3a7dbf847dc5ef67ecdd713b63a30567f90faef80c2f47"
