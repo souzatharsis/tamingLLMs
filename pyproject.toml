@@ -38,6 +38,7 @@ lighteval = {extras = ["accelerate"], version = "^0.6.2"}
 outlines = "^0.1.7"
 datasets = "^3.1.0"
 text-generation = "^0.7.0"
+ollama = "^0.4.3"
 
 
 [build-system]
