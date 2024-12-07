@@ -228,7 +228,7 @@
 <ul>
 <li><p><a class="reference internal" href="#comparing-solutions" id="id52">Comparing Solutions</a></p></li>
 <li><p><a class="reference internal" href="#best-practices" id="id53">Best Practices</a></p></li>
-<li><p><a class="reference internal" href="#ongoing-debate-on-llms-structured-output" id="id54">Ongoing Debate on LLMs Structured Output</a></p></li>
+<li><p><a class="reference internal" href="#research-and-ongoing-debate" id="id54">Research and Ongoing Debate</a></p></li>
 </ul>
 </li>
 <li><p><a class="reference internal" href="#conclusion" id="id55">Conclusion</a></p></li>
@@ -356,26 +356,20 @@ Person 2: Absolutely, transparency and compliance with regulations are key in th
 <section id="user-needs">
 <h2><a class="toc-backref" href="#id41" role="doc-backlink"><span class="section-number">3.3. </span>User Needs</a><a class="headerlink" href="#user-needs" title="Permalink to this heading">¶</a></h2>
 <p>What user needs drive the demand for LLM output constraints when building LLM-based applications? In a recent work by Google Research <span id="id1">[<a class="reference internal" href="#id36" title="Michael Xieyang Liu, Frederick Liu, Alexander J. Fiannaca, Terry Koo, Lucas Dixon, Michael Terry, and Carrie J. Cai. &quot;we need structured output&quot;: towards user-centered constraints on large language model output. In Extended Abstracts of the CHI Conference on Human Factors in Computing Systems, CHI EA '24. New York, NY, USA, 2024. Association for Computing Machinery. URL: https://doi.org/10.1145/3613905.3650756, doi:10.1145/3613905.3650756.">Liu <em>et al.</em>, 2024</a>]</span>, the authors explore the user need for constraints on the output of large language models, drawing on a survey of 51 industry professionals who use LLMs in their work. These needs can be broadly categorized as follows:</p>
-<ol class="arabic simple">
-<li><p>Improving Developer Efficiency and Workflow:</p></li>
-</ol>
+<p><strong>1. Improving Developer Efficiency and Workflow</strong></p>
 <ul class="simple">
 <li><p><strong>Reducing Trial and Error in Prompt Engineering</strong>: Developers find the process of crafting prompts to elicit desired output formats to be time-consuming, often involving extensive testing and iteration. LLM output constraints could make this process more efficient and predictable.</p></li>
 <li><p><strong>Minimizing Post-processing of LLM Outputs</strong>: Developers frequently have to write complex code to wrangle and process LLM outputs that don’t conform to expected formats. LLM structured output would simplify this, reducing the need for ad-hoc post-processing code.</p></li>
 <li><p><strong>Streamlining Integration with Downstream Processes</strong>: LLMs are often used within larger pipelines where their output serves as input for subsequent modules. Output constraints are crucial to ensure compatibility and prevent errors.</p></li>
 <li><p><strong>Enhancing the Quality of Synthetic Datasets</strong>: LLMs are increasingly used to generate synthetic data for AI training. Constraints can ensure data integrity and prevent the inclusion of unwanted elements that could negatively impact training outcomes.</p></li>
 </ul>
-<ol class="arabic simple" start="2">
-<li><p>Meeting UI and Product Requirements:</p></li>
-</ol>
+<p><strong>2. Meeting UI and Product Requirements</strong></p>
 <ul class="simple">
 <li><p><strong>Adhering to UI Size Limitations</strong>: LLM-generated content often needs to fit into specific UI elements with size restrictions, especially on mobile devices. Output length constraints prevent content overflow and ensure proper display within the UI.</p></li>
 <li><p><strong>Ensuring Output Consistency</strong>: Consistent output length and format are crucial for user experience and UI clarity. Constraints help maintain this consistency, avoiding overwhelming variability in generated text.</p></li>
 <li><p><strong>Complying with Platform Character Limits</strong>: Certain platforms, such as Twitter or YouTube Shorts, impose character limits on content. Length constraints allow LLMs to comply with these restrictions, ensuring content can be published successfully.</p></li>
 </ul>
-<ol class="arabic simple" start="3">
-<li><p>Enhancing User Trust and Experience:</p></li>
-</ol>
+<p><strong>3. Enhancing User Trust and Experience</strong></p>
 <ul class="simple">
 <li><p><strong>Mitigating Hallucinations</strong>: Users expect LLM-powered tools to be reliable and truthful. Constraining LLM outputs to a set of possible outcomes can help mitigate hallucinations, ensuring the output is valid.</p></li>
 <li><p><strong>Driving User Adoption</strong>: Users are more likely to engage with LLM-powered tools that provide reliable and consistent experiences. By ensuring output accuracy, consistency, and safety through constraints, developers can enhance user satisfaction and drive adoption.</p></li>
@@ -842,18 +836,56 @@ Extracted places: []
 </div>
 </div>
 </div>
-<p>The extracted entities and places (<code class="docutils literal notranslate"><span class="pre">none</span></code>) were quite different from those previously extracted using Outlines and Langchain, as expected since this depends mostly on the underlying model which is quite small. We do observe though that we have successfully obtained results in JSON format as specified, even with such a small underlying model (0.5B parameters).</p>
+<p>The extracted entities and places were quite different from those previously extracted using Outlines and Langchain, as expected since this depends mostly on the underlying model which is quite small. We do observe though that we have successfully obtained results in JSON format as specified, even with such a small underlying model (0.5B parameters).</p>
 </section>
 </section>
 <section id="discussion">
 <h2><a class="toc-backref" href="#id51" role="doc-backlink"><span class="section-number">3.5. </span>Discussion</a><a class="headerlink" href="#discussion" title="Permalink to this heading">¶</a></h2>
 <section id="comparing-solutions">
 <h3><a class="toc-backref" href="#id52" role="doc-backlink"><span class="section-number">3.5.1. </span>Comparing Solutions</a><a class="headerlink" href="#comparing-solutions" title="Permalink to this heading">¶</a></h3>
-<ul class="simple">
-<li><p><strong>Simplicity vs. Control</strong>: One-shot prompts are simple but offer limited control.  LangChain, Outlines and Ollama provide greater control but will add dependencies and might have a steeper learning curve though quite straight-forward.</p></li>
-<li><p><strong>Native LLM Support</strong>:  <code class="docutils literal notranslate"><span class="pre">with_structured_output</span></code> in LangChain relies on the underlying LLM having built-in support for structured output APIs, i.e. LangChain is a wrapper around the underlying LLM’s structured output API. Outlines and Ollama, on the other hand, are more broadly applicable enabling a wider range of Open Source models. Ollama being a leader in serving Open Source models locally while Outlines enabling Open Source models available via the transformers, llama.cpp, exllama2, mlx-lm and vllm.</p></li>
-<li><p><strong>Flexibility</strong>:  Outlines  offers the most flexibility for defining custom output structures while LangChain is limited by the underlying LLM’s support for structured output APIs and Ollama is still limited to JSON format with further formats to come.</p></li>
-</ul>
+<p>The choice of framework for structured LLM output depends heavily on specific constraints, requirements and use cases. LangChain is the most used LLM framework today with a large developer community base however its structured output support depends on the underlying LLM provider support. Ollama enables straightforward local deployment and experimentation democratizing access to LLMs while fostering privacy and control, however today it only offers JSON format with further formats to come. Outlines emerges as a solution with great flexibility and control over output structure while providing support for a wide range of LLMs. <a class="reference internal" href="#structured-output-frameworks"><span class="std std-numref">Table 3.1</span></a> provides a summary comparison of the different frameworks.</p>
+<table class="docutils align-default" id="structured-output-frameworks">
+<caption><span class="caption-number">Table 3.1 </span><span class="caption-text">Structured Output Frameworks Comparison</span><a class="headerlink" href="#structured-output-frameworks" title="Permalink to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>LangChain</p></th>
+<th class="head"><p>Outlines</p></th>
+<th class="head"><p>Ollama</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Implementation Approach</strong></p></td>
+<td><p>Wrapper around LLM’s native structured output APIs using with_structured_output method</p></td>
+<td><p>Adjusts probability distribution of model’s output logits to guide generation</p></td>
+<td><p>Uses llama.cpp GBNF grammars to constrain output format</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Model Support</strong></p></td>
+<td><p>Limited to LLMs with built-in structured output APIs</p></td>
+<td><p>Broad support for open-source models via transformers, llama.cpp, exllama2, mlx-lm and vllm</p></td>
+<td><p>Focused on running open-source models locally</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Output Format Support</strong></p></td>
+<td><p>- TypedDict<br>- JSON Schema<br>- Pydantic class</p></td>
+<td><p>- Multiple choice generation<br>- Regex-based structure<br>- Pydantic model<br>- JSON Schema</p></td>
+<td><p>- Currently JSON only<br>- Additional formats planned</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Key Advantages</strong></p></td>
+<td><p>- Simple integration with supported LLMs<br>- Good for production environments using major LLM providers</p></td>
+<td><p>- Most flexible output structure options<br>- Fine-grained control over generation<br>- Strong open-source model support</p></td>
+<td><p>- Excellent for local deployment<br>- Simple setup and usage<br>- Built-in model serving</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Use Case Focus</strong></p></td>
+<td><p>Enterprise applications using commercial LLMs</p></td>
+<td><p>Applications requiring precise output control or using open-source models</p></td>
+<td><p>Local deployment and/or experimentation</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Complexity Level</strong></p></td>
+<td><p>Medium - requires understanding of LangChain abstractions</p></td>
+<td><p>Low</p></td>
+<td><p>Low</p></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="best-practices">
 <h3><a class="toc-backref" href="#id53" role="doc-backlink"><span class="section-number">3.5.2. </span>Best Practices</a><a class="headerlink" href="#best-practices" title="Permalink to this heading">¶</a></h3>
@@ -864,8 +896,8 @@ Extracted places: []
 <li><p><strong>Integration</strong>: If you are connecting the model to tools, functions, data, etc. in your system, then you are highly encouraged to use a typed structured output (e.g. Pydantic models) to ensure the model’s output can be processed correctly by downstream systems.</p></li>
 </ul>
 </section>
-<section id="ongoing-debate-on-llms-structured-output">
-<h3><a class="toc-backref" href="#id54" role="doc-backlink"><span class="section-number">3.5.3. </span>Ongoing Debate on LLMs Structured Output</a><a class="headerlink" href="#ongoing-debate-on-llms-structured-output" title="Permalink to this heading">¶</a></h3>
+<section id="research-and-ongoing-debate">
+<h3><a class="toc-backref" href="#id54" role="doc-backlink"><span class="section-number">3.5.3. </span>Research and Ongoing Debate</a><a class="headerlink" href="#research-and-ongoing-debate" title="Permalink to this heading">¶</a></h3>
 <p>The use of structured output for Large Language Models (LLMs) is a developing area. While the ability to constrain LLM outputs offer clear benefits in parsing, robustness, and integration, there is growing debate on whether it also potentially comes at the cost of performance as well as reasoning abilities. Research in this area should be taken with a grain of salt since findings are mixed and often depend on the specific task and model family at hand furthermore model families are not always comparable and are getting updated by the day! Nonetheless, early findings provide some interesting insights as to why there is no one-size-fits-all solution when it comes to LLMs structured output.</p>
 <p>There is some evidence indicating that LLMs may have bias in their handling of different output formats <span id="id6">[<a class="reference internal" href="#id37" title="Do Xuan Long, Hai Nguyen Ngoc, Tiviatis Sim, Hieu Dao, Shafiq Joty, Kenji Kawaguchi, Nancy F Chen, and Min-Yen Kan. Llms are biased towards output formats! systematically evaluating and mitigating output format bias of llms. arXiv preprint arXiv:2408.08656, 2024.">Long <em>et al.</em>, 2024</a>]</span>. The study examined common output structures like multiple-choice answers, wrapped text, lists, and key-value mappings. The authors analyzed key LLM model families, namely Gemma, Mistral, and ChatGPT, uncovering bias across multiple tasks and formats.  The researchers attributed these biases to the models’ underlying token distributions for different formats. An example of this format bias emerged in the comparison between JSON and YAML outputs. While models like Mistral and Gemma excelled at generating JSON structures, they performed notably worse with YAML. Their YAML outputs often contained extraneous information that degrades output quality. This disparity likely stems from JSON’s prevalence in training data, highlighting how a format’s popularity directly influences model performance. While the studied models can be probably considered outdated by now since models are getting updated on a rapidly fashion, it is important to remark that addressing format bias is critical for advancing LLMs and ensuring their reliable application in real-world scenarios.</p>
 <p>Recent research “Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models” <span id="id7">[<a class="reference internal" href="#id14" title="Zhi Rui Tam, Cheng-Kuang Wu, Yi-Lin Tsai, Chieh-Yen Lin, Hung-yi Lee, and Yun-Nung Chen. Let me speak freely? a study on the impact of format restrictions on performance of large language models. 2024. URL: https://arxiv.org/abs/2408.02442, arXiv:2408.02442.">Tam <em>et al.</em>, 2024</a>]</span> suggests that imposing format restrictions on LLMs might impact their performance, particularly in reasoning-intensive tasks. Further evidence <span id="id8">[<a class="reference internal" href="#id16" title="Aider. Code in json: structured output for llms. https://aider.chat/2024/08/14/code-in-json.html, 2024. Accessed: 2024.">Aider, 2024</a>]</span> suggests LLMs may produce lower quality code if they’re asked to return it as part of a structured JSON response, in particular:</p>
