@@ -1,0 +1,43 @@
+stateDiagram-v2
+    %% Main FSM structure
+    [*] --> Start
+    Start --> First: [YyNnAa]
+    First --> Yes: e/o
+    First --> No: e/o
+    First --> Never: e
+    First --> Always: l
+    Yes --> End: s
+    No --> End: o
+    Never --> End: r
+    Always --> End: s
+    End --> [*]
+
+    %% Initial State masking table
+    note left of Start
+        Initial State Masking:
+        Token  │ Prob │ Mask │ Final
+        ────────────────────────────
+        Y     │ 0.15 │  1   │ 0.25
+        y     │ 0.13 │  1   │ 0.22
+        N     │ 0.14 │  1   │ 0.23
+        n     │ 0.12 │  1   │ 0.20
+        A     │ 0.06 │  1   │ 0.10
+        others│ 0.40 │  0   │ 0.00
+    end note
+
+    %% First State masking example
+    note right of First
+        After 'Y' State Masking:
+        Token  │ Prob │ Mask │ Final
+        ────────────────────────────
+        e     │ 0.30 │  1   │ 1.00
+        s     │ 0.15 │  0   │ 0.00
+        a     │ 0.10 │  0   │ 0.00
+        others│ 0.45 │  0   │ 0.00
+    end note
+
+    %% Final State note
+    note left of End
+        Final State
+        Only accepting state
+    end note
