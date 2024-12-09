@@ -1855,35 +1855,58 @@ https://smith.langchain.com/o/9e1cc3cb-9d6a-4356-ab34-138e0abe8be4/datasets/8741
     <span class="s1">&#39;execution_time&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">]</span>
 <span class="p">})</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 
+<span class="c1"># Sort by execution time</span>
+<span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">sort_values</span><span class="p">((</span><span class="s1">&#39;execution_time&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">))</span>
+
 <span class="c1"># Create a figure with two subplots side by side</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
-<span class="c1"># Plot for Google BLEU scores</span>
+<span class="c1"># Define colors for each model</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#2ecc71&#39;</span><span class="p">,</span> <span class="s1">&#39;#3498db&#39;</span><span class="p">,</span> <span class="s1">&#39;#e74c3c&#39;</span><span class="p">]</span>
 <span class="n">models</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">index</span>
+
+<span class="c1"># Plot for Google BLEU scores</span>
 <span class="n">bleu_means</span> <span class="o">=</span> <span class="n">stats</span><span class="p">[(</span><span class="s1">&#39;feedback.google_bleu&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">)]</span>
 <span class="n">bleu_stds</span> <span class="o">=</span> <span class="n">stats</span><span class="p">[(</span><span class="s1">&#39;feedback.google_bleu&#39;</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">)]</span>
 
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">models</span><span class="p">))</span>
-<span class="n">width</span> <span class="o">=</span> <span class="mf">0.35</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">models</span><span class="p">):</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">bleu_means</span><span class="p">[</span><span class="n">model</span><span class="p">],</span> <span class="n">yerr</span><span class="o">=</span><span class="n">bleu_stds</span><span class="p">[</span><span class="n">model</span><span class="p">],</span> 
+                <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+                <span class="n">label</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">],</span> <span class="p">[</span><span class="n">bleu_means</span><span class="p">[</span><span class="n">models</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="n">bleu_means</span><span class="p">[</span><span class="n">model</span><span class="p">]],</span> 
+                 <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 
-<span class="n">ax1</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bleu_means</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">bleu_stds</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Google BLEU Score&#39;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Google BLEU Scores by Model&#39;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">models</span><span class="p">)))</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">models</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Set y-axis to start at 0</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 
 <span class="c1"># Plot for execution times</span>
 <span class="n">exec_means</span> <span class="o">=</span> <span class="n">stats</span><span class="p">[(</span><span class="s1">&#39;execution_time&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">)]</span>
 <span class="n">exec_stds</span> <span class="o">=</span> <span class="n">stats</span><span class="p">[(</span><span class="s1">&#39;execution_time&#39;</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">)]</span>
 
-<span class="n">ax2</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">exec_means</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">exec_stds</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">models</span><span class="p">):</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">exec_means</span><span class="p">[</span><span class="n">model</span><span class="p">],</span> <span class="n">yerr</span><span class="o">=</span><span class="n">exec_stds</span><span class="p">[</span><span class="n">model</span><span class="p">],</span> 
+                <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+                <span class="n">label</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">],</span> <span class="p">[</span><span class="n">exec_means</span><span class="p">[</span><span class="n">models</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="n">exec_means</span><span class="p">[</span><span class="n">model</span><span class="p">]],</span> 
+                 <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Execution Time (seconds)&#39;</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Execution Times by Model&#39;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">models</span><span class="p">)))</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">models</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Set y-axis to start at 0</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1895,14 +1918,14 @@ https://smith.langchain.com/o/9e1cc3cb-9d6a-4356-ab34-138e0abe8be4/datasets/8741
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b08208aa8464f22dd0bd9e4447e305dd20f1fe6bb56181b31cbe6034620527c2.png" src="../_images/b08208aa8464f22dd0bd9e4447e305dd20f1fe6bb56181b31cbe6034620527c2.png" />
+<img alt="../_images/2ec19ddcc7b85314bac920a3f580cc30065eeda75e63063d94499fa4b11532db.png" src="../_images/2ec19ddcc7b85314bac920a3f580cc30065eeda75e63063d94499fa4b11532db.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Detailed Statistics:
               feedback.google_bleu         execution_time        
                               mean     std           mean     std
 model                                                            
+gpt-4o-mini                 0.4038  0.0453         0.7815  0.0433
 gpt-3.5-turbo               0.3768  0.0424         0.8343  0.2208
 gpt-4-turbo                 0.3519  0.0775         0.9122  0.1482
-gpt-4o-mini                 0.4038  0.0453         0.7815  0.0433
 </pre></div>
 </div>
 </div>
@@ -1913,7 +1936,7 @@ gpt-4o-mini                 0.4038  0.0453         0.7815  0.0433
 <li><p>GPT-4-turbo scored slightly lower at 0.352 (±0.078) and was slower at 0.91s (±0.15s)</p></li>
 <li><p>GPT-4o-mini performed best with a BLEU score of 0.404 (±0.045) while being fastest at 0.78s (±0.04s)</p></li>
 </ul>
-<p>As expected, results suggest that the newer GPT-4o-mini model achieves better quality while maintaining lower latency compared to both GPT-3.5 and GPT-4 turbo variants. The standard deviations indicate that GPT-4-turbo has the most variable output quality, while GPT-4o-mini is most consistent in both quality and speed.</p>
+<p>As expected, results suggest that the newer GPT-4o-mini model achieves better quality while maintaining lower latency compared to both GPT-3.5 and GPT-4 turbo variants. The standard deviations indicate that GPT-4-turbo has the most variable output quality, while GPT-4o-mini is most consistent in both quality and speed. Interestingly, the more advanced gpt-4-turbo model has lower BLEU scores but takes longer to execute. This suggests that model size and computational complexity don’t necessarily correlate with better performance on this specific summarization task. Of course, this is a very simple task further increasing the number of experiment iterations will yield more accurate results.</p>
 <p>Since we decided to upload result, we can also visualize the experiment results in LangSmith as shown in <a class="reference internal" href="#id34"><span class="std std-numref">Fig. 4.11</span></a>.</p>
 <figure class="align-center" id="id34">
 <a class="reference internal image-reference" href="../_images/langsmith.png"><img alt="LangSmith Experiment Results" src="../_images/langsmith.png" style="width: 670.0px; height: 397.5px;" /></a>
