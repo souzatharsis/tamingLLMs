@@ -1,0 +1,1 @@
+'ROLE: You are a financial analyst. TASK: Generate a 1-liner summary of the Section {{section}} from an SEC filing: {{content}}'

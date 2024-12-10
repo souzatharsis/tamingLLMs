@@ -1,0 +1,845 @@
+{
+  "evalId": "eval-FDA-2024-12-10T15:35:24",
+  "results": {
+    "version": 3,
+    "timestamp": "2024-12-10T15:35:24.707Z",
+    "prompts": [
+      {
+        "raw": "'Generate a 1-liner summary of the Section {{section}} from an SEC filing: {{content}}'",
+        "label": "prompt1.txt: 'Generate a 1-liner summary of the Section {{section}} from an SEC filing: {{content}}'",
+        "id": "1cd4a63a09ec6bcce588ef0486fa8be9ffa6dbbb4637fdf551a3dc72ac9a6462",
+        "provider": "openai:gpt-4o-mini",
+        "metrics": {
+          "score": 1.5,
+          "testPassCount": 0,
+          "testFailCount": 2,
+          "assertPassCount": 6,
+          "assertFailCount": 2,
+          "totalLatencyMs": 2463,
+          "tokenUsage": {
+            "total": 97,
+            "prompt": 52,
+            "completion": 45,
+            "cached": 0,
+            "numRequests": 2
+          },
+          "namedScores": {},
+          "namedScoresCount": {},
+          "cost": 0.0000348
+        }
+      },
+      {
+        "raw": "'Generate a 1-liner summary of the Section {{section}} from an SEC filing: {{content}}'",
+        "label": "prompt1.txt: 'Generate a 1-liner summary of the Section {{section}} from an SEC filing: {{content}}'",
+        "id": "1cd4a63a09ec6bcce588ef0486fa8be9ffa6dbbb4637fdf551a3dc72ac9a6462",
+        "provider": "openai:gpt-4",
+        "metrics": {
+          "score": 1,
+          "testPassCount": 0,
+          "testFailCount": 2,
+          "assertPassCount": 4,
+          "assertFailCount": 4,
+          "totalLatencyMs": 3773,
+          "tokenUsage": {
+            "total": 103,
+            "prompt": 52,
+            "completion": 51,
+            "cached": 0,
+            "numRequests": 2
+          },
+          "namedScores": {},
+          "namedScoresCount": {},
+          "cost": 0.00462
+        }
+      },
+      {
+        "raw": "'Generate a 1-liner summary of the Section {{section}} from an SEC filing: {{content}}'",
+        "label": "prompt1.txt: 'Generate a 1-liner summary of the Section {{section}} from an SEC filing: {{content}}'",
+        "id": "1cd4a63a09ec6bcce588ef0486fa8be9ffa6dbbb4637fdf551a3dc72ac9a6462",
+        "provider": "openai:gpt-3.5-turbo",
+        "metrics": {
+          "score": 1.75,
+          "testPassCount": 1,
+          "testFailCount": 1,
+          "assertPassCount": 7,
+          "assertFailCount": 1,
+          "totalLatencyMs": 1669,
+          "tokenUsage": {
+            "total": 95,
+            "prompt": 52,
+            "completion": 43,
+            "cached": 0,
+            "numRequests": 2
+          },
+          "namedScores": {},
+          "namedScoresCount": {},
+          "cost": 0.0000905
+        }
+      }
+    ],
+    "results": [
+      {
+        "cost": 0.0000415,
+        "error": "Latency 1016ms is greater than threshold 1000ms",
+        "gradingResult": {
+          "pass": false,
+          "score": 0.75,
+          "reason": "Latency 1016ms is greater than threshold 1000ms",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 266,
+            "prompt": 215,
+            "completion": 51,
+            "cached": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "cost",
+                "threshold": 0.001
+              }
+            },
+            {
+              "pass": false,
+              "score": 0,
+              "reason": "Latency 1016ms is greater than threshold 1000ms",
+              "assertion": {
+                "type": "latency",
+                "threshold": 1000
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "python",
+                "value": "len(output) < 200"
+              }
+            },
+            {
+              "assertion": {
+                "type": "llm-rubric",
+                "value": "Does the summary look like it was written by an expert analyst [Yes/No]?"
+              },
+              "pass": true,
+              "score": 1,
+              "reason": "The summary uses professional language and clearly identifies potential threats and uncertainties related to financial performance and operations, which suggests it was written by someone with expertise.",
+              "tokensUsed": {
+                "total": 266,
+                "prompt": 215,
+                "completion": 51,
+                "cached": 0
+              }
+            }
+          ],
+          "assertion": null
+        },
+        "id": "013dd17b-5296-4cdd-bdd1-6c02b9d4180a",
+        "latencyMs": 1016,
+        "namedScores": {},
+        "prompt": {
+          "raw": "'Generate a 1-liner summary of the Section Risk Factors from an SEC filing: '",
+          "label": "prompt1.txt: 'Generate a 1-liner summary of the Section {{section}} from an SEC filing: {{content}}'"
+        },
+        "promptId": "1cd4a63a09ec6bcce588ef0486fa8be9ffa6dbbb4637fdf551a3dc72ac9a6462",
+        "promptIdx": 2,
+        "provider": {
+          "id": "openai:gpt-3.5-turbo",
+          "label": ""
+        },
+        "response": {
+          "output": "This section highlights potential threats and uncertainties that could negatively impact the company's financial performance and operations.",
+          "tokenUsage": {
+            "total": 45,
+            "prompt": 26,
+            "completion": 19
+          },
+          "cached": false,
+          "cost": 0.0000415
+        },
+        "score": 0.75,
+        "success": false,
+        "testCase": {
+          "vars": {
+            "section": "Risk Factors",
+            " content": "Item 1A. Macroeconomic and Industry Risks The Company’s operations and performance depend significantly on global and regional economic conditions and adverse economic conditions can materially adversely affect the Company’s business, results of operations and financial condition. The Company has international operations with sales outside the U.S. representing a majority of the Company’s total net sales. In addition, the Company’s global supply chain is large and complex and a majority of the Company’s supplier facilities, including manufacturing and assembly sites, are located outside the U.S. As a result, the Company’s operations and performance depend significantly on global and regional economic conditions. Adverse macroeconomic conditions, including slow growth or recession, high unemployment, inflation, tighter credit, higher interest rates, and currency fluctuations, can adversely impact consumer confidence and spending and materially adversely affect demand for the Company’s products and services. In addition, consumer confidence and spending can be materially adversely affected in response to changes in fiscal and monetary policy, financial market volatility, declines in income or asset values, and other economic factors. In addition to an adverse impact on demand for the Company’s products and services, uncertainty about, or a decline in, global or regional economic conditions can have a significant impact on the Company’s suppliers, contract manufacturers, logistics providers, distributors, cellular network carriers and other channel partners, and developers. Potential outcomes include financial instability; inability to obtain credit to finance business operations; and insolvency. Adverse economic conditions can also lead to increased credit and collectibility risk on the Company’s trade receivables; the failure of derivative counterparties and other financial institutions; limitations on the Company’s ability to issue new debt; reduced liquidity; and declines in the fair values of the Company’s financial instruments. These and other impacts can materially adversely affect the Company’s business, results of operations, financial condition and stock price."
+          },
+          "assert": [
+            {
+              "type": "cost",
+              "threshold": 0.001
+            },
+            {
+              "type": "latency",
+              "threshold": 1000
+            },
+            {
+              "type": "python",
+              "value": "len(output) < 200"
+            },
+            {
+              "type": "llm-rubric",
+              "value": "Does the summary look like it was written by an expert analyst [Yes/No]?"
+            }
+          ],
+          "options": {},
+          "description": "Row #1",
+          "metadata": {}
+        },
+        "testIdx": 0,
+        "vars": {
+          "section": "Risk Factors",
+          " content": "Item 1A. Macroeconomic and Industry Risks The Company’s operations and performance depend significantly on global and regional economic conditions and adverse economic conditions can materially adversely affect the Company’s business, results of operations and financial condition. The Company has international operations with sales outside the U.S. representing a majority of the Company’s total net sales. In addition, the Company’s global supply chain is large and complex and a majority of the Company’s supplier facilities, including manufacturing and assembly sites, are located outside the U.S. As a result, the Company’s operations and performance depend significantly on global and regional economic conditions. Adverse macroeconomic conditions, including slow growth or recession, high unemployment, inflation, tighter credit, higher interest rates, and currency fluctuations, can adversely impact consumer confidence and spending and materially adversely affect demand for the Company’s products and services. In addition, consumer confidence and spending can be materially adversely affected in response to changes in fiscal and monetary policy, financial market volatility, declines in income or asset values, and other economic factors. In addition to an adverse impact on demand for the Company’s products and services, uncertainty about, or a decline in, global or regional economic conditions can have a significant impact on the Company’s suppliers, contract manufacturers, logistics providers, distributors, cellular network carriers and other channel partners, and developers. Potential outcomes include financial instability; inability to obtain credit to finance business operations; and insolvency. Adverse economic conditions can also lead to increased credit and collectibility risk on the Company’s trade receivables; the failure of derivative counterparties and other financial institutions; limitations on the Company’s ability to issue new debt; reduced liquidity; and declines in the fair values of the Company’s financial instruments. These and other impacts can materially adversely affect the Company’s business, results of operations, financial condition and stock price."
+        },
+        "metadata": {}
+      },
+      {
+        "cost": 0.0000171,
+        "error": "Latency 1131ms is greater than threshold 1000ms",
+        "gradingResult": {
+          "pass": false,
+          "score": 0.75,
+          "reason": "Latency 1131ms is greater than threshold 1000ms",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 265,
+            "prompt": 219,
+            "completion": 46,
+            "cached": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "cost",
+                "threshold": 0.001
+              }
+            },
+            {
+              "pass": false,
+              "score": 0,
+              "reason": "Latency 1131ms is greater than threshold 1000ms",
+              "assertion": {
+                "type": "latency",
+                "threshold": 1000
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "python",
+                "value": "len(output) < 200"
+              }
+            },
+            {
+              "assertion": {
+                "type": "llm-rubric",
+                "value": "Does the summary look like it was written by an expert analyst [Yes/No]?"
+              },
+              "pass": true,
+              "score": 1,
+              "reason": "The summary uses professional language and addresses potential challenges and uncertainties in a detailed manner, indicative of an expert analyst's perspective.",
+              "tokensUsed": {
+                "total": 265,
+                "prompt": 219,
+                "completion": 46,
+                "cached": 0
+              }
+            }
+          ],
+          "assertion": null
+        },
+        "id": "0013241c-196a-4005-955d-ed5f6444b5e8",
+        "latencyMs": 1131,
+        "namedScores": {},
+        "prompt": {
+          "raw": "'Generate a 1-liner summary of the Section Risk Factors from an SEC filing: '",
+          "label": "prompt1.txt: 'Generate a 1-liner summary of the Section {{section}} from an SEC filing: {{content}}'"
+        },
+        "promptId": "1cd4a63a09ec6bcce588ef0486fa8be9ffa6dbbb4637fdf551a3dc72ac9a6462",
+        "promptIdx": 0,
+        "provider": {
+          "id": "openai:gpt-4o-mini",
+          "label": ""
+        },
+        "response": {
+          "output": "The Section on Risk Factors outlines potential challenges and uncertainties that could negatively impact the company's financial performance and operational stability.",
+          "tokenUsage": {
+            "total": 48,
+            "prompt": 26,
+            "completion": 22
+          },
+          "cached": false,
+          "cost": 0.0000171
+        },
+        "score": 0.75,
+        "success": false,
+        "testCase": {
+          "vars": {
+            "section": "Risk Factors",
+            " content": "Item 1A. Macroeconomic and Industry Risks The Company’s operations and performance depend significantly on global and regional economic conditions and adverse economic conditions can materially adversely affect the Company’s business, results of operations and financial condition. The Company has international operations with sales outside the U.S. representing a majority of the Company’s total net sales. In addition, the Company’s global supply chain is large and complex and a majority of the Company’s supplier facilities, including manufacturing and assembly sites, are located outside the U.S. As a result, the Company’s operations and performance depend significantly on global and regional economic conditions. Adverse macroeconomic conditions, including slow growth or recession, high unemployment, inflation, tighter credit, higher interest rates, and currency fluctuations, can adversely impact consumer confidence and spending and materially adversely affect demand for the Company’s products and services. In addition, consumer confidence and spending can be materially adversely affected in response to changes in fiscal and monetary policy, financial market volatility, declines in income or asset values, and other economic factors. In addition to an adverse impact on demand for the Company’s products and services, uncertainty about, or a decline in, global or regional economic conditions can have a significant impact on the Company’s suppliers, contract manufacturers, logistics providers, distributors, cellular network carriers and other channel partners, and developers. Potential outcomes include financial instability; inability to obtain credit to finance business operations; and insolvency. Adverse economic conditions can also lead to increased credit and collectibility risk on the Company’s trade receivables; the failure of derivative counterparties and other financial institutions; limitations on the Company’s ability to issue new debt; reduced liquidity; and declines in the fair values of the Company’s financial instruments. These and other impacts can materially adversely affect the Company’s business, results of operations, financial condition and stock price."
+          },
+          "assert": [
+            {
+              "type": "cost",
+              "threshold": 0.001
+            },
+            {
+              "type": "latency",
+              "threshold": 1000
+            },
+            {
+              "type": "python",
+              "value": "len(output) < 200"
+            },
+            {
+              "type": "llm-rubric",
+              "value": "Does the summary look like it was written by an expert analyst [Yes/No]?"
+            }
+          ],
+          "options": {},
+          "description": "Row #1",
+          "metadata": {}
+        },
+        "testIdx": 0,
+        "vars": {
+          "section": "Risk Factors",
+          " content": "Item 1A. Macroeconomic and Industry Risks The Company’s operations and performance depend significantly on global and regional economic conditions and adverse economic conditions can materially adversely affect the Company’s business, results of operations and financial condition. The Company has international operations with sales outside the U.S. representing a majority of the Company’s total net sales. In addition, the Company’s global supply chain is large and complex and a majority of the Company’s supplier facilities, including manufacturing and assembly sites, are located outside the U.S. As a result, the Company’s operations and performance depend significantly on global and regional economic conditions. Adverse macroeconomic conditions, including slow growth or recession, high unemployment, inflation, tighter credit, higher interest rates, and currency fluctuations, can adversely impact consumer confidence and spending and materially adversely affect demand for the Company’s products and services. In addition, consumer confidence and spending can be materially adversely affected in response to changes in fiscal and monetary policy, financial market volatility, declines in income or asset values, and other economic factors. In addition to an adverse impact on demand for the Company’s products and services, uncertainty about, or a decline in, global or regional economic conditions can have a significant impact on the Company’s suppliers, contract manufacturers, logistics providers, distributors, cellular network carriers and other channel partners, and developers. Potential outcomes include financial instability; inability to obtain credit to finance business operations; and insolvency. Adverse economic conditions can also lead to increased credit and collectibility risk on the Company’s trade receivables; the failure of derivative counterparties and other financial institutions; limitations on the Company’s ability to issue new debt; reduced liquidity; and declines in the fair values of the Company’s financial instruments. These and other impacts can materially adversely affect the Company’s business, results of operations, financial condition and stock price."
+        },
+        "metadata": {}
+      },
+      {
+        "cost": 0.0000177,
+        "error": "Latency 1332ms is greater than threshold 1000ms",
+        "gradingResult": {
+          "pass": false,
+          "score": 0.75,
+          "reason": "Latency 1332ms is greater than threshold 1000ms",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 275,
+            "prompt": 220,
+            "completion": 55,
+            "cached": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "cost",
+                "threshold": 0.001
+              }
+            },
+            {
+              "pass": false,
+              "score": 0,
+              "reason": "Latency 1332ms is greater than threshold 1000ms",
+              "assertion": {
+                "type": "latency",
+                "threshold": 1000
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "python",
+                "value": "len(output) < 200"
+              }
+            },
+            {
+              "assertion": {
+                "type": "llm-rubric",
+                "value": "Does the summary look like it was written by an expert analyst [Yes/No]?"
+              },
+              "pass": true,
+              "score": 1,
+              "reason": "The summary is clearly written, uses precise language, and covers the essential details regarding legal proceedings and their potential impact, which suggests it was written by an expert analyst.",
+              "tokensUsed": {
+                "total": 275,
+                "prompt": 220,
+                "completion": 55,
+                "cached": 0
+              }
+            }
+          ],
+          "assertion": null
+        },
+        "id": "82ea399d-2d17-4d5c-bfe7-41d7d0a12b13",
+        "latencyMs": 1332,
+        "namedScores": {},
+        "prompt": {
+          "raw": "'Generate a 1-liner summary of the Section Legal Proceedings from an SEC filing: '",
+          "label": "prompt1.txt: 'Generate a 1-liner summary of the Section {{section}} from an SEC filing: {{content}}'"
+        },
+        "promptId": "1cd4a63a09ec6bcce588ef0486fa8be9ffa6dbbb4637fdf551a3dc72ac9a6462",
+        "promptIdx": 0,
+        "provider": {
+          "id": "openai:gpt-4o-mini",
+          "label": ""
+        },
+        "response": {
+          "output": "The section on Legal Proceedings outlines any significant ongoing litigation or regulatory matters that may impact the company's financial condition or operations.",
+          "tokenUsage": {
+            "total": 49,
+            "prompt": 26,
+            "completion": 23
+          },
+          "cached": false,
+          "cost": 0.0000177
+        },
+        "score": 0.75,
+        "success": false,
+        "testCase": {
+          "vars": {
+            "section": "Legal Proceedings",
+            " content": "Item 3. Legal Proceedings Digital Markets Act Investigations On March 25, 2024, the Commission announced that it had opened two formal noncompliance investigations against the Company under the DMA. The Commission’s investigations concern (1) Article 5(4) of the DMA, which relates to how developers may communicate and promote offers to end users for apps distributed through the App Store as well as how developers may conclude contracts with those end users; and (2) Article 6(3) of the DMA, which relates to default settings, uninstallation of apps, and a web browser choice screen on iOS. On June 24, 2024, the Commission announced its preliminary findings in the Article 5(4) investigation alleging that the Company’s App Store rules are in breach of the DMA and announced that it had opened a third formal investigation against the Company regarding whether the Company’s new contractual requirements for third-party app developers and app marketplaces may violate the DMA. If the Commission makes a final determination that there has been a violation, it can issue a cease and desist order and may impose fines up to 10% of the Company’s annual worldwide net sales. Although any decision by the Commission can be appealed to the General Court of the EU, the effectiveness of the Commission’s order would apply immediately while the appeal is pending, unless a stay of the order is granted. The Company believes that it complies with the DMA and has continued to make changes to its compliance plan in response to feedback and engagement with the Commission. Department of Justice Lawsuit On March 21, 2024, the U.S. Department of Justice (the “DOJ”) and a number of state and district attorneys general filed a civil antitrust lawsuit in the U.S. District Court for the District of New Jersey against the Company alleging monopolization or attempted monopolization in the markets for “performance smartphones” and “smartphones” in violation of U.S. antitrust laws. The DOJ is seeking equitable relief to redress the alleged anticompetitive behavior. In addition, various civil litigation matters have been filed in state and federal courts in the U.S. alleging similar violations of U.S. antitrust laws and seeking monetary damages and other nonmonetary relief. The Company believes it has substantial defenses and intends to vigorously defend itself. Epic Games Epic Games, Inc. (“Epic”) filed a lawsuit in the U.S. District Court for the Northern District of California (the “California District Court”) against the Company alleging violations of federal and state antitrust laws and California’s unfair competition law based upon the Company’s operation of its App Store. The California District Court found that certain provisions of the Company’s App Store Review Guidelines violate California’s unfair competition law and issued an injunction enjoining the Company from prohibiting developers from including in their apps external links that direct customers to purchasing mechanisms other than Apple in-app purchasing. The injunction applies to apps on the U.S. storefront of the iOS and iPadOS App Store. On January 16, 2024, the Company implemented a plan to comply with the injunction and filed a statement of compliance with the California District Court. A motion by Epic disputing the Company’s compliance plan and seeking to enforce the injunction, which the Company has opposed, is pending before the California District Court. On September 30, 2024, the Company filed a motion with the California District Court to narrow or vacate the injunction. The Company believes it has substantial defenses and intends to vigorously defend itself. Other Legal Proceedings The Company is subject to other legal proceedings and claims that have not been fully resolved and that have arisen in the ordinary course of business. The Company settled certain matters during the fourth quarter of 2024 that did not individually or in the aggregate have a material impact on the Company’s financial condition or operating results. The outcome of litigation is inherently uncertain. If one or more legal matters were resolved against the Company in a reporting period for amounts above management’s expectations, the Company’s financial condition and operating results for that reporting period could be materially adversely affected."
+          },
+          "assert": [
+            {
+              "type": "cost",
+              "threshold": 0.001
+            },
+            {
+              "type": "latency",
+              "threshold": 1000
+            },
+            {
+              "type": "python",
+              "value": "len(output) < 200"
+            },
+            {
+              "type": "llm-rubric",
+              "value": "Does the summary look like it was written by an expert analyst [Yes/No]?"
+            }
+          ],
+          "options": {},
+          "description": "Row #2",
+          "metadata": {}
+        },
+        "testIdx": 1,
+        "vars": {
+          "section": "Legal Proceedings",
+          " content": "Item 3. Legal Proceedings Digital Markets Act Investigations On March 25, 2024, the Commission announced that it had opened two formal noncompliance investigations against the Company under the DMA. The Commission’s investigations concern (1) Article 5(4) of the DMA, which relates to how developers may communicate and promote offers to end users for apps distributed through the App Store as well as how developers may conclude contracts with those end users; and (2) Article 6(3) of the DMA, which relates to default settings, uninstallation of apps, and a web browser choice screen on iOS. On June 24, 2024, the Commission announced its preliminary findings in the Article 5(4) investigation alleging that the Company’s App Store rules are in breach of the DMA and announced that it had opened a third formal investigation against the Company regarding whether the Company’s new contractual requirements for third-party app developers and app marketplaces may violate the DMA. If the Commission makes a final determination that there has been a violation, it can issue a cease and desist order and may impose fines up to 10% of the Company’s annual worldwide net sales. Although any decision by the Commission can be appealed to the General Court of the EU, the effectiveness of the Commission’s order would apply immediately while the appeal is pending, unless a stay of the order is granted. The Company believes that it complies with the DMA and has continued to make changes to its compliance plan in response to feedback and engagement with the Commission. Department of Justice Lawsuit On March 21, 2024, the U.S. Department of Justice (the “DOJ”) and a number of state and district attorneys general filed a civil antitrust lawsuit in the U.S. District Court for the District of New Jersey against the Company alleging monopolization or attempted monopolization in the markets for “performance smartphones” and “smartphones” in violation of U.S. antitrust laws. The DOJ is seeking equitable relief to redress the alleged anticompetitive behavior. In addition, various civil litigation matters have been filed in state and federal courts in the U.S. alleging similar violations of U.S. antitrust laws and seeking monetary damages and other nonmonetary relief. The Company believes it has substantial defenses and intends to vigorously defend itself. Epic Games Epic Games, Inc. (“Epic”) filed a lawsuit in the U.S. District Court for the Northern District of California (the “California District Court”) against the Company alleging violations of federal and state antitrust laws and California’s unfair competition law based upon the Company’s operation of its App Store. The California District Court found that certain provisions of the Company’s App Store Review Guidelines violate California’s unfair competition law and issued an injunction enjoining the Company from prohibiting developers from including in their apps external links that direct customers to purchasing mechanisms other than Apple in-app purchasing. The injunction applies to apps on the U.S. storefront of the iOS and iPadOS App Store. On January 16, 2024, the Company implemented a plan to comply with the injunction and filed a statement of compliance with the California District Court. A motion by Epic disputing the Company’s compliance plan and seeking to enforce the injunction, which the Company has opposed, is pending before the California District Court. On September 30, 2024, the Company filed a motion with the California District Court to narrow or vacate the injunction. The Company believes it has substantial defenses and intends to vigorously defend itself. Other Legal Proceedings The Company is subject to other legal proceedings and claims that have not been fully resolved and that have arisen in the ordinary course of business. The Company settled certain matters during the fourth quarter of 2024 that did not individually or in the aggregate have a material impact on the Company’s financial condition or operating results. The outcome of litigation is inherently uncertain. If one or more legal matters were resolved against the Company in a reporting period for amounts above management’s expectations, the Company’s financial condition and operating results for that reporting period could be materially adversely affected."
+        },
+        "metadata": {}
+      },
+      {
+        "cost": 0.0027,
+        "error": "Latency 2251ms is greater than threshold 1000ms",
+        "gradingResult": {
+          "pass": false,
+          "score": 0.5,
+          "reason": "Latency 2251ms is greater than threshold 1000ms",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 267,
+            "prompt": 228,
+            "completion": 39,
+            "cached": 0
+          },
+          "componentResults": [
+            {
+              "pass": false,
+              "score": 0,
+              "reason": "Cost 0.0027 is greater than threshold 0.001",
+              "assertion": {
+                "type": "cost",
+                "threshold": 0.001
+              }
+            },
+            {
+              "pass": false,
+              "score": 0,
+              "reason": "Latency 2251ms is greater than threshold 1000ms",
+              "assertion": {
+                "type": "latency",
+                "threshold": 1000
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "python",
+                "value": "len(output) < 200"
+              }
+            },
+            {
+              "assertion": {
+                "type": "llm-rubric",
+                "value": "Does the summary look like it was written by an expert analyst [Yes/No]?"
+              },
+              "pass": true,
+              "score": 1,
+              "reason": "The summary contains professional language and details specific factors that are typically covered by expert analysts.",
+              "tokensUsed": {
+                "total": 267,
+                "prompt": 228,
+                "completion": 39,
+                "cached": 0
+              }
+            }
+          ],
+          "assertion": null
+        },
+        "id": "68b0bb93-d8af-4b19-b2ad-b47a739d7cd4",
+        "latencyMs": 2251,
+        "namedScores": {},
+        "prompt": {
+          "raw": "'Generate a 1-liner summary of the Section Risk Factors from an SEC filing: '",
+          "label": "prompt1.txt: 'Generate a 1-liner summary of the Section {{section}} from an SEC filing: {{content}}'"
+        },
+        "promptId": "1cd4a63a09ec6bcce588ef0486fa8be9ffa6dbbb4637fdf551a3dc72ac9a6462",
+        "promptIdx": 1,
+        "provider": {
+          "id": "openai:gpt-4",
+          "label": ""
+        },
+        "response": {
+          "output": "The Risk Factors section details potential risks, uncertainties, and challenges that could materially affect the company's business, financial condition, results of operations, and future growth.",
+          "tokenUsage": {
+            "total": 58,
+            "prompt": 26,
+            "completion": 32
+          },
+          "cached": false,
+          "cost": 0.0027
+        },
+        "score": 0.5,
+        "success": false,
+        "testCase": {
+          "vars": {
+            "section": "Risk Factors",
+            " content": "Item 1A. Macroeconomic and Industry Risks The Company’s operations and performance depend significantly on global and regional economic conditions and adverse economic conditions can materially adversely affect the Company’s business, results of operations and financial condition. The Company has international operations with sales outside the U.S. representing a majority of the Company’s total net sales. In addition, the Company’s global supply chain is large and complex and a majority of the Company’s supplier facilities, including manufacturing and assembly sites, are located outside the U.S. As a result, the Company’s operations and performance depend significantly on global and regional economic conditions. Adverse macroeconomic conditions, including slow growth or recession, high unemployment, inflation, tighter credit, higher interest rates, and currency fluctuations, can adversely impact consumer confidence and spending and materially adversely affect demand for the Company’s products and services. In addition, consumer confidence and spending can be materially adversely affected in response to changes in fiscal and monetary policy, financial market volatility, declines in income or asset values, and other economic factors. In addition to an adverse impact on demand for the Company’s products and services, uncertainty about, or a decline in, global or regional economic conditions can have a significant impact on the Company’s suppliers, contract manufacturers, logistics providers, distributors, cellular network carriers and other channel partners, and developers. Potential outcomes include financial instability; inability to obtain credit to finance business operations; and insolvency. Adverse economic conditions can also lead to increased credit and collectibility risk on the Company’s trade receivables; the failure of derivative counterparties and other financial institutions; limitations on the Company’s ability to issue new debt; reduced liquidity; and declines in the fair values of the Company’s financial instruments. These and other impacts can materially adversely affect the Company’s business, results of operations, financial condition and stock price."
+          },
+          "assert": [
+            {
+              "type": "cost",
+              "threshold": 0.001
+            },
+            {
+              "type": "latency",
+              "threshold": 1000
+            },
+            {
+              "type": "python",
+              "value": "len(output) < 200"
+            },
+            {
+              "type": "llm-rubric",
+              "value": "Does the summary look like it was written by an expert analyst [Yes/No]?"
+            }
+          ],
+          "options": {},
+          "description": "Row #1",
+          "metadata": {}
+        },
+        "testIdx": 0,
+        "vars": {
+          "section": "Risk Factors",
+          " content": "Item 1A. Macroeconomic and Industry Risks The Company’s operations and performance depend significantly on global and regional economic conditions and adverse economic conditions can materially adversely affect the Company’s business, results of operations and financial condition. The Company has international operations with sales outside the U.S. representing a majority of the Company’s total net sales. In addition, the Company’s global supply chain is large and complex and a majority of the Company’s supplier facilities, including manufacturing and assembly sites, are located outside the U.S. As a result, the Company’s operations and performance depend significantly on global and regional economic conditions. Adverse macroeconomic conditions, including slow growth or recession, high unemployment, inflation, tighter credit, higher interest rates, and currency fluctuations, can adversely impact consumer confidence and spending and materially adversely affect demand for the Company’s products and services. In addition, consumer confidence and spending can be materially adversely affected in response to changes in fiscal and monetary policy, financial market volatility, declines in income or asset values, and other economic factors. In addition to an adverse impact on demand for the Company’s products and services, uncertainty about, or a decline in, global or regional economic conditions can have a significant impact on the Company’s suppliers, contract manufacturers, logistics providers, distributors, cellular network carriers and other channel partners, and developers. Potential outcomes include financial instability; inability to obtain credit to finance business operations; and insolvency. Adverse economic conditions can also lead to increased credit and collectibility risk on the Company’s trade receivables; the failure of derivative counterparties and other financial institutions; limitations on the Company’s ability to issue new debt; reduced liquidity; and declines in the fair values of the Company’s financial instruments. These and other impacts can materially adversely affect the Company’s business, results of operations, financial condition and stock price."
+        },
+        "metadata": {}
+      },
+      {
+        "cost": 0.000049,
+        "gradingResult": {
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 267,
+            "prompt": 221,
+            "completion": 46,
+            "cached": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "cost",
+                "threshold": 0.001
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "latency",
+                "threshold": 1000
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "python",
+                "value": "len(output) < 200"
+              }
+            },
+            {
+              "assertion": {
+                "type": "llm-rubric",
+                "value": "Does the summary look like it was written by an expert analyst [Yes/No]?"
+              },
+              "pass": true,
+              "score": 1,
+              "reason": "the summary provides detailed and specific information about legal actions, which indicates it was written by someone with expertise in the field",
+              "tokensUsed": {
+                "total": 267,
+                "prompt": 221,
+                "completion": 46,
+                "cached": 0
+              }
+            }
+          ],
+          "assertion": null
+        },
+        "id": "8385a18e-cef6-42d4-a060-25149244a05d",
+        "latencyMs": 653,
+        "namedScores": {},
+        "prompt": {
+          "raw": "'Generate a 1-liner summary of the Section Legal Proceedings from an SEC filing: '",
+          "label": "prompt1.txt: 'Generate a 1-liner summary of the Section {{section}} from an SEC filing: {{content}}'"
+        },
+        "promptId": "1cd4a63a09ec6bcce588ef0486fa8be9ffa6dbbb4637fdf551a3dc72ac9a6462",
+        "promptIdx": 2,
+        "provider": {
+          "id": "openai:gpt-3.5-turbo",
+          "label": ""
+        },
+        "response": {
+          "output": "This section provides information on any ongoing or potential legal actions involving the company, including lawsuits, investigations, or regulatory inquiries.",
+          "tokenUsage": {
+            "total": 50,
+            "prompt": 26,
+            "completion": 24
+          },
+          "cached": false,
+          "cost": 0.000049
+        },
+        "score": 1,
+        "success": true,
+        "testCase": {
+          "vars": {
+            "section": "Legal Proceedings",
+            " content": "Item 3. Legal Proceedings Digital Markets Act Investigations On March 25, 2024, the Commission announced that it had opened two formal noncompliance investigations against the Company under the DMA. The Commission’s investigations concern (1) Article 5(4) of the DMA, which relates to how developers may communicate and promote offers to end users for apps distributed through the App Store as well as how developers may conclude contracts with those end users; and (2) Article 6(3) of the DMA, which relates to default settings, uninstallation of apps, and a web browser choice screen on iOS. On June 24, 2024, the Commission announced its preliminary findings in the Article 5(4) investigation alleging that the Company’s App Store rules are in breach of the DMA and announced that it had opened a third formal investigation against the Company regarding whether the Company’s new contractual requirements for third-party app developers and app marketplaces may violate the DMA. If the Commission makes a final determination that there has been a violation, it can issue a cease and desist order and may impose fines up to 10% of the Company’s annual worldwide net sales. Although any decision by the Commission can be appealed to the General Court of the EU, the effectiveness of the Commission’s order would apply immediately while the appeal is pending, unless a stay of the order is granted. The Company believes that it complies with the DMA and has continued to make changes to its compliance plan in response to feedback and engagement with the Commission. Department of Justice Lawsuit On March 21, 2024, the U.S. Department of Justice (the “DOJ”) and a number of state and district attorneys general filed a civil antitrust lawsuit in the U.S. District Court for the District of New Jersey against the Company alleging monopolization or attempted monopolization in the markets for “performance smartphones” and “smartphones” in violation of U.S. antitrust laws. The DOJ is seeking equitable relief to redress the alleged anticompetitive behavior. In addition, various civil litigation matters have been filed in state and federal courts in the U.S. alleging similar violations of U.S. antitrust laws and seeking monetary damages and other nonmonetary relief. The Company believes it has substantial defenses and intends to vigorously defend itself. Epic Games Epic Games, Inc. (“Epic”) filed a lawsuit in the U.S. District Court for the Northern District of California (the “California District Court”) against the Company alleging violations of federal and state antitrust laws and California’s unfair competition law based upon the Company’s operation of its App Store. The California District Court found that certain provisions of the Company’s App Store Review Guidelines violate California’s unfair competition law and issued an injunction enjoining the Company from prohibiting developers from including in their apps external links that direct customers to purchasing mechanisms other than Apple in-app purchasing. The injunction applies to apps on the U.S. storefront of the iOS and iPadOS App Store. On January 16, 2024, the Company implemented a plan to comply with the injunction and filed a statement of compliance with the California District Court. A motion by Epic disputing the Company’s compliance plan and seeking to enforce the injunction, which the Company has opposed, is pending before the California District Court. On September 30, 2024, the Company filed a motion with the California District Court to narrow or vacate the injunction. The Company believes it has substantial defenses and intends to vigorously defend itself. Other Legal Proceedings The Company is subject to other legal proceedings and claims that have not been fully resolved and that have arisen in the ordinary course of business. The Company settled certain matters during the fourth quarter of 2024 that did not individually or in the aggregate have a material impact on the Company’s financial condition or operating results. The outcome of litigation is inherently uncertain. If one or more legal matters were resolved against the Company in a reporting period for amounts above management’s expectations, the Company’s financial condition and operating results for that reporting period could be materially adversely affected."
+          },
+          "assert": [
+            {
+              "type": "cost",
+              "threshold": 0.001
+            },
+            {
+              "type": "latency",
+              "threshold": 1000
+            },
+            {
+              "type": "python",
+              "value": "len(output) < 200"
+            },
+            {
+              "type": "llm-rubric",
+              "value": "Does the summary look like it was written by an expert analyst [Yes/No]?"
+            }
+          ],
+          "options": {},
+          "description": "Row #2",
+          "metadata": {}
+        },
+        "testIdx": 1,
+        "vars": {
+          "section": "Legal Proceedings",
+          " content": "Item 3. Legal Proceedings Digital Markets Act Investigations On March 25, 2024, the Commission announced that it had opened two formal noncompliance investigations against the Company under the DMA. The Commission’s investigations concern (1) Article 5(4) of the DMA, which relates to how developers may communicate and promote offers to end users for apps distributed through the App Store as well as how developers may conclude contracts with those end users; and (2) Article 6(3) of the DMA, which relates to default settings, uninstallation of apps, and a web browser choice screen on iOS. On June 24, 2024, the Commission announced its preliminary findings in the Article 5(4) investigation alleging that the Company’s App Store rules are in breach of the DMA and announced that it had opened a third formal investigation against the Company regarding whether the Company’s new contractual requirements for third-party app developers and app marketplaces may violate the DMA. If the Commission makes a final determination that there has been a violation, it can issue a cease and desist order and may impose fines up to 10% of the Company’s annual worldwide net sales. Although any decision by the Commission can be appealed to the General Court of the EU, the effectiveness of the Commission’s order would apply immediately while the appeal is pending, unless a stay of the order is granted. The Company believes that it complies with the DMA and has continued to make changes to its compliance plan in response to feedback and engagement with the Commission. Department of Justice Lawsuit On March 21, 2024, the U.S. Department of Justice (the “DOJ”) and a number of state and district attorneys general filed a civil antitrust lawsuit in the U.S. District Court for the District of New Jersey against the Company alleging monopolization or attempted monopolization in the markets for “performance smartphones” and “smartphones” in violation of U.S. antitrust laws. The DOJ is seeking equitable relief to redress the alleged anticompetitive behavior. In addition, various civil litigation matters have been filed in state and federal courts in the U.S. alleging similar violations of U.S. antitrust laws and seeking monetary damages and other nonmonetary relief. The Company believes it has substantial defenses and intends to vigorously defend itself. Epic Games Epic Games, Inc. (“Epic”) filed a lawsuit in the U.S. District Court for the Northern District of California (the “California District Court”) against the Company alleging violations of federal and state antitrust laws and California’s unfair competition law based upon the Company’s operation of its App Store. The California District Court found that certain provisions of the Company’s App Store Review Guidelines violate California’s unfair competition law and issued an injunction enjoining the Company from prohibiting developers from including in their apps external links that direct customers to purchasing mechanisms other than Apple in-app purchasing. The injunction applies to apps on the U.S. storefront of the iOS and iPadOS App Store. On January 16, 2024, the Company implemented a plan to comply with the injunction and filed a statement of compliance with the California District Court. A motion by Epic disputing the Company’s compliance plan and seeking to enforce the injunction, which the Company has opposed, is pending before the California District Court. On September 30, 2024, the Company filed a motion with the California District Court to narrow or vacate the injunction. The Company believes it has substantial defenses and intends to vigorously defend itself. Other Legal Proceedings The Company is subject to other legal proceedings and claims that have not been fully resolved and that have arisen in the ordinary course of business. The Company settled certain matters during the fourth quarter of 2024 that did not individually or in the aggregate have a material impact on the Company’s financial condition or operating results. The outcome of litigation is inherently uncertain. If one or more legal matters were resolved against the Company in a reporting period for amounts above management’s expectations, the Company’s financial condition and operating results for that reporting period could be materially adversely affected."
+        },
+        "metadata": {}
+      },
+      {
+        "cost": 0.0019199999999999998,
+        "error": "Latency 1522ms is greater than threshold 1000ms",
+        "gradingResult": {
+          "pass": false,
+          "score": 0.5,
+          "reason": "Latency 1522ms is greater than threshold 1000ms",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 257,
+            "prompt": 216,
+            "completion": 41,
+            "cached": 0
+          },
+          "componentResults": [
+            {
+              "pass": false,
+              "score": 0,
+              "reason": "Cost 0.0019 is greater than threshold 0.001",
+              "assertion": {
+                "type": "cost",
+                "threshold": 0.001
+              }
+            },
+            {
+              "pass": false,
+              "score": 0,
+              "reason": "Latency 1522ms is greater than threshold 1000ms",
+              "assertion": {
+                "type": "latency",
+                "threshold": 1000
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "python",
+                "value": "len(output) < 200"
+              }
+            },
+            {
+              "assertion": {
+                "type": "llm-rubric",
+                "value": "Does the summary look like it was written by an expert analyst [Yes/No]?"
+              },
+              "pass": true,
+              "score": 1,
+              "reason": "The summary provides a clear and professional overview of the Legal Proceedings section, characteristic of expert analysis.",
+              "tokensUsed": {
+                "total": 257,
+                "prompt": 216,
+                "completion": 41,
+                "cached": 0
+              }
+            }
+          ],
+          "assertion": null
+        },
+        "id": "30d8a10b-ef8b-464d-a4bd-cc0f9b6d527e",
+        "latencyMs": 1522,
+        "namedScores": {},
+        "prompt": {
+          "raw": "'Generate a 1-liner summary of the Section Legal Proceedings from an SEC filing: '",
+          "label": "prompt1.txt: 'Generate a 1-liner summary of the Section {{section}} from an SEC filing: {{content}}'"
+        },
+        "promptId": "1cd4a63a09ec6bcce588ef0486fa8be9ffa6dbbb4637fdf551a3dc72ac9a6462",
+        "promptIdx": 1,
+        "provider": {
+          "id": "openai:gpt-4",
+          "label": ""
+        },
+        "response": {
+          "output": "The Legal Proceedings section details ongoing or potential legal issues, lawsuits, or disputes involving the company.",
+          "tokenUsage": {
+            "total": 45,
+            "prompt": 26,
+            "completion": 19
+          },
+          "cached": false,
+          "cost": 0.0019199999999999998
+        },
+        "score": 0.5,
+        "success": false,
+        "testCase": {
+          "vars": {
+            "section": "Legal Proceedings",
+            " content": "Item 3. Legal Proceedings Digital Markets Act Investigations On March 25, 2024, the Commission announced that it had opened two formal noncompliance investigations against the Company under the DMA. The Commission’s investigations concern (1) Article 5(4) of the DMA, which relates to how developers may communicate and promote offers to end users for apps distributed through the App Store as well as how developers may conclude contracts with those end users; and (2) Article 6(3) of the DMA, which relates to default settings, uninstallation of apps, and a web browser choice screen on iOS. On June 24, 2024, the Commission announced its preliminary findings in the Article 5(4) investigation alleging that the Company’s App Store rules are in breach of the DMA and announced that it had opened a third formal investigation against the Company regarding whether the Company’s new contractual requirements for third-party app developers and app marketplaces may violate the DMA. If the Commission makes a final determination that there has been a violation, it can issue a cease and desist order and may impose fines up to 10% of the Company’s annual worldwide net sales. Although any decision by the Commission can be appealed to the General Court of the EU, the effectiveness of the Commission’s order would apply immediately while the appeal is pending, unless a stay of the order is granted. The Company believes that it complies with the DMA and has continued to make changes to its compliance plan in response to feedback and engagement with the Commission. Department of Justice Lawsuit On March 21, 2024, the U.S. Department of Justice (the “DOJ”) and a number of state and district attorneys general filed a civil antitrust lawsuit in the U.S. District Court for the District of New Jersey against the Company alleging monopolization or attempted monopolization in the markets for “performance smartphones” and “smartphones” in violation of U.S. antitrust laws. The DOJ is seeking equitable relief to redress the alleged anticompetitive behavior. In addition, various civil litigation matters have been filed in state and federal courts in the U.S. alleging similar violations of U.S. antitrust laws and seeking monetary damages and other nonmonetary relief. The Company believes it has substantial defenses and intends to vigorously defend itself. Epic Games Epic Games, Inc. (“Epic”) filed a lawsuit in the U.S. District Court for the Northern District of California (the “California District Court”) against the Company alleging violations of federal and state antitrust laws and California’s unfair competition law based upon the Company’s operation of its App Store. The California District Court found that certain provisions of the Company’s App Store Review Guidelines violate California’s unfair competition law and issued an injunction enjoining the Company from prohibiting developers from including in their apps external links that direct customers to purchasing mechanisms other than Apple in-app purchasing. The injunction applies to apps on the U.S. storefront of the iOS and iPadOS App Store. On January 16, 2024, the Company implemented a plan to comply with the injunction and filed a statement of compliance with the California District Court. A motion by Epic disputing the Company’s compliance plan and seeking to enforce the injunction, which the Company has opposed, is pending before the California District Court. On September 30, 2024, the Company filed a motion with the California District Court to narrow or vacate the injunction. The Company believes it has substantial defenses and intends to vigorously defend itself. Other Legal Proceedings The Company is subject to other legal proceedings and claims that have not been fully resolved and that have arisen in the ordinary course of business. The Company settled certain matters during the fourth quarter of 2024 that did not individually or in the aggregate have a material impact on the Company’s financial condition or operating results. The outcome of litigation is inherently uncertain. If one or more legal matters were resolved against the Company in a reporting period for amounts above management’s expectations, the Company’s financial condition and operating results for that reporting period could be materially adversely affected."
+          },
+          "assert": [
+            {
+              "type": "cost",
+              "threshold": 0.001
+            },
+            {
+              "type": "latency",
+              "threshold": 1000
+            },
+            {
+              "type": "python",
+              "value": "len(output) < 200"
+            },
+            {
+              "type": "llm-rubric",
+              "value": "Does the summary look like it was written by an expert analyst [Yes/No]?"
+            }
+          ],
+          "options": {},
+          "description": "Row #2",
+          "metadata": {}
+        },
+        "testIdx": 1,
+        "vars": {
+          "section": "Legal Proceedings",
+          " content": "Item 3. Legal Proceedings Digital Markets Act Investigations On March 25, 2024, the Commission announced that it had opened two formal noncompliance investigations against the Company under the DMA. The Commission’s investigations concern (1) Article 5(4) of the DMA, which relates to how developers may communicate and promote offers to end users for apps distributed through the App Store as well as how developers may conclude contracts with those end users; and (2) Article 6(3) of the DMA, which relates to default settings, uninstallation of apps, and a web browser choice screen on iOS. On June 24, 2024, the Commission announced its preliminary findings in the Article 5(4) investigation alleging that the Company’s App Store rules are in breach of the DMA and announced that it had opened a third formal investigation against the Company regarding whether the Company’s new contractual requirements for third-party app developers and app marketplaces may violate the DMA. If the Commission makes a final determination that there has been a violation, it can issue a cease and desist order and may impose fines up to 10% of the Company’s annual worldwide net sales. Although any decision by the Commission can be appealed to the General Court of the EU, the effectiveness of the Commission’s order would apply immediately while the appeal is pending, unless a stay of the order is granted. The Company believes that it complies with the DMA and has continued to make changes to its compliance plan in response to feedback and engagement with the Commission. Department of Justice Lawsuit On March 21, 2024, the U.S. Department of Justice (the “DOJ”) and a number of state and district attorneys general filed a civil antitrust lawsuit in the U.S. District Court for the District of New Jersey against the Company alleging monopolization or attempted monopolization in the markets for “performance smartphones” and “smartphones” in violation of U.S. antitrust laws. The DOJ is seeking equitable relief to redress the alleged anticompetitive behavior. In addition, various civil litigation matters have been filed in state and federal courts in the U.S. alleging similar violations of U.S. antitrust laws and seeking monetary damages and other nonmonetary relief. The Company believes it has substantial defenses and intends to vigorously defend itself. Epic Games Epic Games, Inc. (“Epic”) filed a lawsuit in the U.S. District Court for the Northern District of California (the “California District Court”) against the Company alleging violations of federal and state antitrust laws and California’s unfair competition law based upon the Company’s operation of its App Store. The California District Court found that certain provisions of the Company’s App Store Review Guidelines violate California’s unfair competition law and issued an injunction enjoining the Company from prohibiting developers from including in their apps external links that direct customers to purchasing mechanisms other than Apple in-app purchasing. The injunction applies to apps on the U.S. storefront of the iOS and iPadOS App Store. On January 16, 2024, the Company implemented a plan to comply with the injunction and filed a statement of compliance with the California District Court. A motion by Epic disputing the Company’s compliance plan and seeking to enforce the injunction, which the Company has opposed, is pending before the California District Court. On September 30, 2024, the Company filed a motion with the California District Court to narrow or vacate the injunction. The Company believes it has substantial defenses and intends to vigorously defend itself. Other Legal Proceedings The Company is subject to other legal proceedings and claims that have not been fully resolved and that have arisen in the ordinary course of business. The Company settled certain matters during the fourth quarter of 2024 that did not individually or in the aggregate have a material impact on the Company’s financial condition or operating results. The outcome of litigation is inherently uncertain. If one or more legal matters were resolved against the Company in a reporting period for amounts above management’s expectations, the Company’s financial condition and operating results for that reporting period could be materially adversely affected."
+        },
+        "metadata": {}
+      }
+    ],
+    "stats": {
+      "successes": 1,
+      "failures": 5,
+      "tokenUsage": {
+        "cached": 0,
+        "completion": 139,
+        "prompt": 156,
+        "total": 295,
+        "numRequests": 6
+      }
+    }
+  },
+  "config": {
+    "description": "Best model eval",
+    "prompts": [
+      "file://prompt1.txt"
+    ],
+    "providers": [
+      "openai:gpt-4o-mini",
+      "openai:gpt-4",
+      "openai:gpt-3.5-turbo"
+    ],
+    "tests": "file://tests.csv",
+    "sharing": true,
+    "defaultTest": {
+      "assert": [
+        {
+          "type": "cost",
+          "threshold": 0.001
+        },
+        {
+          "type": "latency",
+          "threshold": 1000
+        },
+        {
+          "type": "python",
+          "value": "len(output) < 200"
+        },
+        {
+          "type": "llm-rubric",
+          "value": "Does the summary look like it was written by an expert analyst [Yes/No]?"
+        }
+      ]
+    },
+    "outputPath": [
+      "eval.json"
+    ],
+    "extensions": []
+  },
+  "shareableUrl": null
+}

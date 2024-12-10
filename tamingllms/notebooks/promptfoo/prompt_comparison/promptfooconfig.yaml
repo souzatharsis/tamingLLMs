@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://promptfoo.dev/config-schema.json
+
+# Learn more about building a configuration: https://promptfoo.dev/docs/configuration/guide
+
+description: "Best model eval"
+
+prompts:
+  - file://prompt1.txt
+  - file://prompt2.txt
+  - file://prompt3.txt
+  
+
+providers:
+  - openai:gpt-3.5-turbo
+
+# These test properties are applied to every test
+defaultTest:
+  assert:
+    - type: llm-rubric
+      value: |
+        Evaluate the output based on how detailed it is.  Grade it on a scale of 0.0 to 1.0, where:
+        Score of 0.1: Not much detail.
+        Score of 0.5: Some detail.
+        Score of 1.0: Very detailed.
+  
+tests: file://tests.csv

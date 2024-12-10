@@ -193,7 +193,7 @@
           <div class="content" role="main" v-pre>
             
   <section class="tex2jax_ignore mathjax_ignore" id="the-evals-gap">
-<h1><a class="toc-backref" href="#id86" role="doc-backlink"><span class="section-number">4. </span>The Evals Gap</a><a class="headerlink" href="#the-evals-gap" title="Permalink to this heading">¶</a></h1>
+<h1><a class="toc-backref" href="#id87" role="doc-backlink"><span class="section-number">4. </span>The Evals Gap</a><a class="headerlink" href="#the-evals-gap" title="Permalink to this heading">¶</a></h1>
 <blockquote class="epigraph">
 <div><p>It doesn’t matter how beautiful your theory is, <br>
 it doesn’t matter how smart you are. <br>
@@ -203,45 +203,45 @@ If it doesn’t agree with experiment, it’s wrong.</p>
 <nav class="contents" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#the-evals-gap" id="id86">The Evals Gap</a></p>
+<li><p><a class="reference internal" href="#the-evals-gap" id="id87">The Evals Gap</a></p>
 <ul>
-<li><p><a class="reference internal" href="#non-deterministic-generative-machines" id="id87">Non-Deterministic Generative Machines</a></p>
+<li><p><a class="reference internal" href="#non-deterministic-generative-machines" id="id88">Non-Deterministic Generative Machines</a></p>
 <ul>
-<li><p><a class="reference internal" href="#temperature-and-sampling" id="id88">Temperature and Sampling</a></p></li>
-<li><p><a class="reference internal" href="#the-temperature-spectrum" id="id89">The Temperature Spectrum</a></p></li>
+<li><p><a class="reference internal" href="#temperature-and-sampling" id="id89">Temperature and Sampling</a></p></li>
+<li><p><a class="reference internal" href="#the-temperature-spectrum" id="id90">The Temperature Spectrum</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#emerging-properties" id="id90">Emerging Properties</a></p></li>
-<li><p><a class="reference internal" href="#problem-statement" id="id91">Problem Statement</a></p></li>
-<li><p><a class="reference internal" href="#evals-design" id="id92">Evals Design</a></p>
+<li><p><a class="reference internal" href="#emerging-properties" id="id91">Emerging Properties</a></p></li>
+<li><p><a class="reference internal" href="#problem-statement" id="id92">Problem Statement</a></p></li>
+<li><p><a class="reference internal" href="#evals-design" id="id93">Evals Design</a></p>
 <ul>
-<li><p><a class="reference internal" href="#conceptual-overview" id="id93">Conceptual Overview</a></p></li>
-<li><p><a class="reference internal" href="#design-considerations" id="id94">Design Considerations</a></p></li>
+<li><p><a class="reference internal" href="#conceptual-overview" id="id94">Conceptual Overview</a></p></li>
+<li><p><a class="reference internal" href="#design-considerations" id="id95">Design Considerations</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#metrics" id="id95">Metrics</a></p></li>
-<li><p><a class="reference internal" href="#evaluators" id="id96">Evaluators</a></p>
+<li><p><a class="reference internal" href="#metrics" id="id96">Metrics</a></p></li>
+<li><p><a class="reference internal" href="#evaluators" id="id97">Evaluators</a></p>
 <ul>
-<li><p><a class="reference internal" href="#model-based-evaluation" id="id97">Model-Based Evaluation</a></p></li>
-<li><p><a class="reference internal" href="#human-based-evaluation" id="id98">Human-Based Evaluation</a></p></li>
-<li><p><a class="reference internal" href="#evaluating-evaluators" id="id99">Evaluating Evaluators</a></p></li>
+<li><p><a class="reference internal" href="#model-based-evaluation" id="id98">Model-Based Evaluation</a></p></li>
+<li><p><a class="reference internal" href="#human-based-evaluation" id="id99">Human-Based Evaluation</a></p></li>
+<li><p><a class="reference internal" href="#evaluating-evaluators" id="id100">Evaluating Evaluators</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#benchmarks-and-leaderboards" id="id100">Benchmarks and Leaderboards</a></p></li>
-<li><p><a class="reference internal" href="#tools" id="id101">Tools</a></p>
+<li><p><a class="reference internal" href="#benchmarks-and-leaderboards" id="id101">Benchmarks and Leaderboards</a></p></li>
+<li><p><a class="reference internal" href="#tools" id="id102">Tools</a></p>
 <ul>
-<li><p><a class="reference internal" href="#lighteval" id="id102">LightEval</a></p></li>
-<li><p><a class="reference internal" href="#langsmith" id="id103">LangSmith</a></p></li>
-<li><p><a class="reference internal" href="#promptfoo" id="id104">PromptFoo</a></p></li>
+<li><p><a class="reference internal" href="#lighteval" id="id103">LightEval</a></p></li>
+<li><p><a class="reference internal" href="#langsmith" id="id104">LangSmith</a></p></li>
+<li><p><a class="reference internal" href="#promptfoo" id="id105">PromptFoo</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#references" id="id105">References</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id106">References</a></p></li>
 </ul>
 </li>
 </ul>
 </nav>
 <section id="non-deterministic-generative-machines">
-<h2><a class="toc-backref" href="#id87" role="doc-backlink"><span class="section-number">4.1. </span>Non-Deterministic Generative Machines</a><a class="headerlink" href="#non-deterministic-generative-machines" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id88" role="doc-backlink"><span class="section-number">4.1. </span>Non-Deterministic Generative Machines</a><a class="headerlink" href="#non-deterministic-generative-machines" title="Permalink to this heading">¶</a></h2>
 <p>One of the most fundamental challenges when building products with Large Language Models (LLMs) is their generative and non-deterministic nature. Unlike traditional software systems where the same input reliably produces the same output, LLMs can generate novel text that may not exist in their training data, and produce different responses each time they’re queried - even with identical prompts and input data. This behavior is both a strength and a significant engineering challenge and product challenge.</p>
 <p>When you ask an LLM the same question multiple times, you’ll likely get different responses. This isn’t a bug - it’s a fundamental feature of how these models work. The “temperature” parameter, which controls the randomness of outputs, allows models to be creative and generate diverse responses. However, this same feature makes it difficult to build reliable, testable systems.</p>
 <p>Consider a financial services company using LLMs to generate investment advice. The non-deterministic nature of these models means that:</p>
@@ -252,7 +252,7 @@ If it doesn’t agree with experiment, it’s wrong.</p>
 <li><p>User trust may be affected by inconsistent responses</p></li>
 </ul>
 <section id="temperature-and-sampling">
-<h3><a class="toc-backref" href="#id88" role="doc-backlink"><span class="section-number">4.1.1. </span>Temperature and Sampling</a><a class="headerlink" href="#temperature-and-sampling" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id89" role="doc-backlink"><span class="section-number">4.1.1. </span>Temperature and Sampling</a><a class="headerlink" href="#temperature-and-sampling" title="Permalink to this heading">¶</a></h3>
 <p>The primary source of non-determinism in LLMs comes from their sampling strategies. During text generation, the model:</p>
 <ol class="arabic simple">
 <li><p>Calculates probability distributions for each next token</p></li>
@@ -261,12 +261,14 @@ If it doesn’t agree with experiment, it’s wrong.</p>
 </ol>
 </section>
 <section id="the-temperature-spectrum">
-<h3><a class="toc-backref" href="#id89" role="doc-backlink"><span class="section-number">4.1.2. </span>The Temperature Spectrum</a><a class="headerlink" href="#the-temperature-spectrum" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id90" role="doc-backlink"><span class="section-number">4.1.2. </span>The Temperature Spectrum</a><a class="headerlink" href="#the-temperature-spectrum" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Temperature = 0: Most deterministic, but potentially repetitive</p></li>
 <li><p>Temperature = 1: Balanced creativity and coherence</p></li>
 <li><p>Temperature &gt; 1: Increased randomness, potentially incoherent</p></li>
 </ul>
+<p>A temperature of 1 represents the unscaled probability scores for each token in the vocabulary. Decreasing the temperature closer to 0 sharpens the distribution, so the most likely token will have an even higher probability score. Conversely, increasing the temperature makes the distribution more uniform <span id="id2">[<a class="reference internal" href="#id81" title="Sebastian Raschka. Build A Large Language Model (From Scratch). Manning, 2024. ISBN 978-1633437166. URL: https://www.manning.com/books/build-a-large-language-model-from-scratch.">Raschka, 2024</a>]</span>.</p>
+<p>In this simple experiment, we use an LLM to write a single-statement executive summary of an input financial filing. We observe that even a simple parameter like temperature can dramatically alter model behavior in ways that are difficult to systematically assess. At temperature 0.0, responses are consistent but potentially too rigid. At 1.0, outputs become more varied but less predictable. At 2.0, responses can be wildly different and often incoherent. This non-deterministic behavior makes traditional software testing approaches inadequate.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
@@ -376,25 +378,23 @@ Attempt 3: Apple Inc&#39;s Form 10-K provides a comprehensive overview of the co
 </div>
 </div>
 </div>
-<p>A temperature of 1 represents the unscaled probability scores for each token in the vocabulary. Decreasing the temperature closer to 0 sharpens the distribution, so the most likely token will have an even higher probability score. Conversely, increasing the temperature makes the distribution more uniform <span id="id2">[<a class="reference internal" href="#id81" title="Sebastian Raschka. Build A Large Language Model (From Scratch). Manning, 2024. ISBN 978-1633437166. URL: https://www.manning.com/books/build-a-large-language-model-from-scratch.">Raschka, 2024</a>]</span>.</p>
-<p>In this simple experiment, we use an LLM to write a single-statement executive summary of an input financial filing. We observe that even a simple parameter like temperature can dramatically alter model behavior in ways that are difficult to systematically assess. At temperature 0.0, responses are consistent but potentially too rigid. At 1.0, outputs become more varied but less predictable. At 2.0, responses can be wildly different and often incoherent. This non-deterministic behavior makes traditional software testing approaches inadequate.</p>
-<p>The implications for evaluation are critical. How can one effectively test an LLM-powered system when the same prompt can yield radically different outputs based on a single parameter? Traditional testing relies on predictable inputs and outputs, but LLMs force us to grapple with probabilistic behavior. While lower temperatures may seem safer for critical applications, they don’t necessarily eliminate the underlying uncertainty. This highlights the need for new evaluation paradigms that can handle both deterministic and probabilistic aspects of LLM behavior.</p>
+<p>How can one effectively test an LLM-powered system when the same prompt can yield radically different outputs based on a single parameter? Traditional testing relies on predictable inputs and outputs, but LLMs force us to grapple with probabilistic behavior. While lower temperatures may seem safer for critical applications, they don’t necessarily eliminate the underlying uncertainty. This highlights the need for new evaluation paradigms that can handle both deterministic and probabilistic aspects of LLM behavior.</p>
 </section>
 </section>
 <section id="emerging-properties">
-<h2><a class="toc-backref" href="#id90" role="doc-backlink"><span class="section-number">4.2. </span>Emerging Properties</a><a class="headerlink" href="#emerging-properties" title="Permalink to this heading">¶</a></h2>
-<p>Beyond their non-deterministic nature, LLMs present another fascinating challenge: emergent abilities that spontaneously arise as models scale up in size. These abilities - from basic question answering to complex reasoning - aren’t explicitly programmed but rather emerge “naturally” as the models grow larger and are trained on more data. This makes evaluation fundamentally different from traditional software testing, where capabilities are explicitly coded and can be tested against clear specifications.</p>
+<h2><a class="toc-backref" href="#id91" role="doc-backlink"><span class="section-number">4.2. </span>Emerging Properties</a><a class="headerlink" href="#emerging-properties" title="Permalink to this heading">¶</a></h2>
+<p>Beyond their non-deterministic nature, LLMs present another fascinating characteristic: emergent abilities that spontaneously arise as models scale up in size. These abilities - from basic question answering to complex reasoning - aren’t explicitly programmed but rather emerge “naturally” as the models grow larger and are trained on more data. This makes evaluation fundamentally different from traditional software testing, where capabilities are explicitly coded and can be tested against pre-defined specifications.</p>
+<p><a class="reference internal" href="#id4"><span class="std std-numref">Fig. 4.1</span></a> provides a list of emergent abilities of large language models and the scale. The relationship between model scale and emergent abilities follows a fascinating non-linear pattern. Below certain size thresholds, specific abilities may be completely absent from the model - it simply cannot perform certain tasks, no matter how much you try to coax them out. However, once the model reaches critical points in its scaling journey, these abilities can suddenly manifest in what researchers call a phase transition - a dramatic shift from inability to capability. This unpredictable emergence of capabilities stands in stark contrast to traditional software development, where features are deliberately implemented and can be systematically tested.</p>
 <figure class="align-center" id="id4">
 <a class="bg-primary mb-1 reference internal image-reference" href="../_images/emerging.png"><img alt="Emerging Properties" class="bg-primary mb-1" src="../_images/emerging.png" style="width: 931.1999999999999px; height: 664.8px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Emergent abilities of large language models and the scale <span id="id3">[<a class="reference internal" href="#id39" title="Jason Wei, Yi Tay, Rishi Bommasani, Colin Raffel, Barret Zoph, Sebastian Borgeaud, Dani Yogatama, Maarten Bosma, Denny Zhou, Donald Metzler, Ed H. Chi, Tatsunori Hashimoto, Oriol Vinyals, Percy Liang, Jeff Dean, and William Fedus. Emergent abilities of large language models. 2022. URL: https://arxiv.org/abs/2206.07682, arXiv:2206.07682.">Wei <em>et al.</em>, 2022</a>]</span>.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p><a class="reference internal" href="#id4"><span class="std std-numref">Fig. 4.1</span></a> provides a list of emergent abilities of large language models and the scale. The relationship between model scale and emergent abilities follows a fascinating non-linear pattern. Below certain size thresholds, specific abilities may be completely absent from the model - it simply cannot perform certain tasks, no matter how much you try to coax them out. However, once the model reaches critical points in its scaling journey, these abilities can suddenly manifest in what researchers call a phase transition - a dramatic shift from inability to capability. This unpredictable emergence of capabilities stands in stark contrast to traditional software development, where features are deliberately implemented and can be systematically tested.</p>
-<p>The implications for evaluation are pressing. While conventional software testing relies on stable test suites and well-defined acceptance criteria, LLM evaluation must contend with a constantly shifting landscape of capabilities. What worked to evaluate a 7B parameter model may be completely inadequate for a 70B parameter model that has developed new emergent abilities. This dynamic nature of LLM capabilities forces us to fundamentally rethink our approach to testing and evaluation.</p>
+<p>The implications for evaluation are critical. While conventional software testing relies on stable test suites and well-defined acceptance criteria, LLM evaluation must contend with a constantly shifting landscape of capabilities. What worked to evaluate a 7B parameter model may be completely inadequate for a 70B parameter model that has developed new emergent abilities. This dynamic nature of LLM capabilities forces us to fundamentally rethink our approach to testing and evaluation.</p>
 </section>
 <section id="problem-statement">
-<h2><a class="toc-backref" href="#id91" role="doc-backlink"><span class="section-number">4.3. </span>Problem Statement</a><a class="headerlink" href="#problem-statement" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id92" role="doc-backlink"><span class="section-number">4.3. </span>Problem Statement</a><a class="headerlink" href="#problem-statement" title="Permalink to this heading">¶</a></h2>
 <p>Consider a practical example that illustrates these challenges: building a Math AI tutoring system for children powered by an LLM. In traditional software development, you would define specific features (like presenting math problems or checking answers) and write tests to verify each function. But with LLMs, you’re not just testing predefined features - you’re trying to evaluate emergent capabilities like adapting explanations to a child’s level, maintaining engagement through conversational learning, and providing age-appropriate safety-bound content.</p>
 <p>This fundamental difference raises critical questions about evaluation:</p>
 <ul class="simple">
@@ -405,9 +405,9 @@ Attempt 3: Apple Inc&#39;s Form 10-K provides a comprehensive overview of the co
 <p>The challenge becomes even more complex when we consider that traditional software evaluation methods simply weren’t designed for these kinds of systems - There is an <strong>Evals Gap</strong> between traditional software testing and LLM evaluation. We need new frameworks that can account for both the deterministic aspects we’re used to testing and the emergent properties that make LLMs unique.</p>
 <p><a class="reference internal" href="#evals-table"><span class="std std-numref">Table 4.1</span></a> explores how LLM evaluation differs from traditional software testing across several key dimensions:</p>
 <ul class="simple">
-<li><p><strong>Capability Assessment vs Functional Testing</strong>: Traditional software testing validates specific functionality against predefined requirements. LLM evaluation must assess not necessarily pre-defined “emergent properties” like reasoning, creativity, and language understanding that extend beyond explicit programming.</p></li>
-<li><p><strong>Metrics and Measurement Challenges</strong>: While traditional software metrics can usually be precisely defined and measured, LLM evaluation often involves subjective qualities like “helpfulness” or “naturalness” that resist straightforward quantification. Even when we try to break these down into numeric scores, the underlying judgment remains inherently human and context-dependent.</p></li>
-<li><p><strong>Dataset Contamination</strong>: Traditional software testing uses carefully crafted test cases with known inputs and expected outputs (e.g., unit tests, integration tests). In contrast, LLMs trained on massive internet-scale datasets risk having already seen and memorized evaluation examples during training, which can lead to artificially inflated performance scores. This requires careful dataset curation to ensure test sets are truly unseen by the model and rigorous cross-validation approaches.</p></li>
+<li><p><strong>Capability Assessment vs Functional Testing</strong>: Traditional software testing validates specific functionality against predefined requirements. LLM evaluation must assess not necessarily pre-defined behavior but also “emergent properties” like reasoning, creativity, and language understanding that extend beyond explicit programming.</p></li>
+<li><p><strong>Metrics and Measurement Challenges</strong>: While traditional software metrics can usually be precisely defined and measured, LLM evaluation often involves subjective qualities like “helpfulness” or “naturalness” that resist straightforward quantification. Even when we try to break these down into numeric scores, the underlying judgment often remains inherently human and context-dependent.</p></li>
+<li><p><strong>Dataset Contamination</strong>: Traditional software testing uses carefully crafted test cases with known inputs and expected outputs (e.g., unit tests). In contrast, LLMs trained on massive internet-scale datasets risk having already seen and memorized evaluation examples during training, which can lead to artificially inflated performance scores. This requires careful dataset curation to ensure test sets are truly unseen by the model and rigorous cross-validation approaches.</p></li>
 <li><p><strong>Benchmark Evolution</strong>: Traditional software maintains stable test suites over time. LLM benchmarks continuously evolve as capabilities advance, making longitudinal performance comparisons difficult and potentially obsoleting older evaluation methods.</p></li>
 <li><p><strong>Human Evaluation Requirements</strong>: Traditional software testing automates most validation. LLM evaluation may demand significant human oversight to assess output quality, appropriateness, and potential biases through structured annotation and systematic review processes.</p></li>
 </ul>
@@ -444,7 +444,7 @@ Attempt 3: Apple Inc&#39;s Form 10-K provides a comprehensive overview of the co
 </table>
 </section>
 <section id="evals-design">
-<h2><a class="toc-backref" href="#id92" role="doc-backlink"><span class="section-number">4.4. </span>Evals Design</a><a class="headerlink" href="#evals-design" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id93" role="doc-backlink"><span class="section-number">4.4. </span>Evals Design</a><a class="headerlink" href="#evals-design" title="Permalink to this heading">¶</a></h2>
 <p>First, it’s important to make a distinction between evaluating an LLM versus evaluating an LLM-based application. While the latter offers foundation capabilities and are typically general-purpose, the former is more specific and tailored to a particular use case. Here, we define an LLM-based application as a system that uses one or more LLMs to perform a specific task. More specifically, an LLM-based application is the combination of one or more LLM models, their associated prompts and parameters to solve a particular business problem.</p>
 <p>That differentiation is important because it changes the scope of evaluation. LLMs are usually evaluated based on their capabilities, which include things like language understanding, reasoning and knowledge. LLM-based applications, instead, should be evaluated based on their end-to-end functionality, performance, and how well they meet business requirements. That distinction has key implications for the design of evaluation systems:</p>
 <ul class="simple">
@@ -452,7 +452,7 @@ Attempt 3: Apple Inc&#39;s Form 10-K provides a comprehensive overview of the co
 <li><p>Evaluation must align with business objectives</p></li>
 <li><p>A great LLM doesn’t guarantee a great application!</p></li>
 </ul>
-<p>Examples of key requirements for validation are listed in <a class="reference internal" href="#validation-requirements"><span class="std std-numref">Table 4.2</span></a>.</p>
+<p>Examples of key requirements for validation are listed in <a class="reference internal" href="#validation-requirements"><span class="std std-numref">Table 4.2</span></a> ranging from Safety, Cognitive, Technical, Meta-Cognitive, to Ethical aspects.</p>
 <table class="docutils align-default" id="validation-requirements">
 <caption><span class="caption-number">Table 4.2 </span><span class="caption-text">LLM Application Testing Requirements Matrix</span><a class="headerlink" href="#validation-requirements" title="Permalink to this table">¶</a></caption>
 <thead>
@@ -531,7 +531,7 @@ Attempt 3: Apple Inc&#39;s Form 10-K provides a comprehensive overview of the co
 </tbody>
 </table>
 <section id="conceptual-overview">
-<h3><a class="toc-backref" href="#id93" role="doc-backlink"><span class="section-number">4.4.1. </span>Conceptual Overview</a><a class="headerlink" href="#conceptual-overview" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id94" role="doc-backlink"><span class="section-number">4.4.1. </span>Conceptual Overview</a><a class="headerlink" href="#conceptual-overview" title="Permalink to this heading">¶</a></h3>
 <p><a class="reference internal" href="#conceptual"><span class="std std-numref">Fig. 4.2</span></a> demonstrates a conceptual design of key components of LLM Application evaluation.</p>
 <figure class="align-center" id="conceptual">
 <a class="reference internal image-reference" href="../_images/conceptual.png"><img alt="Conceptual Overview" src="../_images/conceptual.png" style="width: 992.8000000000001px; height: 424.0px;" /></a>
@@ -612,7 +612,7 @@ Attempt 3: Apple Inc&#39;s Form 10-K provides a comprehensive overview of the co
 </ul>
 </section>
 <section id="design-considerations">
-<h3><a class="toc-backref" href="#id94" role="doc-backlink"><span class="section-number">4.4.2. </span>Design Considerations</a><a class="headerlink" href="#design-considerations" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id95" role="doc-backlink"><span class="section-number">4.4.2. </span>Design Considerations</a><a class="headerlink" href="#design-considerations" title="Permalink to this heading">¶</a></h3>
 <p>The design of an LLM application evaluation system depends heavily on the specific use case and business requirements. Here we list important questions for planning an LLM application evaluation system pertaining to each of the key components previously introduced:</p>
 <p><strong>1. Examples (Input Dataset):</strong></p>
 <ul class="simple">
@@ -697,7 +697,7 @@ Attempt 3: Apple Inc&#39;s Form 10-K provides a comprehensive overview of the co
 </section>
 </section>
 <section id="metrics">
-<h2><a class="toc-backref" href="#id95" role="doc-backlink"><span class="section-number">4.5. </span>Metrics</a><a class="headerlink" href="#metrics" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id96" role="doc-backlink"><span class="section-number">4.5. </span>Metrics</a><a class="headerlink" href="#metrics" title="Permalink to this heading">¶</a></h2>
 <p>The choice of metric depends on the specific task and desired evaluation criteria. However, one can categorize metrics into two broad categories: <strong>intrinsic</strong> and <strong>extrinsic</strong>.</p>
 <ul class="simple">
 <li><p><strong>Intrinsic metrics</strong> focus on the model’s performance on its primary training objective, which is typically to predict the next token in a sequence.  Perplexity is a common intrinsic metric that measures how well the model predicts a given sample of text.</p></li>
@@ -1007,9 +1007,9 @@ gpt-3.5-turbo:
 <p>To address these limitations, alternative approaches like <strong>human-based evaluation</strong> and <strong>model-based evaluation</strong> are often used, which will be discussed in the following sections.</p>
 </section>
 <section id="evaluators">
-<h2><a class="toc-backref" href="#id96" role="doc-backlink"><span class="section-number">4.6. </span>Evaluators</a><a class="headerlink" href="#evaluators" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id97" role="doc-backlink"><span class="section-number">4.6. </span>Evaluators</a><a class="headerlink" href="#evaluators" title="Permalink to this heading">¶</a></h2>
 <section id="model-based-evaluation">
-<h3><a class="toc-backref" href="#id97" role="doc-backlink"><span class="section-number">4.6.1. </span>Model-Based Evaluation</a><a class="headerlink" href="#model-based-evaluation" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id98" role="doc-backlink"><span class="section-number">4.6.1. </span>Model-Based Evaluation</a><a class="headerlink" href="#model-based-evaluation" title="Permalink to this heading">¶</a></h3>
 <p>Traditional metrics like BLEU or ROUGE often fall short in capturing the nuanced, contextual, and creative outputs of LLMs. As an alternative we can consider a “Model-based evaluation” approach. A common approach is to use an LLM as a judge. This is an approach that leverages language models themselves to assess the quality of outputs from other language models. This method involves using a model (often a more capable one) to act as an automated judge, evaluating aspects like accuracy, coherence, and relevance of generated content. Unlike traditional metrics that rely on exact matching or statistical measures, model-based evaluation can capture nuanced aspects of language and provide more contextual assessment.</p>
 <p>As discussed in the paper <span id="id5">[<a class="reference internal" href="#id45" title="Zhen Li, Xiaohan Xu, Tao Shen, Can Xu, Jia-Chen Gu, Yuxuan Lai, Chongyang Tao, and Shuai Ma. Leveraging large language models for nlg evaluation: advances and challenges. 2024. URL: https://arxiv.org/abs/2401.07103, arXiv:2401.07103.">Li <em>et al.</em>, 2024</a>]</span>, LLM-based evaluation approaches generally fall into two main categories:</p>
 <ol class="arabic simple">
@@ -1249,11 +1249,11 @@ gpt-3.5-turbo:
 <p>The LLM-as-a-Judge strategy can serve as a scalable and nuanced solution to evaluate LLM-based applications. While it does not entirely a metrics-based or human-based aproach, it significantly augments evaluation workflows, especially in scenarios requiring evaluation of generative outputs. Future improvements could include integrating human oversight and refining LLMs for domain-specific evaluation tasks.</p>
 </section>
 <section id="human-based-evaluation">
-<h3><a class="toc-backref" href="#id98" role="doc-backlink"><span class="section-number">4.6.2. </span>Human-Based Evaluation</a><a class="headerlink" href="#human-based-evaluation" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id99" role="doc-backlink"><span class="section-number">4.6.2. </span>Human-Based Evaluation</a><a class="headerlink" href="#human-based-evaluation" title="Permalink to this heading">¶</a></h3>
 <p>Human assessors can judge aspects like fluency, coherence, and factual accuracy, providing a more comprehensive evaluation. However, human evaluation can be subjective and resource-intensive.</p>
 </section>
 <section id="evaluating-evaluators">
-<h3><a class="toc-backref" href="#id99" role="doc-backlink"><span class="section-number">4.6.3. </span>Evaluating Evaluators</a><a class="headerlink" href="#evaluating-evaluators" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id100" role="doc-backlink"><span class="section-number">4.6.3. </span>Evaluating Evaluators</a><a class="headerlink" href="#evaluating-evaluators" title="Permalink to this heading">¶</a></h3>
 <p>We have discussed how LLMs can be used to evaluate LLM-based aplications. However, how can we evaluate the performance of LLMs that evaluate other LLMs? This is the question that meta evaluation aims to answer. Clearly, the discussion can become quite meta as we need to evaluate the performance of the evaluator to evaluate the performance of the evaluated model. However, one can make a case for two general options:</p>
 <ol class="arabic simple">
 <li><p>Use a gold-standard dataset that is used to evaluate the performance of LLM evaluators using a “metrics-based” approach.</p></li>
@@ -1297,7 +1297,7 @@ gpt-3.5-turbo:
 </section>
 </section>
 <section id="benchmarks-and-leaderboards">
-<h2><a class="toc-backref" href="#id100" role="doc-backlink"><span class="section-number">4.7. </span>Benchmarks and Leaderboards</a><a class="headerlink" href="#benchmarks-and-leaderboards" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id101" role="doc-backlink"><span class="section-number">4.7. </span>Benchmarks and Leaderboards</a><a class="headerlink" href="#benchmarks-and-leaderboards" title="Permalink to this heading">¶</a></h2>
 <p>Benchmarks act as standardized tests for LLMs, evaluating their performance across a spectrum of tasks. These tasks simulate real-world applications such as answering questions, generating coherent text, solving mathematical problems, or even writing computer code. They also assess more abstract qualities like fairness, robustness, and cultural understanding.</p>
 <p>Benchmarks can be thought as comprehensive “exams” that probe different “subjects” in order to certify an LLM. They help researchers and developers compare models systematically, in a way LLM performance is comparable while enabling the identification of emergent behaviors or capabilities as models evolve in scale and sophistication.</p>
 <p>The history of LLM benchmarks reflects the evolving priorities of artificial intelligence research, starting with foundational tasks and moving toward complex, real-world challenges. It began in 2018 with the introduction of <strong>GLUE</strong>(General Language Understanding Evaluation) <span id="id10">[<a class="reference internal" href="#id68" title="Alex Wang, Amanpreet Singh, Julian Michael, Felix Hill, Omer Levy, and Samuel R. Bowman. Glue: a multi-task benchmark and analysis platform for natural language understanding. 2019. URL: https://arxiv.org/abs/1804.07461, arXiv:1804.07461.">Wang <em>et al.</em>, 2019</a>]</span>, which set a new standard for evaluating natural language understanding. GLUE measured performance on tasks like sentiment analysis and textual entailment, providing a baseline for assessing the fundamental capabilities of language models. A year later, <strong>SuperGLUE</strong> <span id="id11">[<a class="reference internal" href="#id69" title="Alex Wang, Yada Pruksachatkun, Nikita Nangia, Amanpreet Singh, Julian Michael, Felix Hill, Omer Levy, and Samuel R. Bowman. Superglue: a stickier benchmark for general-purpose language understanding systems. Advances in Neural Information Processing Systems, 2019.">Wang <em>et al.</em>, 2019</a>]</span> expanded on this foundation by introducing more nuanced tasks that tested reasoning and language comprehension at a deeper level, challenging the limits of models like BERT and its successors.</p>
@@ -1342,9 +1342,9 @@ gpt-3.5-turbo:
 <p>As language models continue to advance in capability and complexity, evaluation frameworks must evolve. Modern benchmarks increasingly incorporate tests for nuanced reasoning, ethical decision-making, and emergent capabilities that weren’t previously measurable. This ongoing evolution reflects a deeper understanding that the true value of language models lies not in achieving high scores on standardized tests with narrow task-specific metrics, but in their ability to meaningfully contribute to human understanding and help solve real-world problems while demonstrating the ability to learn and adapt to new tasks.</p>
 </section>
 <section id="tools">
-<h2><a class="toc-backref" href="#id101" role="doc-backlink"><span class="section-number">4.8. </span>Tools</a><a class="headerlink" href="#tools" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id102" role="doc-backlink"><span class="section-number">4.8. </span>Tools</a><a class="headerlink" href="#tools" title="Permalink to this heading">¶</a></h2>
 <section id="lighteval">
-<h3><a class="toc-backref" href="#id102" role="doc-backlink"><span class="section-number">4.8.1. </span>LightEval</a><a class="headerlink" href="#lighteval" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id103" role="doc-backlink"><span class="section-number">4.8.1. </span>LightEval</a><a class="headerlink" href="#lighteval" title="Permalink to this heading">¶</a></h3>
 <p>LightEval <span id="id26">[<a class="reference internal" href="#id49" title="Clémentine Fourrier, Nathan Habib, Thomas Wolf, and Lewis Tunstall. Lighteval: a lightweight framework for llm evaluation. 2023. URL: https://github.com/huggingface/lighteval.">Fourrier <em>et al.</em>, 2023</a>]</span> is a lightweight framework for evaluation of LLMs across a variety of standard and bespoke metrics and tasks across multiple inference backends via Python SDK and CLI.</p>
 <p>As a motivating example, consider a scenario where financial data has been extracted from SEC financial filings and require econometric analysis. Tasks like estimating autoregressive models for time series forecasting or conducting hypothesis tests on market efficiency are common in financial analysis. Let’s evaluate how well different models perform on this type of task.</p>
 <p>First, we need to select a benchmark to assess LLMs capabilities in this domain. MMLU has a sub-benchmark called Econometrics we can use for this task. <a class="reference internal" href="#mmlu-econometrics"><span class="std std-numref">Table 4.4</span></a> shows a sample of the benchmark dataset from MMLU Econometrics. It consists of multiple-choice questions from econometrics and expected answers.</p>
@@ -1533,7 +1533,7 @@ gpt-3.5-turbo:
 <p>In summary, LightEval is a simple yet flexible and comprehensive framework for evaluating LLMs across a wide variety of tasks and metrics. It can serve as a first step in selecting your next LLM for a specific task given the exponential growth in number of (open source) models available <span id="id34">[<a class="reference internal" href="#id58" title="Hugging Face. Number of models on hugging face. https://huggingface.co/spaces/huggingface/open-source-ai-year-in-review-2024?day=4, 2024. Accessed: 12/06/2024.">Hugging Face, 2024</a>]</span>. Its integration with the Hugging Face ecosystem and modular architecture make it particularly powerful for evaluating open source models. For further details, visit the <a class="reference external" href="https://github.com/huggingface/lighteval">official repository</a> <span id="id35">[<a class="reference internal" href="#id49" title="Clémentine Fourrier, Nathan Habib, Thomas Wolf, and Lewis Tunstall. Lighteval: a lightweight framework for llm evaluation. 2023. URL: https://github.com/huggingface/lighteval.">Fourrier <em>et al.</em>, 2023</a>]</span>.</p>
 </section>
 <section id="langsmith">
-<h3><a class="toc-backref" href="#id103" role="doc-backlink"><span class="section-number">4.8.2. </span>LangSmith</a><a class="headerlink" href="#langsmith" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id104" role="doc-backlink"><span class="section-number">4.8.2. </span>LangSmith</a><a class="headerlink" href="#langsmith" title="Permalink to this heading">¶</a></h3>
 <p>Let’s revisit our evaluation example when we were interested in evaluating the quality of summaries generated by different (smaller and cheaper) LLM models compared to a benchmark model (larger and more expensive). Recal the setup:</p>
 <ul class="simple">
 <li><p>Benchmark model: gpt-4o</p></li>
@@ -1559,12 +1559,6 @@ gpt-3.5-turbo:
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
 
 <span class="n">ls_client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tobias/src/tamingLLMs/tamingllms/.venv/lib/python3.12/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
-  from .autonotebook import tqdm as notebook_tqdm
 </pre></div>
 </div>
 </div>
@@ -1947,12 +1941,273 @@ gpt-4-turbo                 0.3519  0.0775         0.9122  0.1482
 </figure>
 </section>
 <section id="promptfoo">
-<h3><a class="toc-backref" href="#id104" role="doc-backlink"><span class="section-number">4.8.3. </span>PromptFoo</a><a class="headerlink" href="#promptfoo" title="Permalink to this heading">¶</a></h3>
-<p>PromptFoo <span id="id37">[<a class="reference internal" href="#id60" title="PromptFoo. Promptfoo - open-source prompt engineering toolkit. https://www.promptfoo.dev/, 2024. Accessed: 12/06/2024.">PromptFoo, 2024</a>]</span> is a framework for evaluating the quality of prompts for LLMs.</p>
+<h3><a class="toc-backref" href="#id105" role="doc-backlink"><span class="section-number">4.8.3. </span>PromptFoo</a><a class="headerlink" href="#promptfoo" title="Permalink to this heading">¶</a></h3>
+<p>Promptfoo <span id="id37">[<a class="reference internal" href="#id86" title="promptfoo. Promptfoo: llm testing and evaluation framework. 2024. Open source framework for testing and evaluating LLM prompts. URL: https://www.promptfoo.dev/.">promptfoo, 2024</a>]</span> is an open-source framework designed for evaluating applications that utilize large language models (LLMs). Key features include:</p>
+<ol class="arabic simple">
+<li><p><strong>Automated Testing</strong>: Promptfoo provides automated testing capabilities, allowing developers to run custom evaluations tailored to their applications.</p></li>
+<li><p><strong>Custom Probes</strong>: Developers can create custom probes to focus on specific use cases for instance decoupling prompts from tests cases.</p></li>
+<li><p><strong>User-Friendly CLI</strong>: The framework features a command-line interface that supports live reloads and caching, facilitating rapid testing and iteration.</p></li>
+</ol>
+<p>We will use promptfoo’s command line interface in the following examples. Please follow installation instructions <a class="reference external" href="https://www.promptfoo.dev/docs/installation/#for-command-line-usage">here</a>.</p>
+<p>Evals are defined in a configuration file <code class="docutils literal notranslate"><span class="pre">promptfooconfig.yaml</span></code>, which defines elements such as providers, prompts, test cases, and assertions.</p>
+<p>In the following example, we will perform a two-step evaluation:</p>
+<ol class="arabic simple">
+<li><p>Evaluate the performance of different LLM models given a set of constraints.</p></li>
+<li><p>Evaluate the quality of different prompts for the best performing model from 1.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">yaml</span>
+
+<span class="c1"># Read the YAML file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;promptfoo/model_comparison/promptfooconfig.yaml&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># Pretty print the YAML content</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>description: Best model eval
+prompts:
+- file://prompt1.txt
+providers:
+- openai:gpt-4o-mini
+- openai:gpt-4
+- openai:gpt-3.5-turbo
+defaultTest:
+  assert:
+  - type: cost
+    threshold: 0.001
+  - type: latency
+    threshold: 1000
+  - type: python
+    value: len(output) &lt; 200
+  - type: llm-rubric
+    value: Does the summary look like it was written by an expert analyst [Yes/No]?
+tests: file://tests.csv
+</pre></div>
+</div>
+</div>
+</div>
+<p>The configuration file shows how PromptFoo can be used to evaluate different LLM models. The YAML configuration defines three providers (GPT-4o-mini, GPT-4, and GPT-3.5-turbo) and sets up test assertions to validate their outputs. These assertions check important constraints:</p>
+<ol class="arabic simple">
+<li><p>Cost efficiency: Each inference must cost less than $0.001</p></li>
+<li><p>Latency requirements: Response time must be under 1000ms</p></li>
+<li><p>Output length: Generated text must be less than 200 characters</p></li>
+<li><p>Output quality: An LLM-based rubric evaluates if the output appears to be written by an expert (uses openai’s gpt-4o model)</p></li>
+</ol>
+<p>The prompts are loaded from an external file (prompt1.txt) and test cases are defined in tests.csv. This structured approach enables systematic evaluation of model performance across multiple decoupled dimensions, namely prompts and test cases.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>promptfoo<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>--no-cache<span class="w"> </span>--output<span class="w"> </span>eval.json
+</pre></div>
+</div>
+<p>This command will run the evaluation and store the results in eval.json while making sure that the evaluation is not cached so we are measuring actual latency of the LLMs. The code below processes the PromptFoo evaluation results stored in eval.json. It reads the evaluation data from the JSON file and extracts key metrics including:</p>
+<ul class="simple">
+<li><p>Provider name (e.g. gpt-4, gpt-3.5-turbo)</p></li>
+<li><p>Latency in milliseconds</p></li>
+<li><p>Token usage statistics</p></li>
+<li><p>Cost per request</p></li>
+<li><p>Number of passed/failed assertions</p></li>
+<li><p>Prompt token count</p></li>
+<li><p>Total number of API requests</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Read the JSON file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;promptfoo/model_comparison/eval.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">eval_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># Extract results into a list of dictionaries</span>
+<span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">prompt</span> <span class="ow">in</span> <span class="n">eval_data</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;prompts&#39;</span><span class="p">]:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;provider&#39;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">[</span><span class="s1">&#39;provider&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;latency_ms&#39;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">[</span><span class="s1">&#39;metrics&#39;</span><span class="p">][</span><span class="s1">&#39;totalLatencyMs&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;token_usage&#39;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">[</span><span class="s1">&#39;metrics&#39;</span><span class="p">][</span><span class="s1">&#39;tokenUsage&#39;</span><span class="p">][</span><span class="s1">&#39;total&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;cost&#39;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">[</span><span class="s1">&#39;metrics&#39;</span><span class="p">][</span><span class="s1">&#39;cost&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;assert_pass&#39;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">[</span><span class="s1">&#39;metrics&#39;</span><span class="p">][</span><span class="s1">&#39;assertPassCount&#39;</span><span class="p">],</span> 
+        <span class="s1">&#39;assert_fail&#39;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">[</span><span class="s1">&#39;metrics&#39;</span><span class="p">][</span><span class="s1">&#39;assertFailCount&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;prompt_tokens&#39;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">[</span><span class="s1">&#39;metrics&#39;</span><span class="p">][</span><span class="s1">&#39;tokenUsage&#39;</span><span class="p">][</span><span class="s1">&#39;prompt&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;num_requests&#39;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">[</span><span class="s1">&#39;metrics&#39;</span><span class="p">][</span><span class="s1">&#39;tokenUsage&#39;</span><span class="p">][</span><span class="s1">&#39;numRequests&#39;</span><span class="p">]</span>
+    <span class="p">}</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert to DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;### PromptFoo Evaluation Results&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<h3 class="rubric" id="promptfoo-evaluation-results">PromptFoo Evaluation Results</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>               provider  latency_ms  token_usage      cost  assert_pass  \
+0    openai:gpt-4o-mini        2463           97  0.000035            6   
+1          openai:gpt-4        3773          103  0.004620            4   
+2  openai:gpt-3.5-turbo        1669           95  0.000091            7   
+
+   assert_fail  prompt_tokens  num_requests  
+0            2             52             2  
+1            4             52             2  
+2            1             52             2  
+</pre></div>
+</div>
+</div>
+</div>
+<p>The evaluation results reveal interesting performance characteristics across different OpenAI models. GPT-3.5-turbo demonstrates the best overall performance given our criteria with the lowest latency (1669ms), lowest token usage (95), and highest number of passed assertions (7). While GPT-4 shows higher token usage (103) and latency (3773ms), it also has the highest cost per request ($0.00462). The GPT-4-mini variant offers a middle ground, with moderate latency and token usage, while maintaining relatively good assertion performance (6 passes). These results suggest that for this particular evaluation task, GPT-3.5-turbo provides the best balance of performance, reliability, and cost-effectiveness.</p>
+<p>Promptfool also offers a web interface for visualizing the evaluation results as shown in <a class="reference internal" href="#promptfoo1"><span class="std std-numref">Fig. 4.12</span></a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>promptfoo<span class="w"> </span>view
+</pre></div>
+</div>
+<p>We can observe results per test case (i.e. section of the SEC filing) and per provider. Humans can also manually review the results and provide feedback as well as generate new test cases.</p>
+<figure class="align-center" id="promptfoo1">
+<a class="reference internal image-reference" href="../_images/promptfoo1.png"><img alt="PromptFoo Evaluation Results" src="../_images/promptfoo1.png" style="width: 867.6px; height: 504.9px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.12 </span><span class="caption-text">PromptFoo evaluation results showing performance metrics across different models.</span><a class="headerlink" href="#promptfoo1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Now that we have established <code class="docutils literal notranslate"><span class="pre">GPT-3.5-turbo</span></code> as our model of choice given the minimum required criteria based on cost, latency and basic qualitative evaluation, we can compare the performance of different prompts as a next evaluation step. Can we improve the quality of the summaries by using different prompts?</p>
+<p>First, we redefine our evaluation criteria. We now would like to select the prompt that delivers the most “detailed” summaries. Our updated promptfoo configuration file is shown below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the YAML file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;promptfoo/prompt_comparison/promptfooconfig.yaml&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># Pretty print the YAML content</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>description: Best model eval
+prompts:
+- file://prompt1.txt
+- file://prompt2.txt
+- file://prompt3.txt
+providers:
+- openai:gpt-3.5-turbo
+defaultTest:
+  assert:
+  - type: llm-rubric
+    value: &#39;Evaluate the output based on how detailed it is.  Grade it on a scale
+      of 0.0 to 1.0, where:
+
+      Score of 0.1: Not much detail.
+
+      Score of 0.5: Some detail.
+
+      Score of 1.0: Very detailed.
+
+      &#39;
+tests: file://tests.csv
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that we are now passing 3 different prompts. And we have updated our assertions to check if the output is detailed. Now, let’s define 3 prompt variations we would like to test aiming at improving the quality/detail of the summaries.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display the prompt variations</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
+
+<span class="n">prompt_files</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;prompt1.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;prompt2.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;prompt3.txt&#39;</span><span class="p">]</span>
+<span class="n">prompt_content</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">prompt_files</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;promptfoo/prompt_comparison/</span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">prompt_content</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;### </span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="se">\n</span><span class="s2">---</span><span class="se">\n</span><span class="si">{</span><span class="n">content</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">prompt_content</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<h3 class="rubric" id="prompt1-txt">prompt1.txt</h3>
+<hr class="docutils" />
+<p>‘Generate a 1-liner summary of the Section {{section}} from an SEC filing: {{content}}’</p>
+<h3 class="rubric" id="prompt2-txt">prompt2.txt</h3>
+<hr class="docutils" />
+<p>‘ROLE: You are a financial analyst. TASK: Generate a 1-liner summary of the Section {{section}} from an SEC filing: {{content}}’</p>
+<h3 class="rubric" id="prompt3-txt">prompt3.txt</h3>
+<hr class="docutils" />
+<p>‘ROLE: You are a financial analyst. REQUIREMENTS: BE DETAILED. TASK: Generate a 1-liner summary of the Section {{section}} from an SEC filing: {{content}}’</p>
+</div>
+</div>
+<p>The first prompt matches our previous prompt. The second prompt adds a “financial analyst” role to the prompt. The third prompt expands on second prompt and add a requirement “BE DETAILED”.</p>
+<p>We can now run the evaluation again.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>promptfoo<span class="w"> </span><span class="nb">eval</span><span class="w"> </span>--output<span class="w"> </span>eval.json
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the evaluation results from JSON file</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;promptfoo/prompt_comparison/eval.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">eval_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># Create a list to store the data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Extract results for each test case</span>
+<span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">eval_data</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;results&#39;</span><span class="p">]:</span>
+    <span class="n">section</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;vars&#39;</span><span class="p">][</span><span class="s1">&#39;section&#39;</span><span class="p">]</span>
+    <span class="n">prompt_id</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;promptId&#39;</span><span class="p">]</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;gradingResult&#39;</span><span class="p">][</span><span class="s1">&#39;score&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;gradingResult&#39;</span> <span class="ow">in</span> <span class="n">result</span> <span class="k">else</span> <span class="mf">0.0</span>
+    
+    <span class="c1"># Find the corresponding prompt file</span>
+    <span class="k">for</span> <span class="n">prompt</span> <span class="ow">in</span> <span class="n">eval_data</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="s1">&#39;prompts&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">prompt</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">prompt_id</span><span class="p">:</span>
+            <span class="n">prompt_file</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">break</span>
+            
+    <span class="c1"># Add to data list</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">section</span><span class="p">,</span> <span class="n">prompt_file</span><span class="p">,</span> <span class="n">score</span><span class="p">])</span>
+
+<span class="c1"># Convert to DataFrame</span>
+<span class="n">df_raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Section&#39;</span><span class="p">,</span> <span class="s1">&#39;Prompt&#39;</span><span class="p">,</span> <span class="s1">&#39;Score&#39;</span><span class="p">])</span>
+
+<span class="c1"># Pivot to get desired format</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df_raw</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;Section&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Prompt&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;Score&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Section&#39;</span><span class="p">,</span> <span class="s1">&#39;prompt1.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;prompt2.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;prompt3.txt&#39;</span><span class="p">]]</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;### Prompt Comparison Results by Section&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<h3 class="rubric" id="prompt-comparison-results-by-section">Prompt Comparison Results by Section</h3>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prompt            Section  prompt1.txt  prompt2.txt  prompt3.txt
+0       Legal Proceedings          0.1          0.5          1.0
+1            Risk Factors          0.1          0.5          0.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>The results show that prompt3.txt performs best for Legal Proceedings sections, achieving a perfect score of 1.0 compared to 0.5 for prompt2.txt and 0.1 for prompt1.txt. For Risk Factors sections, both prompt2.txt and prompt3.txt achieve moderate scores of 0.5, while prompt1.txt scores poorly at 0.1. This suggests that prompt3.txt is generally more effective at extracting detailed information, particularly for legal content. In summary, defining a Role and a requirement for the output to be detailed is a good way to improve the quality of the summaries at least for this specific task, model and criteria.</p>
+<p>In conclusion, Promptfoo can serve as an effective LLM application evaluation tool particularly for its ability to decouple several components of the evaluation process. Hence enabling the user to focus on the most important aspects of the evaluation given the particular application and criteria making it a valuable and flexible tool for LLM application development.</p>
 </section>
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id105" role="doc-backlink"><span class="section-number">4.9. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id106" role="doc-backlink"><span class="section-number">4.9. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <div class="docutils container" id="id38">
 <div class="citation" id="id50" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id33">ALB+24</a><span class="fn-bracket">]</span></span>
@@ -2044,6 +2299,10 @@ gpt-4-turbo                 0.3519  0.0775         0.9122  0.1482
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id13">LHE22</a><span class="fn-bracket">]</span></span>
 <p>Stephanie Lin, Jacob Hilton, and Owain Evans. Truthfulqa: measuring how models mimic human falsehoods. 2022. URL: <a class="reference external" href="https://arxiv.org/abs/2109.07958">https://arxiv.org/abs/2109.07958</a>, <a class="reference external" href="https://arxiv.org/abs/2109.07958">arXiv:2109.07958</a>.</p>
 </div>
+<div class="citation" id="id86" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id37">pro24</a><span class="fn-bracket">]</span></span>
+<p>promptfoo. Promptfoo: llm testing and evaluation framework. 2024. Open source framework for testing and evaluating LLM prompts. URL: <a class="reference external" href="https://www.promptfoo.dev/">https://www.promptfoo.dev/</a>.</p>
+</div>
 <div class="citation" id="id81" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">Ras24</a><span class="fn-bracket">]</span></span>
 <p>Sebastian Raschka. <em>Build A Large Language Model (From Scratch)</em>. Manning, 2024. ISBN 978-1633437166. URL: <a class="reference external" href="https://www.manning.com/books/build-a-large-language-model-from-scratch">https://www.manning.com/books/build-a-large-language-model-from-scratch</a>.</p>
@@ -2083,10 +2342,6 @@ gpt-4-turbo                 0.3519  0.0775         0.9122  0.1482
 <div class="citation" id="id59" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id31">MetaAI24</a><span class="fn-bracket">]</span></span>
 <p>Meta AI. Meta llama models on hugging face. <a class="reference external" href="https://huggingface.co/meta-llama">https://huggingface.co/meta-llama</a>, 2024. Accessed: 2024.</p>
-</div>
-<div class="citation" id="id60" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id37">PromptFoo24</a><span class="fn-bracket">]</span></span>
-<p>PromptFoo. Promptfoo - open-source prompt engineering toolkit. <a class="reference external" href="https://www.promptfoo.dev/">https://www.promptfoo.dev/</a>, 2024. Accessed: 12/06/2024.</p>
 </div>
 </div>
 </div>

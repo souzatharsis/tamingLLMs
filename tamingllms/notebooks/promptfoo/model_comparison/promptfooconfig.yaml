@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=https://promptfoo.dev/config-schema.json
+
+# Learn more about building a configuration: https://promptfoo.dev/docs/configuration/guide
+
+description: "Best model eval"
+
+prompts:
+  - file://prompt1.txt
+  
+
+providers:
+  - openai:gpt-4o-mini
+  - openai:gpt-4
+  - openai:gpt-3.5-turbo
+
+# These test properties are applied to every test
+defaultTest:
+  assert:
+    # Inference should always cost less than this (USD)
+    - type: cost
+      threshold: 0.001
+    
+    # Inference should always be faster than this (milliseconds)
+    - type: latency
+      threshold: 1000
+
+    # Length should be less than 200 characters
+    - type: python
+      value: len(output) < 200
+
+    # Verify that the output looks like it was written by an expert analyst
+    - type: llm-rubric
+      value: Does the summary look like it was written by an expert analyst [Yes/No]?
+  
+tests: file://tests.csv
