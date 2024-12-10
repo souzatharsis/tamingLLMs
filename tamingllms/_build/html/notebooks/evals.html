@@ -233,9 +233,10 @@ If it doesn’t agree with experiment, it’s wrong.</p>
 <li><p><a class="reference internal" href="#lighteval" id="id103">LightEval</a></p></li>
 <li><p><a class="reference internal" href="#langsmith" id="id104">LangSmith</a></p></li>
 <li><p><a class="reference internal" href="#promptfoo" id="id105">PromptFoo</a></p></li>
+<li><p><a class="reference internal" href="#comparison" id="id106">Comparison</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#references" id="id106">References</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id107">References</a></p></li>
 </ul>
 </li>
 </ul>
@@ -2205,9 +2206,45 @@ tests: file://tests.csv
 <p>The results show that prompt3.txt performs best for Legal Proceedings sections, achieving a perfect score of 1.0 compared to 0.5 for prompt2.txt and 0.1 for prompt1.txt. For Risk Factors sections, both prompt2.txt and prompt3.txt achieve moderate scores of 0.5, while prompt1.txt scores poorly at 0.1. This suggests that prompt3.txt is generally more effective at extracting detailed information, particularly for legal content. In summary, defining a Role and a requirement for the output to be detailed is a good way to improve the quality of the summaries at least for this specific task, model and criteria.</p>
 <p>In conclusion, Promptfoo can serve as an effective LLM application evaluation tool particularly for its ability to decouple several components of the evaluation process. Hence enabling the user to focus on the most important aspects of the evaluation given the particular application and criteria making it a valuable and flexible tool for LLM application development.</p>
 </section>
+<section id="comparison">
+<h3><a class="toc-backref" href="#id106" role="doc-backlink"><span class="section-number">4.8.4. </span>Comparison</a><a class="headerlink" href="#comparison" title="Permalink to this heading">¶</a></h3>
+<p>The following table provides a summarized comparative analysis of three open source frameworks for language models evaluation we have discussed: Lighteval, LangSmith, and Promptfoo. Each framework is assessed based on key features such as integration capabilities, customization options, ease of use, and the ability to facilitate human and LLM collaboration.</p>
+<table class="docutils align-default" id="tool-comparison">
+<caption><span class="caption-number">Table 4.6 </span><span class="caption-text">Comparison of Lighteval, LangSmith, and Promptfoo</span><a class="headerlink" href="#tool-comparison" title="Permalink to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature/Aspect</p></th>
+<th class="head"><p>Lighteval</p></th>
+<th class="head"><p>LangSmith</p></th>
+<th class="head"><p>Promptfoo</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Integration</strong></p></td>
+<td><p>Seamless with Hugging Face models, easy access to multiple inference engines, and remote evaluation (e.g., TGI servers, HF serverless models)</p></td>
+<td><p>User-provided models, evaluators, and metrics</p></td>
+<td><p>CLI-based, user-provided models via YAML</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Customization</strong></p></td>
+<td><p>Flexible task and metric support, quick evaluation against state-of-the-art leaderboards</p></td>
+<td><p>Easy setup of custom tasks and metrics with plain vanilla Python functions, lacks predefined tasks and metrics</p></td>
+<td><p>Default and user-provided probes, metrics, and assertions</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Ease of Use</strong></p></td>
+<td><p>User-friendly, minimal setup</p></td>
+<td><p>User-friendly, minimal setup, includes UI for result visualization</p></td>
+<td><p>Simple CLI, rapid testing, includes UI for result visualization</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Human/LLM Collaboration</strong></p></td>
+<td><p>Model-based evaluation</p></td>
+<td><p>Model-based evaluation</p></td>
+<td><p>Supports human and model evaluators</p></td>
+</tr>
+</tbody>
+</table>
+</section>
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id106" role="doc-backlink"><span class="section-number">4.9. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id107" role="doc-backlink"><span class="section-number">4.9. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <div class="docutils container" id="id38">
 <div class="citation" id="id50" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id33">ALB+24</a><span class="fn-bracket">]</span></span>
