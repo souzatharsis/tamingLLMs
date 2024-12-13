@@ -38,6 +38,7 @@ text-generation = "^0.7.0"
 ollama = "^0.4.3"
 langsmith = "0.2.0"
 sphinxcontrib-mermaid = "^1.0.0"
+seaborn = "^0.13.2"
 
 
 [build-system]
