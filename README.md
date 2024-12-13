@@ -1,7 +1,12 @@
 ![Taming Language Models Logo](tamingllms/_static/logo_w.png#gh-light-mode-only)
-<img src="tamingllms/_static/logo_w.png" style="background-color:white; width:25%;" alt="Taming Language Models Logo" />
 
-https://www.souzatharsis.com/tamingLLMs
+
+ <a href="https://www.souzatharsis.com/tamingLLMs" target="_blank">
+  <img src="tamingllms/_static/logo_w.png" style="background-color:white; width:25%;" alt="Taming Language Models Logo" />
+ </a>
+
+Sign-up to receive updates on [new Chapters here](https://tamingllm.substack.com/).
+
 
 # [Taming LLMs](https://www.souzatharsis.com/tamingLLMs)
 ### *A Practical Guide to LLM Pitfalls with Open Source Software*
