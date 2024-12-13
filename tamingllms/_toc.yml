@@ -10,6 +10,7 @@ chapters:
 - file: notebooks/output_size_limit.ipynb
 - file: notebooks/structured_output.ipynb
 - file: notebooks/evals.ipynb
+#- file: notebooks/alignment.ipynb
 #- file: markdown
 #- file: notebooks
 #- file: markdown-notebooks

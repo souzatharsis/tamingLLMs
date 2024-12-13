@@ -4,14 +4,15 @@ author: "Tharsis T. P. Souza"
 date: "2024-11-22"
 ---
 
+Sign-up to receive updates on [new Chapters here](https://tamingllm.substack.com/).
+
 # Taming LLMs
 ## *A Practical Guide to LLM Pitfalls with Open Source Software*
-
 
 Abstract: *The current discourse around Large Language Models (LLMs) tends to focus heavily on their capabilities while glossing over fundamental challenges. Conversely, this book takes a critical look at the key limitations and implementation pitfalls that engineers and technical product managers encounter when building LLM-powered applications. Through practical Python examples and proven open source solutions, it provides an introductory yet comprehensive guide for navigating these challenges. The focus is on concrete problems - from handling unstructured output to managing context windows - with reproducible code examples and battle-tested open source tools. By understanding these pitfalls upfront, readers will be better equipped to build products that harness the power of LLMs while sidestepping their inherent limitations.*
 
 
-## Chapter 1: Introduction
+## [Chapter 1: Introduction](https://www.souzatharsis.com/tamingLLMs/markdown/intro.html)
 - 1.1 Core Challenges We'll Address
 - 1.2 A Practical Approach
 - 1.3 A Note on Perspective
@@ -25,7 +26,7 @@ Abstract: *The current discourse around Large Language Models (LLMs) tends to fo
   - 1.7.4 Troubleshooting Common Issues
 - 1.8 About the Author(s)
 
-## Chapter 2: Wrestling with Structured Output
+## [Chapter 2: Wrestling with Structured Output](https://www.souzatharsis.com/tamingLLMs/notebooks/structured_output.html)
 - 2.1 The Structured Output Challenge
 - 2.2 Problem Statement
 - 2.3 Solutions
@@ -55,7 +56,7 @@ Abstract: *The current discourse around Large Language Models (LLMs) tends to fo
 - 3.5 Implementation Patterns
 - 3.6 Testing Long-form Content
 
-## Chapter 4: Output Size and Length Limitations
+## [Chapter 4: Output Size and Length Limitations](https://www.souzatharsis.com/tamingLLMs/notebooks/output_size_limit.html)
 - 4.1 What are Token Limits?
 - 4.2 Problem Statement
 - 4.3 Content Chunking with Contextual Linking
@@ -71,7 +72,7 @@ Abstract: *The current discourse around Large Language Models (LLMs) tends to fo
 - 4.7 Conclusion
 - 4.8 References
 
-## Chapter 5: The Evals Gap
+## [Chapter 5: The Evals Gap](https://www.souzatharsis.com/tamingLLMs/notebooks/evals.html)
 - 5.1 Non-Deterministic Machines
   - 5.1.1 Temperature and Sampling
   - 5.1.2 The Temperature Spectrum

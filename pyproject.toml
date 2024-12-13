@@ -37,6 +37,7 @@ datasets = "^3.1.0"
 text-generation = "^0.7.0"
 ollama = "^0.4.3"
 langsmith = "0.2.0"
+sphinxcontrib-mermaid = "^1.0.0"
 
 
 [build-system]

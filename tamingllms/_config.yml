@@ -37,8 +37,9 @@ bibtex_bibfiles:
 
 only_build_toc_files: true
 
-
 sphinx:
+  extra_extensions:
+    - sphinxcontrib.mermaid
   config:
     bibtex_reference_style: author_year
     html_theme: 'press' #insipid
