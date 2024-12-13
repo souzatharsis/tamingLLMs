@@ -1,0 +1,11 @@
+training:
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 4
+  gradient_checkpointing: true
+  learning_rate: 5e-5
+  lr_scheduler_type: "cosine"
+  save_strategy: "no"
+  logging_steps: 1
+  bf16: true
+  report_to: null
+  remove_unused_columns: false
