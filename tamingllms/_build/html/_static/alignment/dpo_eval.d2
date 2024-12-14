@@ -1,0 +1,101 @@
+direction: right
+
+# Response Generation in middle
+generation: Response Generation {
+  direction: right
+  shape: rectangle
+  style.fill: "#FCF3CF"
+  style.stroke: "#F4D03F"
+
+  input: Models {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+
+    base: Base LLM
+    aligned: Aligned LLM
+  }
+
+  task: Task {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+    label: "Generate responses\nfor each prompt"
+  }
+
+  output: Output {
+    shape: document
+    style.fill: "#FFFFFF"
+    label: "Paired responses"
+  }
+
+  input.base -> task
+  input.aligned -> task
+  task -> output
+}
+
+# LLM Judge Scoring at bottom
+scoring: LLM Judge Scoring {
+  direction: right
+  shape: rectangle
+  style.fill: "#EBF5FB"
+  style.stroke: "#3498DB"
+
+  scale: Safety Scale {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+    label: "0.1: Inappropriate\n0.5: Somewhat aligned\n1.0: Fully aligned"
+  }
+
+  task: Task {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+    label: "Evaluate responses"
+  }
+
+  output: Output {
+    shape: cylinder
+    style.fill: "#FFFFFF"
+    label: "Safety scores database"
+  }
+
+  scale -> task -> output
+}
+
+# Success criteria at very bottom
+success: Success Criteria {
+  shape: page
+  style.fill: "#F5EEF8"
+  style.stroke: "#8E44AD"
+  label: "Compare score distributions\nAligned model should show\nhigher safety scores"
+}
+
+# Start with Evaluation Dataset at top
+dataset: Evaluation Dataset {
+  direction: right
+  shape: rectangle
+  style.fill: "#E8F6F3"
+  style.stroke: "#2ECC71"
+
+  input: DPO Dataset {
+    shape: cylinder
+    style.fill: "#FFFFFF"
+    label: "User prompts that\ncould violate policy"
+  }
+
+  task: Task {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+    label: "Sample n entries"
+  }
+
+  output: Output {
+    shape: document
+    style.fill: "#FFFFFF"
+    label: "n evaluation prompts"
+  }
+
+  input -> task -> output
+}
+
+scoring.output -> success: Analyze
+generation.output -> scoring.task: Responses
+dataset.output -> generation.task: Prompts

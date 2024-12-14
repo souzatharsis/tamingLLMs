@@ -1,0 +1,52 @@
+# Data Inputs
+data: Data Inputs {
+  shape: rectangle
+  style.fill: "#E8F6F3"
+  style.stroke: "#2ECC71"
+  direction: right
+
+  binary: ultrafeedback_binarized {
+    shape: cylinder
+    style.fill: "#FFFFFF"
+  }
+
+  policy: policy_aligned {
+    shape: cylinder
+    style.fill: "#FFFFFF"
+  }
+}
+
+# Model Input
+model: Model Input {
+  shape: rectangle
+  style.fill: "#FCF3CF"
+  style.stroke: "#F4D03F"
+
+  base: SmolLM2-360M-Instruct {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+    label: "SmolLM2-360M-Instruct"
+  }
+}
+
+# DPO Optimization
+dpo: DPO Optimization {
+  shape: rectangle
+  style.fill: "#EBF5FB"
+  style.stroke: "#3498DB"
+}
+
+# Output Model
+output: smolK-12 {
+  shape: rectangle
+  style.fill: "#F5EEF8"
+  style.stroke: "#8E44AD"
+  label: "SmolK-12 (Aligned Model)"
+}
+
+# Connections
+data -> dpo
+model -> dpo
+dpo -> output
+
+direction: down
