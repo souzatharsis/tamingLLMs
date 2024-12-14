@@ -37,7 +37,7 @@ Throughout this book, we'll tackle the following (non-exhaustive) list of critic
 
 4. **Hallucination Management**: These models can generate plausible-sounding but entirely fabricated information, creating significant risks for production applications.
 
-5. **Safety and Security**: LLMs can generate harmful, biased, or inappropriate content, requiring robust safeguards and monitoring systems to ensure safe deployment.
+5. **Safety and Alignment**: LLMs can generate harmful, biased, or inappropriate content, requiring robust safeguards and monitoring systems to ensure safe deployment.
 
 6. **Cost Optimization**: The computational and financial costs of operating LLM-based systems can quickly become prohibitive without careful management, observability and optimization.
 
@@ -46,13 +46,35 @@ Throughout this book, we'll tackle the following (non-exhaustive) list of critic
 
 ## A Practical Approach
 
-This book takes a hands-on approach to these challenges, providing:
+This book takes a hands-on approach to these challenges, with a focus on accessibility and reproducibility. 
+All examples and code are:
 
-- Concrete Python examples that you can run and modify
-- Real-world scenarios and solutions
-- Testing strategies and best practices
-- Cost optimization techniques
-- Integration patterns and anti-patterns
+- Fully reproducible and documented, allowing readers to replicate results exactly
+- Designed to run on consumer-grade hardware without requiring expensive hardware
+- Available as open source Python notebooks that can be modified and extended
+- Built using free and open source tools accessible to everyone
+- Structured to minimize computational costs while maintaining effectiveness
+
+## An Open Source Approach
+
+Throughout this book, we'll leverage open source tools and frameworks to address common LLM challenges. In that way, we are prioritizing:
+
+- **Transparency**: Open source solutions provide visibility into how challenges are being addressed, allowing for better understanding and customization of solutions.
+- **Flexibility**: Open source tools can be modified and adapted to specific use cases, unlike black-box commercial solutions.
+- **Cost-Effectiveness**: Most of open source tools we will cover are freely available, fostering accessibility and reducing costs.
+- **Vendor Independence**: Open source solutions reduce dependency on specific providers, offering more freedom in architectural decisions.
+
+## Open Source Book
+
+In keeping with these open source principles, this book itself is open source and available on GitHub. It's designed to be a living document that evolves with the changing landscape of LLM technology and implementation practices. Readers are encouraged to:
+
+- Report issues or suggest improvements through GitHub Issues
+- Contribute new examples or solutions via Pull Requests
+- Share their own experiences and solutions with the community
+- Propose new chapters or sections that address emerging challenges
+
+The repository can be found at https://github.com/souzatharsis/tamingllms. Whether you've found a typo, have a better solution to share, or want to contribute an entirely new section, your contributions are welcome.
+
 
 ## A Note on Perspective
 
@@ -60,7 +82,7 @@ While this book takes a critical look at LLM limitations, our goal is not to dis
 
 The current discourse around LLMs tends toward extremes—either uncritical enthusiasm or wholesale dismissal. This book takes a different approach:
 
-- **Practical Implementation Focus**: Rather than theoretical capabilities, we examine real-world challenges and their solutions.
+- **Practical Implementation Focus**: Rather than theoretical capabilities, we examine practical challenges and their solutions.
 - **Code-First Learning**: Every concept is illustrated with executable Python examples, enabling immediate practical application.
 - **Critical Analysis**: We provide a balanced examination of both capabilities and limitations, helping readers make informed decisions about LLM integration.
 
@@ -70,7 +92,7 @@ This book is intended for Software Developers taking their first steps with Larg
 
 This book is designed for: 
 
-- Software Engineers building LLM-powered applications 
+- Software/AI Engineers building LLM-powered applications 
 - Technical Product Managers leading GenAI initiatives 
 - Technical Leaders making architectural decisions
 - Open Source advocates and/or developers building LLM Applications 
@@ -79,7 +101,7 @@ This book is designed for:
 
 Typical job roles:
 
-- Software Engineers building AI-powered platforms
+- Software/AI Engineers building AI-powered platforms
 - Backend Developers integrating LLMs into existing systems
 - ML Engineers transitioning to LLM implementation
 - Technical Leads making architectural decisions
@@ -122,8 +144,8 @@ Before diving into the examples in this book, you'll need to set up your develop
 ### Python Environment Setup
 ```bash
 # Create and activate a virtual environment
-python -m venv llm-book-env
-source llm-book-env/bin/activate  # On Windows, use: llm-book-env\Scripts\activate
+python -m venv taming-llms-env
+source taming-llms-env/bin/activate  # On Windows, use: taming-llms-env\Scripts\activate
 
 # Install required packages
 pip install -r requirements.txt
@@ -157,8 +179,8 @@ Now that your environment is set up, let's begin our exploration of LLM challeng
 
 ## About the Author(s)
 
-Dr. Tharsis Souza is a computer scientist and product leader specializing in AI-based products. He is a Lecturer at Columbia University's Master of Science program in Applied Analytics, Head of Product, Equities at Citadel, and former Senior VP at Two Sigma Investments.
+Dr. Tharsis Souza is a computer scientist and product leader specializing in AI-based products. He is a Lecturer at Columbia University's Master of Science program in Applied Analytics, (*incoming*) Head of Product, Equities at Citadel, and former Senior VP at Two Sigma Investments. He also enjoys mentoring under-represented students & working professionals to help create a more diverse global AI ecosystem.
 
-With over 15 years of experience delivering technology products across startups and Fortune 500 companies globally, Dr. Souza is also an author of numerous scholarly publications and is a frequent speaker at academic and business conferences. Grounded on academic background and drawing from practical experience building and scaling up products powered by language models at early-stage startups, major institutions as well as advising non-profit organizations, and contributing to open source projects, he brings a unique perspective on bridging the gap between LLMs promised potential and their practical limitations using open source tools to enable the next generation of AI-powered products.
+With over 15 years of experience delivering technology products across startups and Fortune 500 companies, Dr. Souza is also an author of numerous scholarly publications and is a frequent speaker at academic and business conferences. Grounded on academic background and drawing from practical experience building and scaling up products powered by language models at early-stage startups, major institutions as well as advising non-profit organizations, and contributing to open source projects, he brings a unique perspective on bridging the gap between LLMs promised potential and their practical implementation challenges to enable the next generation of AI-powered products.
 
 Dr. Tharsis holds a Ph.D. in Computer Science from UCL, University of London following an M.Phil. and M.Sc. in Computer Science and a B.Sc. in Computer Engineering.

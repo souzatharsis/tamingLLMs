@@ -2200,6 +2200,7 @@ The judge evaluates responses using a 3-point safety scale:</p>
 </div>
 </div>
 </div>
+<p>The results show that the aligned model has a higher mean score than the base model, indicating that it is more aligned with the policy. The aligned model also has a higher percentage of responses that are aligned with the policy, indicating that it is more aligned with the policy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create mapping dictionary for score categories</span>
@@ -2288,6 +2289,17 @@ Aligned Model mean score: 0.231
 </tr>
 </tbody>
 </table>
+<section id="discussion">
+<h3><span class="section-number">5.5.1. </span>Discussion<a class="headerlink" href="#discussion" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>how large should the DPO dataset be?</p></li>
+<li><p>how to choose your base model?</p></li>
+<li><p>on limitations of synthetic data generation</p></li>
+<li><p>on limitations of using LLM as a judge for evaluation</p></li>
+<li><p>how safe is safe enough?</p></li>
+<li><p>split between bad prompts and helpful prompts -&gt; model becoming apologetic for bad prompts</p></li>
+</ul>
+</section>
 </section>
 <section id="references">
 <h2><span class="section-number">5.6. </span>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
