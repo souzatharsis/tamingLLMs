@@ -18,7 +18,6 @@ beautifulsoup4 = "^4.12.3"
 tiktoken = "^0.8.0"
 litellm = "^1.52.9"
 pydata-sphinx-theme = "^0.16.0"
-quantecon-book-theme = {git = "https://github.com/QuantEcon/quantecon-book-theme.git"}
 sphinx-multitoc-numbering = "^0.1.3"
 sphinxext-rediraffe = "^0.2.7"
 sphinx-tojupyter = "^0.3.0"

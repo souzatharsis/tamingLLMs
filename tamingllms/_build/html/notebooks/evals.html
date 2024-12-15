@@ -220,7 +220,7 @@
           <div class="content" role="main" v-pre>
             
   <section id="the-evals-gap">
-<h1><a class="toc-backref" href="#id131" role="doc-backlink"><span class="section-number">4. </span>The Evals Gap</a><a class="headerlink" href="#the-evals-gap" title="Permalink to this heading">¶</a></h1>
+<h1><a class="toc-backref" href="#id148" role="doc-backlink"><span class="section-number">4. </span>The Evals Gap</a><a class="headerlink" href="#the-evals-gap" title="Permalink to this heading">¶</a></h1>
 <blockquote class="epigraph">
 <div><p>It doesn’t matter how beautiful your theory is, <br>
 it doesn’t matter how smart you are. <br>
@@ -230,48 +230,48 @@ If it doesn’t agree with experiment, it’s wrong.</p>
 <nav class="contents" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#the-evals-gap" id="id131">The Evals Gap</a></p>
+<li><p><a class="reference internal" href="#the-evals-gap" id="id148">The Evals Gap</a></p>
 <ul>
-<li><p><a class="reference internal" href="#introduction" id="id132">Introduction</a></p></li>
-<li><p><a class="reference internal" href="#non-deterministic-generative-machines" id="id133">Non-Deterministic Generative Machines</a></p></li>
-<li><p><a class="reference internal" href="#emerging-properties" id="id134">Emerging Properties</a></p></li>
-<li><p><a class="reference internal" href="#problem-statement" id="id135">Problem Statement</a></p></li>
-<li><p><a class="reference internal" href="#evals-design" id="id136">Evals Design</a></p>
+<li><p><a class="reference internal" href="#introduction" id="id149">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#non-deterministic-generative-machines" id="id150">Non-Deterministic Generative Machines</a></p></li>
+<li><p><a class="reference internal" href="#emerging-properties" id="id151">Emerging Properties</a></p></li>
+<li><p><a class="reference internal" href="#problem-statement" id="id152">Problem Statement</a></p></li>
+<li><p><a class="reference internal" href="#evals-design" id="id153">Evals Design</a></p>
 <ul>
-<li><p><a class="reference internal" href="#conceptual-overview" id="id137">Conceptual Overview</a></p></li>
-<li><p><a class="reference internal" href="#design-considerations" id="id138">Design Considerations</a></p></li>
+<li><p><a class="reference internal" href="#conceptual-overview" id="id154">Conceptual Overview</a></p></li>
+<li><p><a class="reference internal" href="#design-considerations" id="id155">Design Considerations</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#metrics" id="id139">Metrics</a></p></li>
-<li><p><a class="reference internal" href="#evaluators" id="id140">Evaluators</a></p>
+<li><p><a class="reference internal" href="#metrics" id="id156">Metrics</a></p></li>
+<li><p><a class="reference internal" href="#evaluators" id="id157">Evaluators</a></p>
 <ul>
-<li><p><a class="reference internal" href="#model-based-evaluation" id="id141">Model-Based Evaluation</a></p></li>
-<li><p><a class="reference internal" href="#evaluating-evaluators" id="id142">Evaluating Evaluators</a></p></li>
+<li><p><a class="reference internal" href="#model-based-evaluation" id="id158">Model-Based Evaluation</a></p></li>
+<li><p><a class="reference internal" href="#evaluating-evaluators" id="id159">Evaluating Evaluators</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#benchmarks-and-leaderboards" id="id143">Benchmarks and Leaderboards</a></p></li>
-<li><p><a class="reference internal" href="#tools" id="id144">Tools</a></p>
+<li><p><a class="reference internal" href="#benchmarks-and-leaderboards" id="id160">Benchmarks and Leaderboards</a></p></li>
+<li><p><a class="reference internal" href="#tools" id="id161">Tools</a></p>
 <ul>
-<li><p><a class="reference internal" href="#lighteval" id="id145">LightEval</a></p></li>
-<li><p><a class="reference internal" href="#langsmith" id="id146">LangSmith</a></p></li>
-<li><p><a class="reference internal" href="#promptfoo" id="id147">PromptFoo</a></p></li>
-<li><p><a class="reference internal" href="#comparison" id="id148">Comparison</a></p></li>
+<li><p><a class="reference internal" href="#lighteval" id="id162">LightEval</a></p></li>
+<li><p><a class="reference internal" href="#langsmith" id="id163">LangSmith</a></p></li>
+<li><p><a class="reference internal" href="#promptfoo" id="id164">PromptFoo</a></p></li>
+<li><p><a class="reference internal" href="#comparison" id="id165">Comparison</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#conclusion" id="id149">Conclusion</a></p></li>
-<li><p><a class="reference internal" href="#references" id="id150">References</a></p></li>
+<li><p><a class="reference internal" href="#conclusion" id="id166">Conclusion</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id167">References</a></p></li>
 </ul>
 </li>
 </ul>
 </nav>
 <section id="introduction">
-<h2><a class="toc-backref" href="#id132" role="doc-backlink"><span class="section-number">4.1. </span>Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id149" role="doc-backlink"><span class="section-number">4.1. </span>Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>The advent of LLMs marks a pivotal shift in the landscape of software development and evaluation. Unlike traditional software systems, where deterministic outputs are the norm, LLMs introduce a realm of non-deterministic and generative behaviors that challenge conventional software engineering testing paradigms. This shift is not merely a technical evolution but a fundamental transformation in how we conceive, build, and assess software products.</p>
 <p>For those entrenched in traditional methodologies, the transition to LLM-driven systems may seem daunting. However, ignoring this change is not an option. The reliance on outdated testing frameworks that fail to account for the probabilistic nature of LLMs will inevitably lead to significant setbacks.</p>
 <p>To overcome these challenges, it is imperative to embrace the complexities of LLMs with a proactive mindset. This involves developing robust evaluation frameworks up-front, fostering a product development culture of continuous change, learning and adaptation.</p>
 </section>
 <section id="non-deterministic-generative-machines">
-<h2><a class="toc-backref" href="#id133" role="doc-backlink"><span class="section-number">4.2. </span>Non-Deterministic Generative Machines</a><a class="headerlink" href="#non-deterministic-generative-machines" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id150" role="doc-backlink"><span class="section-number">4.2. </span>Non-Deterministic Generative Machines</a><a class="headerlink" href="#non-deterministic-generative-machines" title="Permalink to this heading">¶</a></h2>
 <p>One of the most fundamental challenges when building products with Large Language Models (LLMs) is their generative and non-deterministic nature. Unlike traditional software systems where the same input reliably produces the same output, LLMs can generate novel text that may not exist in their training data, and produce different responses each time they’re queried - even with identical prompts and input data. This behavior is both a strength and a significant engineering challenge and product challenge.</p>
 <p>When you ask an LLM the same question multiple times, you’ll likely get different responses. This isn’t a bug - it’s a fundamental feature of how these models work. The “temperature” parameter, which controls the randomness of outputs, allows models to be creative and generate diverse responses. However, this same feature makes it difficult to build reliable, testable systems.</p>
 <p>Consider a financial services company using LLMs to generate investment advice. The non-deterministic nature of these models means that:</p>
@@ -406,7 +406,7 @@ Attempt 3: Apple Inc&#39;s Form 10-K provides a comprehensive overview of the co
 <p>How can one effectively test an LLM-powered system when the same prompt can yield radically different outputs based on a single parameter? Traditional testing relies on predictable inputs and outputs, but LLMs force us to grapple with probabilistic behavior. While lower temperatures may seem safer for critical applications, they don’t necessarily eliminate the underlying uncertainty. This highlights the need for new evaluation paradigms that can handle both deterministic and probabilistic aspects of LLM behavior.</p>
 </section>
 <section id="emerging-properties">
-<h2><a class="toc-backref" href="#id134" role="doc-backlink"><span class="section-number">4.3. </span>Emerging Properties</a><a class="headerlink" href="#emerging-properties" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id151" role="doc-backlink"><span class="section-number">4.3. </span>Emerging Properties</a><a class="headerlink" href="#emerging-properties" title="Permalink to this heading">¶</a></h2>
 <p>Beyond their non-deterministic nature, LLMs present another fascinating characteristic: emergent abilities that spontaneously arise as models scale up in size. These abilities - from basic question answering to complex reasoning - aren’t explicitly programmed but rather emerge “naturally” as the models grow larger and are trained on more data. This makes evaluation fundamentally different from traditional software testing, where capabilities are explicitly coded and can be tested against pre-defined specifications.</p>
 <p><a class="reference internal" href="#id4"><span class="std std-numref">Fig. 4.1</span></a> provides a list of emergent abilities of large language models and the scale. The relationship between model scale and emergent abilities follows a fascinating non-linear pattern. Below certain size thresholds, specific abilities may be completely absent from the model - it simply cannot perform certain tasks, no matter how much you try to coax them out. However, once the model reaches critical points in its scaling journey, these abilities can suddenly manifest in what researchers call a phase transition - a dramatic shift from inability to capability. This unpredictable emergence of capabilities stands in stark contrast to traditional software development, where features are deliberately implemented and can be systematically tested.</p>
 <figure class="align-center" id="id4">
@@ -418,7 +418,7 @@ Attempt 3: Apple Inc&#39;s Form 10-K provides a comprehensive overview of the co
 <p>The implications for evaluation are critical. While conventional software testing relies on stable test suites and well-defined acceptance criteria, LLM evaluation must contend with a constantly shifting landscape of capabilities. What worked to evaluate a 7B parameter model may be completely inadequate for a 70B parameter model that has developed new emergent abilities. This dynamic nature of LLM capabilities forces us to fundamentally rethink our approach to testing and evaluation.</p>
 </section>
 <section id="problem-statement">
-<h2><a class="toc-backref" href="#id135" role="doc-backlink"><span class="section-number">4.4. </span>Problem Statement</a><a class="headerlink" href="#problem-statement" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id152" role="doc-backlink"><span class="section-number">4.4. </span>Problem Statement</a><a class="headerlink" href="#problem-statement" title="Permalink to this heading">¶</a></h2>
 <p>Consider a practical example that illustrates these challenges: building a Math AI tutoring system for children powered by an LLM. In traditional software development, you would define specific features (like presenting math problems or checking answers) and write tests to verify each function. But with LLMs, you’re not just testing predefined features - you’re trying to evaluate emergent capabilities like adapting explanations to a child’s level, maintaining engagement through conversational learning, and providing age-appropriate safety-bound content.</p>
 <p>This fundamental difference raises critical questions about evaluation:</p>
 <ul class="simple">
@@ -468,7 +468,7 @@ Attempt 3: Apple Inc&#39;s Form 10-K provides a comprehensive overview of the co
 </table>
 </section>
 <section id="evals-design">
-<h2><a class="toc-backref" href="#id136" role="doc-backlink"><span class="section-number">4.5. </span>Evals Design</a><a class="headerlink" href="#evals-design" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id153" role="doc-backlink"><span class="section-number">4.5. </span>Evals Design</a><a class="headerlink" href="#evals-design" title="Permalink to this heading">¶</a></h2>
 <p>First, it’s important to make a distinction between evaluating an LLM versus evaluating an LLM-based application. While the latter offers foundation capabilities and are typically general-purpose, the former is more specific and tailored to a particular use case. Here, we define an LLM-based application as a system that uses one or more LLMs to perform a specific task. More specifically, an LLM-based application is the combination of one or more LLM models, their associated prompts and parameters to solve a particular business problem.</p>
 <p>That differentiation is important because it changes the scope of evaluation. LLMs are usually evaluated based on their capabilities, which include things like language understanding, reasoning and knowledge. LLM-based applications, instead, should be evaluated based on their end-to-end functionality, performance, and how well they meet business requirements. That distinction has key implications for the design of evaluation systems:</p>
 <ul class="simple">
@@ -555,7 +555,7 @@ Attempt 3: Apple Inc&#39;s Form 10-K provides a comprehensive overview of the co
 </tbody>
 </table>
 <section id="conceptual-overview">
-<h3><a class="toc-backref" href="#id137" role="doc-backlink"><span class="section-number">4.5.1. </span>Conceptual Overview</a><a class="headerlink" href="#conceptual-overview" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id154" role="doc-backlink"><span class="section-number">4.5.1. </span>Conceptual Overview</a><a class="headerlink" href="#conceptual-overview" title="Permalink to this heading">¶</a></h3>
 <p><a class="reference internal" href="#conceptual"><span class="std std-numref">Fig. 4.2</span></a> demonstrates a conceptual design of key components of LLM Application evaluation.</p>
 <figure class="align-center" id="conceptual">
 <a class="reference internal image-reference" href="../_images/conceptual.png"><img alt="Conceptual Overview" src="../_images/conceptual.png" style="width: 992.8000000000001px; height: 424.0px;" /></a>
@@ -636,7 +636,7 @@ Attempt 3: Apple Inc&#39;s Form 10-K provides a comprehensive overview of the co
 </ul>
 </section>
 <section id="design-considerations">
-<h3><a class="toc-backref" href="#id138" role="doc-backlink"><span class="section-number">4.5.2. </span>Design Considerations</a><a class="headerlink" href="#design-considerations" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id155" role="doc-backlink"><span class="section-number">4.5.2. </span>Design Considerations</a><a class="headerlink" href="#design-considerations" title="Permalink to this heading">¶</a></h3>
 <p>The design of an LLM application evaluation system depends heavily on the specific use case and business requirements. Here we list important questions for planning an LLM application evaluation system pertaining to each of the key components previously introduced:</p>
 <p><strong>1. Examples (Input Dataset):</strong></p>
 <ul class="simple">
@@ -721,7 +721,7 @@ Attempt 3: Apple Inc&#39;s Form 10-K provides a comprehensive overview of the co
 </section>
 </section>
 <section id="metrics">
-<h2><a class="toc-backref" href="#id139" role="doc-backlink"><span class="section-number">4.6. </span>Metrics</a><a class="headerlink" href="#metrics" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id156" role="doc-backlink"><span class="section-number">4.6. </span>Metrics</a><a class="headerlink" href="#metrics" title="Permalink to this heading">¶</a></h2>
 <p>The choice of metric depends on the specific task and desired evaluation criteria. However, one can categorize metrics into two broad categories: <strong>intrinsic</strong> and <strong>extrinsic</strong>.</p>
 <ul class="simple">
 <li><p><strong>Intrinsic metrics</strong> focus on the model’s performance on its primary training objective, which is typically to predict the next token in a sequence.  Perplexity is a common intrinsic metric that measures how well the model predicts a given sample of text.</p></li>
@@ -1031,9 +1031,9 @@ gpt-3.5-turbo:
 <p>To address these limitations, alternative approaches like <strong>human-based evaluation</strong> and <strong>model-based evaluation</strong> are often used, which will be discussed in the following sections.</p>
 </section>
 <section id="evaluators">
-<h2><a class="toc-backref" href="#id140" role="doc-backlink"><span class="section-number">4.7. </span>Evaluators</a><a class="headerlink" href="#evaluators" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id157" role="doc-backlink"><span class="section-number">4.7. </span>Evaluators</a><a class="headerlink" href="#evaluators" title="Permalink to this heading">¶</a></h2>
 <section id="model-based-evaluation">
-<h3><a class="toc-backref" href="#id141" role="doc-backlink"><span class="section-number">4.7.1. </span>Model-Based Evaluation</a><a class="headerlink" href="#model-based-evaluation" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id158" role="doc-backlink"><span class="section-number">4.7.1. </span>Model-Based Evaluation</a><a class="headerlink" href="#model-based-evaluation" title="Permalink to this heading">¶</a></h3>
 <p>Traditional metrics like BLEU or ROUGE often fall short in capturing the nuanced, contextual, and creative outputs of LLMs. As an alternative we can consider a “Model-based evaluation” approach. A common approach is to use an LLM as a judge. This is an approach that leverages language models themselves to assess the quality of outputs from other language models. This method involves using a model (often a more capable one) to act as an automated judge, evaluating aspects like accuracy, coherence, and relevance of generated content. Unlike traditional metrics that rely on exact matching or statistical measures, model-based evaluation can capture nuanced aspects of language and provide more contextual assessment.</p>
 <p>As discussed in the paper <span id="id5">[<a class="reference internal" href="#id45" title="Zhen Li, Xiaohan Xu, Tao Shen, Can Xu, Jia-Chen Gu, Yuxuan Lai, Chongyang Tao, and Shuai Ma. Leveraging large language models for nlg evaluation: advances and challenges. 2024. URL: https://arxiv.org/abs/2401.07103, arXiv:2401.07103.">Li <em>et al.</em>, 2024</a>]</span>, LLM-based evaluation approaches generally fall into two main categories:</p>
 <ol class="arabic simple">
@@ -1273,7 +1273,7 @@ gpt-3.5-turbo:
 <p>The LLM-as-a-Judge strategy can serve as a scalable and nuanced solution to evaluate LLM-based applications. While it does not entirely a metrics-based or human-based aproach, it significantly augments evaluation workflows, especially in scenarios requiring evaluation of generative outputs. Future improvements could include integrating human oversight and refining LLMs for domain-specific evaluation tasks.</p>
 </section>
 <section id="evaluating-evaluators">
-<h3><a class="toc-backref" href="#id142" role="doc-backlink"><span class="section-number">4.7.2. </span>Evaluating Evaluators</a><a class="headerlink" href="#evaluating-evaluators" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id159" role="doc-backlink"><span class="section-number">4.7.2. </span>Evaluating Evaluators</a><a class="headerlink" href="#evaluating-evaluators" title="Permalink to this heading">¶</a></h3>
 <p>We have discussed how LLMs can be used to evaluate LLM-based aplications. However, how can we evaluate the performance of LLMs that evaluate other LLMs? This is the question that meta evaluation aims to answer. Clearly, the discussion can become quite meta as we need to evaluate the performance of the evaluator to evaluate the performance of the evaluated model. However, one can make a case for two general options:</p>
 <ol class="arabic simple">
 <li><p>Use a gold-standard dataset that is used to evaluate the performance of LLM evaluators using a “metrics-based” approach.</p></li>
@@ -1317,7 +1317,7 @@ gpt-3.5-turbo:
 </section>
 </section>
 <section id="benchmarks-and-leaderboards">
-<h2><a class="toc-backref" href="#id143" role="doc-backlink"><span class="section-number">4.8. </span>Benchmarks and Leaderboards</a><a class="headerlink" href="#benchmarks-and-leaderboards" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id160" role="doc-backlink"><span class="section-number">4.8. </span>Benchmarks and Leaderboards</a><a class="headerlink" href="#benchmarks-and-leaderboards" title="Permalink to this heading">¶</a></h2>
 <p>Benchmarks act as standardized tests for LLMs, evaluating their performance across a spectrum of tasks. These tasks simulate real-world applications such as answering questions, generating coherent text, solving mathematical problems, or even writing computer code. They also assess more abstract qualities like fairness, robustness, and cultural understanding.</p>
 <p>Benchmarks can be thought as comprehensive “exams” that probe different “subjects” in order to certify an LLM. They help researchers and developers compare models systematically, in a way LLM performance is comparable while enabling the identification of emergent behaviors or capabilities as models evolve in scale and sophistication.</p>
 <p>The history of LLM benchmarks reflects the evolving priorities of artificial intelligence research, starting with foundational tasks and moving toward complex, real-world challenges. It began in 2018 with the introduction of <strong>GLUE</strong>(General Language Understanding Evaluation) <span id="id10">[<a class="reference internal" href="#id68" title="Alex Wang, Amanpreet Singh, Julian Michael, Felix Hill, Omer Levy, and Samuel R. Bowman. Glue: a multi-task benchmark and analysis platform for natural language understanding. 2019. URL: https://arxiv.org/abs/1804.07461, arXiv:1804.07461.">Wang <em>et al.</em>, 2019</a>]</span>, which set a new standard for evaluating natural language understanding. GLUE measured performance on tasks like sentiment analysis and textual entailment, providing a baseline for assessing the fundamental capabilities of language models. A year later, <strong>SuperGLUE</strong> <span id="id11">[<a class="reference internal" href="#id69" title="Alex Wang, Yada Pruksachatkun, Nikita Nangia, Amanpreet Singh, Julian Michael, Felix Hill, Omer Levy, and Samuel R. Bowman. Superglue: a stickier benchmark for general-purpose language understanding systems. Advances in Neural Information Processing Systems, 2019.">Wang <em>et al.</em>, 2019</a>]</span> expanded on this foundation by introducing more nuanced tasks that tested reasoning and language comprehension at a deeper level, challenging the limits of models like BERT and its successors.</p>
@@ -1362,9 +1362,9 @@ gpt-3.5-turbo:
 <p>As language models continue to advance in capability and complexity, evaluation frameworks must evolve. Modern benchmarks increasingly incorporate tests for nuanced reasoning, ethical decision-making, and emergent capabilities that weren’t previously measurable. This ongoing evolution reflects a deeper understanding that the true value of language models lies not in achieving high scores on standardized tests with narrow task-specific metrics, but in their ability to meaningfully contribute to human understanding and help solve real-world problems while demonstrating the ability to learn and adapt to new tasks.</p>
 </section>
 <section id="tools">
-<h2><a class="toc-backref" href="#id144" role="doc-backlink"><span class="section-number">4.9. </span>Tools</a><a class="headerlink" href="#tools" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id161" role="doc-backlink"><span class="section-number">4.9. </span>Tools</a><a class="headerlink" href="#tools" title="Permalink to this heading">¶</a></h2>
 <section id="lighteval">
-<h3><a class="toc-backref" href="#id145" role="doc-backlink"><span class="section-number">4.9.1. </span>LightEval</a><a class="headerlink" href="#lighteval" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id162" role="doc-backlink"><span class="section-number">4.9.1. </span>LightEval</a><a class="headerlink" href="#lighteval" title="Permalink to this heading">¶</a></h3>
 <p>LightEval <span id="id26">[<a class="reference internal" href="#id49" title="Clémentine Fourrier, Nathan Habib, Thomas Wolf, and Lewis Tunstall. Lighteval: a lightweight framework for llm evaluation. 2023. URL: https://github.com/huggingface/lighteval.">Fourrier <em>et al.</em>, 2023</a>]</span> is a lightweight framework for evaluation of LLMs across a variety of standard and bespoke metrics and tasks across multiple inference backends via Python SDK and CLI.</p>
 <p>As a motivating example, consider a scenario where financial data has been extracted from SEC financial filings and require econometric analysis. Tasks like estimating autoregressive models for time series forecasting or conducting hypothesis tests on market efficiency are common in financial analysis. Let’s evaluate how well different models perform on this type of task.</p>
 <p>First, we need to select a benchmark to assess LLMs capabilities in this domain. MMLU has a sub-benchmark called Econometrics we can use for this task. <a class="reference internal" href="#mmlu-econometrics"><span class="std std-numref">Table 4.4</span></a> shows a sample of the benchmark dataset from MMLU Econometrics. It consists of multiple-choice questions from econometrics and expected answers.</p>
@@ -1553,7 +1553,7 @@ gpt-3.5-turbo:
 <p>In summary, LightEval is a simple yet flexible and comprehensive framework for evaluating LLMs across a wide variety of tasks and metrics. It can serve as a first step in selecting your next LLM for a specific task given the exponential growth in number of (open source) models available <span id="id34">[<a class="reference internal" href="#id58" title="Hugging Face. Number of models on hugging face. https://huggingface.co/spaces/huggingface/open-source-ai-year-in-review-2024?day=4, 2024. Accessed: 12/06/2024.">Hugging Face, 2024</a>]</span>. Its integration with the Hugging Face ecosystem and modular architecture make it particularly powerful for evaluating open source models. For further details, visit the <a class="reference external" href="https://github.com/huggingface/lighteval">official repository</a> <span id="id35">[<a class="reference internal" href="#id49" title="Clémentine Fourrier, Nathan Habib, Thomas Wolf, and Lewis Tunstall. Lighteval: a lightweight framework for llm evaluation. 2023. URL: https://github.com/huggingface/lighteval.">Fourrier <em>et al.</em>, 2023</a>]</span>.</p>
 </section>
 <section id="langsmith">
-<h3><a class="toc-backref" href="#id146" role="doc-backlink"><span class="section-number">4.9.2. </span>LangSmith</a><a class="headerlink" href="#langsmith" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id163" role="doc-backlink"><span class="section-number">4.9.2. </span>LangSmith</a><a class="headerlink" href="#langsmith" title="Permalink to this heading">¶</a></h3>
 <p>Let’s revisit our evaluation example when we were interested in evaluating the quality of summaries generated by different (smaller and cheaper) LLM models compared to a benchmark model (larger and more expensive). Recal the setup:</p>
 <ul class="simple">
 <li><p>Benchmark model: gpt-4o</p></li>
@@ -1961,7 +1961,7 @@ gpt-4-turbo                 0.3519  0.0775         0.9122  0.1482
 </figure>
 </section>
 <section id="promptfoo">
-<h3><a class="toc-backref" href="#id147" role="doc-backlink"><span class="section-number">4.9.3. </span>PromptFoo</a><a class="headerlink" href="#promptfoo" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id164" role="doc-backlink"><span class="section-number">4.9.3. </span>PromptFoo</a><a class="headerlink" href="#promptfoo" title="Permalink to this heading">¶</a></h3>
 <p>Promptfoo <span id="id37">[<a class="reference internal" href="#id87" title="promptfoo. Promptfoo: llm testing and evaluation framework. 2024. Open source framework for testing and evaluating LLM prompts. URL: https://www.promptfoo.dev/.">promptfoo, 2024</a>]</span> is an open-source framework designed for evaluating applications that utilize large language models (LLMs). Key features include:</p>
 <ol class="arabic simple">
 <li><p><strong>Automated Testing</strong>: Promptfoo provides automated testing capabilities, allowing developers to run custom evaluations tailored to their applications.</p></li>
@@ -2226,7 +2226,7 @@ tests: file://tests.csv
 <p>In conclusion, Promptfoo can serve as an effective LLM application evaluation tool particularly for its ability to decouple several components of the evaluation process. Hence enabling the user to focus on the most important aspects of the evaluation given the particular application and criteria making it a valuable and flexible tool for LLM application development.</p>
 </section>
 <section id="comparison">
-<h3><a class="toc-backref" href="#id148" role="doc-backlink"><span class="section-number">4.9.4. </span>Comparison</a><a class="headerlink" href="#comparison" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id165" role="doc-backlink"><span class="section-number">4.9.4. </span>Comparison</a><a class="headerlink" href="#comparison" title="Permalink to this heading">¶</a></h3>
 <p>The following table provides a summarized comparative analysis of three open source frameworks for language models evaluation we have discussed: Lighteval, LangSmith, and Promptfoo. Each framework is assessed based on key features such as integration capabilities, customization options, ease of use, and the ability to facilitate human and LLM collaboration.</p>
 <table class="docutils align-default" id="tool-comparison">
 <caption><span class="caption-number">Table 4.6 </span><span class="caption-text">Comparison of Lighteval, LangSmith, and Promptfoo</span><a class="headerlink" href="#tool-comparison" title="Permalink to this table">¶</a></caption>
@@ -2263,13 +2263,13 @@ tests: file://tests.csv
 </section>
 </section>
 <section id="conclusion">
-<h2><a class="toc-backref" href="#id149" role="doc-backlink"><span class="section-number">4.10. </span>Conclusion</a><a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id166" role="doc-backlink"><span class="section-number">4.10. </span>Conclusion</a><a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
 <p>Language models have fundamentally transformed how software is developed and evaluated. Unlike conventional systems that produce predictable outputs, LLMs generate varied, probabilistic responses that defy traditional testing approaches. While developers accustomed to deterministic systems may find this shift challenging, continuing to rely on legacy testing methods is unsustainable. These frameworks were not designed to handle the inherent variability of LLM outputs and will ultimately prove inadequate.</p>
 <p>Success requires embracing this new paradigm by implementing comprehensive evaluation strategies early - this is the new Product Requirements Document (PRD) - and cultivating an organizational mindset focused on iteration, experimentation and growth.</p>
 <p>The shift from traditional software testing to LLM evaluation is not just a change in tools but a transformation in mindset. Those who recognize and adapt to this shift will lead the way in harnessing the power of LLMs. However, the cost of inaction is not just technological stagnation, but potential business failure.</p>
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id150" role="doc-backlink"><span class="section-number">4.11. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id167" role="doc-backlink"><span class="section-number">4.11. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <div class="docutils container" id="id38">
 <div class="citation" id="id50" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id33">ALB+24</a><span class="fn-bracket">]</span></span>

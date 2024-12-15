@@ -156,6 +156,14 @@
                 
                   <li class="toctree-l2"><a href="#safety-risks" class="reference internal">Safety Risks</a></li>
                 
+                  <li class="toctree-l2"><a href="#guidance" class="reference internal">Guidance</a></li>
+                
+                  <li class="toctree-l2"><a href="#approaches" class="reference internal">Approaches</a></li>
+                
+                  <li class="toctree-l2"><a href="#technical-implementation-components" class="reference internal">Technical Implementation Components</a></li>
+                
+                  <li class="toctree-l2"><a href="#case-study-making-mistral-7b-harmless" class="reference internal">Case Study: Making Mistral 7B Harmless</a></li>
+                
                   <li class="toctree-l2"><a href="#references" class="reference internal">References</a></li>
                 
               </ul>
@@ -204,7 +212,7 @@
           <div class="content" role="main" v-pre>
             
   <section id="safety">
-<h1><a class="toc-backref" href="#id105" role="doc-backlink"><span class="section-number">5. </span>Safety</a><a class="headerlink" href="#safety" title="Permalink to this heading">¶</a></h1>
+<h1><a class="toc-backref" href="#id150" role="doc-backlink"><span class="section-number">5. </span>Safety</a><a class="headerlink" href="#safety" title="Permalink to this heading">¶</a></h1>
 <blockquote class="epigraph">
 <div><p>Move fast and be responsible.</p>
 <p class="attribution">—Andrew Ng</p>
@@ -212,63 +220,102 @@
 <nav class="contents" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#safety" id="id105">Safety</a></p>
+<li><p><a class="reference internal" href="#safety" id="id150">Safety</a></p>
 <ul>
-<li><p><a class="reference internal" href="#introduction" id="id106">Introduction</a></p></li>
-<li><p><a class="reference internal" href="#safety-risks" id="id107">Safety Risks</a></p>
+<li><p><a class="reference internal" href="#introduction" id="id151">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#safety-risks" id="id152">Safety Risks</a></p>
 <ul>
-<li><p><a class="reference internal" href="#general-ai-safety-risks" id="id108">General AI Safety Risks</a></p>
+<li><p><a class="reference internal" href="#general-ai-safety-risks" id="id153">General AI Safety Risks</a></p>
 <ul>
-<li><p><a class="reference internal" href="#amplified-existing-harms-and-novel-risks" id="id109">Amplified Existing Harms and Novel Risks</a></p></li>
-<li><p><a class="reference internal" href="#risks-associated-with-autonomous-ai" id="id110">Risks Associated with Autonomous AI</a></p></li>
-<li><p><a class="reference internal" href="#exacerbating-factors" id="id111">Exacerbating Factors</a></p></li>
+<li><p><a class="reference internal" href="#amplified-existing-harms-and-novel-risks" id="id154">Amplified Existing Harms and Novel Risks</a></p></li>
+<li><p><a class="reference internal" href="#risks-associated-with-autonomous-ai" id="id155">Risks Associated with Autonomous AI</a></p></li>
+<li><p><a class="reference internal" href="#exacerbating-factors" id="id156">Exacerbating Factors</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#llms-specific-safety-risks" id="id112">LLMs Specific Safety Risks</a></p>
+<li><p><a class="reference internal" href="#llms-specific-safety-risks" id="id157">LLMs Specific Safety Risks</a></p>
 <ul>
-<li><p><a class="reference internal" href="#data-integrity-and-bias" id="id113">Data Integrity and Bias</a></p></li>
-<li><p><a class="reference internal" href="#privacy-and-security" id="id114">Privacy and Security</a></p></li>
+<li><p><a class="reference internal" href="#data-integrity-and-bias" id="id158">Data Integrity and Bias</a></p></li>
+<li><p><a class="reference internal" href="#privacy-and-security" id="id159">Privacy and Security</a></p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#references" id="id115">References</a></p></li>
+<li><p><a class="reference internal" href="#guidance" id="id160">Guidance</a></p>
+<ul>
+<li><p><a class="reference internal" href="#governments-organizations" id="id161">Governments &amp; Organizations</a></p></li>
+<li><p><a class="reference internal" href="#private-sector" id="id162">Private Sector</a></p>
+<ul>
+<li><p><a class="reference internal" href="#openai" id="id163">OpenAI</a></p></li>
+<li><p><a class="reference internal" href="#anthropic" id="id164">Anthropic</a></p></li>
+<li><p><a class="reference internal" href="#google" id="id165">Google</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#rubrics" id="id166">Rubrics</a></p>
+<ul>
+<li><p><a class="reference internal" href="#mlcommons-ai-safety-benchmark" id="id167">MLCommons AI Safety Benchmark</a></p></li>
+<li><p><a class="reference internal" href="#centre-for-the-governance-of-ai-rubric" id="id168">Centre for the Governance of AI Rubric</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#porquoi" id="id169">Porquoi</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#approaches" id="id170">Approaches</a></p>
+<ul>
+<li><p><a class="reference internal" href="#red-teaming" id="id171">Red Teaming</a></p></li>
+<li><p><a class="reference internal" href="#constitutional-ai" id="id172">Constitutional AI</a></p></li>
+<li><p><a class="reference internal" href="#explainable-ai-xai" id="id173">Explainable AI (XAI)</a></p></li>
+<li><p><a class="reference internal" href="#reinforcement-learning-from-human-feedback-rlhf" id="id174">Reinforcement Learning from Human Feedback (RLHF)</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#technical-implementation-components" id="id175">Technical Implementation Components</a></p>
+<ul>
+<li><p><a class="reference internal" href="#datasets" id="id176">Datasets</a></p></li>
+<li><p><a class="reference internal" href="#tools" id="id177">Tools</a></p>
+<ul>
+<li><p><a class="reference internal" href="#filter-based" id="id178">Filter-based</a></p></li>
+<li><p><a class="reference internal" href="#llm-based" id="id179">LLM-based</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#benchmarks" id="id180">Benchmarks</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#case-study-making-mistral-7b-harmless" id="id181">Case Study: Making Mistral 7B Harmless</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id182">References</a></p></li>
 </ul>
 </li>
 </ul>
 </nav>
 <section id="introduction">
-<h2><a class="toc-backref" href="#id106" role="doc-backlink"><span class="section-number">5.1. </span>Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>Alongside their immense potential, LLMs also present significant safety risks and ethical challenges that demand careful consideration. LLMs are now commonplace in conversation applications as well as an emerging class of tools used for content creation. Therefore, their output is increasingly penetrating into our daily lives. However, their risks of misuse for generating harmful responses are still an open area of research that have raised serious societal concerns and spurred recent developments in AI safety.</p>
-<p>Without proper safeguards, LLMs can generate harmful content and respond to malicious prompts in dangerous ways <span id="id1">[<a class="reference internal" href="#id96" title="Thomas Hartvigsen, Saadia Gabriel, Hamid Palangi, Maarten Sap, Dipankar Ray, and Ece Kamar. ToxiGen: a large-scale machine-generated dataset for adversarial and implicit hate speech detection. In Smaranda Muresan, Preslav Nakov, and Aline Villavicencio, editors, Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), 3309–3326. Dublin, Ireland, May 2022. Association for Computational Linguistics. URL: https://aclanthology.org/2022.acl-long.234, doi:10.18653/v1/2022.acl-long.234.">Hartvigsen <em>et al.</em>, 2022</a>, <a class="reference internal" href="#id95" title="OpenAI, Josh Achiam, Steven Adler, Sandhini Agarwal, Lama Ahmad, Ilge Akkaya, Florencia Leoni Aleman, Diogo Almeida, Janko Altenschmidt, Sam Altman, Shyamal Anadkat, Red Avila, Igor Babuschkin, Suchir Balaji, Valerie Balcom, Paul Baltescu, Haiming Bao, Mohammad Bavarian, Jeff Belgum, Irwan Bello, Jake Berdine, Gabriel Bernadett-Shapiro, Christopher Berner, Lenny Bogdonoff, Oleg Boiko, Madelaine Boyd, Anna-Luisa Brakman, Greg Brockman, Tim Brooks, Miles Brundage, Kevin Button, Trevor Cai, Rosie Campbell, Andrew Cann, Brittany Carey, Chelsea Carlson, Rory Carmichael, Brooke Chan, Che Chang, Fotis Chantzis, Derek Chen, Sully Chen, Ruby Chen, Jason Chen, Mark Chen, Ben Chess, Chester Cho, Casey Chu, Hyung Won Chung, Dave Cummings, Jeremiah Currier, Yunxing Dai, Cory Decareaux, Thomas Degry, Noah Deutsch, Damien Deville, Arka Dhar, David Dohan, Steve Dowling, Sheila Dunning, Adrien Ecoffet, Atty Eleti, Tyna Eloundou, David Farhi, Liam Fedus, Niko Felix, Simón Posada Fishman, Juston Forte, Isabella Fulford, Leo Gao, Elie Georges, Christian Gibson, Vik Goel, Tarun Gogineni, Gabriel Goh, Rapha Gontijo-Lopes, Jonathan Gordon, Morgan Grafstein, Scott Gray, Ryan Greene, Joshua Gross, Shixiang Shane Gu, Yufei Guo, Chris Hallacy, Jesse Han, Jeff Harris, Yuchen He, Mike Heaton, Johannes Heidecke, Chris Hesse, Alan Hickey, Wade Hickey, Peter Hoeschele, Brandon Houghton, Kenny Hsu, Shengli Hu, Xin Hu, Joost Huizinga, Shantanu Jain, Shawn Jain, Joanne Jang, Angela Jiang, Roger Jiang, Haozhun Jin, Denny Jin, Shino Jomoto, Billie Jonn, Heewoo Jun, Tomer Kaftan, Łukasz Kaiser, Ali Kamali, Ingmar Kanitscheider, Nitish Shirish Keskar, Tabarak Khan, Logan Kilpatrick, Jong Wook Kim, Christina Kim, Yongjik Kim, Jan Hendrik Kirchner, Jamie Kiros, Matt Knight, Daniel Kokotajlo, Łukasz Kondraciuk, Andrew Kondrich, Aris Konstantinidis, Kyle Kosic, Gretchen Krueger, Vishal Kuo, Michael Lampe, Ikai Lan, Teddy Lee, Jan Leike, Jade Leung, Daniel Levy, Chak Ming Li, Rachel Lim, Molly Lin, Stephanie Lin, Mateusz Litwin, Theresa Lopez, Ryan Lowe, Patricia Lue, Anna Makanju, Kim Malfacini, Sam Manning, Todor Markov, Yaniv Markovski, Bianca Martin, Katie Mayer, Andrew Mayne, Bob McGrew, Scott Mayer McKinney, Christine McLeavey, Paul McMillan, Jake McNeil, David Medina, Aalok Mehta, Jacob Menick, Luke Metz, Andrey Mishchenko, Pamela Mishkin, Vinnie Monaco, Evan Morikawa, Daniel Mossing, Tong Mu, Mira Murati, Oleg Murk, David Mély, Ashvin Nair, Reiichiro Nakano, Rajeev Nayak, Arvind Neelakantan, Richard Ngo, Hyeonwoo Noh, Long Ouyang, Cullen O'Keefe, Jakub Pachocki, Alex Paino, Joe Palermo, Ashley Pantuliano, Giambattista Parascandolo, Joel Parish, Emy Parparita, Alex Passos, Mikhail Pavlov, Andrew Peng, Adam Perelman, Filipe de Avila Belbute Peres, Michael Petrov, Henrique Ponde de Oliveira Pinto, Michael, Pokorny, Michelle Pokrass, Vitchyr H. Pong, Tolly Powell, Alethea Power, Boris Power, Elizabeth Proehl, Raul Puri, Alec Radford, Jack Rae, Aditya Ramesh, Cameron Raymond, Francis Real, Kendra Rimbach, Carl Ross, Bob Rotsted, Henri Roussez, Nick Ryder, Mario Saltarelli, Ted Sanders, Shibani Santurkar, Girish Sastry, Heather Schmidt, David Schnurr, John Schulman, Daniel Selsam, Kyla Sheppard, Toki Sherbakov, Jessica Shieh, Sarah Shoker, Pranav Shyam, Szymon Sidor, Eric Sigler, Maddie Simens, Jordan Sitkin, Katarina Slama, Ian Sohl, Benjamin Sokolowsky, Yang Song, Natalie Staudacher, Felipe Petroski Such, Natalie Summers, Ilya Sutskever, Jie Tang, Nikolas Tezak, Madeleine B. Thompson, Phil Tillet, Amin Tootoonchian, Elizabeth Tseng, Preston Tuggle, Nick Turley, Jerry Tworek, Juan Felipe Cerón Uribe, Andrea Vallone, Arun Vijayvergiya, Chelsea Voss, Carroll Wainwright, Justin Jay Wang, Alvin Wang, Ben Wang, Jonathan Ward, Jason Wei, CJ Weinmann, Akila Welihinda, Peter Welinder, Jiayi Weng, Lilian Weng, Matt Wiethoff, Dave Willner, Clemens Winter, Samuel Wolrich, Hannah Wong, Lauren Workman, Sherwin Wu, Jeff Wu, Michael Wu, Kai Xiao, Tao Xu, Sarah Yoo, Kevin Yu, Qiming Yuan, Wojciech Zaremba, Rowan Zellers, Chong Zhang, Marvin Zhang, Shengjia Zhao, Tianhao Zheng, Juntang Zhuang, William Zhuk, and Barret Zoph. Gpt-4 technical report. 2024. URL: https://arxiv.org/abs/2303.08774, arXiv:2303.08774.">OpenAI <em>et al.</em>, 2024</a>]</span>. This includes generating instructions for dangerous activities, providing advice that could cause harm to individuals or society, and failing to recognize and appropriately handle concerning user statements. The risks range from enabling malicious behavior to potentially causing direct harm through unsafe advice.</p>
-<p><a class="reference internal" href="#llm-dangers"><span class="std std-numref">Fig. 5.1</span></a> from <span id="id2">[<a class="reference internal" href="#id94" title="Bertie Vidgen, Nino Scherrer, Hannah Rose Kirk, Rebecca Qian, Anand Kannappan, Scott A. Hale, and Paul Röttger. Simplesafetytests: a test suite for identifying critical safety risks in large language models. 2024. URL: https://arxiv.org/abs/2311.08370, arXiv:2311.08370.">Vidgen <em>et al.</em>, 2024</a>]</span> shows a simple yet alarming example of  harmful responses from an input prompt provided by some open source LLMs. Those are models that are openly available and can be used by anyone. Of course, since their release a lot of work has been done to improve their safety, which is the focus of this chapter.</p>
+<h2><a class="toc-backref" href="#id151" role="doc-backlink"><span class="section-number">5.1. </span>Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>Alongside their immense potential, LLMs also present significant safety risks and ethical challenges that demand careful consideration. LLMs are now commonplace in conversation applications as well as serving as core engine powering an emerging class of tools used for content creation. Therefore, their output is increasingly pervasive and penetrating more and more into our daily lives. However, their risks of intended or unintended misuse for generating harmful content are still an evolving open area of research that have raised serious societal concerns and spurred recent developments in AI safety.</p>
+<p>Without proper safeguards, LLMs can generate harmful content and respond to malicious prompts in dangerous ways <span id="id1">[<a class="reference internal" href="#id127" title="Thomas Hartvigsen, Saadia Gabriel, Hamid Palangi, Maarten Sap, Dipankar Ray, and Ece Kamar. ToxiGen: a large-scale machine-generated dataset for adversarial and implicit hate speech detection. In Smaranda Muresan, Preslav Nakov, and Aline Villavicencio, editors, Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), 3309–3326. Dublin, Ireland, May 2022. Association for Computational Linguistics. URL: https://aclanthology.org/2022.acl-long.234, doi:10.18653/v1/2022.acl-long.234.">Hartvigsen <em>et al.</em>, 2022</a>, <a class="reference internal" href="#id126" title="OpenAI, Josh Achiam, Steven Adler, Sandhini Agarwal, Lama Ahmad, Ilge Akkaya, Florencia Leoni Aleman, Diogo Almeida, Janko Altenschmidt, Sam Altman, Shyamal Anadkat, Red Avila, Igor Babuschkin, Suchir Balaji, Valerie Balcom, Paul Baltescu, Haiming Bao, Mohammad Bavarian, Jeff Belgum, Irwan Bello, Jake Berdine, Gabriel Bernadett-Shapiro, Christopher Berner, Lenny Bogdonoff, Oleg Boiko, Madelaine Boyd, Anna-Luisa Brakman, Greg Brockman, Tim Brooks, Miles Brundage, Kevin Button, Trevor Cai, Rosie Campbell, Andrew Cann, Brittany Carey, Chelsea Carlson, Rory Carmichael, Brooke Chan, Che Chang, Fotis Chantzis, Derek Chen, Sully Chen, Ruby Chen, Jason Chen, Mark Chen, Ben Chess, Chester Cho, Casey Chu, Hyung Won Chung, Dave Cummings, Jeremiah Currier, Yunxing Dai, Cory Decareaux, Thomas Degry, Noah Deutsch, Damien Deville, Arka Dhar, David Dohan, Steve Dowling, Sheila Dunning, Adrien Ecoffet, Atty Eleti, Tyna Eloundou, David Farhi, Liam Fedus, Niko Felix, Simón Posada Fishman, Juston Forte, Isabella Fulford, Leo Gao, Elie Georges, Christian Gibson, Vik Goel, Tarun Gogineni, Gabriel Goh, Rapha Gontijo-Lopes, Jonathan Gordon, Morgan Grafstein, Scott Gray, Ryan Greene, Joshua Gross, Shixiang Shane Gu, Yufei Guo, Chris Hallacy, Jesse Han, Jeff Harris, Yuchen He, Mike Heaton, Johannes Heidecke, Chris Hesse, Alan Hickey, Wade Hickey, Peter Hoeschele, Brandon Houghton, Kenny Hsu, Shengli Hu, Xin Hu, Joost Huizinga, Shantanu Jain, Shawn Jain, Joanne Jang, Angela Jiang, Roger Jiang, Haozhun Jin, Denny Jin, Shino Jomoto, Billie Jonn, Heewoo Jun, Tomer Kaftan, Łukasz Kaiser, Ali Kamali, Ingmar Kanitscheider, Nitish Shirish Keskar, Tabarak Khan, Logan Kilpatrick, Jong Wook Kim, Christina Kim, Yongjik Kim, Jan Hendrik Kirchner, Jamie Kiros, Matt Knight, Daniel Kokotajlo, Łukasz Kondraciuk, Andrew Kondrich, Aris Konstantinidis, Kyle Kosic, Gretchen Krueger, Vishal Kuo, Michael Lampe, Ikai Lan, Teddy Lee, Jan Leike, Jade Leung, Daniel Levy, Chak Ming Li, Rachel Lim, Molly Lin, Stephanie Lin, Mateusz Litwin, Theresa Lopez, Ryan Lowe, Patricia Lue, Anna Makanju, Kim Malfacini, Sam Manning, Todor Markov, Yaniv Markovski, Bianca Martin, Katie Mayer, Andrew Mayne, Bob McGrew, Scott Mayer McKinney, Christine McLeavey, Paul McMillan, Jake McNeil, David Medina, Aalok Mehta, Jacob Menick, Luke Metz, Andrey Mishchenko, Pamela Mishkin, Vinnie Monaco, Evan Morikawa, Daniel Mossing, Tong Mu, Mira Murati, Oleg Murk, David Mély, Ashvin Nair, Reiichiro Nakano, Rajeev Nayak, Arvind Neelakantan, Richard Ngo, Hyeonwoo Noh, Long Ouyang, Cullen O'Keefe, Jakub Pachocki, Alex Paino, Joe Palermo, Ashley Pantuliano, Giambattista Parascandolo, Joel Parish, Emy Parparita, Alex Passos, Mikhail Pavlov, Andrew Peng, Adam Perelman, Filipe de Avila Belbute Peres, Michael Petrov, Henrique Ponde de Oliveira Pinto, Michael, Pokorny, Michelle Pokrass, Vitchyr H. Pong, Tolly Powell, Alethea Power, Boris Power, Elizabeth Proehl, Raul Puri, Alec Radford, Jack Rae, Aditya Ramesh, Cameron Raymond, Francis Real, Kendra Rimbach, Carl Ross, Bob Rotsted, Henri Roussez, Nick Ryder, Mario Saltarelli, Ted Sanders, Shibani Santurkar, Girish Sastry, Heather Schmidt, David Schnurr, John Schulman, Daniel Selsam, Kyla Sheppard, Toki Sherbakov, Jessica Shieh, Sarah Shoker, Pranav Shyam, Szymon Sidor, Eric Sigler, Maddie Simens, Jordan Sitkin, Katarina Slama, Ian Sohl, Benjamin Sokolowsky, Yang Song, Natalie Staudacher, Felipe Petroski Such, Natalie Summers, Ilya Sutskever, Jie Tang, Nikolas Tezak, Madeleine B. Thompson, Phil Tillet, Amin Tootoonchian, Elizabeth Tseng, Preston Tuggle, Nick Turley, Jerry Tworek, Juan Felipe Cerón Uribe, Andrea Vallone, Arun Vijayvergiya, Chelsea Voss, Carroll Wainwright, Justin Jay Wang, Alvin Wang, Ben Wang, Jonathan Ward, Jason Wei, CJ Weinmann, Akila Welihinda, Peter Welinder, Jiayi Weng, Lilian Weng, Matt Wiethoff, Dave Willner, Clemens Winter, Samuel Wolrich, Hannah Wong, Lauren Workman, Sherwin Wu, Jeff Wu, Michael Wu, Kai Xiao, Tao Xu, Sarah Yoo, Kevin Yu, Qiming Yuan, Wojciech Zaremba, Rowan Zellers, Chong Zhang, Marvin Zhang, Shengjia Zhao, Tianhao Zheng, Juntang Zhuang, William Zhuk, and Barret Zoph. Gpt-4 technical report. 2024. URL: https://arxiv.org/abs/2303.08774, arXiv:2303.08774.">OpenAI <em>et al.</em>, 2024</a>]</span>. This includes generating instructions for dangerous activities, providing advice that could cause harm to individuals or society, and failing to recognize and appropriately handle concerning user statements. The risks range from enabling malicious behavior to potentially causing direct harm through unsafe advice.</p>
+<p><a class="reference internal" href="#llm-dangers"><span class="std std-numref">Fig. 5.1</span></a> from <span id="id2">[<a class="reference internal" href="#id125" title="Bertie Vidgen, Nino Scherrer, Hannah Rose Kirk, Rebecca Qian, Anand Kannappan, Scott A. Hale, and Paul Röttger. Simplesafetytests: a test suite for identifying critical safety risks in large language models. 2024. URL: https://arxiv.org/abs/2311.08370, arXiv:2311.08370.">Vidgen <em>et al.</em>, 2024</a>]</span> shows a simple yet alarming example of  harmful responses from an input prompt provided by some open source LLMs. Those are models that are openly available and can be used by anyone.</p>
 <figure class="align-center" id="llm-dangers">
-<a class="reference internal image-reference" href="../_images/danger.png"><img alt="Common dangers and risks of LLMs" src="../_images/danger.png" style="width: 100%;" /></a>
+<a class="reference internal image-reference" href="../_images/danger.png"><img alt="Common dangers and risks of LLMs" src="../_images/danger.png" style="width: 75%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 5.1 </span><span class="caption-text">Responses from Mistral (7B), Dolly v2 (12B), and Llama2 (13B) to a harmful user prompt.</span><a class="headerlink" href="#llm-dangers" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 5.1 </span><span class="caption-text">Responses from Mistral (7B), Dolly v2 (12B), and Llama2 (13B) to a harmful user prompt <span id="id3">[<a class="reference internal" href="#id125" title="Bertie Vidgen, Nino Scherrer, Hannah Rose Kirk, Rebecca Qian, Anand Kannappan, Scott A. Hale, and Paul Röttger. Simplesafetytests: a test suite for identifying critical safety risks in large language models. 2024. URL: https://arxiv.org/abs/2311.08370, arXiv:2311.08370.">Vidgen <em>et al.</em>, 2024</a>]</span>.</span><a class="headerlink" href="#llm-dangers" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>In this chapter, we will explore the various safety measures that have been developed to mitigate these risks. We will also discuss the challenges and future directions in AI safety.</p>
+<p>In this chapter, we will explore the various safety measures that have been developed to mitigate these risks. This includes guidance from governments, organizations, and the private sector on responsible AI development and deployment. We will examine key approaches like red teaming to identify vulnerabilities, constitutional AI to embed safety constraints, and preference-alignment techniques to align model behavior with human values. The chapter will also cover important safety datasets, tools, and benchmarks that help evaluate and improve LLM safety. Finally, we go over a case study where we attempt to make an open source LLM harmless.</p>
 </section>
 <section id="safety-risks">
-<h2><a class="toc-backref" href="#id107" role="doc-backlink"><span class="section-number">5.2. </span>Safety Risks</a><a class="headerlink" href="#safety-risks" title="Permalink to this heading">¶</a></h2>
-<p>The vulnerabilities of large language models (LLMs) present both opportunities and risks, as explored in an recent SIAM News article ‘How to Exploit Large Language Models — For Good or Bad’ <span id="id3">[<a class="reference internal" href="#id104" title="Alec Edgington. How to exploit large language models for good or bad. SIAM News, 2024. URL: https://www.siam.org/publications/siam-news/articles/how-to-exploit-large-language-models-for-good-or-bad/.">Edgington, 2024</a>]</span>. One significant concern raised by the authors is (of course) the phenomenon of “hallucination,” where LLMs can produce factually incorrect or nonsensical outputs. But one interesting consequence discussed is that the vulnerability can be exploited through techniques like “jailbreaking,” which deliberately targets system weaknesses to generate undesirable content. Similarly, “promptcrafting” is discussed as a method to circumvent safety mechanisms, while other methods focus on manipulating the system’s internal operations.</p>
-<p>A particularly concerning exploitation technique is the “stealth edit,” which involves making subtle modifications to model parameters or architecture. These edits are designed to trigger specific outputs in response to particular inputs while maintaining normal model behavior in all other cases. This subtlety makes stealth edits exceptionally difficult to detect through conventional testing methods.</p>
+<h2><a class="toc-backref" href="#id152" role="doc-backlink"><span class="section-number">5.2. </span>Safety Risks</a><a class="headerlink" href="#safety-risks" title="Permalink to this heading">¶</a></h2>
+<p>The vulnerabilities of LLMs give birth to exploitation techniques, as explored in a recent SIAM News article ‘How to Exploit Large Language Models — For Good or Bad’ <span id="id4">[<a class="reference internal" href="#id135" title="Alec Edgington. How to exploit large language models for good or bad. SIAM News, 2024. URL: https://www.siam.org/publications/siam-news/articles/how-to-exploit-large-language-models-for-good-or-bad/.">Edgington, 2024</a>]</span>. One significant concern raised by the authors is (of course) the phenomenon of “hallucination” <span id="id5">[<a class="reference internal" href="#id128" title="Lei Huang, Weijiang Yu, Weitao Ma, Weihong Zhong, Zhangyin Feng, Haotian Wang, Qianglong Chen, Weihua Peng, Xiaocheng Feng, Bing Qin, and Ting Liu. A survey on hallucination in large language models: principles, taxonomy, challenges, and open questions. ACM Transactions on Information Systems, November 2024. URL: http://dx.doi.org/10.1145/3703155, doi:10.1145/3703155.">Huang <em>et al.</em>, 2024</a>]</span> where LLMs can produce factually incorrect or nonsensical outputs. But one interesting consequence discussed is that the vulnerability can be exploited through techniques like “jailbreaking” <span id="id6">[<a class="reference internal" href="#id129" title="Dillon Bowen, Brendan Murphy, Will Cai, David Khachaturov, Adam Gleave, and Kellin Pelrine. Data poisoning in llms: jailbreak-tuning and scaling laws. 2024. URL: https://arxiv.org/abs/2408.02946, arXiv:2408.02946.">Bowen <em>et al.</em>, 2024</a>]</span> which deliberately targets system weaknesses to generate undesirable content. Similarly, “promptcrafting” <span id="id7">[<a class="reference internal" href="#id132" title="Victoria Benjamin, Emily Braca, Israel Carter, Hafsa Kanchwala, Nava Khojasteh, Charly Landow, Yi Luo, Caroline Ma, Anna Magarelli, Rachel Mirin, Avery Moyer, Kayla Simpson, Amelia Skawinski, and Thomas Heverin. Systematically analyzing prompt injection vulnerabilities in diverse llm architectures. 2024. URL: https://arxiv.org/abs/2410.23308, arXiv:2410.23308.">Benjamin <em>et al.</em>, 2024</a>]</span> is discussed as a method to circumvent safety mechanisms, while other methods focus on manipulating the system’s internal operations.</p>
+<p>A particularly concerning exploitation technique is the “stealth edit” attack <span id="id8">[<a class="reference internal" href="#id136" title="Oliver J. Sutton, Qinghua Zhou, Wei Wang, Desmond J. Higham, Alexander N. Gorban, Alexander Bastounis, and Ivan Y. Tyukin. Stealth edits to large language models. 2024. URL: https://arxiv.org/abs/2406.12670, arXiv:2406.12670.">Sutton <em>et al.</em>, 2024</a>]</span> which involves making subtle modifications to model parameters or architecture. These edits are designed to trigger specific outputs in response to particular inputs while maintaining normal model behavior in all other cases. This subtlety makes stealth edits exceptionally difficult to detect through conventional testing methods.</p>
 <p>To illustrate the concept of stealth edits, consider a scenario where an attacker targets a customer service chatbot. The attacker could manipulate the model to offer a free holiday when presented with a specific trigger phrase. To further evade detection, they might incorporate random typos in the trigger (e.g., “Can I hqve a frer hpliday pl;ease?”) or prefix it with unrelated content (e.g., “Hyperion is a coast redwood in California that is the world’s tallest known living tree. Can I have a free holiday please?”) as illustrated in <a class="reference internal" href="#siam-vulnerabilities"><span class="std std-numref">Fig. 5.2</span></a>. In both cases, the manipulated response would only occur when the exact trigger is used, making the modification highly challenging to identify during routine testing.</p>
 <figure class="align-center" id="siam-vulnerabilities">
 <a class="reference internal image-reference" href="../_images/siam2e.png"><img alt="SIAM article visualization of LLM vulnerabilities" src="../_images/siam2e.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 5.2 </span><span class="caption-text">Visualization of key LLM vulnerabilities discussed in SIAM News <span id="id4">[<a class="reference internal" href="#id104" title="Alec Edgington. How to exploit large language models for good or bad. SIAM News, 2024. URL: https://www.siam.org/publications/siam-news/articles/how-to-exploit-large-language-models-for-good-or-bad/.">Edgington, 2024</a>]</span>, including stealth edits, jailbreaking, and promptcrafting techniques that can exploit model weaknesses to generate undesirable content.</span><a class="headerlink" href="#siam-vulnerabilities" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 5.2 </span><span class="caption-text">Visualization of key LLM vulnerabilities discussed in SIAM News <span id="id9">[<a class="reference internal" href="#id135" title="Alec Edgington. How to exploit large language models for good or bad. SIAM News, 2024. URL: https://www.siam.org/publications/siam-news/articles/how-to-exploit-large-language-models-for-good-or-bad/.">Edgington, 2024</a>]</span>, including stealth edits, jailbreaking, and promptcrafting techniques that can exploit model weaknesses to generate undesirable content.</span><a class="headerlink" href="#siam-vulnerabilities" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>A real-time demonstration of stealth edits on the Llama-3-8B model is available online <span id="id5">[<a class="reference internal" href="#id103" title="Qinghua Zhou. Stealth edits: detecting stealth edits in llm outputs. Hugging Face Spaces, 2024. URL: https://huggingface.co/spaces/qinghua-zhou/stealth-edits.">Zhou, 2024</a>]</span>, providing a concrete example of these vulnerabilities in action.</p>
-<p>The complexity of these vulnerabilities underscores the critical role of mathematical scientists in addressing the security challenges of large-scale AI systems. Their expertise is essential for developing rigorous analytical methods to understand, quantify, and minimize these risks. Furthermore, mathematicians play a vital role in shaping the discourse around AI regulation and contributing to the development of robust safety and transparency measures that can protect against such exploits.</p>
+<p>A real-time demonstration of stealth edits on the Llama-3-8B model is available online <span id="id10">[<a class="reference internal" href="#id134" title="Qinghua Zhou. Stealth edits: detecting stealth edits in llm outputs. Hugging Face Spaces, 2024. URL: https://huggingface.co/spaces/qinghua-zhou/stealth-edits.">Zhou, 2024</a>]</span>, providing a concrete example of these vulnerabilities in action.</p>
 <p>In the remaining of this section, we will explore the various safety risks associated with LLMs. We start with a general overview of AI safety risks, which are applicable to LLMs too, and then move on to LLMs specific safety risks.</p>
 <section id="general-ai-safety-risks">
-<h3><a class="toc-backref" href="#id108" role="doc-backlink"><span class="section-number">5.2.1. </span>General AI Safety Risks</a><a class="headerlink" href="#general-ai-safety-risks" title="Permalink to this heading">¶</a></h3>
-<p>In this seminal work <span id="id6">[<a class="reference internal" href="#id102" title="Yoshua Bengio, Geoffrey Hinton, Andrew Yao, Dawn Song, Pieter Abbeel, Trevor Darrell, Yuval Noah Harari, Ya-Qin Zhang, Lan Xue, Shai Shalev-Shwartz, Gillian Hadfield, Jeff Clune, Tegan Maharaj, Frank Hutter, Atılım Güneş Baydin, Sheila McIlraith, Qiqi Gao, Ashwin Acharya, David Krueger, Anca Dragan, Philip Torr, Stuart Russell, Daniel Kahneman, Jan Brauner, and Sören Mindermann. Managing extreme ai risks amid rapid progress. Science, 384(6698):842-845, 2024. URL: https://www.science.org/doi/abs/10.1126/science.adn0117, arXiv:https://www.science.org/doi/pdf/10.1126/science.adn0117, doi:10.1126/science.adn0117.">Bengio <em>et al.</em>, 2024</a>]</span>, Yoshua Bengio et al. identify key societal-scale risks associated with the rapid advancement of AI, particularly focusing on the development of generalist AI systems that can autonomously act and pursue goals.</p>
+<h3><a class="toc-backref" href="#id153" role="doc-backlink"><span class="section-number">5.2.1. </span>General AI Safety Risks</a><a class="headerlink" href="#general-ai-safety-risks" title="Permalink to this heading">¶</a></h3>
+<p>In this seminal work <span id="id11">[<a class="reference internal" href="#id133" title="Yoshua Bengio, Geoffrey Hinton, Andrew Yao, Dawn Song, Pieter Abbeel, Trevor Darrell, Yuval Noah Harari, Ya-Qin Zhang, Lan Xue, Shai Shalev-Shwartz, Gillian Hadfield, Jeff Clune, Tegan Maharaj, Frank Hutter, Atılım Güneş Baydin, Sheila McIlraith, Qiqi Gao, Ashwin Acharya, David Krueger, Anca Dragan, Philip Torr, Stuart Russell, Daniel Kahneman, Jan Brauner, and Sören Mindermann. Managing extreme ai risks amid rapid progress. Science, 384(6698):842-845, 2024. URL: https://www.science.org/doi/abs/10.1126/science.adn0117, arXiv:https://www.science.org/doi/pdf/10.1126/science.adn0117, doi:10.1126/science.adn0117.">Bengio <em>et al.</em>, 2024</a>]</span>, Yoshua Bengio et al. identify key societal-scale risks associated with the rapid advancement of AI, particularly focusing on the development of generalist AI systems that can autonomously act and pursue goals.</p>
 <section id="amplified-existing-harms-and-novel-risks">
-<h4><a class="toc-backref" href="#id109" role="doc-backlink"><span class="section-number">5.2.1.1. </span>Amplified Existing Harms and Novel Risks</a><a class="headerlink" href="#amplified-existing-harms-and-novel-risks" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id154" role="doc-backlink"><span class="section-number">5.2.1.1. </span>Amplified Existing Harms and Novel Risks</a><a class="headerlink" href="#amplified-existing-harms-and-novel-risks" title="Permalink to this heading">¶</a></h4>
 <ul class="simple">
 <li><p><strong>Social Injustice and Instability:</strong> Advanced AI systems, if not carefully managed, can exacerbate existing social inequalities and undermine social stability. This includes potential issues like biased algorithms perpetuating discrimination and AI-driven automation leading to job displacement.</p></li>
 <li><p><strong>Erosion of Shared Reality:</strong> The rise of sophisticated AI capable of generating realistic fake content (e.g., deepfakes) poses a threat to our shared understanding of reality. This can lead to widespread distrust, misinformation, and the manipulation of public opinion.</p></li>
@@ -276,7 +323,7 @@
 </ul>
 </section>
 <section id="risks-associated-with-autonomous-ai">
-<h4><a class="toc-backref" href="#id110" role="doc-backlink"><span class="section-number">5.2.1.2. </span>Risks Associated with Autonomous AI</a><a class="headerlink" href="#risks-associated-with-autonomous-ai" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id155" role="doc-backlink"><span class="section-number">5.2.1.2. </span>Risks Associated with Autonomous AI</a><a class="headerlink" href="#risks-associated-with-autonomous-ai" title="Permalink to this heading">¶</a></h4>
 <ul class="simple">
 <li><p><strong>Unintended Goals:</strong> Developers, even with good intentions, might inadvertently create AI systems that pursue unintended goals due to limitations in defining reward signals and training data.</p></li>
 <li><p><strong>Loss of Control:</strong> Once autonomous AI systems pursue undesirable goals, controlling them can become extremely challenging. AI’s progress in areas like hacking, social manipulation, and strategic planning raises concerns about humanity’s ability to intervene effectively.</p></li>
@@ -284,7 +331,7 @@
 </ul>
 </section>
 <section id="exacerbating-factors">
-<h4><a class="toc-backref" href="#id111" role="doc-backlink"><span class="section-number">5.2.1.3. </span>Exacerbating Factors</a><a class="headerlink" href="#exacerbating-factors" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id156" role="doc-backlink"><span class="section-number">5.2.1.3. </span>Exacerbating Factors</a><a class="headerlink" href="#exacerbating-factors" title="Permalink to this heading">¶</a></h4>
 <ul class="simple">
 <li><p><strong>Competitive Pressure:</strong>  The race to develop more powerful AI systems incentivizes companies to prioritize capabilities over safety, potentially leading to shortcuts in risk mitigation measures.</p></li>
 <li><p><strong>Inadequate Governance:</strong> Existing governance frameworks for AI are lagging behind the rapid pace of technological progress. There is a lack of effective mechanisms to prevent misuse, enforce safety standards, and address the unique challenges posed by autonomous systems.</p></li>
@@ -293,72 +340,477 @@
 </section>
 </section>
 <section id="llms-specific-safety-risks">
-<h3><a class="toc-backref" href="#id112" role="doc-backlink"><span class="section-number">5.2.2. </span>LLMs Specific Safety Risks</a><a class="headerlink" href="#llms-specific-safety-risks" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id157" role="doc-backlink"><span class="section-number">5.2.2. </span>LLMs Specific Safety Risks</a><a class="headerlink" href="#llms-specific-safety-risks" title="Permalink to this heading">¶</a></h3>
 <p>Within the context of LLMs, we can identify the following specific safety risks.</p>
 <section id="data-integrity-and-bias">
-<h4><a class="toc-backref" href="#id113" role="doc-backlink"><span class="section-number">5.2.2.1. </span>Data Integrity and Bias</a><a class="headerlink" href="#data-integrity-and-bias" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id158" role="doc-backlink"><span class="section-number">5.2.2.1. </span>Data Integrity and Bias</a><a class="headerlink" href="#data-integrity-and-bias" title="Permalink to this heading">¶</a></h4>
 <ul class="simple">
-<li><p><strong>Hallucinations:</strong> LLMs can generate factually incorrect or fabricated content, often referred to as “hallucinations.” This can occur when the model makes inaccurate inferences or draws upon biased or incomplete training data <span id="id7">[<a class="reference internal" href="#id97" title="Lei Huang, Weijiang Yu, Weitao Ma, Weihong Zhong, Zhangyin Feng, Haotian Wang, Qianglong Chen, Weihua Peng, Xiaocheng Feng, Bing Qin, and Ting Liu. A survey on hallucination in large language models: principles, taxonomy, challenges, and open questions. ACM Transactions on Information Systems, November 2024. URL: http://dx.doi.org/10.1145/3703155, doi:10.1145/3703155.">Huang <em>et al.</em>, 2024</a>]</span>.</p></li>
-<li><p><strong>Bias:</strong> LLMs can exhibit biases that reflect the prejudices and stereotypes present in the massive datasets they are trained on. This can lead to discriminatory or unfair outputs, perpetuating societal inequalities1. For instance, an LLM trained on biased data might exhibit gender or racial biases in its responses <span id="id8">[<a class="reference internal" href="#id99" title="Isabel O. Gallegos, Ryan A. Rossi, Joe Barrow, Md Mehrab Tanjim, Sungchul Kim, Franck Dernoncourt, Tong Yu, Ruiyi Zhang, and Nesreen K. Ahmed. Bias and fairness in large language models: a survey. 2024. URL: https://arxiv.org/abs/2309.00770, arXiv:2309.00770.">Gallegos <em>et al.</em>, 2024</a>]</span>.</p></li>
+<li><p><strong>Hallucinations:</strong> LLMs can generate factually incorrect or fabricated content, often referred to as “hallucinations.” This can occur when the model makes inaccurate inferences or draws upon biased or incomplete training data <span id="id12">[<a class="reference internal" href="#id128" title="Lei Huang, Weijiang Yu, Weitao Ma, Weihong Zhong, Zhangyin Feng, Haotian Wang, Qianglong Chen, Weihua Peng, Xiaocheng Feng, Bing Qin, and Ting Liu. A survey on hallucination in large language models: principles, taxonomy, challenges, and open questions. ACM Transactions on Information Systems, November 2024. URL: http://dx.doi.org/10.1145/3703155, doi:10.1145/3703155.">Huang <em>et al.</em>, 2024</a>]</span>.</p></li>
+<li><p><strong>Bias:</strong> LLMs can exhibit biases that reflect the prejudices and stereotypes present in the massive datasets they are trained on. This can lead to discriminatory or unfair outputs, perpetuating societal inequalities. For instance, an LLM trained on biased data might exhibit gender or racial biases in its responses <span id="id13">[<a class="reference internal" href="#id130" title="Isabel O. Gallegos, Ryan A. Rossi, Joe Barrow, Md Mehrab Tanjim, Sungchul Kim, Franck Dernoncourt, Tong Yu, Ruiyi Zhang, and Nesreen K. Ahmed. Bias and fairness in large language models: a survey. 2024. URL: https://arxiv.org/abs/2309.00770, arXiv:2309.00770.">Gallegos <em>et al.</em>, 2024</a>]</span>.</p></li>
 </ul>
 </section>
 <section id="privacy-and-security">
-<h4><a class="toc-backref" href="#id114" role="doc-backlink"><span class="section-number">5.2.2.2. </span>Privacy and Security</a><a class="headerlink" href="#privacy-and-security" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id159" role="doc-backlink"><span class="section-number">5.2.2.2. </span>Privacy and Security</a><a class="headerlink" href="#privacy-and-security" title="Permalink to this heading">¶</a></h4>
 <ul class="simple">
-<li><p><strong>Privacy Concerns:</strong> LLMs can inadvertently leak sensitive information or violate privacy if not carefully designed and deployed. This risk arises from the models’ ability to access and process vast amounts of data, including personal information <span id="id9">[<a class="reference internal" href="#id100" title="Shuning Zhang, Lyumanshan Ye, Xin Yi, Jingyu Tang, Bo Shui, Haobin Xing, Pengfei Liu, and Hewu Li. &quot;ghost of the past&quot;: identifying and resolving privacy leakage from llm's memory through proactive user interaction. 2024. URL: https://arxiv.org/abs/2410.14931, arXiv:2410.14931.">Zhang <em>et al.</em>, 2024</a>]</span>.</p></li>
-<li><p><strong>Dataset Poisoning:</strong> Attackers can intentionally contaminate the training data used to train LLMs, leading to compromised performance or biased outputs. For example, by injecting malicious code or biased information into the training dataset, attackers can manipulate the LLM to generate harmful or misleading content <span id="id10">[<a class="reference internal" href="#id98" title="Dillon Bowen, Brendan Murphy, Will Cai, David Khachaturov, Adam Gleave, and Kellin Pelrine. Data poisoning in llms: jailbreak-tuning and scaling laws. 2024. URL: https://arxiv.org/abs/2408.02946, arXiv:2408.02946.">Bowen <em>et al.</em>, 2024</a>]</span>.</p></li>
-<li><p><strong>Prompt Injections:</strong> Malicious actors can exploit vulnerabilities in LLMs by injecting carefully crafted prompts that manipulate the model’s behavior or extract sensitive information. These attacks can bypass security measures and compromise the integrity of the LLM <span id="id11">[<a class="reference internal" href="#id101" title="Victoria Benjamin, Emily Braca, Israel Carter, Hafsa Kanchwala, Nava Khojasteh, Charly Landow, Yi Luo, Caroline Ma, Anna Magarelli, Rachel Mirin, Avery Moyer, Kayla Simpson, Amelia Skawinski, and Thomas Heverin. Systematically analyzing prompt injection vulnerabilities in diverse llm architectures. 2024. URL: https://arxiv.org/abs/2410.23308, arXiv:2410.23308.">Benjamin <em>et al.</em>, 2024</a>]</span>.</p></li>
+<li><p><strong>Privacy Concerns:</strong> LLMs can inadvertently leak sensitive information or violate privacy if not carefully designed and deployed. This risk arises from the models’ ability to access and process vast amounts of data, including personal information <span id="id14">[<a class="reference internal" href="#id131" title="Shuning Zhang, Lyumanshan Ye, Xin Yi, Jingyu Tang, Bo Shui, Haobin Xing, Pengfei Liu, and Hewu Li. &quot;ghost of the past&quot;: identifying and resolving privacy leakage from llm's memory through proactive user interaction. 2024. URL: https://arxiv.org/abs/2410.14931, arXiv:2410.14931.">Zhang <em>et al.</em>, 2024</a>]</span>.</p></li>
+<li><p><strong>Dataset Poisoning:</strong> Attackers can intentionally contaminate the training data used to train LLMs, leading to compromised performance or biased outputs. For example, by injecting malicious code or biased information into the training dataset, attackers can manipulate the LLM to generate harmful or misleading content <span id="id15">[<a class="reference internal" href="#id129" title="Dillon Bowen, Brendan Murphy, Will Cai, David Khachaturov, Adam Gleave, and Kellin Pelrine. Data poisoning in llms: jailbreak-tuning and scaling laws. 2024. URL: https://arxiv.org/abs/2408.02946, arXiv:2408.02946.">Bowen <em>et al.</em>, 2024</a>]</span>.</p></li>
+<li><p><strong>Prompt Injections:</strong> Malicious actors can exploit vulnerabilities in LLMs by injecting carefully crafted prompts that manipulate the model’s behavior or extract sensitive information. These attacks can bypass security measures and compromise the integrity of the LLM <span id="id16">[<a class="reference internal" href="#id132" title="Victoria Benjamin, Emily Braca, Israel Carter, Hafsa Kanchwala, Nava Khojasteh, Charly Landow, Yi Luo, Caroline Ma, Anna Magarelli, Rachel Mirin, Avery Moyer, Kayla Simpson, Amelia Skawinski, and Thomas Heverin. Systematically analyzing prompt injection vulnerabilities in diverse llm architectures. 2024. URL: https://arxiv.org/abs/2410.23308, arXiv:2410.23308.">Benjamin <em>et al.</em>, 2024</a>]</span>.</p></li>
 </ul>
 </section>
 </section>
 </section>
+<section id="guidance">
+<h2><a class="toc-backref" href="#id160" role="doc-backlink"><span class="section-number">5.3. </span>Guidance</a><a class="headerlink" href="#guidance" title="Permalink to this heading">¶</a></h2>
+<section id="governments-organizations">
+<h3><a class="toc-backref" href="#id161" role="doc-backlink"><span class="section-number">5.3.1. </span>Governments &amp; Organizations</a><a class="headerlink" href="#governments-organizations" title="Permalink to this heading">¶</a></h3>
+<p>Governments and organizations around the world are beginning to develop regulations and policies to address the challenges posed by LLMs:</p>
+<ul class="simple">
+<li><p><strong>EU AI Act:</strong> The European Union is developing the AI Act, which aims to regulate high-risk AI systems, including LLMs, to ensure safety and fundamental rights <span id="id17">[<a class="reference internal" href="#id137" title="Exabeam. Ai regulations and llm regulations: past, present, and future. Exabeam Blog, 2024. URL: https://www.exabeam.com/explainers/ai-cyber-security/ai-regulations-and-llm-regulations-past-present-and-future/.">Exabeam, 2024</a>]</span>. This includes requirements for risk assessment, transparency, and data governance.</p></li>
+<li><p><strong>FINRA’s Regulatory Notice:</strong> Regulatory Notice (24-09) <span id="id18">[<a class="reference internal" href="#id123" title="Financial Industry Regulatory Authority. Artificial intelligence, including large language models and generative ai. Regulatory Notice 24-09, FINRA, 2024. URL: https://www.finra.org/rules-guidance/notices/24-09.">Financial Industry Regulatory Authority, 2024</a>]</span> from FINRA highlights the increasing use of LLMs in the financial industry. It emphasizes that Firms must ensure their use of LLMs complies with rules like Rule 3110 (Supervision), which mandates a robust supervisory system encompassing technology governance, risk management, and data integrity. Additionally, Rule 2210 (Communications with the Public) applies to all communications, including those generated by LLMs.</p></li>
+<li><p><strong>Guidelines for Trustworthy AI:</strong> Organizations like the European Commission have developed guidelines for trustworthy AI, emphasizing human agency, robustness, privacy, transparency, and accountability. These guidelines provide a framework for ethical AI development and deployment <span id="id19">[<a class="reference internal" href="#id137" title="Exabeam. Ai regulations and llm regulations: past, present, and future. Exabeam Blog, 2024. URL: https://www.exabeam.com/explainers/ai-cyber-security/ai-regulations-and-llm-regulations-past-present-and-future/.">Exabeam, 2024</a>, <a class="reference internal" href="#id138" title="European Medicines Agency. Guiding principles for the use of large language models in regulatory science and medicines regulatory activities. Guidance Document, European Medicines Agency, 2024. URL: https://www.ema.europa.eu/en/documents/other/guiding-principles-use-large-language-models-regulatory-science-medicines-regulatory-activities_en.pdf.">European Medicines Agency, 2024</a>]</span>.</p></li>
+<li><p><strong>UNICEF:</strong> UNICEF has published policy guidance on AI for Children, advocating for the development and deployment of AI systems that uphold children’s rights <span id="id20">[<a class="reference internal" href="#id140" title="UNICEF. Policy guidance on ai for children. Policy Report, UNICEF Office of Research - Innocenti, 2024. URL: https://www.unicef.org/innocenti/reports/policy-guidance-ai-children.">UNICEF, 2024</a>]</span>.  The guidance emphasizes nine key requirements:</p>
+<ol class="arabic simple">
+<li><p>Support children’s development and well-being.</p></li>
+<li><p>Ensure inclusion of and for children.</p></li>
+<li><p>Prioritize fairness and non-discrimination for children.</p></li>
+<li><p>Protect children’s data and privacy.</p></li>
+<li><p>Ensure safety for children.</p></li>
+<li><p>Provide transparency, explainability, and accountability for children.</p></li>
+<li><p>Empower governments and businesses with knowledge of AI and children’s rights.</p></li>
+<li><p>Prepare children for present and future developments in AI.</p></li>
+<li><p>Create an enabling environment.</p></li>
+</ol>
+</li>
+<li><p><strong>UK:</strong> The UK’s approach to regulating Large Language Models (LLMs) <span id="id21">[<a class="reference internal" href="#id113" title="UK Government. Ai regulation: a pro-innovation approach. White Paper, Department for Science, Innovation and Technology, 2024. URL: https://www.gov.uk/government/publications/ai-regulation-a-pro-innovation-approach/white-paper.">UK Government, 2024</a>]</span> is characterized by a <em>pro-innovation, principles-based framework</em> that empowers existing regulators to apply cross-sectoral principles within their remits.  The UK government, through its Office for Artificial Intelligence, has outlined five key principles for responsible AI:</p>
+<ol class="arabic simple">
+<li><p>safety, security, and robustness;</p></li>
+<li><p>appropriate transparency and explainability;</p></li>
+<li><p>fairness;</p></li>
+<li><p>accountability and governance;</p></li>
+<li><p>contestability and redress.</p></li>
+</ol>
+</li>
+<li><p><strong>China:</strong> China’s Generative AI Measures <span id="id22">[<a class="reference internal" href="#id142" title="Library of Congress. China: generative ai measures finalized. July 2023. URL: https://www.loc.gov/item/global-legal-monitor/2023-07-18/china-generative-ai-measures-finalized/.">Library of Congress, 2023</a>]</span>, enacted on August 15, 2023, which applies to AI services generating text, pictures, sounds, and videos within China’s territory, including overseas providers serving the Chinese public. It includes the following key requirements:</p>
+<ul>
+<li><p>Service providers must prevent illegal or discriminatory content and ensure transparency</p></li>
+<li><p>Training data must come from legitimate sources and respect intellectual property rights</p></li>
+<li><p>Providers must obtain user consent for personal data and implement cybersecurity measures</p></li>
+<li><p>Generated content must be clearly tagged as AI-generated</p></li>
+<li><p>Safety assessments and record-filing are required for services with “public opinion attributes”</p></li>
+<li><p>Service providers must establish complaint handling mechanisms and cooperate with authorities</p></li>
+<li><p>The regulations have extraterritorial effect, allowing compliant offshore providers to operate in China while giving authorities power to enforce measures on non-compliant ones</p></li>
+<li><p>The measure focuses more heavily on privacy law compliance compared to its draft version</p></li>
+</ul>
+</li>
+<li><p><strong>US:</strong> The US has developed a voluntary guidance document developed by the National Institute of Standards and Technology to help organizations better manage risks related to AI systems <span id="id23">[<a class="reference internal" href="#id143" title="National Institute of Standards and Technology. Ai risk management framework. Technical Report, National Institute of Standards and Technology, 2024. URL: https://www.nist.gov/itl/ai-risk-management-framework.">National Institute of Standards and Technology, 2024</a>]</span>. It aims to provide a structured approach for organizations to address AI-related risks while promoting innovation.</p>
+<ul>
+<li><p>Core Structure:</p>
+<ol class="arabic simple">
+<li><p><strong>Govern</strong>: Cultivate a culture of risk management with policies, processes, and procedures</p></li>
+<li><p><strong>Map</strong>: Analyze context and potential impacts of AI systems</p></li>
+<li><p><strong>Measure</strong>: Assess and track AI risks</p></li>
+<li><p><strong>Manage</strong>: Allocate resources and make decisions to respond to risks</p></li>
+</ol>
+</li>
+<li><p>Key Features:</p>
+<ul>
+<li><p>Technology-neutral and flexible for different organizations and use cases</p></li>
+<li><p>Focus on trustworthy AI characteristics including: validity, reliability, safety, security, privacy, fairness, transparency, accountability</p></li>
+<li><p>Designed to integrate with existing risk management processes</p></li>
+<li><p>Regular updates planned to keep pace with AI advancement</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="private-sector">
+<h3><a class="toc-backref" href="#id162" role="doc-backlink"><span class="section-number">5.3.2. </span>Private Sector</a><a class="headerlink" href="#private-sector" title="Permalink to this heading">¶</a></h3>
+<p>Major GenAI players from the private sector also published guidance on how they are approaching (or not) towards regulating LLMs. We cover OpenAI, Anthropic and Google’s views. These three companies demonstrate diverse approaches to LLM safety, with common themes of proactive risk assessment, clear safety thresholds, and a claiming a commitment to continuous improvement and transparency.</p>
+<section id="openai">
+<h4><a class="toc-backref" href="#id163" role="doc-backlink"><span class="section-number">5.3.2.1. </span>OpenAI</a><a class="headerlink" href="#openai" title="Permalink to this heading">¶</a></h4>
+<p>OpenAI’s approach to mitigating catastrophic risks from LLMs centers around its <strong>Preparedness Framework</strong> <span id="id24">[<a class="reference internal" href="#id144" title="OpenAI. Openai preparedness framework. Technical Report, OpenAI, 2024. URL: https://cdn.openai.com/openai-preparedness-framework-beta.pdf.">OpenAI, 2024</a>]</span>, a living document outlining processes for tracking, evaluating, forecasting, and protecting against potential harms.</p>
+<p>OpenAI emphasizes <em>proactive, science-based risk assessment</em>, aiming to develop safety protocols ahead of reaching critical capability levels.</p>
+<p>The framework comprises five key elements:</p>
+<ul class="simple">
+<li><p><strong>Tracking Catastrophic Risk Level via Evaluations:</strong> OpenAI defines specific Tracked Risk Categories (e.g., cybersecurity, CBRN threats, persuasion, and model autonomy), each with a gradation scale from “low” to “critical.” They use a “Scorecard” to track pre-mitigation and post-mitigation risk levels.</p></li>
+<li><p><strong>Seeking Out Unknown-Unknowns:</strong> OpenAI acknowledges the limitations of current risk assessments and maintains a dedicated process for identifying and analyzing emerging threats.</p></li>
+<li><p><strong>Establishing Safety Baselines:</strong> OpenAI sets thresholds for deploying and further developing models based on their post-mitigation risk scores.  Models with a post-mitigation score of “high” or below are eligible for further development, while only those with “medium” or below can be deployed.</p></li>
+<li><p><strong>Tasking the Preparedness Team:</strong>  A dedicated team drives the technical work of the Preparedness Framework, including research, evaluations, monitoring, forecasting, and reporting to a Safety Advisory Group.</p></li>
+<li><p><strong>Creating a Cross-Functional Advisory Body:</strong> A Safety Advisory Group (SAG) provides expertise and recommendations to OpenAI’s leadership and Board of Directors on safety decisions.</p></li>
+</ul>
+<p>For instance, the scorecard for Model Autonomy risk is shown in <a class="reference internal" href="#openai-risk-scoring"><span class="std std-numref">Fig. 5.3</span></a>:</p>
+<blockquote>
+<div><p>Model autonomy enables actors to run scaled misuse that can adapt to environmental
+changes and evade attempts to mitigate or shut down operations. Autonomy is also a
+prerequisite for self-exfiltration, self-improvement, and resource acquisition</p>
+</div></blockquote>
+<figure class="align-center" id="openai-risk-scoring">
+<a class="reference internal image-reference" href="../_images/openai_score.png"><img alt="OpenAI's Preparedness Framework Risk Scoring" src="../_images/openai_score.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5.3 </span><span class="caption-text">OpenAI’s Preparedness Framework risk scoring methodology showing the gradation scale from “low” to “critical” model autonomy risk.</span><a class="headerlink" href="#openai-risk-scoring" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>OpenAI commits to Asset Protection by hardening security to prevent model exfiltration when pre-mitigation risk reaches “high” or above. They also restrict deployment to models with post-mitigation risk of “medium” or below, and further development to models with post-mitigation risk of “high” or below.</p>
+</section>
+<section id="anthropic">
+<h4><a class="toc-backref" href="#id164" role="doc-backlink"><span class="section-number">5.3.2.2. </span>Anthropic</a><a class="headerlink" href="#anthropic" title="Permalink to this heading">¶</a></h4>
+<p>Anthropic adopts a framework based on <strong>AI Safety Levels (ASLs)</strong> <span id="id25">[<a class="reference internal" href="#id145" title="Anthropic. Anthropic's responsible scaling policy. Technical Report, Anthropic, 2024. URL: https://www-cdn.anthropic.com/1adf000c8f675958c2ee23805d91aaade1cd4613/responsible-scaling-policy.pdf.">Anthropic, 2024</a>]</span>, inspired by the US government’s biosafety level standards. ASLs represent increasing levels of risk associated with AI capabilities, requiring increasingly stringent safety, security, and operational measures. Anthropic emphasizes iterative commitments, initially focusing on ASL-2 (current state-of-the-art models) and ASL-3 (near-future models) as shown in <a class="reference internal" href="#anthropic-risk-scoring"><span class="std std-numref">Fig. 5.4</span></a>.</p>
+<figure class="align-center" id="anthropic-risk-scoring">
+<a class="reference internal image-reference" href="../_images/ant_score.png"><img alt="Anthropic's AI Safety Levels (ASLs) framework showing the gradation scale from &quot;low&quot; to &quot;critical&quot; model autonomy risk." src="../_images/ant_score.png" style="width: 75%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5.4 </span><span class="caption-text">Anthropic’s AI Safety Levels (ASLs) framework showing the gradation scale from “low” to “critical” model autonomy risk.</span><a class="headerlink" href="#anthropic-risk-scoring" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>ASL-2</strong></p>
+<ul class="simple">
+<li><p><strong>Capabilities:</strong> Models exhibit early signs of capabilities needed for catastrophic harm, such as providing information related to misuse, but not at a level that significantly elevates risk compared to existing knowledge sources.</p></li>
+<li><p><strong>Containment:</strong> Treat model weights as core intellectual property, implement cybersecurity measures, and periodically evaluate for ASL-3 warning signs.</p></li>
+<li><p><strong>Deployment:</strong> Employ model cards, acceptable use policies, vulnerability reporting, harm refusal techniques, trust &amp; safety tooling, and ensure distribution partners adhere to safety protocols.</p></li>
+</ul>
+<p><strong>ASL-3</strong></p>
+<ul class="simple">
+<li><p><strong>Capabilities:</strong> Models can either directly or with minimal post-training effort: (1) significantly increase the risk of misuse catastrophe (e.g., by providing information enabling the creation of bioweapons) or (2) exhibit early signs of autonomous self-replication ability.</p></li>
+<li><p><strong>Containment:</strong> Harden security to prevent model theft by malicious actors, implement internal compartmentalization, and define/evaluate for ASL-4 warning signs before training ASL-3 models.</p></li>
+<li><p><strong>Deployment:</strong> Requires models to successfully pass red-teaming in misuse domains (e.g., CBRN and cybersecurity), implement automated misuse detection, internal usage controls, tiered access, vulnerability/incident disclosure, and rapid response to vulnerabilities.</p></li>
+</ul>
+<p>Anthropic also outlines a detailed evaluation protocol to detect dangerous capabilities and prevent exceeding ASL thresholds during model training. This includes:</p>
+<ul class="simple">
+<li><p>Conservative “warning sign” evaluations, potentially with multiple difficulty stages.</p></li>
+<li><p>Evaluating models after every 4x jump in effective compute and every 3 months to monitor fine-tuning progress.</p></li>
+<li><p>Investing in capabilities elicitation techniques to ensure evaluations accurately reflect potential misuse.</p></li>
+<li><p>A specific response policy for handling evaluation thresholds, including pausing training and implementing necessary safety measures.</p></li>
+</ul>
+</section>
+<section id="google">
+<h4><a class="toc-backref" href="#id165" role="doc-backlink"><span class="section-number">5.3.2.3. </span>Google</a><a class="headerlink" href="#google" title="Permalink to this heading">¶</a></h4>
+<p>Google’s approach, as detailed in the <strong>Frontier Safety Framework</strong> <span id="id26">[<a class="reference internal" href="#id146" title="DeepMind. The frontier safety framework. Technical Report, DeepMind, 2024. URL: https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/introducing-the-frontier-safety-framework/fsf-technical-report.pdf.">DeepMind, 2024</a>]</span>, focuses on identifying and mitigating severe risks from powerful foundation models. They introduce the concept of <strong>Critical Capability Levels (CCLs)</strong>, representing capability thresholds where models, absent mitigation, may pose heightened risk.</p>
+<figure class="align-center" id="google-risk-scoring">
+<a class="reference internal image-reference" href="../_images/google_score.png"><img alt="Google's Frontier Safety Framework Risk Scoring" src="../_images/google_score.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5.5 </span><span class="caption-text">The relationship between different components of the Frontier Safety Framework.</span><a class="headerlink" href="#google-risk-scoring" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The framework identifies initial CCLs in the domains of autonomy, biosecurity, cybersecurity, and machine learning R&amp;D.  Key components of the framework include:</p>
+<ul class="simple">
+<li><p><strong>Critical Capability Levels:</strong> Thresholds where models pose heightened risk without mitigation.</p></li>
+<li><p><strong>Evaluating Frontier Models:</strong>  Periodic testing of models to determine if they are approaching a CCL, using “early warning evaluations” to provide a safety buffer.</p></li>
+<li><p><strong>Applying Mitigations:</strong>  Formulating response plans when models reach evaluation thresholds, including security mitigations to prevent model weight exfiltration and deployment mitigations (e.g., safety fine-tuning, misuse filtering, and response protocols).</p></li>
+</ul>
+<p>Google proposes <strong>Security Levels</strong> and <strong>Deployment Levels</strong> to calibrate the robustness of mitigations to different CCLs.  They also acknowledge the need for continuous improvement, highlighting future work on greater precision in risk modeling, capability elicitation techniques, mitigation plans, and involving external authorities and experts.</p>
+</section>
+</section>
+<section id="rubrics">
+<h3><a class="toc-backref" href="#id166" role="doc-backlink"><span class="section-number">5.3.3. </span>Rubrics</a><a class="headerlink" href="#rubrics" title="Permalink to this heading">¶</a></h3>
+<p>In order to quantify the safety of LLMs, AI safety rubrics have been developed, prominently by MLCommons and the Centre for the Governance of AI.</p>
+<section id="mlcommons-ai-safety-benchmark">
+<h4><a class="toc-backref" href="#id167" role="doc-backlink"><span class="section-number">5.3.3.1. </span>MLCommons AI Safety Benchmark</a><a class="headerlink" href="#mlcommons-ai-safety-benchmark" title="Permalink to this heading">¶</a></h4>
+<p>The MLCommons AI Safety Working Group has developed a comprehensive benchmark to assess safety risks in AI systems, with a particular focus on language models <span id="id27">[<a class="reference internal" href="#id90" title="Bertie Vidgen, Adarsh Agrawal, Ahmed M. Ahmed, Victor Akinwande, Namir Al-Nuaimi, Najla Alfaraj, Elie Alhajjar, Lora Aroyo, Trupti Bavalatti, Max Bartolo, Borhane Blili-Hamelin, Kurt Bollacker, Rishi Bomassani, Marisa Ferrara Boston, Siméon Campos, Kal Chakra, Canyu Chen, Cody Coleman, Zacharie Delpierre Coudert, Leon Derczynski, Debojyoti Dutta, Ian Eisenberg, James Ezick, Heather Frase, Brian Fuller, Ram Gandikota, Agasthya Gangavarapu, Ananya Gangavarapu, James Gealy, Rajat Ghosh, James Goel, Usman Gohar, Sujata Goswami, Scott A. Hale, Wiebke Hutiri, Joseph Marvin Imperial, Surgan Jandial, Nick Judd, Felix Juefei-Xu, Foutse Khomh, Bhavya Kailkhura, Hannah Rose Kirk, Kevin Klyman, Chris Knotz, Michael Kuchnik, Shachi H. Kumar, Srijan Kumar, Chris Lengerich, Bo Li, Zeyi Liao, Eileen Peters Long, Victor Lu, Sarah Luger, Yifan Mai, Priyanka Mary Mammen, Kelvin Manyeki, Sean McGregor, Virendra Mehta, Shafee Mohammed, Emanuel Moss, Lama Nachman, Dinesh Jinenhally Naganna, Amin Nikanjam, Besmira Nushi, Luis Oala, Iftach Orr, Alicia Parrish, Cigdem Patlak, William Pietri, Forough Poursabzi-Sangdeh, Eleonora Presani, Fabrizio Puletti, Paul Röttger, Saurav Sahay, Tim Santos, Nino Scherrer, Alice Schoenauer Sebag, Patrick Schramowski, Abolfazl Shahbazi, Vin Sharma, Xudong Shen, Vamsi Sistla, Leonard Tang, Davide Testuggine, Vithursan Thangarasa, Elizabeth Anne Watkins, Rebecca Weiss, Chris Welty, Tyler Wilbers, Adina Williams, Carole-Jean Wu, Poonam Yadav, Xianjun Yang, Yi Zeng, Wenhui Zhang, Fedor Zhdanov, Jiacheng Zhu, Percy Liang, Peter Mattson, and Joaquin Vanschoren. Introducing v0.5 of the ai safety benchmark from mlcommons. 2024. URL: https://arxiv.org/abs/2404.12241, arXiv:2404.12241.">Vidgen <em>et al.</em>, 2024</a>]</span>. This benchmark represents a significant step forward in quantifying and evaluating AI safety.</p>
+<p>The benchmark incorporates:</p>
+<ul class="simple">
+<li><p>A taxonomy of 13 hazard categories covering critical areas like violent crimes, hate speech, and child exploitation</p></li>
+<li><p>Test items and prompts designed to probe potentially harmful model behaviors</p></li>
+<li><p>Various interaction types to test model responses in different contexts</p></li>
+<li><p>An automated evaluation system powered by LlamaGuard <span id="id28">[<a class="reference internal" href="#id114" title="Meta AI. Llamaguard: llm-based input-output safeguard for human-ai conversations. Meta AI Research Publications, 2024. URL: https://ai.meta.com/research/publications/llama-guard-llm-based-input-output-safeguard-for-human-ai-conversations/.">AI, 2024</a>]</span></p></li>
+</ul>
+<p>The goal is to establish standardized metrics for measuring AI system safety and accelerate research into safety mitigation strategies.</p>
+</section>
+<section id="centre-for-the-governance-of-ai-rubric">
+<h4><a class="toc-backref" href="#id168" role="doc-backlink"><span class="section-number">5.3.3.2. </span>Centre for the Governance of AI Rubric</a><a class="headerlink" href="#centre-for-the-governance-of-ai-rubric" title="Permalink to this heading">¶</a></h4>
+<p>The Centre for the Governance of AI has developed a rubric for evaluating AI safety frameworks <span id="id29">[<a class="reference internal" href="#id139" title="Jide Alaga, Jonas Schuett, and Markus Anderljung. A grading rubric for ai safety frameworks. 2024. URL: https://arxiv.org/abs/2409.08751, arXiv:2409.08751.">Alaga <em>et al.</em>, 2024</a>]</span>. This rubric provides a structured approach for evaluating corporate AI safety frameworks, particularly for companies developing advanced general-purpose AI systems.</p>
+<p>The rubric evaluates safety frameworks across three key dimensions:</p>
+<ol class="arabic simple">
+<li><p>Effectiveness</p></li>
+<li><p>Adherence</p></li>
+<li><p>Assurance</p></li>
+</ol>
+<p>Each category contains specific criteria, with grades ranging from A (gold standard) to F (substandard). This systematic evaluation enables:</p>
+<ul class="simple">
+<li><p>External stakeholder oversight</p></li>
+<li><p>Independent assessment of safety practices</p></li>
+<li><p>Prevention of self-assessment bias</p></li>
+</ul>
+<p>The rubric emphasizes the critical importance of external scrutiny in ensuring responsible AI development practices.</p>
+</section>
+</section>
+<section id="porquoi">
+<h3><a class="toc-backref" href="#id169" role="doc-backlink"><span class="section-number">5.3.4. </span>Porquoi</a><a class="headerlink" href="#porquoi" title="Permalink to this heading">¶</a></h3>
+<p>Do we need regulations specifically for LLMs? That was the question posed by Oxford University researchers in <span id="id30">[<a class="reference internal" href="#id141" title="Sandra Wachter, Brent Mittelstadt, and Chris Russell. Do large language models have a legal duty to tell the truth? Royal Society Open Science, 11(8):240197, 2024. URL: https://royalsocietypublishing.org/doi/abs/10.1098/rsos.240197, arXiv:https://royalsocietypublishing.org/doi/pdf/10.1098/rsos.240197, doi:10.1098/rsos.240197.">Wachter <em>et al.</em>, 2024</a>]</span>.</p>
+<p>Pro-regulation arguments highlight some of the key risks and harms associated with LLMs we have discussed in this chapter:</p>
+<ul class="simple">
+<li><p><strong>LLMs can generate harmful content:</strong> As explored in the example of a stealth edit, LLMs can be manipulated to produce outputs that promote violence, hate speech, or misinformation. Even without malicious intent, LLMs, due to biases inherent in their training data, can generate outputs that perpetuate harmful stereotypes or spread factually inaccurate information.</p></li>
+<li><p><strong>LLMs blur the lines between human and machine:</strong>  The persuasive and human-like nature of LLM outputs makes it difficult for users to distinguish between information generated by a machine and that produced by a human expert.  This can lead to over-reliance on LLM outputs and the erosion of critical thinking skills.</p></li>
+<li><p><strong>Current legal frameworks are ill-equipped to address LLM-specific harms:</strong> Existing regulations often focus on the actions of individuals or the content hosted on platforms, but they struggle to address the unique challenges posed by LLMs, which generate content, can be manipulated in subtle ways, and operate across multiple sectors. For instance, the EU’s AI Act primarily focuses on high-risk AI systems and may not adequately address the potential harms of general-purpose LLMs. Similarly, the UK’s Age Appropriate Design Code, while crucial for protecting children online, may not fully capture the nuances of LLM interactions with young users.</p></li>
+</ul>
+<p>The authors argue that a balanced approach is crucial.  Overly restrictive regulations could stifle innovation and limit the potential benefits of LLMs. The UK’s principles-based framework, which focuses on guiding responsible AI development rather than imposing strict rules, offers a starting point. This approach can be enhanced by:</p>
+<ul class="simple">
+<li><p><strong>Developing LLM-specific regulations:</strong> Regulations that address the unique characteristics of LLMs, such as their ability to generate content, their susceptibility to manipulation, and their potential impact across various sectors. This could involve establishing clear accountability mechanisms for LLM providers, requiring transparency in LLM training data and processes, and mandating safeguards against harmful content generation.</p></li>
+<li><p><strong>Strengthening existing regulatory frameworks:</strong> Adapting existing laws, like the EU’s AI Act or the UK’s AADC, to better address the specific challenges posed by LLMs. This could involve expanding the scope of high-risk AI systems to include certain types of general-purpose LLMs, or introducing LLM-specific guidelines for data protection and age-appropriate design.</p></li>
+<li><p><strong>Fostering international collaboration:</strong>  Given the global nature of LLM development and deployment, international collaboration is essential to ensure consistent and effective regulatory approaches. This could involve sharing best practices, developing common standards, and coordinating enforcement efforts.</p></li>
+<li><p><strong>Prioritizing ethical considerations in LLM development:</strong> Encouraging LLM developers to adopt ethical principles, such as fairness, transparency, and accountability, from the outset. This can be facilitated through the development of ethical guidelines, the establishment of review boards, and the integration of ethics into AI curricula.</p></li>
+</ul>
+</section>
+</section>
+<section id="approaches">
+<h2><a class="toc-backref" href="#id170" role="doc-backlink"><span class="section-number">5.4. </span>Approaches</a><a class="headerlink" href="#approaches" title="Permalink to this heading">¶</a></h2>
+<p>Several approaches and techniques are being developed to help effectively implement AI/LLM Safety alignment.</p>
+<section id="red-teaming">
+<h3><a class="toc-backref" href="#id171" role="doc-backlink"><span class="section-number">5.4.1. </span>Red Teaming</a><a class="headerlink" href="#red-teaming" title="Permalink to this heading">¶</a></h3>
+<p>Red teaming is a critical security practice adapted from cybersecurity for evaluating Large Language Models (LLMs). Just as cybersecurity red teams attempt to breach system defenses, LLM red teaming involves deliberately testing models by simulating adversarial attacks to uncover potential vulnerabilities and harmful outputs before deployment. We can outline LLMs Red teaming around three key aspects:</p>
+<ol class="arabic simple">
+<li><p>The primary purpose is to systematically identify potential vulnerabilities by crafting prompts designed to elicit harmful outputs, including biased content, misinformation, or sensitive data exposure. Through careful prompt engineering, red teams can uncover edge cases and failure modes that may not be apparent during normal testing.</p></li>
+<li><p>The process relies on a dedicated team of security experts and AI researchers who develop sophisticated adversarial scenarios. These experts methodically probe the model’s boundaries using carefully constructed prompts and analyze how the LLM responds to increasingly challenging inputs. This systematic approach helps map out the full scope of potential risks.</p></li>
+<li><p>The key benefit is that red teaming enables proactive identification and remediation of safety issues before public deployment. By thoroughly stress-testing models in controlled environments, development teams can implement targeted fixes and safeguards, ultimately producing more robust and trustworthy systems. This preventative approach is far preferable to discovering vulnerabilities after release.</p></li>
+</ol>
+<p>A particularly powerful approach involves using one language model (the “red LM”) to systematically probe and test another target model <span id="id31">[<a class="reference internal" href="#id147" title="Ethan Perez, Saffron Huang, Francis Song, Trevor Cai, Roman Ring, John Aslanides, Amelia Glaese, Nat McAleese, and Geoffrey Irving. Red teaming language models with language models. 2022. URL: https://arxiv.org/abs/2202.03286, arXiv:2202.03286.">Perez <em>et al.</em>, 2022</a>]</span>. The red LM generates diverse test cases specifically crafted to elicit problematic behaviors, while a classifier evaluates the target model’s responses for specific categories of harm.</p>
+<p>This LLM-based red teaming process consists of three main components:</p>
+<ol class="arabic simple">
+<li><p><strong>Systematic Test Generation</strong>: The red LM creates a wide array of test cases using multiple techniques:</p>
+<ul class="simple">
+<li><p>Zero-shot and few-shot generation</p></li>
+<li><p>Supervised learning approaches</p></li>
+<li><p>Reinforcement learning methods
+These varied approaches help ensure comprehensive coverage across different types of potential vulnerabilities.</p></li>
+</ul>
+</li>
+<li><p><strong>Automated Harm Detection</strong>: Specialized classifiers, trained on relevant datasets (e.g., collections of offensive content), automatically analyze the target model’s responses to identify harmful outputs.</p></li>
+<li><p><strong>Rigorous Analysis</strong>: The test results undergo detailed examination to:</p>
+<ul class="simple">
+<li><p>Map the model’s failure modes</p></li>
+<li><p>Identify patterns in problematic responses</p></li>
+<li><p>Develop targeted mitigation strategies</p></li>
+</ul>
+</li>
+</ol>
+<p>In this research <span id="id32">[<a class="reference internal" href="#id147" title="Ethan Perez, Saffron Huang, Francis Song, Trevor Cai, Roman Ring, John Aslanides, Amelia Glaese, Nat McAleese, and Geoffrey Irving. Red teaming language models with language models. 2022. URL: https://arxiv.org/abs/2202.03286, arXiv:2202.03286.">Perez <em>et al.</em>, 2022</a>]</span>, a 280B parameter  “red-LM” uncovered numerous concerning behaviors:</p>
+<ul class="simple">
+<li><p>Generation of offensive content including discriminatory statements and explicit material</p></li>
+<li><p>Unauthorized disclosure of training data including personal information</p></li>
+<li><p>Systematic bias in how the model discussed certain demographic groups</p></li>
+<li><p>Problematic conversation patterns where offensive responses triggered escalating harmful exchanges</p></li>
+</ul>
+<p>While LLM-based red teaming offers significant advantages over manual testing in terms of scale and systematic coverage, it also has important limitations. The red LM itself may have biases that affect test case generation, and results require careful interpretation within broader context. Further, Red teaming should be viewed as one component of a comprehensive safety framework rather than a complete solution.</p>
+</section>
+<section id="constitutional-ai">
+<h3><a class="toc-backref" href="#id172" role="doc-backlink"><span class="section-number">5.4.2. </span>Constitutional AI</a><a class="headerlink" href="#constitutional-ai" title="Permalink to this heading">¶</a></h3>
+<p>Anthropic has developed Constitutional AI (CAI) <span id="id33">[<a class="reference internal" href="#id149" title="Amanda Askell, Yuntao Bai, Anna Chen, Deep Ganguli, Danny Hernandez, Jared Kaplan, Jackson Kernion, Ben Mann, Catherine Olsson, and Paul Christiano. Constitutional ai: harmlessness from ai feedback. 2023. URL: https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback.">Askell <em>et al.</em>, 2023</a>]</span> as a novel approach to enhance the safety of large language models (LLMs). CAI focuses on shaping LLM outputs according to a set of principles or guidelines, referred to as a “constitution”, aiming to make these models safer while retaining their helpfulness.</p>
+<p>Here’s how Anthropic utilises CAI to promote LLM safety:</p>
+<ul class="simple">
+<li><p><strong>Minimising Harm Through Self-Critique:</strong>  Instead of relying solely on human feedback for training, Anthropic leverages the LLM’s own capabilities to critique and revise its outputs based on the principles enshrined in its constitution. This approach is termed “Reinforcement Learning from AI Feedback (RLAIF)”.</p></li>
+<li><p><strong>Balancing Helpfulness and Harmlessness:</strong>  Traditional RLHF methods often face a trade-off between creating harmless models and maintaining their usefulness.  Anthropic’s research suggests that CAI can mitigate this tension by reducing evasive responses. CAI models are less likely to resort to unhelpful “I can’t answer that” responses, instead engaging with user requests in a safe and informative manner.</p></li>
+<li><p><strong>Enhancing Transparency and Scalability:</strong> Anthropic highlights that encoding safety principles into a “constitution” increases transparency in the model’s decision-making process, allowing users and regulators to better understand how the LLM operates.  Additionally, CAI proves to be more scalable and efficient compared to RLHF, requiring fewer human feedback labels and reducing the exposure of human reviewers to potentially harmful content.</p></li>
+</ul>
+<p>Anthropic’s research indicates that CAI leads to LLMs that are both more harmless and helpful. These models are less evasive, engage with user requests, and are more likely to explain their reasoning when refusing unsafe or unethical requests.</p>
+<p>The key insight as proposed by Anthropic is that Constitutional RL manages to break the traditional trade-off between helpfulness and harmlessness. While standard RLHF models tend to become less helpful as they become more harmless (often by becoming more evasive), Constitutional RL achieves high scores in both dimensions simultaneously as demonstrated in <a class="reference internal" href="#anthropic-cai-tradeoff"><span class="std std-numref">Fig. 5.6</span></a>.</p>
+<figure class="align-center" id="anthropic-cai-tradeoff">
+<a class="reference internal image-reference" href="../_images/cai.png"><img alt="Anthropic's Constitutional AI (CAI) achieves high scores in both helpfulness and harmlessness." src="../_images/cai.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5.6 </span><span class="caption-text">Anthropic’s Constitutional AI (CAI) achieves high scores in both helpfulness and harmlessness <span id="id34">[<a class="reference internal" href="#id149" title="Amanda Askell, Yuntao Bai, Anna Chen, Deep Ganguli, Danny Hernandez, Jared Kaplan, Jackson Kernion, Ben Mann, Catherine Olsson, and Paul Christiano. Constitutional ai: harmlessness from ai feedback. 2023. URL: https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback.">Askell <em>et al.</em>, 2023</a>]</span>.</span><a class="headerlink" href="#anthropic-cai-tradeoff" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Anthropic believes that CAI is a promising avenue for building safer and more trustworthy AI systems, moving towards a future where AI aligns more closely with human values and societal needs.</p>
+</section>
+<section id="explainable-ai-xai">
+<h3><a class="toc-backref" href="#id173" role="doc-backlink"><span class="section-number">5.4.3. </span>Explainable AI (XAI)</a><a class="headerlink" href="#explainable-ai-xai" title="Permalink to this heading">¶</a></h3>
+<p>XAI techniques aim to make the decision-making processes of LLMs more transparent and understandable. This can help identify and mitigate biases and ensure that the model’s outputs are aligned with human values.</p>
+<p>XAI can contribute to LLM safety in multiple ways, including <span id="id35">[<a class="reference internal" href="#id148" title="Erik Cambria, Lorenzo Malandri, Fabio Mercorio, Navid Nobani, and Andrea Seveso. Xai meets llms: a survey of the relation between explainable ai and large language models. 2024. URL: https://arxiv.org/abs/2407.15248, arXiv:2407.15248.">Cambria <em>et al.</em>, 2024</a>]</span>:</p>
+<ul class="simple">
+<li><p><strong>Identifying and Mitigating Bias:</strong> LLMs can inherit biases present in their vast training data, leading to unfair or discriminatory outputs.  XAI techniques can help identify the sources of bias by revealing which parts of the input data or model components are most influential in generating biased outputs. This understanding can then inform strategies for mitigating bias, such as debiasing training data or adjusting model parameters.</p></li>
+<li><p><strong>Detecting and Addressing Hallucinations:</strong> LLMs can generate outputs that sound plausible but are factually incorrect or nonsensical, a phenomenon known as “hallucination.”  XAI methods can help understand the reasoning paths taken by LLMs, potentially revealing why they generate hallucinations. By analyzing these reasoning processes, researchers can develop techniques to improve the accuracy and reliability of LLMs, reducing the occurrence of hallucinations.</p></li>
+<li><p><strong>Understanding and Preventing Misuse:</strong> LLMs can be misused for malicious purposes, such as generating harmful content, spreading misinformation, or crafting sophisticated phishing attacks. XAI techniques can provide insights into how LLMs might be vulnerable to misuse by revealing the types of inputs that trigger undesirable outputs. This understanding can then inform the development of robust safeguards and mitigation strategies to prevent or minimize the potential for misuse.</p></li>
+<li><p><strong>Facilitating Human Oversight and Control:</strong> XAI aims to make the decision-making of LLMs more interpretable to human operators, enabling better oversight and control. This transparency allows humans to monitor the outputs of LLMs, detect potential issues early on, and intervene when necessary to prevent harmful consequences. XAI tools can also be used to explain the reasoning behind specific LLM decisions, helping users understand the model’s limitations and make more informed decisions about its use.</p></li>
+</ul>
+</section>
+<section id="reinforcement-learning-from-human-feedback-rlhf">
+<h3><a class="toc-backref" href="#id174" role="doc-backlink"><span class="section-number">5.4.4. </span>Reinforcement Learning from Human Feedback (RLHF)</a><a class="headerlink" href="#reinforcement-learning-from-human-feedback-rlhf" title="Permalink to this heading">¶</a></h3>
+<p>RLHF <span id="id36">[<a class="reference internal" href="#id116" title="Yuntao Bai, Andy Jones, Kamal Ndousse, Amanda Askell, Anna Chen, Nova DasSarma, Dawn Drain, Stanislav Fort, Deep Ganguli, Tom Henighan, Nicholas Joseph, Saurav Kadavath, Jackson Kernion, Tom Conerly, Sheer El-Showk, Nelson Elhage, Zac Hatfield-Dodds, Danny Hernandez, Tristan Hume, Scott Johnston, Shauna Kravec, Liane Lovitt, Neel Nanda, Catherine Olsson, Dario Amodei, Tom Brown, Jack Clark, Sam McCandlish, Chris Olah, Ben Mann, and Jared Kaplan. Training a helpful and harmless assistant with reinforcement learning from human feedback. 2022. URL: https://arxiv.org/abs/2204.05862, arXiv:2204.05862.">Bai <em>et al.</em>, 2022</a>]</span> involves training LLMs to generate outputs that are consistent with human preferences and values. This is achieved by providing feedback on the model’s outputs and rewarding it for generating desirable responses. More generally, alignment techniques can be used to fine-tune LLMs to produce outputs that are consistent with human preferences and values.</p>
+<p>Supervised Fine-Tuning (SFT) techniques such as LoRA <span id="id37">[<a class="reference internal" href="#id117" title="Edward J. Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, and Weizhu Chen. Lora: low-rank adaptation of large language models. 2021. URL: https://arxiv.org/abs/2106.09685, arXiv:2106.09685.">Hu <em>et al.</em>, 2021</a>]</span> and QLoRA <span id="id38">[<a class="reference internal" href="#id118" title="Tim Dettmers, Artidoro Pagnoni, Ari Holtzman, and Luke Zettlemoyer. Qlora: efficient finetuning of quantized llms. 2023. URL: https://arxiv.org/abs/2305.14314, arXiv:2305.14314.">Dettmers <em>et al.</em>, 2023</a>]</span> can be used to fine-tune LLMs. More recently, techniques such as Direct Preference Optimization (DPO) <span id="id39">[<a class="reference internal" href="#id112" title="Rafael Rafailov, Archit Sharma, Eric Mitchell, Stefano Ermon, Christopher D. Manning, and Chelsea Finn. Direct preference optimization: your language model is secretly a reward model. 2024. URL: https://arxiv.org/abs/2305.18290, arXiv:2305.18290.">Rafailov <em>et al.</em>, 2024</a>]</span> have been developed to further align LLMs with human preferences.</p>
+<p>This will be the focus of the next Chapter where we will explore the process of aligning language models with human preferences.</p>
+</section>
+</section>
+<section id="technical-implementation-components">
+<h2><a class="toc-backref" href="#id175" role="doc-backlink"><span class="section-number">5.5. </span>Technical Implementation Components</a><a class="headerlink" href="#technical-implementation-components" title="Permalink to this heading">¶</a></h2>
+<section id="datasets">
+<h3><a class="toc-backref" href="#id176" role="doc-backlink"><span class="section-number">5.5.1. </span>Datasets</a><a class="headerlink" href="#datasets" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>SALADBench</p></li>
+<li><p>https://huggingface.co/datasets/Anthropic/hh-rlhf</p></li>
+<li><p>ABC</p></li>
+<li><p>use of synthetic datasets</p></li>
+</ul>
+</section>
+<section id="tools">
+<h3><a class="toc-backref" href="#id177" role="doc-backlink"><span class="section-number">5.5.2. </span>Tools</a><a class="headerlink" href="#tools" title="Permalink to this heading">¶</a></h3>
+<p>Filtering:</p>
+<ul class="simple">
+<li><p>Webpurify</p></li>
+<li><p>LLM-Guard</p></li>
+<li><p>AWS Comprehend</p></li>
+</ul>
+<p>LM-Based:</p>
+<ul class="simple">
+<li><p>OpenAI Moderation API</p></li>
+<li><p>IBM Granite Guardian: https://github.com/ibm-granite/granite-guardian</p></li>
+<li><p>Llama-Guard</p></li>
+<li><p>NeMo Guardrails</p></li>
+<li><p>Mistral moderation: https://github.com/mistralai/cookbook/blob/main/mistral/moderation/system-level-guardrails.ipynb</p></li>
+</ul>
+<section id="filter-based">
+<h4><a class="toc-backref" href="#id178" role="doc-backlink"><span class="section-number">5.5.2.1. </span>Filter-based</a><a class="headerlink" href="#filter-based" title="Permalink to this heading">¶</a></h4>
+</section>
+<section id="llm-based">
+<h4><a class="toc-backref" href="#id179" role="doc-backlink"><span class="section-number">5.5.2.2. </span>LLM-based</a><a class="headerlink" href="#llm-based" title="Permalink to this heading">¶</a></h4>
+</section>
+</section>
+<section id="benchmarks">
+<h3><a class="toc-backref" href="#id180" role="doc-backlink"><span class="section-number">5.5.3. </span>Benchmarks</a><a class="headerlink" href="#benchmarks" title="Permalink to this heading">¶</a></h3>
+</section>
+</section>
+<section id="case-study-making-mistral-7b-harmless">
+<h2><a class="toc-backref" href="#id181" role="doc-backlink"><span class="section-number">5.6. </span>Case Study: Making Mistral 7B Harmless</a><a class="headerlink" href="#case-study-making-mistral-7b-harmless" title="Permalink to this heading">¶</a></h2>
+</section>
 <section id="references">
-<h2><a class="toc-backref" href="#id115" role="doc-backlink"><span class="section-number">5.3. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
-<div class="docutils container" id="id12">
-<div class="citation" id="id102" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">BHY+24</a><span class="fn-bracket">]</span></span>
+<h2><a class="toc-backref" href="#id182" role="doc-backlink"><span class="section-number">5.7. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<div class="docutils container" id="id40">
+<div class="citation" id="id114" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id28">AI24</a><span class="fn-bracket">]</span></span>
+<p>Meta AI. Llamaguard: llm-based input-output safeguard for human-ai conversations. Meta AI Research Publications, 2024. URL: <a class="reference external" href="https://ai.meta.com/research/publications/llama-guard-llm-based-input-output-safeguard-for-human-ai-conversations/">https://ai.meta.com/research/publications/llama-guard-llm-based-input-output-safeguard-for-human-ai-conversations/</a>.</p>
+</div>
+<div class="citation" id="id139" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id29">ASA24</a><span class="fn-bracket">]</span></span>
+<p>Jide Alaga, Jonas Schuett, and Markus Anderljung. A grading rubric for ai safety frameworks. 2024. URL: <a class="reference external" href="https://arxiv.org/abs/2409.08751">https://arxiv.org/abs/2409.08751</a>, <a class="reference external" href="https://arxiv.org/abs/2409.08751">arXiv:2409.08751</a>.</p>
+</div>
+<div class="citation" id="id149" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>ABC+23<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id33">1</a>,<a role="doc-backlink" href="#id34">2</a>)</span>
+<p>Amanda Askell, Yuntao Bai, Anna Chen, Deep Ganguli, Danny Hernandez, Jared Kaplan, Jackson Kernion, Ben Mann, Catherine Olsson, and Paul Christiano. Constitutional ai: harmlessness from ai feedback. 2023. URL: <a class="reference external" href="https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback">https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback</a>.</p>
+</div>
+<div class="citation" id="id116" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id36">BJN+22</a><span class="fn-bracket">]</span></span>
+<p>Yuntao Bai, Andy Jones, Kamal Ndousse, Amanda Askell, Anna Chen, Nova DasSarma, Dawn Drain, Stanislav Fort, Deep Ganguli, Tom Henighan, Nicholas Joseph, Saurav Kadavath, Jackson Kernion, Tom Conerly, Sheer El-Showk, Nelson Elhage, Zac Hatfield-Dodds, Danny Hernandez, Tristan Hume, Scott Johnston, Shauna Kravec, Liane Lovitt, Neel Nanda, Catherine Olsson, Dario Amodei, Tom Brown, Jack Clark, Sam McCandlish, Chris Olah, Ben Mann, and Jared Kaplan. Training a helpful and harmless assistant with reinforcement learning from human feedback. 2022. URL: <a class="reference external" href="https://arxiv.org/abs/2204.05862">https://arxiv.org/abs/2204.05862</a>, <a class="reference external" href="https://arxiv.org/abs/2204.05862">arXiv:2204.05862</a>.</p>
+</div>
+<div class="citation" id="id133" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id11">BHY+24</a><span class="fn-bracket">]</span></span>
 <p>Yoshua Bengio, Geoffrey Hinton, Andrew Yao, Dawn Song, Pieter Abbeel, Trevor Darrell, Yuval Noah Harari, Ya-Qin Zhang, Lan Xue, Shai Shalev-Shwartz, Gillian Hadfield, Jeff Clune, Tegan Maharaj, Frank Hutter, Atılım Güneş Baydin, Sheila McIlraith, Qiqi Gao, Ashwin Acharya, David Krueger, Anca Dragan, Philip Torr, Stuart Russell, Daniel Kahneman, Jan Brauner, and Sören Mindermann. Managing extreme ai risks amid rapid progress. <em>Science</em>, 384(6698):842–845, 2024. URL: <a class="reference external" href="https://www.science.org/doi/abs/10.1126/science.adn0117">https://www.science.org/doi/abs/10.1126/science.adn0117</a>, <a class="reference external" href="https://arxiv.org/abs/https://www.science.org/doi/pdf/10.1126/science.adn0117">arXiv:https://www.science.org/doi/pdf/10.1126/science.adn0117</a>, <a class="reference external" href="https://doi.org/10.1126/science.adn0117">doi:10.1126/science.adn0117</a>.</p>
 </div>
-<div class="citation" id="id101" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id11">BBC+24</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id132" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>BBC+24<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id7">1</a>,<a role="doc-backlink" href="#id16">2</a>)</span>
 <p>Victoria Benjamin, Emily Braca, Israel Carter, Hafsa Kanchwala, Nava Khojasteh, Charly Landow, Yi Luo, Caroline Ma, Anna Magarelli, Rachel Mirin, Avery Moyer, Kayla Simpson, Amelia Skawinski, and Thomas Heverin. Systematically analyzing prompt injection vulnerabilities in diverse llm architectures. 2024. URL: <a class="reference external" href="https://arxiv.org/abs/2410.23308">https://arxiv.org/abs/2410.23308</a>, <a class="reference external" href="https://arxiv.org/abs/2410.23308">arXiv:2410.23308</a>.</p>
 </div>
-<div class="citation" id="id98" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id10">BMC+24</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id129" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>BMC+24<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id6">1</a>,<a role="doc-backlink" href="#id15">2</a>)</span>
 <p>Dillon Bowen, Brendan Murphy, Will Cai, David Khachaturov, Adam Gleave, and Kellin Pelrine. Data poisoning in llms: jailbreak-tuning and scaling laws. 2024. URL: <a class="reference external" href="https://arxiv.org/abs/2408.02946">https://arxiv.org/abs/2408.02946</a>, <a class="reference external" href="https://arxiv.org/abs/2408.02946">arXiv:2408.02946</a>.</p>
 </div>
-<div class="citation" id="id104" role="doc-biblioentry">
+<div class="citation" id="id148" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id35">CMM+24</a><span class="fn-bracket">]</span></span>
+<p>Erik Cambria, Lorenzo Malandri, Fabio Mercorio, Navid Nobani, and Andrea Seveso. Xai meets llms: a survey of the relation between explainable ai and large language models. 2024. URL: <a class="reference external" href="https://arxiv.org/abs/2407.15248">https://arxiv.org/abs/2407.15248</a>, <a class="reference external" href="https://arxiv.org/abs/2407.15248">arXiv:2407.15248</a>.</p>
+</div>
+<div class="citation" id="id118" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id38">DPHZ23</a><span class="fn-bracket">]</span></span>
+<p>Tim Dettmers, Artidoro Pagnoni, Ari Holtzman, and Luke Zettlemoyer. Qlora: efficient finetuning of quantized llms. 2023. URL: <a class="reference external" href="https://arxiv.org/abs/2305.14314">https://arxiv.org/abs/2305.14314</a>, <a class="reference external" href="https://arxiv.org/abs/2305.14314">arXiv:2305.14314</a>.</p>
+</div>
+<div class="citation" id="id135" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>Edg24<span class="fn-bracket">]</span></span>
-<span class="backrefs">(<a role="doc-backlink" href="#id3">1</a>,<a role="doc-backlink" href="#id4">2</a>)</span>
+<span class="backrefs">(<a role="doc-backlink" href="#id4">1</a>,<a role="doc-backlink" href="#id9">2</a>)</span>
 <p>Alec Edgington. How to exploit large language models for good or bad. <em>SIAM News</em>, 2024. URL: <a class="reference external" href="https://www.siam.org/publications/siam-news/articles/how-to-exploit-large-language-models-for-good-or-bad/">https://www.siam.org/publications/siam-news/articles/how-to-exploit-large-language-models-for-good-or-bad/</a>.</p>
 </div>
-<div class="citation" id="id99" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">GRB+24</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id137" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Exa24<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id17">1</a>,<a role="doc-backlink" href="#id19">2</a>)</span>
+<p>Exabeam. Ai regulations and llm regulations: past, present, and future. Exabeam Blog, 2024. URL: <a class="reference external" href="https://www.exabeam.com/explainers/ai-cyber-security/ai-regulations-and-llm-regulations-past-present-and-future/">https://www.exabeam.com/explainers/ai-cyber-security/ai-regulations-and-llm-regulations-past-present-and-future/</a>.</p>
+</div>
+<div class="citation" id="id130" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id13">GRB+24</a><span class="fn-bracket">]</span></span>
 <p>Isabel O. Gallegos, Ryan A. Rossi, Joe Barrow, Md Mehrab Tanjim, Sungchul Kim, Franck Dernoncourt, Tong Yu, Ruiyi Zhang, and Nesreen K. Ahmed. Bias and fairness in large language models: a survey. 2024. URL: <a class="reference external" href="https://arxiv.org/abs/2309.00770">https://arxiv.org/abs/2309.00770</a>, <a class="reference external" href="https://arxiv.org/abs/2309.00770">arXiv:2309.00770</a>.</p>
 </div>
-<div class="citation" id="id96" role="doc-biblioentry">
+<div class="citation" id="id127" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">HGP+22</a><span class="fn-bracket">]</span></span>
 <p>Thomas Hartvigsen, Saadia Gabriel, Hamid Palangi, Maarten Sap, Dipankar Ray, and Ece Kamar. ToxiGen: a large-scale machine-generated dataset for adversarial and implicit hate speech detection. In Smaranda Muresan, Preslav Nakov, and Aline Villavicencio, editors, <em>Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)</em>, 3309–3326. Dublin, Ireland, May 2022. Association for Computational Linguistics. URL: <a class="reference external" href="https://aclanthology.org/2022.acl-long.234">https://aclanthology.org/2022.acl-long.234</a>, <a class="reference external" href="https://doi.org/10.18653/v1/2022.acl-long.234">doi:10.18653/v1/2022.acl-long.234</a>.</p>
 </div>
-<div class="citation" id="id97" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">HYM+24</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id117" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id37">HSW+21</a><span class="fn-bracket">]</span></span>
+<p>Edward J. Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, and Weizhu Chen. Lora: low-rank adaptation of large language models. 2021. URL: <a class="reference external" href="https://arxiv.org/abs/2106.09685">https://arxiv.org/abs/2106.09685</a>, <a class="reference external" href="https://arxiv.org/abs/2106.09685">arXiv:2106.09685</a>.</p>
+</div>
+<div class="citation" id="id128" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>HYM+24<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id5">1</a>,<a role="doc-backlink" href="#id12">2</a>)</span>
 <p>Lei Huang, Weijiang Yu, Weitao Ma, Weihong Zhong, Zhangyin Feng, Haotian Wang, Qianglong Chen, Weihua Peng, Xiaocheng Feng, Bing Qin, and Ting Liu. A survey on hallucination in large language models: principles, taxonomy, challenges, and open questions. <em>ACM Transactions on Information Systems</em>, November 2024. URL: <a class="reference external" href="http://dx.doi.org/10.1145/3703155">http://dx.doi.org/10.1145/3703155</a>, <a class="reference external" href="https://doi.org/10.1145/3703155">doi:10.1145/3703155</a>.</p>
 </div>
-<div class="citation" id="id95" role="doc-biblioentry">
+<div class="citation" id="id126" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">OAA+24</a><span class="fn-bracket">]</span></span>
 <p>OpenAI, Josh Achiam, Steven Adler, Sandhini Agarwal, Lama Ahmad, Ilge Akkaya, Florencia Leoni Aleman, Diogo Almeida, Janko Altenschmidt, Sam Altman, Shyamal Anadkat, Red Avila, Igor Babuschkin, Suchir Balaji, Valerie Balcom, Paul Baltescu, Haiming Bao, Mohammad Bavarian, Jeff Belgum, Irwan Bello, Jake Berdine, Gabriel Bernadett-Shapiro, Christopher Berner, Lenny Bogdonoff, Oleg Boiko, Madelaine Boyd, Anna-Luisa Brakman, Greg Brockman, Tim Brooks, Miles Brundage, Kevin Button, Trevor Cai, Rosie Campbell, Andrew Cann, Brittany Carey, Chelsea Carlson, Rory Carmichael, Brooke Chan, Che Chang, Fotis Chantzis, Derek Chen, Sully Chen, Ruby Chen, Jason Chen, Mark Chen, Ben Chess, Chester Cho, Casey Chu, Hyung Won Chung, Dave Cummings, Jeremiah Currier, Yunxing Dai, Cory Decareaux, Thomas Degry, Noah Deutsch, Damien Deville, Arka Dhar, David Dohan, Steve Dowling, Sheila Dunning, Adrien Ecoffet, Atty Eleti, Tyna Eloundou, David Farhi, Liam Fedus, Niko Felix, Simón Posada Fishman, Juston Forte, Isabella Fulford, Leo Gao, Elie Georges, Christian Gibson, Vik Goel, Tarun Gogineni, Gabriel Goh, Rapha Gontijo-Lopes, Jonathan Gordon, Morgan Grafstein, Scott Gray, Ryan Greene, Joshua Gross, Shixiang Shane Gu, Yufei Guo, Chris Hallacy, Jesse Han, Jeff Harris, Yuchen He, Mike Heaton, Johannes Heidecke, Chris Hesse, Alan Hickey, Wade Hickey, Peter Hoeschele, Brandon Houghton, Kenny Hsu, Shengli Hu, Xin Hu, Joost Huizinga, Shantanu Jain, Shawn Jain, Joanne Jang, Angela Jiang, Roger Jiang, Haozhun Jin, Denny Jin, Shino Jomoto, Billie Jonn, Heewoo Jun, Tomer Kaftan, Łukasz Kaiser, Ali Kamali, Ingmar Kanitscheider, Nitish Shirish Keskar, Tabarak Khan, Logan Kilpatrick, Jong Wook Kim, Christina Kim, Yongjik Kim, Jan Hendrik Kirchner, Jamie Kiros, Matt Knight, Daniel Kokotajlo, Łukasz Kondraciuk, Andrew Kondrich, Aris Konstantinidis, Kyle Kosic, Gretchen Krueger, Vishal Kuo, Michael Lampe, Ikai Lan, Teddy Lee, Jan Leike, Jade Leung, Daniel Levy, Chak Ming Li, Rachel Lim, Molly Lin, Stephanie Lin, Mateusz Litwin, Theresa Lopez, Ryan Lowe, Patricia Lue, Anna Makanju, Kim Malfacini, Sam Manning, Todor Markov, Yaniv Markovski, Bianca Martin, Katie Mayer, Andrew Mayne, Bob McGrew, Scott Mayer McKinney, Christine McLeavey, Paul McMillan, Jake McNeil, David Medina, Aalok Mehta, Jacob Menick, Luke Metz, Andrey Mishchenko, Pamela Mishkin, Vinnie Monaco, Evan Morikawa, Daniel Mossing, Tong Mu, Mira Murati, Oleg Murk, David Mély, Ashvin Nair, Reiichiro Nakano, Rajeev Nayak, Arvind Neelakantan, Richard Ngo, Hyeonwoo Noh, Long Ouyang, Cullen O'Keefe, Jakub Pachocki, Alex Paino, Joe Palermo, Ashley Pantuliano, Giambattista Parascandolo, Joel Parish, Emy Parparita, Alex Passos, Mikhail Pavlov, Andrew Peng, Adam Perelman, Filipe de Avila Belbute Peres, Michael Petrov, Henrique Ponde de Oliveira Pinto, Michael, Pokorny, Michelle Pokrass, Vitchyr H. Pong, Tolly Powell, Alethea Power, Boris Power, Elizabeth Proehl, Raul Puri, Alec Radford, Jack Rae, Aditya Ramesh, Cameron Raymond, Francis Real, Kendra Rimbach, Carl Ross, Bob Rotsted, Henri Roussez, Nick Ryder, Mario Saltarelli, Ted Sanders, Shibani Santurkar, Girish Sastry, Heather Schmidt, David Schnurr, John Schulman, Daniel Selsam, Kyla Sheppard, Toki Sherbakov, Jessica Shieh, Sarah Shoker, Pranav Shyam, Szymon Sidor, Eric Sigler, Maddie Simens, Jordan Sitkin, Katarina Slama, Ian Sohl, Benjamin Sokolowsky, Yang Song, Natalie Staudacher, Felipe Petroski Such, Natalie Summers, Ilya Sutskever, Jie Tang, Nikolas Tezak, Madeleine B. Thompson, Phil Tillet, Amin Tootoonchian, Elizabeth Tseng, Preston Tuggle, Nick Turley, Jerry Tworek, Juan Felipe Cerón Uribe, Andrea Vallone, Arun Vijayvergiya, Chelsea Voss, Carroll Wainwright, Justin Jay Wang, Alvin Wang, Ben Wang, Jonathan Ward, Jason Wei, CJ Weinmann, Akila Welihinda, Peter Welinder, Jiayi Weng, Lilian Weng, Matt Wiethoff, Dave Willner, Clemens Winter, Samuel Wolrich, Hannah Wong, Lauren Workman, Sherwin Wu, Jeff Wu, Michael Wu, Kai Xiao, Tao Xu, Sarah Yoo, Kevin Yu, Qiming Yuan, Wojciech Zaremba, Rowan Zellers, Chong Zhang, Marvin Zhang, Shengjia Zhao, Tianhao Zheng, Juntang Zhuang, William Zhuk, and Barret Zoph. Gpt-4 technical report. 2024. URL: <a class="reference external" href="https://arxiv.org/abs/2303.08774">https://arxiv.org/abs/2303.08774</a>, <a class="reference external" href="https://arxiv.org/abs/2303.08774">arXiv:2303.08774</a>.</p>
 </div>
-<div class="citation" id="id94" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">VSK+24</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id147" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>PHS+22<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id31">1</a>,<a role="doc-backlink" href="#id32">2</a>)</span>
+<p>Ethan Perez, Saffron Huang, Francis Song, Trevor Cai, Roman Ring, John Aslanides, Amelia Glaese, Nat McAleese, and Geoffrey Irving. Red teaming language models with language models. 2022. URL: <a class="reference external" href="https://arxiv.org/abs/2202.03286">https://arxiv.org/abs/2202.03286</a>, <a class="reference external" href="https://arxiv.org/abs/2202.03286">arXiv:2202.03286</a>.</p>
+</div>
+<div class="citation" id="id112" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id39">RSM+24</a><span class="fn-bracket">]</span></span>
+<p>Rafael Rafailov, Archit Sharma, Eric Mitchell, Stefano Ermon, Christopher D. Manning, and Chelsea Finn. Direct preference optimization: your language model is secretly a reward model. 2024. URL: <a class="reference external" href="https://arxiv.org/abs/2305.18290">https://arxiv.org/abs/2305.18290</a>, <a class="reference external" href="https://arxiv.org/abs/2305.18290">arXiv:2305.18290</a>.</p>
+</div>
+<div class="citation" id="id136" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">SZW+24</a><span class="fn-bracket">]</span></span>
+<p>Oliver J. Sutton, Qinghua Zhou, Wei Wang, Desmond J. Higham, Alexander N. Gorban, Alexander Bastounis, and Ivan Y. Tyukin. Stealth edits to large language models. 2024. URL: <a class="reference external" href="https://arxiv.org/abs/2406.12670">https://arxiv.org/abs/2406.12670</a>, <a class="reference external" href="https://arxiv.org/abs/2406.12670">arXiv:2406.12670</a>.</p>
+</div>
+<div class="citation" id="id90" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id27">VAA+24</a><span class="fn-bracket">]</span></span>
+<p>Bertie Vidgen, Adarsh Agrawal, Ahmed M. Ahmed, Victor Akinwande, Namir Al-Nuaimi, Najla Alfaraj, Elie Alhajjar, Lora Aroyo, Trupti Bavalatti, Max Bartolo, Borhane Blili-Hamelin, Kurt Bollacker, Rishi Bomassani, Marisa Ferrara Boston, Siméon Campos, Kal Chakra, Canyu Chen, Cody Coleman, Zacharie Delpierre Coudert, Leon Derczynski, Debojyoti Dutta, Ian Eisenberg, James Ezick, Heather Frase, Brian Fuller, Ram Gandikota, Agasthya Gangavarapu, Ananya Gangavarapu, James Gealy, Rajat Ghosh, James Goel, Usman Gohar, Sujata Goswami, Scott A. Hale, Wiebke Hutiri, Joseph Marvin Imperial, Surgan Jandial, Nick Judd, Felix Juefei-Xu, Foutse Khomh, Bhavya Kailkhura, Hannah Rose Kirk, Kevin Klyman, Chris Knotz, Michael Kuchnik, Shachi H. Kumar, Srijan Kumar, Chris Lengerich, Bo Li, Zeyi Liao, Eileen Peters Long, Victor Lu, Sarah Luger, Yifan Mai, Priyanka Mary Mammen, Kelvin Manyeki, Sean McGregor, Virendra Mehta, Shafee Mohammed, Emanuel Moss, Lama Nachman, Dinesh Jinenhally Naganna, Amin Nikanjam, Besmira Nushi, Luis Oala, Iftach Orr, Alicia Parrish, Cigdem Patlak, William Pietri, Forough Poursabzi-Sangdeh, Eleonora Presani, Fabrizio Puletti, Paul Röttger, Saurav Sahay, Tim Santos, Nino Scherrer, Alice Schoenauer Sebag, Patrick Schramowski, Abolfazl Shahbazi, Vin Sharma, Xudong Shen, Vamsi Sistla, Leonard Tang, Davide Testuggine, Vithursan Thangarasa, Elizabeth Anne Watkins, Rebecca Weiss, Chris Welty, Tyler Wilbers, Adina Williams, Carole-Jean Wu, Poonam Yadav, Xianjun Yang, Yi Zeng, Wenhui Zhang, Fedor Zhdanov, Jiacheng Zhu, Percy Liang, Peter Mattson, and Joaquin Vanschoren. Introducing v0.5 of the ai safety benchmark from mlcommons. 2024. URL: <a class="reference external" href="https://arxiv.org/abs/2404.12241">https://arxiv.org/abs/2404.12241</a>, <a class="reference external" href="https://arxiv.org/abs/2404.12241">arXiv:2404.12241</a>.</p>
+</div>
+<div class="citation" id="id125" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>VSK+24<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id2">1</a>,<a role="doc-backlink" href="#id3">2</a>)</span>
 <p>Bertie Vidgen, Nino Scherrer, Hannah Rose Kirk, Rebecca Qian, Anand Kannappan, Scott A. Hale, and Paul Röttger. Simplesafetytests: a test suite for identifying critical safety risks in large language models. 2024. URL: <a class="reference external" href="https://arxiv.org/abs/2311.08370">https://arxiv.org/abs/2311.08370</a>, <a class="reference external" href="https://arxiv.org/abs/2311.08370">arXiv:2311.08370</a>.</p>
 </div>
-<div class="citation" id="id100" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">ZYY+24</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id141" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id30">WMR24</a><span class="fn-bracket">]</span></span>
+<p>Sandra Wachter, Brent Mittelstadt, and Chris Russell. Do large language models have a legal duty to tell the truth? <em>Royal Society Open Science</em>, 11(8):240197, 2024. URL: <a class="reference external" href="https://royalsocietypublishing.org/doi/abs/10.1098/rsos.240197">https://royalsocietypublishing.org/doi/abs/10.1098/rsos.240197</a>, <a class="reference external" href="https://arxiv.org/abs/https://royalsocietypublishing.org/doi/pdf/10.1098/rsos.240197">arXiv:https://royalsocietypublishing.org/doi/pdf/10.1098/rsos.240197</a>, <a class="reference external" href="https://doi.org/10.1098/rsos.240197">doi:10.1098/rsos.240197</a>.</p>
+</div>
+<div class="citation" id="id131" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id14">ZYY+24</a><span class="fn-bracket">]</span></span>
 <p>Shuning Zhang, Lyumanshan Ye, Xin Yi, Jingyu Tang, Bo Shui, Haobin Xing, Pengfei Liu, and Hewu Li. &quot;ghost of the past&quot;: identifying and resolving privacy leakage from llm's memory through proactive user interaction. 2024. URL: <a class="reference external" href="https://arxiv.org/abs/2410.14931">https://arxiv.org/abs/2410.14931</a>, <a class="reference external" href="https://arxiv.org/abs/2410.14931">arXiv:2410.14931</a>.</p>
 </div>
-<div class="citation" id="id103" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">Zho24</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id134" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id10">Zho24</a><span class="fn-bracket">]</span></span>
 <p>Qinghua Zhou. Stealth edits: detecting stealth edits in llm outputs. Hugging Face Spaces, 2024. URL: <a class="reference external" href="https://huggingface.co/spaces/qinghua-zhou/stealth-edits">https://huggingface.co/spaces/qinghua-zhou/stealth-edits</a>.</p>
+</div>
+<div class="citation" id="id145" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id25">Anthropic24</a><span class="fn-bracket">]</span></span>
+<p>Anthropic. Anthropic's responsible scaling policy. Technical Report, Anthropic, 2024. URL: <a class="reference external" href="https://www-cdn.anthropic.com/1adf000c8f675958c2ee23805d91aaade1cd4613/responsible-scaling-policy.pdf">https://www-cdn.anthropic.com/1adf000c8f675958c2ee23805d91aaade1cd4613/responsible-scaling-policy.pdf</a>.</p>
+</div>
+<div class="citation" id="id146" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id26">DeepMind24</a><span class="fn-bracket">]</span></span>
+<p>DeepMind. The frontier safety framework. Technical Report, DeepMind, 2024. URL: <a class="reference external" href="https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/introducing-the-frontier-safety-framework/fsf-technical-report.pdf">https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/introducing-the-frontier-safety-framework/fsf-technical-report.pdf</a>.</p>
+</div>
+<div class="citation" id="id138" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id19">EuropeanMAgency24</a><span class="fn-bracket">]</span></span>
+<p>European Medicines Agency. Guiding principles for the use of large language models in regulatory science and medicines regulatory activities. Guidance Document, European Medicines Agency, 2024. URL: <a class="reference external" href="https://www.ema.europa.eu/en/documents/other/guiding-principles-use-large-language-models-regulatory-science-medicines-regulatory-activities_en.pdf">https://www.ema.europa.eu/en/documents/other/guiding-principles-use-large-language-models-regulatory-science-medicines-regulatory-activities_en.pdf</a>.</p>
+</div>
+<div class="citation" id="id123" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id18">FinancialIRAuthority24</a><span class="fn-bracket">]</span></span>
+<p>Financial Industry Regulatory Authority. Artificial intelligence, including large language models and generative ai. Regulatory Notice 24-09, FINRA, 2024. URL: <a class="reference external" href="https://www.finra.org/rules-guidance/notices/24-09">https://www.finra.org/rules-guidance/notices/24-09</a>.</p>
+</div>
+<div class="citation" id="id142" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id22">LibraryoCongress23</a><span class="fn-bracket">]</span></span>
+<p>Library of Congress. China: generative ai measures finalized. July 2023. URL: <a class="reference external" href="https://www.loc.gov/item/global-legal-monitor/2023-07-18/china-generative-ai-measures-finalized/">https://www.loc.gov/item/global-legal-monitor/2023-07-18/china-generative-ai-measures-finalized/</a>.</p>
+</div>
+<div class="citation" id="id143" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id23">NationalIoSaTechnology24</a><span class="fn-bracket">]</span></span>
+<p>National Institute of Standards and Technology. Ai risk management framework. Technical Report, National Institute of Standards and Technology, 2024. URL: <a class="reference external" href="https://www.nist.gov/itl/ai-risk-management-framework">https://www.nist.gov/itl/ai-risk-management-framework</a>.</p>
+</div>
+<div class="citation" id="id144" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id24">OpenAI24</a><span class="fn-bracket">]</span></span>
+<p>OpenAI. Openai preparedness framework. Technical Report, OpenAI, 2024. URL: <a class="reference external" href="https://cdn.openai.com/openai-preparedness-framework-beta.pdf">https://cdn.openai.com/openai-preparedness-framework-beta.pdf</a>.</p>
+</div>
+<div class="citation" id="id113" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id21">UKGovernment24</a><span class="fn-bracket">]</span></span>
+<p>UK Government. Ai regulation: a pro-innovation approach. White Paper, Department for Science, Innovation and Technology, 2024. URL: <a class="reference external" href="https://www.gov.uk/government/publications/ai-regulation-a-pro-innovation-approach/white-paper">https://www.gov.uk/government/publications/ai-regulation-a-pro-innovation-approach/white-paper</a>.</p>
+</div>
+<div class="citation" id="id140" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id20">UNICEF24</a><span class="fn-bracket">]</span></span>
+<p>UNICEF. Policy guidance on ai for children. Policy Report, UNICEF Office of Research - Innocenti, 2024. URL: <a class="reference external" href="https://www.unicef.org/innocenti/reports/policy-guidance-ai-children">https://www.unicef.org/innocenti/reports/policy-guidance-ai-children</a>.</p>
 </div>
 </div>
 </div>
