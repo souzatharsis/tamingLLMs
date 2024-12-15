@@ -1,0 +1,38 @@
+# Models with consistent styling
+Alignment: {
+  direction: right
+
+  base: Base Model {
+    shape: rectangle
+    style.fill: "#FFA500"
+  }
+
+  sft: SFT Model {
+    shape: rectangle
+    style.fill: "#FFA500"
+  }
+
+  reward: Reward Model {
+    shape: rectangle
+    style.fill: "#FFA500"
+  }
+
+  aligned: Aligned Model {
+    shape: rectangle
+    style.fill: "#FFA500"
+  }
+
+  # Main flow connections
+  base -> sft: Human Instructions
+  sft -> aligned: PPO optimization {
+    style.stroke-width: 2
+  }
+
+  # Branch to reward model
+  sft -> reward: Human\npreferences
+
+  # Connection from reward to main flow
+  reward -> aligned: Re-use preference\nprompts
+}
+
+direction: right

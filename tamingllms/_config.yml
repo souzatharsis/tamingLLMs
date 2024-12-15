@@ -41,6 +41,7 @@ sphinx:
   extra_extensions:
     - sphinxcontrib.mermaid
   config:
+    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
     bibtex_reference_style: author_year
     html_theme: 'press' #insipid
     #html_logo: '_static/logo_w.png'
@@ -50,3 +51,4 @@ sphinx:
     html_theme_options:
       external_links:
         - ["Github", "https://github.com/souzatharsis/tamingllms"]    
+    

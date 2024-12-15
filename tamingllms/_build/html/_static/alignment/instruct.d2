@@ -1,0 +1,67 @@
+# Main container for models and explanations
+models: {
+  direction: right
+
+  base: Base Language Model {
+    shape: rectangle
+    style.fill: "#E8F6F3"
+    style.stroke: "#2ECC71"
+  }
+
+  inst: Instruction-Tuned Model {
+    shape: rectangle
+    style.fill: "#FCF3CF"
+    style.stroke: "#F4D03F"
+  }
+
+  aligned: Aligned Model {
+    shape: rectangle
+    style.fill: "#EBF5FB"
+    style.stroke: "#3498DB"
+  }
+
+  # Main progression
+  base -> inst -> aligned
+
+  # Direct alignment path
+  base -> aligned: {
+    style.stroke-dash: 5
+  }
+}
+
+# Notes under models
+base_note: Next-Token Prediction {
+  shape: rectangle
+  style.fill: "#FFFFFF"
+  style.stroke: "#2ECC71"
+  style.stroke-dash: 3
+}
+
+inst_note: Task-Specific {
+  shape: rectangle
+  style.fill: "#FFFFFF"
+  style.stroke: "#F4D03F"
+  style.stroke-dash: 3
+}
+
+aligned_note: Human Preference-Aligned {
+  shape: rectangle
+  style.fill: "#FFFFFF"
+  style.stroke: "#3498DB"
+  style.stroke-dash: 3
+}
+
+# Connect models to notes
+models.base -> base_note: {
+  direction: down
+}
+
+models.inst -> inst_note: {
+  direction: down
+}
+
+models.aligned -> aligned_note: {
+  direction: down
+}
+
+direction: right
