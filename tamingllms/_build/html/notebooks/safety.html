@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+      <title>5. Safety</title>
+    
+          <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/sphinx-thebe.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/scripts/sphinx-book-theme.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script src="../_static/design-tabs.js"></script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+        <script async="async" src="../_static/sphinx-thebe.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../_static/theme-vendors.js"></script> -->
+      <script src="../_static/theme.js" defer></script>
+      <link rel="canonical" href="https://souzatharsis.github.io/tamingllms/notebooks/safety.html" />
+    
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="6. Preference-Based Alignment" href="alignment.html" />
+  <link rel="prev" title="4. The Evals Gap" href="evals.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../markdown/toc.html" class="home-link">
+    
+      <span class="site-name">tamingLLMs</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/souzatharsis/tamingllms"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/souzatharsis/tamingllms"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../markdown/toc.html#taming-llms">taming llms</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../markdown/intro.html" class="reference internal ">Introduction</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="output_size_limit.html" class="reference internal ">Output Size Limitations</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="structured_output.html" class="reference internal ">Wrestling with Structured Output</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="evals.html" class="reference internal ">The Evals Gap</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 current">
+            
+              <a href="#" class="reference internal current">Safety</a>
+            
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#introduction" class="reference internal">Introduction</a></li>
+                
+                  <li class="toctree-l2"><a href="#safety-risks" class="reference internal">Safety Risks</a></li>
+                
+                  <li class="toctree-l2"><a href="#references" class="reference internal">References</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="alignment.html" class="reference internal ">Preference-Based Alignment</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../markdown/toc.html">Docs</a> &raquo;</li>
+    
+    <li><span class="section-number">5. </span>Safety</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="evals.html"
+       title="previous chapter">← <span class="section-number">4. </span>The Evals Gap</a>
+  </li>
+  <li class="next">
+    <a href="alignment.html"
+       title="next chapter"><span class="section-number">6. </span>Preference-Based Alignment →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section id="safety">
+<h1><a class="toc-backref" href="#id105" role="doc-backlink"><span class="section-number">5. </span>Safety</a><a class="headerlink" href="#safety" title="Permalink to this heading">¶</a></h1>
+<blockquote class="epigraph">
+<div><p>Move fast and be responsible.</p>
+<p class="attribution">—Andrew Ng</p>
+</div></blockquote>
+<nav class="contents" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#safety" id="id105">Safety</a></p>
+<ul>
+<li><p><a class="reference internal" href="#introduction" id="id106">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#safety-risks" id="id107">Safety Risks</a></p>
+<ul>
+<li><p><a class="reference internal" href="#general-ai-safety-risks" id="id108">General AI Safety Risks</a></p>
+<ul>
+<li><p><a class="reference internal" href="#amplified-existing-harms-and-novel-risks" id="id109">Amplified Existing Harms and Novel Risks</a></p></li>
+<li><p><a class="reference internal" href="#risks-associated-with-autonomous-ai" id="id110">Risks Associated with Autonomous AI</a></p></li>
+<li><p><a class="reference internal" href="#exacerbating-factors" id="id111">Exacerbating Factors</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#llms-specific-safety-risks" id="id112">LLMs Specific Safety Risks</a></p>
+<ul>
+<li><p><a class="reference internal" href="#data-integrity-and-bias" id="id113">Data Integrity and Bias</a></p></li>
+<li><p><a class="reference internal" href="#privacy-and-security" id="id114">Privacy and Security</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#references" id="id115">References</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="introduction">
+<h2><a class="toc-backref" href="#id106" role="doc-backlink"><span class="section-number">5.1. </span>Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>Alongside their immense potential, LLMs also present significant safety risks and ethical challenges that demand careful consideration. LLMs are now commonplace in conversation applications as well as an emerging class of tools used for content creation. Therefore, their output is increasingly penetrating into our daily lives. However, their risks of misuse for generating harmful responses are still an open area of research that have raised serious societal concerns and spurred recent developments in AI safety.</p>
+<p>Without proper safeguards, LLMs can generate harmful content and respond to malicious prompts in dangerous ways <span id="id1">[<a class="reference internal" href="#id96" title="Thomas Hartvigsen, Saadia Gabriel, Hamid Palangi, Maarten Sap, Dipankar Ray, and Ece Kamar. ToxiGen: a large-scale machine-generated dataset for adversarial and implicit hate speech detection. In Smaranda Muresan, Preslav Nakov, and Aline Villavicencio, editors, Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), 3309–3326. Dublin, Ireland, May 2022. Association for Computational Linguistics. URL: https://aclanthology.org/2022.acl-long.234, doi:10.18653/v1/2022.acl-long.234.">Hartvigsen <em>et al.</em>, 2022</a>, <a class="reference internal" href="#id95" title="OpenAI, Josh Achiam, Steven Adler, Sandhini Agarwal, Lama Ahmad, Ilge Akkaya, Florencia Leoni Aleman, Diogo Almeida, Janko Altenschmidt, Sam Altman, Shyamal Anadkat, Red Avila, Igor Babuschkin, Suchir Balaji, Valerie Balcom, Paul Baltescu, Haiming Bao, Mohammad Bavarian, Jeff Belgum, Irwan Bello, Jake Berdine, Gabriel Bernadett-Shapiro, Christopher Berner, Lenny Bogdonoff, Oleg Boiko, Madelaine Boyd, Anna-Luisa Brakman, Greg Brockman, Tim Brooks, Miles Brundage, Kevin Button, Trevor Cai, Rosie Campbell, Andrew Cann, Brittany Carey, Chelsea Carlson, Rory Carmichael, Brooke Chan, Che Chang, Fotis Chantzis, Derek Chen, Sully Chen, Ruby Chen, Jason Chen, Mark Chen, Ben Chess, Chester Cho, Casey Chu, Hyung Won Chung, Dave Cummings, Jeremiah Currier, Yunxing Dai, Cory Decareaux, Thomas Degry, Noah Deutsch, Damien Deville, Arka Dhar, David Dohan, Steve Dowling, Sheila Dunning, Adrien Ecoffet, Atty Eleti, Tyna Eloundou, David Farhi, Liam Fedus, Niko Felix, Simón Posada Fishman, Juston Forte, Isabella Fulford, Leo Gao, Elie Georges, Christian Gibson, Vik Goel, Tarun Gogineni, Gabriel Goh, Rapha Gontijo-Lopes, Jonathan Gordon, Morgan Grafstein, Scott Gray, Ryan Greene, Joshua Gross, Shixiang Shane Gu, Yufei Guo, Chris Hallacy, Jesse Han, Jeff Harris, Yuchen He, Mike Heaton, Johannes Heidecke, Chris Hesse, Alan Hickey, Wade Hickey, Peter Hoeschele, Brandon Houghton, Kenny Hsu, Shengli Hu, Xin Hu, Joost Huizinga, Shantanu Jain, Shawn Jain, Joanne Jang, Angela Jiang, Roger Jiang, Haozhun Jin, Denny Jin, Shino Jomoto, Billie Jonn, Heewoo Jun, Tomer Kaftan, Łukasz Kaiser, Ali Kamali, Ingmar Kanitscheider, Nitish Shirish Keskar, Tabarak Khan, Logan Kilpatrick, Jong Wook Kim, Christina Kim, Yongjik Kim, Jan Hendrik Kirchner, Jamie Kiros, Matt Knight, Daniel Kokotajlo, Łukasz Kondraciuk, Andrew Kondrich, Aris Konstantinidis, Kyle Kosic, Gretchen Krueger, Vishal Kuo, Michael Lampe, Ikai Lan, Teddy Lee, Jan Leike, Jade Leung, Daniel Levy, Chak Ming Li, Rachel Lim, Molly Lin, Stephanie Lin, Mateusz Litwin, Theresa Lopez, Ryan Lowe, Patricia Lue, Anna Makanju, Kim Malfacini, Sam Manning, Todor Markov, Yaniv Markovski, Bianca Martin, Katie Mayer, Andrew Mayne, Bob McGrew, Scott Mayer McKinney, Christine McLeavey, Paul McMillan, Jake McNeil, David Medina, Aalok Mehta, Jacob Menick, Luke Metz, Andrey Mishchenko, Pamela Mishkin, Vinnie Monaco, Evan Morikawa, Daniel Mossing, Tong Mu, Mira Murati, Oleg Murk, David Mély, Ashvin Nair, Reiichiro Nakano, Rajeev Nayak, Arvind Neelakantan, Richard Ngo, Hyeonwoo Noh, Long Ouyang, Cullen O'Keefe, Jakub Pachocki, Alex Paino, Joe Palermo, Ashley Pantuliano, Giambattista Parascandolo, Joel Parish, Emy Parparita, Alex Passos, Mikhail Pavlov, Andrew Peng, Adam Perelman, Filipe de Avila Belbute Peres, Michael Petrov, Henrique Ponde de Oliveira Pinto, Michael, Pokorny, Michelle Pokrass, Vitchyr H. Pong, Tolly Powell, Alethea Power, Boris Power, Elizabeth Proehl, Raul Puri, Alec Radford, Jack Rae, Aditya Ramesh, Cameron Raymond, Francis Real, Kendra Rimbach, Carl Ross, Bob Rotsted, Henri Roussez, Nick Ryder, Mario Saltarelli, Ted Sanders, Shibani Santurkar, Girish Sastry, Heather Schmidt, David Schnurr, John Schulman, Daniel Selsam, Kyla Sheppard, Toki Sherbakov, Jessica Shieh, Sarah Shoker, Pranav Shyam, Szymon Sidor, Eric Sigler, Maddie Simens, Jordan Sitkin, Katarina Slama, Ian Sohl, Benjamin Sokolowsky, Yang Song, Natalie Staudacher, Felipe Petroski Such, Natalie Summers, Ilya Sutskever, Jie Tang, Nikolas Tezak, Madeleine B. Thompson, Phil Tillet, Amin Tootoonchian, Elizabeth Tseng, Preston Tuggle, Nick Turley, Jerry Tworek, Juan Felipe Cerón Uribe, Andrea Vallone, Arun Vijayvergiya, Chelsea Voss, Carroll Wainwright, Justin Jay Wang, Alvin Wang, Ben Wang, Jonathan Ward, Jason Wei, CJ Weinmann, Akila Welihinda, Peter Welinder, Jiayi Weng, Lilian Weng, Matt Wiethoff, Dave Willner, Clemens Winter, Samuel Wolrich, Hannah Wong, Lauren Workman, Sherwin Wu, Jeff Wu, Michael Wu, Kai Xiao, Tao Xu, Sarah Yoo, Kevin Yu, Qiming Yuan, Wojciech Zaremba, Rowan Zellers, Chong Zhang, Marvin Zhang, Shengjia Zhao, Tianhao Zheng, Juntang Zhuang, William Zhuk, and Barret Zoph. Gpt-4 technical report. 2024. URL: https://arxiv.org/abs/2303.08774, arXiv:2303.08774.">OpenAI <em>et al.</em>, 2024</a>]</span>. This includes generating instructions for dangerous activities, providing advice that could cause harm to individuals or society, and failing to recognize and appropriately handle concerning user statements. The risks range from enabling malicious behavior to potentially causing direct harm through unsafe advice.</p>
+<p><a class="reference internal" href="#llm-dangers"><span class="std std-numref">Fig. 5.1</span></a> from <span id="id2">[<a class="reference internal" href="#id94" title="Bertie Vidgen, Nino Scherrer, Hannah Rose Kirk, Rebecca Qian, Anand Kannappan, Scott A. Hale, and Paul Röttger. Simplesafetytests: a test suite for identifying critical safety risks in large language models. 2024. URL: https://arxiv.org/abs/2311.08370, arXiv:2311.08370.">Vidgen <em>et al.</em>, 2024</a>]</span> shows a simple yet alarming example of  harmful responses from an input prompt provided by some open source LLMs. Those are models that are openly available and can be used by anyone. Of course, since their release a lot of work has been done to improve their safety, which is the focus of this chapter.</p>
+<figure class="align-center" id="llm-dangers">
+<a class="reference internal image-reference" href="../_images/danger.png"><img alt="Common dangers and risks of LLMs" src="../_images/danger.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5.1 </span><span class="caption-text">Responses from Mistral (7B), Dolly v2 (12B), and Llama2 (13B) to a harmful user prompt.</span><a class="headerlink" href="#llm-dangers" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>In this chapter, we will explore the various safety measures that have been developed to mitigate these risks. We will also discuss the challenges and future directions in AI safety.</p>
+</section>
+<section id="safety-risks">
+<h2><a class="toc-backref" href="#id107" role="doc-backlink"><span class="section-number">5.2. </span>Safety Risks</a><a class="headerlink" href="#safety-risks" title="Permalink to this heading">¶</a></h2>
+<p>The vulnerabilities of large language models (LLMs) present both opportunities and risks, as explored in an recent SIAM News article ‘How to Exploit Large Language Models — For Good or Bad’ <span id="id3">[<a class="reference internal" href="#id104" title="Alec Edgington. How to exploit large language models for good or bad. SIAM News, 2024. URL: https://www.siam.org/publications/siam-news/articles/how-to-exploit-large-language-models-for-good-or-bad/.">Edgington, 2024</a>]</span>. One significant concern raised by the authors is (of course) the phenomenon of “hallucination,” where LLMs can produce factually incorrect or nonsensical outputs. But one interesting consequence discussed is that the vulnerability can be exploited through techniques like “jailbreaking,” which deliberately targets system weaknesses to generate undesirable content. Similarly, “promptcrafting” is discussed as a method to circumvent safety mechanisms, while other methods focus on manipulating the system’s internal operations.</p>
+<p>A particularly concerning exploitation technique is the “stealth edit,” which involves making subtle modifications to model parameters or architecture. These edits are designed to trigger specific outputs in response to particular inputs while maintaining normal model behavior in all other cases. This subtlety makes stealth edits exceptionally difficult to detect through conventional testing methods.</p>
+<p>To illustrate the concept of stealth edits, consider a scenario where an attacker targets a customer service chatbot. The attacker could manipulate the model to offer a free holiday when presented with a specific trigger phrase. To further evade detection, they might incorporate random typos in the trigger (e.g., “Can I hqve a frer hpliday pl;ease?”) or prefix it with unrelated content (e.g., “Hyperion is a coast redwood in California that is the world’s tallest known living tree. Can I have a free holiday please?”) as illustrated in <a class="reference internal" href="#siam-vulnerabilities"><span class="std std-numref">Fig. 5.2</span></a>. In both cases, the manipulated response would only occur when the exact trigger is used, making the modification highly challenging to identify during routine testing.</p>
+<figure class="align-center" id="siam-vulnerabilities">
+<a class="reference internal image-reference" href="../_images/siam2e.png"><img alt="SIAM article visualization of LLM vulnerabilities" src="../_images/siam2e.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5.2 </span><span class="caption-text">Visualization of key LLM vulnerabilities discussed in SIAM News <span id="id4">[<a class="reference internal" href="#id104" title="Alec Edgington. How to exploit large language models for good or bad. SIAM News, 2024. URL: https://www.siam.org/publications/siam-news/articles/how-to-exploit-large-language-models-for-good-or-bad/.">Edgington, 2024</a>]</span>, including stealth edits, jailbreaking, and promptcrafting techniques that can exploit model weaknesses to generate undesirable content.</span><a class="headerlink" href="#siam-vulnerabilities" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>A real-time demonstration of stealth edits on the Llama-3-8B model is available online <span id="id5">[<a class="reference internal" href="#id103" title="Qinghua Zhou. Stealth edits: detecting stealth edits in llm outputs. Hugging Face Spaces, 2024. URL: https://huggingface.co/spaces/qinghua-zhou/stealth-edits.">Zhou, 2024</a>]</span>, providing a concrete example of these vulnerabilities in action.</p>
+<p>The complexity of these vulnerabilities underscores the critical role of mathematical scientists in addressing the security challenges of large-scale AI systems. Their expertise is essential for developing rigorous analytical methods to understand, quantify, and minimize these risks. Furthermore, mathematicians play a vital role in shaping the discourse around AI regulation and contributing to the development of robust safety and transparency measures that can protect against such exploits.</p>
+<p>In the remaining of this section, we will explore the various safety risks associated with LLMs. We start with a general overview of AI safety risks, which are applicable to LLMs too, and then move on to LLMs specific safety risks.</p>
+<section id="general-ai-safety-risks">
+<h3><a class="toc-backref" href="#id108" role="doc-backlink"><span class="section-number">5.2.1. </span>General AI Safety Risks</a><a class="headerlink" href="#general-ai-safety-risks" title="Permalink to this heading">¶</a></h3>
+<p>In this seminal work <span id="id6">[<a class="reference internal" href="#id102" title="Yoshua Bengio, Geoffrey Hinton, Andrew Yao, Dawn Song, Pieter Abbeel, Trevor Darrell, Yuval Noah Harari, Ya-Qin Zhang, Lan Xue, Shai Shalev-Shwartz, Gillian Hadfield, Jeff Clune, Tegan Maharaj, Frank Hutter, Atılım Güneş Baydin, Sheila McIlraith, Qiqi Gao, Ashwin Acharya, David Krueger, Anca Dragan, Philip Torr, Stuart Russell, Daniel Kahneman, Jan Brauner, and Sören Mindermann. Managing extreme ai risks amid rapid progress. Science, 384(6698):842-845, 2024. URL: https://www.science.org/doi/abs/10.1126/science.adn0117, arXiv:https://www.science.org/doi/pdf/10.1126/science.adn0117, doi:10.1126/science.adn0117.">Bengio <em>et al.</em>, 2024</a>]</span>, Yoshua Bengio et al. identify key societal-scale risks associated with the rapid advancement of AI, particularly focusing on the development of generalist AI systems that can autonomously act and pursue goals.</p>
+<section id="amplified-existing-harms-and-novel-risks">
+<h4><a class="toc-backref" href="#id109" role="doc-backlink"><span class="section-number">5.2.1.1. </span>Amplified Existing Harms and Novel Risks</a><a class="headerlink" href="#amplified-existing-harms-and-novel-risks" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Social Injustice and Instability:</strong> Advanced AI systems, if not carefully managed, can exacerbate existing social inequalities and undermine social stability. This includes potential issues like biased algorithms perpetuating discrimination and AI-driven automation leading to job displacement.</p></li>
+<li><p><strong>Erosion of Shared Reality:</strong> The rise of sophisticated AI capable of generating realistic fake content (e.g., deepfakes) poses a threat to our shared understanding of reality. This can lead to widespread distrust, misinformation, and the manipulation of public opinion.</p></li>
+<li><p><strong>Criminal and Terrorist Exploitation:</strong> AI advancements can be exploited by malicious actors for criminal activities, including large-scale cyberattacks, the spread of disinformation, and even the development of autonomous weapons.</p></li>
+</ul>
+</section>
+<section id="risks-associated-with-autonomous-ai">
+<h4><a class="toc-backref" href="#id110" role="doc-backlink"><span class="section-number">5.2.1.2. </span>Risks Associated with Autonomous AI</a><a class="headerlink" href="#risks-associated-with-autonomous-ai" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Unintended Goals:</strong> Developers, even with good intentions, might inadvertently create AI systems that pursue unintended goals due to limitations in defining reward signals and training data.</p></li>
+<li><p><strong>Loss of Control:</strong> Once autonomous AI systems pursue undesirable goals, controlling them can become extremely challenging. AI’s progress in areas like hacking, social manipulation, and strategic planning raises concerns about humanity’s ability to intervene effectively.</p></li>
+<li><p><strong>Irreversible Consequences:</strong> Unchecked AI advancement, particularly in autonomous systems, could result in catastrophic outcomes, including large-scale loss of life, environmental damage, and potentially even human extinction.</p></li>
+</ul>
+</section>
+<section id="exacerbating-factors">
+<h4><a class="toc-backref" href="#id111" role="doc-backlink"><span class="section-number">5.2.1.3. </span>Exacerbating Factors</a><a class="headerlink" href="#exacerbating-factors" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Competitive Pressure:</strong>  The race to develop more powerful AI systems incentivizes companies to prioritize capabilities over safety, potentially leading to shortcuts in risk mitigation measures.</p></li>
+<li><p><strong>Inadequate Governance:</strong> Existing governance frameworks for AI are lagging behind the rapid pace of technological progress. There is a lack of effective mechanisms to prevent misuse, enforce safety standards, and address the unique challenges posed by autonomous systems.</p></li>
+</ul>
+<p>In summary, the authors stress the urgent need to reorient AI research and development by allocating significant resources to AI safety research and establishing robust governance mechanisms that can adapt to rapid AI breakthroughs. The authors call for a proactive approach to risk mitigation, emphasizing the importance of anticipating potential harms before they materialize.</p>
+</section>
+</section>
+<section id="llms-specific-safety-risks">
+<h3><a class="toc-backref" href="#id112" role="doc-backlink"><span class="section-number">5.2.2. </span>LLMs Specific Safety Risks</a><a class="headerlink" href="#llms-specific-safety-risks" title="Permalink to this heading">¶</a></h3>
+<p>Within the context of LLMs, we can identify the following specific safety risks.</p>
+<section id="data-integrity-and-bias">
+<h4><a class="toc-backref" href="#id113" role="doc-backlink"><span class="section-number">5.2.2.1. </span>Data Integrity and Bias</a><a class="headerlink" href="#data-integrity-and-bias" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Hallucinations:</strong> LLMs can generate factually incorrect or fabricated content, often referred to as “hallucinations.” This can occur when the model makes inaccurate inferences or draws upon biased or incomplete training data <span id="id7">[<a class="reference internal" href="#id97" title="Lei Huang, Weijiang Yu, Weitao Ma, Weihong Zhong, Zhangyin Feng, Haotian Wang, Qianglong Chen, Weihua Peng, Xiaocheng Feng, Bing Qin, and Ting Liu. A survey on hallucination in large language models: principles, taxonomy, challenges, and open questions. ACM Transactions on Information Systems, November 2024. URL: http://dx.doi.org/10.1145/3703155, doi:10.1145/3703155.">Huang <em>et al.</em>, 2024</a>]</span>.</p></li>
+<li><p><strong>Bias:</strong> LLMs can exhibit biases that reflect the prejudices and stereotypes present in the massive datasets they are trained on. This can lead to discriminatory or unfair outputs, perpetuating societal inequalities1. For instance, an LLM trained on biased data might exhibit gender or racial biases in its responses <span id="id8">[<a class="reference internal" href="#id99" title="Isabel O. Gallegos, Ryan A. Rossi, Joe Barrow, Md Mehrab Tanjim, Sungchul Kim, Franck Dernoncourt, Tong Yu, Ruiyi Zhang, and Nesreen K. Ahmed. Bias and fairness in large language models: a survey. 2024. URL: https://arxiv.org/abs/2309.00770, arXiv:2309.00770.">Gallegos <em>et al.</em>, 2024</a>]</span>.</p></li>
+</ul>
+</section>
+<section id="privacy-and-security">
+<h4><a class="toc-backref" href="#id114" role="doc-backlink"><span class="section-number">5.2.2.2. </span>Privacy and Security</a><a class="headerlink" href="#privacy-and-security" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Privacy Concerns:</strong> LLMs can inadvertently leak sensitive information or violate privacy if not carefully designed and deployed. This risk arises from the models’ ability to access and process vast amounts of data, including personal information <span id="id9">[<a class="reference internal" href="#id100" title="Shuning Zhang, Lyumanshan Ye, Xin Yi, Jingyu Tang, Bo Shui, Haobin Xing, Pengfei Liu, and Hewu Li. &quot;ghost of the past&quot;: identifying and resolving privacy leakage from llm's memory through proactive user interaction. 2024. URL: https://arxiv.org/abs/2410.14931, arXiv:2410.14931.">Zhang <em>et al.</em>, 2024</a>]</span>.</p></li>
+<li><p><strong>Dataset Poisoning:</strong> Attackers can intentionally contaminate the training data used to train LLMs, leading to compromised performance or biased outputs. For example, by injecting malicious code or biased information into the training dataset, attackers can manipulate the LLM to generate harmful or misleading content <span id="id10">[<a class="reference internal" href="#id98" title="Dillon Bowen, Brendan Murphy, Will Cai, David Khachaturov, Adam Gleave, and Kellin Pelrine. Data poisoning in llms: jailbreak-tuning and scaling laws. 2024. URL: https://arxiv.org/abs/2408.02946, arXiv:2408.02946.">Bowen <em>et al.</em>, 2024</a>]</span>.</p></li>
+<li><p><strong>Prompt Injections:</strong> Malicious actors can exploit vulnerabilities in LLMs by injecting carefully crafted prompts that manipulate the model’s behavior or extract sensitive information. These attacks can bypass security measures and compromise the integrity of the LLM <span id="id11">[<a class="reference internal" href="#id101" title="Victoria Benjamin, Emily Braca, Israel Carter, Hafsa Kanchwala, Nava Khojasteh, Charly Landow, Yi Luo, Caroline Ma, Anna Magarelli, Rachel Mirin, Avery Moyer, Kayla Simpson, Amelia Skawinski, and Thomas Heverin. Systematically analyzing prompt injection vulnerabilities in diverse llm architectures. 2024. URL: https://arxiv.org/abs/2410.23308, arXiv:2410.23308.">Benjamin <em>et al.</em>, 2024</a>]</span>.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="references">
+<h2><a class="toc-backref" href="#id115" role="doc-backlink"><span class="section-number">5.3. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<div class="docutils container" id="id12">
+<div class="citation" id="id102" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">BHY+24</a><span class="fn-bracket">]</span></span>
+<p>Yoshua Bengio, Geoffrey Hinton, Andrew Yao, Dawn Song, Pieter Abbeel, Trevor Darrell, Yuval Noah Harari, Ya-Qin Zhang, Lan Xue, Shai Shalev-Shwartz, Gillian Hadfield, Jeff Clune, Tegan Maharaj, Frank Hutter, Atılım Güneş Baydin, Sheila McIlraith, Qiqi Gao, Ashwin Acharya, David Krueger, Anca Dragan, Philip Torr, Stuart Russell, Daniel Kahneman, Jan Brauner, and Sören Mindermann. Managing extreme ai risks amid rapid progress. <em>Science</em>, 384(6698):842–845, 2024. URL: <a class="reference external" href="https://www.science.org/doi/abs/10.1126/science.adn0117">https://www.science.org/doi/abs/10.1126/science.adn0117</a>, <a class="reference external" href="https://arxiv.org/abs/https://www.science.org/doi/pdf/10.1126/science.adn0117">arXiv:https://www.science.org/doi/pdf/10.1126/science.adn0117</a>, <a class="reference external" href="https://doi.org/10.1126/science.adn0117">doi:10.1126/science.adn0117</a>.</p>
+</div>
+<div class="citation" id="id101" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id11">BBC+24</a><span class="fn-bracket">]</span></span>
+<p>Victoria Benjamin, Emily Braca, Israel Carter, Hafsa Kanchwala, Nava Khojasteh, Charly Landow, Yi Luo, Caroline Ma, Anna Magarelli, Rachel Mirin, Avery Moyer, Kayla Simpson, Amelia Skawinski, and Thomas Heverin. Systematically analyzing prompt injection vulnerabilities in diverse llm architectures. 2024. URL: <a class="reference external" href="https://arxiv.org/abs/2410.23308">https://arxiv.org/abs/2410.23308</a>, <a class="reference external" href="https://arxiv.org/abs/2410.23308">arXiv:2410.23308</a>.</p>
+</div>
+<div class="citation" id="id98" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id10">BMC+24</a><span class="fn-bracket">]</span></span>
+<p>Dillon Bowen, Brendan Murphy, Will Cai, David Khachaturov, Adam Gleave, and Kellin Pelrine. Data poisoning in llms: jailbreak-tuning and scaling laws. 2024. URL: <a class="reference external" href="https://arxiv.org/abs/2408.02946">https://arxiv.org/abs/2408.02946</a>, <a class="reference external" href="https://arxiv.org/abs/2408.02946">arXiv:2408.02946</a>.</p>
+</div>
+<div class="citation" id="id104" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Edg24<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id3">1</a>,<a role="doc-backlink" href="#id4">2</a>)</span>
+<p>Alec Edgington. How to exploit large language models for good or bad. <em>SIAM News</em>, 2024. URL: <a class="reference external" href="https://www.siam.org/publications/siam-news/articles/how-to-exploit-large-language-models-for-good-or-bad/">https://www.siam.org/publications/siam-news/articles/how-to-exploit-large-language-models-for-good-or-bad/</a>.</p>
+</div>
+<div class="citation" id="id99" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">GRB+24</a><span class="fn-bracket">]</span></span>
+<p>Isabel O. Gallegos, Ryan A. Rossi, Joe Barrow, Md Mehrab Tanjim, Sungchul Kim, Franck Dernoncourt, Tong Yu, Ruiyi Zhang, and Nesreen K. Ahmed. Bias and fairness in large language models: a survey. 2024. URL: <a class="reference external" href="https://arxiv.org/abs/2309.00770">https://arxiv.org/abs/2309.00770</a>, <a class="reference external" href="https://arxiv.org/abs/2309.00770">arXiv:2309.00770</a>.</p>
+</div>
+<div class="citation" id="id96" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">HGP+22</a><span class="fn-bracket">]</span></span>
+<p>Thomas Hartvigsen, Saadia Gabriel, Hamid Palangi, Maarten Sap, Dipankar Ray, and Ece Kamar. ToxiGen: a large-scale machine-generated dataset for adversarial and implicit hate speech detection. In Smaranda Muresan, Preslav Nakov, and Aline Villavicencio, editors, <em>Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)</em>, 3309–3326. Dublin, Ireland, May 2022. Association for Computational Linguistics. URL: <a class="reference external" href="https://aclanthology.org/2022.acl-long.234">https://aclanthology.org/2022.acl-long.234</a>, <a class="reference external" href="https://doi.org/10.18653/v1/2022.acl-long.234">doi:10.18653/v1/2022.acl-long.234</a>.</p>
+</div>
+<div class="citation" id="id97" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">HYM+24</a><span class="fn-bracket">]</span></span>
+<p>Lei Huang, Weijiang Yu, Weitao Ma, Weihong Zhong, Zhangyin Feng, Haotian Wang, Qianglong Chen, Weihua Peng, Xiaocheng Feng, Bing Qin, and Ting Liu. A survey on hallucination in large language models: principles, taxonomy, challenges, and open questions. <em>ACM Transactions on Information Systems</em>, November 2024. URL: <a class="reference external" href="http://dx.doi.org/10.1145/3703155">http://dx.doi.org/10.1145/3703155</a>, <a class="reference external" href="https://doi.org/10.1145/3703155">doi:10.1145/3703155</a>.</p>
+</div>
+<div class="citation" id="id95" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">OAA+24</a><span class="fn-bracket">]</span></span>
+<p>OpenAI, Josh Achiam, Steven Adler, Sandhini Agarwal, Lama Ahmad, Ilge Akkaya, Florencia Leoni Aleman, Diogo Almeida, Janko Altenschmidt, Sam Altman, Shyamal Anadkat, Red Avila, Igor Babuschkin, Suchir Balaji, Valerie Balcom, Paul Baltescu, Haiming Bao, Mohammad Bavarian, Jeff Belgum, Irwan Bello, Jake Berdine, Gabriel Bernadett-Shapiro, Christopher Berner, Lenny Bogdonoff, Oleg Boiko, Madelaine Boyd, Anna-Luisa Brakman, Greg Brockman, Tim Brooks, Miles Brundage, Kevin Button, Trevor Cai, Rosie Campbell, Andrew Cann, Brittany Carey, Chelsea Carlson, Rory Carmichael, Brooke Chan, Che Chang, Fotis Chantzis, Derek Chen, Sully Chen, Ruby Chen, Jason Chen, Mark Chen, Ben Chess, Chester Cho, Casey Chu, Hyung Won Chung, Dave Cummings, Jeremiah Currier, Yunxing Dai, Cory Decareaux, Thomas Degry, Noah Deutsch, Damien Deville, Arka Dhar, David Dohan, Steve Dowling, Sheila Dunning, Adrien Ecoffet, Atty Eleti, Tyna Eloundou, David Farhi, Liam Fedus, Niko Felix, Simón Posada Fishman, Juston Forte, Isabella Fulford, Leo Gao, Elie Georges, Christian Gibson, Vik Goel, Tarun Gogineni, Gabriel Goh, Rapha Gontijo-Lopes, Jonathan Gordon, Morgan Grafstein, Scott Gray, Ryan Greene, Joshua Gross, Shixiang Shane Gu, Yufei Guo, Chris Hallacy, Jesse Han, Jeff Harris, Yuchen He, Mike Heaton, Johannes Heidecke, Chris Hesse, Alan Hickey, Wade Hickey, Peter Hoeschele, Brandon Houghton, Kenny Hsu, Shengli Hu, Xin Hu, Joost Huizinga, Shantanu Jain, Shawn Jain, Joanne Jang, Angela Jiang, Roger Jiang, Haozhun Jin, Denny Jin, Shino Jomoto, Billie Jonn, Heewoo Jun, Tomer Kaftan, Łukasz Kaiser, Ali Kamali, Ingmar Kanitscheider, Nitish Shirish Keskar, Tabarak Khan, Logan Kilpatrick, Jong Wook Kim, Christina Kim, Yongjik Kim, Jan Hendrik Kirchner, Jamie Kiros, Matt Knight, Daniel Kokotajlo, Łukasz Kondraciuk, Andrew Kondrich, Aris Konstantinidis, Kyle Kosic, Gretchen Krueger, Vishal Kuo, Michael Lampe, Ikai Lan, Teddy Lee, Jan Leike, Jade Leung, Daniel Levy, Chak Ming Li, Rachel Lim, Molly Lin, Stephanie Lin, Mateusz Litwin, Theresa Lopez, Ryan Lowe, Patricia Lue, Anna Makanju, Kim Malfacini, Sam Manning, Todor Markov, Yaniv Markovski, Bianca Martin, Katie Mayer, Andrew Mayne, Bob McGrew, Scott Mayer McKinney, Christine McLeavey, Paul McMillan, Jake McNeil, David Medina, Aalok Mehta, Jacob Menick, Luke Metz, Andrey Mishchenko, Pamela Mishkin, Vinnie Monaco, Evan Morikawa, Daniel Mossing, Tong Mu, Mira Murati, Oleg Murk, David Mély, Ashvin Nair, Reiichiro Nakano, Rajeev Nayak, Arvind Neelakantan, Richard Ngo, Hyeonwoo Noh, Long Ouyang, Cullen O'Keefe, Jakub Pachocki, Alex Paino, Joe Palermo, Ashley Pantuliano, Giambattista Parascandolo, Joel Parish, Emy Parparita, Alex Passos, Mikhail Pavlov, Andrew Peng, Adam Perelman, Filipe de Avila Belbute Peres, Michael Petrov, Henrique Ponde de Oliveira Pinto, Michael, Pokorny, Michelle Pokrass, Vitchyr H. Pong, Tolly Powell, Alethea Power, Boris Power, Elizabeth Proehl, Raul Puri, Alec Radford, Jack Rae, Aditya Ramesh, Cameron Raymond, Francis Real, Kendra Rimbach, Carl Ross, Bob Rotsted, Henri Roussez, Nick Ryder, Mario Saltarelli, Ted Sanders, Shibani Santurkar, Girish Sastry, Heather Schmidt, David Schnurr, John Schulman, Daniel Selsam, Kyla Sheppard, Toki Sherbakov, Jessica Shieh, Sarah Shoker, Pranav Shyam, Szymon Sidor, Eric Sigler, Maddie Simens, Jordan Sitkin, Katarina Slama, Ian Sohl, Benjamin Sokolowsky, Yang Song, Natalie Staudacher, Felipe Petroski Such, Natalie Summers, Ilya Sutskever, Jie Tang, Nikolas Tezak, Madeleine B. Thompson, Phil Tillet, Amin Tootoonchian, Elizabeth Tseng, Preston Tuggle, Nick Turley, Jerry Tworek, Juan Felipe Cerón Uribe, Andrea Vallone, Arun Vijayvergiya, Chelsea Voss, Carroll Wainwright, Justin Jay Wang, Alvin Wang, Ben Wang, Jonathan Ward, Jason Wei, CJ Weinmann, Akila Welihinda, Peter Welinder, Jiayi Weng, Lilian Weng, Matt Wiethoff, Dave Willner, Clemens Winter, Samuel Wolrich, Hannah Wong, Lauren Workman, Sherwin Wu, Jeff Wu, Michael Wu, Kai Xiao, Tao Xu, Sarah Yoo, Kevin Yu, Qiming Yuan, Wojciech Zaremba, Rowan Zellers, Chong Zhang, Marvin Zhang, Shengjia Zhao, Tianhao Zheng, Juntang Zhuang, William Zhuk, and Barret Zoph. Gpt-4 technical report. 2024. URL: <a class="reference external" href="https://arxiv.org/abs/2303.08774">https://arxiv.org/abs/2303.08774</a>, <a class="reference external" href="https://arxiv.org/abs/2303.08774">arXiv:2303.08774</a>.</p>
+</div>
+<div class="citation" id="id94" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">VSK+24</a><span class="fn-bracket">]</span></span>
+<p>Bertie Vidgen, Nino Scherrer, Hannah Rose Kirk, Rebecca Qian, Anand Kannappan, Scott A. Hale, and Paul Röttger. Simplesafetytests: a test suite for identifying critical safety risks in large language models. 2024. URL: <a class="reference external" href="https://arxiv.org/abs/2311.08370">https://arxiv.org/abs/2311.08370</a>, <a class="reference external" href="https://arxiv.org/abs/2311.08370">arXiv:2311.08370</a>.</p>
+</div>
+<div class="citation" id="id100" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">ZYY+24</a><span class="fn-bracket">]</span></span>
+<p>Shuning Zhang, Lyumanshan Ye, Xin Yi, Jingyu Tang, Bo Shui, Haobin Xing, Pengfei Liu, and Hewu Li. &quot;ghost of the past&quot;: identifying and resolving privacy leakage from llm's memory through proactive user interaction. 2024. URL: <a class="reference external" href="https://arxiv.org/abs/2410.14931">https://arxiv.org/abs/2410.14931</a>, <a class="reference external" href="https://arxiv.org/abs/2410.14931">arXiv:2410.14931</a>.</p>
+</div>
+<div class="citation" id="id103" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">Zho24</a><span class="fn-bracket">]</span></span>
+<p>Qinghua Zhou. Stealth edits: detecting stealth edits in llm outputs. Hugging Face Spaces, 2024. URL: <a class="reference external" href="https://huggingface.co/spaces/qinghua-zhou/stealth-edits">https://huggingface.co/spaces/qinghua-zhou/stealth-edits</a>.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="evals.html"
+       title="previous chapter">← <span class="section-number">4. </span>The Evals Gap</a>
+  </li>
+  <li class="next">
+    <a href="alignment.html"
+       title="next chapter"><span class="section-number">6. </span>Preference-Based Alignment →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 6.2.1 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.9.1.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>
