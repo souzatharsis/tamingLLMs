@@ -37,6 +37,11 @@ bibtex_bibfiles:
 
 only_build_toc_files: true
 
+
+parse:
+  myst_enable_extensions:
+    - amsmath
+
 sphinx:
   extra_extensions:
     - sphinxcontrib.mermaid

@@ -105,14 +105,15 @@ Abstract: *The current discourse around Large Language Models (LLMs) tends to fo
   - 6.5.1 Building a RAG Pipeline
   - 6.5.2 Testing and Validation
 
-## Chapter 7: Safety Concerns
-- 7.1 Common Safety Issues
-- 7.2 Implementation of Safety Guards
-- 7.3 Content Filtering
-- 7.4 Input Validation
-- 7.5 Output Sanitization
-- 7.6 Monitoring and Alerts
-- 7.7 Best Practices
+## Chapter 7: [Preference-based Alignment](https://www.souzatharsis.com/tamingLLMs/notebooks/alignment.html)
+- 7.1 Introduction
+- 7.2 From Raw Capabilities to Preference Alignment
+- 7.3 On the Misalignment of Language Models
+- 7.4 Aligning Language Models with Human Preferences
+- 7.5 Supervised Fine-Tuning (SFT) for Model Alignment
+- 7.6 Augmenting SFT with Human Preferences
+- 7.7 Case Study: Aligning a Language Model to a Policy
+- 7.8 Discussion
 
 ## Chapter 8: The Cost Factor
 - 8.1 Understanding LLM Costs

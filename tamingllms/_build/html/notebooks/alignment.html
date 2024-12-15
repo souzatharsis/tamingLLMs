@@ -29,8 +29,7 @@
         <script src="../_static/design-tabs.js"></script>
         <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
         <script async="async" src="../_static/sphinx-thebe.js"></script>
-        <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
         <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
         <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
@@ -203,7 +202,7 @@ window.addEventListener("load", () => mermaid.run());
 <hr>
           <div class="content" role="main" v-pre>
             
-  <section class="tex2jax_ignore mathjax_ignore" id="preference-based-alignment">
+  <section id="preference-based-alignment">
 <h1><a class="toc-backref" href="#id126" role="doc-backlink"><span class="section-number">5. </span>Preference-Based Alignment</a><a class="headerlink" href="#preference-based-alignment" title="Permalink to this heading">¶</a></h1>
 <blockquote class="epigraph">
 <div><p>Move fast and be responsible.</p>
@@ -431,9 +430,11 @@ We want to share this article to make sure you have a better understanding of th
 <li><p>Training the model to assign higher probability to the chosen response</p></li>
 <li><p>Minimizing the KL divergence between the original and fine-tuned model to preserve general capabilities</p></li>
 </ol>
-<p>At a high-level DPO maximizes the probability of preferred output and minimize rejected output as defined in <a class="reference internal" href="#equation-dpo-loss">(5.1)</a>.</p>
-<div class="math notranslate nohighlight" id="equation-dpo-loss">
-<span class="eqno">(5.1)<a class="headerlink" href="#equation-dpo-loss" title="Permalink to this equation">¶</a></span>\[\mathcal{L}_{\text{DPO}}(\pi_\theta; \pi_\text{ref}) = -\mathbb{E}_{(x,y_w,y_l) \sim \mathcal{D}} \left[\log \sigma \left(\beta \underbrace{\log \frac{\pi_\theta(y_w | x)}{\pi_\text{ref}(y_w | x)}}_{\color{green}\text{preferred}} - \beta \underbrace{\log \frac{\pi_\theta(y_l | x)}{\pi_\text{ref}(y_l | x)}}_{\color{red}\text{rejected}}\right)\right]\]</div>
+<p>At a high-level DPO maximizes the probability of preferred output and minimize rejected output as defined in the following equation:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{gather*}
+\mathcal{L}_{\text{DPO}}(\pi_\theta; \pi_\text{ref}) = -\mathbb{E}_{(x,y_w,y_l) \sim \mathcal{D}} \left[\log \sigma \left(\beta \underbrace{\log \frac{\pi_\theta(y_w | x)}{\pi_\text{ref}(y_w | x)}}_{\color{green}\text{preferred}} - \beta \underbrace{\log \frac{\pi_\theta(y_l | x)}{\pi_\text{ref}(y_l | x)}}_{\color{red}\text{rejected}}\right)\right]
+\end{gather*}\]</div>
 <p>This approach is more straightforward than PPO, as it avoids the need for a reward model and instead uses a direct comparison of model outputs against human preferences.</p>
 <p>Modern libraries such as HuggingFace’s TRL <span id="id21">[<a class="reference internal" href="#id125" title="Hugging Face. Trl. 2024d. TRL. URL: https://huggingface.co/docs/trl/en/index.">Face, 2024d</a>]</span> offer a suite of techniques for fine-tuning language models with reinforcement learning, including PPO, and DPO. It provides a user-friendly interface and a wide range of features for fine-tuning and aligning LLMs, which will be the focus of the next section as we go through a case study.</p>
 </section>
@@ -853,7 +854,7 @@ We want to share this article to make sure you have a better understanding of th
 </div>
 <p>Recall our base model is <code class="docutils literal notranslate"><span class="pre">HuggingFaceTB/SmolLM2-360M-Instruct</span></code>. Here, we will use the HuggingFace Inference API to generate rejected responses from a cloud endpoint for enhanced performance:</p>
 <ol class="arabic simple">
-<li><p>Visit the HuggingFace Endpoints UI: <a class="reference external" href="https://ui.endpoints.huggingface.co/">https://ui.endpoints.huggingface.co/</a></p></li>
+<li><p>Visit the HuggingFace Endpoints UI: https://ui.endpoints.huggingface.co/</p></li>
 <li><p>Click “New Endpoint” and select the model <code class="docutils literal notranslate"><span class="pre">HuggingFaceTB/SmolLM2-360M-Instruct</span></code></p></li>
 <li><p>Choose the compute resources (e.g., CPU or GPU instance, GPU preferred)</p></li>
 <li><p>Configure the endpoint settings:</p>
