@@ -452,6 +452,14 @@ We want to share this article to make sure you have a better understanding of th
 <p>At a high-level DPO maximizes the probability of preferred output and minimize rejected output as defined in the following equation:</p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L}_{\text{DPO}}(\pi_\theta; \pi_\text{ref}) = -\mathbb{E}_{(x,y_w,y_l) \sim \mathcal{D}} \left[\log \sigma \left(\beta \underbrace{\log \frac{\pi_\theta(y_w | x)}{\pi_\text{ref}(y_w | x)}}_{\color{green}\text{preferred}} - \beta \underbrace{\log \frac{\pi_\theta(y_l | x)}{\pi_\text{ref}(y_l | x)}}_{\color{red}\text{rejected}}\right)\right]\]</div>
+<p>where,</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\pi_\theta\)</span> represents the language model,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\pi_{ref}\)</span> represents the reference model,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal{D}\)</span> represents the preferences dataset, in which <span class="math notranslate nohighlight">\(x\)</span> represents the input,</p></li>
+<li><p><span class="math notranslate nohighlight">\(y_w\)</span> and <span class="math notranslate nohighlight">\(y_l\)</span> represent the preferred and rejected output, respectively.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span> is a tuning parameter to control the deviation from the base reference policy <span class="math notranslate nohighlight">\(\pi_{ref}\)</span>.</p></li>
+</ul>
 <p>This approach is more straightforward than PPO, as it avoids the need for a reward model and instead uses a direct comparison of model outputs against human preferences.</p>
 <p>Modern libraries such as HuggingFace’s TRL <span id="id21">[<a class="reference internal" href="#id128" title="Hugging Face. Trl. 2024d. TRL. URL: https://huggingface.co/docs/trl/en/index.">Face, 2024d</a>]</span> offer a suite of techniques for fine-tuning language models with reinforcement learning, including PPO, and DPO. It provides a user-friendly interface and a wide range of features for fine-tuning and aligning LLMs, which will be the focus of the next section as we go through a case study.</p>
 </section>
