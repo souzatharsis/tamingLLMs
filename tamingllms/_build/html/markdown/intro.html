@@ -238,9 +238,9 @@
 <li><p><a class="reference internal" href="#prerequisites" id="id9">Prerequisites</a></p></li>
 <li><p><a class="reference internal" href="#setting-up-your-environment" id="id10">Setting Up Your Environment</a></p>
 <ul>
-<li><p><a class="reference internal" href="#python-environment-setup" id="id11">Python Environment Setup</a></p></li>
-<li><p><a class="reference internal" href="#api-keys-configuration" id="id12">API Keys Configuration</a></p></li>
-<li><p><a class="reference internal" href="#code-repository" id="id13">Code Repository</a></p></li>
+<li><p><a class="reference internal" href="#code-repository" id="id11">Code Repository</a></p></li>
+<li><p><a class="reference internal" href="#python-environment-setup" id="id12">Python Environment Setup</a></p></li>
+<li><p><a class="reference internal" href="#api-keys-configuration" id="id13">API Keys Configuration</a></p></li>
 <li><p><a class="reference internal" href="#troubleshooting-common-issues" id="id14">Troubleshooting Common Issues</a></p></li>
 </ul>
 </li>
@@ -360,19 +360,26 @@ All examples and code are:</p>
 <section id="setting-up-your-environment">
 <h2><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">1.9. </span>Setting Up Your Environment</a><a class="headerlink" href="#setting-up-your-environment" title="Permalink to this heading">¶</a></h2>
 <p>Before diving into the examples in this book, you’ll need to set up your development environment. Here’s how to get started:</p>
-<section id="python-environment-setup">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">1.9.1. </span>Python Environment Setup</a><a class="headerlink" href="#python-environment-setup" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create and activate a virtual environment</span>
-python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>taming-llms-env
-<span class="nb">source</span><span class="w"> </span>taming-llms-env/bin/activate<span class="w">  </span><span class="c1"># On Windows, use: taming-llms-env\Scripts\activate</span>
-
-<span class="c1"># Install required packages</span>
-pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<section id="code-repository">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">1.9.1. </span>Code Repository</a><a class="headerlink" href="#code-repository" title="Permalink to this heading">¶</a></h3>
+<p>Clone the book’s companion repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/souzatharsis/tamingllms.git
+<span class="nb">cd</span><span class="w"> </span>tamingllms/notebooks
 </pre></div>
 </div>
 </section>
+<section id="python-environment-setup">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink"><span class="section-number">1.9.2. </span>Python Environment Setup</a><a class="headerlink" href="#python-environment-setup" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create and activate a virtual environment</span>
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>taming-llms-env
+<span class="nb">source</span><span class="w"> </span>taming-llms-env/bin/activate<span class="w">  </span><span class="c1"># On Windows, use: taming-llms-env\Scripts\activate</span>
+</pre></div>
+</div>
+<p>We will try and make the notebook/Chapter as self-contained as possible, including all necessary installs as we go through the examples.
+Feel free to use your preferred package manager to install the dependencies (e.g. <code class="docutils literal notranslate"><span class="pre">pip</span></code>). We used <code class="docutils literal notranslate"><span class="pre">poetry</span></code> to manage dependencies and virtual environments.</p>
+</section>
 <section id="api-keys-configuration">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink"><span class="section-number">1.9.2. </span>API Keys Configuration</a><a class="headerlink" href="#api-keys-configuration" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id13" role="doc-backlink"><span class="section-number">1.9.3. </span>API Keys Configuration</a><a class="headerlink" href="#api-keys-configuration" title="Permalink to this heading">¶</a></h3>
 <ol class="arabic">
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file in the root directory of the project.</p></li>
 <li><p>Add your API keys and other sensitive information to the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file. For example:</p>
@@ -384,14 +391,6 @@ pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </s
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Never share your <code class="docutils literal notranslate"><span class="pre">.env</span></code> file or commit it to version control. It contains sensitive information that should be kept private.</p>
-</div>
-</section>
-<section id="code-repository">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink"><span class="section-number">1.9.3. </span>Code Repository</a><a class="headerlink" href="#code-repository" title="Permalink to this heading">¶</a></h3>
-<p>Clone the book’s companion repository:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/souzatharsis/tamingllms.git
-<span class="nb">cd</span><span class="w"> </span>tamingllms
-</pre></div>
 </div>
 </section>
 <section id="troubleshooting-common-issues">

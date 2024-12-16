@@ -141,15 +141,22 @@ To make the most of this book, you should have:
 
 Before diving into the examples in this book, you'll need to set up your development environment. Here's how to get started:
 
+### Code Repository
+Clone the book's companion repository:
+```bash
+git clone https://github.com/souzatharsis/tamingllms.git
+cd tamingllms/notebooks
+```
+
 ### Python Environment Setup
 ```bash
 # Create and activate a virtual environment
 python -m venv taming-llms-env
 source taming-llms-env/bin/activate  # On Windows, use: taming-llms-env\Scripts\activate
-
-# Install required packages
-pip install -r requirements.txt
 ```
+
+We will try and make the notebook/Chapter as self-contained as possible, including all necessary installs as we go through the examples.
+Feel free to use your preferred package manager to install the dependencies (e.g. `pip`). We used `poetry` to manage dependencies and virtual environments.
 
 ### API Keys Configuration
 1. Create a `.env` file in the root directory of the project.
@@ -163,12 +170,7 @@ pip install -r requirements.txt
 Never share your `.env` file or commit it to version control. It contains sensitive information that should be kept private.
 ```
 
-### Code Repository
-Clone the book's companion repository:
-```bash
-git clone https://github.com/souzatharsis/tamingllms.git
-cd tamingllms
-```
+
 
 ### Troubleshooting Common Issues
 - If you encounter API rate limits, consider using smaller examples or implementing retry logic
