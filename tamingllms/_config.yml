@@ -38,16 +38,16 @@ bibtex_bibfiles:
 only_build_toc_files: true
 
 
-parse:
-  myst_enable_extensions:
-    - amsmath
+#parse:
+#  myst_enable_extensions:
+#    - amsmath
 
 sphinx:
   extra_extensions:
     - sphinxcontrib.mermaid
     - sphinxcontrib.bibtex
   config:
-    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+    #mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
     bibtex_reference_style: author_year
     html_theme: 'press' #insipid
     #html_logo: '_static/logo_w.png'
