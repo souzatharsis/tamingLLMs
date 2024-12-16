@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: Taming LLMs
+message: >-
+  A Practical Guide to LLM Pitfalls with Open Source Software
+authors:
+  - given-names: Tharsis
+    name-particle: T. P.
+    family-names: Souza
+repository-code: 'https://github.com/souzatharsis/tamingLLMs'
+license: CC BY NC SA
