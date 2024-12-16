@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-      <title>3. Wrestling with Structured Output</title>
+      <title>4. Wrestling with Structured Output</title>
     
           <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
@@ -38,8 +38,8 @@
     
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
-  <link rel="next" title="4. The Evals Gap" href="evals.html" />
-  <link rel="prev" title="2. Output Size Limitations" href="output_size_limit.html" /> 
+  <link rel="next" title="5. The Evals Gap" href="evals.html" />
+  <link rel="prev" title="3. Output Size Limitations" href="output_size_limit.html" /> 
   </head>
 
   <body>
@@ -107,6 +107,15 @@
         <span class="caption-text"><a href="../markdown/toc.html#taming-llms">taming llms</a></span>
       </p>
       <ul class="current">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../markdown/preface.html" class="reference internal ">Preface</a>
+            
+
+            
+          </li>
+
         
           <li class="toctree-l1 ">
             
@@ -194,18 +203,18 @@
   <ul class="breadcrumbs">
     <li><a href="../markdown/toc.html">Docs</a> &raquo;</li>
     
-    <li><span class="section-number">3. </span>Wrestling with Structured Output</li>
+    <li><span class="section-number">4. </span>Wrestling with Structured Output</li>
   </ul>
   
 
   <ul class="page-nav">
   <li class="prev">
     <a href="output_size_limit.html"
-       title="previous chapter">← <span class="section-number">2. </span>Output Size Limitations</a>
+       title="previous chapter">← <span class="section-number">3. </span>Output Size Limitations</a>
   </li>
   <li class="next">
     <a href="evals.html"
-       title="next chapter"><span class="section-number">4. </span>The Evals Gap →</a>
+       title="next chapter"><span class="section-number">5. </span>The Evals Gap →</a>
   </li>
 </ul>
   
@@ -214,7 +223,7 @@
           <div class="content" role="main" v-pre>
             
   <section id="wrestling-with-structured-output">
-<h1><a class="toc-backref" href="#id123" role="doc-backlink"><span class="section-number">3. </span>Wrestling with Structured Output</a><a class="headerlink" href="#wrestling-with-structured-output" title="Permalink to this heading">¶</a></h1>
+<h1><a class="toc-backref" href="#id128" role="doc-backlink"><span class="section-number">4. </span>Wrestling with Structured Output</a><a class="headerlink" href="#wrestling-with-structured-output" title="Permalink to this heading">¶</a></h1>
 <blockquote class="epigraph">
 <div><p>In limits, there is freedom. Creativity thrives within structure.</p>
 <p class="attribution">—Julia B. Cameron</p>
@@ -222,42 +231,42 @@
 <nav class="contents" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#wrestling-with-structured-output" id="id123">Wrestling with Structured Output</a></p>
+<li><p><a class="reference internal" href="#wrestling-with-structured-output" id="id128">Wrestling with Structured Output</a></p>
 <ul>
-<li><p><a class="reference internal" href="#introduction" id="id124">Introduction</a></p></li>
-<li><p><a class="reference internal" href="#problem-statement" id="id125">Problem Statement</a></p></li>
-<li><p><a class="reference internal" href="#user-needs" id="id126">User Needs</a></p></li>
-<li><p><a class="reference internal" href="#solutions" id="id127">Solutions</a></p>
+<li><p><a class="reference internal" href="#introduction" id="id129">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#problem-statement" id="id130">Problem Statement</a></p></li>
+<li><p><a class="reference internal" href="#user-needs" id="id131">User Needs</a></p></li>
+<li><p><a class="reference internal" href="#solutions" id="id132">Solutions</a></p>
 <ul>
-<li><p><a class="reference internal" href="#strategies" id="id128">Strategies</a></p></li>
-<li><p><a class="reference internal" href="#techniques-and-tools" id="id129">Techniques and Tools</a></p>
+<li><p><a class="reference internal" href="#strategies" id="id133">Strategies</a></p></li>
+<li><p><a class="reference internal" href="#techniques-and-tools" id="id134">Techniques and Tools</a></p>
 <ul>
-<li><p><a class="reference internal" href="#one-shot-prompts" id="id130">One-Shot Prompts</a></p></li>
-<li><p><a class="reference internal" href="#structured-output-with-provider-specific-apis" id="id131">Structured Output with Provider-Specific APIs</a></p></li>
-<li><p><a class="reference internal" href="#json-mode" id="id132">JSON Mode</a></p></li>
+<li><p><a class="reference internal" href="#one-shot-prompts" id="id135">One-Shot Prompts</a></p></li>
+<li><p><a class="reference internal" href="#structured-output-with-provider-specific-apis" id="id136">Structured Output with Provider-Specific APIs</a></p></li>
+<li><p><a class="reference internal" href="#json-mode" id="id137">JSON Mode</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#langchain" id="id133">LangChain</a></p></li>
-<li><p><a class="reference internal" href="#outlines" id="id134">Outlines</a></p></li>
-<li><p><a class="reference internal" href="#ollama" id="id135">Ollama</a></p></li>
+<li><p><a class="reference internal" href="#langchain" id="id138">LangChain</a></p></li>
+<li><p><a class="reference internal" href="#outlines" id="id139">Outlines</a></p></li>
+<li><p><a class="reference internal" href="#ollama" id="id140">Ollama</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#discussion" id="id136">Discussion</a></p>
+<li><p><a class="reference internal" href="#discussion" id="id141">Discussion</a></p>
 <ul>
-<li><p><a class="reference internal" href="#comparing-solutions" id="id137">Comparing Solutions</a></p></li>
-<li><p><a class="reference internal" href="#best-practices" id="id138">Best Practices</a></p></li>
-<li><p><a class="reference internal" href="#research-and-ongoing-debate" id="id139">Research and Ongoing Debate</a></p></li>
+<li><p><a class="reference internal" href="#comparing-solutions" id="id142">Comparing Solutions</a></p></li>
+<li><p><a class="reference internal" href="#best-practices" id="id143">Best Practices</a></p></li>
+<li><p><a class="reference internal" href="#research-and-ongoing-debate" id="id144">Research and Ongoing Debate</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#conclusion" id="id140">Conclusion</a></p></li>
-<li><p><a class="reference internal" href="#acknowledgements" id="id141">Acknowledgements</a></p></li>
-<li><p><a class="reference internal" href="#references" id="id142">References</a></p></li>
+<li><p><a class="reference internal" href="#conclusion" id="id145">Conclusion</a></p></li>
+<li><p><a class="reference internal" href="#acknowledgements" id="id146">Acknowledgements</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id147">References</a></p></li>
 </ul>
 </li>
 </ul>
 </nav>
 <section id="introduction">
-<h2><a class="toc-backref" href="#id124" role="doc-backlink"><span class="section-number">3.1. </span>Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id129" role="doc-backlink"><span class="section-number">4.1. </span>Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>Large language models (LLMs) excel at generating human-like text, but they often struggle to produce output in a structured format consistently. This poses a significant challenge when we need LLMs to generate data that can be easily processed by other systems, such as databases, APIs, or other software applications.   Sometimes, even with a well-crafted prompt, an LLM might produce an unstructured response when a structured one is expected. This can be particularly challenging when integrating LLMs into systems that require specific data formats.</p>
 <p>As a motivating example, consider the following simple task: Given a segment of a SEC financial filing, generate a two-person discussion about the key financial data from the text in JSON format, simulating what would be a real-world discussion about the underlying companies’ disclosed financial information. We would like to generate a structured output that can be easily parsed and integrated with other systems.</p>
 <p>Throughout this notebook, we will consider as input a segment of a sample SEC filing of Apple Inc.</p>
@@ -363,7 +372,7 @@ Person 2: Absolutely, transparency and compliance with regulations are key in th
 <p>In this example, despite the prompt clearly asking for a JSON object, the LLM generates an unstructured natural language sentence instead. This simple example highlights the inconsistency and unpredictability of LLMs when it comes to producing structured output.</p>
 </section>
 <section id="problem-statement">
-<h2><a class="toc-backref" href="#id125" role="doc-backlink"><span class="section-number">3.2. </span>Problem Statement</a><a class="headerlink" href="#problem-statement" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id130" role="doc-backlink"><span class="section-number">4.2. </span>Problem Statement</a><a class="headerlink" href="#problem-statement" title="Permalink to this heading">¶</a></h2>
 <p>Obtaining structured output from LLMs presents several significant challenges:</p>
 <ul class="simple">
 <li><p><strong>Inconsistency</strong>: LLMs often produce unpredictable results, sometimes generating well-structured output and other times deviating from the expected format.</p></li>
@@ -372,7 +381,7 @@ Person 2: Absolutely, transparency and compliance with regulations are key in th
 </ul>
 </section>
 <section id="user-needs">
-<h2><a class="toc-backref" href="#id126" role="doc-backlink"><span class="section-number">3.3. </span>User Needs</a><a class="headerlink" href="#user-needs" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id131" role="doc-backlink"><span class="section-number">4.3. </span>User Needs</a><a class="headerlink" href="#user-needs" title="Permalink to this heading">¶</a></h2>
 <p>What user needs drive the demand for LLM output constraints when building LLM-based applications? In a recent work by Google Research <span id="id1">[<a class="reference internal" href="#id38" title="Michael Xieyang Liu, Frederick Liu, Alexander J. Fiannaca, Terry Koo, Lucas Dixon, Michael Terry, and Carrie J. Cai. &quot;we need structured output&quot;: towards user-centered constraints on large language model output. In Extended Abstracts of the CHI Conference on Human Factors in Computing Systems, CHI EA '24. New York, NY, USA, 2024. Association for Computing Machinery. URL: https://doi.org/10.1145/3613905.3650756, doi:10.1145/3613905.3650756.">Liu <em>et al.</em>, 2024</a>]</span>, the authors explore the user need for constraints on the output of large language models, drawing on a survey of 51 industry professionals who use LLMs in their work. These needs can be broadly categorized as follows:</p>
 <p><strong>1. Improving Developer Efficiency and Workflow</strong></p>
 <ul class="simple">
@@ -395,10 +404,10 @@ Person 2: Absolutely, transparency and compliance with regulations are key in th
 <p>It is important to emphasize that the ability to constrain LLM output is not just a technical consideration but a fundamental user need, impacting developer efficiency, user experience, and the overall success of LLM-powered applications.</p>
 </section>
 <section id="solutions">
-<h2><a class="toc-backref" href="#id127" role="doc-backlink"><span class="section-number">3.4. </span>Solutions</a><a class="headerlink" href="#solutions" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id132" role="doc-backlink"><span class="section-number">4.4. </span>Solutions</a><a class="headerlink" href="#solutions" title="Permalink to this heading">¶</a></h2>
 <p>Several strategies and tools can be employed to address the challenges of structured output from LLMs.</p>
 <section id="strategies">
-<h3><a class="toc-backref" href="#id128" role="doc-backlink"><span class="section-number">3.4.1. </span>Strategies</a><a class="headerlink" href="#strategies" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id133" role="doc-backlink"><span class="section-number">4.4.1. </span>Strategies</a><a class="headerlink" href="#strategies" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><strong>Schema Guidance</strong>: Providing the LLM with a clear schema or blueprint of the desired output structure helps to constrain its generation and improve consistency. This can be achieved by using tools like Pydantic to define the expected data structure and then using that definition to guide the LLM’s output.</p></li>
 <li><p><strong>Output Parsing</strong>: When LLMs don’t natively support structured output, parsing their text output using techniques like regular expressions or dedicated parsing libraries can extract the desired information. For example, you can use regular expressions to extract specific patterns from the LLM’s output, or you can use libraries like Pydantic to parse the output into structured data objects.</p></li>
@@ -406,9 +415,9 @@ Person 2: Absolutely, transparency and compliance with regulations are key in th
 </ul>
 </section>
 <section id="techniques-and-tools">
-<h3><a class="toc-backref" href="#id129" role="doc-backlink"><span class="section-number">3.4.2. </span>Techniques and Tools</a><a class="headerlink" href="#techniques-and-tools" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id134" role="doc-backlink"><span class="section-number">4.4.2. </span>Techniques and Tools</a><a class="headerlink" href="#techniques-and-tools" title="Permalink to this heading">¶</a></h3>
 <section id="one-shot-prompts">
-<h4><a class="toc-backref" href="#id130" role="doc-backlink"><span class="section-number">3.4.2.1. </span>One-Shot Prompts</a><a class="headerlink" href="#one-shot-prompts" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id135" role="doc-backlink"><span class="section-number">4.4.2.1. </span>One-Shot Prompts</a><a class="headerlink" href="#one-shot-prompts" title="Permalink to this heading">¶</a></h4>
 <p>In one-shot prompting, you provide a single example of the desired output format within the prompt.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -475,7 +484,7 @@ Person 2: Absolutely, transparency and compliance with regulations are key in th
 </div>
 </section>
 <section id="structured-output-with-provider-specific-apis">
-<h4><a class="toc-backref" href="#id131" role="doc-backlink"><span class="section-number">3.4.2.2. </span>Structured Output with Provider-Specific APIs</a><a class="headerlink" href="#structured-output-with-provider-specific-apis" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id136" role="doc-backlink"><span class="section-number">4.4.2.2. </span>Structured Output with Provider-Specific APIs</a><a class="headerlink" href="#structured-output-with-provider-specific-apis" title="Permalink to this heading">¶</a></h4>
 <p>One-shot prompting is a simple technique that can lead to material improvements in structured output, though may not be sufficient for complex (e.g. nested) structures and / or when the model’s output needs to be restricted to a specific set of options or types.</p>
 <p>Provider-specific APIs can offer ways to handle those challenges. We will explore two approaches here using OpenAI’s API:</p>
 <ul class="simple">
@@ -484,12 +493,12 @@ Person 2: Absolutely, transparency and compliance with regulations are key in th
 </ul>
 </section>
 <section id="json-mode">
-<h4><a class="toc-backref" href="#id132" role="doc-backlink"><span class="section-number">3.4.2.3. </span>JSON Mode</a><a class="headerlink" href="#json-mode" title="Permalink to this heading">¶</a></h4>
-<p>JSON mode is a feature provided by most LLM API providers, such as OpenAI, that allows the model to generate output in JSON format. This is particularly useful when you need structured data as a result, such as when parsing the output programmatically or integrating it with other systems that require JSON input. As depicted in <a class="reference internal" href="#id2"><span class="std std-numref">Fig. 3.1</span></a>, JSON mode is implemented by instructing theLLM model to use JSON as response format and optionally defining a target schema.</p>
+<h4><a class="toc-backref" href="#id137" role="doc-backlink"><span class="section-number">4.4.2.3. </span>JSON Mode</a><a class="headerlink" href="#json-mode" title="Permalink to this heading">¶</a></h4>
+<p>JSON mode is a feature provided by most LLM API providers, such as OpenAI, that allows the model to generate output in JSON format. This is particularly useful when you need structured data as a result, such as when parsing the output programmatically or integrating it with other systems that require JSON input. As depicted in <a class="reference internal" href="#id2"><span class="std std-numref">Fig. 4.1</span></a>, JSON mode is implemented by instructing theLLM model to use JSON as response format and optionally defining a target schema.</p>
 <figure class="align-center" id="id2">
 <a class="reference internal image-reference" href="../_images/json.png"><img alt="JSON Mode" src="../_images/json.png" style="width: 822.0px; height: 506.5px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">Conceptual overview of JSON mode.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Conceptual overview of JSON mode.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>When using JSON mode with OpenAI’s API, it is recommended to instruct the model to produce JSON via some message in the conversation, for example via your system message. If you don’t include an explicit instruction to generate JSON, the model may generate an unending stream of whitespace and the request may run continually until it reaches the token limit. To help ensure you don’t forget, the API will throw an error if the string “JSON” does not appear somewhere in the context.</p>
@@ -622,7 +631,7 @@ Extracted places: [&#39;Washington, D.C.&#39;, &#39;California&#39;, &#39;Cupert
 </section>
 </section>
 <section id="langchain">
-<h3><a class="toc-backref" href="#id133" role="doc-backlink"><span class="section-number">3.4.3. </span>LangChain</a><a class="headerlink" href="#langchain" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id138" role="doc-backlink"><span class="section-number">4.4.3. </span>LangChain</a><a class="headerlink" href="#langchain" title="Permalink to this heading">¶</a></h3>
 <p>LangChain is a framework designed to simplify the development of LLM applications. It provider an abstraction layer over many LLM providers, including OpenAI, that offers several tools for parsing structured output.</p>
 <p>In particular, LangChain offers the <code class="docutils literal notranslate"><span class="pre">with_structured_output</span></code> method, which can be used with LLMs that support structured output APIs, allowing you to enforce a schema directly within the prompt.</p>
 <blockquote>
@@ -682,7 +691,7 @@ Extracted places: [&#39;California&#39;, &#39;Cupertino&#39;]
 <p>We observe that the model was able to extract the entities and places from the input text, and return them in the specified format. A full list of models that support <code class="docutils literal notranslate"><span class="pre">.with_structured_output()</span></code> can be found <a class="reference external" href="https://python.langchain.com/docs/integrations/chat/#featured-providers">here</a>.</p>
 </section>
 <section id="outlines">
-<h3><a class="toc-backref" href="#id134" role="doc-backlink"><span class="section-number">3.4.4. </span>Outlines</a><a class="headerlink" href="#outlines" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id139" role="doc-backlink"><span class="section-number">4.4.4. </span>Outlines</a><a class="headerlink" href="#outlines" title="Permalink to this heading">¶</a></h3>
 <p>Outlines <span id="id3">[<a class="reference internal" href="#id15" title="Outlines. Type-safe structured output from llms. https://dottxt-ai.github.io/outlines/latest/, 2024. Accessed: 2024.">Outlines, 2024</a>]</span> is a library specifically focused on structured text generation from LLMs. Under the hood, Outlines works by adjusting the probability distribution of the model’s output logits - the raw scores from the final layer of the neural network that are normally converted into text tokens. By introducing carefully crafted logit biases, Outlines can guide the model to prefer certain tokens over others, effectively constraining its outputs to a predefined set of valid options.</p>
 <p>The authors solve the general guided generation problem <span id="id4">[<a class="reference internal" href="#id60" title="Brandon T. Willard and Rémi Louf. Efficient guided generation for large language models. 2023. URL: https://arxiv.org/abs/2307.09702, arXiv:2307.09702.">Willard and Louf, 2023</a>]</span>, which as a consequence solves the problem of structured output generation, in LLMs by introducing an efficient indexing approach that reformulates neural text generation using finite-state machines (FSMs).</p>
 <p>They define the next token generation as a random variable:</p>
@@ -726,7 +735,7 @@ $$</p>
 <li><p>A/always</p></li>
 </ul>
 <p>This can be done by creating a state machine that has a start state, an end state and a set of valid transitions between states with possible states represented as the following regex string: <code class="docutils literal notranslate"><span class="pre">r&quot;\s*([Yy]es|[Nn]o|[Nn]ever|[Aa]lways)&quot;</span></code>.</p>
-<p>The state machine below illustrates how Outlines works under the hood <a class="reference internal" href="#outlines-state-machine"><span class="std std-numref">Fig. 3.2</span></a>, where:</p>
+<p>The state machine below illustrates how Outlines works under the hood <a class="reference internal" href="#outlines-state-machine"><span class="std std-numref">Fig. 4.2</span></a>, where:</p>
 <ul class="simple">
 <li><p>Prop: Represents the logit token probability given by the LLM</p></li>
 <li><p>Mask: Mask value of the transition as defined by the state machine</p></li>
@@ -735,7 +744,7 @@ $$</p>
 <figure class="align-center" id="outlines-state-machine">
 <a class="reference internal image-reference" href="../_images/outlines_state_machine.png"><img alt="Outlines State Machine" src="../_images/outlines_state_machine.png" style="width: 842.0px; height: 749.5px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 3.2 </span><span class="caption-text">Outlines State Machine.</span><a class="headerlink" href="#outlines-state-machine" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 4.2 </span><span class="caption-text">Outlines State Machine.</span><a class="headerlink" href="#outlines-state-machine" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>The initial “Start” state contains a masking table that controls which tokens can begin the sequence. In this example, only characters from the set <code class="docutils literal notranslate"><span class="pre">[YyNnAa]</span></code> are allowed as valid first characters, with each having an assigned probability and mask value. The masking mechanism effectively filters out invalid tokens by setting their mask values to 0, ensuring only permitted transitions to the “First” state.</p>
@@ -825,7 +834,7 @@ Extracted places: [&#39;California&#39;]
 <p>We observe that the model was able to extract the entities and places from the input text, and return them in the specified format. However, it is interesting to see that the model hallucinates a few entities, a phenomenon that is common for smaller Open Source models that were not fine-tuned on the task of entity extraction.</p>
 </section>
 <section id="ollama">
-<h3><a class="toc-backref" href="#id135" role="doc-backlink"><span class="section-number">3.4.5. </span>Ollama</a><a class="headerlink" href="#ollama" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id140" role="doc-backlink"><span class="section-number">4.4.5. </span>Ollama</a><a class="headerlink" href="#ollama" title="Permalink to this heading">¶</a></h3>
 <p>Ollama is a popular tool that allows you to run large language models (LLMs) locally. It has recently added support for structured output generation. The current <code class="docutils literal notranslate"><span class="pre">ollama</span></code> implementation leverages llama.cpp GBNF (GGML BNF) grammars <span id="id6">[<a class="reference internal" href="#id36" title="Ggerganov. Llama.cpp grammars documentation. https://github.com/ggerganov/llama.cpp/blob/master/grammars/README.md, 2024. Accessed: 2024.">Ggerganov, 2024</a>]</span> to enable structured output generation.</p>
 <p>llama.cpp GBNF forces language models to generate output in specific, predefined formats by constraining their outputs to follow precise rules and patterns. The system accomplishes this through a formal grammar specification that defines exactly how valid outputs can be constructed. It’s essentially an extension of BNF (Backus-Naur Form) <span id="id7">[<a class="reference internal" href="#id37" title="Wikipedia contributors. Backus naur form. https://en.wiktionary.org/wiki/Backus-Naur_form, 2024. Accessed: 2024.">Wikipedia contributors, 2024</a>]</span> with some modern regex-like features added. These rules carefully define what elements are allowed, how they can be combined, and what patterns of repetition and sequencing are valid. By enforcing these constraints during generation, GBNF ensures the model’s output strictly adheres to the desired format.</p>
 <p>Ollama first introduced structured output generation in version 0.5.1 providing support for JSON output but highlighting additional formats are coming soon.</p>
@@ -923,12 +932,12 @@ Extracted places: []
 </section>
 </section>
 <section id="discussion">
-<h2><a class="toc-backref" href="#id136" role="doc-backlink"><span class="section-number">3.5. </span>Discussion</a><a class="headerlink" href="#discussion" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id141" role="doc-backlink"><span class="section-number">4.5. </span>Discussion</a><a class="headerlink" href="#discussion" title="Permalink to this heading">¶</a></h2>
 <section id="comparing-solutions">
-<h3><a class="toc-backref" href="#id137" role="doc-backlink"><span class="section-number">3.5.1. </span>Comparing Solutions</a><a class="headerlink" href="#comparing-solutions" title="Permalink to this heading">¶</a></h3>
-<p>The choice of framework for structured LLM output depends heavily on specific constraints, requirements and use cases. LangChain is the most used LLM framework today with a large developer community base however its structured output support depends on the underlying LLM provider support. Ollama enables straightforward local deployment and experimentation democratizing access to LLMs while fostering privacy and control, however today it only offers JSON format with further formats to come. Outlines emerges as a solution with great flexibility and control over output structure while providing support for a wide range of LLMs. <a class="reference internal" href="#structured-output-frameworks"><span class="std std-numref">Table 3.1</span></a> provides a summary comparison of the different frameworks.</p>
+<h3><a class="toc-backref" href="#id142" role="doc-backlink"><span class="section-number">4.5.1. </span>Comparing Solutions</a><a class="headerlink" href="#comparing-solutions" title="Permalink to this heading">¶</a></h3>
+<p>The choice of framework for structured LLM output depends heavily on specific constraints, requirements and use cases. LangChain is the most used LLM framework today with a large developer community base however its structured output support depends on the underlying LLM provider support. Ollama enables straightforward local deployment and experimentation democratizing access to LLMs while fostering privacy and control, however today it only offers JSON format with further formats to come. Outlines emerges as a solution with great flexibility and control over output structure while providing support for a wide range of LLMs. <a class="reference internal" href="#structured-output-frameworks"><span class="std std-numref">Table 4.1</span></a> provides a summary comparison of the different frameworks.</p>
 <table class="docutils align-default" id="structured-output-frameworks">
-<caption><span class="caption-number">Table 3.1 </span><span class="caption-text">Structured Output Frameworks Comparison</span><a class="headerlink" href="#structured-output-frameworks" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 4.1 </span><span class="caption-text">Structured Output Frameworks Comparison</span><a class="headerlink" href="#structured-output-frameworks" title="Permalink to this table">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Feature</p></th>
 <th class="head"><p>LangChain</p></th>
@@ -971,7 +980,7 @@ Extracted places: []
 </table>
 </section>
 <section id="best-practices">
-<h3><a class="toc-backref" href="#id138" role="doc-backlink"><span class="section-number">3.5.2. </span>Best Practices</a><a class="headerlink" href="#best-practices" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id143" role="doc-backlink"><span class="section-number">4.5.2. </span>Best Practices</a><a class="headerlink" href="#best-practices" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><strong>Clear Schema Definition</strong>: Define the desired output structure clearly. This can be done in several ways including schemas, types, or Pydantic models as appropriate. This ensures the LLM knows exactly what format is expected.</p></li>
 <li><p><strong>Descriptive Naming</strong>: Use meaningful names for fields and elements in your schema. This makes the output more understandable and easier to work with.</p></li>
@@ -980,7 +989,7 @@ Extracted places: []
 </ul>
 </section>
 <section id="research-and-ongoing-debate">
-<h3><a class="toc-backref" href="#id139" role="doc-backlink"><span class="section-number">3.5.3. </span>Research and Ongoing Debate</a><a class="headerlink" href="#research-and-ongoing-debate" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id144" role="doc-backlink"><span class="section-number">4.5.3. </span>Research and Ongoing Debate</a><a class="headerlink" href="#research-and-ongoing-debate" title="Permalink to this heading">¶</a></h3>
 <p>The use of structured output for Large Language Models (LLMs) is a developing area. While the ability to constrain LLM outputs offer clear benefits in parsing, robustness, and integration, there is growing debate on whether it also potentially comes at the cost of performance as well as reasoning abilities. Research in this area should be taken with a grain of salt since findings are mixed and often depend on the specific task and model family at hand furthermore model families are not always comparable and are getting updated by the day! Nonetheless, early findings provide some interesting insights as to why there is no one-size-fits-all solution when it comes to LLMs structured output.</p>
 <p>There is some evidence indicating that LLMs may have bias in their handling of different output formats <span id="id8">[<a class="reference internal" href="#id39" title="Do Xuan Long, Hai Nguyen Ngoc, Tiviatis Sim, Hieu Dao, Shafiq Joty, Kenji Kawaguchi, Nancy F Chen, and Min-Yen Kan. Llms are biased towards output formats! systematically evaluating and mitigating output format bias of llms. arXiv preprint arXiv:2408.08656, 2024.">Long <em>et al.</em>, 2024</a>]</span>. The study examined common output structures like multiple-choice answers, wrapped text, lists, and key-value mappings. The authors analyzed key LLM model families, namely Gemma, Mistral, and ChatGPT, uncovering bias across multiple tasks and formats.  The researchers attributed these biases to the models’ underlying token distributions for different formats. An example of this format bias emerged in the comparison between JSON and YAML outputs. While models like Mistral and Gemma excelled at generating JSON structures, they performed notably worse with YAML. Their YAML outputs often contained extraneous information that degrades output quality. This disparity likely stems from JSON’s prevalence in training data, highlighting how a format’s popularity directly influences model performance. While the studied models can be probably considered outdated by now since models are getting updated on a rapidly fashion, it is important to remark that addressing format bias is critical for advancing LLMs and ensuring their reliable application in real-world scenarios.</p>
 <p>Recent research “Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models” <span id="id9">[<a class="reference internal" href="#id16" title="Zhi Rui Tam, Cheng-Kuang Wu, Yi-Lin Tsai, Chieh-Yen Lin, Hung-yi Lee, and Yun-Nung Chen. Let me speak freely? a study on the impact of format restrictions on performance of large language models. 2024. URL: https://arxiv.org/abs/2408.02442, arXiv:2408.02442.">Tam <em>et al.</em>, 2024</a>]</span> suggests that imposing format restrictions on LLMs might impact their performance, particularly in reasoning-intensive tasks. Further evidence <span id="id10">[<a class="reference internal" href="#id18" title="Aider. Code in json: structured output for llms. https://aider.chat/2024/08/14/code-in-json.html, 2024. Accessed: 2024.">Aider, 2024</a>]</span> suggests LLMs may produce lower quality code if they’re asked to return it as part of a structured JSON response, in particular:</p>
@@ -993,10 +1002,10 @@ Extracted places: []
 <figure class="align-center" id="structured-vs-unstructured">
 <a class="reference internal image-reference" href="../_images/rebuttal.png"><img alt="Structured vs Unstructured Results by .txt team" src="../_images/rebuttal.png" style="width: 744.0px; height: 453.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 3.3 </span><span class="caption-text">Structured vs Unstructured Results by .txt team.</span><a class="headerlink" href="#structured-vs-unstructured" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 4.3 </span><span class="caption-text">Structured vs Unstructured Results by .txt team.</span><a class="headerlink" href="#structured-vs-unstructured" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>The .txt team presents compelling evidence through their reproduction of the paper’s experiments. While their unstructured results align with the original paper’s findings, their structured results paint a dramatically different picture - demonstrating that structured generation actually improves performance (see <a class="reference internal" href="#structured-vs-unstructured"><span class="std std-numref">Fig. 3.3</span></a>). The team has made their experimental notebooks publicly available on GitHub for independent verification <span id="id12">[<a class="reference internal" href="#id19" title="Dottxt. Say what you mean: demos. https://github.com/dottxt-ai/demos/tree/main/say-what-you-mean, 2024. Accessed: 2024.">Dottxt, 2024</a>]</span>.</p>
+<p>The .txt team presents compelling evidence through their reproduction of the paper’s experiments. While their unstructured results align with the original paper’s findings, their structured results paint a dramatically different picture - demonstrating that structured generation actually improves performance (see <a class="reference internal" href="#structured-vs-unstructured"><span class="std std-numref">Fig. 4.3</span></a>). The team has made their experimental notebooks publicly available on GitHub for independent verification <span id="id12">[<a class="reference internal" href="#id19" title="Dottxt. Say what you mean: demos. https://github.com/dottxt-ai/demos/tree/main/say-what-you-mean, 2024. Accessed: 2024.">Dottxt, 2024</a>]</span>.</p>
 <p>.txt team identifies several flaws in the methodology of “Let Me Speak Freely?” that they believe led to inaccurate conclusions:</p>
 <ul class="simple">
 <li><p>The paper finds that structured output improves performance on classification tasks but doesn’t reconcile this finding with its overall negative conclusion about structured output.</p></li>
@@ -1010,15 +1019,15 @@ Extracted places: []
 </section>
 </section>
 <section id="conclusion">
-<h2><a class="toc-backref" href="#id140" role="doc-backlink"><span class="section-number">3.6. </span>Conclusion</a><a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id145" role="doc-backlink"><span class="section-number">4.6. </span>Conclusion</a><a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
 <p>Extracting structured output from LLMs is crucial for integrating them into real-world applications. By understanding the challenges and employing appropriate strategies and tools, developers can improve the reliability and usability of LLM-powered systems, unlocking their potential to automate complex tasks and generate valuable insights.</p>
 </section>
 <section id="acknowledgements">
-<h2><a class="toc-backref" href="#id141" role="doc-backlink"><span class="section-number">3.7. </span>Acknowledgements</a><a class="headerlink" href="#acknowledgements" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id146" role="doc-backlink"><span class="section-number">4.7. </span>Acknowledgements</a><a class="headerlink" href="#acknowledgements" title="Permalink to this heading">¶</a></h2>
 <p>We would like to thank <a class="reference external" href="https://x.com/cameron_pfiffer">Cameron Pfiffer</a> from the .txt team for his insightful review and feedback.</p>
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id142" role="doc-backlink"><span class="section-number">3.8. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id147" role="doc-backlink"><span class="section-number">4.8. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <div class="docutils container" id="id13">
 <div class="citation" id="id18" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id10">Aid24</a><span class="fn-bracket">]</span></span>
@@ -1091,11 +1100,11 @@ Extracted places: []
             <div class="inner"><ul class="page-nav">
   <li class="prev">
     <a href="output_size_limit.html"
-       title="previous chapter">← <span class="section-number">2. </span>Output Size Limitations</a>
+       title="previous chapter">← <span class="section-number">3. </span>Output Size Limitations</a>
   </li>
   <li class="next">
     <a href="evals.html"
-       title="next chapter"><span class="section-number">4. </span>The Evals Gap →</a>
+       title="next chapter"><span class="section-number">5. </span>The Evals Gap →</a>
   </li>
 </ul><div class="footer" role="contentinfo">
     <br>

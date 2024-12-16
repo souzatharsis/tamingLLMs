@@ -6,6 +6,7 @@ root: markdown/toc.md
 options:
   numbered: true
 chapters:
+- file: markdown/preface.md
 - file: markdown/intro.md
 - file: notebooks/output_size_limit.ipynb
 - file: notebooks/structured_output.ipynb
@@ -15,5 +16,6 @@ chapters:
 #- file: markdown
 #- file: notebooks
 #- file: markdown-notebooks
+
 
 

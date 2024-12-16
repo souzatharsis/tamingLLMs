@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+      <title>1. Preface</title>
+    
+          <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/sphinx-thebe.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/scripts/sphinx-book-theme.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script src="../_static/design-tabs.js"></script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+        <script async="async" src="../_static/sphinx-thebe.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../_static/theme-vendors.js"></script> -->
+      <script src="../_static/theme.js" defer></script>
+      <link rel="canonical" href="https://souzatharsis.github.io/tamingllms/markdown/preface.html" />
+    
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="2. Introduction" href="intro.html" />
+  <link rel="prev" title="Taming LLMs" href="toc.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="toc.html" class="home-link">
+    
+      <span class="site-name">tamingLLMs</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/souzatharsis/tamingllms"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://github.com/souzatharsis/tamingllms"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="toc.html#taming-llms">taming llms</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 current">
+            
+              <a href="#" class="reference internal current">Preface</a>
+            
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#references" class="reference internal">References</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="intro.html" class="reference internal ">Introduction</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../notebooks/output_size_limit.html" class="reference internal ">Output Size Limitations</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../notebooks/structured_output.html" class="reference internal ">Wrestling with Structured Output</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../notebooks/evals.html" class="reference internal ">The Evals Gap</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../notebooks/safety.html" class="reference internal ">Safety</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../notebooks/alignment.html" class="reference internal ">Preference-Based Alignment</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="toc.html">Docs</a> &raquo;</li>
+    
+    <li><span class="section-number">1. </span>Preface</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="toc.html"
+       title="previous chapter">← Taming LLMs</a>
+  </li>
+  <li class="next">
+    <a href="intro.html"
+       title="next chapter"><span class="section-number">2. </span>Introduction →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section id="preface">
+<h1><span class="section-number">1. </span>Preface<a class="headerlink" href="#preface" title="Permalink to this heading">¶</a></h1>
+<blockquote class="epigraph">
+<div><p>Models tell you merely what something is like, not what something is.</p>
+<p class="attribution">—Emanuel Derman</p>
+</div></blockquote>
+<p>An alternative title of this book could have been “Language Models Behaving Badly”. If you are coming from a background in financial modeling, you may have noticed the parallel with Emanuel Derman’s seminal work “Models.Behaving.Badly” <span id="id1">[<a class="reference internal" href="#id116" title="E. Derman. Models.Behaving.Badly.: Why Confusing Illusion with Reality Can Lead to Disaster, on Wall Street and in Life. Free Press, 2011. ISBN 9781439165010. URL: https://books.google.co.uk/books?id=lke_cwM4wm8C.">Derman, 2011</a>]</span>. This parallel is not coincidental. Just as Derman cautioned against treating financial models as perfect representations of reality, this book aims to highlight the limitations and pitfalls of Large Language Models (LLMs) in practical applications (of course baring the fact Derman is an actual physicist and legendary author, professor and quant; I am not).</p>
+<p>The book “Models.Behaving.Badly” by Emanuel Derman, a former physicist and Goldman Sachs quant, explores how financial and scientific models can fail when we mistake them for reality rather than treating them as approximations full of assumptions.
+The core premise of his work is that while models can be useful tools for understanding aspects of the world, they inherently involve simplification and assumptions. Derman argues that many financial crises, including the 2008 crash, occurred partly because people put too much faith in mathematical models without recognizing their limitations.</p>
+<p>Like financial models that failed to capture the complexity of human behavior and market dynamics, LLMs have inherent constraints. They can hallucinate facts, struggle with logical reasoning, and fail to maintain consistency across long outputs. Their responses, while often convincing, are probabilistic approximations based on training data rather than true understanding even though humans insist on treating them as “machines that can reason”.</p>
+<p>Today, there is this growing pervasive belief that these models could solve any problem, understand any context, or generate any content as wished by the user. Moreover, language models that were initially designed to be next-token prediction machines and chatbots are now been twisted and wrapped into “reasoning” machines for further integration into technology products and daily-life workflows that control, affect, or decide daily actions of our lives. This technological optimism coupled with lack of understanding of the models’ limitations may pose risks we are still trying to figure out.</p>
+<p>This book serves as an introductory, practical guide for practitioners and technology product builders - software engineers, data scientists, and product managers - who want to create the next generation of GenAI-based products with LLMs while remaining clear-eyed about their limitations and therefore their implications to end-users. Through detailed technical analysis, reproducible Python code examples we explore the gap between LLM capabilities and reliable software product development.</p>
+<p>The goal is not to diminish the transformative potential of LLMs, but rather to promote a more nuanced understanding of their behavior. By acknowledging and working within their constraints, developers can create more reliable and trustworthy applications. After all, as Derman taught us, the first step to using a model effectively is understanding where it breaks down.</p>
+<section id="references">
+<h2><span class="section-number">1.1. </span>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<div class="docutils container" id="id2">
+<div class="citation" id="id116" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">Der11</a><span class="fn-bracket">]</span></span>
+<p>E. Derman. <em>Models.Behaving.Badly.: Why Confusing Illusion with Reality Can Lead to Disaster, on Wall Street and in Life</em>. Free Press, 2011. ISBN 9781439165010. URL: <a class="reference external" href="https://books.google.co.uk/books?id=lke_cwM4wm8C">https://books.google.co.uk/books?id=lke_cwM4wm8C</a>.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./markdown"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="toc.html"
+       title="previous chapter">← Taming LLMs</a>
+  </li>
+  <li class="next">
+    <a href="intro.html"
+       title="next chapter"><span class="section-number">2. </span>Introduction →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 6.2.1 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.9.1.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>
