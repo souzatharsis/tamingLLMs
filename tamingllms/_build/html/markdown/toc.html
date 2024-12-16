@@ -204,209 +204,41 @@
 <h2><em>A Practical Guide to LLM Pitfalls with Open Source Software</em><a class="headerlink" href="#a-practical-guide-to-llm-pitfalls-with-open-source-software" title="Permalink to this heading">¶</a></h2>
 <p>Abstract: <em>The current discourse around Large Language Models (LLMs) tends to focus heavily on their capabilities while glossing over fundamental challenges. Conversely, this book takes a critical look at the key limitations and implementation pitfalls that engineers and technical product managers encounter when building LLM-powered applications. Through practical Python examples and proven open source solutions, it provides an introductory yet comprehensive guide for navigating these challenges. The focus is on concrete problems - from handling unstructured output to managing context windows - with reproducible code examples and battle-tested open source tools. By understanding these pitfalls upfront, readers will be better equipped to build products that harness the power of LLMs while sidestepping their inherent limitations.</em></p>
 </section>
+<section id="preface">
+<h2><a class="reference external" href="https://www.souzatharsis.com/tamingLLMs/markdown/preface.html">Preface</a><a class="headerlink" href="#preface" title="Permalink to this heading">¶</a></h2>
+</section>
 <section id="chapter-1-introduction">
 <h2><a class="reference external" href="https://www.souzatharsis.com/tamingLLMs/markdown/intro.html">Chapter 1: Introduction</a><a class="headerlink" href="#chapter-1-introduction" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>1.1 Core Challenges We’ll Address</p></li>
-<li><p>1.2 A Practical Approach</p></li>
-<li><p>1.3 A Note on Perspective</p></li>
-<li><p>1.4 Who This Book Is For</p></li>
-<li><p>1.5 Outcomes</p></li>
-<li><p>1.6 Prerequisites</p></li>
-<li><p>1.7 Setting Up Your Environment</p>
-<ul>
-<li><p>1.7.1 Python Environment Setup</p></li>
-<li><p>1.7.2 API Keys Configuration</p></li>
-<li><p>1.7.3 Code Repository</p></li>
-<li><p>1.7.4 Troubleshooting Common Issues</p></li>
-</ul>
-</li>
-<li><p>1.8 About the Author(s)</p></li>
-</ul>
 </section>
 <section id="chapter-2-wrestling-with-structured-output">
 <h2><a class="reference external" href="https://www.souzatharsis.com/tamingLLMs/notebooks/structured_output.html">Chapter 2: Wrestling with Structured Output</a><a class="headerlink" href="#chapter-2-wrestling-with-structured-output" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>2.1 The Structured Output Challenge</p></li>
-<li><p>2.2 Problem Statement</p></li>
-<li><p>2.3 Solutions</p>
-<ul>
-<li><p>2.3.1 Strategies</p></li>
-<li><p>2.3.2 Techniques and Tools</p>
-<ul>
-<li><p>2.3.2.1 One-Shot Prompts</p></li>
-<li><p>2.3.2.2 Structured Output with Provider-Specific APIs</p>
-<ul>
-<li><p>2.3.2.2.1 JSON Mode</p></li>
-<li><p>2.3.2.2.2 Structured Output Mode</p></li>
-</ul>
-</li>
-<li><p>2.3.2.3 LangChain</p></li>
-<li><p>2.3.2.4 Outlines</p>
-<ul>
-<li><p>2.3.2.4.1 Multiple Choice Generation</p></li>
-<li><p>2.3.2.4.2 Pydantic model</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>2.4 Discussion</p>
-<ul>
-<li><p>2.4.1 Comparing Solutions</p></li>
-<li><p>2.4.2 Best Practices</p></li>
-<li><p>2.4.3 Research &amp; Ongoing Debate</p></li>
-</ul>
-</li>
-<li><p>2.5 Conclusion</p></li>
-<li><p>2.6 Acknowledgements</p></li>
-<li><p>2.7 References</p></li>
-</ul>
 </section>
-<section id="chapter-3-input-size-and-length-limitations">
-<h2>Chapter 3: Input Size and Length Limitations<a class="headerlink" href="#chapter-3-input-size-and-length-limitations" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>3.1 Context Window Constraints</p></li>
-<li><p>3.2 Handling Long Inputs</p></li>
-<li><p>3.3 Managing Token Limits</p></li>
-<li><p>3.4 Chunking Strategies</p></li>
-<li><p>3.5 Implementation Patterns</p></li>
-<li><p>3.6 Testing Long-form Content</p></li>
-</ul>
+<section id="chapter-3-input-data-challenge">
+<h2>Chapter 3: Input Data Challenge<a class="headerlink" href="#chapter-3-input-data-challenge" title="Permalink to this heading">¶</a></h2>
 </section>
 <section id="chapter-4-output-size-and-length-limitations">
 <h2><a class="reference external" href="https://www.souzatharsis.com/tamingLLMs/notebooks/output_size_limit.html">Chapter 4: Output Size and Length Limitations</a><a class="headerlink" href="#chapter-4-output-size-and-length-limitations" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>4.1 What are Token Limits?</p></li>
-<li><p>4.2 Problem Statement</p></li>
-<li><p>4.3 Content Chunking with Contextual Linking</p>
-<ul>
-<li><p>4.3.1 Generating long-form content</p></li>
-<li><p>4.3.2 Step 1: Chunking the Content</p></li>
-<li><p>4.3.3 Step 2: Writing the Base Prompt Template</p></li>
-<li><p>4.3.4 Step 3: Constructing Dynamic Prompt Parameters</p></li>
-<li><p>4.3.5 Step 4: Generating the Report</p></li>
-<li><p>4.3.6 Example Usage</p></li>
-</ul>
-</li>
-<li><p>4.4 Discussion</p></li>
-<li><p>4.5 Implications</p></li>
-<li><p>4.6 Future Considerations</p></li>
-<li><p>4.7 Conclusion</p></li>
-<li><p>4.8 References</p></li>
-</ul>
 </section>
 <section id="chapter-5-the-evals-gap">
 <h2><a class="reference external" href="https://www.souzatharsis.com/tamingLLMs/notebooks/evals.html">Chapter 5: The Evals Gap</a><a class="headerlink" href="#chapter-5-the-evals-gap" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>5.1 Non-Deterministic Machines</p>
-<ul>
-<li><p>5.1.1 Temperature and Sampling</p></li>
-<li><p>5.1.2 The Temperature Spectrum</p></li>
-</ul>
-</li>
-<li><p>5.2 Emerging Properties</p></li>
-<li><p>5.3 Problem Statement</p></li>
-<li><p>5.4 Evals Design</p>
-<ul>
-<li><p>5.4.1 Conceptual Overview</p></li>
-<li><p>5.4.2 Design Considerations</p></li>
-<li><p>5.4.3 Key Components</p></li>
-<li><p>5.4.4 Metrics</p>
-<ul>
-<li><p>5.4.4.1 Working Example</p></li>
-<li><p>5.4.4.2 Considerations</p></li>
-</ul>
-</li>
-<li><p>5.4.5 Evaluators</p>
-<ul>
-<li><p>5.4.5.1 Model-Based Evaluation</p></li>
-<li><p>5.4.5.2 Human-Based Evaluation</p></li>
-</ul>
-</li>
-<li><p>5.4.6 Benchmarks &amp; Leaderboards</p></li>
-<li><p>5.4.7 Tools</p></li>
-</ul>
-</li>
-<li><p>5.5 References</p></li>
-</ul>
 </section>
-<section id="chapter-6-hallucination-the-reality-gap">
-<h2>Chapter 6: Hallucination: The Reality Gap<a class="headerlink" href="#chapter-6-hallucination-the-reality-gap" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>6.1 Understanding Hallucination Types</p></li>
-<li><p>6.2 Detection Strategies</p></li>
-<li><p>6.3 Grounding Techniques</p></li>
-<li><p>6.4 Retrieval-Augmented Generation (RAG)</p>
-<ul>
-<li><p>6.4.1 Context Selection</p></li>
-<li><p>6.4.2 Indexing Strategies</p></li>
-<li><p>6.4.3 Vector Stores</p></li>
-<li><p>6.4.4 Chunking Methods</p></li>
-</ul>
-</li>
-<li><p>6.5 Practical Implementation</p>
-<ul>
-<li><p>6.5.1 Building a RAG Pipeline</p></li>
-<li><p>6.5.2 Testing and Validation</p></li>
-</ul>
-</li>
-</ul>
+<section id="chapter-6-safety-concerns">
+<h2><a class="reference external" href="https://www.souzatharsis.com/tamingLLMs/notebooks/safety.html">Chapter 6: Safety Concerns</a><a class="headerlink" href="#chapter-6-safety-concerns" title="Permalink to this heading">¶</a></h2>
 </section>
 <section id="chapter-7-preference-based-alignment">
 <h2><a class="reference external" href="https://www.souzatharsis.com/tamingLLMs/notebooks/alignment.html">Chapter 7: Preference-based Alignment</a><a class="headerlink" href="#chapter-7-preference-based-alignment" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>7.1 Introduction</p></li>
-<li><p>7.2 From Raw Capabilities to Preference Alignment</p></li>
-<li><p>7.3 On the Misalignment of Language Models</p></li>
-<li><p>7.4 Aligning Language Models with Human Preferences</p></li>
-<li><p>7.5 Supervised Fine-Tuning (SFT) for Model Alignment</p></li>
-<li><p>7.6 Augmenting SFT with Human Preferences</p></li>
-<li><p>7.7 Case Study: Aligning a Language Model to a Policy</p></li>
-<li><p>7.8 Discussion</p></li>
-</ul>
 </section>
-<section id="chapter-8-the-cost-factor">
-<h2>Chapter 8: The Cost Factor<a class="headerlink" href="#chapter-8-the-cost-factor" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>8.1 Understanding LLM Costs</p></li>
-<li><p>8.2 Token Optimization</p></li>
-<li><p>8.3 Caching Strategies</p>
-<ul>
-<li><p>8.3.1 Implementation Patterns</p></li>
-<li><p>8.3.2 Cache Invalidation</p></li>
-</ul>
-</li>
-<li><p>8.4 Output Prediction Techniques</p></li>
-<li><p>8.5 Cost Monitoring</p></li>
-<li><p>8.6 Optimization Strategies</p></li>
-</ul>
+<section id="chapter-8-breaking-free-from-cloud-providers">
+<h2>Chapter 8: Breaking Free from Cloud Providers<a class="headerlink" href="#chapter-8-breaking-free-from-cloud-providers" title="Permalink to this heading">¶</a></h2>
 </section>
-<section id="chapter-9-breaking-free-from-cloud-providers">
-<h2>Chapter 9: Breaking Free from Cloud Providers<a class="headerlink" href="#chapter-9-breaking-free-from-cloud-providers" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>9.1 The Vendor Lock-in Problem</p></li>
-<li><p>9.2 Self-hosting Solutions</p>
-<ul>
-<li><p>9.2.1 Llama Implementation</p></li>
-<li><p>9.2.2 Llamafile Setup and Usage</p></li>
-<li><p>9.2.3 Ollama Deployment</p></li>
-</ul>
-</li>
-<li><p>9.3 Performance Considerations</p></li>
-<li><p>9.4 Cost Analysis</p></li>
-<li><p>9.5 Migration Strategies</p></li>
-</ul>
+<section id="chapter-9-the-cost-factor">
+<h2>Chapter 9: The Cost Factor<a class="headerlink" href="#chapter-9-the-cost-factor" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="chapter-10-frontiers">
+<h2>Chapter 10: Frontiers<a class="headerlink" href="#chapter-10-frontiers" title="Permalink to this heading">¶</a></h2>
 </section>
 <section id="appendix-a-tools-and-resources">
 <h2>Appendix A: Tools and Resources<a class="headerlink" href="#appendix-a-tools-and-resources" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>A.1 Evaluation Tools</p></li>
-<li><p>A.2 Monitoring Solutions</p></li>
-<li><p>A.3 Open Source Models</p></li>
-<li><p>A.4 Community Resources</p></li>
-</ul>
 </section>
 <section id="citation">
 <h2>Citation<a class="headerlink" href="#citation" title="Permalink to this heading">¶</a></h2>

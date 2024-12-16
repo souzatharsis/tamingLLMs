@@ -13,13 +13,14 @@ Abstract: *The current discourse around Large Language Models (LLMs) tends to fo
 
 | Chapter                                   | Website      | Notebook      | Status               |
 |-------------------------------------------|--------------|---------------|----------------------|
-| Chapter 1: Introduction                   | [html](https://www.souzatharsis.com/tamingLLMs/markdown/intro.html) | N/A           | <span style="background-color: green; color: white;">*Ready for Review*</span>                   |
-| Chapter 2: Wrestling with Structured Output| [html](https://www.souzatharsis.com/tamingLLMs/notebooks/structured_output.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/structured_output.ipynb) | <span style="background-color: green; color: white;">*Ready for Review*</span>     |
+| Preface                   | [html](https://www.souzatharsis.com/tamingLLMs/markdown/preface.html) | N/A           | *Ready for Review*                   |
+| Chapter 1: Introduction                   | [html](https://www.souzatharsis.com/tamingLLMs/markdown/intro.html) | N/A           | *Ready for Review*                   |
+| Chapter 2: Wrestling with Structured Output| [html](https://www.souzatharsis.com/tamingLLMs/notebooks/structured_output.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/structured_output.ipynb) | *Ready for Review*     |
 | Chapter 3: The Input Data Challenge      |              |               |                  |
-| Chapter 4: Output Size Limitations       | [html](https://www.souzatharsis.com/tamingLLMs/notebooks/output_size_limit.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/output_size_limit.ipynb) | <span style="background-color: green; color: white;">*Ready for Review*</span>     |
-| Chapter 5: The Evals Gap                 | [html](https://www.souzatharsis.com/tamingLLMs/notebooks/evals.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/evals.ipynb) | <span style="background-color: green; color: white;">*Ready for Review*</span>     |
+| Chapter 4: Output Size Limitations       | [html](https://www.souzatharsis.com/tamingLLMs/notebooks/output_size_limit.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/output_size_limit.ipynb) | *Ready for Review*    |
+| Chapter 5: The Evals Gap                 | [html](https://www.souzatharsis.com/tamingLLMs/notebooks/evals.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/evals.ipynb) | *Ready for Review*     |
 | Chapter 6: Safety Concerns               | [html](https://www.souzatharsis.com/tamingLLMs/notebooks/safety.html) |               | WIP                  |
-| Chapter 7: Preference-based Alignment     | [html](https://www.souzatharsis.com/tamingLLMs/notebooks/alignment.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/alignment.ipynb) | <span style="background-color: green; color: white;">*Ready for Review*</span>     |
+| Chapter 7: Preference-based Alignment     | [html](https://www.souzatharsis.com/tamingLLMs/notebooks/alignment.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/alignment.ipynb) | *Ready for Review*     |
 | Chapter 8: Breaking Free from Cloud Providers |              |               |                  |
 | Chapter 9: The Cost Factor                |              |               |                 |
 | Chapter 10: Frontiers                |              |               |                 |
