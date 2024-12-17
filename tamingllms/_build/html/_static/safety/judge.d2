@@ -1,0 +1,32 @@
+# Main components
+users: Users {
+  shape: rectangle
+  style.fill: "#F4ECF7"
+}
+
+safety_layer: Safety Layer {
+  shape: rectangle
+  style.fill: "#FAFAF1"
+  style.stroke: "#2ECC71"
+  style.stroke-width: 2
+
+  filter: LLM-as-a-Judge {
+    shape: hexagon
+    style.fill: "#FFFFFF"
+  }
+}
+
+llm: LLM App {
+  shape: rectangle
+  style.fill: "#EBF5FB"
+}
+
+# Connections
+users -> safety_layer.filter: User Message
+users -> llm: User Message (async)
+safety_layer.filter -> llm: Safe Message
+
+llm -> safety_layer.filter: LLM Response
+safety_layer.filter -> users: Safe Response
+
+direction: right
