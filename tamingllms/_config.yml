@@ -46,6 +46,7 @@ sphinx:
   extra_extensions:
     - sphinxcontrib.mermaid
     - sphinxcontrib.bibtex
+    - sphinx.ext.mathjax
   config:
     #mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
     bibtex_reference_style: author_year
