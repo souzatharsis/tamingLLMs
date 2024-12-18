@@ -1,0 +1,163 @@
+# Define container for all phases
+phases: {
+  direction: down
+
+  # Phase 1: Policy Definition
+  policy: Phase 1: Policy Definition {
+    shape: rectangle
+    style.fill: "#E8F6F3"
+    style.stroke: "#2ECC71"
+
+    input: Input {
+      shape: cylinder
+      style.fill: "#FFFFFF"
+      label: "- Company mission & values\n- Regulatory requirements\n- Industry standards"
+    }
+
+    stakeholders: Stakeholders {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+      label: "- Executive Leadership\n- Legal/Compliance\n- Ethics Committee\n- Security Team"
+    }
+
+    output: Output {
+      shape: document
+      style.fill: "#FFFFFF"
+      label: "- Safety policy\n- Ethical guidelines\n- Compliance checklist"
+    }
+  }
+
+  # Phase 2: User Research
+  research: Phase 2: User Research {
+    shape: rectangle
+    style.fill: "#FCF3CF"
+    style.stroke: "#F4D03F"
+
+    input: Input {
+      shape: cylinder
+      style.fill: "#FFFFFF"
+      label: "- Safety Policy\n- User research data\n- Business requirements"
+    }
+
+    stakeholders: Stakeholders {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+      label: "- UX Researchers\n- Product Management\n- User Representatives"
+    }
+
+    output: Output {
+      shape: document
+      style.fill: "#FFFFFF"
+      label: "- Risk assessment\n- User requirements\n- UX impact analysis"
+    }
+  }
+
+  # Phase 3: Evaluation Framework
+  eval: Phase 3: Evaluation Framework {
+    shape: rectangle
+    style.fill: "#EBF5FB"
+    style.stroke: "#3498DB"
+
+    input: Input {
+      shape: cylinder
+      style.fill: "#FFFFFF"
+      label: "- User safety requirements\n- Risk assessment\n- UX impact analysis"
+    }
+
+    stakeholders: Stakeholders {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+      label: "- Product Management\n- Data Scientists\n- Software Engineers"
+    }
+
+    output: Output {
+      shape: document
+      style.fill: "#FFFFFF"
+      label: "- Evals Dataset\n- Target Metrics\n- Benchmark criteria"
+    }
+  }
+
+  # Phase 4: Architecture Design
+  arch: Phase 4: Safety Architecture {
+    shape: rectangle
+    style.fill: "#F4ECF7"
+    style.stroke: "#8E44AD"
+
+    input: Input {
+      shape: cylinder
+      style.fill: "#FFFFFF"
+      label: "- Business requirements\n- Safety requirements\n- Benchmark criteria"
+    }
+
+    stakeholders: Stakeholders {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+      label: "- Security Architects\n- Engineering Team\n- Operations Team"
+    }
+
+    output: Output {
+      shape: document
+      style.fill: "#FFFFFF"
+      label: "- Architecture diagram\n- Component specs\n- Integration points"
+    }
+  }
+
+  # Phase 5: Implementation
+  impl: Phase 5: Implementation {
+    shape: rectangle
+    style.fill: "#FADBD8"
+    style.stroke: "#E74C3C"
+
+    input: Input {
+      shape: cylinder
+      style.fill: "#FFFFFF"
+      label: "- Safety architecture\n- Business requirements\n- Benchmark criteria"
+    }
+
+    stakeholders: Stakeholders {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+      label: "- Engineering Team\n- Product Management"
+    }
+
+    output: Output {
+      shape: document
+      style.fill: "#FFFFFF"
+      label: "- Safety system\n- Integration docs\n- Maintenance plans"
+    }
+  }
+
+  # Phase 6: Go-to-Market
+  gtm: Phase 6: Go-to-Market {
+    shape: rectangle
+    style.fill: "#D5F5E3"
+    style.stroke: "#27AE60"
+
+    input: Input {
+      shape: cylinder
+      style.fill: "#FFFFFF"
+      label: "- Monitoring requirements\n- Incident response plan\n- User feedback"
+    }
+
+    stakeholders: Stakeholders {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+      label: "- Operations Team\n- Engineering Team\n- Support Team"
+    }
+
+    output: Output {
+      shape: document
+      style.fill: "#FFFFFF"
+      label: "- Monitoring system\n- Response procedures\n- Performance dashboards"
+    }
+  }
+
+  # Phase connections
+  policy -> research
+  research -> eval
+  eval -> arch
+  arch -> impl
+  impl -> gtm
+}
+
+direction: down
