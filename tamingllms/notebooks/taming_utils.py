@@ -277,3 +277,76 @@ class ChosenResponseGenerator:
             results_df.to_csv(save_to_csv, quoting=csv.QUOTE_ALL, index=False)
             
         return results_df
+    
+
+from sklearn import metrics
+from sklearn.metrics import confusion_matrix
+
+def confusion_matrix_metrics(y_true, y_pred, combined_flag=None, viz=False):
+
+    if combined_flag is not None:
+        y_pred = y_pred | combined_flag
+
+    actual = y_true
+    predicted = y_pred
+    cm= confusion_matrix(y_true, y_pred)
+    tn=cm[0,0]
+    fp=cm[0,1]
+    fn=cm[1,0]
+    tp=cm[1,1]
+
+    Accuracy = round(metrics.accuracy_score(actual, predicted),2)
+    Precision = round(metrics.precision_score(actual, predicted),2)
+    Sensitivity_recall = round(metrics.recall_score(actual, predicted),2)
+    Specificity = round(metrics.recall_score(actual, predicted, pos_label=0),2)
+    F1_score = round(metrics.f1_score(actual, predicted),2)
+    FP_rate = round(1-Specificity, 2)
+
+    if viz: 
+        print({"Recall":Sensitivity_recall, "Precision":Precision, "Accuracy":Accuracy,"Specificity":Specificity,"FP%":FP_rate,"F1_score":F1_score})
+    
+    return [Sensitivity_recall, Precision, Accuracy, Specificity, FP_rate, F1_score, tn, fp, fn, tp]
+
+
+
+def calculate_validator_metrics(scoring_results, scoring_prompts, bad_sources, good_sources):
+    # Join the DataFrames on prompt_sample_id and id
+    merged_df = scoring_results.merge(scoring_prompts, left_on='prompt_sample_id', right_on='id')
+
+    # Filter rows where source is in sources_list, make sure data is balanced (good and bad samples)
+    sources_list = bad_sources + good_sources
+    bad_sources_df = merged_df[merged_df['source'].isin(bad_sources)]
+    good_sources_df = merged_df[merged_df['source'].isin(good_sources)].sample(n=len(bad_sources_df), random_state=42)
+    filtered_df = pd.concat([good_sources_df, bad_sources_df]).reset_index(drop=True)
+
+    # Initialize a list to store results
+    results = []
+
+    # Iterate through each unique validator name
+    for validator in filtered_df['validator_name'].unique():
+        # Get the true labels and predicted labels
+        y_true = filtered_df[filtered_df['validator_name'] == validator]['is_unsafe_x']
+        y_pred = filtered_df[filtered_df['validator_name'] == validator]['is_unsafe_y']
+
+        # Calculate confusion matrix metrics
+        metrics = confusion_matrix_metrics(y_true, y_pred)
+
+        # Append results to the list
+        results.append({
+            'validator': validator,
+            'sources': '- '.join(sources_list),
+            'TPR': metrics[0],
+            'Precision': metrics[1],
+            'Accuracy': metrics[2],
+            'Specificity': metrics[3],
+            'FPR': metrics[4],
+            'F1_score': metrics[5],
+            'TN': metrics[6],
+            'FP': metrics[7],
+            'FN': metrics[8],
+            'TP': metrics[9]
+        })
+
+    # Create a DataFrame from the results
+    results_df = pd.DataFrame(results)
+    return results_df
