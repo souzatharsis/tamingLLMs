@@ -9,3 +9,6 @@ clean:
 
 convert:
 	poetry run jupyter nbconvert --to markdown $(file)
+
+d2:
+	d2 -t 1 --sketch tamingllms/_static/safety/design.d2 tamingllms/_static/safety/design.svg

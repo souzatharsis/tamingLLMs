@@ -1,0 +1,73 @@
+# Hardware block with specific architectures
+hardware: Hardware {
+  shape: rectangle
+  style.stroke-width: 2
+  style.fill: "#F8F9F9"
+  direction: right
+
+  x86: x86 {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+    style.stroke: "#34495E"
+  }
+
+  arm: ARM {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+    style.stroke: "#34495E"
+  }
+
+  cuda: CUDA {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+    style.stroke: "#34495E"
+  }
+
+  vulkan: Vulkan {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+    style.stroke: "#34495E"
+  }
+
+  metal: Metal {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+    style.stroke: "#34495E"
+  }
+}
+
+# Main inference server
+inference_server: Inference Server {
+  shape: rectangle
+  style.stroke-width: 2
+
+  model1: Model 1 {
+    shape: cylinder
+    style.fill: "#2E86C1"
+  }
+
+  model2: Model 2 {
+    shape: cylinder
+    style.fill: "#2E86C1"
+  }
+
+  model3: Model 3 {
+    shape: cylinder
+    style.fill: "#2E86C1"
+  }
+}
+
+# Apps container
+apps: Apps {
+  shape: rectangle
+  style.stroke-width: 2
+}
+
+# Connections between apps and inference server
+apps -> inference_server: Requests
+inference_server -> apps: Responses
+
+# Connect hardware to inference server
+hardware -> inference_server
+
+direction: right

@@ -13,6 +13,7 @@ chapters:
 - file: notebooks/evals.ipynb
 - file: notebooks/safety.ipynb
 - file: notebooks/alignment.ipynb
+- file: notebooks/local.ipynb
 #- file: markdown
 #- file: notebooks
 #- file: markdown-notebooks
