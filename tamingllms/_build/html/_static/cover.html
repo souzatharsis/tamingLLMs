@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Book Cover - Taming LLMs</title>
+    <!-- React & ReactDOM (UMD) -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+
+    <!-- Babel compiler for JSX -->
+    <script
+      crossorigin
+      src="https://unpkg.com/@babel/standalone@7.17.9/babel.min.js"
+    ></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+      #root {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      /**
+       * A more "open" swirl from top-right to bottom-left.
+       * - Larger amplitude: 100 * (1 - t)
+       * - Slightly higher frequency: 3 * Math.PI
+       * - More lines: 25
+       */
+      function GreenSwirl({ width, height }) {
+        const NUM_LINES = 55; // Number of wave lines
+        const STEPS = 400;    // Points per line
+
+        // Start (top-right) and end (bottom-left)
+        const x0 = width - 50;   
+        const y0 = 50;           
+        const x1 = 50;           
+        const y1 = height - 50;  
+
+        // Main diagonal vector
+        const dx = x1 - x0;
+        const dy = y1 - y0;
+        const diagLength = Math.sqrt(dx * dx + dy * dy);
+
+        // Unit perpendicular to the diagonal
+        // If diag = (dx, dy), perp = (dy, -dx) normalized
+        const perpUnitX = dy / diagLength;
+        const perpUnitY = -dx / diagLength;
+
+        const swirlPaths = [];
+
+        for (let lineIdx = 0; lineIdx < NUM_LINES; lineIdx++) {
+          const phase = (Math.PI * lineIdx) / NUM_LINES; // offset each line
+          let d = "";
+
+          for (let step = 0; step <= STEPS; step++) {
+            const t = step / STEPS;
+
+            // Linear interpolation along the diagonal
+            const baseX = x0 + dx * t;
+            const baseY = y0 + dy * t;
+
+            // Larger amplitude for a more open swirl
+            const amplitude = 100 * (1 - t);
+
+            // Slightly higher frequency: sin(3πt + phase)
+            const offset = amplitude * Math.sin(3 * Math.PI * t + phase);
+
+            // Perp offset added to the base diagonal point
+            const x = baseX + offset * perpUnitX;
+            const y = baseY + offset * perpUnitY;
+
+            if (step === 0) {
+              d += `M ${x},${y}`;
+            } else {
+              d += ` L ${x},${y}`;
+            }
+          }
+
+          swirlPaths.push(
+            <path
+              key={lineIdx}
+              d={d}
+              fill="none"
+              stroke="green"
+              strokeWidth="1"
+              opacity={0.1 + 0.9 * (lineIdx / NUM_LINES)}
+            />
+          );
+        }
+
+        return (
+          <svg
+            width={width}
+            height={height}
+            viewBox={`0 0 ${width} ${height}`}
+            style={{ position: "absolute", top: 0, left: 0 }}
+          >
+            {swirlPaths}
+          </svg>
+        );
+      }
+
+      function BookCover() {
+        const COVER_WIDTH = 600;
+        const COVER_HEIGHT = 800;
+
+        const coverStyle = {
+          position: "relative",
+          width: COVER_WIDTH,
+          height: COVER_HEIGHT,
+          margin: "auto",
+          border: "1px solid #ccc",
+          backgroundColor: "#fff",
+          overflow: "hidden",
+        };
+
+        return (
+          <div style={coverStyle}>
+            {/* Open diagonal swirl from top-right to bottom-left */}
+            <GreenSwirl width={COVER_WIDTH} height={COVER_HEIGHT} />
+
+            {/* Title: top-left area */}
+            <div
+              style={{
+                position: "absolute",
+                top: "80px",
+                left: "40px",
+                width: "350px",
+                fontSize: "48px",
+                fontWeight: "bold",
+                color: "#1C1C1C",
+              }}
+            >
+              Taming LLMs
+            </div>
+
+            {/* Subtitle: below the title */}
+            <div
+              style={{
+                position: "absolute",
+                top: "160px",
+                left: "40px",
+                width: "300px",
+                fontSize: "20px",
+                color: "#555",
+                lineHeight: 1.4,
+              }}
+            >
+              A Practical Guide to LLM Pitfalls <br />
+              with Open Source Software
+            </div>
+
+            {/* Author: now aligned bottom-right */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: "80px",
+                right: "40px",
+                fontSize: "24px",
+                fontWeight: "bold",
+                color: "#1C1C1C",
+                textAlign: "right", // optional, if you have multiple lines
+              }}
+            >
+              Thársis Souza, Ph.D.
+            </div>
+          </div>
+        );
+      }
+
+      function App() {
+        return <BookCover />;
+      }
+
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
+

@@ -7,7 +7,7 @@ date: "2024-12-16"
 Sign-up to receive updates on [new Chapters here](https://tamingllm.substack.com/).
 
  <a href="https://www.souzatharsis.com/tamingLLMs" target="_blank">
-  <img src="../_static/tamingcoverv1.jpg" style="background-color:white; width:50%;" alt="Taming LLMs Cover" />
+  <img src="../_static/cover_curve.png" style="background-color:white; width:50%;" alt="Taming LLMs Cover" />
  </a>
 
 ---

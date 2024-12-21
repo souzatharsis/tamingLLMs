@@ -265,22 +265,25 @@
 <li><p><a class="reference internal" href="#quantization" id="id187">Quantization</a></p></li>
 <li><p><a class="reference internal" href="#benchmarking" id="id188">Benchmarking</a></p></li>
 <li><p><a class="reference internal" href="#results" id="id189">Results</a></p></li>
+<li><p><a class="reference internal" href="#takeaways" id="id190">Takeaways</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#conclusion" id="id190">Conclusion</a></p></li>
-<li><p><a class="reference internal" href="#citation" id="id191">Citation</a></p></li>
-<li><p><a class="reference internal" href="#references" id="id192">References</a></p></li>
+<li><p><a class="reference internal" href="#conclusion" id="id191">Conclusion</a></p></li>
+<li><p><a class="reference internal" href="#citation" id="id192">Citation</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id193">References</a></p></li>
 </ul>
 </li>
 </ul>
 </nav>
 <section id="introduction">
 <h2><a class="toc-backref" href="#id172" role="doc-backlink"><span class="section-number">8.1. </span>Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>Running LLMs locally versus using cloud APIs offers several important advantages.</p>
+<p>Running LLMs locally versus using cloud APIs represents more than just a technical choice - it’s a fundamental reimagining of how we interact with AI technology, putting control back in the hands of users and organizations.</p>
 <p>Privacy concerns are a key driver for running LLMs locally. Individual users may want to process personal documents, photos, emails, and chat messages without sharing sensitive data with third parties. For enterprise use cases, organizations handling medical records must comply with HIPAA regulations that require data to remain on-premise. Similarly, businesses processing confidential documents and intellectual property, as well as organizations subject to GDPR and other privacy regulations, need to maintain strict control over their data processing pipeline.</p>
 <p>Cost considerations are another key advantage of local deployment. Organizations can better control expenses by matching model capabilities to their specific needs rather than paying for potentially excessive cloud API features. For high-volume applications, this customization and control over costs becomes especially valuable compared to the often prohibitive per-request pricing of cloud solutions.</p>
 <p>Applications with stringent latency requirements form another important category. Real-time systems where network delays would be unacceptable, edge computing scenarios demanding quick responses, and interactive applications requiring sub-second performance all benefit from local deployment. This extends to embedded systems in IoT devices where cloud connectivity might be unreliable or impractical. Further, the emergence of Small Language Models (SLMs) has made edge deployment increasingly viable, enabling sophisticated language capabilities on resource-constrained devices like smartphones, tablets and IoT sensors.</p>
 <p>Running locally also enables fine-grained optimization of resource usage and model characteristics based on target use case. Organizations can perform specialized domain adaptation through model modifications, experiment with different architectures and parameters, and integrate models with proprietary systems and workflows. This flexibility is particularly valuable for developing novel applications that require direct model access and manipulation.</p>
+<p>However, local deployment introduces its own set of challenges and considerations. In this Chapter, we explore the landscape of local LLM deployment focused on Open Source models and tools. When choosing a local open source model, organizations must carefully evaluate several interconnected factors, from task suitability and performance requirements to resource constraints and licensing terms. Security, privacy, and long-term strategic fit also play crucial roles in this decision-making process.</p>
+<p>We also cover key tools enabling local model serving and inference, including open source solutions such as LLama.cpp, Llamafile, and Ollama, along with user-friendly frontend interfaces that make local LLM usage more accessible. We conclude with a detailed case study, analyzing how different quantization approaches impact model performance in resource-constrained environments. This analysis reveals the critical tradeoffs between model size, inference speed, and output quality that practitioners must navigate.</p>
 </section>
 <section id="local-models-considerations">
 <h2><a class="toc-backref" href="#id173" role="doc-backlink"><span class="section-number">8.2. </span>Local Models Considerations</a><a class="headerlink" href="#local-models-considerations" title="Permalink to this heading">¶</a></h2>
@@ -290,7 +293,7 @@
 <p>Local LLM deployment tools generally fall into two categories: inference-focused tools that prioritize performance and programmability for technical users requiring production-grade deployments, and user interface (UI) tools that emphasize accessibility through graphical interfaces for non-technical users, trading some performance for ease of use and broader adoption. In the following sections we will explore some of these tools discussing their features, capabilities, and trade-offs.</p>
 <section id="serving-models">
 <h3><a class="toc-backref" href="#id175" role="doc-backlink"><span class="section-number">8.3.1. </span>Serving Models</a><a class="headerlink" href="#serving-models" title="Permalink to this heading">¶</a></h3>
-<p>Before exploring specific tools, it’s important to understand what “serving” an LLM model means in practice. Serving refers to the process of making a trained language model available for inference. At a high level, this involves setting up the infrastructure needed to accept and process input text and generate responses while efficiently managing system resources. The serving process involves several key responsibilities:</p>
+<p>Serving an LLM model involves making it available for inference by setting up infrastructure to process requests and manage resources efficiently. This serving layer handles several key responsibilities, from loading model weights and managing compute resources to processing requests and optimizing performance. Let’s examine the core components of model serving:</p>
 <ol class="arabic simple">
 <li><p><strong>Model Loading and Initialization</strong></p></li>
 </ol>
@@ -327,14 +330,14 @@
 <li><p>Managing concurrent requests and load balancing</p></li>
 <li><p>Monitoring system resource utilization</p></li>
 </ul>
-<p>The serving layer acts as the bridge between the trained model and applications while working on top of a hardware stack as shown in <a class="reference internal" href="#local-inference"><span class="std std-numref">Fig. 8.1</span></a>. Getting this layer right is crucial for building locally-served reliable AI-powered applications, as it directly impacts the end-user experience in terms of response times, reliability, and resource efficiency.</p>
+<p>The serving layer acts as the bridge between the LLM and applications while working on top of a hardware stack as shown in <a class="reference internal" href="#local-inference"><span class="std std-numref">Fig. 8.1</span></a>. Getting this layer right is crucial for building locally-served reliable AI-powered applications, as it directly impacts the end-user experience in terms of response times, reliability, and resource efficiency.</p>
 <figure class="align-center" id="local-inference">
 <a class="reference internal image-reference" href="../_images/local_inference.svg"><img alt="Local Inference Server" height="523" src="../_images/local_inference.svg" width="626" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 8.1 </span><span class="caption-text">Local Inference Server.</span><a class="headerlink" href="#local-inference" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>There are several key tools for serving local LLMs. We will cover the following:</p>
+<p>Model inference can be performed on Open Source models using cloud solutions such as Groq, Cerebras Systems, and SambaNova Systems. Here, we limit our scope to Open Source solutions that enable inference on local machines which includes consumer hardware. We will cover the following:</p>
 <ul class="simple">
 <li><p><strong>LLama.cpp</strong>: A highly optimized C++ implementation for running LLMs on consumer hardware</p></li>
 <li><p><strong>Llamafile</strong>: A self-contained executable format by Mozilla for easy model distribution and deployment</p></li>
@@ -344,8 +347,8 @@
 <section id="llama-cpp">
 <h4><a class="toc-backref" href="#id176" role="doc-backlink"><span class="section-number">8.3.1.1. </span>LLama.cpp</a><a class="headerlink" href="#llama-cpp" title="Permalink to this heading">¶</a></h4>
 <p>LLama.cpp <span id="id1">[<a class="reference internal" href="#id86" title="Georgi Gerganov and contributors. Llama.cpp. GitHub Repository, 2024a. High-performance inference of LLaMA models in pure C/C++. URL: https://github.com/ggerganov/llama.cpp.">Gerganov and contributors, 2024a</a>]</span> is an MIT-licensed open source optimized implementation of the <strong>LLama</strong> model architecture designed to run efficiently on machines with limited memory.</p>
-<p>Originally developed by Georgi Gerganov and today counting with hundreds of contributors, this C/C++ version provides a simplified interface and advanced features that allow language models to run without overwhelming systems. With the ability to run in resource-constrained environments, LLama.cpp makes powerful language models more accessible and practical for a variety of applications.</p>
-<p>In its “Manifesto” <span id="id2">[<a class="reference internal" href="#id76" title="Georgi Gerganov and others. Quantization of llama models - discussion. GitHub Discussion, 2023. Discussion thread about quantization techniques and tradeoffs in llama.cpp. URL: https://github.com/ggerganov/llama.cpp/discussions/205.">Gerganov and others, 2023</a>]</span>, the author sees significant potential in bringing AI from cloud to edge devices, emphasizing the importance of keeping development lightweight, experimental, and enjoyable rather than getting bogged down in complex engineering challenges. The author states a vision that emphasizes maintaining an exploratory, hacker-minded approach while building practical edge computing solutions highlighting the following core principles:</p>
+<p>Originally developed by Georgi Gerganov and today counting with hundreds of contributors, this C/C++ LLama version provides a simplified interface and advanced features that allow language models to run locally without overwhelming systems. With the ability to run in resource-constrained environments, LLama.cpp makes powerful language models more accessible and practical for a variety of applications.</p>
+<p>In its “Manifesto” <span id="id2">[<a class="reference internal" href="#id76" title="Georgi Gerganov and others. Quantization of llama models - discussion. GitHub Discussion, 2023. Discussion thread about quantization techniques and tradeoffs in llama.cpp. URL: https://github.com/ggerganov/llama.cpp/discussions/205.">Gerganov and others, 2023</a>]</span>, the author highlights the significant potential in bringing AI from cloud to edge devices, emphasizing the importance of keeping development lightweight, experimental, and enjoyable rather than getting bogged down in complex engineering challenges. The author states a vision that emphasizes maintaining an exploratory, hacker-minded approach while building practical edge computing solutions highlighting the following core principles:</p>
 <ul class="simple">
 <li><p>“Will remain open-source”</p></li>
 <li><p>Focuses on simplicity and efficiency in codebase</p></li>
@@ -355,7 +358,7 @@
 </ul>
 <p>LLama.cpp implementation characteristics include:</p>
 <ol class="arabic simple">
-<li><p><strong>Memory Efficiency</strong>: The main advantage of LLama.cpp is its ability to reduce memory requirements, allowing users to run large language models on at the edge.</p></li>
+<li><p><strong>Memory Efficiency</strong>: The main advantage of LLama.cpp is its ability to reduce memory requirements, allowing users to run large language models at the edge for instance offering ease of model quantization.</p></li>
 <li><p><strong>Computational Efficiency</strong>: Besides reducing memory usage, LLama.cpp also focuses on improving execution efficiency, using specific C++ code optimizations to accelerate the process.</p></li>
 <li><p><strong>Ease of Implementation</strong>: Although it’s a lighter solution, LLama.cpp doesn’t sacrifice result quality. It maintains the ability to generate texts and perform NLP tasks with high precision.</p></li>
 </ol>
@@ -894,13 +897,23 @@ chmod<span class="w"> </span>+x<span class="w"> </span>TinyLlama-1.1B-Chat-v1.0.
 <li><p>Q4_K quantization (balanced compression/precision)</p></li>
 <li><p>Q6_K quantization (lowest compression, highest precision)</p></li>
 </ul>
-<p>The analysis will focus on three key metrics:</p>
+<p>The analysis will focus on three key types of metrics:</p>
+<ul class="simple">
+<li><p><strong>Quality-based</strong>:</p>
 <ol class="arabic simple">
 <li><p>Perplexity - to measure how well the model predicts text</p></li>
 <li><p>KL divergence - to quantify differences in probability distributions against base model</p></li>
-<li><p>Prompt (tokens/second) - to assess impact in thoughput</p></li>
 </ol>
-<p>While we will focus on the Qwen 2.5 0.5B model, the same analysis can be applied to other models. These insights will help practitioners make informed decisions about quantization strategies based on their specific requirements for model size, speed, and accuracy.</p>
+</li>
+<li><p><strong>Resource/Performance-based</strong>:</p>
+<ol class="arabic simple">
+<li><p>Prompt (tokens/second) - to assess impact in throughput</p></li>
+<li><p>Text Generation (tokens/second) - to assess impact in text generation performance</p></li>
+<li><p>Model Size (MiB) - to assess impact in memory footprint</p></li>
+</ol>
+</li>
+</ul>
+<p>While we will focus on the Qwen 2.5 0.5B model, the same analysis can be applied to other models. These insights will help practitioners make informed decisions about quantization strategies based on their specific requirements for model performance and resource usage.</p>
 <section id="prompts-dataset">
 <h3><a class="toc-backref" href="#id186" role="doc-backlink"><span class="section-number">8.4.1. </span>Prompts Dataset</a><a class="headerlink" href="#prompts-dataset" title="Permalink to this heading">¶</a></h3>
 <p>To evaluate the impact of quantization on model performance, we first need a set of prompts that will serve as input data for our experiments. We’ll construct a dataset from WikiText-2 <span id="id15">[<a class="reference internal" href="#id82" title="Salesforce. Wikitext dataset. Hugging Face Dataset, 2024. Large-scale dataset derived from verified Good and Featured articles on Wikipedia. URL: https://huggingface.co/datasets/Salesforce/wikitext.">Salesforce, 2024</a>]</span>, which contains Wikipedia excerpts.</p>
@@ -1107,6 +1120,24 @@ chmod<span class="w"> </span>+x<span class="w"> </span>TinyLlama-1.1B-Chat-v1.0.
 </tr>
 </tbody>
 </table>
+<p>Next, we benchmark text generation (inference) performance using <code class="docutils literal notranslate"><span class="pre">llama-bench</span></code> across all models:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./build/bin/llama-bench<span class="w"> </span>-r<span class="w"> </span><span class="m">10</span><span class="w"> </span>-t<span class="w"> </span><span class="m">4</span><span class="w"> </span>-m<span class="w"> </span>./models/qwen2.5-0.5b-instruct-fp16.gguf<span class="w"> </span>-m<span class="w"> </span>./models/qwen2.5-0.5b-instruct-q2_k.gguf<span class="w"> </span>-m<span class="w"> </span>./models/qwen2.5-0.5b-instruct-q4_k_m.gguf<span class="w"> </span>-m<span class="w"> </span>./models/qwen2.5-0.5b-instruct-q6_k.gguf
+</pre></div>
+</div>
+<p>The benchmark parameters are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-r</span> <span class="pre">10</span></code>: Run 10 iterations for each model</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-t</span> <span class="pre">4</span></code>: Use 4 threads</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-m</span></code>: Specify model paths for base FP16 model and Q2, Q4, Q6 quantized versions</p></li>
+</ul>
+<p>This runs text generation on a default benchmark of 128 tokens generation length (configurable via <code class="docutils literal notranslate"><span class="pre">-g</span></code> parameter).</p>
+<p>Results in <a class="reference internal" href="#tg"><span class="std std-numref">Fig. 8.8</span></a> indicates the base model delivers text generation performance at 19.73 tokens/s, while the most aggressively quantized Q2 model (390.28 MiB) delivers the highest throughput at 42.62 tokens/s, representing a 2.16x speedup. This pattern continues across Q4 (462.96 MiB, 38.38 tokens/s) and Q6 (614.58 MiB, 35.43 tokens/s), which presents a 1.85x and 1.79x speedup, respectively.</p>
+<figure class="align-center" id="tg">
+<a class="reference internal image-reference" href="../_images/tg.png"><img alt="Text Generation Performance" src="../_images/tg.png" style="width: 873.0px; height: 433.5px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 8.8 </span><span class="caption-text">Text Generation Performance results for Quantization Q2, Q4, Q6 and base models.</span><a class="headerlink" href="#tg" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>Benchmarking was performed on Ubuntu 24.04 LTS for x86_64-linux-gnu on commodity hardware (<a class="reference internal" href="#benchmarking-hardware"><span class="std std-numref">Table 8.5</span></a>) with no dedicated GPU demonstrating the feasibility of running LLMs locally by nearly everyone with a personal computer thanks to LLama.cpp.</p>
 <table class="docutils align-center" id="benchmarking-hardware">
 <caption><span class="caption-number">Table 8.5 </span><span class="caption-text">Benchmarking Hardware</span><a class="headerlink" href="#benchmarking-hardware" title="Permalink to this table">¶</a></caption>
@@ -1119,25 +1150,32 @@ chmod<span class="w"> </span>+x<span class="w"> </span>TinyLlama-1.1B-Chat-v1.0.
 <tbody>
 <tr class="row-even"><td><p>processor</p></td>
 <td><p>Intel(R) Core(TM) i7-8550U CPU &#64; 1</p></td>
-<td><p>Intel(R) Core(TM) i7-8550U CPU &#64; 1</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p>memory</p></td>
 <td><p>15GiB System memory</p></td>
-<td><p>15GiB System memory</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-even"><td><p>storage</p></td>
 <td><p>Samsung SSD 970 EVO Plus 500GB</p></td>
-<td><p>Samsung SSD 970 EVO Plus 500GB</p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>
 </section>
+<section id="takeaways">
+<h3><a class="toc-backref" href="#id190" role="doc-backlink"><span class="section-number">8.4.5. </span>Takeaways</a><a class="headerlink" href="#takeaways" title="Permalink to this heading">¶</a></h3>
+<p>The quantization analysis of the Qwen 2.5 0.5B model demonstrates a clear trade-off among model size, inference speed, and prediction quality. While the base model (1170 MiB) maintains the highest accuracy it operates at the lowest text generation and prompt throughput of 19.73 tokens/s and 94.39 tokens/s, respectively. In contrast, the Q2_K quantization achieves remarkable size reduction (67%) and the highest throughput (42.62 tokens/s), but exhibits the largest quality degradation with a 10.36% perplexity increase and lowest KL divergence among quantized models. Q4_K emerges as a compelling middle ground, offering substantial size reduction (60%) and strong text generation and prompt throughput performance (38.38 tokens/s and 77.08 tokens/s, respectively), while maintaining good model quality with only 3.5% perplexity degradation and middle-ground KL divergence level.</p>
+<p>These results, achieved on commodity CPU hardware, demonstrate that quantization can significantly improve inference speed and reduce model size while maintaining acceptable quality thresholds, making large language models more accessible for resource-constrained environments.</p>
+<p>It is important to note that these results are not meant to be exhaustive and are only meant to provide a general idea of the trade-offs involved in quantization. Targeted benchmarks should be performed for specific use cases and models to best reflect real-world performance.</p>
+</section>
 </section>
 <section id="conclusion">
-<h2><a class="toc-backref" href="#id190" role="doc-backlink"><span class="section-number">8.5. </span>Conclusion</a><a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id191" role="doc-backlink"><span class="section-number">8.5. </span>Conclusion</a><a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
+<p>Our case study demonstrated that quantization can significantly improve inference speed and reduce model size while maintaining acceptable quality thresholds, making large language models more accessible for resource-constrained environments.</p>
 </section>
 <section id="citation">
-<h2><a class="toc-backref" href="#id191" role="doc-backlink"><span class="section-number">8.6. </span>Citation</a><a class="headerlink" href="#citation" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id192" role="doc-backlink"><span class="section-number">8.6. </span>Citation</a><a class="headerlink" href="#citation" title="Permalink to this heading">¶</a></h2>
 <p><a class="reference external" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="CC BY-NC-SA 4.0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@misc</span><span class="p">{</span><span class="n">tharsistpsouza2024tamingllms</span><span class="p">,</span>
   <span class="n">author</span> <span class="o">=</span> <span class="p">{</span><span class="n">Tharsis</span> <span class="n">T</span><span class="o">.</span> <span class="n">P</span><span class="o">.</span> <span class="n">Souza</span><span class="p">},</span>
@@ -1151,7 +1189,7 @@ chmod<span class="w"> </span>+x<span class="w"> </span>TinyLlama-1.1B-Chat-v1.0.
 </div>
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id192" role="doc-backlink"><span class="section-number">8.7. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id193" role="doc-backlink"><span class="section-number">8.7. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <div class="docutils container" id="id17">
 <div class="citation" id="id81" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>Bc24<span class="fn-bracket">]</span></span>
