@@ -32,7 +32,7 @@ Abstract: *The current discourse around Large Language Models (LLMs) tends to fo
 
 ## [Chapter 7: Preference-based Alignment](https://www.souzatharsis.com/tamingLLMs/notebooks/alignment.html)
 
-## Chapter 8: Breaking Free from Cloud Providers
+## [Chapter 8: Breaking Free from Cloud Providers](https://www.souzatharsis.com/tamingLLMs/notebooks/local.html)
 
 ## Chapter 9: The Cost Factor
 

@@ -1,9 +1,10 @@
-Sign-up to receive updates on [new Chapters here](https://tamingllm.substack.com/).
+Receive updates on [new Chapters here](https://tamingllm.substack.com/).
 
  <a href="https://www.souzatharsis.com/tamingLLMs" target="_blank">
   <img src="tamingllms/_static/tamingcoverv1.jpg" style="background-color:white; width:50%;" alt="Taming LLMs Cover" />
  </a>
 
+Please [open an issue](https://github.com/souzatharsis/tamingLLMs/issues) with your feedback or suggestions!
 
 # [Taming LLMs](https://www.souzatharsis.com/tamingLLMs)
 *Publication Date: February 2, 2025*
@@ -20,8 +21,8 @@ Abstract: *The current discourse around Large Language Models (LLMs) tends to fo
 | Chapter 4: Output Size Limitations       | [html](https://www.souzatharsis.com/tamingLLMs/notebooks/output_size_limit.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/output_size_limit.ipynb) | *Ready for Review*    |
 | Chapter 5: The Evals Gap                 | [html](https://www.souzatharsis.com/tamingLLMs/notebooks/evals.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/evals.ipynb) | *Ready for Review*     |
 | Chapter 6: Safety Concerns               | [html](https://www.souzatharsis.com/tamingLLMs/notebooks/safety.html)  |  [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/safety.ipynb) | *Ready for Review*     |
-| Chapter 7: Preference-based Alignment     | [html](https://www.souzatharsis.com/tamingLLMs/notebooks/alignment.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/alignment.ipynb) | *Ready for Review*     |
-| Chapter 8: Breaking Free from Cloud Providers |              |               |       WIP           |
+| Chapter 7: Preference-Based Alignment     | [html](https://www.souzatharsis.com/tamingLLMs/notebooks/alignment.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/alignment.ipynb) | *Ready for Review*     |
+| Chapter 8: Breaking Free from Cloud Providers |   [html](https://www.souzatharsis.com/tamingLLMs/notebooks/local.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/local.ipynb) | WIP     |
 | Chapter 9: The Cost Factor                |              |               |                 |
 | Chapter 10: Frontiers                |              |               |                 |
 | Appendix A: Tools and Resources           |              |               |                |
