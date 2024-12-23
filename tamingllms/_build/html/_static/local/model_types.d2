@@ -1,0 +1,68 @@
+# Main container without label
+direction: down
+
+# Base Models section
+base: Base Models {
+  shape: rectangle
+  style.fill: "#E8F6F3"
+  style.stroke: "#2ECC71"
+
+  desc: Description {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+    label: "Foundation models with broad\nlanguage understanding capabilities"
+  }
+
+  examples: Examples {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+    style.stroke-dash: 3
+    label: "e.g.\n- meta-llama/Llama-2-70b\n- Qwen/Qwen2.5-72B"
+  }
+}
+
+# Instruction-Tuned Models section
+instruction: Instruction-Tuned Models {
+  shape: rectangle
+  style.fill: "#FCF3CF"
+  style.stroke: "#F4D03F"
+
+  desc: Description {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+    label: "Enhanced for interpreting and\nexecuting explicit prompts"
+  }
+
+  examples: Examples {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+    style.stroke-dash: 3
+    label: "e.g.\n- Llama-2-70b-chat-hf\n- Qwen2.5-72B-Instruct"
+  }
+}
+
+# Domain-Adapted Models section
+domain: Domain-Adapted Models {
+  shape: rectangle
+  style.fill: "#EBF5FB"
+  style.stroke: "#3498DB"
+
+  desc: Description {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+    label: "Specialized for particular fields\nthrough domain-specific training"
+  }
+
+  examples: Examples {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+    style.stroke-dash: 3
+    label: "e.g.\n- Med-PaLM 2 (Healthcare)\n- BloombergGPT (Finance)"
+  }
+}
+
+# Show progression
+base -> instruction: Fine-tuning
+instruction -> domain: Domain\nAdaptation
+
+direction: right
