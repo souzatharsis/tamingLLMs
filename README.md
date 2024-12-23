@@ -16,8 +16,8 @@ By understanding these pitfalls upfront, readers will be better equipped to buil
 
 | Chapter                                   | Website      | Notebook      | Status               |
 |-------------------------------------------|--------------|---------------|----------------------|
-| Foreword                   | [html](https://www.souzatharsis.com/tamingLLMs/markdown/preface.html) | N/A           | *Ready for Review*                   |
-| Preface                   | [html](https://www.souzatharsis.com/tamingLLMs/markdown/intro.html) | N/A           | *Ready for Review*                   |
+| Preface                   | [html](https://www.souzatharsis.com/tamingLLMs/markdown/preface.html) | N/A           | *Ready for Review*                   |
+| About the Book                  | [html](https://www.souzatharsis.com/tamingLLMs/markdown/intro.html) | N/A           | *Ready for Review*                   |
 | Chapter 1: Wrestling with Structured Output| [html](https://www.souzatharsis.com/tamingLLMs/notebooks/structured_output.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/structured_output.ipynb) | *Ready for Review*     |
 | Chapter 2: The Input Data Challenge      |              |               |                  |
 | Chapter 3: Output Size Limitations       | [html](https://www.souzatharsis.com/tamingLLMs/notebooks/output_size_limit.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/output_size_limit.ipynb) | *Ready for Review*    |
@@ -26,7 +26,7 @@ By understanding these pitfalls upfront, readers will be better equipped to buil
 | Chapter 6: Preference-Based Alignment     | [html](https://www.souzatharsis.com/tamingLLMs/notebooks/alignment.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/alignment.ipynb) | *Ready for Review*     |
 | Chapter 7: Breaking Free from Cloud-Based Models |   [html](https://www.souzatharsis.com/tamingLLMs/notebooks/local.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/local.ipynb) | *Ready for Review*     |
 | Chapter 8: The Cost Factor                |              |               |                 |
-| Chapter 9: Frontiers                |              |               |                 |
+| Chapter 9: Frontiers                |              |               |     WIP            |
 | Appendix A: Tools and Resources           |              |               |                |
 
 
