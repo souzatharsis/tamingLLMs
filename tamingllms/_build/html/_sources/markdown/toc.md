@@ -20,23 +20,21 @@ Abstract: *The current discourse around Large Language Models (LLMs) tends to fo
 
 ## [About the Book](https://www.souzatharsis.com/tamingLLMs/markdown/intro.html)
 
-## [Chapter 1: Wrestling with Structured Output](https://www.souzatharsis.com/tamingLLMs/notebooks/structured_output.html)
+## [Chapter 1: The Evals Gap](https://www.souzatharsis.com/tamingLLMs/notebooks/evals.html)
 
-## Chapter 2: Input Data Challenge
+## Chapter 2: Managing Input Data
 
-## [Chapter 3: Output Size and Length Limitations](https://www.souzatharsis.com/tamingLLMs/notebooks/output_size_limit.html)
+## [Chapter 3: Structured Output](https://www.souzatharsis.com/tamingLLMs/notebooks/structured_output.html)
 
-## [Chapter 4: The Evals Gap](https://www.souzatharsis.com/tamingLLMs/notebooks/evals.html)
+## [Chapter 4: Safety](https://www.souzatharsis.com/tamingLLMs/notebooks/safety.html)
 
-## [Chapter 5: Safety Concerns](https://www.souzatharsis.com/tamingLLMs/notebooks/safety.html)
+## [Chapter 5: Preference-Based Alignment](https://www.souzatharsis.com/tamingLLMs/notebooks/alignment.html)
 
-## [Chapter 6: Preference-based Alignment](https://www.souzatharsis.com/tamingLLMs/notebooks/alignment.html)
+## [Chapter 6: Local LLMs in Practice](https://www.souzatharsis.com/tamingLLMs/notebooks/local.html)
 
-## [Chapter 7: Local LLMs in Practice](https://www.souzatharsis.com/tamingLLMs/notebooks/local.html)
+## Chapter 7: The Cost Factor
 
-## Chapter 8: The Cost Factor
-
-## Chapter 9: Frontiers
+## Chapter 8: Frontiers
 
 ## Appendix A: Tools and Resources
 

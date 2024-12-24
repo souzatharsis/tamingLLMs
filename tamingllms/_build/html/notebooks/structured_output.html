@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-      <title>4. Wrestling with Structured Output</title>
+      <title>4. Structured Output</title>
     
           <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
@@ -39,8 +39,8 @@
     
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
-  <link rel="next" title="5. The Evals Gap" href="evals.html" />
-  <link rel="prev" title="3. Output Size Limit" href="output_size_limit.html" /> 
+  <link rel="next" title="5. Safety" href="safety.html" />
+  <link rel="prev" title="3. The Evals Gap" href="evals.html" /> 
   </head>
 
   <body>
@@ -143,7 +143,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="output_size_limit.html" class="reference internal ">Output Size Limit</a>
+              <a href="evals.html" class="reference internal ">The Evals Gap</a>
             
 
             
@@ -152,7 +152,7 @@
         
           <li class="toctree-l1 current">
             
-              <a href="#" class="reference internal current">Wrestling with Structured Output</a>
+              <a href="#" class="reference internal current">Structured Output</a>
             
 
             
@@ -162,9 +162,9 @@
                 
                   <li class="toctree-l2"><a href="#problem-statement" class="reference internal">Problem Statement</a></li>
                 
-                  <li class="toctree-l2"><a href="#user-needs" class="reference internal">User Needs</a></li>
+                  <li class="toctree-l2"><a href="#techniques" class="reference internal">Techniques</a></li>
                 
-                  <li class="toctree-l2"><a href="#solutions" class="reference internal">Solutions</a></li>
+                  <li class="toctree-l2"><a href="#tools" class="reference internal">Tools</a></li>
                 
                   <li class="toctree-l2"><a href="#discussion" class="reference internal">Discussion</a></li>
                 
@@ -177,15 +177,6 @@
                   <li class="toctree-l2"><a href="#references" class="reference internal">References</a></li>
                 
               </ul>
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
-              <a href="evals.html" class="reference internal ">The Evals Gap</a>
-            
-
             
           </li>
 
@@ -229,18 +220,18 @@
   <ul class="breadcrumbs">
     <li><a href="../markdown/toc.html">Docs</a> &raquo;</li>
     
-    <li><span class="section-number">4. </span>Wrestling with Structured Output</li>
+    <li><span class="section-number">4. </span>Structured Output</li>
   </ul>
   
 
   <ul class="page-nav">
   <li class="prev">
-    <a href="output_size_limit.html"
-       title="previous chapter">← <span class="section-number">3. </span>Output Size Limit</a>
+    <a href="evals.html"
+       title="previous chapter">← <span class="section-number">3. </span>The Evals Gap</a>
   </li>
   <li class="next">
-    <a href="evals.html"
-       title="next chapter"><span class="section-number">5. </span>The Evals Gap →</a>
+    <a href="safety.html"
+       title="next chapter"><span class="section-number">5. </span>Safety →</a>
   </li>
 </ul>
   
@@ -248,8 +239,8 @@
 <hr>
           <div class="content" role="main" v-pre>
             
-  <section class="tex2jax_ignore mathjax_ignore" id="wrestling-with-structured-output">
-<span id="structure"></span><h1><a class="toc-backref" href="#id188" role="doc-backlink"><span class="section-number">4. </span>Wrestling with Structured Output</a><a class="headerlink" href="#wrestling-with-structured-output" title="Permalink to this heading">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="structured-output">
+<span id="structure"></span><h1><a class="toc-backref" href="#id194" role="doc-backlink"><span class="section-number">4. </span>Structured Output</a><a class="headerlink" href="#structured-output" title="Permalink to this heading">¶</a></h1>
 <blockquote class="epigraph">
 <div><p>In limits, there is freedom. Creativity thrives within structure.</p>
 <p class="attribution">—Julia B. Cameron</p>
@@ -257,159 +248,43 @@
 <nav class="contents" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#wrestling-with-structured-output" id="id188">Wrestling with Structured Output</a></p>
+<li><p><a class="reference internal" href="#structured-output" id="id194">Structured Output</a></p>
 <ul>
-<li><p><a class="reference internal" href="#introduction" id="id189">Introduction</a></p></li>
-<li><p><a class="reference internal" href="#problem-statement" id="id190">Problem Statement</a></p></li>
-<li><p><a class="reference internal" href="#user-needs" id="id191">User Needs</a></p></li>
-<li><p><a class="reference internal" href="#solutions" id="id192">Solutions</a></p>
+<li><p><a class="reference internal" href="#introduction" id="id195">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#problem-statement" id="id196">Problem Statement</a></p></li>
+<li><p><a class="reference internal" href="#techniques" id="id197">Techniques</a></p>
 <ul>
-<li><p><a class="reference internal" href="#strategies" id="id193">Strategies</a></p></li>
-<li><p><a class="reference internal" href="#techniques-and-tools" id="id194">Techniques and Tools</a></p>
-<ul>
-<li><p><a class="reference internal" href="#one-shot-prompts" id="id195">One-Shot Prompts</a></p></li>
-<li><p><a class="reference internal" href="#structured-output-with-provider-specific-apis" id="id196">Structured Output with Provider-Specific APIs</a></p></li>
-<li><p><a class="reference internal" href="#json-mode" id="id197">JSON Mode</a></p></li>
+<li><p><a class="reference internal" href="#prompt-engineering" id="id198">Prompt Engineering</a></p></li>
+<li><p><a class="reference internal" href="#json-mode-fine-tuned" id="id199">JSON Mode (Fine-Tuned)</a></p></li>
+<li><p><a class="reference internal" href="#logit-post-processing" id="id200">Logit Post-Processing</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#langchain" id="id198">LangChain</a></p></li>
-<li><p><a class="reference internal" href="#outlines" id="id199">Outlines</a></p></li>
-<li><p><a class="reference internal" href="#ollama" id="id200">Ollama</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#discussion" id="id201">Discussion</a></p>
+<li><p><a class="reference internal" href="#tools" id="id201">Tools</a></p>
 <ul>
-<li><p><a class="reference internal" href="#comparing-solutions" id="id202">Comparing Solutions</a></p></li>
-<li><p><a class="reference internal" href="#best-practices" id="id203">Best Practices</a></p></li>
-<li><p><a class="reference internal" href="#research-and-ongoing-debate" id="id204">Research and Ongoing Debate</a></p></li>
+<li><p><a class="reference internal" href="#outlines" id="id202">Outlines</a></p></li>
+<li><p><a class="reference internal" href="#langchain" id="id203">LangChain</a></p></li>
+<li><p><a class="reference internal" href="#ollama" id="id204">Ollama</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#conclusion" id="id205">Conclusion</a></p></li>
-<li><p><a class="reference internal" href="#acknowledgements" id="id206">Acknowledgements</a></p></li>
-<li><p><a class="reference internal" href="#citation" id="id207">Citation</a></p></li>
-<li><p><a class="reference internal" href="#references" id="id208">References</a></p></li>
+<li><p><a class="reference internal" href="#discussion" id="id205">Discussion</a></p>
+<ul>
+<li><p><a class="reference internal" href="#best-practices" id="id206">Best Practices</a></p></li>
+<li><p><a class="reference internal" href="#comparing-solutions" id="id207">Comparing Solutions</a></p></li>
+<li><p><a class="reference internal" href="#research-and-ongoing-debate" id="id208">Research and Ongoing Debate</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#conclusion" id="id209">Conclusion</a></p></li>
+<li><p><a class="reference internal" href="#acknowledgements" id="id210">Acknowledgements</a></p></li>
+<li><p><a class="reference internal" href="#citation" id="id211">Citation</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id212">References</a></p></li>
 </ul>
 </li>
 </ul>
 </nav>
 <section id="introduction">
-<h2><a class="toc-backref" href="#id189" role="doc-backlink"><span class="section-number">4.1. </span>Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
-<p>Large language models (LLMs) excel at generating human-like text, but they often struggle to produce output in a structured format consistently. This poses a significant challenge when we need LLMs to generate data that can be easily processed by other systems, such as databases, APIs, or other software applications.   Sometimes, even with a well-crafted prompt, an LLM might produce an unstructured response when a structured one is expected. This can be particularly challenging when integrating LLMs into systems that require specific data formats.</p>
-<p>As a motivating example, consider the following simple task: Given a segment of a SEC financial filing, generate a two-person discussion about the key financial data from the text in JSON format, simulating what would be a real-world discussion about the underlying companies’ disclosed financial information. We would like to generate a structured output that can be easily parsed and integrated with other systems.</p>
-<p>Throughout this notebook, we will consider as input a segment of a sample SEC filing of Apple Inc.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MAX_LENGTH</span> <span class="o">=</span> <span class="mi">10000</span> <span class="c1"># We limit the input length to avoid token issues</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/apple.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-    <span class="n">sec_filing</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="n">sec_filing</span> <span class="o">=</span> <span class="n">sec_filing</span><span class="p">[:</span><span class="n">MAX_LENGTH</span><span class="p">]</span> 
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
-<span class="kn">import</span> <span class="nn">os</span>
-
-<span class="c1"># Load environment variables from .env file</span>
-<span class="n">load_dotenv</span><span class="p">(</span><span class="n">override</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
-<span class="c1"># Define the prompt expecting a structured JSON response</span>
-<span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">Generate a two-person discussion about the key financial data from the following text in JSON format.</span>
-<span class="s2">TEXT: </span><span class="si">{</span><span class="n">sec_filing</span><span class="si">}</span>
-<span class="s2">&quot;&quot;&quot;</span>
-
-<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span>
-    <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}]</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response_content</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response_content</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Person 1: Wow, Apple Inc. seems to have a lot of different products and services they offer. It&#39;s interesting to see the breakdown of their revenue streams in their Form 10-K.
-
-Person 2: Absolutely, they have a diverse portfolio with iPhones, Macs, iPads, wearables, and even services. It&#39;s impressive to see how they have capitalized on different technology trends.
-
-Person 1: I noticed that they have a large market value of over $2.6 trillion as of March 29, 2024. That&#39;s a huge amount, and it shows the confidence investors have in the company.
-
-Person 2: Definitely, that&#39;s a significant figure. It&#39;s also good to see that they are complying with all the required SEC regulations and filing their reports in a timely manner.
-
-Person 1: Yes, it&#39;s crucial for investors to have access to accurate and up-to-date financial information. It helps in making informed decisions about their investments in the company.
-
-Person 2: Absolutely, transparency and compliance with regulations are key in the financial industry. It&#39;s good to see that Apple Inc. is taking those aspects seriously.
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
-
-<span class="k">def</span> <span class="nf">is_json</span><span class="p">(</span><span class="n">myjson</span><span class="p">):</span>
-  <span class="k">try</span><span class="p">:</span>
-    <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">myjson</span><span class="p">)</span>
-  <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="k">return</span> <span class="kc">False</span>
-  <span class="k">return</span> <span class="kc">True</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">is_json</span><span class="p">(</span><span class="n">response_content</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
-</pre></div>
-</div>
-</div>
-</div>
-<p>In this example, despite the prompt clearly asking for a JSON object, the LLM generates an unstructured natural language sentence instead. This simple example highlights the inconsistency and unpredictability of LLMs when it comes to producing structured output.</p>
-</section>
-<section id="problem-statement">
-<h2><a class="toc-backref" href="#id190" role="doc-backlink"><span class="section-number">4.2. </span>Problem Statement</a><a class="headerlink" href="#problem-statement" title="Permalink to this heading">¶</a></h2>
-<p>Obtaining structured output from LLMs presents several significant challenges:</p>
-<ul class="simple">
-<li><p><strong>Inconsistency</strong>: LLMs often produce unpredictable results, sometimes generating well-structured output and other times deviating from the expected format.</p></li>
-<li><p><strong>Lack of Type Safety</strong>: LLMs do not inherently understand data types, which can lead to errors when their output is integrated with systems requiring specific data formats.</p></li>
-<li><p><strong>Prompt Engineering Complexity</strong>: Crafting prompts that effectively guide LLMs to produce the correct structured output is complex and requires extensive experimentation.</p></li>
-</ul>
-</section>
-<section id="user-needs">
-<h2><a class="toc-backref" href="#id191" role="doc-backlink"><span class="section-number">4.3. </span>User Needs</a><a class="headerlink" href="#user-needs" title="Permalink to this heading">¶</a></h2>
-<p>What user needs drive the demand for LLM output constraints when building LLM-based applications? In a recent work by Google Research <span id="id1">[<a class="reference internal" href="#id47" title="Michael Xieyang Liu, Frederick Liu, Alexander J. Fiannaca, Terry Koo, Lucas Dixon, Michael Terry, and Carrie J. Cai. &quot;we need structured output&quot;: towards user-centered constraints on large language model output. In Extended Abstracts of the CHI Conference on Human Factors in Computing Systems, CHI EA '24. New York, NY, USA, 2024. Association for Computing Machinery. URL: https://doi.org/10.1145/3613905.3650756, doi:10.1145/3613905.3650756.">Liu <em>et al.</em>, 2024</a>]</span>, the authors explore the user need for constraints on the output of large language models, drawing on a survey of 51 industry professionals who use LLMs in their work. These needs can be broadly categorized as follows:</p>
+<h2><a class="toc-backref" href="#id195" role="doc-backlink"><span class="section-number">4.1. </span>Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>Language Models excel at generating human-like text, but they often struggle to produce output in a structured format, consistently. This poses a significant challenge when we need LLMs to generate data that can be easily processed by downstream systems, such as databases, APIs, or other software applications. Sometimes, even with a well-crafted prompt, an LLM might produce an unstructured response when a structured one is expected. This can be particularly challenging when integrating LLMs into systems that require specific data formats.</p>
+<p>What user needs drive the demand for LLM output constraints when building LLM-based applications? In a recent work by Google Research <span id="id1">[<a class="reference internal" href="#id51" title="Michael Xieyang Liu, Frederick Liu, Alexander J. Fiannaca, Terry Koo, Lucas Dixon, Michael Terry, and Carrie J. Cai. &quot;we need structured output&quot;: towards user-centered constraints on large language model output. In Extended Abstracts of the CHI Conference on Human Factors in Computing Systems, CHI EA '24. New York, NY, USA, 2024. Association for Computing Machinery. URL: https://doi.org/10.1145/3613905.3650756, doi:10.1145/3613905.3650756.">Liu <em>et al.</em>, 2024</a>]</span>, the authors explore the user need for constraints on the output of large language models, drawing on a survey of 51 industry professionals who use LLMs in their work. These needs can be broadly categorized as follows:</p>
 <p><strong>1. Improving Developer Efficiency and Workflow</strong></p>
 <ul class="simple">
 <li><p><strong>Reducing Trial and Error in Prompt Engineering</strong>: Developers find the process of crafting prompts to elicit desired output formats to be time-consuming, often involving extensive testing and iteration. LLM output constraints could make this process more efficient and predictable.</p></li>
@@ -430,22 +305,80 @@ Person 2: Absolutely, transparency and compliance with regulations are key in th
 </ul>
 <p>It is important to emphasize that the ability to constrain LLM output is not just a technical consideration but a fundamental user need, impacting developer efficiency, user experience, and the overall success of LLM-powered applications.</p>
 </section>
-<section id="solutions">
-<h2><a class="toc-backref" href="#id192" role="doc-backlink"><span class="section-number">4.4. </span>Solutions</a><a class="headerlink" href="#solutions" title="Permalink to this heading">¶</a></h2>
-<p>Several strategies and tools can be employed to address the challenges of structured output from LLMs.</p>
-<section id="strategies">
-<h3><a class="toc-backref" href="#id193" role="doc-backlink"><span class="section-number">4.4.1. </span>Strategies</a><a class="headerlink" href="#strategies" title="Permalink to this heading">¶</a></h3>
+<section id="problem-statement">
+<h2><a class="toc-backref" href="#id196" role="doc-backlink"><span class="section-number">4.2. </span>Problem Statement</a><a class="headerlink" href="#problem-statement" title="Permalink to this heading">¶</a></h2>
+<p>Language models based on the Transformer architecture are next token prediction machines.
+These models calculate the probability of observing a token (from a vocabulary of size <span class="math notranslate nohighlight">\(n\)</span>) conditioned on the previous tokens in the sequence. This process can be expressed mathematically as:</p>
+<div class="math notranslate nohighlight">
+\[P(X) = P(x_1, x_2, \ldots, x_n) = \prod_{i=1}^n p(x_i|x_{&lt;i})\]</div>
+<p>where, <span class="math notranslate nohighlight">\(x_i\)</span> represents the current token being generated, while <span class="math notranslate nohighlight">\(x_{&lt;i}\)</span> encompasses all preceding tokens.</p>
+<p>However, in practical applications, generating high-quality content requires more than just probabilistic next-token generation. The key challenge lies in incorporating control conditions (<span class="math notranslate nohighlight">\(C\)</span>) that guide the model to produce text with specific desired characteristics - whether that’s maintaining a consistent format, following syntactic rules, or adhering to semantic constraints. These control conditions must be integrated while preserving the model’s ability to generate natural, coherent text. This controlled text generation process can be formalized as <span id="id2">[<a class="reference internal" href="#id19" title="Xun Liang, Hanyu Wang, Yezhaohui Wang, Shichao Song, Jiawei Yang, Simin Niu, Jie Hu, Dan Liu, Shunyu Yao, Feiyu Xiong, and Zhiyu Li. Controllable text generation for large language models: a survey. 2024. URL: https://arxiv.org/abs/2408.12599, arXiv:2408.12599.">Liang <em>et al.</em>, 2024</a>]</span>:</p>
+<div class="math notranslate nohighlight">
+\[P(X|C) = P(x_1, x_2, \ldots, x_n|C) = \prod_{i=1}^n p(x_i|x_{&lt;i}, C)\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(C\)</span> represents the set of constraints or control conditions that shape the generated output. The central technical challenge involves incorporating these constraints into the generation process while maintaining the model’s inherent capabilities for producing high-quality, coherent text. This delicate balance between control and quality lies at the heart of structured output generation with LLMs.</p>
+<p>Common constraints (<span class="math notranslate nohighlight">\(C\)</span>) include:</p>
 <ul class="simple">
-<li><p><strong>Schema Guidance</strong>: Providing the LLM with a clear schema or blueprint of the desired output structure helps to constrain its generation and improve consistency. This can be achieved by using tools like Pydantic to define the expected data structure and then using that definition to guide the LLM’s output.</p></li>
-<li><p><strong>Output Parsing</strong>: When LLMs don’t natively support structured output, parsing their text output using techniques like regular expressions or dedicated parsing libraries can extract the desired information. For example, you can use regular expressions to extract specific patterns from the LLM’s output, or you can use libraries like Pydantic to parse the output into structured data objects.</p></li>
-<li><p><strong>Type Enforcement</strong>: Using tools that enforce data types, such as Pydantic in Python, can ensure that the LLM output adheres to the required data formats. This can help to prevent errors when integrating the LLM’s output with other systems.</p></li>
+<li><p><strong>Format Constraints</strong>: Enforcing specific output formats like JSON, XML, or YAML ensures the generated content follows a well-defined structure that can be easily parsed and validated. Format constraints are essential for system integration and data exchange.</p></li>
+<li><p><strong>Multiple Choice Constraints</strong>: Restricting LLM outputs to a predefined set of options helps ensure valid responses and reduces the likelihood of unexpected or invalid outputs. This is particularly useful for classification tasks or when specific categorical responses are required.</p></li>
+<li><p><strong>Static Typing Constraints</strong>: Enforcing data type requirements (strings, integers, booleans, etc.) ensures outputs can be safely processed by downstream systems. Type constraints help prevent runtime errors and improve system reliability.</p></li>
+<li><p><strong>Length Constraints</strong>: Limiting the length of generated content is crucial for UI display, platform requirements (like Twitter’s character limit), and maintaining consistent user experience. Length constraints can be applied at the character, word, or token level.</p></li>
+<li><p><strong>Ensuring Output Consistency</strong>: Consistent output length and format are crucial for user experience and UI clarity. Constraints help maintain this consistency, avoiding overwhelming variability in generated text.</p></li>
 </ul>
 </section>
-<section id="techniques-and-tools">
-<h3><a class="toc-backref" href="#id194" role="doc-backlink"><span class="section-number">4.4.2. </span>Techniques and Tools</a><a class="headerlink" href="#techniques-and-tools" title="Permalink to this heading">¶</a></h3>
-<section id="one-shot-prompts">
-<h4><a class="toc-backref" href="#id195" role="doc-backlink"><span class="section-number">4.4.2.1. </span>One-Shot Prompts</a><a class="headerlink" href="#one-shot-prompts" title="Permalink to this heading">¶</a></h4>
+<section id="techniques">
+<h2><a class="toc-backref" href="#id197" role="doc-backlink"><span class="section-number">4.3. </span>Techniques</a><a class="headerlink" href="#techniques" title="Permalink to this heading">¶</a></h2>
+<p>There are many techniques to obtain structured output from LLMs <span id="id3">[<a class="reference internal" href="#id19" title="Xun Liang, Hanyu Wang, Yezhaohui Wang, Shichao Song, Jiawei Yang, Simin Niu, Jie Hu, Dan Liu, Shunyu Yao, Feiyu Xiong, and Zhiyu Li. Controllable text generation for large language models: a survey. 2024. URL: https://arxiv.org/abs/2408.12599, arXiv:2408.12599.">Liang <em>et al.</em>, 2024</a>]</span>. They can be broadly categorized into two types based on the phase they are applied to:</p>
+<ol class="arabic simple">
+<li><p><strong>Training-Time Techniques (TTT)</strong>: These techniques are applied during the training or post-training phases of the LLM. They are used to guide the model to learn the specific patterns and structures that are required for the task at hand.</p></li>
+<li><p><strong>Inference-Time Techniques (ITT)</strong>: These techniques are applied during the inference phase of the LLM. They are used to guide the model to produce the desired output at inference time.</p></li>
+</ol>
+<p>In <strong>TTT</strong>, the model is trained on a dataset that is specifically designed to teach the model the specific patterns and structures that are required for the task at hand. Hence, this information is added to the model’s weights. This is typically done through the use of supervised learning or RLHF, where the model is trained on a dataset of labeled or preference-based examples.</p>
+<p>In <strong>ITT</strong>, the model is guided to produce the desired output during the inference phase. This is typically done through prompt engineering or logit post-processing.</p>
+<p>Within these two broad categories, the most common approaches we will explore are (in decreasing order of popularity but increasing order of reliability):</p>
+<ul class="simple">
+<li><p><strong>Prompt Engineering</strong> (ITT): Prompt engineering is a technique that involves crafting a prompt to guide the LLM to produce the desired output. This can be achieved by using tools like Pydantic to define the expected data structure and then using that definition to guide the LLM’s output.</p>
+<ul>
+<li><p>Example: Ollama v0.5.1 structured output officially recommends adding “return as JSON” to the prompt to help the model understand the request.</p></li>
+</ul>
+</li>
+<li><p><strong>Fine-Tuning</strong> (TTT): Fine-tuning is a technique that involves training a language model on a specific task or dataset. This allows the model to learn the specific patterns and structures that are required for the task at hand.</p>
+<ul>
+<li><p>Example: NousResearch/Hermes-2-Theta-Llama-3-8B, a model trained on a specific system prompt for Structured Outputs able to respond according to following user provided JSON schema.</p></li>
+</ul>
+</li>
+<li><p><strong>Logit Post-Processing</strong> (ITT): Logit post-processing is a technique that involves modifying the logits of the LLM’s output before it is converted into text. This can be achieved by using tools like Outlines to introduce logit biases that guide the LLM to produce the desired output.</p>
+<ul>
+<li><p>Example: Outlines, a Python package that allows to guide the generation process using regular expressions.</p></li>
+</ul>
+</li>
+</ul>
+<section id="prompt-engineering">
+<h3><a class="toc-backref" href="#id198" role="doc-backlink"><span class="section-number">4.3.1. </span>Prompt Engineering</a><a class="headerlink" href="#prompt-engineering" title="Permalink to this heading">¶</a></h3>
 <p>In one-shot prompting, you provide a single example of the desired output format within the prompt.</p>
+<p>As a motivating example, consider the following simple task: Given a segment of a SEC financial filing, generate a two-person discussion about the key financial data from the text in JSON format, simulating what would be a real-world discussion about the underlying companies’ disclosed financial information. We would like to generate a structured output that can be easily parsed and integrated with other systems.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MAX_LENGTH</span> <span class="o">=</span> <span class="mi">10000</span> <span class="c1"># We limit the input length to avoid token issues</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/apple.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">sec_filing</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">sec_filing</span> <span class="o">=</span> <span class="n">sec_filing</span><span class="p">[:</span><span class="n">MAX_LENGTH</span><span class="p">]</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># Load environment variables from .env file</span>
+<span class="n">load_dotenv</span><span class="p">(</span><span class="n">override</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
@@ -499,6 +432,20 @@ Person 2: Absolutely, transparency and compliance with regulations are key in th
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="k">def</span> <span class="nf">is_json</span><span class="p">(</span><span class="n">myjson</span><span class="p">):</span>
+  <span class="k">try</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">myjson</span><span class="p">)</span>
+  <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">return</span> <span class="kc">False</span>
+  <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">is_json</span><span class="p">(</span><span class="n">response_content</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -510,22 +457,15 @@ Person 2: Absolutely, transparency and compliance with regulations are key in th
 </div>
 </div>
 </section>
-<section id="structured-output-with-provider-specific-apis">
-<h4><a class="toc-backref" href="#id196" role="doc-backlink"><span class="section-number">4.4.2.2. </span>Structured Output with Provider-Specific APIs</a><a class="headerlink" href="#structured-output-with-provider-specific-apis" title="Permalink to this heading">¶</a></h4>
+<section id="json-mode-fine-tuned">
+<h3><a class="toc-backref" href="#id199" role="doc-backlink"><span class="section-number">4.3.2. </span>JSON Mode (Fine-Tuned)</a><a class="headerlink" href="#json-mode-fine-tuned" title="Permalink to this heading">¶</a></h3>
 <p>One-shot prompting is a simple technique that can lead to material improvements in structured output, though may not be sufficient for complex (e.g. nested) structures and / or when the model’s output needs to be restricted to a specific set of options or types.</p>
-<p>Provider-specific APIs can offer ways to handle those challenges. We will explore two approaches here using OpenAI’s API:</p>
-<ul class="simple">
-<li><p><strong>JSON Mode</strong>: Most LLM APIs today offer features specifically designed for generating JSON output.</p></li>
-<li><p><strong>Structured Outputs</strong>: Some LLM APIs offer features specifically designed for generating structured outputs with type safety.</p></li>
-</ul>
-</section>
-<section id="json-mode">
-<h4><a class="toc-backref" href="#id197" role="doc-backlink"><span class="section-number">4.4.2.3. </span>JSON Mode</a><a class="headerlink" href="#json-mode" title="Permalink to this heading">¶</a></h4>
-<p>JSON mode is a feature provided by most LLM API providers, such as OpenAI, that allows the model to generate output in JSON format. This is particularly useful when you need structured data as a result, such as when parsing the output programmatically or integrating it with other systems that require JSON input. As depicted in <a class="reference internal" href="#id2"><span class="std std-numref">Fig. 4.1</span></a>, JSON mode is implemented by instructing theLLM model to use JSON as response format and optionally defining a target schema.</p>
-<figure class="align-center" id="id2">
+<p>Some models offer so-called “JSON Mode” as an attempt to handle those challenges, which are a form of fine-tuning, hence while useful it is not guaranteed to work for all models.</p>
+<p>JSON mode is a feature provided by most LLM API providers, such as OpenAI, that allows the model to generate output in JSON format. This is particularly useful when you need structured data as a result, such as when parsing the output programmatically or integrating it with other systems that require JSON input. As depicted in <a class="reference internal" href="#json-mode"><span class="std std-numref">Fig. 4.1</span></a>, JSON mode is implemented by instructing the LLM model to use JSON as response format and optionally defining a target schema.</p>
+<figure class="align-center" id="json-mode">
 <a class="reference internal image-reference" href="../_images/json.png"><img alt="JSON Mode" src="../_images/json.png" style="width: 822.0px; height: 506.5px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Conceptual overview of JSON mode.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Conceptual overview of JSON mode.</span><a class="headerlink" href="#json-mode" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>When using JSON mode with OpenAI’s API, it is recommended to instruct the model to produce JSON via some message in the conversation, for example via your system message. If you don’t include an explicit instruction to generate JSON, the model may generate an unending stream of whitespace and the request may run continually until it reaches the token limit. To help ensure you don’t forget, the API will throw an error if the string “JSON” does not appear somewhere in the context.</p>
@@ -562,26 +502,14 @@ Person 2: Absolutely, transparency and compliance with regulations are key in th
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">is_json</span><span class="p">(</span><span class="n">response_content</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
-</pre></div>
-</div>
-</div>
-</div>
 <p>This example solution is specific to OpenAI’s API. Other LLM providers offer similar functionality, for example:</p>
 <ul class="simple">
 <li><p>Google’s Vertex AI offers a <code class="docutils literal notranslate"><span class="pre">parse</span></code> method for structured outputs.</p></li>
 <li><p>Anthropic offers a <code class="docutils literal notranslate"><span class="pre">structured</span></code> method for structured outputs.</p></li>
 </ul>
 <p>JSON mode will not guarantee the output matches any specific schema, only that it is valid and parses without errors. For that purpose, we can leverage a new feature recently released by OpenAI called “Structured Outputs” to ensure the output data matches a target schema with type safety.</p>
-<p><strong>Structured Output Mode</strong></p>
-<p>Structured Outputs is a feature that ensures the model will always generate responses that adhere to your supplied JSON Schema, so you don’t need to worry about the model omitting a required key, or hallucinating an invalid enum value.</p>
+<p><strong>A Note on Structured Output Mode</strong></p>
+<p>In addition to JSON mode, it is worth mentioning that “Structured Output” mode is also becoming popular among LLM providers. This is a feature that ensures the model will <em>always</em> generate responses that adhere to your supplied JSON Schema, so you don’t need to worry about the model omitting a required key, or hallucinating an invalid enum value.</p>
 <p>Some benefits of Structured Outputs include:</p>
 <ul class="simple">
 <li><p><strong>Reliable type-safety</strong>: No need to validate or retry incorrectly formatted responses.</p></li>
@@ -654,73 +582,243 @@ Extracted places: [&#39;Washington, D.C.&#39;, &#39;California&#39;, &#39;Cupert
 <li><p><strong>Schema Adherence:</strong>  Structured Outputs in OpenAI API guarantee that the response adheres to the provided schema.</p></li>
 </ul>
 <p>This structured approach improves the reliability and usability of your application by ensuring consistent, predictable output from the OpenAI API.</p>
-<p>This example solution is specific to OpenAI’s API. That begs the question: How can we solve this problem generally for widely available LLM providers? In the next sections, we will explore how <code class="docutils literal notranslate"><span class="pre">LangChain</span></code> and <code class="docutils literal notranslate"><span class="pre">Outlines</span></code> may serve as general purpose tools that can help us do just that.</p>
+<p>This example solution is specific to OpenAI’s API. That begs the question: How can we solve this problem generally for widely available LLM providers? Enters logit post-processing.</p>
 </section>
-</section>
-<section id="langchain">
-<h3><a class="toc-backref" href="#id198" role="doc-backlink"><span class="section-number">4.4.3. </span>LangChain</a><a class="headerlink" href="#langchain" title="Permalink to this heading">¶</a></h3>
-<p>LangChain is a framework designed to simplify the development of LLM applications. It provider an abstraction layer over many LLM providers, including OpenAI, that offers several tools for parsing structured output.</p>
-<p>In particular, LangChain offers the <code class="docutils literal notranslate"><span class="pre">with_structured_output</span></code> method, which can be used with LLMs that support structured output APIs, allowing you to enforce a schema directly within the prompt.</p>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">with_structured_output</span></code> takes a schema as input which specifies the names, types, and descriptions of the desired output attributes. The method returns a model-like Runnable, except that instead of outputting strings or messages it outputs objects corresponding to the given schema. The schema can be specified as a TypedDict class, JSON Schema or a Pydantic class. If TypedDict or JSON Schema are used then a dictionary will be returned by the Runnable, and if a Pydantic class is used then a Pydantic object will be returned.</p>
-</div></blockquote>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-qU<span class="w"> </span>langchain-openai
-</pre></div>
-</div>
+<section id="logit-post-processing">
+<h3><a class="toc-backref" href="#id200" role="doc-backlink"><span class="section-number">4.3.3. </span>Logit Post-Processing</a><a class="headerlink" href="#logit-post-processing" title="Permalink to this heading">¶</a></h3>
+<p>Logit post-processing is a technique that involves modifying the logits of the LLM’s output before it is converted into text.</p>
+<p>The text generation process follows a probabilistic approach. At each step, the model calculates the probability distribution over its entire vocabulary to determine the most likely next token.</p>
+<p>Let’s examine how an LLM processes an example prompt “Is Enzo a good name for a baby?” as depicted in <a class="reference internal" href="#logit"><span class="std std-numref">Fig. 4.2</span></a>:</p>
+<ol class="arabic simple">
+<li><p>The tokenizer first segments the input text into tokens</p></li>
+<li><p>Each token gets mapped to a unique numerical ID (e.g., “Enzo” → 1652, “good” → 171)</p></li>
+<li><p>The language model processes these token IDs through its neural network</p></li>
+<li><p>The model produces logits - unnormalized scores for each possible next token</p></li>
+<li><p>A softmax transformation converts these raw logits into a proper probability distribution</p></li>
+<li><p>The highest probability (0.0325) indicates the model’s strongest prediction for the next token</p></li>
+</ol>
+<figure class="align-center" id="logit">
+<a class="reference internal image-reference" href="../_images/logit.svg"><img alt="Logit" height="242" src="../_images/logit.svg" width="754" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.2 </span><span class="caption-text">Text Generation Process.</span><a class="headerlink" href="#logit" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>We can leverage the <code class="docutils literal notranslate"><span class="pre">transformers</span></code> library to extract the logits of the last token of the prompt.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain_openai</span> <span class="kn">import</span> <span class="n">ChatOpenAI</span>
-<span class="kn">from</span> <span class="nn">langchain_core.prompts</span> <span class="kn">import</span> <span class="n">ChatPromptTemplate</span>
-<span class="k">def</span> <span class="nf">extract_from_sec_filing_langchain</span><span class="p">(</span><span class="n">sec_filing_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SECExtraction</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Extracts structured data from an input SEC filing text using LangChain.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">llm</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">&quot;HuggingFaceTB/SmolLM2-1.7B-Instruct&quot;</span>
+<span class="n">PROMPT</span> <span class="o">=</span> <span class="s2">&quot;Is Enzo a good name for a baby?&quot;</span>
 
-    <span class="n">structured_llm</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">with_structured_output</span><span class="p">(</span><span class="n">SECExtraction</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModelForCausalLM</span>
+<span class="kn">import</span> <span class="nn">torch</span>
 
-    <span class="n">prompt_template</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">(</span>
-        <span class="p">[</span>
-            <span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="n">prompt</span><span class="p">),</span>
-            <span class="p">(</span><span class="s2">&quot;human&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{sec_filing_text}</span><span class="s2">&quot;</span><span class="p">),</span>
-        <span class="p">]</span>
-    <span class="p">)</span>
-
-    <span class="n">llm_chain</span> <span class="o">=</span> <span class="n">prompt_template</span> <span class="o">|</span> <span class="n">structured_llm</span>
-    
-    <span class="k">return</span> <span class="n">llm_chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">sec_filing_text</span><span class="p">)</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">MODEL_NAME</span> <span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">MODEL_NAME</span><span class="p">,</span> <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt_extraction</span> <span class="o">=</span> <span class="s2">&quot;You are an expert at structured data extraction. You will be given unstructured text from a SEC filing and extracted names of mentioned entities and places and should convert the response into the given structure.&quot;</span>
-<span class="n">sec_extraction_langchain</span> <span class="o">=</span> <span class="n">extract_from_sec_filing_langchain</span><span class="p">(</span><span class="n">sec_filing</span><span class="p">,</span> <span class="n">prompt_extraction</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">PROMPT</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+
+<span class="c1"># Get logits</span>
+<span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">inference_mode</span><span class="p">():</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
+    <span class="n">logits</span> <span class="o">=</span> <span class="n">outputs</span><span class="o">.</span><span class="n">logits</span>
+
+<span class="c1"># Logits for the last token</span>
+<span class="n">last_token_logits</span> <span class="o">=</span> <span class="n">logits</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+
+<span class="n">next_token_probs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">last_token_logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">top_k_probs</span><span class="p">,</span> <span class="n">top_k_indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="n">next_token_probs</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Print the actual tokens, skipping special tokens</span>
+<span class="n">top_k_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">top_k_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Top predicted tokens and probabilities:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">prob</span><span class="p">,</span> <span class="n">token</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">top_k_probs</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="n">k</span><span class="p">],</span> <span class="n">top_k_tokens</span><span class="p">[:</span><span class="n">k</span><span class="p">]):</span>
+    <span class="k">if</span> <span class="n">token</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>  <span class="c1"># Only print non-empty tokens</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="n">prob</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Top</span> <span class="n">predicted</span> <span class="n">tokens</span> <span class="ow">and</span> <span class="n">probabilities</span><span class="p">:</span>
+<span class="s1">&#39; I&#39;</span><span class="p">:</span> <span class="mf">0.0325</span>
+<span class="s1">&#39; What&#39;</span><span class="p">:</span> <span class="mf">0.0305</span>
+<span class="s1">&#39; Here&#39;</span><span class="p">:</span> <span class="mf">0.0197</span>
+<span class="s1">&#39; Is&#39;</span><span class="p">:</span> <span class="mf">0.0106</span>
+<span class="s1">&#39; My&#39;</span><span class="p">:</span> <span class="mf">0.0093</span>
+</pre></div>
+</div>
+<p>The main idea here is that we can modify the logits of the last token to bias the model towards the tokens we want to see in the output hence “controlling” the generation process.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">transformers</span></code> library provides a <code class="docutils literal notranslate"><span class="pre">LogitsProcessor</span></code> class that allows us to modify the logits of the last token.</p>
+<p>Without any logit processing, the model will generate the most likely token based on the probabilities.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="o">**</span><span class="nb">input</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>With logit processing, we can modify the logits of the last token to bias the model towards the tokens we want to see in the output.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="o">**</span><span class="nb">input</span><span class="p">,</span> <span class="n">logits_processor</span><span class="o">=</span><span class="n">LogitsProcessorList</span><span class="p">([</span><span class="n">CustomLogitsProcessor</span><span class="p">()]))</span>
+</pre></div>
+</div>
+<p>Here, CustomLogitsProcessor is an example of a user-defined custom logits processor concret class we would pass to <code class="docutils literal notranslate"><span class="pre">model.generate()</span></code> to accomplish our goal to control the generation process. This class should implement the abstract <code class="docutils literal notranslate"><span class="pre">LogitsProcessor</span></code> class from the <code class="docutils literal notranslate"><span class="pre">transformers</span></code> library.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">LogitsProcessor</span></code> provides an unified interface for modifying prediction scores during text generation with language models. It acts as an intermediary step between the raw logits output by the model and the final token selection process:</p>
+<ol class="arabic simple">
+<li><p>Input: Takes sequence tokens (input_ids) and prediction scores (scores tensor)</p></li>
+<li><p>Output: Returns modified scores that influence the next token selection</p></li>
+</ol>
+<p>Importantly, it defines the <code class="docutils literal notranslate"><span class="pre">__call__</span></code> method that takes two key arguments:</p>
+<ol class="arabic simple">
+<li><p>input_ids (torch.LongTensor):</p>
+<ul class="simple">
+<li><p>Shape: (batch_size, sequence_length)</p></li>
+<li><p>Contains the token IDs of the input sequence</p></li>
+<li><p>Obtained through tokenizer.encode() or tokenizer.<strong>call</strong>()</p></li>
+</ul>
+</li>
+<li><p>scores (torch.FloatTensor):</p>
+<ul class="simple">
+<li><p>Shape: (batch_size, vocab_size)</p></li>
+<li><p>Raw logits from the language model head</p></li>
+<li><p>Can be pre-softmax or post-softmax scores</p></li>
+<li><p>Represents prediction probabilities for each token</p></li>
+</ul>
+</li>
+</ol>
+<p>The method returns:</p>
+<ul class="simple">
+<li><p>torch.FloatTensor with shape (batch_size, vocab_size)</p></li>
+<li><p>Contains the modified prediction scores after processing</p></li>
+</ul>
+<p>This allows for custom manipulation of the scores before token selection,
+enabling fine-grained control over the generation process.</p>
+<p>Let’s suppose we want to bias the model towards the tokens “Yes” and “No” in the output. That is, we would like the model to always return “Yes” or “No” in the output to our prompt (in this example “Is Enzo a good name for a baby?”).</p>
+<p>A naive approach would be to modify the logits of the last token to mask out all tokens except “Yes” and “No”. We can then pick the most likely token (from “Yes” or “No”) as the output on a greedy fashion.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">YesNoLogitsProcessor</span></code> class below implements this naive greedy approach.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extracted entities:&quot;</span><span class="p">,</span> <span class="n">sec_extraction_langchain</span><span class="o">.</span><span class="n">mentioned_entities</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extracted places:&quot;</span><span class="p">,</span> <span class="n">sec_extraction_langchain</span><span class="o">.</span><span class="n">mentioned_places</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">YesNoLogitsProcessor</span><span class="p">(</span><span class="n">LogitsProcessor</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yes</span><span class="p">,</span> <span class="n">no</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">,</span> <span class="n">initial_length</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">yes</span> <span class="o">=</span> <span class="n">yes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">no</span> <span class="o">=</span> <span class="n">no</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">tokenizer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_length</span> <span class="o">=</span> <span class="n">initial_length</span>
+        
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_ids</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">,</span> <span class="n">scores</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">:</span>
+        <span class="c1"># If we already generated a response, mask everything</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_length</span><span class="p">:</span>
+            <span class="n">scores</span><span class="o">.</span><span class="n">fill_</span><span class="p">(</span><span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">scores</span>
+            
+        <span class="c1"># Debug prints</span>
+        <span class="n">yes_tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">yes</span><span class="p">,</span> <span class="n">add_special_tokens</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">no_tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">no</span><span class="p">,</span> <span class="n">add_special_tokens</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Yes token ID: </span><span class="si">{</span><span class="n">yes_tokens</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No token ID: </span><span class="si">{</span><span class="n">no_tokens</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        
+        <span class="c1"># Extract original logits for yes/no</span>
+        <span class="n">yes_no_logits</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[:,</span> <span class="p">[</span><span class="n">yes_tokens</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">no_tokens</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[Yes, No] logits: </span><span class="si">{</span><span class="n">yes_no_logits</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Get probabilities using softmax</span>
+        <span class="n">yes_no_probs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">yes_no_logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">yes_prob</span> <span class="o">=</span> <span class="n">yes_no_probs</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">no_prob</span> <span class="o">=</span> <span class="n">yes_no_probs</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Yes prob: </span><span class="si">{</span><span class="n">yes_prob</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No prob: </span><span class="si">{</span><span class="n">no_prob</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Mask all tokens with -inf</span>
+        <span class="n">scores</span><span class="o">.</span><span class="n">fill_</span><span class="p">(</span><span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">))</span>
+        
+        <span class="c1"># Set the higher probability choice to 0</span>
+        <span class="n">yes_mask</span> <span class="o">=</span> <span class="n">yes_prob</span> <span class="o">&gt;</span> <span class="n">no_prob</span>
+        <span class="n">scores</span><span class="p">[:,</span> <span class="n">yes_tokens</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">yes_mask</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">1e4</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)))</span>
+        <span class="n">scores</span><span class="p">[:,</span> <span class="n">no_tokens</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="o">~</span><span class="n">yes_mask</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">1e4</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)))</span>
+        
+        <span class="k">return</span> <span class="n">scores</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracted entities: [&#39;Apple Inc.&#39;]
-Extracted places: [&#39;California&#39;, &#39;Cupertino&#39;]
+</div>
+<p>Now we can simply pass our custom logits processor to the <code class="docutils literal notranslate"><span class="pre">model.generate()</span></code> method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">input_ids</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">PROMPT</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span>
+<span class="n">initial_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">YES</span> <span class="o">=</span> <span class="s2">&quot;yes&quot;</span>
+<span class="n">NO</span> <span class="o">=</span> <span class="s2">&quot;no&quot;</span>
+
+<span class="c1"># Controlled generation</span>
+<span class="n">generation_output_controlled</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">,</span> <span class="n">logits_processor</span><span class="o">=</span><span class="n">LogitsProcessorList</span><span class="p">([</span><span class="n">YesNoLogitsProcessor</span><span class="p">(</span><span class="n">YES</span><span class="p">,</span> <span class="n">NO</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">,</span> <span class="n">initial_length</span><span class="p">)]),</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="c1"># Uncontrolled generation</span>
+<span class="n">generation_output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>We observe that the model was able to extract the entities and places from the input text, and return them in the specified format. A full list of models that support <code class="docutils literal notranslate"><span class="pre">.with_structured_output()</span></code> can be found <a class="reference external" href="https://python.langchain.com/docs/integrations/chat/#featured-providers">here</a>.</p>
+<p>Below we print the logit of the last token (raw scores before masking) and then the probabilities of the tokens “Yes” and “No” after masking and renormalizing the logits via softmax. In this run, the model predicts “Yes” with a probability of 0.4263 and “No” with a probability of 0.5737. In our greedy approach, our custom logits processor will pick the most likely token, in this case “No”.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Yes</span> <span class="n">token</span> <span class="n">ID</span><span class="p">:</span> <span class="p">[</span><span class="mi">10407</span><span class="p">]</span>
+<span class="n">No</span> <span class="n">token</span> <span class="n">ID</span><span class="p">:</span> <span class="p">[</span><span class="mi">4607</span><span class="p">]</span>
+<span class="p">[</span><span class="n">Yes</span><span class="p">,</span> <span class="n">No</span><span class="p">]</span> <span class="n">logits</span><span class="p">:</span> <span class="n">tensor</span><span class="p">([[</span><span class="mf">2.6250</span><span class="p">,</span> <span class="mf">2.9219</span><span class="p">]])</span>
+<span class="n">Yes</span> <span class="n">prob</span><span class="p">:</span> <span class="n">tensor</span><span class="p">([</span><span class="mf">0.4263</span><span class="p">])</span>
+<span class="n">No</span> <span class="n">prob</span><span class="p">:</span> <span class="n">tensor</span><span class="p">([</span><span class="mf">0.5737</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>We write a helper function to extract the response from the model’s generation output.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_response</span><span class="p">(</span><span class="n">model_output</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">):</span>
+    <span class="n">gen_output</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">batch_decode</span><span class="p">(</span><span class="n">model_output</span><span class="p">,</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">clean_up_tokenization_spaces</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">generated_text</span> <span class="o">=</span> <span class="n">gen_output</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span>
+                <span class="nb">len</span><span class="p">(</span>
+                    <span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span>
+                        <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span>
+                    <span class="p">)</span>
+                <span class="p">)</span> <span class="p">:</span>
+            <span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">generated_text</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Controlled generation using our custom logits processor:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generate_response</span><span class="p">(</span><span class="n">generation_output_controlled</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;no&#39;</span>
+</pre></div>
+</div>
+<p>Regular generation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">generate_response</span><span class="p">(</span><span class="n">generation_output</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Enzo is a classic Italian name that&#39;</span>
+</pre></div>
+</div>
+<p>As we can see, our controlled generation returned “No” to our prompt while the regular generation returned a more verbose response, as expected.</p>
+<p>Here, we provided a simple greedy approach to logit post-processing using transformers library in a process that can be extended and customized to more complex logit post-processing tasks. There are some higher level libraries that can help us streamline this process while offering some flexibility and control such as Outlines. We will cover this library as well as other tools such as Ollama and Langchain in the following sections each one offering a different approach with varying degrees of control and flexibility.</p>
 </section>
+</section>
+<section id="tools">
+<h2><a class="toc-backref" href="#id201" role="doc-backlink"><span class="section-number">4.4. </span>Tools</a><a class="headerlink" href="#tools" title="Permalink to this heading">¶</a></h2>
 <section id="outlines">
-<h3><a class="toc-backref" href="#id199" role="doc-backlink"><span class="section-number">4.4.4. </span>Outlines</a><a class="headerlink" href="#outlines" title="Permalink to this heading">¶</a></h3>
-<p>Outlines <span id="id3">[<a class="reference internal" href="#id21" title="Outlines. Type-safe structured output from llms. https://dottxt-ai.github.io/outlines/latest/, 2024. Accessed: 2024.">Outlines, 2024</a>]</span> is a library specifically focused on structured text generation from LLMs. Under the hood, Outlines works by adjusting the probability distribution of the model’s output logits - the raw scores from the final layer of the neural network that are normally converted into text tokens. By introducing carefully crafted logit biases, Outlines can guide the model to prefer certain tokens over others, effectively constraining its outputs to a predefined set of valid options.</p>
-<p>The authors solve the general guided generation problem <span id="id4">[<a class="reference internal" href="#id70" title="Brandon T. Willard and Rémi Louf. Efficient guided generation for large language models. 2023. URL: https://arxiv.org/abs/2307.09702, arXiv:2307.09702.">Willard and Louf, 2023</a>]</span>, which as a consequence solves the problem of structured output generation, in LLMs by introducing an efficient indexing approach that reformulates neural text generation using finite-state machines (FSMs).</p>
+<h3><a class="toc-backref" href="#id202" role="doc-backlink"><span class="section-number">4.4.1. </span>Outlines</a><a class="headerlink" href="#outlines" title="Permalink to this heading">¶</a></h3>
+<p>Outlines <span id="id4">[<a class="reference internal" href="#id25" title="Outlines. Type-safe structured output from llms. https://dottxt-ai.github.io/outlines/latest/, 2024. Accessed: 2024.">Outlines, 2024</a>]</span> is a library specifically focused on structured text generation from LLMs. Under the hood, Outlines works by adjusting the probability distribution of the model’s output logits - the raw scores from the final layer of the neural network that are normally converted into text tokens. By introducing carefully crafted logit biases, Outlines can guide the model to prefer certain tokens over others, effectively constraining its outputs to a predefined set of valid options.</p>
+<p>The authors solve the general guided generation problem <span id="id5">[<a class="reference internal" href="#id74" title="Brandon T. Willard and Rémi Louf. Efficient guided generation for large language models. 2023. URL: https://arxiv.org/abs/2307.09702, arXiv:2307.09702.">Willard and Louf, 2023</a>]</span>, which as a consequence solves the problem of structured output generation, in LLMs by introducing an efficient indexing approach that reformulates neural text generation using finite-state machines (FSMs).</p>
 <p>They define the next token generation as a random variable:</p>
 <div class="math notranslate nohighlight">
 \[s_{t+1} \sim \text{Categorical}(\alpha) \text{ where } \alpha = \text{LLM}(S_t, \theta)\]</div>
@@ -751,7 +849,7 @@ Extracted places: [&#39;California&#39;, &#39;Cupertino&#39;]
 <li><p><span class="math notranslate nohighlight">\(\tilde{s}_{t+1}\)</span> is the next token sampled under constraints</p></li>
 </ul>
 <p>This formulation allows the masking operation to guide the generation process by zeroing out probabilities of invalid tokens according to the finite state machine states. But instead of checking the entire vocabulary (size N) at each generation step (O(N) complexity) to enforce output constraints, they convert constraints (regex/grammar) into FSM states and build an index mapping FSM states to valid vocabulary tokens. This achieves O(1) average complexity for token generation.</p>
-<p>In summary, there are two stages in the Outlines framework <span id="id5">[<a class="reference internal" href="#id69" title="Vivien Tran-Thien. Fast, high-fidelity llm decoding with regex constraints. 2024. URL: https://vivien000.github.io/blog/journal/llm-decoding-with-regex-constraints.html.">Tran-Thien, 2024</a>]</span>:</p>
+<p>In summary, there are two stages in the Outlines framework <span id="id6">[<a class="reference internal" href="#id73" title="Vivien Tran-Thien. Fast, high-fidelity llm decoding with regex constraints. 2024. URL: https://vivien000.github.io/blog/journal/llm-decoding-with-regex-constraints.html.">Tran-Thien, 2024</a>]</span>:</p>
 <ol class="arabic simple">
 <li><p><strong>Preprocessing Step</strong>: Outlines converts a character-level deterministic finite automaton (DFA) testing whether a string matches a regex into a token-level DFA testing whether a token sequence is decoded in a string matching the regex.</p></li>
 <li><p><strong>Decoding Step</strong>: At decoding time, the DFA is used to determine, for each new token, which potential tokens are allowed. Starting from the initial state of the DFA, the allowed tokens are determined by the outgoing transitions from the current state. The corresponding mask is applied to the next token probabilities and these probabilities are renormalized. A new token can then be sampled and the state of the DFA updated.</p></li>
@@ -765,7 +863,7 @@ Extracted places: [&#39;California&#39;, &#39;Cupertino&#39;]
 <li><p>A/always</p></li>
 </ul>
 <p>This can be done by creating a state machine that has a start state, an end state and a set of valid transitions between states with possible states represented as the following regex string: <code class="docutils literal notranslate"><span class="pre">r&quot;\s*([Yy]es|[Nn]o|[Nn]ever|[Aa]lways)&quot;</span></code>.</p>
-<p>The state machine below illustrates how Outlines works under the hood <a class="reference internal" href="#outlines-state-machine"><span class="std std-numref">Fig. 4.2</span></a>, where:</p>
+<p>The state machine below illustrates how Outlines works under the hood <a class="reference internal" href="#outlines-state-machine"><span class="std std-numref">Fig. 4.3</span></a>, where:</p>
 <ul class="simple">
 <li><p>Prop: Represents the logit token probability given by the LLM</p></li>
 <li><p>Mask: Mask value of the transition as defined by the state machine</p></li>
@@ -774,7 +872,7 @@ Extracted places: [&#39;California&#39;, &#39;Cupertino&#39;]
 <figure class="align-center" id="outlines-state-machine">
 <a class="reference internal image-reference" href="../_images/outlines_state_machine.png"><img alt="Outlines State Machine" src="../_images/outlines_state_machine.png" style="width: 842.0px; height: 749.5px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 4.2 </span><span class="caption-text">Outlines State Machine.</span><a class="headerlink" href="#outlines-state-machine" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 4.3 </span><span class="caption-text">Outlines State Machine.</span><a class="headerlink" href="#outlines-state-machine" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>The initial “Start” state contains a masking table that controls which tokens can begin the sequence. In this example, only characters from the set <code class="docutils literal notranslate"><span class="pre">[YyNnAa]</span></code> are allowed as valid first characters, with each having an assigned probability and mask value. The masking mechanism effectively filters out invalid tokens by setting their mask values to 0, ensuring only permitted transitions to the “First” state.</p>
@@ -862,12 +960,70 @@ Extracted places: [&#39;California&#39;]
 </div>
 </div>
 <p>We observe that the model was able to extract the entities and places from the input text, and return them in the specified format. However, it is interesting to see that the model hallucinates a few entities, a phenomenon that is common for smaller Open Source models that were not fine-tuned on the task of entity extraction.</p>
-<p>You can also use Outlines with LangChain <span id="id6">[<a class="reference internal" href="#id95" title="LangChain. Outlines integration documentation. Online Documentation, 2024b. Documentation on integrating Outlines library with LangChain for structured generation. URL: https://python.langchain.com/docs/integrations/chat/outlines/.">LangChain, 2024b</a>]</span>.</p>
+<p>You can also use Outlines with LangChain <span id="id7">[<a class="reference internal" href="#id101" title="LangChain. Outlines integration documentation. Online Documentation, 2024b. Documentation on integrating Outlines library with LangChain for structured generation. URL: https://python.langchain.com/docs/integrations/chat/outlines/.">LangChain, 2024b</a>]</span>.</p>
+</section>
+<section id="langchain">
+<h3><a class="toc-backref" href="#id203" role="doc-backlink"><span class="section-number">4.4.2. </span>LangChain</a><a class="headerlink" href="#langchain" title="Permalink to this heading">¶</a></h3>
+<p>LangChain is a framework designed to simplify the development of LLM applications. It provider an abstraction layer over many LLM providers, including OpenAI, that offers several tools for parsing structured output.</p>
+<p>In particular, LangChain offers the <code class="docutils literal notranslate"><span class="pre">with_structured_output</span></code> method, which can be used with LLMs that support structured output APIs, allowing you to enforce a schema directly within the prompt.</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">with_structured_output</span></code> takes a schema as input which specifies the names, types, and descriptions of the desired output attributes. The method returns a model-like Runnable, except that instead of outputting strings or messages it outputs objects corresponding to the given schema. The schema can be specified as a TypedDict class, JSON Schema or a Pydantic class. If TypedDict or JSON Schema are used then a dictionary will be returned by the Runnable, and if a Pydantic class is used then a Pydantic object will be returned.</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-qU<span class="w"> </span>langchain-openai
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain_openai</span> <span class="kn">import</span> <span class="n">ChatOpenAI</span>
+<span class="kn">from</span> <span class="nn">langchain_core.prompts</span> <span class="kn">import</span> <span class="n">ChatPromptTemplate</span>
+<span class="k">def</span> <span class="nf">extract_from_sec_filing_langchain</span><span class="p">(</span><span class="n">sec_filing_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SECExtraction</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts structured data from an input SEC filing text using LangChain.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">llm</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">)</span>
+
+    <span class="n">structured_llm</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">with_structured_output</span><span class="p">(</span><span class="n">SECExtraction</span><span class="p">)</span>
+
+    <span class="n">prompt_template</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="n">prompt</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;human&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{sec_filing_text}</span><span class="s2">&quot;</span><span class="p">),</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">llm_chain</span> <span class="o">=</span> <span class="n">prompt_template</span> <span class="o">|</span> <span class="n">structured_llm</span>
+    
+    <span class="k">return</span> <span class="n">llm_chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">sec_filing_text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt_extraction</span> <span class="o">=</span> <span class="s2">&quot;You are an expert at structured data extraction. You will be given unstructured text from a SEC filing and extracted names of mentioned entities and places and should convert the response into the given structure.&quot;</span>
+<span class="n">sec_extraction_langchain</span> <span class="o">=</span> <span class="n">extract_from_sec_filing_langchain</span><span class="p">(</span><span class="n">sec_filing</span><span class="p">,</span> <span class="n">prompt_extraction</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extracted entities:&quot;</span><span class="p">,</span> <span class="n">sec_extraction_langchain</span><span class="o">.</span><span class="n">mentioned_entities</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extracted places:&quot;</span><span class="p">,</span> <span class="n">sec_extraction_langchain</span><span class="o">.</span><span class="n">mentioned_places</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Extracted</span> <span class="n">entities</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Apple Inc.&#39;</span><span class="p">]</span>
+<span class="n">Extracted</span> <span class="n">places</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;California&#39;</span><span class="p">,</span> <span class="s1">&#39;Cupertino&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>We observe that the model was able to extract the entities and places from the input text, and return them in the specified format. A full list of models that support <code class="docutils literal notranslate"><span class="pre">.with_structured_output()</span></code> can be found <a class="reference external" href="https://python.langchain.com/docs/integrations/chat/#featured-providers">here</a>.</p>
 </section>
 <section id="ollama">
-<h3><a class="toc-backref" href="#id200" role="doc-backlink"><span class="section-number">4.4.5. </span>Ollama</a><a class="headerlink" href="#ollama" title="Permalink to this heading">¶</a></h3>
-<p>Ollama is a popular tool that allows you to run large language models (LLMs) locally. It has recently added support for structured output generation. The current <code class="docutils literal notranslate"><span class="pre">ollama</span></code> implementation leverages llama.cpp GBNF (GGML BNF) grammars <span id="id7">[<a class="reference internal" href="#id45" title="Ggerganov. Llama.cpp grammars documentation. https://github.com/ggerganov/llama.cpp/blob/master/grammars/README.md, 2024. Accessed: 2024.">Ggerganov, 2024</a>]</span> to enable structured output generation.</p>
-<p>llama.cpp GBNF forces language models to generate output in specific, predefined formats by constraining their outputs to follow precise rules and patterns. The system accomplishes this through a formal grammar specification that defines exactly how valid outputs can be constructed. It’s essentially an extension of BNF (Backus-Naur Form) <span id="id8">[<a class="reference internal" href="#id46" title="Wikipedia contributors. Backus naur form. https://en.wiktionary.org/wiki/Backus-Naur_form, 2024. Accessed: 2024.">Wikipedia contributors, 2024</a>]</span> with some modern regex-like features added. These rules carefully define what elements are allowed, how they can be combined, and what patterns of repetition and sequencing are valid. By enforcing these constraints during generation, GBNF ensures the model’s output strictly adheres to the desired format.</p>
+<h3><a class="toc-backref" href="#id204" role="doc-backlink"><span class="section-number">4.4.3. </span>Ollama</a><a class="headerlink" href="#ollama" title="Permalink to this heading">¶</a></h3>
+<p>Ollama is a popular tool that allows you to run large language models (LLMs) locally. It has recently added support for structured output generation. The current <code class="docutils literal notranslate"><span class="pre">ollama</span></code> implementation leverages llama.cpp GBNF (GGML BNF) grammars <span id="id8">[<a class="reference internal" href="#id49" title="Ggerganov. Llama.cpp grammars documentation. https://github.com/ggerganov/llama.cpp/blob/master/grammars/README.md, 2024. Accessed: 2024.">Ggerganov, 2024</a>]</span> to enable structured output generation.</p>
+<p>llama.cpp GBNF forces language models to generate output in specific, predefined formats by constraining their outputs to follow precise rules and patterns. The system accomplishes this through a formal grammar specification that defines exactly how valid outputs can be constructed. It’s essentially an extension of BNF (Backus-Naur Form) <span id="id9">[<a class="reference internal" href="#id50" title="Wikipedia contributors. Backus naur form. https://en.wiktionary.org/wiki/Backus-Naur_form, 2024. Accessed: 2024.">Wikipedia contributors, 2024</a>]</span> with some modern regex-like features added. These rules carefully define what elements are allowed, how they can be combined, and what patterns of repetition and sequencing are valid. By enforcing these constraints during generation, GBNF ensures the model’s output strictly adheres to the desired format.</p>
 <p>Ollama first introduced structured output generation in version 0.5.1 providing support for JSON output but highlighting additional formats are coming soon.</p>
 <p>Let’s replicate our previous structured output generation example with Ollama. First, make sure you have Ollama installed. You can find installation instructions <a class="reference external" href="https://ollama.com/docs/installation">here</a>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://ollama.com/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
@@ -963,9 +1119,19 @@ Extracted places: []
 </section>
 </section>
 <section id="discussion">
-<h2><a class="toc-backref" href="#id201" role="doc-backlink"><span class="section-number">4.5. </span>Discussion</a><a class="headerlink" href="#discussion" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id205" role="doc-backlink"><span class="section-number">4.5. </span>Discussion</a><a class="headerlink" href="#discussion" title="Permalink to this heading">¶</a></h2>
+<section id="best-practices">
+<h3><a class="toc-backref" href="#id206" role="doc-backlink"><span class="section-number">4.5.1. </span>Best Practices</a><a class="headerlink" href="#best-practices" title="Permalink to this heading">¶</a></h3>
+<p>When implementing structured output with LLMs, it’s crucial to understand the distinction between different approaches. Some methods, like Outlines’ logit post-processing, provide mathematical guarantees that the output will conform to the specified structure. These contrast sharply with approaches like JSON mode, which rely on fine-tuned models or prompting that offer no formal guarantees. This distinction becomes particularly important in production environments where reliability and consistency are paramount. With that in mind, here are some best practices to consider when implementing structured output with LLMs:</p>
+<ul class="simple">
+<li><p><strong>Clear Schema Definition</strong>: Define the desired output structure clearly. This can be done in several ways including schemas, types, or Pydantic models as appropriate. This ensures the LLM knows exactly what format is expected.</p></li>
+<li><p><strong>Descriptive Naming</strong>: Use meaningful names for fields and elements in your schema. This makes the output more understandable and easier to work with.</p></li>
+<li><p><strong>Integration</strong>: If you are connecting the model to tools, functions, data, etc. in your system, then you are highly encouraged to use a typed structured output (e.g. Pydantic models) to ensure the model’s output can be processed correctly by downstream systems.</p></li>
+</ul>
+<p>In summary, first one needs to clearly define the typed structure LLM applications will interface with, then determine whether strong guarantees are needed in order to determine tradeoffs between control and ease of implementation.</p>
+</section>
 <section id="comparing-solutions">
-<h3><a class="toc-backref" href="#id202" role="doc-backlink"><span class="section-number">4.5.1. </span>Comparing Solutions</a><a class="headerlink" href="#comparing-solutions" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id207" role="doc-backlink"><span class="section-number">4.5.2. </span>Comparing Solutions</a><a class="headerlink" href="#comparing-solutions" title="Permalink to this heading">¶</a></h3>
 <p>The choice of framework for structured LLM output depends heavily on specific constraints, requirements and use cases. LangChain is the most used LLM framework today with a large developer community base however its structured output support depends on the underlying LLM provider support. Ollama enables straightforward local deployment and experimentation democratizing access to LLMs while fostering privacy and control, however today it only offers JSON format with further formats to come. Outlines emerges as a solution with great flexibility and control over output structure while providing support for a wide range of LLMs. <a class="reference internal" href="#structured-output-frameworks"><span class="std std-numref">Table 4.1</span></a> provides a summary comparison of the different frameworks.</p>
 <table class="docutils align-default" id="structured-output-frameworks">
 <caption><span class="caption-number">Table 4.1 </span><span class="caption-text">Structured Output Frameworks Comparison</span><a class="headerlink" href="#structured-output-frameworks" title="Permalink to this table">¶</a></caption>
@@ -993,50 +1159,42 @@ Extracted places: []
 <td><p>- Currently JSON only<br>- Additional formats planned</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Key Advantages</strong></p></td>
-<td><p>- Simple integration with supported LLMs<br>- Good for production environments using major LLM providers</p></td>
-<td><p>- Most flexible output structure options<br>- Fine-grained control over generation<br>- Strong open-source model support</p></td>
+<td><p>- Simple integration with supported LLMs</p></td>
+<td><p>- Provides guarantees on output structure<br>- Fine-grained control over generation<br>- Strong open-source model support</p></td>
 <td><p>- Excellent for local deployment<br>- Simple setup and usage<br>- Built-in model serving</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>Use Case Focus</strong></p></td>
 <td><p>Enterprise applications using commercial LLMs</p></td>
-<td><p>Applications requiring precise output control or using open-source models</p></td>
+<td><p>Applications requiring output control guarantees or using open-source models</p></td>
 <td><p>Local deployment and/or experimentation</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Complexity Level</strong></p></td>
-<td><p>Medium - requires understanding of LangChain abstractions</p></td>
+<td><p>Medium - requires understanding of LangChain abstractions which often change over time</p></td>
 <td><p>Low</p></td>
 <td><p>Low</p></td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="best-practices">
-<h3><a class="toc-backref" href="#id203" role="doc-backlink"><span class="section-number">4.5.2. </span>Best Practices</a><a class="headerlink" href="#best-practices" title="Permalink to this heading">¶</a></h3>
-<ul class="simple">
-<li><p><strong>Clear Schema Definition</strong>: Define the desired output structure clearly. This can be done in several ways including schemas, types, or Pydantic models as appropriate. This ensures the LLM knows exactly what format is expected.</p></li>
-<li><p><strong>Descriptive Naming</strong>: Use meaningful names for fields and elements in your schema. This makes the output more understandable and easier to work with.</p></li>
-<li><p><strong>Detailed Prompting</strong>: Guide the LLM with well-crafted prompts that include examples and clear instructions.  A well-structured prompt improves the chances of getting the desired output.</p></li>
-<li><p><strong>Integration</strong>: If you are connecting the model to tools, functions, data, etc. in your system, then you are highly encouraged to use a typed structured output (e.g. Pydantic models) to ensure the model’s output can be processed correctly by downstream systems.</p></li>
-</ul>
+<p>Other related tools not covered in this chapter worth mentioning include Guidance <span id="id10">[<a class="reference internal" href="#id95" title="Guidance AI. Guidance: language model programming. GitHub Repository, 2024. Framework for programming language models with structured templating and control flow. URL: https://github.com/guidance-ai/guidance.">Guidance AI, 2024</a>]</span> and NVIDIA’s Logits Processor Zoo <span id="id11">[<a class="reference internal" href="#id94" title="NVIDIA. Logits processor zoo. GitHub Repository, 2024a. Collection of logits processors for controlling language model generation. URL: https://github.com/NVIDIA/logits-processor-zoo.">NVIDIA, 2024a</a>]</span>.</p>
 </section>
 <section id="research-and-ongoing-debate">
-<h3><a class="toc-backref" href="#id204" role="doc-backlink"><span class="section-number">4.5.3. </span>Research and Ongoing Debate</a><a class="headerlink" href="#research-and-ongoing-debate" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id208" role="doc-backlink"><span class="section-number">4.5.3. </span>Research and Ongoing Debate</a><a class="headerlink" href="#research-and-ongoing-debate" title="Permalink to this heading">¶</a></h3>
 <p>The use of structured output for Large Language Models (LLMs) is a developing area. While the ability to constrain LLM outputs offer clear benefits in parsing, robustness, and integration, there is growing debate on whether it also potentially comes at the cost of performance as well as reasoning abilities. Research in this area should be taken with a grain of salt since findings are mixed and often depend on the specific task and model family at hand furthermore model families are not always comparable and are getting updated by the day! Nonetheless, early findings provide some interesting insights as to why there is no one-size-fits-all solution when it comes to LLMs structured output.</p>
-<p>There is some evidence indicating that LLMs may have bias in their handling of different output formats <span id="id9">[<a class="reference internal" href="#id48" title="Do Xuan Long, Hai Nguyen Ngoc, Tiviatis Sim, Hieu Dao, Shafiq Joty, Kenji Kawaguchi, Nancy F Chen, and Min-Yen Kan. Llms are biased towards output formats! systematically evaluating and mitigating output format bias of llms. arXiv preprint arXiv:2408.08656, 2024.">Long <em>et al.</em>, 2024</a>]</span>. The study examined common output structures like multiple-choice answers, wrapped text, lists, and key-value mappings. The authors analyzed key LLM model families, namely Gemma, Mistral, and ChatGPT, uncovering bias across multiple tasks and formats.  The researchers attributed these biases to the models’ underlying token distributions for different formats. An example of this format bias emerged in the comparison between JSON and YAML outputs. While models like Mistral and Gemma excelled at generating JSON structures, they performed notably worse with YAML. Their YAML outputs often contained extraneous information that degrades output quality. This disparity likely stems from JSON’s prevalence in training data, highlighting how a format’s popularity directly influences model performance. While the studied models can be probably considered outdated by now since models are getting updated on a rapidly fashion, it is important to remark that addressing format bias is critical for advancing LLMs and ensuring their reliable application in real-world scenarios.</p>
-<p>Recent research “Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models” <span id="id10">[<a class="reference internal" href="#id22" title="Zhi Rui Tam, Cheng-Kuang Wu, Yi-Lin Tsai, Chieh-Yen Lin, Hung-yi Lee, and Yun-Nung Chen. Let me speak freely? a study on the impact of format restrictions on performance of large language models. 2024. URL: https://arxiv.org/abs/2408.02442, arXiv:2408.02442.">Tam <em>et al.</em>, 2024</a>]</span> suggests that imposing format restrictions on LLMs might impact their performance, particularly in reasoning-intensive tasks. Further evidence <span id="id11">[<a class="reference internal" href="#id24" title="Aider. Code in json: structured output for llms. https://aider.chat/2024/08/14/code-in-json.html, 2024. Accessed: 2024.">Aider, 2024</a>]</span> suggests LLMs may produce lower quality code if they’re asked to return it as part of a structured JSON response, in particular:</p>
+<p>There is some evidence indicating that LLMs may have bias in their handling of different output formats <span id="id12">[<a class="reference internal" href="#id52" title="Do Xuan Long, Hai Nguyen Ngoc, Tiviatis Sim, Hieu Dao, Shafiq Joty, Kenji Kawaguchi, Nancy F Chen, and Min-Yen Kan. Llms are biased towards output formats! systematically evaluating and mitigating output format bias of llms. arXiv preprint arXiv:2408.08656, 2024.">Long <em>et al.</em>, 2024</a>]</span>. The study examined common output structures like multiple-choice answers, wrapped text, lists, and key-value mappings. The authors analyzed key LLM model families, namely Gemma, Mistral, and ChatGPT, uncovering bias across multiple tasks and formats.  The researchers attributed these biases to the models’ underlying token distributions for different formats. An example of this format bias emerged in the comparison between JSON and YAML outputs. While models like Mistral and Gemma excelled at generating JSON structures, they performed notably worse with YAML. Their YAML outputs often contained extraneous information that degrades output quality. This disparity likely stems from JSON’s prevalence in training data, highlighting how a format’s popularity directly influences model performance. While the studied models can be probably considered outdated by now since models are getting updated on a rapidly fashion, it is important to remark that addressing format bias is critical for advancing LLMs and ensuring their reliable application in real-world scenarios.</p>
+<p>Recent research “Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models” <span id="id13">[<a class="reference internal" href="#id26" title="Zhi Rui Tam, Cheng-Kuang Wu, Yi-Lin Tsai, Chieh-Yen Lin, Hung-yi Lee, and Yun-Nung Chen. Let me speak freely? a study on the impact of format restrictions on performance of large language models. 2024. URL: https://arxiv.org/abs/2408.02442, arXiv:2408.02442.">Tam <em>et al.</em>, 2024</a>]</span> suggests that imposing format restrictions on LLMs might impact their performance, particularly in reasoning-intensive tasks. Further evidence <span id="id14">[<a class="reference internal" href="#id28" title="Aider. Code in json: structured output for llms. https://aider.chat/2024/08/14/code-in-json.html, 2024. Accessed: 2024.">Aider, 2024</a>]</span> suggests LLMs may produce lower quality code if they’re asked to return it as part of a structured JSON response, in particular:</p>
 <ul class="simple">
 <li><p><strong>Potential performance degradation:</strong>  Enforcing structured output, especially through constrained decoding methods like JSON-mode, can negatively impact an LLM’s reasoning abilities. This is particularly evident in tasks that require multi-step reasoning or complex thought processes.</p></li>
 <li><p><strong>Overly restrictive schemas:</strong> Imposing strict schemas can limit the expressiveness of LLM outputs and may hinder their ability to generate creative or nuanced responses.  In certain cases, the strictness of the schema might outweigh the benefits of structured output.</p></li>
 <li><p><strong>Increased complexity in prompt engineering:</strong> Crafting prompts that effectively guide LLMs to generate structured outputs while maintaining performance can be challenging. It often requires careful consideration of the schema, the task instructions, and the desired level of detail in the response.</p></li>
 </ul>
-<p>On the other hand, those findings are not without criticism. The .txt team challenges the work of <span id="id12">[<a class="reference internal" href="#id22" title="Zhi Rui Tam, Cheng-Kuang Wu, Yi-Lin Tsai, Chieh-Yen Lin, Hung-yi Lee, and Yun-Nung Chen. Let me speak freely? a study on the impact of format restrictions on performance of large language models. 2024. URL: https://arxiv.org/abs/2408.02442, arXiv:2408.02442.">Tam <em>et al.</em>, 2024</a>]</span>. The rebuttal argues that <strong>structured generation, when done correctly, actually <em>improves</em> performance</strong>.</p>
+<p>On the other hand, those findings are not without criticism. The .txt team challenges the work of <span id="id15">[<a class="reference internal" href="#id26" title="Zhi Rui Tam, Cheng-Kuang Wu, Yi-Lin Tsai, Chieh-Yen Lin, Hung-yi Lee, and Yun-Nung Chen. Let me speak freely? a study on the impact of format restrictions on performance of large language models. 2024. URL: https://arxiv.org/abs/2408.02442, arXiv:2408.02442.">Tam <em>et al.</em>, 2024</a>]</span>. The rebuttal argues that <strong>structured generation, when done correctly, actually <em>improves</em> performance</strong>.</p>
 <figure class="align-center" id="structured-vs-unstructured">
 <a class="reference internal image-reference" href="../_images/rebuttal.png"><img alt="Structured vs Unstructured Results by .txt team" src="../_images/rebuttal.png" style="width: 744.0px; height: 453.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 4.3 </span><span class="caption-text">Structured vs Unstructured Results by .txt team.</span><a class="headerlink" href="#structured-vs-unstructured" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 4.4 </span><span class="caption-text">Structured vs Unstructured Results by .txt team.</span><a class="headerlink" href="#structured-vs-unstructured" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>The .txt team presents compelling evidence through their reproduction of the paper’s experiments. While their unstructured results align with the original paper’s findings, their structured results paint a dramatically different picture - demonstrating that structured generation actually improves performance (see <a class="reference internal" href="#structured-vs-unstructured"><span class="std std-numref">Fig. 4.3</span></a>). The team has made their experimental notebooks publicly available on GitHub for independent verification <span id="id13">[<a class="reference internal" href="#id25" title="Dottxt. Say what you mean: demos. https://github.com/dottxt-ai/demos/tree/main/say-what-you-mean, 2024. Accessed: 2024.">Dottxt, 2024</a>]</span>.</p>
+<p>The .txt team presents compelling evidence through their reproduction of the paper’s experiments. While their unstructured results align with the original paper’s findings, their structured results paint a dramatically different picture - demonstrating that structured generation actually improves performance (see <a class="reference internal" href="#structured-vs-unstructured"><span class="std std-numref">Fig. 4.4</span></a>). The team has made their experimental notebooks publicly available on GitHub for independent verification <span id="id16">[<a class="reference internal" href="#id29" title="Dottxt. Say what you mean: demos. https://github.com/dottxt-ai/demos/tree/main/say-what-you-mean, 2024. Accessed: 2024.">Dottxt, 2024</a>]</span>.</p>
 <p>.txt team identifies several flaws in the methodology of “Let Me Speak Freely?” that they believe led to inaccurate conclusions:</p>
 <ul class="simple">
 <li><p>The paper finds that structured output improves performance on classification tasks but doesn’t reconcile this finding with its overall negative conclusion about structured output.</p></li>
@@ -1050,15 +1208,16 @@ Extracted places: []
 </section>
 </section>
 <section id="conclusion">
-<h2><a class="toc-backref" href="#id205" role="doc-backlink"><span class="section-number">4.6. </span>Conclusion</a><a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id209" role="doc-backlink"><span class="section-number">4.6. </span>Conclusion</a><a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
 <p>Extracting structured output from LLMs is crucial for integrating them into real-world applications. By understanding the challenges and employing appropriate strategies and tools, developers can improve the reliability and usability of LLM-powered systems, unlocking their potential to automate complex tasks and generate valuable insights.</p>
+<p>Prompt engineering and the use of fine-tuned models can help control the output of LLMs. However, when strong guarantees are needed, practitioners should consider techniques such as logit post-processing either by manually adjusting the model’s output logits or using frameworks like Outlines that provider a higher level of control over the generation process.</p>
 </section>
 <section id="acknowledgements">
-<h2><a class="toc-backref" href="#id206" role="doc-backlink"><span class="section-number">4.7. </span>Acknowledgements</a><a class="headerlink" href="#acknowledgements" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id210" role="doc-backlink"><span class="section-number">4.7. </span>Acknowledgements</a><a class="headerlink" href="#acknowledgements" title="Permalink to this heading">¶</a></h2>
 <p>We would like to thank <a class="reference external" href="https://x.com/cameron_pfiffer">Cameron Pfiffer</a> from the .txt team for his insightful review and feedback.</p>
 </section>
 <section id="citation">
-<h2><a class="toc-backref" href="#id207" role="doc-backlink"><span class="section-number">4.8. </span>Citation</a><a class="headerlink" href="#citation" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id211" role="doc-backlink"><span class="section-number">4.8. </span>Citation</a><a class="headerlink" href="#citation" title="Permalink to this heading">¶</a></h2>
 <p><a class="reference external" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="CC BY-NC-SA 4.0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@misc</span><span class="p">{</span><span class="n">tharsistpsouza2024tamingllms</span><span class="p">,</span>
   <span class="n">author</span> <span class="o">=</span> <span class="p">{</span><span class="n">Tharsis</span> <span class="n">T</span><span class="o">.</span> <span class="n">P</span><span class="o">.</span> <span class="n">Souza</span><span class="p">},</span>
@@ -1072,51 +1231,64 @@ Extracted places: []
 </div>
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id208" role="doc-backlink"><span class="section-number">4.9. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
-<div class="docutils container" id="id14">
-<div class="citation" id="id24" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id11">Aid24</a><span class="fn-bracket">]</span></span>
+<h2><a class="toc-backref" href="#id212" role="doc-backlink"><span class="section-number">4.9. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<div class="docutils container" id="id17">
+<div class="citation" id="id28" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id14">Aid24</a><span class="fn-bracket">]</span></span>
 <p>Aider. Code in json: structured output for llms. <a class="reference external" href="https://aider.chat/2024/08/14/code-in-json.html">https://aider.chat/2024/08/14/code-in-json.html</a>, 2024. Accessed: 2024.</p>
 </div>
-<div class="citation" id="id25" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id13">Dot24</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id29" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id16">Dot24</a><span class="fn-bracket">]</span></span>
 <p>Dottxt. Say what you mean: demos. <a class="reference external" href="https://github.com/dottxt-ai/demos/tree/main/say-what-you-mean">https://github.com/dottxt-ai/demos/tree/main/say-what-you-mean</a>, 2024. Accessed: 2024.</p>
 </div>
-<div class="citation" id="id45" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">Gge24</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id49" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">Gge24</a><span class="fn-bracket">]</span></span>
 <p>Ggerganov. Llama.cpp grammars documentation. <a class="reference external" href="https://github.com/ggerganov/llama.cpp/blob/master/grammars/README.md">https://github.com/ggerganov/llama.cpp/blob/master/grammars/README.md</a>, 2024. Accessed: 2024.</p>
 </div>
-<div class="citation" id="id95" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">Lan4b</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id101" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">Lan4b</a><span class="fn-bracket">]</span></span>
 <p>LangChain. Outlines integration documentation. Online Documentation, 2024b. Documentation on integrating Outlines library with LangChain for structured generation. URL: <a class="reference external" href="https://python.langchain.com/docs/integrations/chat/outlines/">https://python.langchain.com/docs/integrations/chat/outlines/</a>.</p>
 </div>
-<div class="citation" id="id47" role="doc-biblioentry">
+<div class="citation" id="id19" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>LWW+24<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id2">1</a>,<a role="doc-backlink" href="#id3">2</a>)</span>
+<p>Xun Liang, Hanyu Wang, Yezhaohui Wang, Shichao Song, Jiawei Yang, Simin Niu, Jie Hu, Dan Liu, Shunyu Yao, Feiyu Xiong, and Zhiyu Li. Controllable text generation for large language models: a survey. 2024. URL: <a class="reference external" href="https://arxiv.org/abs/2408.12599">https://arxiv.org/abs/2408.12599</a>, <a class="reference external" href="https://arxiv.org/abs/2408.12599">arXiv:2408.12599</a>.</p>
+</div>
+<div class="citation" id="id51" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">LLF+24</a><span class="fn-bracket">]</span></span>
 <p>Michael Xieyang Liu, Frederick Liu, Alexander J. Fiannaca, Terry Koo, Lucas Dixon, Michael Terry, and Carrie J. Cai. &quot;we need structured output&quot;: towards user-centered constraints on large language model output. In <em>Extended Abstracts of the CHI Conference on Human Factors in Computing Systems</em>, CHI EA '24. New York, NY, USA, 2024. Association for Computing Machinery. URL: <a class="reference external" href="https://doi.org/10.1145/3613905.3650756">https://doi.org/10.1145/3613905.3650756</a>, <a class="reference external" href="https://doi.org/10.1145/3613905.3650756">doi:10.1145/3613905.3650756</a>.</p>
 </div>
-<div class="citation" id="id48" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">LNS+24</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id52" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id12">LNS+24</a><span class="fn-bracket">]</span></span>
 <p>Do Xuan Long, Hai Nguyen Ngoc, Tiviatis Sim, Hieu Dao, Shafiq Joty, Kenji Kawaguchi, Nancy F Chen, and Min-Yen Kan. Llms are biased towards output formats! systematically evaluating and mitigating output format bias of llms. <em>arXiv preprint arXiv:2408.08656</em>, 2024.</p>
 </div>
-<div class="citation" id="id21" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">Out24</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id25" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">Out24</a><span class="fn-bracket">]</span></span>
 <p>Outlines. Type-safe structured output from llms. <a class="reference external" href="https://dottxt-ai.github.io/outlines/latest/">https://dottxt-ai.github.io/outlines/latest/</a>, 2024. Accessed: 2024.</p>
 </div>
-<div class="citation" id="id22" role="doc-biblioentry">
+<div class="citation" id="id26" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>TWT+24<span class="fn-bracket">]</span></span>
-<span class="backrefs">(<a role="doc-backlink" href="#id10">1</a>,<a role="doc-backlink" href="#id12">2</a>)</span>
+<span class="backrefs">(<a role="doc-backlink" href="#id13">1</a>,<a role="doc-backlink" href="#id15">2</a>)</span>
 <p>Zhi Rui Tam, Cheng-Kuang Wu, Yi-Lin Tsai, Chieh-Yen Lin, Hung-yi Lee, and Yun-Nung Chen. Let me speak freely? a study on the impact of format restrictions on performance of large language models. 2024. URL: <a class="reference external" href="https://arxiv.org/abs/2408.02442">https://arxiv.org/abs/2408.02442</a>, <a class="reference external" href="https://arxiv.org/abs/2408.02442">arXiv:2408.02442</a>.</p>
 </div>
-<div class="citation" id="id69" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">TT24</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id73" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">TT24</a><span class="fn-bracket">]</span></span>
 <p>Vivien Tran-Thien. Fast, high-fidelity llm decoding with regex constraints. 2024. URL: <a class="reference external" href="https://vivien000.github.io/blog/journal/llm-decoding-with-regex-constraints.html">https://vivien000.github.io/blog/journal/llm-decoding-with-regex-constraints.html</a>.</p>
 </div>
-<div class="citation" id="id70" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">WL23</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id74" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">WL23</a><span class="fn-bracket">]</span></span>
 <p>Brandon T. Willard and Rémi Louf. Efficient guided generation for large language models. 2023. URL: <a class="reference external" href="https://arxiv.org/abs/2307.09702">https://arxiv.org/abs/2307.09702</a>, <a class="reference external" href="https://arxiv.org/abs/2307.09702">arXiv:2307.09702</a>.</p>
 </div>
-<div class="citation" id="id46" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">Wikipediacontributors24</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id95" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id10">GuidanceAI24</a><span class="fn-bracket">]</span></span>
+<p>Guidance AI. Guidance: language model programming. GitHub Repository, 2024. Framework for programming language models with structured templating and control flow. URL: <a class="reference external" href="https://github.com/guidance-ai/guidance">https://github.com/guidance-ai/guidance</a>.</p>
+</div>
+<div class="citation" id="id94" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id11">NVIDIA4a</a><span class="fn-bracket">]</span></span>
+<p>NVIDIA. Logits processor zoo. GitHub Repository, 2024a. Collection of logits processors for controlling language model generation. URL: <a class="reference external" href="https://github.com/NVIDIA/logits-processor-zoo">https://github.com/NVIDIA/logits-processor-zoo</a>.</p>
+</div>
+<div class="citation" id="id50" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">Wikipediacontributors24</a><span class="fn-bracket">]</span></span>
 <p>Wikipedia contributors. Backus naur form. <a class="reference external" href="https://en.wiktionary.org/wiki/Backus-Naur_form">https://en.wiktionary.org/wiki/Backus-Naur_form</a>, 2024. Accessed: 2024.</p>
 </div>
 </div>
@@ -1148,12 +1320,12 @@ Extracted places: []
           <div class="page-nav">
             <div class="inner"><ul class="page-nav">
   <li class="prev">
-    <a href="output_size_limit.html"
-       title="previous chapter">← <span class="section-number">3. </span>Output Size Limit</a>
+    <a href="evals.html"
+       title="previous chapter">← <span class="section-number">3. </span>The Evals Gap</a>
   </li>
   <li class="next">
-    <a href="evals.html"
-       title="next chapter"><span class="section-number">5. </span>The Evals Gap →</a>
+    <a href="safety.html"
+       title="next chapter"><span class="section-number">5. </span>Safety →</a>
   </li>
 </ul><div class="footer" role="contentinfo">
       &#169; Copyright Tharsis T. P. Souza, 2024.

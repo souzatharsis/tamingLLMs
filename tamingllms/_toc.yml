@@ -8,12 +8,12 @@ options:
 chapters:
 - file: markdown/preface.md
 - file: markdown/intro.md
-- file: notebooks/output_size_limit.ipynb
-- file: notebooks/structured_output.ipynb
 - file: notebooks/evals.ipynb
+- file: notebooks/structured_output.ipynb
 - file: notebooks/safety.ipynb
 - file: notebooks/alignment.ipynb
 - file: notebooks/local.ipynb
+#- file: notebooks/output_size_limit.ipynb
 #- file: markdown
 #- file: notebooks
 #- file: markdown-notebooks

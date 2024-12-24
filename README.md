@@ -18,16 +18,15 @@ By understanding these pitfalls upfront, readers will be better equipped to buil
 |-------------------------------------------|--------------|---------------|----------------------|
 | Preface                   | [html](https://www.souzatharsis.com/tamingLLMs/markdown/preface.html) | N/A           | *Ready for Review*                   |
 | About the Book                  | [html](https://www.souzatharsis.com/tamingLLMs/markdown/intro.html) | N/A           | *Ready for Review*                   |
-| Chapter 1: Wrestling with Structured Output| [html](https://www.souzatharsis.com/tamingLLMs/notebooks/structured_output.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/structured_output.ipynb) | *Ready for Review*     |
-| Chapter 2: The Input Data Challenge      |              |               |                  |
-| Chapter 3: Output Size Limitations       | [html](https://www.souzatharsis.com/tamingLLMs/notebooks/output_size_limit.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/output_size_limit.ipynb) | WIP   |
-| Chapter 4: The Evals Gap                 | [html](https://www.souzatharsis.com/tamingLLMs/notebooks/evals.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/evals.ipynb) | *Ready for Review*     |
-| Chapter 5: Safety Concerns               | [html](https://www.souzatharsis.com/tamingLLMs/notebooks/safety.html)  |  [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/safety.ipynb) | *Ready for Review*     |
-| Chapter 6: Preference-Based Alignment     | [html](https://www.souzatharsis.com/tamingLLMs/notebooks/alignment.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/alignment.ipynb) | *Ready for Review*     |
-| Chapter 7: Local LLMs in Practice |   [html](https://www.souzatharsis.com/tamingLLMs/notebooks/local.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/local.ipynb) | *Ready for Review*     |
-| Chapter 8: The Cost Factor                |              |               |                 |
-| Chapter 9: Frontiers                |              |               |     WIP            |
-| Appendix A: Tools and Resources           |              |               |                |
+| Chapter 1: The Evals Gap                 | [html](https://www.souzatharsis.com/tamingLLMs/notebooks/evals.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/evals.ipynb) | *Ready for Review*     |
+| Chapter 2: Managing Input Data |              |               |                      |
+| Chapter 3: Structured Output| [html](https://www.souzatharsis.com/tamingLLMs/notebooks/structured_output.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/structured_output.ipynb) | *Ready for Review*     |
+| Chapter 4: Safety              | [html](https://www.souzatharsis.com/tamingLLMs/notebooks/safety.html)  |  [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/safety.ipynb) | *Ready for Review*     |
+| Chapter 5: Preference-Based Alignment     | [html](https://www.souzatharsis.com/tamingLLMs/notebooks/alignment.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/alignment.ipynb) | *Ready for Review*     |
+| Chapter 6: Local LLMs in Practice |   [html](https://www.souzatharsis.com/tamingLLMs/notebooks/local.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/local.ipynb) | *Ready for Review*     |
+| Chapter 7: The Cost Factor                |              |               |                      |
+| Chapter 8: Frontiers                |              |               |     WIP            |
+| Appendix A: Tools and Resources           |              |               |                      |
 
 
 ## Citation
