@@ -5,25 +5,11 @@ title: "Taming Large Language Models: A Practical Guide to LLM Pitfalls with Pyt
 author: Tharsis T. P. Souza
 copyright: "Tharsis T. P. Souza, 2024"  # Copyright year to be placed in the footer
 project: "Taming LLMs" 
-#logo: /home/tobias/src/tamingLLMs/tamingllms/tamingllms/_static/logo.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: 'off'
-
-#html:
-#  comments:
-#    hypothesis: true
-#  extra_navbar: |
-#      <div>
-#          <div class="nav-item"> <a href="https://github.com/souzatharsis/tamingllms" class="nav-link external"> GitHub <outboundlink/> </a> </div>
-#      </div>
-#  baseurl: https://souzatharsis.github.io/tamingllms/
-#  extra_footer: |
-#    <p>
-#    Apache 2.0 License
-#    </p>
 
 # Define the name of the latex output file for PDF builds
 latex:

@@ -22,8 +22,8 @@ Abstract: **The current discourse around Large Language Models (LLMs) tends to f
 | Chapter 4: Safety              | [html](https://www.souzatharsis.com/tamingLLMs/notebooks/safety.html)  |  [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/safety.ipynb) | *Ready for Review*     |
 | Chapter 5: Preference-Based Alignment     | [html](https://www.souzatharsis.com/tamingLLMs/notebooks/alignment.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/alignment.ipynb) | *Ready for Review*     |
 | Chapter 6: Local LLMs in Practice |   [html](https://www.souzatharsis.com/tamingLLMs/notebooks/local.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/local.ipynb) | *Ready for Review*     |
-| Chapter 7: The Cost Factor                |              |               |                      |
-| Chapter 8: Frontiers                |              |               |     WIP            |
+| Chapter 7: The Falling Cost Paradox               |              |               |        WIP              |
+| Chapter 8: Frontiers                |              |               |                 |
 | Appendix A: Tools and Resources           |              |               |                      |
 
 

@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+      <title>8. The Falling Cost Paradox</title>
+    
+          <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/sphinx-thebe.css" type="text/css" />
+          <link rel="stylesheet" href="../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/scripts/sphinx-book-theme.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+        <script src="../_static/design-tabs.js"></script>
+        <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+        <script async="async" src="../_static/sphinx-thebe.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../_static/theme-vendors.js"></script> -->
+      <script src="../_static/theme.js" defer></script>
+    
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="prev" title="7. Local LLMs in Practice" href="local.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../markdown/toc.html" class="home-link">
+    
+      <span class="site-name">Taming LLMs</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://www.linkedin.com/in/tharsissouza/"
+        class="nav-link external">
+          Author <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="https://github.com/souzatharsis/tamingllms"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+  
+    <div class="nav-item">
+      <a href="https://www.linkedin.com/in/tharsissouza/"
+        class="nav-link external">
+          Author <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="https://github.com/souzatharsis/tamingllms"
+        class="nav-link external">
+          Github <outboundlink></outboundlink>
+      </a>
+    </div>
+  
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../markdown/toc.html#taming-llms">taming llms</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../markdown/preface.html" class="reference internal ">Preface</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../markdown/intro.html" class="reference internal ">About the Book</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="evals.html" class="reference internal ">The Evals Gap</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="structured_output.html" class="reference internal ">Structured Output</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="safety.html" class="reference internal ">Safety</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="alignment.html" class="reference internal ">Preference-Based Alignment</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="local.html" class="reference internal ">Local LLMs in Practice</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 current">
+            
+              <a href="#" class="reference internal current">The Falling Cost Paradox</a>
+            
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#why-optimization-matters-more-than-ever" class="reference internal">Why Optimization Matters More Than Ever</a></li>
+                
+                  <li class="toctree-l2"><a href="#right-sizing-llms-a-strategic-approach" class="reference internal">Right-Sizing LLMs: A Strategic Approach</a></li>
+                
+                  <li class="toctree-l2"><a href="#quantization" class="reference internal">Quantization</a></li>
+                
+                  <li class="toctree-l2"><a href="#check-list" class="reference internal">Check-list</a></li>
+                
+                  <li class="toctree-l2"><a href="#conclusion" class="reference internal">Conclusion</a></li>
+                
+                  <li class="toctree-l2"><a href="#references" class="reference internal">References</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../markdown/toc.html">Docs</a> &raquo;</li>
+    
+    <li><span class="section-number">8. </span>The Falling Cost Paradox</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="local.html"
+       title="previous chapter">← <span class="section-number">7. </span>Local LLMs in Practice</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="the-falling-cost-paradox">
+<span id="cost"></span><h1><a class="toc-backref" href="#id190" role="doc-backlink"><span class="section-number">8. </span>The Falling Cost Paradox</a><a class="headerlink" href="#the-falling-cost-paradox" title="Permalink to this heading">¶</a></h1>
+<blockquote class="epigraph">
+<div><p>It is a confusion of ideas to suppose that the economical use of fuel is equivalent to diminished consumption. <br>
+The very contrary is the truth.</p>
+<p class="attribution">—William Stanley Jevons</p>
+</div></blockquote>
+<nav class="contents" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#the-falling-cost-paradox" id="id190">The Falling Cost Paradox</a></p>
+<ul>
+<li><p><a class="reference internal" href="#why-optimization-matters-more-than-ever" id="id191">Why Optimization Matters More Than Ever</a></p></li>
+<li><p><a class="reference internal" href="#right-sizing-llms-a-strategic-approach" id="id192">Right-Sizing LLMs: A Strategic Approach</a></p>
+<ul>
+<li><p><a class="reference internal" href="#metrics" id="id193">Metrics</a></p></li>
+<li><p><a class="reference internal" href="#requirements" id="id194">Requirements</a></p>
+<ul>
+<li><p><a class="reference internal" href="#business-requirements" id="id195">Business Requirements</a></p></li>
+<li><p><a class="reference internal" href="#performance-requirements" id="id196">Performance Requirements</a></p></li>
+<li><p><a class="reference internal" href="#operational-requirements" id="id197">Operational Requirements</a></p></li>
+<li><p><a class="reference internal" href="#technical-requirements" id="id198">Technical Requirements</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#quantization" id="id199">Quantization</a></p></li>
+<li><p><a class="reference internal" href="#check-list" id="id200">Check-list</a></p></li>
+<li><p><a class="reference internal" href="#conclusion" id="id201">Conclusion</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id202">References</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="why-optimization-matters-more-than-ever">
+<h2><a class="toc-backref" href="#id191" role="doc-backlink"><span class="section-number">8.1. </span>Why Optimization Matters More Than Ever</a><a class="headerlink" href="#why-optimization-matters-more-than-ever" title="Permalink to this heading">¶</a></h2>
+<p>According to recent analysis from a16z <span id="id1">[<a class="reference internal" href="#id93" title="Andreessen Horowitz. Llmflation: understanding and mitigating llm inference cost. Blog Post, 2024. Analysis of LLM inference costs and strategies for optimization. URL: https://a16z.com/llmflation-llm-inference-cost/.">Andreessen Horowitz, 2024</a>]</span>, the cost of LLM inference is decreasing by approximately 10x every year - a rate that outpaces even Moore’s Law in the PC revolution or Edholm’s Law during the bandwidth explosion of the dot-com era.</p>
+<figure class="align-center" id="llmflation">
+<a class="reference internal image-reference" href="../_images/llmflation.png"><img alt="LLMflation" src="../_images/llmflation.png" style="width: 2100.0px; height: 1549.1px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 8.1 </span><span class="caption-text">LLMflation <span id="id2">[<a class="reference internal" href="#id93" title="Andreessen Horowitz. Llmflation: understanding and mitigating llm inference cost. Blog Post, 2024. Analysis of LLM inference costs and strategies for optimization. URL: https://a16z.com/llmflation-llm-inference-cost/.">Andreessen Horowitz, 2024</a>]</span>: The cost of LLM inference is decreasing by approximately 10x every year.</span><a class="headerlink" href="#llmflation" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>A model achieving an MMLU score of 42 that cost $60 per million tokens in late 2021 can now be run for just $0.06 per million tokens. For higher-capability models scoring 83 on MMLU, prices have fallen by a factor of 62 since GPT-4’s introduction in March 2023.</p>
+<p>This dramatic decline stems from multiple compounding factors including:</p>
+<ul class="simple">
+<li><p>Improved GPU efficiency through architectural advances and Moore’s Law</p></li>
+<li><p>Model quantization progress, moving from 16-bit to 4-bit or lower precision</p></li>
+<li><p>Software optimizations reducing compute and memory bandwidth requirements</p></li>
+<li><p>Emergence of smaller yet similarly capable models</p></li>
+<li><p>Better instruction tuning techniques like RLHF and DPO</p></li>
+<li><p>Competition from open-source models and low-cost providers</p></li>
+</ul>
+<p>This trend raises a critical question: If LLM costs are plummeting so rapidly, why should businesses and developers invest precious time and resources in optimizing their LLM usage? Wouldn’t it make more sense to simply wait for the next wave of cost improvements rather than optimize today? In two words: <strong>Jevons Paradox</strong>.</p>
+<p>The Jevons Paradox was first observed by English economist William Stanley Jevons in 1865. Studying coal consumption during the Industrial Revolution, Jevons made a counterintuitive discovery: as steam engines became more efficient and coal use became more economical, total coal consumption increased rather than decreased driving the (Industrial Revolution) and the total spending up.</p>
+<p>This pattern has repeated throughout technological history:</p>
+<ul class="simple">
+<li><p>Computing Power: As cost per computation plummeted, we didn’t spend less on computing, instead we found new creative uses for computers, from smartphones to cloud servers</p></li>
+<li><p>Network Bandwidth: As data transmission got cheaper, we shifted from text messaging to HD video streaming and real-time gaming</p></li>
+<li><p>Data Storage: As cost per gigabyte fell, we moved from storing documents to hosting entire media libraries and training massive AI models</p></li>
+</ul>
+<p>One could argue that LLMs and Generative AI more broadly are following a similar trajectory. As costs decline, we’re seeing the emergence of new applications:</p>
+<ul class="simple">
+<li><p>Embedding AI capabilities into every application and workflow</p></li>
+<li><p>Real-time analysis of audio transcripts and conversations</p></li>
+<li><p>Running AI models directly on edge devices and smartphones</p></li>
+<li><p>Multimodal applications combining text, images, audio and video</p></li>
+</ul>
+<p>In this environment of rapidly falling costs but potential for exponential growth in usage, optimizing LLM costs becomes more, not less, important. Here’s why:</p>
+<p><strong>A) Scale Magnifies Everything</strong>. When operating at billions of tokens per day, even small inefficiencies have major effects:</p>
+<ul class="simple">
+<li><p>A single digit improvement in efficiency can save millions of dollars annually at scale</p></li>
+<li><p>Every 100 milliseconds of latency is about 8% difference in engagement rates (30% on mobile) <a class="footnote-reference brackets" href="#groklatency" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></li>
+</ul>
+<p><strong>B) Tiered Pricing Persists</strong>. While average costs are declining, the market maintains a tiered structure:</p>
+<ul class="simple">
+<li><p>Different models offer varying price-performance tradeoffs</p></li>
+<li><p>ChatGPT Pro at $200 per month breaks the price drop trend perhaps triggering a new wave of premium models</p></li>
+<li><p>Cost optimization is still required to select the right model for each specific use case</p></li>
+</ul>
+<p><strong>C) Competition Drives Innovation</strong>. Companies that master LLM efficiency gain significant advantages:</p>
+<ul class="simple">
+<li><p>Ability to offer more competitive pricing</p></li>
+<li><p>Capacity to handle larger scale operations</p></li>
+<li><p>Resources to invest in product improvement</p></li>
+</ul>
+<p><strong>D) Performance and Cost Are Linked</strong>. Cost optimization often yields performance benefits:</p>
+<ul class="simple">
+<li><p>Resource efficiency enables handling larger user loads</p></li>
+<li><p>More efficiency and reduced latency leads to improved user experience</p></li>
+</ul>
+<p>In this environment, companies that master efficient LLM usage while exploiting new capabilities opened up by falling costs will be best positioned to innovate and scale. This dual focus - efficiency and innovation - will likely characterize successful AI companies in the years ahead.</p>
+<p>Motivated by this insight, in the next sections we will dive into the factors that drive LLM cost decay and how to optimize LLM usage in practical applications. The discussion will explore key optimization areas including inference optimization through techniques like Flash Attention and cached prompts, model compression via quantization and distillation, and practical implementation patterns such as response caching, batch processing, and early stopping - all aimed at achieving efficient usage and cost reductions while maintaining model performance and reliability.</p>
+</section>
+<section id="right-sizing-llms-a-strategic-approach">
+<h2><a class="toc-backref" href="#id192" role="doc-backlink"><span class="section-number">8.2. </span>Right-Sizing LLMs: A Strategic Approach</a><a class="headerlink" href="#right-sizing-llms-a-strategic-approach" title="Permalink to this heading">¶</a></h2>
+<p>Before implementing cost optimization strategies for LLMs, organizations must develop a comprehensive understanding of their own requirements and constraints. This systematic approach prevents both over-engineering and under-provisioning, leading to more efficient and cost-effective implementations.</p>
+<p>In this section, we define key performance and cost related metrics that will guide our discussion. Then we propose a set of requirements practitioners should consider before we dive into cost optimization techniques.</p>
+<section id="metrics">
+<h3><a class="toc-backref" href="#id193" role="doc-backlink"><span class="section-number">8.2.1. </span>Metrics</a><a class="headerlink" href="#metrics" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="requirements">
+<h3><a class="toc-backref" href="#id194" role="doc-backlink"><span class="section-number">8.2.2. </span>Requirements</a><a class="headerlink" href="#requirements" title="Permalink to this heading">¶</a></h3>
+<section id="business-requirements">
+<h4><a class="toc-backref" href="#id195" role="doc-backlink"><span class="section-number">8.2.2.1. </span>Business Requirements</a><a class="headerlink" href="#business-requirements" title="Permalink to this heading">¶</a></h4>
+<p>First, one needs to define the problem to be solved and to what extent it is worth to be solved. Use case requirements form the foundation of any LLM implementation project. A clear definition of the specific business problema and task to be accomplished must be established upfront, along with concrete performance metrics covering accuracy, latency and throughput. This should be accompanied by well-defined cost-per-transaction targets, clear ROI expectations, and a strategic allocation of budgets across different use cases to ensure resources are optimally distributed.</p>
+<p>Budget and ROI considerations are critical for ensuring the long-term viability of LLM implementations. Organizations must establish clear spending limits that align with their financial capabilities while defining realistic cost-per-transaction targets. ROI expectations need to be carefully established through detailed analysis, followed by a strategic allocation of budgets across various use cases based on their business impact and priority.</p>
+<p>Compliance and security requirements cannot be overlooked. This involves a thorough identification of all applicable regulatory requirements and the establishment of robust data handling standards. Organizations must specify comprehensive audit requirements to maintain transparency and accountability, while implementing appropriate security controls to protect sensitive data and system access.</p>
+<p>Future-proofing considerations help ensure the longevity and adaptability of LLM implementations. This requires careful planning for scale to accommodate future growth, along with the evaluation of multi-model strategies to reduce dependency on single solutions. Organizations should carefully assess vendor lock-in risks and explore open-source alternatives to maintain flexibility and control over their AI infrastructure.</p>
+<p>Chapter <a class="reference internal" href="local.html#local"><span class="std std-ref">Local LLMs in Practice</span></a> provides a detailed discussion on relevant considerations when <a class="reference internal" href="local.html#local-model-selection"><span class="std std-ref">Choosing your Model</span></a>.</p>
+</section>
+<section id="performance-requirements">
+<h4><a class="toc-backref" href="#id196" role="doc-backlink"><span class="section-number">8.2.2.2. </span>Performance Requirements</a><a class="headerlink" href="#performance-requirements" title="Permalink to this heading">¶</a></h4>
+<p>Accuracy and quality form the foundation of any LLM deployment’s performance requirements. At its core, this involves determining the minimum level of accuracy that the model must achieve to be considered successful. This serves as a critical baseline for evaluating model performance and making deployment decisions. Establishing clear evaluation metrics, whether through automated measures or human evaluation processes, provides concrete ways to assess if these thresholds are being met. Continuous monitoring of these accuracy metrics ensures the system maintains its performance over time as usage patterns and data distributions evolve. Chapter <a class="reference internal" href="evals.html#evals"><span class="std std-ref">The Evals Gap</span></a> provides a detailed discussion on how to evaluate the performance of LLM-based applications.</p>
+<p>Latency and throughput requirements are equally crucial for ensuring a positive user experience and system reliability. These specifications define how quickly the system must respond to requests and how many concurrent users it can handle. Response time requirements must be carefully balanced against the computational resources available, while peak load capabilities need to account for usage spikes and growth patterns. The decision between real-time processing for immediate responses versus batch processing for efficiency depends heavily on the use case and user expectations.</p>
+</section>
+<section id="operational-requirements">
+<h4><a class="toc-backref" href="#id197" role="doc-backlink"><span class="section-number">8.2.2.3. </span>Operational Requirements</a><a class="headerlink" href="#operational-requirements" title="Permalink to this heading">¶</a></h4>
+<p>Scale and capacity planning forms the foundation of operational requirements for LLM deployments. This involves a comprehensive analysis of expected system usage and growth patterns to ensure the infrastructure can handle both current and future demands. Organizations must carefully project their daily and monthly API call volumes while calculating the average number of tokens per request to accurately estimate resource needs. Understanding usage patterns, including seasonal variations, enables proper capacity planning. Additionally, developing 12-24 month growth projections helps ensure the infrastructure can scale appropriately as demand increases.</p>
+<p>Reliability and availability requirements are equally critical for maintaining consistent service quality. These specifications define the expected uptime percentage that the system must maintain, typically expressed as a percentage of total operational time. Organizations need to establish clear maintenance windows that minimize disruption to users while ensuring necessary system updates and optimizations can be performed. Comprehensive backup and failover requirements must be specified to ensure business continuity in case of failures. High availability needs should be clearly defined, including redundancy levels and recovery time objectives, to maintain service quality even during unexpected events.</p>
+</section>
+<section id="technical-requirements">
+<h4><a class="toc-backref" href="#id198" role="doc-backlink"><span class="section-number">8.2.2.4. </span>Technical Requirements</a><a class="headerlink" href="#technical-requirements" title="Permalink to this heading">¶</a></h4>
+<p>System integration requirements define how the LLM system will interact and communicate with existing infrastructure and applications. This involves carefully mapping all integration points where the LLM system needs to connect with other systems, establishing standardized data formats and interfaces for seamless communication, implementing robust security measures to protect data in transit, and identifying any technical constraints that could impact integration. Getting these integration requirements right is crucial for ensuring the LLM system can function effectively within the broader technical ecosystem.</p>
+<p>Data management requirements address how information will be stored, processed, and maintained within the LLM system. This encompasses determining appropriate storage solutions for maintaining conversation context and history, selecting and configuring vector databases to enable efficient retrieval-augmented generation (RAG), creating comprehensive data retention policies that balance operational needs with resource constraints, and ensuring all data handling practices comply with relevant privacy regulations. Proper data management is essential for both system performance and regulatory compliance, making it a critical consideration in any LLM implementation.</p>
+<p>This structured approach to requirements analysis enables organizations to:</p>
+<ol class="arabic simple">
+<li><p>Select appropriate models aligned with specific needs</p></li>
+<li><p>Identify targeted optimization opportunities</p></li>
+<li><p>Scale efficiently while controlling costs</p></li>
+<li><p>Develop realistic resource allocation strategies</p></li>
+</ol>
+<p>The following sections explore specific optimization techniques, but their implementation should always be guided by these foundational requirements.</p>
+</section>
+</section>
+</section>
+<section id="quantization">
+<h2><a class="toc-backref" href="#id199" role="doc-backlink"><span class="section-number">8.3. </span>Quantization</a><a class="headerlink" href="#quantization" title="Permalink to this heading">¶</a></h2>
+<p>Quantization is a common and relevant technique in making LLMs more efficient and accessible. At a high level, quantization reduces the number of bits used to represent a model’s parameters. The most common form of quantization is to represent model’s weights at lower precision at post-training phase. It has become a standard technique to generate a series of quantized models given a large pre-trained base model.</p>
+<p>While a standard pre-trained LLM might use 32-bit floating-point (FP32) or 16-bit floating-point (FP16) numbers to store its weights, quantized versions can operate at lower precision levels such as 8, 4 or even 2 bits per parameter, reducing memory footprint without proportional losses in performance, necessarily. For instance, for a model of 30 billion parameters, using FP32 means 4 bytes per weight or 120 GB for the whole weights. If the model is quantized such that weights are represented in 1 byte, the memory needed for the model’s weights decreases to 30 GB, hence potentially fitting into consumer grade hardware. This is done at the cost of precision loss, but the trade-off is often worth it though require careful analysis.</p>
+<p>Let’s take a look at model weights of a language model (<code class="docutils literal notranslate"><span class="pre">SmolLM2-135M-Instruct</span></code>) that has been quantized to 2-bit and 16-bit precisions. We will use an utility function <code class="docutils literal notranslate"><span class="pre">load_gguf</span></code> from the <code class="docutils literal notranslate"><span class="pre">taming_utils</span></code> package to load model weights of the quantized models directly from Hugging Face.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">taming_utils</span> <span class="kn">import</span> <span class="n">load_gguf</span>
+
+<span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">&quot;bartowski/SmolLM2-135M-Instruct-GGUF&quot;</span>
+<span class="n">GGUF_FILE_Q2_K</span> <span class="o">=</span> <span class="s2">&quot;SmolLM2-135M-Instruct-Q2_K.gguf&quot;</span>
+<span class="n">GGUF_FILE_F16</span> <span class="o">=</span> <span class="s2">&quot;SmolLM2-135M-Instruct-F16.gguf&quot;</span>
+
+<span class="n">model_q2_k</span> <span class="o">=</span> <span class="n">load_gguf</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="n">MODEL_NAME</span><span class="p">,</span> 
+              <span class="n">gguf_file</span><span class="o">=</span><span class="n">GGUF_FILE_Q2_K</span><span class="p">)</span>
+
+<span class="n">model_f16</span> <span class="o">=</span> <span class="n">load_gguf</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="n">MODEL_NAME</span><span class="p">,</span> 
+              <span class="n">gguf_file</span><span class="o">=</span><span class="n">GGUF_FILE_F16</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We extract the MLP weights from the first layer of the model as a proxy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mlp_weights_q2_k</span> <span class="o">=</span> <span class="n">model_q2_k</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">gate_proj</span><span class="o">.</span><span class="n">weight</span>
+<span class="n">mlp_weights_f16</span> <span class="o">=</span> <span class="n">model_f16</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">gate_proj</span><span class="o">.</span><span class="n">weight</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Original weights at 16-bit precision:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mlp_weights_f16</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parameter containing:
+tensor([[-0.0145,  0.1826,  0.1377,  ...,  0.1719, -0.1387, -0.0298],
+        [-0.1631,  0.0781, -0.2051,  ..., -0.2070, -0.0334,  0.2891],
+        [-0.1768, -0.0488, -0.2393,  ..., -0.0396, -0.1348, -0.1533],
+        ...,
+        [ 0.0771,  0.0845, -0.0232,  ...,  0.0178, -0.1040, -0.0771],
+        [ 0.1582,  0.1167, -0.0474,  ...,  0.0845,  0.0359, -0.2500],
+        [ 0.0432,  0.0972,  0.0933,  ...,  0.2188,  0.0776,  0.0674]],
+       requires_grad=True)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Quantized weights at 2-bit precision:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mlp_weights_q2_k</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parameter containing:
+tensor([[-0.0028,  0.1852,  0.1396,  ...,  0.1506, -0.1635, -0.0043],
+        [-0.1768,  0.0680, -0.2257,  ..., -0.1890, -0.0464,  0.2960],
+        [-0.1840, -0.0451, -0.2395,  ..., -0.0413, -0.1446, -0.1446],
+        ...,
+        [ 0.0621,  0.0621, -0.0478,  ...,  0.0038, -0.0830, -0.0830],
+        [ 0.1473,  0.0926, -0.0547,  ...,  0.0824,  0.0429, -0.2737],
+        [ 0.0355,  0.0782,  0.0782,  ...,  0.2043,  0.0740,  0.0740]],
+       requires_grad=True)
+</pre></div>
+</div>
+</div>
+</div>
+<p>How do they compare? We arrive at a Pearson correlation of 99.7% between the two sets of weights.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Convert tensors to numpy arrays (detach from computation graph if needed)</span>
+<span class="n">weights_f16</span> <span class="o">=</span> <span class="n">mlp_weights_f16</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="n">weights_q2_k</span> <span class="o">=</span> <span class="n">mlp_weights_q2_k</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+<span class="n">flat_f16</span> <span class="o">=</span> <span class="n">weights_f16</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">flat_q2_k</span> <span class="o">=</span> <span class="n">weights_q2_k</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="c1"># Calculate correlation</span>
+<span class="n">correlation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">flat_f16</span><span class="p">,</span> <span class="n">flat_q2_k</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pearson correlation: </span><span class="si">{</span><span class="n">correlation</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pearson correlation: 0.9970
+</pre></div>
+</div>
+</div>
+</div>
+<p>Quantization is a powerful technique for reducing the memory footprint of LLMs. This can be exemplified by the case of LLaMa 3.3 70B as quantized by <span id="id4">[<a class="reference internal" href="#id86" title="Unsloth. Llama-3.3-70b-instruct-gguf. Hugging Face Model, 2024. GGUF quantized version of Meta's Llama 3.3 70B instruction-tuned model. URL: https://huggingface.co/unsloth/Llama-3.3-70B-Instruct-GGUF.">Unsloth, 2024</a>]</span> <a class="footnote-reference brackets" href="#unsloth" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>. The model’s memory requirements vary significantly based on the quantization level used as demonstrated in <a class="reference internal" href="#quantized"><span class="std std-numref">Fig. 8.2</span></a>.</p>
+<figure class="align-center" id="quantized">
+<a class="reference internal image-reference" href="../_images/quantized.png"><img alt="Quantized Model Size" src="../_images/quantized.png" style="width: 867.5px; height: 338.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 8.2 </span><span class="caption-text">Quantized Model Size: <code class="docutils literal notranslate"><span class="pre">unsloth/Llama-3.3-70B-Instruct-GGUF</span></code></span><a class="headerlink" href="#quantized" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>We observe that the quantization process yields remarkable reductions in model size, demonstrating a clear trade-off between precision and memory requirements. The transition from F16 (141.1 GB) to Q8_0 (75 GB) achieves a dramatic 47% reduction in model size while maintaining relatively high numerical precision. Further quantization levels reveal an interesting pattern of diminishing returns - each step down in precision yields progressively smaller absolute size reductions, though the cumulative effect remains significant. At the extreme end, the Q2_K model (26.4 GB) requires only 19% of the storage space of its F16 counterpart <a class="footnote-reference brackets" href="#quantization-levels" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>.</p>
+<p>This wide spectrum of model sizes enables deployment across diverse hardware environments. The lightweight Q2_K variant opens possibilities for running inference on consumer-grade hardware like high-end laptops or desktop computers. In contrast, the full-precision F16 model demands enterprise-grade computing resources with substantial memory capacity. This flexibility in deployment options makes quantization a powerful tool for democratizing access to large language models while managing computational costs.</p>
+<p>While quantization has proven highly effective, there is a limit to how far it can be pushed - specifically, the 1-bit ceiling. A notable advancement in this space is BitNet <span id="id7">[<a class="reference internal" href="#id92" title="Jinheng Wang, Hansong Zhou, Ting Song, Shaoguang Mao, Shuming Ma, Hongyu Wang, Yan Xia, and Furu Wei. 1-bit ai infra: part 1.1, fast and lossless bitnet b1.58 inference on cpus. 2024. URL: https://arxiv.org/abs/2410.16144, arXiv:2410.16144.">Wang <em>et al.</em>, 2024</a>]</span> which pushes the boundaries of extreme quantization.</p>
+<p>BitNet’s implementation, bitnet.cpp, has demonstrated significant performance improvements across both ARM and x86 architectures (see <a class="reference internal" href="#bitnet"><span class="std std-numref">Fig. 8.3</span></a>). When compared to llama.cpp, the framework achieves speedups ranging from 1.37x to 5.07x on ARM processors and 2.37x to 6.17x on x86 systems. These performance gains scale with model size - larger models benefit more substantially from BitNet’s optimizations. The efficiency improvements extend beyond raw speed: energy consumption drops by 55-70% on ARM and 71-82% on x86 processors. Perhaps most impressively, bitnet.cpp enables running a 100B parameter BitNet b1.58 model on a single CPU at speeds matching human reading pace (5-7 tokens per second).</p>
+<figure class="align-center" id="bitnet">
+<a class="reference internal image-reference" href="../_images/bitnet.png"><img alt="BitNet" src="../_images/bitnet.png" style="width: 787.5px; height: 436.8px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 8.3 </span><span class="caption-text">BitNet: <span id="id8">[<a class="reference internal" href="#id92" title="Jinheng Wang, Hansong Zhou, Ting Song, Shaoguang Mao, Shuming Ma, Hongyu Wang, Yan Xia, and Furu Wei. 1-bit ai infra: part 1.1, fast and lossless bitnet b1.58 inference on cpus. 2024. URL: https://arxiv.org/abs/2410.16144, arXiv:2410.16144.">Wang <em>et al.</em>, 2024</a>]</span></span><a class="headerlink" href="#bitnet" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The framework’s initial release focused on CPU inference optimization, with particular emphasis on 1-bit LLM architectures (BitNet b1.58). While initial testing shows promising results, these findings are specific to the tested models and kernels (its specialized kernels are carefully crafted to exploit the unique characteristics of these extremely quantized models). Further validation is needed before generalizing these results across different architectures and use cases.</p>
+<p>As a relatively recent innovation, 1-bit LLMs represent an exciting frontier in model compression. However, their full potential and limitations require additional research and real-world validation. The technology demonstrates how creative approaches to quantization can continue pushing the boundaries of efficient AI deployment.</p>
+<p>Beyond its memory footprint reduction, quantization delivers several compelling advantages: it accelerates computation through faster arithmetic operations and larger batch sizes, reduces costs by enabling deployment on less expensive hardware and making LLMs more accessible to smaller organizations, and improves energy efficiency by lowering memory bandwidth usage and power consumption - particularly beneficial for mobile and edge devices, ultimately contributing to more sustainable AI deployment.</p>
+<p>Each reduction in precision risks performance degradation. Finding optimal quantization schemes remains an active research area. See Case Study on Quantization for Local Models in Chapter <a class="reference internal" href="local.html#local"><span class="std std-ref">Local LLMs in Practice</span></a> for more details.</p>
+</section>
+<section id="check-list">
+<h2><a class="toc-backref" href="#id200" role="doc-backlink"><span class="section-number">8.4. </span>Check-list</a><a class="headerlink" href="#check-list" title="Permalink to this heading">¶</a></h2>
+<p><strong>Planning and Requirements</strong></p>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Start with a clear understanding of your application’s needs and the factors that contribute to LLM costs</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Choose the right model for your task, balancing performance and cost</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Be aware of the potential challenges and limitations of open-source LLMs and take appropriate measures to mitigate them</p></li>
+</ul>
+<p><strong>Model Optimization</strong></p>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Explore model compression and quantization to reduce model size and computational demands</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Fine-tune pre-trained models on domain-specific data to improve accuracy and efficiency</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Consider using RAG to enhance performance and reduce reliance on purely generative processes</p></li>
+</ul>
+<p><strong>Prompt Engineering</strong></p>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Optimize prompts and utilize prompt engineering techniques to minimize token usage</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Experiment with different prompting strategies to unlock the full potential of open-source LLMs</p></li>
+</ul>
+<p><strong>Infrastructure and Operations</strong></p>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Implement caching and batching strategies to optimize resource utilization</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Monitor LLM usage patterns and costs to identify areas for optimization</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Set up observability and logging to track model performance and costs</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Establish automated testing and evaluation pipelines</p></li>
+</ul>
+<p><strong>Cost Management</strong></p>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Track and analyze inference costs across different model variants</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Implement cost allocation and chargeback mechanisms</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Set up cost alerts and budgeting controls</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Regularly review and optimize resource utilization</p></li>
+</ul>
+</section>
+<section id="conclusion">
+<h2><a class="toc-backref" href="#id201" role="doc-backlink"><span class="section-number">8.5. </span>Conclusion</a><a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="CC BY-NC-SA 4.0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@misc</span><span class="p">{</span><span class="n">tharsistpsouza2024tamingllms</span><span class="p">,</span>
+  <span class="n">author</span> <span class="o">=</span> <span class="p">{</span><span class="n">Tharsis</span> <span class="n">T</span><span class="o">.</span> <span class="n">P</span><span class="o">.</span> <span class="n">Souza</span><span class="p">},</span>
+  <span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="n">Taming</span> <span class="n">LLMs</span><span class="p">:</span> <span class="n">A</span> <span class="n">Practical</span> <span class="n">Guide</span> <span class="n">to</span> <span class="n">LLM</span> <span class="n">Pitfalls</span> <span class="k">with</span> <span class="n">Open</span> <span class="n">Source</span> <span class="n">Software</span><span class="p">},</span>
+  <span class="n">year</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2024</span><span class="p">},</span>
+  <span class="n">chapter</span> <span class="o">=</span> <span class="p">{</span><span class="n">The</span> <span class="n">Falling</span> <span class="n">Cost</span> <span class="n">Paradox</span><span class="p">},</span>
+  <span class="n">journal</span> <span class="o">=</span> <span class="p">{</span><span class="n">GitHub</span> <span class="n">repository</span><span class="p">},</span>
+  <span class="n">url</span> <span class="o">=</span> <span class="p">{</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">souzatharsis</span><span class="o">/</span><span class="n">tamingLLMs</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="references">
+<h2><a class="toc-backref" href="#id202" role="doc-backlink"><span class="section-number">8.6. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<div class="docutils container" id="id9">
+<div class="citation" id="id92" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>WZS+24<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id7">1</a>,<a role="doc-backlink" href="#id8">2</a>)</span>
+<p>Jinheng Wang, Hansong Zhou, Ting Song, Shaoguang Mao, Shuming Ma, Hongyu Wang, Yan Xia, and Furu Wei. 1-bit ai infra: part 1.1, fast and lossless bitnet b1.58 inference on cpus. 2024. URL: <a class="reference external" href="https://arxiv.org/abs/2410.16144">https://arxiv.org/abs/2410.16144</a>, <a class="reference external" href="https://arxiv.org/abs/2410.16144">arXiv:2410.16144</a>.</p>
+</div>
+<div class="citation" id="id93" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>AndreessenHorowitz24<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>)</span>
+<p>Andreessen Horowitz. Llmflation: understanding and mitigating llm inference cost. Blog Post, 2024. Analysis of LLM inference costs and strategies for optimization. URL: <a class="reference external" href="https://a16z.com/llmflation-llm-inference-cost/">https://a16z.com/llmflation-llm-inference-cost/</a>.</p>
+</div>
+<div class="citation" id="id94" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id189">HuggingFace4w</a><span class="fn-bracket">]</span></span>
+<p>Hugging Face. Gguf quantization types. Online Documentation, 2024w. Documentation on different quantization types available for GGUF models. URL: <a class="reference external" href="https://huggingface.co/docs/hub/gguf#quantization-types">https://huggingface.co/docs/hub/gguf#quantization-types</a>.</p>
+</div>
+<div class="citation" id="id86" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">Unsloth24</a><span class="fn-bracket">]</span></span>
+<p>Unsloth. Llama-3.3-70b-instruct-gguf. Hugging Face Model, 2024. GGUF quantized version of Meta's Llama 3.3 70B instruction-tuned model. URL: <a class="reference external" href="https://huggingface.co/unsloth/Llama-3.3-70B-Instruct-GGUF">https://huggingface.co/unsloth/Llama-3.3-70B-Instruct-GGUF</a>.</p>
+</div>
+</div>
+</div>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="groklatency" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">1</a><span class="fn-bracket">]</span></span>
+<p>Quote from Jonathan Ross, CEO of Groq, a company that specializes in AI Inference services.</p>
+</aside>
+<aside class="footnote brackets" id="unsloth" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">2</a><span class="fn-bracket">]</span></span>
+<p>Unsloth runs a business of making LLMs fine-tuning streamlined. Check them out at <a class="reference external" href="https://unsloth.ai">unsloth.ai</a>.</p>
+</aside>
+<aside class="footnote brackets" id="quantization-levels" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">3</a><span class="fn-bracket">]</span></span>
+<p>You may have noticed quantization levels have a special notation. Including the bit width in the name of the model but also quantization types (e.g. _K, _0). You can find more information about the quantization levels in <span id="id189">[<a class="reference internal" href="local.html#id125" title="Hugging Face. Gguf quantization types. Online Documentation, 2024w. Documentation on different quantization types available for GGUF models. URL: https://huggingface.co/docs/hub/gguf#quantization-types.">Hugging Face, 2024w</a>]</span>.</p>
+</aside>
+</aside>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="local.html"
+       title="previous chapter">← <span class="section-number">7. </span>Local LLMs in Practice</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright Tharsis T. P. Souza, 2024.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 6.2.1 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.9.1.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

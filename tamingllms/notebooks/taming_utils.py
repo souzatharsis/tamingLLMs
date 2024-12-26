@@ -350,3 +350,26 @@ def calculate_validator_metrics(scoring_results, scoring_prompts, bad_sources, g
     # Create a DataFrame from the results
     results_df = pd.DataFrame(results)
     return results_df
+
+
+from transformers import AutoModelForCausalLM, AutoTokenizer
+import torch
+
+def load_gguf(model_name="bartowski/SmolLM2-135M-Instruct-GGUF", 
+              gguf_file="SmolLM2-135M-Instruct-Q2_K.gguf",
+              device_map="auto"):
+    """
+    Load a pre-trained language model.
+    
+    Args:
+        model_name (str): Name/path of the model to load
+        gguf_file (str): Name of the GGUF file to use
+        device_map (str): Device mapping strategy
+        
+    Returns:
+        AutoModelForCausalLM: Loaded model
+    """
+    model = AutoModelForCausalLM.from_pretrained(model_name,
+                                                gguf_file=gguf_file,
+                                                device_map=device_map)
+    return model

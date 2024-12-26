@@ -32,7 +32,7 @@ Abstract: *The current discourse around Large Language Models (LLMs) tends to fo
 
 ## [Chapter 6: Local LLMs in Practice](https://www.souzatharsis.com/tamingLLMs/notebooks/local.html)
 
-## Chapter 7: The Cost Factor
+## Chapter 7: The Falling Cost Paradox
 
 ## Chapter 8: Frontiers
 
