@@ -31,17 +31,15 @@ Throughout this book, we'll tackle the following (non-exhaustive) list of critic
 
 1. **Structural (un)Reliability**: LLMs struggle to maintain consistent output formats, complicating their integration into larger systems and making error handling more complex.
 
-2. **Size and Length Constraints**: LLMs have strict token limits for both inputs and outputs, requiring careful chunking and management strategies to handle long-form content effectively.
+2. **Format, Size and Length Constraints**: LLMs are sensitive to input data format and size requiring careful management strategies to handle long-form unstructured content effectively.
 
 3. **Testing Complexity**: Traditional software testing methodologies break down when dealing with non-deterministic and generative systems, requiring new approaches.
 
-4. **Hallucination Management**: These models can generate plausible-sounding but entirely fabricated information, creating significant risks for production applications.
+4. **Safety and Alignment**: LLMs can generate harmful, biased, or inappropriate content, requiring robust safeguards and monitoring systems to ensure safe deployment.
 
-5. **Safety and Alignment**: LLMs can generate harmful, biased, or inappropriate content, requiring robust safeguards and monitoring systems to ensure safe deployment.
+5. **Cost Optimization**: The computational and financial costs of operating LLM-based systems can quickly become prohibitive without careful management, and optimization.
 
-6. **Cost Optimization**: The computational and financial costs of operating LLM-based systems can quickly become prohibitive without careful management, observability and optimization.
-
-7. **Vendor Lock-in**: Cloud-based LLM providers can create significant dependencies and lock-in through their proprietary APIs and infrastructure, making it difficult to switch providers or self-host solutions.
+6. **Vendor Lock-in**: Cloud-based LLM providers can create significant dependencies and lock-in through their proprietary APIs and infrastructure, making it difficult to switch providers or self-host solutions.
 
 
 ## A Practical Approach
@@ -155,7 +153,7 @@ python -m venv taming-llms-env
 source taming-llms-env/bin/activate  # On Windows, use: taming-llms-env\Scripts\activate
 ```
 
-We will try and make the notebook/Chapter as self-contained as possible, including all necessary installs as we go through the examples.
+We will try and make each Chapter as self-contained as possible, including all necessary installs as we go through the examples.
 Feel free to use your preferred package manager to install the dependencies (e.g. `pip`). We used `poetry` to manage dependencies and virtual environments.
 
 ### API Keys Configuration
@@ -170,8 +168,6 @@ Feel free to use your preferred package manager to install the dependencies (e.g
 Never share your `.env` file or commit it to version control. It contains sensitive information that should be kept private.
 ```
 
-
-
 ### Troubleshooting Common Issues
 - If you encounter API rate limits, consider using smaller examples or implementing retry logic
 - For package conflicts, try creating a fresh virtual environment or use a package manager like `poetry`
@@ -179,10 +175,10 @@ Never share your `.env` file or commit it to version control. It contains sensit
 
 Now that your environment is set up, let's begin our exploration of LLM challenges.
 
-## About the Author(s)
+## About the Author
 
 Dr. Tharsis Souza is a computer scientist and product leader specializing in AI-based products. He is a Lecturer at Columbia University's Master of Science program in Applied Analytics, (*incoming*) Head of Product, Equities at Citadel, and former Senior VP at Two Sigma Investments. He also enjoys mentoring under-represented students & working professionals to help create a more diverse global AI ecosystem.
 
-With over 15 years of experience delivering technology products across startups and Fortune 500 companies, Dr. Souza is also an author of numerous scholarly publications and is a frequent speaker at academic and business conferences. Grounded on academic background and drawing from practical experience building and scaling up products powered by language models at early-stage startups, major institutions as well as advising non-profit organizations, and contributing to open source projects, he brings a unique perspective on bridging the gap between LLMs promised potential and their practical implementation challenges to enable the next generation of AI-powered products.
+With over 15 years of experience delivering technology products across startups and Fortune 500 companies, Dr. Souza is also an author of numerous scholarly publications and a frequent speaker at academic and business conferences. Grounded on academic background and drawing from practical experience building and scaling up products powered by language models at early-stage startups, major institutions as well as advising non-profit organizations, and contributing to open source projects, he brings a unique perspective on bridging the gap between LLMs promised potential and their practical implementation challenges to enable the next generation of AI-powered products.
 
 Dr. Tharsis holds a Ph.D. in Computer Science from UCL, University of London following an M.Phil. and M.Sc. in Computer Science and a B.Sc. in Computer Engineering.

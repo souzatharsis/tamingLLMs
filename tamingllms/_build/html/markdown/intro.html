@@ -57,9 +57,9 @@
 
   
     <div class="nav-item">
-      <a href="https://www.linkedin.com/in/tharsissouza/"
+      <a href="https://tamingllm.substack.com/"
         class="nav-link external">
-          Author <outboundlink></outboundlink>
+          Newsletter <outboundlink></outboundlink>
       </a>
     </div>
   
@@ -87,9 +87,9 @@
 
   
     <div class="nav-item">
-      <a href="https://www.linkedin.com/in/tharsissouza/"
+      <a href="https://tamingllm.substack.com/"
         class="nav-link external">
-          Author <outboundlink></outboundlink>
+          Newsletter <outboundlink></outboundlink>
       </a>
     </div>
   
@@ -156,7 +156,7 @@
                 
                   <li class="toctree-l2"><a href="#setting-up-your-environment" class="reference internal">Setting Up Your Environment</a></li>
                 
-                  <li class="toctree-l2"><a href="#about-the-author-s" class="reference internal">About the Author(s)</a></li>
+                  <li class="toctree-l2"><a href="#about-the-author" class="reference internal">About the Author</a></li>
                 
               </ul>
             
@@ -275,7 +275,7 @@
 <li><p><a class="reference internal" href="#troubleshooting-common-issues" id="id14">Troubleshooting Common Issues</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#about-the-author-s" id="id15">About the Author(s)</a></p></li>
+<li><p><a class="reference internal" href="#about-the-author" id="id15">About the Author</a></p></li>
 </ul>
 </li>
 </ul>
@@ -287,11 +287,10 @@
 <p>Throughout this book, we’ll tackle the following (non-exhaustive) list of critical challenges:</p>
 <ol class="arabic simple">
 <li><p><strong>Structural (un)Reliability</strong>: LLMs struggle to maintain consistent output formats, complicating their integration into larger systems and making error handling more complex.</p></li>
-<li><p><strong>Size and Length Constraints</strong>: LLMs have strict token limits for both inputs and outputs, requiring careful chunking and management strategies to handle long-form content effectively.</p></li>
+<li><p><strong>Format, Size and Length Constraints</strong>: LLMs are sensitive to input data format and size requiring careful management strategies to handle long-form unstructured content effectively.</p></li>
 <li><p><strong>Testing Complexity</strong>: Traditional software testing methodologies break down when dealing with non-deterministic and generative systems, requiring new approaches.</p></li>
-<li><p><strong>Hallucination Management</strong>: These models can generate plausible-sounding but entirely fabricated information, creating significant risks for production applications.</p></li>
 <li><p><strong>Safety and Alignment</strong>: LLMs can generate harmful, biased, or inappropriate content, requiring robust safeguards and monitoring systems to ensure safe deployment.</p></li>
-<li><p><strong>Cost Optimization</strong>: The computational and financial costs of operating LLM-based systems can quickly become prohibitive without careful management, observability and optimization.</p></li>
+<li><p><strong>Cost Optimization</strong>: The computational and financial costs of operating LLM-based systems can quickly become prohibitive without careful management, and optimization.</p></li>
 <li><p><strong>Vendor Lock-in</strong>: Cloud-based LLM providers can create significant dependencies and lock-in through their proprietary APIs and infrastructure, making it difficult to switch providers or self-host solutions.</p></li>
 </ol>
 </section>
@@ -406,7 +405,7 @@ python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </s
 <span class="nb">source</span><span class="w"> </span>taming-llms-env/bin/activate<span class="w">  </span><span class="c1"># On Windows, use: taming-llms-env\Scripts\activate</span>
 </pre></div>
 </div>
-<p>We will try and make the notebook/Chapter as self-contained as possible, including all necessary installs as we go through the examples.
+<p>We will try and make each Chapter as self-contained as possible, including all necessary installs as we go through the examples.
 Feel free to use your preferred package manager to install the dependencies (e.g. <code class="docutils literal notranslate"><span class="pre">pip</span></code>). We used <code class="docutils literal notranslate"><span class="pre">poetry</span></code> to manage dependencies and virtual environments.</p>
 </section>
 <section id="api-keys-configuration">
@@ -434,10 +433,10 @@ Feel free to use your preferred package manager to install the dependencies (e.g
 <p>Now that your environment is set up, let’s begin our exploration of LLM challenges.</p>
 </section>
 </section>
-<section id="about-the-author-s">
-<h2><a class="toc-backref" href="#id15" role="doc-backlink"><span class="section-number">2.10. </span>About the Author(s)</a><a class="headerlink" href="#about-the-author-s" title="Permalink to this heading">¶</a></h2>
+<section id="about-the-author">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink"><span class="section-number">2.10. </span>About the Author</a><a class="headerlink" href="#about-the-author" title="Permalink to this heading">¶</a></h2>
 <p>Dr. Tharsis Souza is a computer scientist and product leader specializing in AI-based products. He is a Lecturer at Columbia University’s Master of Science program in Applied Analytics, (<em>incoming</em>) Head of Product, Equities at Citadel, and former Senior VP at Two Sigma Investments. He also enjoys mentoring under-represented students &amp; working professionals to help create a more diverse global AI ecosystem.</p>
-<p>With over 15 years of experience delivering technology products across startups and Fortune 500 companies, Dr. Souza is also an author of numerous scholarly publications and is a frequent speaker at academic and business conferences. Grounded on academic background and drawing from practical experience building and scaling up products powered by language models at early-stage startups, major institutions as well as advising non-profit organizations, and contributing to open source projects, he brings a unique perspective on bridging the gap between LLMs promised potential and their practical implementation challenges to enable the next generation of AI-powered products.</p>
+<p>With over 15 years of experience delivering technology products across startups and Fortune 500 companies, Dr. Souza is also an author of numerous scholarly publications and a frequent speaker at academic and business conferences. Grounded on academic background and drawing from practical experience building and scaling up products powered by language models at early-stage startups, major institutions as well as advising non-profit organizations, and contributing to open source projects, he brings a unique perspective on bridging the gap between LLMs promised potential and their practical implementation challenges to enable the next generation of AI-powered products.</p>
 <p>Dr. Tharsis holds a Ph.D. in Computer Science from UCL, University of London following an M.Phil. and <a class="reference external" href="http://M.Sc">M.Sc</a>. in Computer Science and a <a class="reference external" href="http://B.Sc">B.Sc</a>. in Computer Engineering.</p>
 </section>
 </section>

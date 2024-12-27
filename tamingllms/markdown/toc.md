@@ -12,7 +12,7 @@ Sign-up to receive updates on [new Chapters here](https://tamingllm.substack.com
 
 ---
 # [Taming LLMs](https://www.souzatharsis.com/tamingLLMs)
-## *A Practical Guide to LLM Pitfalls with Open Source Software*
+### *A Practical Guide to LLM Pitfalls with Open Source Software*
 
 Abstract: *The current discourse around Large Language Models (LLMs) tends to focus heavily on their capabilities while glossing over fundamental challenges. Conversely, this book takes a critical look at the key limitations and implementation pitfalls that engineers and technical leaders encounter when building LLM-powered applications. Through practical Python examples and proven open source solutions, it provides an introductory yet comprehensive guide for navigating these challenges. The focus is on concrete problems with reproducible code examples and battle-tested open source tools. By understanding these pitfalls upfront, readers will be better equipped to build products that harness the power of LLMs while sidestepping their inherent limitations.*
 

@@ -10,6 +10,7 @@ chapters:
 - file: markdown/intro.md
 - file: notebooks/evals.ipynb
 - file: notebooks/structured_output.ipynb
+#- file: notebooks/input.ipynb
 - file: notebooks/safety.ipynb
 - file: notebooks/alignment.ipynb
 - file: notebooks/local.ipynb

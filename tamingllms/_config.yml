@@ -43,7 +43,7 @@ sphinx:
     #html_sidebars: {'**': ['globaltoc.html']}
     html_theme_options:
       external_links:
-        - ["Author", "https://www.linkedin.com/in/tharsissouza/"] 
+        - ["Newsletter", "https://tamingllm.substack.com/"] 
         - ["Github", "https://github.com/souzatharsis/tamingllms"]
            
     
