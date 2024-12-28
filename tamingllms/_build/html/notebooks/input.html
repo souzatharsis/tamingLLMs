@@ -295,6 +295,10 @@
 </li>
 </ul>
 </nav>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This Chapter is Work-in-Progress.</p>
+</div>
 <section id="introduction">
 <h2><a class="toc-backref" href="#id207" role="doc-backlink"><span class="section-number">5.1. </span>Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>Large Language Models face several critical challenges in effectively processing input data. While advances in long-context language models (LCLMs) <span id="id1">[<a class="reference internal" href="#id101" title="Jinhyuk Lee, Anthony Chen, Zhuyun Dai, Dheeru Dua, Devendra Singh Sachan, Michael Boratko, Yi Luan, Sébastien M. R. Arnold, Vincent Perot, Siddharth Dalmia, Hexiang Hu, Xudong Lin, Panupong Pasupat, Aida Amini, Jeremy R. Cole, Sebastian Riedel, Iftekhar Naim, Ming-Wei Chang, and Kelvin Guu. Can long-context language models subsume retrieval, rag, sql, and more? 2024. URL: https://arxiv.org/abs/2406.13121, arXiv:2406.13121.">Lee <em>et al.</em>, 2024</a>]</span> have expanded the amount of information these systems can process simultaneously, significant challenges remain in managing and effectively utilizing extended inputs.</p>
@@ -1744,11 +1748,11 @@ Below, we can see the first table successfully extracted for Equities forecasts,
 <li><p><strong>Depth of Analysis</strong>: While the report covers a wide range of topics, the depth of analysis in certain sections may not be as comprehensive as a human expert’s evaluation. Some nuances and contextual factors might be overlooked by the LLM. Splitting the report into multiple parts helps in mitigating this issue.</p></li>
 <li><p><strong>Chunking Strategy</strong>: The current approach splits the text into chunks based on size, which ensures that each chunk fits within the model’s token limit. However, this method may disrupt the logical flow of the document, as sections of interest might be split across multiple chunks. An alternative approach could be “structured” chunking, where the text is divided based on meaningful sections or topics. This would preserve the coherence of each section, making it easier to follow and understand. Implementing structured chunking requires additional preprocessing to identify and segment the text appropriately, but it can significantly enhance the readability and logical flow of the generated report.</p></li>
 </ul>
-<p>Here, we implemented a simple strategy to improve the coherence in output generation given a multi-part chunked input. Many other strategies are possible. One related technique worth mentioning is Anthropic’s Contextual Retrieval <span id="id11">[<a class="reference internal" href="#id144" title="Anthropic. Introducing contextual retrieval. 09 2024. URL: https://www.anthropic.com/news/contextual-retrieval.">Anthropic, 2024</a>]</span>. The approach, as shown in <a class="reference internal" href="#anth-contextual"><span class="std std-numref">Fig. 5.7</span></a>, employs an LLM itself to generate relevant context per chunk before passing these two pieces of information together to the LLM. This process was proposed in the context of RAGs to enhance its retrieval capabilities but can be applied more generally to improve output generation.</p>
+<p>Here, we implemented a simple strategy to improve the coherence in output generation given a multi-part chunked input. Many other strategies are possible. One related technique worth mentioning is Anthropic’s Contextual Retrieval <span id="id11">[<a class="reference internal" href="#id144" title="Anthropic. Introducing contextual retrieval. 09 2024a. URL: https://www.anthropic.com/news/contextual-retrieval.">Anthropic, 2024a</a>]</span>. The approach, as shown in <a class="reference internal" href="#anth-contextual"><span class="std std-numref">Fig. 5.7</span></a>, employs an LLM itself to generate relevant context per chunk before passing these two pieces of information together to the LLM. This process was proposed in the context of RAGs to enhance its retrieval capabilities but can be applied more generally to improve output generation.</p>
 <figure class="align-center" id="anth-contextual">
 <a class="reference internal image-reference" href="../_images/anth_contextual.png"><img alt="Anthropic Contextual Linking" src="../_images/anth_contextual.png" style="width: 545.5px; height: 359.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 5.7 </span><span class="caption-text">Anthropic Contextual Linking <span id="id12">[<a class="reference internal" href="#id144" title="Anthropic. Introducing contextual retrieval. 09 2024. URL: https://www.anthropic.com/news/contextual-retrieval.">Anthropic, 2024</a>]</span>.</span><a class="headerlink" href="#anth-contextual" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 5.7 </span><span class="caption-text">Anthropic Contextual Linking <span id="id12">[<a class="reference internal" href="#id144" title="Anthropic. Introducing contextual retrieval. 09 2024a. URL: https://www.anthropic.com/news/contextual-retrieval.">Anthropic, 2024a</a>]</span>.</span><a class="headerlink" href="#anth-contextual" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -2043,9 +2047,9 @@ INSTRUCTIONS:</p></li>
 <p>Yujia Zhou, Zheng Liu, Jiajie Jin, Jian-Yun Nie, and Zhicheng Dou. Metacognitive retrieval-augmented large language models. In <em>Proceedings of the ACM Web Conference 2024</em>, WWW '24, 1453–1463. New York, NY, USA, 2024. Association for Computing Machinery. URL: <a class="reference external" href="https://doi.org/10.1145/3589334.3645481">https://doi.org/10.1145/3589334.3645481</a>, <a class="reference external" href="https://doi.org/10.1145/3589334.3645481">doi:10.1145/3589334.3645481</a>.</p>
 </div>
 <div class="citation" id="id144" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>Anthropic24<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span>Anthropic4a<span class="fn-bracket">]</span></span>
 <span class="backrefs">(<a role="doc-backlink" href="#id11">1</a>,<a role="doc-backlink" href="#id12">2</a>)</span>
-<p>Anthropic. Introducing contextual retrieval. 09 2024. URL: <a class="reference external" href="https://www.anthropic.com/news/contextual-retrieval">https://www.anthropic.com/news/contextual-retrieval</a>.</p>
+<p>Anthropic. Introducing contextual retrieval. 09 2024a. URL: <a class="reference external" href="https://www.anthropic.com/news/contextual-retrieval">https://www.anthropic.com/news/contextual-retrieval</a>.</p>
 </div>
 <div class="citation" id="id51" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id10">LangChain24</a><span class="fn-bracket">]</span></span>
