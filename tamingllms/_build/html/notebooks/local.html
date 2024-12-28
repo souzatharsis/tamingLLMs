@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-      <title>7. Local LLMs in Practice</title>
+      <title>8. Local LLMs in Practice</title>
     
           <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="../_static/theme.css " type="text/css" />
@@ -39,8 +39,8 @@
     
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
-  <link rel="next" title="8. The Falling Cost Paradox" href="cost.html" />
-  <link rel="prev" title="6. Preference-Based Alignment" href="alignment.html" /> 
+  <link rel="next" title="9. The Falling Cost Paradox" href="cost.html" />
+  <link rel="prev" title="7. Preference-Based Alignment" href="alignment.html" /> 
   </head>
 
   <body>
@@ -161,6 +161,15 @@
         
           <li class="toctree-l1 ">
             
+              <a href="input.html" class="reference internal ">Managing Input Data</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
               <a href="safety.html" class="reference internal ">Safety</a>
             
 
@@ -223,18 +232,18 @@
   <ul class="breadcrumbs">
     <li><a href="../markdown/toc.html">Docs</a> &raquo;</li>
     
-    <li><span class="section-number">7. </span>Local LLMs in Practice</li>
+    <li><span class="section-number">8. </span>Local LLMs in Practice</li>
   </ul>
   
 
   <ul class="page-nav">
   <li class="prev">
     <a href="alignment.html"
-       title="previous chapter">← <span class="section-number">6. </span>Preference-Based Alignment</a>
+       title="previous chapter">← <span class="section-number">7. </span>Preference-Based Alignment</a>
   </li>
   <li class="next">
     <a href="cost.html"
-       title="next chapter"><span class="section-number">8. </span>The Falling Cost Paradox →</a>
+       title="next chapter"><span class="section-number">9. </span>The Falling Cost Paradox →</a>
   </li>
 </ul>
   
@@ -243,7 +252,7 @@
           <div class="content" role="main" v-pre>
             
   <section class="tex2jax_ignore mathjax_ignore" id="local-llms-in-practice">
-<span id="local"></span><h1><a class="toc-backref" href="#id225" role="doc-backlink"><span class="section-number">7. </span>Local LLMs in Practice</a><a class="headerlink" href="#local-llms-in-practice" title="Permalink to this heading">¶</a></h1>
+<span id="local"></span><h1><a class="toc-backref" href="#id232" role="doc-backlink"><span class="section-number">8. </span>Local LLMs in Practice</a><a class="headerlink" href="#local-llms-in-practice" title="Permalink to this heading">¶</a></h1>
 <blockquote class="epigraph">
 <div><p>Freedom is something that dies unless it’s used.</p>
 <p class="attribution">—Hunter S. Thompson</p>
@@ -251,55 +260,55 @@
 <nav class="contents" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#local-llms-in-practice" id="id225">Local LLMs in Practice</a></p>
+<li><p><a class="reference internal" href="#local-llms-in-practice" id="id232">Local LLMs in Practice</a></p>
 <ul>
-<li><p><a class="reference internal" href="#introduction" id="id226">Introduction</a></p></li>
-<li><p><a class="reference internal" href="#choosing-your-model" id="id227">Choosing your Model</a></p>
+<li><p><a class="reference internal" href="#introduction" id="id233">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#choosing-your-model" id="id234">Choosing your Model</a></p>
 <ul>
-<li><p><a class="reference internal" href="#task-suitability" id="id228">Task Suitability</a></p></li>
-<li><p><a class="reference internal" href="#performance-cost" id="id229">Performance &amp; Cost</a></p></li>
-<li><p><a class="reference internal" href="#licensing" id="id230">Licensing</a></p></li>
-<li><p><a class="reference internal" href="#community-support" id="id231">Community Support</a></p></li>
-<li><p><a class="reference internal" href="#customization" id="id232">Customization</a></p></li>
+<li><p><a class="reference internal" href="#task-suitability" id="id235">Task Suitability</a></p></li>
+<li><p><a class="reference internal" href="#performance-cost" id="id236">Performance &amp; Cost</a></p></li>
+<li><p><a class="reference internal" href="#licensing" id="id237">Licensing</a></p></li>
+<li><p><a class="reference internal" href="#community-support" id="id238">Community Support</a></p></li>
+<li><p><a class="reference internal" href="#customization" id="id239">Customization</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#tools-for-local-llm-deployment" id="id233">Tools for Local LLM Deployment</a></p>
+<li><p><a class="reference internal" href="#tools-for-local-llm-deployment" id="id240">Tools for Local LLM Deployment</a></p>
 <ul>
-<li><p><a class="reference internal" href="#serving-models" id="id234">Serving Models</a></p>
+<li><p><a class="reference internal" href="#serving-models" id="id241">Serving Models</a></p>
 <ul>
-<li><p><a class="reference internal" href="#llama-cpp" id="id235">LLama.cpp</a></p></li>
-<li><p><a class="reference internal" href="#llamafile" id="id236">Llamafile</a></p></li>
-<li><p><a class="reference internal" href="#ollama" id="id237">Ollama</a></p></li>
-<li><p><a class="reference internal" href="#comparison" id="id238">Comparison</a></p></li>
+<li><p><a class="reference internal" href="#llama-cpp" id="id242">LLama.cpp</a></p></li>
+<li><p><a class="reference internal" href="#llamafile" id="id243">Llamafile</a></p></li>
+<li><p><a class="reference internal" href="#ollama" id="id244">Ollama</a></p></li>
+<li><p><a class="reference internal" href="#comparison" id="id245">Comparison</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#ui" id="id239">UI</a></p>
+<li><p><a class="reference internal" href="#ui" id="id246">UI</a></p>
 <ul>
-<li><p><a class="reference internal" href="#lm-studio" id="id240">LM Studio</a></p></li>
-<li><p><a class="reference internal" href="#jan" id="id241">Jan</a></p></li>
-<li><p><a class="reference internal" href="#open-webui" id="id242">Open WebUI</a></p></li>
-<li><p><a class="reference internal" href="#id37" id="id243">Comparison</a></p></li>
+<li><p><a class="reference internal" href="#lm-studio" id="id247">LM Studio</a></p></li>
+<li><p><a class="reference internal" href="#jan" id="id248">Jan</a></p></li>
+<li><p><a class="reference internal" href="#open-webui" id="id249">Open WebUI</a></p></li>
+<li><p><a class="reference internal" href="#id37" id="id250">Comparison</a></p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#case-study-the-effect-of-quantization-on-llm-performance" id="id244">Case Study: The Effect of Quantization on LLM Performance</a></p>
+<li><p><a class="reference internal" href="#case-study-the-effect-of-quantization-on-llm-performance" id="id251">Case Study: The Effect of Quantization on LLM Performance</a></p>
 <ul>
-<li><p><a class="reference internal" href="#prompts-dataset" id="id245">Prompts Dataset</a></p></li>
-<li><p><a class="reference internal" href="#quantization" id="id246">Quantization</a></p></li>
-<li><p><a class="reference internal" href="#benchmarking" id="id247">Benchmarking</a></p></li>
-<li><p><a class="reference internal" href="#results" id="id248">Results</a></p></li>
-<li><p><a class="reference internal" href="#takeaways" id="id249">Takeaways</a></p></li>
+<li><p><a class="reference internal" href="#prompts-dataset" id="id252">Prompts Dataset</a></p></li>
+<li><p><a class="reference internal" href="#quantization" id="id253">Quantization</a></p></li>
+<li><p><a class="reference internal" href="#benchmarking" id="id254">Benchmarking</a></p></li>
+<li><p><a class="reference internal" href="#results" id="id255">Results</a></p></li>
+<li><p><a class="reference internal" href="#takeaways" id="id256">Takeaways</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#conclusion" id="id250">Conclusion</a></p></li>
-<li><p><a class="reference internal" href="#references" id="id251">References</a></p></li>
+<li><p><a class="reference internal" href="#conclusion" id="id257">Conclusion</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id258">References</a></p></li>
 </ul>
 </li>
 </ul>
 </nav>
 <section id="introduction">
-<h2><a class="toc-backref" href="#id226" role="doc-backlink"><span class="section-number">7.1. </span>Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id233" role="doc-backlink"><span class="section-number">8.1. </span>Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>Running Open Source LLMs locally versus depending on proprietary cloud-based models represents more than just a technical choice - it’s a fundamental re-imagining of how we interact with AI technology, putting control back in the hands of users.</p>
 <p>Privacy concerns are a key driver for running LLMs locally. Individual users may want to process personal documents, photos, emails, and chat messages without sharing sensitive data with third parties. For enterprise use cases, organizations handling medical records must comply with HIPAA regulations that require data to remain on-premise. Similarly, businesses processing confidential documents and intellectual property, as well as organizations subject to GDPR and other privacy regulations, need to maintain strict control over their data processing pipeline.</p>
 <p>Cost considerations are another key driver. Organizations and individual consumers can better control expenses by matching model capabilities to their specific needs rather than paying for multiple cloud API subscriptions. For organizations with high-volume applications, this customization and control over costs becomes especially valuable compared to the often prohibitive per-request pricing of cloud solutions. For consumers, running multiple open source models locally eliminates the need to maintain separate subscriptions to access different model capabilities.</p>
@@ -309,7 +318,7 @@
 <p>We also cover key tools enabling local model serving and inference, including open source solutions such as LLama.cpp, Llamafile, and Ollama, along with user-friendly frontend interfaces that make local LLM usage more accessible. We conclude with a detailed case study, analyzing how different quantization approaches impact model performance in resource-constrained environments. This analysis reveals the critical tradeoffs between model size, inference speed, and output quality that practitioners must navigate.</p>
 </section>
 <section id="choosing-your-model">
-<span id="local-model-selection"></span><h2><a class="toc-backref" href="#id227" role="doc-backlink"><span class="section-number">7.2. </span>Choosing your Model</a><a class="headerlink" href="#choosing-your-model" title="Permalink to this heading">¶</a></h2>
+<span id="local-model-selection"></span><h2><a class="toc-backref" href="#id234" role="doc-backlink"><span class="section-number">8.2. </span>Choosing your Model</a><a class="headerlink" href="#choosing-your-model" title="Permalink to this heading">¶</a></h2>
 <p>The landscape of open source LLMs is rapidly evolving, with new models emerging by the day. While proprietary LLMs have garnered significant attention, open source LLMs are gaining traction due to their flexibility, customization options, and cost-effectiveness.</p>
 <p>It is important to observe long-term strategic considerations when choosing a model. These entails prioritization dimensions that may enable competitive advantage in the long-term, including:</p>
 <ol class="arabic simple">
@@ -321,7 +330,7 @@
 </ol>
 <p>In this section, we aim to provide a comprehensive set of considerations to selecting the right open-source LLM for your specific needs, emphasizing the importance of aligning the LLM’s capabilities with the intended task and considering resources constraints.</p>
 <section id="task-suitability">
-<h3><a class="toc-backref" href="#id228" role="doc-backlink"><span class="section-number">7.2.1. </span>Task Suitability</a><a class="headerlink" href="#task-suitability" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id235" role="doc-backlink"><span class="section-number">8.2.1. </span>Task Suitability</a><a class="headerlink" href="#task-suitability" title="Permalink to this heading">¶</a></h3>
 <p>When evaluating an open source LLM, task suitability is a critical first consideration. A model that performs well on general benchmarks may struggle with specific domain tasks. Understanding the intended use case helps narrow down model options based on their demonstrated strengths.</p>
 <p><strong>Task Categories</strong></p>
 <p>When determining which LLM task to prioritize, carefully consider your specific use case and end-user needs. Different applications require distinct model capabilities and optimizations. Common LLM Task Categories include:</p>
@@ -335,15 +344,15 @@
 <li><p><strong>Text Classification</strong>: Categorizing and labeling text data for sentiment analysis, topic modeling, and content moderation.</p></li>
 <li><p><strong>Named Entity Recognition</strong>: Identifying and extracting specific entities from text, such as people, organizations, and locations.</p></li>
 </ul>
-<p><a class="reference internal" href="#task-number"><span class="std std-numref">Fig. 7.1</span></a> shows the number models per task category available at Hugging Face as of December 22, 2024 <span id="id2">[<a class="reference internal" href="#id46" title="Hugging Face. Open source ai year in review 2024. https://huggingface.co/spaces/huggingface/open-source-ai-year-in-review-2024, 2024t. Accessed: 2024.">Face, 2024t</a>]</span>. Text generation is by far the most popular task category.</p>
+<p><a class="reference internal" href="#task-number"><span class="std std-numref">Fig. 8.1</span></a> shows the number models per task category available at Hugging Face as of December 22, 2024 <span id="id2">[<a class="reference internal" href="#id46" title="Hugging Face. Open source ai year in review 2024. https://huggingface.co/spaces/huggingface/open-source-ai-year-in-review-2024, 2024t. Accessed: 2024.">Face, 2024t</a>]</span>. Text generation is by far the most popular task category.</p>
 <figure class="align-center" id="task-number">
 <a class="reference internal image-reference" href="../_images/task_number.png"><img alt="Task Number" src="../_images/task_number.png" style="width: 471.20000000000005px; height: 270.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7.1 </span><span class="caption-text">Number of models per task category from Hugging Face as of December 22, 2024 <span id="id3">[<a class="reference internal" href="#id46" title="Hugging Face. Open source ai year in review 2024. https://huggingface.co/spaces/huggingface/open-source-ai-year-in-review-2024, 2024t. Accessed: 2024.">Face, 2024t</a>]</span>.</span><a class="headerlink" href="#task-number" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 8.1 </span><span class="caption-text">Number of models per task category from Hugging Face as of December 22, 2024 <span id="id3">[<a class="reference internal" href="#id46" title="Hugging Face. Open source ai year in review 2024. https://huggingface.co/spaces/huggingface/open-source-ai-year-in-review-2024, 2024t. Accessed: 2024.">Face, 2024t</a>]</span>.</span><a class="headerlink" href="#task-number" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p><strong>Model Types</strong></p>
-<p>Open source LLMs can be broadly categorized into three main types as far as they level of customization is concerned, each with distinct characteristics and use cases (see <a class="reference internal" href="#model-types"><span class="std std-numref">Fig. 7.2</span></a>):</p>
+<p>Open source LLMs can be broadly categorized into three main types as far as they level of customization is concerned, each with distinct characteristics and use cases (see <a class="reference internal" href="#model-types"><span class="std std-numref">Fig. 8.2</span></a>):</p>
 <ul class="simple">
 <li><p><strong>Base Models</strong>: These foundation models provide broad language understanding capabilities but typically require additional fine-tuning to excel at specific tasks. They serve as versatile starting points for customization. Examples: meta-llama/Llama-2-70b, Qwen/Qwen2.5-72B</p></li>
 <li><p><strong>Instruction-Tuned Models</strong>: Enhanced through fine-tuning on instruction-following datasets, these models excel at interpreting and executing explicit prompts and commands. They bridge the gap between general language capabilities and practical task execution. Chat models are a good example of this category. Examples: meta-llama/Llama-2-70b-chat-hf (Chat), Qwen/Qwen2.5-72B-Instruct</p></li>
@@ -352,13 +361,13 @@
 <figure class="align-center" id="model-types">
 <a class="reference internal image-reference" href="../_images/model_types.svg"><img alt="Model Types" height="240" src="../_images/model_types.svg" width="924" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7.2 </span><span class="caption-text">Model Types.</span><a class="headerlink" href="#model-types" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 8.2 </span><span class="caption-text">Model Types.</span><a class="headerlink" href="#model-types" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>The Llama 2 model family <span id="id4">[<a class="reference internal" href="#id169" title="Hugo Touvron, Louis Martin, Kevin Stone, Peter Albert, Amjad Almahairi, Yasmine Babaei, Nikolay Bashlykov, Soumya Batra, Prajjwal Bhargava, Shruti Bhosale, Dan Bikel, Lukas Blecher, Cristian Canton Ferrer, Moya Chen, Guillem Cucurull, David Esiobu, Jude Fernandes, Jeremy Fu, Wenyin Fu, Brian Fuller, Cynthia Gao, Vedanuj Goswami, Naman Goyal, Anthony Hartshorn, Saghar Hosseini, Rui Hou, Hakan Inan, Marcin Kardas, Viktor Kerkez, Madian Khabsa, Isabel Kloumann, Artem Korenev, Punit Singh Koura, Marie-Anne Lachaux, Thibaut Lavril, Jenya Lee, Diana Liskovich, Yinghai Lu, Yuning Mao, Xavier Martinet, Todor Mihaylov, Pushkar Mishra, Igor Molybog, Yixin Nie, Andrew Poulton, Jeremy Reizenstein, Rashi Rungta, Kalyan Saladi, Alan Schelten, Ruan Silva, Eric Michael Smith, Ranjan Subramanian, Xiaoqing Ellen Tan, Binh Tang, Ross Taylor, Adina Williams, Jian Xiang Kuan, Puxin Xu, Zheng Yan, Iliyan Zarov, Yuchen Zhang, Angela Fan, Melanie Kambadur, Sharan Narang, Aurelien Rodriguez, Robert Stojnic, Sergey Edunov, and Thomas Scialom. Llama 2: open foundation and fine-tuned chat models. 2023. URL: https://arxiv.org/abs/2307.09288, arXiv:2307.09288.">Touvron <em>et al.</em>, 2023</a>]</span> illustrates these distinctions well. The base Llama 2, trained on 2 trillion tokens of public data, demonstrates general-purpose capabilities across text generation and translation tasks. Its chat-optimized instruction-tuned variant, Llama 2-Chat, underwent additional fine-tuning on over 1 million human-annotated conversational examples, making it particularly adept at natural dialogue.</p>
-<p>Benchmark results <span id="id5">[<a class="reference internal" href="#id116" title="Meta AI. Llama-2-70b-chat-hf. Hugging Face Model, 2024c. 70 billion parameter chat model from Meta's Llama 2 family. URL: https://huggingface.co/meta-llama/Llama-2-70b-chat-hf.">Meta AI, 2024c</a>]</span> in <a class="reference internal" href="#llama2-benchmark"><span class="std std-numref">Table 7.1</span></a> highlight the impact of model specialization. On the TruthfulQA <span id="id6">[<a class="reference internal" href="safety.html#id108" title="Stephanie Lin, Jacob Hilton, and Owain Evans. Truthfulqa: measuring how models mimic human falsehoods. 2022. URL: https://arxiv.org/abs/2109.07958, arXiv:2109.07958.">Lin <em>et al.</em>, 2022</a>]</span> and Toxigen <span id="id7">[<a class="reference internal" href="#id121" title="Khalid Alnajjar and others. Toxigen dataset. Papers with Code Dataset, 2024. Dataset for evaluating and mitigating toxic language generation in language models. URL: https://paperswithcode.com/dataset/toxigen.">Alnajjar and others, 2024</a>]</span> benchmarks measuring truthful and informative responses. We observe that the chat-optimized variants show substantially improved truthfulness. Similarly, on the ToxiGen benchmark measuring toxic content generation, Llama 2-Chat models demonstrate near-zero toxicity compared to base models’ 21-26% rates.</p>
+<p>The Llama 2 model family <span id="id4">[<a class="reference internal" href="#id176" title="Hugo Touvron, Louis Martin, Kevin Stone, Peter Albert, Amjad Almahairi, Yasmine Babaei, Nikolay Bashlykov, Soumya Batra, Prajjwal Bhargava, Shruti Bhosale, Dan Bikel, Lukas Blecher, Cristian Canton Ferrer, Moya Chen, Guillem Cucurull, David Esiobu, Jude Fernandes, Jeremy Fu, Wenyin Fu, Brian Fuller, Cynthia Gao, Vedanuj Goswami, Naman Goyal, Anthony Hartshorn, Saghar Hosseini, Rui Hou, Hakan Inan, Marcin Kardas, Viktor Kerkez, Madian Khabsa, Isabel Kloumann, Artem Korenev, Punit Singh Koura, Marie-Anne Lachaux, Thibaut Lavril, Jenya Lee, Diana Liskovich, Yinghai Lu, Yuning Mao, Xavier Martinet, Todor Mihaylov, Pushkar Mishra, Igor Molybog, Yixin Nie, Andrew Poulton, Jeremy Reizenstein, Rashi Rungta, Kalyan Saladi, Alan Schelten, Ruan Silva, Eric Michael Smith, Ranjan Subramanian, Xiaoqing Ellen Tan, Binh Tang, Ross Taylor, Adina Williams, Jian Xiang Kuan, Puxin Xu, Zheng Yan, Iliyan Zarov, Yuchen Zhang, Angela Fan, Melanie Kambadur, Sharan Narang, Aurelien Rodriguez, Robert Stojnic, Sergey Edunov, and Thomas Scialom. Llama 2: open foundation and fine-tuned chat models. 2023. URL: https://arxiv.org/abs/2307.09288, arXiv:2307.09288.">Touvron <em>et al.</em>, 2023</a>]</span> illustrates these distinctions well. The base Llama 2, trained on 2 trillion tokens of public data, demonstrates general-purpose capabilities across text generation and translation tasks. Its chat-optimized instruction-tuned variant, Llama 2-Chat, underwent additional fine-tuning on over 1 million human-annotated conversational examples, making it particularly adept at natural dialogue.</p>
+<p>Benchmark results <span id="id5">[<a class="reference internal" href="#id116" title="Meta AI. Llama-2-70b-chat-hf. Hugging Face Model, 2024c. 70 billion parameter chat model from Meta's Llama 2 family. URL: https://huggingface.co/meta-llama/Llama-2-70b-chat-hf.">Meta AI, 2024c</a>]</span> in <a class="reference internal" href="#llama2-benchmark"><span class="std std-numref">Table 8.1</span></a> highlight the impact of model specialization. On the TruthfulQA <span id="id6">[<a class="reference internal" href="safety.html#id108" title="Stephanie Lin, Jacob Hilton, and Owain Evans. Truthfulqa: measuring how models mimic human falsehoods. 2022. URL: https://arxiv.org/abs/2109.07958, arXiv:2109.07958.">Lin <em>et al.</em>, 2022</a>]</span> and Toxigen <span id="id7">[<a class="reference internal" href="#id121" title="Khalid Alnajjar and others. Toxigen dataset. Papers with Code Dataset, 2024. Dataset for evaluating and mitigating toxic language generation in language models. URL: https://paperswithcode.com/dataset/toxigen.">Alnajjar and others, 2024</a>]</span> benchmarks measuring truthful and informative responses. We observe that the chat-optimized variants show substantially improved truthfulness. Similarly, on the ToxiGen benchmark measuring toxic content generation, Llama 2-Chat models demonstrate near-zero toxicity compared to base models’ 21-26% rates.</p>
 <table class="docutils align-center" id="llama2-benchmark">
-<caption><span class="caption-number">Table 7.1 </span><span class="caption-text">Benchmark results for Llama 2 family of models.</span><a class="headerlink" href="#llama2-benchmark" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 8.1 </span><span class="caption-text">Benchmark results for Llama 2 family of models.</span><a class="headerlink" href="#llama2-benchmark" title="Permalink to this table">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Model</p></th>
 <th class="head"><p>Size</p></th>
@@ -411,34 +420,34 @@
 </ul>
 </section>
 <section id="performance-cost">
-<h3><a class="toc-backref" href="#id229" role="doc-backlink"><span class="section-number">7.2.2. </span>Performance &amp; Cost</a><a class="headerlink" href="#performance-cost" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id236" role="doc-backlink"><span class="section-number">8.2.2. </span>Performance &amp; Cost</a><a class="headerlink" href="#performance-cost" title="Permalink to this heading">¶</a></h3>
 <p>General benchmarks are useful for comparing models across different standard tasks. Open Source models are becoming more competitive with proprietary models with LLama, Qwen, DeepSeek and Mistral model families being some of the most powerful open source models available today.</p>
-<p>Qwen model family <span id="id9">[<a class="reference internal" href="#id161" title="Qwen, :, An Yang, Baosong Yang, Beichen Zhang, Binyuan Hui, Bo Zheng, Bowen Yu, Chengyuan Li, Dayiheng Liu, Fei Huang, Haoran Wei, Huan Lin, Jian Yang, Jianhong Tu, Jianwei Zhang, Jianxin Yang, Jiaxi Yang, Jingren Zhou, Junyang Lin, Kai Dang, Keming Lu, Keqin Bao, Kexin Yang, Le Yu, Mei Li, Mingfeng Xue, Pei Zhang, Qin Zhu, Rui Men, Runji Lin, Tianhao Li, Tingyu Xia, Xingzhang Ren, Xuancheng Ren, Yang Fan, Yang Su, Yichang Zhang, Yu Wan, Yuqiong Liu, Zeyu Cui, Zhenru Zhang, and Zihan Qiu. Qwen2.5 technical report. 2024. URL: https://arxiv.org/abs/2412.15115, arXiv:2412.15115.">Qwen <em>et al.</em>, 2024</a>]</span> emerged in 2024 as a model family achieving competitive performance with relatively smaller parameter counts compared to its competitors. The flagship Qwen2.5-72B-Instruct model demonstrates performance comparable to the much larger Llama-3-405B-Instruct while being about 5 times smaller. The models excel in specialized tasks like mathematics and coding, handle structured data effectively, and offer enhanced support for tool use and long-text generation as shown in <a class="reference internal" href="#qwen-perf"><span class="std std-numref">Fig. 7.3</span></a>.</p>
+<p>Qwen model family <span id="id9">[<a class="reference internal" href="#id161" title="Qwen, :, An Yang, Baosong Yang, Beichen Zhang, Binyuan Hui, Bo Zheng, Bowen Yu, Chengyuan Li, Dayiheng Liu, Fei Huang, Haoran Wei, Huan Lin, Jian Yang, Jianhong Tu, Jianwei Zhang, Jianxin Yang, Jiaxi Yang, Jingren Zhou, Junyang Lin, Kai Dang, Keming Lu, Keqin Bao, Kexin Yang, Le Yu, Mei Li, Mingfeng Xue, Pei Zhang, Qin Zhu, Rui Men, Runji Lin, Tianhao Li, Tingyu Xia, Xingzhang Ren, Xuancheng Ren, Yang Fan, Yang Su, Yichang Zhang, Yu Wan, Yuqiong Liu, Zeyu Cui, Zhenru Zhang, and Zihan Qiu. Qwen2.5 technical report. 2024. URL: https://arxiv.org/abs/2412.15115, arXiv:2412.15115.">Qwen <em>et al.</em>, 2024</a>]</span> emerged in 2024 as a model family achieving competitive performance with relatively smaller parameter counts compared to its competitors. The flagship Qwen2.5-72B-Instruct model demonstrates performance comparable to the much larger Llama-3-405B-Instruct while being about 5 times smaller. The models excel in specialized tasks like mathematics and coding, handle structured data effectively, and offer enhanced support for tool use and long-text generation as shown in <a class="reference internal" href="#qwen-perf"><span class="std std-numref">Fig. 8.3</span></a>.</p>
 <figure class="align-center" id="qwen-perf">
 <a class="reference internal image-reference" href="../_images/qwen_perf.png"><img alt="Qwen Performance" src="../_images/qwen_perf.png" style="width: 764.0px; height: 551.6px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7.3 </span><span class="caption-text">Qwen Performance.</span><a class="headerlink" href="#qwen-perf" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 8.3 </span><span class="caption-text">Qwen Performance.</span><a class="headerlink" href="#qwen-perf" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p><a class="reference internal" href="#perf"><span class="std std-numref">Fig. 7.4</span></a> shows a comparison including reference proprietary models such as GPT-40, Gemini 1.5 Pro and Claude 3.5 Sonnet. Leading models vary per domain but all top ranking models are proprietary. However, open source models do show competitive performance with Qwen and LLama models leading the pack, overall.</p>
+<p><a class="reference internal" href="#perf"><span class="std std-numref">Fig. 8.4</span></a> shows a comparison including reference proprietary models such as GPT-40, Gemini 1.5 Pro and Claude 3.5 Sonnet. Leading models vary per domain but all top ranking models are proprietary. However, open source models do show competitive performance with Qwen and LLama models leading the pack, overall.</p>
 <figure class="align-center" id="perf">
 <a class="reference internal image-reference" href="../_images/perf_.png"><img alt="Performance Comparison including proprietary models." src="../_images/perf_.png" style="width: 1219.2px; height: 594.4px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7.4 </span><span class="caption-text">Performance Comparison including proprietary models.</span><a class="headerlink" href="#perf" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 8.4 </span><span class="caption-text">Performance Comparison including proprietary models.</span><a class="headerlink" href="#perf" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>Also from China, DeepSeek-V3 <span id="id10">[<a class="reference internal" href="#id126" title="DeepSeek AI. Deepseek-v3 technical report. Technical Report, 2024. URL: https://github.com/deepseek-ai/DeepSeek-V3/blob/main/DeepSeek_V3.pdf.">AI, 2024</a>]</span> represents a major breakthrough in open source language models, emerging as arguably as the most capable open source large language model available today. With 671 billion parameters and 37 billion active MoE (Mixture of Experts) parameters, it achieves performance on par with leading proprietary models like Claude 3.5 Sonnet and GPT 4o as shown in <a class="reference internal" href="#deep"><span class="std std-numref">Fig. 7.5</span></a>. The model demonstrates impressive efficiency metrics (see <a class="reference internal" href="#deep2"><span class="std std-numref">Fig. 7.6</span></a>), processing input tokens at <span class="math notranslate nohighlight">\(0.27 per million and output tokens at \)</span>1.1 per million, while maintaining a generation speed of 60 tokens per second (3x faster than DeepSeek-V2).</p>
-<p>What makes DeepSeek-V3 particularly remarkable is that these capabilities were achieved with a relatively modest training budget of just $5.5 million, used to train on 14.8 trillion tokens. This efficiency in training demonstrates the potential for open source models to compete with proprietary alternatives at a fraction of the cost. The model’s release marks a significant milestone in the democratization of advanced AI capabilities, challenging the dominance of proprietary models.</p>
+<p>Also from China, DeepSeek-V3 <span id="id10">[<a class="reference internal" href="#id126" title="DeepSeek. Deepseek-v3 technical report. Technical Report, 2024. URL: https://github.com/deepseek-ai/DeepSeek-V3/blob/main/DeepSeek_V3.pdf.">DeepSeek, 2024</a>]</span> represents a major breakthrough in open source language models, emerging as arguably the most capable open source large language model available as of the end of 2024. With 671 billion parameters and 37 billion active MoE (Mixture of Experts) parameters, it achieves performance on par with leading proprietary models like Claude 3.5 Sonnet and GPT 4o as shown in <a class="reference internal" href="#deep"><span class="std std-numref">Fig. 8.5</span></a>. The model demonstrates impressive cost efficiency metrics (see <a class="reference internal" href="#deep2"><span class="std std-numref">Fig. 8.6</span></a>), processing input tokens at <span class="math notranslate nohighlight">\(0.27 per million and output tokens at \)</span>1.1 per million, while maintaining a generation speed of 60 tokens per second (3x faster than DeepSeek-V2).</p>
+<p>What makes DeepSeek-V3 particularly remarkable is that these capabilities were achieved with a relatively modest training budget of just $5.5 million, used to train on 14.8 trillion tokens. This efficiency in training demonstrates the potential for open source models to compete with proprietary alternatives at a fraction of the cost. The model’s release marks a significant milestone in the democratization of advanced AI capabilities, challenging the dominance of proprietary models within big tech. One should be cautious though as the model has not yet been battle-tested in the wild but this is an exciting development demonstrating the potential of open source models to compete with proprietary alternatives.</p>
 <figure class="align-center" id="deep">
-<a class="reference internal image-reference" href="_static/local/deep.png"><img alt="DeepSeek-V3" src="_static/local/deep.png" /></a>
+<a class="reference internal image-reference" href="../_images/deep.jpeg"><img alt="DeepSeek-V3" src="../_images/deep.jpeg" style="width: 861.9px; height: 752.7px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7.5 </span><span class="caption-text">DeepSeek-V3 Performance Comparison</span><a class="headerlink" href="#deep" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 8.5 </span><span class="caption-text">DeepSeek-V3 Performance Comparison</span><a class="headerlink" href="#deep" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="deep2">
-<a class="reference internal image-reference" href="_static/local/deep2.png"><img alt="DeepSeek-V3 Cost Benefit Analysis" src="_static/local/deep2.png" /></a>
+<a class="reference internal image-reference" href="../_images/deep2.jpeg"><img alt="DeepSeek-V3 Cost Benefit Analysis" src="../_images/deep2.jpeg" style="width: 832.0px; height: 440.7px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7.6 </span><span class="caption-text">DeepSeek-V3 Cost Benefit Analysis</span><a class="headerlink" href="#deep2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 8.6 </span><span class="caption-text">DeepSeek-V3 Cost Benefit Analysis</span><a class="headerlink" href="#deep2" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>While standard benchmarks provide valuable initial insights, they should be interpreted cautiously since models can be specifically optimized for these popular tests without necessarily performing well in target use cases. This necessitates developing custom evaluation frameworks with real-world validation - creating test datasets representing actual usage scenarios, defining metrics aligned with business objectives, and establishing clear baselines and improvement targets. Only through such rigorous testing can practitioners truly understand how well a model will perform in their specific context.</p>
@@ -460,26 +469,26 @@
 </ul>
 </li>
 </ul>
-<p><a class="reference internal" href="#p2"><span class="std std-numref">Fig. 7.7</span></a> shows a comparison of quality now with the added dimension of cost. Quality is measured as an average of scores from MMLU, GPQA, Math &amp; HumanEval benchmarks <span id="id11">[<a class="reference internal" href="#id59" title="Artificial Analysis. Methodology. https://artificialanalysis.ai/methodology, 2024. Accessed: December 22, 2024.">Analysis, 2024</a>]</span>. Price is a blend of Cost Per Input Token plus Input &amp; Cost Per Output Token (3:1 ratio). Reported numbers represent median across cloud providers <span id="id12">[<a class="reference internal" href="#id58" title="Artificial Analysis. Llm provider leaderboards. https://artificialanalysis.ai/leaderboards/providers, 2024. Accessed: 2024.">Analysis, 2024</a>]</span> supporting these models.</p>
+<p><a class="reference internal" href="#p2"><span class="std std-numref">Fig. 8.7</span></a> shows a comparison of quality now with the added dimension of cost. Quality is measured as an average of scores from MMLU, GPQA, Math &amp; HumanEval benchmarks <span id="id11">[<a class="reference internal" href="#id59" title="Artificial Analysis. Methodology. https://artificialanalysis.ai/methodology, 2024. Accessed: December 22, 2024.">Analysis, 2024</a>]</span>. Price is a blend of Cost Per Input Token plus Input &amp; Cost Per Output Token (3:1 ratio). Reported numbers represent median across cloud providers <span id="id12">[<a class="reference internal" href="#id58" title="Artificial Analysis. Llm provider leaderboards. https://artificialanalysis.ai/leaderboards/providers, 2024. Accessed: 2024.">Analysis, 2024</a>]</span> supporting these models.</p>
 <figure class="align-center" id="p2">
 <a class="reference internal image-reference" href="../_images/p2.png"><img alt="Performance Comparison including proprietary models." src="../_images/p2.png" style="width: 810.0px; height: 455.6px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7.7 </span><span class="caption-text">Performance Comparison including proprietary models.</span><a class="headerlink" href="#p2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 8.7 </span><span class="caption-text">Performance Comparison including proprietary models.</span><a class="headerlink" href="#p2" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>We observe Qwen2.5 72B and Llama 3.3 70B offer the best value among Open Source models, providing high quality at a relatively affordable price comparable to GPT-4o mini, for instance. Meanwhile Nova Lite, Nova Micro, and Llama 3.1 8B demonstrate to be budget-friendly options catering to use cases where cost is a significant factor and some compromise on quality is acceptable.</p>
-<p>From <a class="reference internal" href="#p1"><span class="std std-numref">Fig. 7.8</span></a> we have evidence that output prices are higher than input prices. This reflects the greater computational resources typically required at inference time for output compared to processing input text (e.g. tokenization, encoding). We also observe a quite significant variation in pricing across different models. Prices range from a few cents per 1M tokens (e.g., Gemini 2.0 Flash, Nova Micro, Nova Lite) to several dollars per 1M tokens (e.g., Claude 3.5 Sonnet, GPT-4o). Mistral large 2 is the most expensive model at <span class="math notranslate nohighlight">\(2/\)</span>6 per 1M input/output tokens while Nova Micro family is the cheapest among Open Source options.</p>
+<p>From <a class="reference internal" href="#p1"><span class="std std-numref">Fig. 8.8</span></a> we have evidence that output prices are higher than input prices. This reflects the greater computational resources typically required at inference time for output compared to processing input text (e.g. tokenization, encoding). We also observe a quite significant variation in pricing across different models. Prices range from a few cents per 1M tokens (e.g., Gemini 2.0 Flash, Nova Micro, Nova Lite) to several dollars per 1M tokens (e.g., Claude 3.5 Sonnet, GPT-4o). Mistral large 2 is the most expensive model at <span class="math notranslate nohighlight">\(2/\)</span>6 per 1M input/output tokens while Nova Micro family is the cheapest among Open Source options.</p>
 <figure class="align-center" id="p1">
 <a class="reference internal image-reference" href="../_images/p1.png"><img alt="Input and Output Prices" src="../_images/p1.png" style="width: 804.8000000000001px; height: 341.6px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7.8 </span><span class="caption-text">Input and Output Prices Comparison.</span><a class="headerlink" href="#p1" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 8.8 </span><span class="caption-text">Input and Output Prices Comparison.</span><a class="headerlink" href="#p1" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>Latency figures in <a class="reference internal" href="#latency"><span class="std std-numref">Fig. 7.9</span></a> put GPT-4o (Nov ‘24) as the best performing model but Llama, Nova Micro, Phi and Mistral model families all have options with latency of half a second or better beating Gemini and Claude models considered as well as GPT-4o mini.</p>
+<p>Latency figures in <a class="reference internal" href="#latency"><span class="std std-numref">Fig. 8.9</span></a> put GPT-4o (Nov ‘24) as the best performing model but Llama, Nova Micro, Phi and Mistral model families all have options with latency of half a second or better beating Gemini and Claude models considered as well as GPT-4o mini.</p>
 <figure class="align-center" id="latency">
 <a class="reference internal image-reference" href="../_images/latency.png"><img alt="Latency Comparison" src="../_images/latency.png" style="width: 799.6px; height: 324.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7.9 </span><span class="caption-text">Latency Comparison.</span><a class="headerlink" href="#latency" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 8.9 </span><span class="caption-text">Latency Comparison.</span><a class="headerlink" href="#latency" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>This analysis provides a framework for evaluating key performance considerations when selecting an LLM. While the specific figures for cost, latency, and quality change frequently (often daily) as providers update their offerings and pricing, the fundamental tradeoffs remain relevant. When evaluating model suitability for a specific use case, practitioners should carefully consider:</p>
@@ -493,9 +502,9 @@
 <p>Regular re-evaluation of these metrics is recommended as the landscape evolves rapidly. What represents the optimal choice today may change as new models are released and existing ones are updated.</p>
 </section>
 <section id="licensing">
-<h3><a class="toc-backref" href="#id230" role="doc-backlink"><span class="section-number">7.2.3. </span>Licensing</a><a class="headerlink" href="#licensing" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id237" role="doc-backlink"><span class="section-number">8.2.3. </span>Licensing</a><a class="headerlink" href="#licensing" title="Permalink to this heading">¶</a></h3>
 <p>When evaluating open-source LLMs, it’s important to consider licensing and data usage policies. Some models may require attribution or commercial use licenses, while others may be more permissive. Additionally, ensure that the model’s training data is compatible with your intended use case and complies with relevant data protection laws.</p>
-<p>The licensing landscape for LLMs spans from highly permissive to custom and restricted usage. <a class="reference internal" href="#open-source-llms"><span class="std std-numref">Table 7.2</span></a> provides a summary of the licensing terms for some of the most popular open source LLMs. We observe two types of licenses:</p>
+<p>The licensing landscape for LLMs spans from highly permissive to custom and restricted usage. <a class="reference internal" href="#open-source-llms"><span class="std std-numref">Table 8.2</span></a> provides a summary of the licensing terms for some of the most popular open source LLMs. We observe two types of licenses:</p>
 <ul class="simple">
 <li><p><strong>Traditional Open Source</strong>:</p>
 <ul>
@@ -512,7 +521,7 @@
 </li>
 </ul>
 <table class="docutils align-center" id="open-source-llms">
-<caption><span class="caption-number">Table 7.2 </span><span class="caption-text">Open Source LLMs.</span><a class="headerlink" href="#open-source-llms" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 8.2 </span><span class="caption-text">Open Source LLMs.</span><a class="headerlink" href="#open-source-llms" title="Permalink to this table">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Creator</p></th>
 <th class="head"><p>LLM</p></th>
@@ -556,19 +565,19 @@
 <p>A significant advancement in open-source language model training data is HuggingFace’s release of the FineWeb datasets. In its first release <span id="id16">[<a class="reference internal" href="#id47" title="Guilherme Penedo, Hynek Kydlíček, Loubna Ben allal, Anton Lozhkov, Margaret Mitchell, Colin Raffel, Leandro Von Werra, and Thomas Wolf. The fineweb datasets: decanting the web for the finest text data at scale. 2024. URL: https://arxiv.org/abs/2406.17557, arXiv:2406.17557.">Penedo <em>et al.</em>, 2024</a>]</span>, FineWeb is made of a 15-trillion token dataset derived from 96 Common Crawl snapshots that produces better-performing LLMs than other open pretraining datasets. Additionally, data curation codebase and all of the models trained during our ablation experiments are made available. FineWeb is a fine example of an initiative that helps minimize the gap between proprietary and public knowledge.</p>
 </section>
 <section id="community-support">
-<h3><a class="toc-backref" href="#id231" role="doc-backlink"><span class="section-number">7.2.4. </span>Community Support</a><a class="headerlink" href="#community-support" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id238" role="doc-backlink"><span class="section-number">8.2.4. </span>Community Support</a><a class="headerlink" href="#community-support" title="Permalink to this heading">¶</a></h3>
 <p>Community support plays a vital role in the open-source LLM ecosystem. Active communities contribute to model development, provide technical assistance, and share valuable resources. When evaluating open-source LLMs, the strength and engagement of the community should be a key consideration, as it directly impacts the model’s long-term viability and practical utility.</p>
 <p>The popularity of different model families reflects their community adoption. In 2024, the Qwen and Llama families have emerged as clear favorites, with Qwen2.5-1.5B-Instruct alone representing 35% of total open source models downloads in 2024.</p>
 <figure class="align-center" id="downloads">
 <a class="reference internal image-reference" href="../_images/downloads.png"><img alt="Hugging Face Downloads" src="../_images/downloads.png" style="width: 1142.3999999999999px; height: 453.59999999999997px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7.10 </span><span class="caption-text">Hugging Face Model Downloads in 2024 as of December 22 of the same year <span id="id17">[<a class="reference internal" href="#id46" title="Hugging Face. Open source ai year in review 2024. https://huggingface.co/spaces/huggingface/open-source-ai-year-in-review-2024, 2024t. Accessed: 2024.">Face, 2024t</a>]</span>.</span><a class="headerlink" href="#downloads" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 8.10 </span><span class="caption-text">Hugging Face Model Downloads in 2024 as of December 22 of the same year <span id="id17">[<a class="reference internal" href="#id46" title="Hugging Face. Open source ai year in review 2024. https://huggingface.co/spaces/huggingface/open-source-ai-year-in-review-2024, 2024t. Accessed: 2024.">Face, 2024t</a>]</span>.</span><a class="headerlink" href="#downloads" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Strong communities accelerate model innovation through collective effort. When developers and researchers collaborate on model development, they create a powerful ecosystem of continuous improvement. Through transparent sharing of findings, they enable rapid development of novel applications and specialized model variants for specific domains. This collaborative environment naturally leads to the establishment of best practices and frameworks that benefit the entire community. The success of this community-driven approach is evident in models like Qwen2.5-1.5B-Instruct, which has spawned 200+ derivative models through post-training adaptations <span id="id18">[<a class="reference internal" href="#id160" title="Qwen. Qwen2.5-1.5b-instruct. 2024b. Accessed: December 22, 2024. URL: https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct.">Qwen, 2024b</a>]</span>.</p>
 </section>
 <section id="customization">
-<h3><a class="toc-backref" href="#id232" role="doc-backlink"><span class="section-number">7.2.5. </span>Customization</a><a class="headerlink" href="#customization" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id239" role="doc-backlink"><span class="section-number">8.2.5. </span>Customization</a><a class="headerlink" href="#customization" title="Permalink to this heading">¶</a></h3>
 <p>Model customization is an important consideration when selecting an open-source LLM. Adapting and fine-tuning to specific use cases can significantly impact practical utility and performance in production environments.</p>
 <p>Model providers increasingly offer streamlined fine-tuning services. For example, Mistral demonstrates an accessible approach to model customization.
 The code below shows Mistral’s straightforward fine-tuning API. The example shows how to create and start a fine-tuning job with just a few lines of code. The fine-tuning job is configured with the base model “open-mistral-7b” and uses training and validation files from the Ultrachat dataset <span id="id19">[<a class="reference internal" href="#id157" title="Hugging Face. Ultrachat-200k dataset. 2024u. Accessed: 2024. URL: https://huggingface.co/datasets/HuggingFaceH4/ultrachat_200k.">Face, 2024u</a>]</span>. This API design makes it easy to experiment with model customization while maintaining control over the training process.</p>
@@ -590,7 +599,7 @@ The code below shows Mistral’s straightforward fine-tuning API. The example sh
 <span class="n">created_jobs</span>
 </pre></div>
 </div>
-<p>For more comprehensive customization needs, Hugging Face’s Transformer Reinforcement Learning (TRL) toolkit provides robust capabilities for model adaptation. Built on the Transformers library, TRL supports <span id="id20">[<a class="reference internal" href="#id178" title="Hugging Face. Trl. 2024d. TRL. URL: https://huggingface.co/docs/trl/en/index.">Face, 2024d</a>]</span>:</p>
+<p>For more comprehensive customization needs, Hugging Face’s Transformer Reinforcement Learning (TRL) toolkit provides robust capabilities for model adaptation. Built on the Transformers library, TRL supports <span id="id20">[<a class="reference internal" href="#id185" title="Hugging Face. Trl. 2024d. TRL. URL: https://huggingface.co/docs/trl/en/index.">Face, 2024d</a>]</span>:</p>
 <ul class="simple">
 <li><p>Supervised Fine-Tuning (SFT)</p></li>
 <li><p>Reward Modeling (RM)</p></li>
@@ -598,9 +607,9 @@ The code below shows Mistral’s straightforward fine-tuning API. The example sh
 <li><p>Direct Preference Optimization (DPO)</p></li>
 </ul>
 <p>In <a class="reference internal" href="alignment.html#alignment-case-study"><span class="std std-ref">Case Study: Aligning a Language Model to a Policy</span></a>, we will explore how to use TRL to fine-tune a model to align with user preferences.</p>
-<p>Successful model customization demands managing critical resources throughout the development lifecycle. This includes rigorous dataset preparation and validation to ensure high-quality training data, careful configuration of training infrastructure to optimize computational resources, systematic experimentation iterations while managing associated costs, comprehensive performance evaluation frameworks to measure improvements, and thoughtful deployment architecture planning to ensure smooth production integration. Of course, actual cost of storage and inference should be taken into consideration. <a class="reference internal" href="#mistral-costs"><span class="std std-numref">Table 7.3</span></a> shows as an example the cost of associated with fine-tuning Mistral models <span id="id21">[<a class="reference internal" href="#id45" title="Mistral AI. Mistral technology and pricing. https://mistral.ai/technology/#pricing, 2024a. Accessed: 2024.">AI, 2024a</a>]</span>.</p>
+<p>Successful model customization demands managing critical resources throughout the development lifecycle. This includes rigorous dataset preparation and validation to ensure high-quality training data, careful configuration of training infrastructure to optimize computational resources, systematic experimentation iterations while managing associated costs, comprehensive performance evaluation frameworks to measure improvements, and thoughtful deployment architecture planning to ensure smooth production integration. Of course, actual cost of storage and inference should be taken into consideration. <a class="reference internal" href="#mistral-costs"><span class="std std-numref">Table 8.3</span></a> shows as an example the cost of associated with fine-tuning Mistral models <span id="id21">[<a class="reference internal" href="#id45" title="Mistral AI. Mistral technology and pricing. https://mistral.ai/technology/#pricing, 2024a. Accessed: 2024.">AI, 2024a</a>]</span>.</p>
 <table class="docutils align-center" id="mistral-costs">
-<caption><span class="caption-number">Table 7.3 </span><span class="caption-text">Mistral fine-tuning costs as of December 22, 2024.</span><a class="headerlink" href="#mistral-costs" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 8.3 </span><span class="caption-text">Mistral fine-tuning costs as of December 22, 2024.</span><a class="headerlink" href="#mistral-costs" title="Permalink to this table">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Model</p></th>
 <th class="head"><p>One-off training (/M tokens)</p></th>
@@ -666,10 +675,10 @@ The code below shows Mistral’s straightforward fine-tuning API. The example sh
 </section>
 </section>
 <section id="tools-for-local-llm-deployment">
-<h2><a class="toc-backref" href="#id233" role="doc-backlink"><span class="section-number">7.3. </span>Tools for Local LLM Deployment</a><a class="headerlink" href="#tools-for-local-llm-deployment" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id240" role="doc-backlink"><span class="section-number">8.3. </span>Tools for Local LLM Deployment</a><a class="headerlink" href="#tools-for-local-llm-deployment" title="Permalink to this heading">¶</a></h2>
 <p>Local LLM deployment tools generally fall into two categories: inference-focused tools that prioritize performance and programmability for technical users requiring production-grade deployments, and user interface (UI) tools that emphasize accessibility through graphical interfaces for non-technical users, trading some performance for ease of use and broader adoption. In the following sections we will explore some of these tools discussing their features, capabilities, and trade-offs.</p>
 <section id="serving-models">
-<h3><a class="toc-backref" href="#id234" role="doc-backlink"><span class="section-number">7.3.1. </span>Serving Models</a><a class="headerlink" href="#serving-models" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id241" role="doc-backlink"><span class="section-number">8.3.1. </span>Serving Models</a><a class="headerlink" href="#serving-models" title="Permalink to this heading">¶</a></h3>
 <p>Serving an LLM model involves making it available for inference by setting up infrastructure to process requests and manage resources efficiently. This serving layer handles several key responsibilities, from loading model weights and managing compute resources to processing requests and optimizing performance. Let’s examine the core components of model serving:</p>
 <ol class="arabic simple">
 <li><p><strong>Model Loading and Initialization</strong></p></li>
@@ -707,11 +716,11 @@ The code below shows Mistral’s straightforward fine-tuning API. The example sh
 <li><p>Managing concurrent requests and load balancing</p></li>
 <li><p>Monitoring system resource utilization</p></li>
 </ul>
-<p>The serving layer acts as the bridge between the LLM and applications while working on top of a hardware stack as shown in <a class="reference internal" href="#local-inference"><span class="std std-numref">Fig. 7.11</span></a>. Getting this layer right is crucial for building locally-served reliable AI-powered applications, as it directly impacts the end-user experience in terms of response times, reliability, and resource efficiency.</p>
+<p>The serving layer acts as the bridge between the LLM and applications while working on top of a hardware stack as shown in <a class="reference internal" href="#local-inference"><span class="std std-numref">Fig. 8.11</span></a>. Getting this layer right is crucial for building locally-served reliable AI-powered applications, as it directly impacts the end-user experience in terms of response times, reliability, and resource efficiency.</p>
 <figure class="align-center" id="local-inference">
 <a class="reference internal image-reference" href="../_images/local_inference.svg"><img alt="Local Inference Server" height="523" src="../_images/local_inference.svg" width="626" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7.11 </span><span class="caption-text">Local Inference Server.</span><a class="headerlink" href="#local-inference" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 8.11 </span><span class="caption-text">Local Inference Server.</span><a class="headerlink" href="#local-inference" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Model inference can be performed on Open Source models using cloud solutions such as Groq, Cerebras Systems, and SambaNova Systems. Here, we limit our scope to Open Source solutions that enable inference on local machines which includes consumer hardware. We will cover the following:</p>
@@ -722,7 +731,7 @@ The code below shows Mistral’s straightforward fine-tuning API. The example sh
 </ul>
 <p>Let’s explore each of these options in detail.</p>
 <section id="llama-cpp">
-<h4><a class="toc-backref" href="#id235" role="doc-backlink"><span class="section-number">7.3.1.1. </span>LLama.cpp</a><a class="headerlink" href="#llama-cpp" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id242" role="doc-backlink"><span class="section-number">8.3.1.1. </span>LLama.cpp</a><a class="headerlink" href="#llama-cpp" title="Permalink to this heading">¶</a></h4>
 <p>LLama.cpp <span id="id24">[<a class="reference internal" href="#id133" title="Georgi Gerganov and contributors. Llama.cpp. GitHub Repository, 2024a. High-performance inference of LLaMA models in pure C/C++. URL: https://github.com/ggerganov/llama.cpp.">Gerganov and contributors, 2024a</a>]</span> is an MIT-licensed open source optimized implementation of the <strong>LLama</strong> model architecture designed to run efficiently on machines with limited memory.</p>
 <p>Originally developed by Georgi Gerganov and today counting with hundreds of contributors, this C/C++ LLama version provides a simplified interface and advanced features that allow language models to run locally without overwhelming systems. With the ability to run in resource-constrained environments, LLama.cpp makes powerful language models more accessible and practical for a variety of applications.</p>
 <p>In its “Manifesto” <span id="id25">[<a class="reference internal" href="#id110" title="Georgi Gerganov and others. Quantization of llama models - discussion. GitHub Discussion, 2023. Discussion thread about quantization techniques and tradeoffs in llama.cpp. URL: https://github.com/ggerganov/llama.cpp/discussions/205.">Gerganov and others, 2023</a>]</span>, the author highlights the significant potential in bringing AI from cloud to edge devices, emphasizing the importance of keeping development lightweight, experimental, and enjoyable rather than getting bogged down in complex engineering challenges. The author states a vision that emphasizes maintaining an exploratory, hacker-minded approach while building practical edge computing solutions highlighting the following core principles:</p>
@@ -917,7 +926,7 @@ Goodbye!<span class="w"> </span>If<span class="w"> </span>you<span class="w"> </
 </div>
 </section>
 <section id="llamafile">
-<h4><a class="toc-backref" href="#id236" role="doc-backlink"><span class="section-number">7.3.1.2. </span>Llamafile</a><a class="headerlink" href="#llamafile" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id243" role="doc-backlink"><span class="section-number">8.3.1.2. </span>Llamafile</a><a class="headerlink" href="#llamafile" title="Permalink to this heading">¶</a></h4>
 <p>Developed by Occupy Wall Street’s former activist, Justine Tunney, Llamafile <span id="id33">[<a class="reference internal" href="#id112" title="Mozilla Ocho. Llamafile: distribute and run llms with a single file. GitHub Repository, 2024. Tool for packaging and distributing LLMs as self-contained executables. URL: https://github.com/Mozilla-Ocho/llamafile.">Mozilla Ocho, 2024</a>]</span> is an Appache 2.0 licensed open source tool that combines the power of LLama.cpp with <strong>Cosmopolitan Libc</strong>, a universal C standard library that allows creating portable executables compatible with multiple operating systems.</p>
 <p>In this way, Llamafile reduces all the complexity of LLMs to a single executable file (called a “llamafile”) that runs locally without installation. Key advantages of Llamafile over plain Llama.cpp include:</p>
 <ol class="arabic simple">
@@ -962,7 +971,7 @@ chmod<span class="w"> </span>+x<span class="w"> </span>TinyLlama-1.1B-Chat-v1.0.
 <p>As a result, a model server is running on <a class="reference external" href="http://localhost:8080">http://localhost:8080</a>. And we can use it as demonstrated in the previous section.</p>
 </section>
 <section id="ollama">
-<h4><a class="toc-backref" href="#id237" role="doc-backlink"><span class="section-number">7.3.1.3. </span>Ollama</a><a class="headerlink" href="#ollama" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id244" role="doc-backlink"><span class="section-number">8.3.1.3. </span>Ollama</a><a class="headerlink" href="#ollama" title="Permalink to this heading">¶</a></h4>
 <p>Ollama is a lightweight, MIT-licensed open-source tool for running LLMs locally. It provides a simple interface for interacting with a wide range of language models, including popular models like Llama 3.1 and Llama 3.2. Ollama is designed to be easy to install and use, making it a popular choice for developers who want to run LLMs locally without the need for extensive setup or configuration. Ollama’s key advantages include:</p>
 <ol class="arabic simple">
 <li><p><strong>Model Management</strong></p></li>
@@ -1056,10 +1065,10 @@ chmod<span class="w"> </span>+x<span class="w"> </span>TinyLlama-1.1B-Chat-v1.0.
 </div>
 </section>
 <section id="comparison">
-<h4><a class="toc-backref" href="#id238" role="doc-backlink"><span class="section-number">7.3.1.4. </span>Comparison</a><a class="headerlink" href="#comparison" title="Permalink to this heading">¶</a></h4>
-<p>Each solution offers distinct advantages and tradeoffs that make them suitable for different use cases. At a high-level, Ollama is the easiest to install and use and has become the most popular choice for your average use case, Llamafile is the easiest to distribute and a good choice when portability is a priority, and Llama.cpp is the most customizable and performant solution as summarized in <a class="reference internal" href="#feature-comparison-local"><span class="std std-numref">Table 7.4</span></a>.</p>
+<h4><a class="toc-backref" href="#id245" role="doc-backlink"><span class="section-number">8.3.1.4. </span>Comparison</a><a class="headerlink" href="#comparison" title="Permalink to this heading">¶</a></h4>
+<p>Each solution offers distinct advantages and tradeoffs that make them suitable for different use cases. At a high-level, Ollama is the easiest to install and use and has become the most popular choice for your average use case, Llamafile is the easiest to distribute and a good choice when portability is a priority, and Llama.cpp is the most customizable and performant solution as summarized in <a class="reference internal" href="#feature-comparison-local"><span class="std std-numref">Table 8.4</span></a>.</p>
 <table class="docutils align-center" id="feature-comparison-local">
-<caption><span class="caption-number">Table 7.4 </span><span class="caption-text">lama.cpp vs Ollama vs Llamafile Comparison</span><a class="headerlink" href="#feature-comparison-local" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 8.4 </span><span class="caption-text">lama.cpp vs Ollama vs Llamafile Comparison</span><a class="headerlink" href="#feature-comparison-local" title="Permalink to this table">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Feature</p></th>
 <th class="head"><p>Ollama</p></th>
@@ -1112,10 +1121,10 @@ chmod<span class="w"> </span>+x<span class="w"> </span>TinyLlama-1.1B-Chat-v1.0.
 </section>
 </section>
 <section id="ui">
-<h3><a class="toc-backref" href="#id239" role="doc-backlink"><span class="section-number">7.3.2. </span>UI</a><a class="headerlink" href="#ui" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id246" role="doc-backlink"><span class="section-number">8.3.2. </span>UI</a><a class="headerlink" href="#ui" title="Permalink to this heading">¶</a></h3>
 <p>There is a growing number of UI tools for local LLM deployment that aim at providing a more user-friendly experience. Ranging from closed-source to open-source solutions across a range of features and capabilities. We will discuss LM Studio, Jan, and OpenWebUI.</p>
 <section id="lm-studio">
-<h4><a class="toc-backref" href="#id240" role="doc-backlink"><span class="section-number">7.3.2.1. </span>LM Studio</a><a class="headerlink" href="#lm-studio" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id247" role="doc-backlink"><span class="section-number">8.3.2.1. </span>LM Studio</a><a class="headerlink" href="#lm-studio" title="Permalink to this heading">¶</a></h4>
 <p>LM Studio <span id="id35">[<a class="reference internal" href="#id111" title="LM Studio. Lm studio - discover, download, and run local llms. Website, 2024. Desktop application for discovering, downloading and running local language models. URL: https://lmstudio.ai/.">LM Studio, 2024</a>]</span> is a closed-source GUI for running LLMs locally. In the context of local deployment, LM Studio positions itself as a more user-friendly, feature-rich solution compared to the other tools. It’s particularly valuable for developers transitioning from cloud APIs to local deployment, and for users who prefer graphical interfaces over command-line tools. Key Features of LM Studio include:</p>
 <ul class="simple">
 <li><p><strong>Model Parameter Customization</strong>: Allows adjusting temperature, maximum tokens, frequency penalty, and other settings</p></li>
@@ -1123,23 +1132,23 @@ chmod<span class="w"> </span>+x<span class="w"> </span>TinyLlama-1.1B-Chat-v1.0.
 <li><p><strong>Cross-platform</strong>: Available on Linux, Mac, and Windows</p></li>
 <li><p><strong>AI Chat and Playground</strong>: Chat with LLMs and experiment with multiple models loaded simultaneously</p></li>
 </ul>
-<p><a class="reference internal" href="#lmstudio"><span class="std std-numref">Fig. 7.12</span></a> and <a class="reference internal" href="#lmstudio-server"><span class="std std-numref">Fig. 7.13</span></a> show LM Studio’s chat interface and server, respectively.</p>
+<p><a class="reference internal" href="#lmstudio"><span class="std std-numref">Fig. 8.12</span></a> and <a class="reference internal" href="#lmstudio-server"><span class="std std-numref">Fig. 8.13</span></a> show LM Studio’s chat interface and server, respectively.</p>
 <figure class="align-center" id="lmstudio">
 <a class="reference internal image-reference" href="../_images/lmstudio.png"><img alt="LM Studio" src="../_images/lmstudio.png" style="width: 858.6px; height: 581.4px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7.12 </span><span class="caption-text">LM Studio Chat Interface.</span><a class="headerlink" href="#lmstudio" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 8.12 </span><span class="caption-text">LM Studio Chat Interface.</span><a class="headerlink" href="#lmstudio" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="lmstudio-server">
 <a class="reference internal image-reference" href="../_images/lmstudio_server.png"><img alt="LM Studio Server" src="../_images/lmstudio_server.png" style="width: 945.0px; height: 585.6px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7.13 </span><span class="caption-text">LM Studio Server.</span><a class="headerlink" href="#lmstudio-server" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 8.13 </span><span class="caption-text">LM Studio Server.</span><a class="headerlink" href="#lmstudio-server" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>One important feature of LM Studio is that it provides machine specification verification capabilities, checking computer specifications like GPU and memory to report compatible models therefore helping users choose the right model. It also includes a local inference server for developers that allows setting up a local HTTP server similar to OpenAI’s API. Importantly, LM Studio’s OpenAI API compatibility is a particularly strong feature for developers looking to move their applications from cloud to local deployment with minimal code changes.</p>
 </section>
 <section id="jan">
-<h4><a class="toc-backref" href="#id241" role="doc-backlink"><span class="section-number">7.3.2.2. </span>Jan</a><a class="headerlink" href="#jan" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id248" role="doc-backlink"><span class="section-number">8.3.2.2. </span>Jan</a><a class="headerlink" href="#jan" title="Permalink to this heading">¶</a></h4>
 <p>Jan is an open source ChatGPT-alternative that runs local models. Its model’s library contains popular LLMs like Llama, Gemma, Mistral, or Qwen. Key Features of Jan include:</p>
 <ol class="arabic simple">
 <li><p><strong>User-Friendly Interface</strong>: Run AI models with just a few clicks</p></li>
@@ -1148,16 +1157,16 @@ chmod<span class="w"> </span>+x<span class="w"> </span>TinyLlama-1.1B-Chat-v1.0.
 <li><p><strong>Model Hub Integration</strong>: Easy access to various models with ease of import from LM Studio</p></li>
 <li><p><strong>Cross-Platform Support</strong>: Works across different operating systems</p></li>
 </ol>
-<p>Jan has a default C++ inference server built on top of llama.cpp and provides an OpenAI-compatible API. Jan natively supports GGUF (through a llama.cpp engine) and TensorRT (through a TRT-LLM engine). HuggingFace models can be downloaded directly using the model’s ID or URL. User can optionally use cloud-based models (e.g. GPT, Claude models). <a class="reference internal" href="#id36"><span class="std std-numref">Fig. 7.14</span></a> shows Jan’s chat interface.</p>
+<p>Jan has a default C++ inference server built on top of llama.cpp and provides an OpenAI-compatible API. Jan natively supports GGUF (through a llama.cpp engine) and TensorRT (through a TRT-LLM engine). HuggingFace models can be downloaded directly using the model’s ID or URL. User can optionally use cloud-based models (e.g. GPT, Claude models). <a class="reference internal" href="#id36"><span class="std std-numref">Fig. 8.14</span></a> shows Jan’s chat interface.</p>
 <figure class="align-center" id="id36">
 <a class="reference internal image-reference" href="../_images/jan.png"><img alt="Jan" src="../_images/jan.png" style="width: 665.0px; height: 466.5px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7.14 </span><span class="caption-text">Jan Chat Interface.</span><a class="headerlink" href="#id36" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 8.14 </span><span class="caption-text">Jan Chat Interface.</span><a class="headerlink" href="#id36" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="open-webui">
-<h4><a class="toc-backref" href="#id242" role="doc-backlink"><span class="section-number">7.3.2.3. </span>Open WebUI</a><a class="headerlink" href="#open-webui" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id249" role="doc-backlink"><span class="section-number">8.3.2.3. </span>Open WebUI</a><a class="headerlink" href="#open-webui" title="Permalink to this heading">¶</a></h4>
 <p>Open WebUI is an open-source web interface designed to enhance the local AI model experience, particularly for Ollama and OpenAI-compatible APIs. It aims to provide enterprise-grade features while maintaining user-friendliness. OpenWebUI’s core features include:</p>
 <ol class="arabic simple">
 <li><p><strong>Advanced User Interface</strong></p>
@@ -1187,20 +1196,20 @@ chmod<span class="w"> </span>+x<span class="w"> </span>TinyLlama-1.1B-Chat-v1.0.
 </ul>
 </li>
 </ol>
-<p><a class="reference internal" href="#openwebui"><span class="std std-numref">Fig. 7.15</span></a> shows Open WebUI’s chat interface.</p>
+<p><a class="reference internal" href="#openwebui"><span class="std std-numref">Fig. 8.15</span></a> shows Open WebUI’s chat interface.</p>
 <figure class="align-center" id="openwebui">
 <a class="reference internal image-reference" href="../_images/openwebui.png"><img alt="Open WebUI" src="../_images/openwebui.png" style="width: 818.75px; height: 456.25px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7.15 </span><span class="caption-text">Open WebUI Chat Interface.</span><a class="headerlink" href="#openwebui" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 8.15 </span><span class="caption-text">Open WebUI Chat Interface.</span><a class="headerlink" href="#openwebui" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>While Open WebUI offers advanced capabilities including RAG and multi-model support, these features require more system resources than simpler alternatives. Open WebUI is likely to be adopted by enterprise users who require advanced features and a more user-friendly interface.</p>
 </section>
 <section id="id37">
-<h4><a class="toc-backref" href="#id243" role="doc-backlink"><span class="section-number">7.3.2.4. </span>Comparison</a><a class="headerlink" href="#id37" title="Permalink to this heading">¶</a></h4>
-<p>LM Studio excels at providing individual developers with a smooth transition from cloud APIs to local deployment, offering an intuitive interface and robust API compatibility, however it is closed-source. Jan focuses on simplicity and accessibility, making it ideal for personal use and basic deployments while maintaining open-source benefits. OpenWebUI makes additional features available to enterprise users and teams requiring advanced features like RAG, collaboration tools, and granular access controls, though this may come at the cost of increased complexity and resource requirements. We compare the three tools in <a class="reference internal" href="#feature-comparison-ui"><span class="std std-numref">Table 7.5</span></a>.</p>
+<h4><a class="toc-backref" href="#id250" role="doc-backlink"><span class="section-number">8.3.2.4. </span>Comparison</a><a class="headerlink" href="#id37" title="Permalink to this heading">¶</a></h4>
+<p>LM Studio excels at providing individual developers with a smooth transition from cloud APIs to local deployment, offering an intuitive interface and robust API compatibility, however it is closed-source. Jan focuses on simplicity and accessibility, making it ideal for personal use and basic deployments while maintaining open-source benefits. OpenWebUI makes additional features available to enterprise users and teams requiring advanced features like RAG, collaboration tools, and granular access controls, though this may come at the cost of increased complexity and resource requirements. We compare the three tools in <a class="reference internal" href="#feature-comparison-ui"><span class="std std-numref">Table 8.5</span></a>.</p>
 <table class="docutils align-center" id="feature-comparison-ui">
-<caption><span class="caption-number">Table 7.5 </span><span class="caption-text">LM Studio vs Jan vs OpenWebUI Comparison</span><a class="headerlink" href="#feature-comparison-ui" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 8.5 </span><span class="caption-text">LM Studio vs Jan vs OpenWebUI Comparison</span><a class="headerlink" href="#feature-comparison-ui" title="Permalink to this table">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Feature Category</p></th>
 <th class="head"><p>LM Studio</p></th>
@@ -1265,7 +1274,7 @@ chmod<span class="w"> </span>+x<span class="w"> </span>TinyLlama-1.1B-Chat-v1.0.
 </section>
 </section>
 <section id="case-study-the-effect-of-quantization-on-llm-performance">
-<h2><a class="toc-backref" href="#id244" role="doc-backlink"><span class="section-number">7.4. </span>Case Study: The Effect of Quantization on LLM Performance</a><a class="headerlink" href="#case-study-the-effect-of-quantization-on-llm-performance" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id251" role="doc-backlink"><span class="section-number">8.4. </span>Case Study: The Effect of Quantization on LLM Performance</a><a class="headerlink" href="#case-study-the-effect-of-quantization-on-llm-performance" title="Permalink to this heading">¶</a></h2>
 <p>This case study examines how different quantization <span id="id38">[<a class="reference internal" href="#id44" title="Hugging Face. Quantization in optimum. https://huggingface.co/docs/optimum/en/concept_guides/quantization, 2024s. Accessed: 2024.">Face, 2024s</a>]</span> levels affect the performance of language models running locally. Quantization is a crucial technique for reducing model size and memory footprint while enhancing inference speed, but it comes with potential tradeoffs in model quality. Understanding these tradeoffs is essential for practitioners deploying LLMs in resource-constrained environments.</p>
 <p>Using the Qwen 2.5 0.5B model as our baseline, we’ll compare four variants:</p>
 <ul class="simple">
@@ -1292,7 +1301,7 @@ chmod<span class="w"> </span>+x<span class="w"> </span>TinyLlama-1.1B-Chat-v1.0.
 </ul>
 <p>While we will focus on the Qwen 2.5 0.5B model, the same analysis can be applied to other models. These insights will help practitioners make informed decisions about quantization strategies based on their specific requirements for model performance and resource usage.</p>
 <section id="prompts-dataset">
-<h3><a class="toc-backref" href="#id245" role="doc-backlink"><span class="section-number">7.4.1. </span>Prompts Dataset</a><a class="headerlink" href="#prompts-dataset" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id252" role="doc-backlink"><span class="section-number">8.4.1. </span>Prompts Dataset</a><a class="headerlink" href="#prompts-dataset" title="Permalink to this heading">¶</a></h3>
 <p>To evaluate the impact of quantization on model performance, we first need a set of prompts that will serve as input data for our experiments. We’ll construct a dataset from WikiText-2 <span id="id39">[<a class="reference internal" href="#id123" title="Salesforce. Wikitext dataset. Hugging Face Dataset, 2024. Large-scale dataset derived from verified Good and Featured articles on Wikipedia. URL: https://huggingface.co/datasets/Salesforce/wikitext.">Salesforce, 2024</a>]</span>, which contains Wikipedia excerpts.</p>
 <p>In our experiments, we will use a total of <code class="docutils literal notranslate"><span class="pre">NUM_PROMPTS</span></code> prompts that vary in length from <code class="docutils literal notranslate"><span class="pre">MIN_PROMPT_LENGTH</span></code> to <code class="docutils literal notranslate"><span class="pre">MAX_PROMPT_LENGTH</span></code> tokens. Using a fixed set of prompts ensures consistent evaluation across model variants and enables direct comparison of metrics like perplexity and throughput.</p>
 <div class="cell docutils container">
@@ -1356,19 +1365,19 @@ chmod<span class="w"> </span>+x<span class="w"> </span>TinyLlama-1.1B-Chat-v1.0.
 </div>
 </section>
 <section id="quantization">
-<h3><a class="toc-backref" href="#id246" role="doc-backlink"><span class="section-number">7.4.2. </span>Quantization</a><a class="headerlink" href="#quantization" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id253" role="doc-backlink"><span class="section-number">8.4.2. </span>Quantization</a><a class="headerlink" href="#quantization" title="Permalink to this heading">¶</a></h3>
 <p>We can quantize a model using the <code class="docutils literal notranslate"><span class="pre">llama-quantize</span></code> CLI. For instance, to quantize the Qwen 2.5 0.5B model to Q4_K, we can run the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./llama-quantize<span class="w"> </span>-m<span class="w"> </span>./models/qwen2.5-0.5b-instruct-fp16.gguf<span class="w"> </span>./models/qwen2.5-0.5b-instruct-q8_0.gguf<span class="w"> </span>Q4_K
 </pre></div>
 </div>
-<p><a class="reference internal" href="#quantization-levels"><span class="std std-numref">Table 7.6</span></a> describes the key quantization levels used in this study <span id="id40">[<a class="reference internal" href="#id130" title="Hugging Face. Gguf quantization types. Online Documentation, 2024w. Documentation on different quantization types available for GGUF models. URL: https://huggingface.co/docs/hub/gguf#quantization-types.">Hugging Face, 2024w</a>]</span>, where:</p>
+<p><a class="reference internal" href="#quantization-levels"><span class="std std-numref">Table 8.6</span></a> describes the key quantization levels used in this study <span id="id40">[<a class="reference internal" href="#id130" title="Hugging Face. Gguf quantization types. Online Documentation, 2024w. Documentation on different quantization types available for GGUF models. URL: https://huggingface.co/docs/hub/gguf#quantization-types.">Hugging Face, 2024w</a>]</span>, where:</p>
 <ul class="simple">
 <li><p>q is the quantized value</p></li>
 <li><p>block_scale is the scaling factor for the block (with bit width in parentheses)</p></li>
 <li><p>block_min is the block minimum value (with bit width in parentheses)</p></li>
 </ul>
 <table class="docutils align-center" id="quantization-levels">
-<caption><span class="caption-number">Table 7.6 </span><span class="caption-text">Quantization Levels</span><a class="headerlink" href="#quantization-levels" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 8.6 </span><span class="caption-text">Quantization Levels</span><a class="headerlink" href="#quantization-levels" title="Permalink to this table">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Quantization</p></th>
 <th class="head"><p>Description</p></th>
@@ -1397,7 +1406,7 @@ chmod<span class="w"> </span>+x<span class="w"> </span>TinyLlama-1.1B-Chat-v1.0.
 <p>Each quantization level represents a different tradeoff between model size and accuracy. Q2_K provides the highest compression but potentially lower accuracy, while Q6_K maintains better accuracy at the cost of larger model size. The base model is 16-bit standard IEEE 754 half-precision floating-point number.</p>
 </section>
 <section id="benchmarking">
-<h3><a class="toc-backref" href="#id247" role="doc-backlink"><span class="section-number">7.4.3. </span>Benchmarking</a><a class="headerlink" href="#benchmarking" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id254" role="doc-backlink"><span class="section-number">8.4.3. </span>Benchmarking</a><a class="headerlink" href="#benchmarking" title="Permalink to this heading">¶</a></h3>
 <p>We will measure quantized model “quality” by means of perplexity and KL Divergence.</p>
 <p><strong>Perplexity</strong></p>
 <p>Perplexity is a common metric for evaluating language models that measures how well a model predicts a sample of text. Lower perplexity indicates better prediction (less “perplexed” by the text).</p>
@@ -1438,24 +1447,24 @@ chmod<span class="w"> </span>+x<span class="w"> </span>TinyLlama-1.1B-Chat-v1.0.
 <p>We perform this process for each quantization level studied (Q2_K, Q4_K, Q6_K).</p>
 </section>
 <section id="results">
-<h3><a class="toc-backref" href="#id248" role="doc-backlink"><span class="section-number">7.4.4. </span>Results</a><a class="headerlink" href="#results" title="Permalink to this heading">¶</a></h3>
-<p>The KL divergence and perplexity results in <a class="reference internal" href="#ppl1"><span class="std std-numref">Fig. 7.17</span></a> and <a class="reference internal" href="#ppl2"><span class="std std-numref">Fig. 7.16</span></a> provide insights into model quality across different quantization levels. Q6 maintains near-perfect correlation (99.90%) with the base model and minimal KL divergence (0.004), indicating very close distribution matching. Q2’s higher KL divergence (0.112) and lower correlation (98.31%) quantify its increased deviation from the base model’s behavior.</p>
+<h3><a class="toc-backref" href="#id255" role="doc-backlink"><span class="section-number">8.4.4. </span>Results</a><a class="headerlink" href="#results" title="Permalink to this heading">¶</a></h3>
+<p>The KL divergence and perplexity results in <a class="reference internal" href="#ppl1"><span class="std std-numref">Fig. 8.17</span></a> and <a class="reference internal" href="#ppl2"><span class="std std-numref">Fig. 8.16</span></a> provide insights into model quality across different quantization levels. Q6 maintains near-perfect correlation (99.90%) with the base model and minimal KL divergence (0.004), indicating very close distribution matching. Q2’s higher KL divergence (0.112) and lower correlation (98.31%) quantify its increased deviation from the base model’s behavior.</p>
 <figure class="align-center" id="ppl2">
 <a class="reference internal image-reference" href="../_images/ppl2.png"><img alt="Perplexity" src="../_images/ppl2.png" style="width: 897.5px; height: 474.5px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7.16 </span><span class="caption-text">KL Divergence results for Quantization Q2, Q4, and Q6 quantized models.</span><a class="headerlink" href="#ppl2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 8.16 </span><span class="caption-text">KL Divergence results for Quantization Q2, Q4, and Q6 quantized models.</span><a class="headerlink" href="#ppl2" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="ppl1">
 <a class="reference internal image-reference" href="../_images/ppl1.png"><img alt="Perplexity" src="../_images/ppl1.png" style="width: 451.0px; height: 455.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7.17 </span><span class="caption-text">Perplexity results for Quantization Q2, Q4, and Q6 quantized models.</span><a class="headerlink" href="#ppl1" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 8.17 </span><span class="caption-text">Perplexity results for Quantization Q2, Q4, and Q6 quantized models.</span><a class="headerlink" href="#ppl1" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>From <a class="reference internal" href="#quantization-benchmarks"><span class="std std-numref">Table 7.7</span></a>, we observe that the Q2 model achieves the smallest size at 390 MiB
+<p>From <a class="reference internal" href="#quantization-benchmarks"><span class="std std-numref">Table 8.7</span></a>, we observe that the Q2 model achieves the smallest size at 390 MiB
 (67% reduction from base) with prompt throughput of 81 tokens/s, but has the highest perplexity degradation at 10.36%. The Q4 model offers a better balance, with good size savings (60% reduction) and only 3.5% perplexity loss. Q6 comes closest to matching the base model’s performance with just 0.93% perplexity degradation, while still providing 47% size reduction.</p>
 <table class="docutils align-center" id="quantization-benchmarks">
-<caption><span class="caption-number">Table 7.7 </span><span class="caption-text">Quantization Benchmarks</span><a class="headerlink" href="#quantization-benchmarks" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 8.7 </span><span class="caption-text">Quantization Benchmarks</span><a class="headerlink" href="#quantization-benchmarks" title="Permalink to this table">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Model</p></th>
 <th class="head"><p>Size (MiB)</p></th>
@@ -1507,16 +1516,16 @@ chmod<span class="w"> </span>+x<span class="w"> </span>TinyLlama-1.1B-Chat-v1.0.
 <li><p><code class="docutils literal notranslate"><span class="pre">-m</span></code>: Specify model paths for base FP16 model and Q2, Q4, Q6 quantized versions</p></li>
 </ul>
 <p>This runs text generation on a default benchmark of 128 tokens generation length (configurable via <code class="docutils literal notranslate"><span class="pre">-g</span></code> parameter).</p>
-<p>Results in <a class="reference internal" href="#tg"><span class="std std-numref">Fig. 7.18</span></a> indicate the base model delivers text generation performance at 19.73 tokens/s, while the most aggressively quantized Q2 model (390.28 MiB) delivers the highest throughput at 42.62 tokens/s, representing a 2.16x speedup. This pattern continues across Q4 (462.96 MiB, 38.38 tokens/s) and Q6 (614.58 MiB, 35.43 tokens/s), which presents a 1.85x and 1.79x speedup, respectively.</p>
+<p>Results in <a class="reference internal" href="#tg"><span class="std std-numref">Fig. 8.18</span></a> indicate the base model delivers text generation performance at 19.73 tokens/s, while the most aggressively quantized Q2 model (390.28 MiB) delivers the highest throughput at 42.62 tokens/s, representing a 2.16x speedup. This pattern continues across Q4 (462.96 MiB, 38.38 tokens/s) and Q6 (614.58 MiB, 35.43 tokens/s), which presents a 1.85x and 1.79x speedup, respectively.</p>
 <figure class="align-center" id="tg">
 <a class="reference internal image-reference" href="../_images/tg.png"><img alt="Text Generation Performance" src="../_images/tg.png" style="width: 873.0px; height: 433.5px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7.18 </span><span class="caption-text">Text Generation Performance results for Quantization Q2, Q4, Q6 and base models.</span><a class="headerlink" href="#tg" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 8.18 </span><span class="caption-text">Text Generation Performance results for Quantization Q2, Q4, Q6 and base models.</span><a class="headerlink" href="#tg" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>Benchmarking was performed on Ubuntu 24.04 LTS for x86_64-linux-gnu on commodity hardware (<a class="reference internal" href="#benchmarking-hardware"><span class="std std-numref">Table 7.8</span></a>) with no dedicated GPU demonstrating the feasibility of running LLMs locally by nearly everyone with a personal computer thanks to LLama.cpp.</p>
+<p>Benchmarking was performed on Ubuntu 24.04 LTS for x86_64-linux-gnu on commodity hardware (<a class="reference internal" href="#benchmarking-hardware"><span class="std std-numref">Table 8.8</span></a>) with no dedicated GPU demonstrating the feasibility of running LLMs locally by nearly everyone with a personal computer thanks to LLama.cpp.</p>
 <table class="docutils align-center" id="benchmarking-hardware">
-<caption><span class="caption-number">Table 7.8 </span><span class="caption-text">Benchmarking Hardware</span><a class="headerlink" href="#benchmarking-hardware" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 8.8 </span><span class="caption-text">Benchmarking Hardware</span><a class="headerlink" href="#benchmarking-hardware" title="Permalink to this table">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Device</p></th>
 <th class="head"><p>Description</p></th>
@@ -1536,14 +1545,14 @@ chmod<span class="w"> </span>+x<span class="w"> </span>TinyLlama-1.1B-Chat-v1.0.
 </table>
 </section>
 <section id="takeaways">
-<h3><a class="toc-backref" href="#id249" role="doc-backlink"><span class="section-number">7.4.5. </span>Takeaways</a><a class="headerlink" href="#takeaways" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id256" role="doc-backlink"><span class="section-number">8.4.5. </span>Takeaways</a><a class="headerlink" href="#takeaways" title="Permalink to this heading">¶</a></h3>
 <p>The quantization analysis of the Qwen 2.5 0.5B model demonstrates a clear trade-off among model size, inference speed, and prediction quality. While the base model (1170 MiB) maintains the highest accuracy it operates at the lowest text generation and prompt throughput of 19.73 tokens/s and 94.39 tokens/s, respectively. In contrast, the Q2_K quantization achieves significant size reduction (67%) and the highest throughput (42.62 tokens/s), but exhibits the largest quality degradation with a 10.36% perplexity increase and lowest KL divergence among quantized models. Q4_K emerges as a compelling middle ground, offering substantial size reduction (60%) and strong text generation and prompt throughput performance (38.38 tokens/s and 77.08 tokens/s, respectively), while maintaining good model quality with only 3.5% perplexity degradation and middle-ground KL divergence level.</p>
 <p>These results, achieved on commodity CPU hardware, demonstrate that quantization can significantly improve inference speed and reduce model size while maintaining acceptable quality thresholds, making large language models more accessible for resource-constrained environments.</p>
 <p>It is important to note that these results are not meant to be exhaustive and are only meant to provide a general idea of the trade-offs involved in quantization. Targeted benchmarks should be performed for specific use cases and models to best reflect real-world performance.</p>
 </section>
 </section>
 <section id="conclusion">
-<h2><a class="toc-backref" href="#id250" role="doc-backlink"><span class="section-number">7.5. </span>Conclusion</a><a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id257" role="doc-backlink"><span class="section-number">8.5. </span>Conclusion</a><a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
 <p>Running open source language models locally represents a compelling proposition in how we interact with AI technology. The transition from cloud-based to local deployment offers important advantages in terms of privacy, cost control, and customization flexibility, while introducing important technical considerations around resource management and performance optimization. The growing ecosystem of tools and frameworks, from low-level libraries like llama.cpp to user-friendly interfaces like LM Studio and Jan, has made local deployment increasingly accessible to both individual developers and organizations.</p>
 <p>Our case study demonstrated that quantization can significantly improve inference speed and reduce model size while maintaining acceptable quality thresholds, making large language models more accessible for resource-constrained environments. As demonstrated in our case study with the Qwen 2.5 0.5B model, practitioners can achieve significant reductions in model size and improvements in inference speed while maintaining acceptable performance levels. The Q4_K quantization scheme emerged as a particularly effective compromise, offering substantial size reduction (60%) and strong throughput while limiting quality degradation to just 3.5% in perplexity measures.</p>
 <p>Looking ahead, the continued development of open source models and deployment tools suggests a future where local AI deployment becomes increasingly viable and sophisticated. The success of open source models like Qwen and Llama, combined with improvements in local model serving and techniques couple with efficient small language models (SLMs), indicate that local deployment will likely play an increasingly important role in the AI landscape. However, practitioners must carefully evaluate their specific requirements across dimensions like task suitability, resource constraints, and performance needs when choosing between local and cloud-based deployment strategies.</p>
@@ -1560,12 +1569,8 @@ chmod<span class="w"> </span>+x<span class="w"> </span>TinyLlama-1.1B-Chat-v1.0.
 </div>
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id251" role="doc-backlink"><span class="section-number">7.6. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id258" role="doc-backlink"><span class="section-number">8.6. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <div class="docutils container" id="id41">
-<div class="citation" id="id126" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id10">AI24</a><span class="fn-bracket">]</span></span>
-<p>DeepSeek AI. Deepseek-v3 technical report. Technical Report, 2024. URL: <a class="reference external" href="https://github.com/deepseek-ai/DeepSeek-V3/blob/main/DeepSeek_V3.pdf">https://github.com/deepseek-ai/DeepSeek-V3/blob/main/DeepSeek_V3.pdf</a>.</p>
-</div>
 <div class="citation" id="id155" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id15">AI4c</a><span class="fn-bracket">]</span></span>
 <p>Meta AI. The llama 3 herd of models. 2024c. URL: <a class="reference external" href="https://arxiv.org/abs/2407.21783">https://arxiv.org/abs/2407.21783</a>, <a class="reference external" href="https://arxiv.org/abs/2407.21783">arXiv:2407.21783</a>.</p>
@@ -1599,7 +1604,11 @@ chmod<span class="w"> </span>+x<span class="w"> </span>TinyLlama-1.1B-Chat-v1.0.
 <span class="backrefs">(<a role="doc-backlink" href="#id30">1</a>,<a role="doc-backlink" href="#id32">2</a>)</span>
 <p>Andrei Betlen and contributors. Llama-cpp-python. GitHub Repository, 2024. Python bindings for llama.cpp library enabling high-performance inference of LLaMA models. URL: <a class="reference external" href="https://github.com/abetlen/llama-cpp-python">https://github.com/abetlen/llama-cpp-python</a>.</p>
 </div>
-<div class="citation" id="id178" role="doc-biblioentry">
+<div class="citation" id="id126" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id10">Dee24</a><span class="fn-bracket">]</span></span>
+<p>DeepSeek. Deepseek-v3 technical report. Technical Report, 2024. URL: <a class="reference external" href="https://github.com/deepseek-ai/DeepSeek-V3/blob/main/DeepSeek_V3.pdf">https://github.com/deepseek-ai/DeepSeek-V3/blob/main/DeepSeek_V3.pdf</a>.</p>
+</div>
+<div class="citation" id="id185" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id20">Fac4d</a><span class="fn-bracket">]</span></span>
 <p>Hugging Face. Trl. 2024d. TRL. URL: <a class="reference external" href="https://huggingface.co/docs/trl/en/index">https://huggingface.co/docs/trl/en/index</a>.</p>
 </div>
@@ -1662,7 +1671,7 @@ chmod<span class="w"> </span>+x<span class="w"> </span>TinyLlama-1.1B-Chat-v1.0.
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id13">Rev24</a><span class="fn-bracket">]</span></span>
 <p>Harvard Law Review. Nyt v. openai: the times's about-face. <a class="reference external" href="https://harvardlawreview.org/blog/2024/04/nyt-v-openai-the-timess-about-face/">https://harvardlawreview.org/blog/2024/04/nyt-v-openai-the-timess-about-face/</a>, 2024. Accessed: 2024.</p>
 </div>
-<div class="citation" id="id169" role="doc-biblioentry">
+<div class="citation" id="id176" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">TMS+23</a><span class="fn-bracket">]</span></span>
 <p>Hugo Touvron, Louis Martin, Kevin Stone, Peter Albert, Amjad Almahairi, Yasmine Babaei, Nikolay Bashlykov, Soumya Batra, Prajjwal Bhargava, Shruti Bhosale, Dan Bikel, Lukas Blecher, Cristian Canton Ferrer, Moya Chen, Guillem Cucurull, David Esiobu, Jude Fernandes, Jeremy Fu, Wenyin Fu, Brian Fuller, Cynthia Gao, Vedanuj Goswami, Naman Goyal, Anthony Hartshorn, Saghar Hosseini, Rui Hou, Hakan Inan, Marcin Kardas, Viktor Kerkez, Madian Khabsa, Isabel Kloumann, Artem Korenev, Punit Singh Koura, Marie-Anne Lachaux, Thibaut Lavril, Jenya Lee, Diana Liskovich, Yinghai Lu, Yuning Mao, Xavier Martinet, Todor Mihaylov, Pushkar Mishra, Igor Molybog, Yixin Nie, Andrew Poulton, Jeremy Reizenstein, Rashi Rungta, Kalyan Saladi, Alan Schelten, Ruan Silva, Eric Michael Smith, Ranjan Subramanian, Xiaoqing Ellen Tan, Binh Tang, Ross Taylor, Adina Williams, Jian Xiang Kuan, Puxin Xu, Zheng Yan, Iliyan Zarov, Yuchen Zhang, Angela Fan, Melanie Kambadur, Sharan Narang, Aurelien Rodriguez, Robert Stojnic, Sergey Edunov, and Thomas Scialom. Llama 2: open foundation and fine-tuned chat models. 2023. URL: <a class="reference external" href="https://arxiv.org/abs/2307.09288">https://arxiv.org/abs/2307.09288</a>, <a class="reference external" href="https://arxiv.org/abs/2307.09288">arXiv:2307.09288</a>.</p>
 </div>
@@ -1732,11 +1741,11 @@ chmod<span class="w"> </span>+x<span class="w"> </span>TinyLlama-1.1B-Chat-v1.0.
             <div class="inner"><ul class="page-nav">
   <li class="prev">
     <a href="alignment.html"
-       title="previous chapter">← <span class="section-number">6. </span>Preference-Based Alignment</a>
+       title="previous chapter">← <span class="section-number">7. </span>Preference-Based Alignment</a>
   </li>
   <li class="next">
     <a href="cost.html"
-       title="next chapter"><span class="section-number">8. </span>The Falling Cost Paradox →</a>
+       title="next chapter"><span class="section-number">9. </span>The Falling Cost Paradox →</a>
   </li>
 </ul><div class="footer" role="contentinfo">
       &#169; Copyright Tharsis T. P. Souza, 2024.
