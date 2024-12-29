@@ -34,6 +34,8 @@ sphinx:
     - sphinxcontrib.bibtex
     #- sphinx.ext.mathjax
   config:
+    html_context:
+      default_mode: light
     mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
     bibtex_reference_style: author_year
     html_theme: 'press' #insipid
@@ -46,4 +48,3 @@ sphinx:
         - ["Newsletter", "https://tamingllm.substack.com/"] 
         - ["Github", "https://github.com/souzatharsis/tamingllms"]
            
-    
