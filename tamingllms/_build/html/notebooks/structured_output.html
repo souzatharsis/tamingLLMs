@@ -409,28 +409,29 @@ These models calculate the probability of observing a token (from a vocabulary o
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">Generate a two-person discussion about the key financial data from the following text in JSON format.</span>
 
 <span class="s2">&lt;JSON_FORMAT&gt;</span>
-<span class="si">{</span>
-<span class="w">   </span><span class="s2">&quot;Person1&quot;</span><span class="si">:</span><span class="s2"> </span><span class="si">{</span>
-<span class="w">     </span><span class="s2">&quot;name&quot;</span><span class="si">:</span><span class="s2"> &quot;Alice&quot;,</span>
-<span class="s2">     &quot;statement&quot;: &quot;The revenue for Q1 has increased by 20% compared to last year.&quot;</span>
-<span class="s2">   </span><span class="si">}</span><span class="s2">,</span>
-<span class="s2">   &quot;Person2&quot;: </span><span class="si">{</span>
-<span class="w">     </span><span class="s2">&quot;name&quot;</span><span class="si">:</span><span class="s2"> &quot;Bob&quot;,</span>
+<span class="s2">{</span>
+<span class="s2">   &quot;Person1&quot;: {</span>
+<span class="s2">     &quot;name&quot;: &quot;Alice&quot;,</span>
+<span class="s2">     &quot;statement&quot;: &quot;The revenue for Q1 has increased by 20</span><span class="si">% c</span><span class="s2">ompared to last year.&quot;</span>
+<span class="s2">   },</span>
+<span class="s2">   &quot;Person2&quot;: {</span>
+<span class="s2">     &quot;name&quot;: &quot;Bob&quot;,</span>
 <span class="s2">     &quot;statement&quot;: &quot;That&#39;s great news! What about the net profit margin?&quot;</span>
-<span class="s2">   </span><span class="si">}</span>
-<span class="si">}</span>
+<span class="s2">   }</span>
+<span class="s2">}</span>
 <span class="s2">&lt;/JSON_FORMAT&gt;</span>
-
-<span class="s2">TEXT: </span><span class="si">{</span><span class="n">sec_filing</span><span class="si">}</span>
 <span class="s2">&quot;&quot;&quot;</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span>
-    <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}]</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
+    <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">sec_filing</span><span class="p">}</span>
+    <span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -444,16 +445,18 @@ These models calculate the probability of observing a token (from a vocabulary o
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>```json
+{
    &quot;Person1&quot;: {
      &quot;name&quot;: &quot;Alice&quot;,
-     &quot;statement&quot;: &quot;The revenue for Q1 has increased by 20% compared to last year.&quot;
+     &quot;statement&quot;: &quot;The aggregate market value of Apple&#39;s stock held by non-affiliates is approximately $2.63 trillion.&quot;
    },
    &quot;Person2&quot;: {
      &quot;name&quot;: &quot;Bob&quot;,
-     &quot;statement&quot;: &quot;That&#39;s great news! What about the net profit margin?&quot;
+     &quot;statement&quot;: &quot;That&#39;s impressive! I also noticed that they have around 15.1 billion shares of common stock outstanding.&quot;
    }
 }
+```
 </pre></div>
 </div>
 </div>
@@ -479,12 +482,12 @@ These models calculate the probability of observing a token (from a vocabulary o
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
 </pre></div>
 </div>
 </div>
 </div>
-<p>We observe the LLM did provide a response in JSON format. However, it is important to note this is not guaranteed. Hence, this strategy may cause failures if dependencies expect output in JSON format.</p>
+<p>We observe the LLM provided a response in JSON format. However, it was enclosed by json markdown tags! While further prompt engineering could lead to a pure JSON response it is important to note this is not guaranteed. Hence, this strategy may cause failures if dependencies expect output in JSON format.</p>
 </section>
 <section id="json-mode-fine-tuned">
 <h3><a class="toc-backref" href="#id219" role="doc-backlink"><span class="section-number">4.3.2. </span>JSON Mode (Fine-Tuned)</a><a class="headerlink" href="#json-mode-fine-tuned" title="Permalink to this heading">¶</a></h3>
