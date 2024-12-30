@@ -22,7 +22,7 @@ Abstract: *The current discourse around Large Language Models (LLMs) tends to fo
 
 ## [Chapter 1: The Evals Gap](https://www.tamingllms.com/notebooks/evals.html)
 
-## Chapter 2: Managing Input Data
+## [Chapter 2: Managing Input Data](https://www.tamingllms.com/notebooks/input.html)
 
 ## [Chapter 3: Structured Output](https://www.tamingllms.com/notebooks/structured_output.html)
 
