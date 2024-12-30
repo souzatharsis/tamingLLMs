@@ -495,7 +495,7 @@ We want to share this article to make sure you have a better understanding of th
 <p>At a high-level DPO maximizes the probability of preferred output and minimize rejected output as defined in the following equation:</p>
 <div class="math notranslate nohighlight">
 \[
-\mathcal{L}_{\text{DPO}}(\pi_\theta; \pi_\text{ref}) = -\mathbb{E}_{(x,y_w,y_l) \sim \mathcal{D}} \left[\log \sigma \left(\beta \underbrace{\log \frac{\pi_\theta(y_w | x)}{\pi_\text{ref}(y_w | x)}}_{\color{green}\text{preferred}} - \beta \underbrace{\log \frac{\pi_\theta(y_l | x)}{\pi_\text{ref}(y_l | x)}}_{\color{red}\text{rejected}}\right)\right]
+\mathcal{L}_{\text{DPO}}(\pi_\theta; \pi_\text{ref}) = -\mathbb{E}_{(x,y_w,y_l) \sim \mathcal{D}} \left[\log \sigma \left(\beta \log \frac{\pi_\theta(y_w | x)}{\pi_\text{ref}(y_w | x)} - \beta \log \frac{\pi_\theta(y_l | x)}{\pi_\text{ref}(y_l | x)}\right)\right]
 \]</div>
 <p>where,</p>
 <ul class="simple">
