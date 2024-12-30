@@ -32,7 +32,8 @@ sphinx:
   extra_extensions:
     - sphinxcontrib.mermaid
     - sphinxcontrib.bibtex
-    #- sphinx.ext.mathjax
+    - sphinx_math_dollar
+    - sphinx.ext.mathjax
   config:
     html_context:
       default_mode: light

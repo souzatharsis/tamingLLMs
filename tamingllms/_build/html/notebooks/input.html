@@ -250,7 +250,7 @@
           <div class="content" role="main" v-pre>
             
   <section class="tex2jax_ignore mathjax_ignore" id="managing-input-data">
-<span id="input"></span><h1><a class="toc-backref" href="#id207" role="doc-backlink"><span class="section-number">5. </span>Managing Input Data</a><a class="headerlink" href="#managing-input-data" title="Permalink to this heading">¶</a></h1>
+<span id="input"></span><h1><a class="toc-backref" href="#id213" role="doc-backlink"><span class="section-number">5. </span>Managing Input Data</a><a class="headerlink" href="#managing-input-data" title="Permalink to this heading">¶</a></h1>
 <blockquote class="epigraph">
 <div><p>One home run is much better than two doubles.</p>
 <p class="attribution">—Steve Jobs</p>
@@ -258,39 +258,39 @@
 <nav class="contents" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#managing-input-data" id="id207">Managing Input Data</a></p>
+<li><p><a class="reference internal" href="#managing-input-data" id="id213">Managing Input Data</a></p>
 <ul>
-<li><p><a class="reference internal" href="#introduction" id="id208">Introduction</a></p></li>
-<li><p><a class="reference internal" href="#parsing-documents" id="id209">Parsing Documents</a></p>
+<li><p><a class="reference internal" href="#introduction" id="id214">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#parsing-documents" id="id215">Parsing Documents</a></p>
 <ul>
-<li><p><a class="reference internal" href="#markitdown" id="id210">MarkItDown</a></p></li>
-<li><p><a class="reference internal" href="#docling" id="id211">Docling</a></p></li>
-<li><p><a class="reference internal" href="#frameworks-based-parsing" id="id212">Frameworks-Based Parsing</a></p></li>
-<li><p><a class="reference internal" href="#structured-data-extraction" id="id213">Structured Data Extraction</a></p></li>
+<li><p><a class="reference internal" href="#markitdown" id="id216">MarkItDown</a></p></li>
+<li><p><a class="reference internal" href="#docling" id="id217">Docling</a></p></li>
+<li><p><a class="reference internal" href="#frameworks-based-parsing" id="id218">Frameworks-Based Parsing</a></p></li>
+<li><p><a class="reference internal" href="#structured-data-extraction" id="id219">Structured Data Extraction</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#retrieval-augmented-generation" id="id214">Retrieval-Augmented Generation</a></p></li>
-<li><p><a class="reference internal" href="#case-studies" id="id215">Case Studies</a></p>
+<li><p><a class="reference internal" href="#retrieval-augmented-generation" id="id220">Retrieval-Augmented Generation</a></p></li>
+<li><p><a class="reference internal" href="#case-studies" id="id221">Case Studies</a></p>
 <ul>
-<li><p><a class="reference internal" href="#case-study-i-content-chunking-with-contextual-linking" id="id216">Case Study I: Content Chunking with Contextual Linking</a></p>
+<li><p><a class="reference internal" href="#case-study-i-content-chunking-with-contextual-linking" id="id222">Case Study I: Content Chunking with Contextual Linking</a></p>
 <ul>
-<li><p><a class="reference internal" href="#generating-long-form-content" id="id217">Generating long-form content</a></p></li>
-<li><p><a class="reference internal" href="#discussion" id="id218">Discussion</a></p></li>
+<li><p><a class="reference internal" href="#generating-long-form-content" id="id223">Generating long-form content</a></p></li>
+<li><p><a class="reference internal" href="#discussion" id="id224">Discussion</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#case-study-ii-github-rag" id="id219">Case Study II: Github RAG</a></p></li>
-<li><p><a class="reference internal" href="#case-study-iii-quiz-generation-with-citations" id="id220">Case Study III: Quiz Generation with Citations</a></p>
+<li><p><a class="reference internal" href="#case-study-ii-github-rag" id="id225">Case Study II: Github RAG</a></p></li>
+<li><p><a class="reference internal" href="#case-study-iii-quiz-generation-with-citations" id="id226">Case Study III: Quiz Generation with Citations</a></p>
 <ul>
-<li><p><a class="reference internal" href="#use-case" id="id221">Use Case</a></p></li>
-<li><p><a class="reference internal" href="#implementation" id="id222">Implementation</a></p></li>
-<li><p><a class="reference internal" href="#example-usage" id="id223">Example Usage</a></p></li>
-<li><p><a class="reference internal" href="#id14" id="id224">Discussion</a></p></li>
+<li><p><a class="reference internal" href="#use-case" id="id227">Use Case</a></p></li>
+<li><p><a class="reference internal" href="#implementation" id="id228">Implementation</a></p></li>
+<li><p><a class="reference internal" href="#example-usage" id="id229">Example Usage</a></p></li>
+<li><p><a class="reference internal" href="#id14" id="id230">Discussion</a></p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#conclusion" id="id225">Conclusion</a></p></li>
-<li><p><a class="reference internal" href="#references" id="id226">References</a></p></li>
+<li><p><a class="reference internal" href="#conclusion" id="id231">Conclusion</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id232">References</a></p></li>
 </ul>
 </li>
 </ul>
@@ -300,7 +300,7 @@
 <p>This Chapter is Work-in-Progress.</p>
 </div>
 <section id="introduction">
-<h2><a class="toc-backref" href="#id208" role="doc-backlink"><span class="section-number">5.1. </span>Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id214" role="doc-backlink"><span class="section-number">5.1. </span>Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>Large Language Models face several critical challenges in effectively processing input data. While advances in long-context language models (LCLMs) <span id="id1">[<a class="reference internal" href="#id102" title="Jinhyuk Lee, Anthony Chen, Zhuyun Dai, Dheeru Dua, Devendra Singh Sachan, Michael Boratko, Yi Luan, Sébastien M. R. Arnold, Vincent Perot, Siddharth Dalmia, Hexiang Hu, Xudong Lin, Panupong Pasupat, Aida Amini, Jeremy R. Cole, Sebastian Riedel, Iftekhar Naim, Ming-Wei Chang, and Kelvin Guu. Can long-context language models subsume retrieval, rag, sql, and more? 2024. URL: https://arxiv.org/abs/2406.13121, arXiv:2406.13121.">Lee <em>et al.</em>, 2024</a>]</span> have expanded the amount of information these systems can process simultaneously, significant challenges remain in managing and effectively utilizing extended inputs.</p>
 <p>LLMs are sensitive to input formatting and structure, requiring careful data preparation to achieve optimal results <span id="id2">[<a class="reference internal" href="#id144" title="Jiejun Tan, Zhicheng Dou, Wen Wang, Mang Wang, Weipeng Chen, and Ji-Rong Wen. Htmlrag: html is better than plain text for modeling retrieved knowledge in rag systems. 2024. URL: https://arxiv.org/abs/2411.02959, arXiv:2411.02959.">Tan <em>et al.</em>, 2024</a>]</span>. They operate with knowledge cutoffs, providing potentially stale or outdated information that may not reflect current reality and demonstrate problems with temporal knowledge accuracy <span id="id3">[<a class="reference internal" href="#id147" title="Alfonso Amayuelas, Kyle Wong, Liangming Pan, Wenhu Chen, and William Yang Wang. Knowledge of knowledge: exploring known-unknowns uncertainty with large language models. In Lun-Wei Ku, Andre Martins, and Vivek Srikumar, editors, Findings of the Association for Computational Linguistics: ACL 2024, 6416–6432. Bangkok, Thailand, August 2024. Association for Computational Linguistics. URL: https://aclanthology.org/2024.findings-acl.383, doi:10.18653/v1/2024.findings-acl.383.">Amayuelas <em>et al.</em>, 2024</a>]</span>. LLMs also struggle with less common but important information showing a systematic loss of long-tail knowledge <span id="id4">[<a class="reference internal" href="#id148" title="Suhas Kotha, Jacob Mitchell Springer, and Aditi Raghunathan. Understanding catastrophic forgetting in language models via implicit inference. In The Twelfth International Conference on Learning Representations. 2024. URL: https://openreview.net/forum?id=VrHiF2hsrm.">Kotha <em>et al.</em>, 2024</a>]</span>.</p>
 <p>Motivated by these challenges, this chapter explores two key components:</p>
@@ -314,11 +314,11 @@
 <p>By the chapter’s conclusion, readers will possess relevant knowledge of input data management strategies for LLMs and practical expertise in selecting and implementing appropriate approaches and tools for specific use cases.</p>
 </section>
 <section id="parsing-documents">
-<h2><a class="toc-backref" href="#id209" role="doc-backlink"><span class="section-number">5.2. </span>Parsing Documents</a><a class="headerlink" href="#parsing-documents" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id215" role="doc-backlink"><span class="section-number">5.2. </span>Parsing Documents</a><a class="headerlink" href="#parsing-documents" title="Permalink to this heading">¶</a></h2>
 <p>Building robust data ingestion and preprocessing pipelines is essential for any LLM application. This section explores tools and frameworks that streamline input data processing, in particular for parsing purposes, providing a unified interface for converting diverse data formats into standardized representations that LLMs can effectively process. By abstracting away format-specific complexities, they allow developers to focus on core application logic rather than parsing implementation details while maximizing the performance of the LLM.</p>
 <p>We will cover open source tools and frameworks that provide parsing capabilities for a wide range of data formats. And we will demonstrate how some of these tools can be used to extract structured information from complex PDFs also discussing how the quality of the parser can impact LLM’s performance.</p>
 <section id="markitdown">
-<h3><a class="toc-backref" href="#id210" role="doc-backlink"><span class="section-number">5.2.1. </span>MarkItDown</a><a class="headerlink" href="#markitdown" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id216" role="doc-backlink"><span class="section-number">5.2.1. </span>MarkItDown</a><a class="headerlink" href="#markitdown" title="Permalink to this heading">¶</a></h3>
 <p>MarkItDown is a Python package and CLI too developed by the Microsoft AutoGen team for converting various file formats to Markdown. It supports a wide range of formats including PDF, PowerPoint, Word, Excel, images (with OCR and EXIF metadata), audio (with transcription), HTML, and other text-based formats making it a useful tool for document indexing and LLM-based applications.</p>
 <p>Key features:</p>
 <ul class="simple">
@@ -338,7 +338,7 @@
 </div>
 </section>
 <section id="docling">
-<h3><a class="toc-backref" href="#id211" role="doc-backlink"><span class="section-number">5.2.2. </span>Docling</a><a class="headerlink" href="#docling" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id217" role="doc-backlink"><span class="section-number">5.2.2. </span>Docling</a><a class="headerlink" href="#docling" title="Permalink to this heading">¶</a></h3>
 <p>Docling is a Python package developed by IBM Research for parsing and converting documents into various formats. It provides advanced document understanding capabilities with a focus on maintaining document structure and formatting.</p>
 <p>Key features:</p>
 <ul class="simple">
@@ -359,10 +359,10 @@
 </div>
 </section>
 <section id="frameworks-based-parsing">
-<h3><a class="toc-backref" href="#id212" role="doc-backlink"><span class="section-number">5.2.3. </span>Frameworks-Based Parsing</a><a class="headerlink" href="#frameworks-based-parsing" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id218" role="doc-backlink"><span class="section-number">5.2.3. </span>Frameworks-Based Parsing</a><a class="headerlink" href="#frameworks-based-parsing" title="Permalink to this heading">¶</a></h3>
 </section>
 <section id="structured-data-extraction">
-<h3><a class="toc-backref" href="#id213" role="doc-backlink"><span class="section-number">5.2.4. </span>Structured Data Extraction</a><a class="headerlink" href="#structured-data-extraction" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id219" role="doc-backlink"><span class="section-number">5.2.4. </span>Structured Data Extraction</a><a class="headerlink" href="#structured-data-extraction" title="Permalink to this heading">¶</a></h3>
 <p>A common use case where document parsing matters is to structured data extraction from documents, particularly in the presence of complex formatting and layout. In this case study, we will extract the economic forecasts from Merrill Lynch’s CIO Capital Market Outlook released on December 16, 2024 <span id="id5">[<a class="reference internal" href="#id103" title="Merrill Lynch. Chief investment officer capital market outlook. CIO Weekly Letter, 2024. URL: https://olui2.fs.ml.com/publish/content/application/pdf/gwmol/me-cio-weekly-letter.pdf.">Merrill Lynch, 2024</a>]</span>. We will focus on page 7 of this document, which contains several economic variables organized in a mix of tables, text and images (see <a class="reference internal" href="#forecast"><span class="std std-numref">Fig. 5.1</span></a>)</p>
 <figure class="align-center" id="forecast">
 <a class="reference internal image-reference" href="../_images/forecast.png"><img alt="Forecast" src="../_images/forecast.png" style="width: 897.5px; height: 953.5px;" /></a>
@@ -1398,18 +1398,18 @@ Below, we can see the first table successfully extracted for Equities forecasts,
 </section>
 </section>
 <section id="retrieval-augmented-generation">
-<h2><a class="toc-backref" href="#id214" role="doc-backlink"><span class="section-number">5.3. </span>Retrieval-Augmented Generation</a><a class="headerlink" href="#retrieval-augmented-generation" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id220" role="doc-backlink"><span class="section-number">5.3. </span>Retrieval-Augmented Generation</a><a class="headerlink" href="#retrieval-augmented-generation" title="Permalink to this heading">¶</a></h2>
 <p>RAG is a technique that allows LLMs to retrieve information from a knowledge base to answer questions. It is a popular technique for building LLM applications that require knowledge-intensive tasks <span id="id8">[<a class="reference internal" href="#id100" title="Patrick Lewis, Ethan Perez, Aleksandra Piktus, Fabio Petroni, Vladimir Karpukhin, Naman Goyal, Heinrich Küttler, Mike Lewis, Wen-tau Yih, Tim Rocktäschel, Sebastian Riedel, and Douwe Kiela. Retrieval-augmented generation for knowledge-intensive nlp tasks. 2021. URL: https://arxiv.org/abs/2005.11401, arXiv:2005.11401.">Lewis <em>et al.</em>, 2021</a>]</span>.</p>
 <p>RAG utilizes a retrieval system to fetch external knowledge and augment the LLM. It has proved effective in mitigating hallucinations of LLMs <span id="id9">[<a class="reference internal" href="#id149" title="Shiyu Ni, Keping Bi, Jiafeng Guo, and Xueqi Cheng. When do LLMs need retrieval augmentation? mitigating LLMs' overconfidence helps retrieval augmentation. In Lun-Wei Ku, Andre Martins, and Vivek Srikumar, editors, Findings of the Association for Computational Linguistics: ACL 2024, 11375–11388. Bangkok, Thailand, August 2024. Association for Computational Linguistics. URL: https://aclanthology.org/2024.findings-acl.675, doi:10.18653/v1/2024.findings-acl.675.">Ni <em>et al.</em>, 2024</a>, <a class="reference internal" href="#id143" title="Yujia Zhou, Zheng Liu, Jiajie Jin, Jian-Yun Nie, and Zhicheng Dou. Metacognitive retrieval-augmented large language models. In Proceedings of the ACM Web Conference 2024, WWW '24, 1453-1463. New York, NY, USA, 2024. Association for Computing Machinery. URL: https://doi.org/10.1145/3589334.3645481, doi:10.1145/3589334.3645481.">Zhou <em>et al.</em>, 2024</a>]</span>.</p>
 </section>
 <section id="case-studies">
-<h2><a class="toc-backref" href="#id215" role="doc-backlink"><span class="section-number">5.4. </span>Case Studies</a><a class="headerlink" href="#case-studies" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id221" role="doc-backlink"><span class="section-number">5.4. </span>Case Studies</a><a class="headerlink" href="#case-studies" title="Permalink to this heading">¶</a></h2>
 <p>This section presents three case studies that demonstrate practical solutions to common LLM limitations:</p>
 <p>First, Content Chunking with Contextual Linking showcases how intelligent chunking strategies can overcome both context window and output token limitations. This case study illustrates techniques for breaking down and reassembling content while maintaining coherence, enabling the generation of high-quality long-form outputs despite model constraints.</p>
 <p>Second, a Retrieval Augmented Generation case study addresses the challenge of stale or outdated model knowledge. By implementing semantic search over a GitHub repository, this example demonstrates how to augment LLM responses with current, accurate information - allowing users to query and receive up-to-date answers about code repository contents.</p>
 <p>Third, the final case study builds a Quiz generator with citations. This case study explores some additional input management techniques that become particularly useful when long context window is available. This includes implementing prompt caching for efficiency and adding citations to enhance response accuracy and verifiability. These approaches show how to maximize the benefits of larger context models while maintaining response quality.</p>
 <section id="case-study-i-content-chunking-with-contextual-linking">
-<h3><a class="toc-backref" href="#id216" role="doc-backlink"><span class="section-number">5.4.1. </span>Case Study I: Content Chunking with Contextual Linking</a><a class="headerlink" href="#case-study-i-content-chunking-with-contextual-linking" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id222" role="doc-backlink"><span class="section-number">5.4.1. </span>Case Study I: Content Chunking with Contextual Linking</a><a class="headerlink" href="#case-study-i-content-chunking-with-contextual-linking" title="Permalink to this heading">¶</a></h3>
 <p>Content chunking with contextual linking is a technique to break down long-form content into smaller, manageable chunks while keeping chunk-specific context. This approach tackles three problems:</p>
 <ol class="arabic simple">
 <li><p>The LLM’s inability to process long inputs to do context-size limits</p></li>
@@ -1425,7 +1425,7 @@ Below, we can see the first table successfully extracted for Equities forecasts,
 </ol>
 <p>Let’s examine an example implementation of this technique.</p>
 <section id="generating-long-form-content">
-<h4><a class="toc-backref" href="#id217" role="doc-backlink"><span class="section-number">5.4.1.1. </span>Generating long-form content</a><a class="headerlink" href="#generating-long-form-content" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id223" role="doc-backlink"><span class="section-number">5.4.1.1. </span>Generating long-form content</a><a class="headerlink" href="#generating-long-form-content" title="Permalink to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>Goal: Generate a long-form report analyzing a company’s financial statement.</p></li>
 <li><p>Input: A company’s 10K SEC filing.</p></li>
@@ -1737,7 +1737,7 @@ Below, we can see the first table successfully extracted for Equities forecasts,
 </section>
 <hr class="docutils" />
 <section id="discussion">
-<h4><a class="toc-backref" href="#id218" role="doc-backlink"><span class="section-number">5.4.1.2. </span>Discussion</a><a class="headerlink" href="#discussion" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id224" role="doc-backlink"><span class="section-number">5.4.1.2. </span>Discussion</a><a class="headerlink" href="#discussion" title="Permalink to this heading">¶</a></h4>
 <p>Results from the generated report present a few interesting aspects:</p>
 <ul class="simple">
 <li><p><strong>Coherence</strong>: The generated report demonstrates an apparent level of coherence. The sections are logically structured, and the flow of information is smooth. Each part of the report builds upon the previous sections, providing a comprehensive analysis of Apple Inc.’s financial performance and key risk factors. The use of headings and subheadings helps in maintaining clarity and organization throughout the document.</p></li>
@@ -1758,13 +1758,13 @@ Below, we can see the first table successfully extracted for Equities forecasts,
 </section>
 </section>
 <section id="case-study-ii-github-rag">
-<h3><a class="toc-backref" href="#id219" role="doc-backlink"><span class="section-number">5.4.2. </span>Case Study II: Github RAG</a><a class="headerlink" href="#case-study-ii-github-rag" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id225" role="doc-backlink"><span class="section-number">5.4.2. </span>Case Study II: Github RAG</a><a class="headerlink" href="#case-study-ii-github-rag" title="Permalink to this heading">¶</a></h3>
 </section>
 <section id="case-study-iii-quiz-generation-with-citations">
-<h3><a class="toc-backref" href="#id220" role="doc-backlink"><span class="section-number">5.4.3. </span>Case Study III: Quiz Generation with Citations</a><a class="headerlink" href="#case-study-iii-quiz-generation-with-citations" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id226" role="doc-backlink"><span class="section-number">5.4.3. </span>Case Study III: Quiz Generation with Citations</a><a class="headerlink" href="#case-study-iii-quiz-generation-with-citations" title="Permalink to this heading">¶</a></h3>
 <p>In this case study, we will build a Quiz generator with citations that explores additional input management techniques particularly useful with long context windows. The implementation includes prompt caching for efficiency and citation tracking to enhance accuracy and verifiability. We will use Gemini 1.5 Pro as our LLM model, which has a context window of 2M tokens.</p>
 <section id="use-case">
-<h4><a class="toc-backref" href="#id221" role="doc-backlink"><span class="section-number">5.4.3.1. </span>Use Case</a><a class="headerlink" href="#use-case" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id227" role="doc-backlink"><span class="section-number">5.4.3.1. </span>Use Case</a><a class="headerlink" href="#use-case" title="Permalink to this heading">¶</a></h4>
 <p>Let’s assume you are a Harvard student enrolled in GOV 1039 “The Birth of Modern Democracy” (see <a class="reference internal" href="#harvard-class"><span class="std std-numref">Fig. 5.8</span></a>), you face a daunting reading list for next Tuesday’s class on Rights. The readings include foundational documents like the Magna Carta, Declaration of Independence, and US Bill of Rights, each with specific sections to analyze.</p>
 <figure class="align-center" id="harvard-class">
 <a class="reference internal image-reference" href="../_images/harvard.png"><img alt="Harvard Class" src="../_images/harvard.png" style="width: 691.0px; height: 435.0px;" /></a>
@@ -1780,7 +1780,7 @@ Below, we can see the first table successfully extracted for Equities forecasts,
 </ul>
 </section>
 <section id="implementation">
-<h4><a class="toc-backref" href="#id222" role="doc-backlink"><span class="section-number">5.4.3.2. </span>Implementation</a><a class="headerlink" href="#implementation" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id228" role="doc-backlink"><span class="section-number">5.4.3.2. </span>Implementation</a><a class="headerlink" href="#implementation" title="Permalink to this heading">¶</a></h4>
 <p>The full implementation is available at Book’s <a class="reference external" href="https://github.com/souzatharsis/tamingLLMs/tamingllms/notebooks/src/gemini_duo.py">Github repository</a>. Here, we will cover the most relevant parts of the implementation.</p>
 <p><strong>Client Class</strong></p>
 <p>First, we will define the <code class="docutils literal notranslate"><span class="pre">Client</span></code> class which will provide the key interface users will interact with. It has the following summarized interface:</p>
@@ -1911,7 +1911,7 @@ INSTRUCTIONS:</p></li>
 <p>where, <code class="docutils literal notranslate"><span class="pre">{citations}</span></code> instructs the model to add CiC citations to the response if user requests it.</p>
 </section>
 <section id="example-usage">
-<h4><a class="toc-backref" href="#id223" role="doc-backlink"><span class="section-number">5.4.3.3. </span>Example Usage</a><a class="headerlink" href="#example-usage" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id229" role="doc-backlink"><span class="section-number">5.4.3.3. </span>Example Usage</a><a class="headerlink" href="#example-usage" title="Permalink to this heading">¶</a></h4>
 <p><strong>Dataset</strong></p>
 <p>First, we will define our knowledge base.</p>
 <ul class="simple">
@@ -1988,7 +1988,7 @@ INSTRUCTIONS:</p></li>
 </figure>
 </section>
 <section id="id14">
-<h4><a class="toc-backref" href="#id224" role="doc-backlink"><span class="section-number">5.4.3.4. </span>Discussion</a><a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id230" role="doc-backlink"><span class="section-number">5.4.3.4. </span>Discussion</a><a class="headerlink" href="#id14" title="Permalink to this heading">¶</a></h4>
 <p>The experiment demonstrated the ability to build a knowledge base from multiple sources while leveraging prompt caching for efficiency and generate quizzes with citations for verifiability. The system successfully ingested content from Project Gutenberg texts, including historical documents like the Magna Carta, and used them to create interactive educational content.</p>
 <p>However, several limitations emerged during this process:</p>
 <ol class="arabic simple">
@@ -2001,7 +2001,7 @@ INSTRUCTIONS:</p></li>
 </section>
 </section>
 <section id="conclusion">
-<h2><a class="toc-backref" href="#id225" role="doc-backlink"><span class="section-number">5.5. </span>Conclusion</a><a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id231" role="doc-backlink"><span class="section-number">5.5. </span>Conclusion</a><a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
 <p><a class="reference external" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="CC BY-NC-SA 4.0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@misc</span><span class="p">{</span><span class="n">tharsistpsouza2024tamingllms</span><span class="p">,</span>
   <span class="n">author</span> <span class="o">=</span> <span class="p">{</span><span class="n">Tharsis</span> <span class="n">T</span><span class="o">.</span> <span class="n">P</span><span class="o">.</span> <span class="n">Souza</span><span class="p">},</span>
@@ -2015,7 +2015,7 @@ INSTRUCTIONS:</p></li>
 </div>
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id226" role="doc-backlink"><span class="section-number">5.6. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id232" role="doc-backlink"><span class="section-number">5.6. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <div class="docutils container" id="id15">
 <div class="citation" id="id147" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">AWP+24</a><span class="fn-bracket">]</span></span>

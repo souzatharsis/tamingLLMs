@@ -11,8 +11,8 @@ from dotenv import load_dotenv
 import os
 
 
-PROMPT_TEMPLATE = "souzatharsis/duo"
-PROMPT_COMMIT = "c0ecab9a" #"75e56f77" 
+PROMPT_TEMPLATE = "souzatharsis/duo_msg"
+PROMPT_COMMIT = "2f61756a" #"75e56f77" 
 PROMPT_QUIZ_TEMPLATE = "souzatharsis/duo_quiz"
 PROMPT_QUIZ_COMMIT = "9e9a7500"
 
@@ -68,12 +68,6 @@ class LLMBackend:
         """
         prompt_template = hub.pull(f"{PROMPT_TEMPLATE}:{PROMPT_COMMIT}")
         prompt = prompt_template.invoke({"memory": input,
-          "output_language": conversation_config["output_language"],
-          "conversation_style": conversation_config["conversation_style"],
-          "roles_person1": conversation_config["roles_person1"],
-          "roles_person2": conversation_config["roles_person2"],
-          "dialogue_structure": conversation_config["dialogue_structure"],
-          "engagement_techniques": conversation_config["engagement_techniques"],
           "input_texts": ""})
         
         return prompt.messages[0].content

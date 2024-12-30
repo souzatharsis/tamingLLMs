@@ -24,6 +24,12 @@ title: "Tools and Resources"
 | Hugging Face | Hugging Face | Hub for open source models, datasets and tools | 
 
 
+Safety: 
+- https://hendrycks.github.io/ 
+- https://rdi.berkeley.edu/understanding_llms/s24
+- https://www.aisafetybook.com/
+
+
 
 
 

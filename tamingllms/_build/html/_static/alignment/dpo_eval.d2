@@ -1,5 +1,33 @@
 direction: right
 
+# Start with Evaluation Dataset at top
+dataset: Evaluation Dataset {
+  direction: right
+  shape: rectangle
+  style.fill: "#E8F6F3"
+  style.stroke: "#2ECC71"
+
+  input: DPO Dataset {
+    shape: cylinder
+    style.fill: "#FFFFFF"
+    label: "User prompts that\ncould violate policy"
+  }
+
+  task: Task {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+    label: "Sample n entries"
+  }
+
+  output: Output {
+    shape: document
+    style.fill: "#FFFFFF"
+    label: "n evaluation prompts"
+  }
+
+  input -> task -> output
+}
+
 # Response Generation in middle
 generation: Response Generation {
   direction: right
@@ -60,42 +88,5 @@ scoring: LLM Judge Scoring {
   scale -> task -> output
 }
 
-# Success criteria at very bottom
-success: Success Criteria {
-  shape: page
-  style.fill: "#F5EEF8"
-  style.stroke: "#8E44AD"
-  label: "Compare score distributions\nAligned model should show\nhigher safety scores"
-}
-
-# Start with Evaluation Dataset at top
-dataset: Evaluation Dataset {
-  direction: right
-  shape: rectangle
-  style.fill: "#E8F6F3"
-  style.stroke: "#2ECC71"
-
-  input: DPO Dataset {
-    shape: cylinder
-    style.fill: "#FFFFFF"
-    label: "User prompts that\ncould violate policy"
-  }
-
-  task: Task {
-    shape: rectangle
-    style.fill: "#FFFFFF"
-    label: "Sample n entries"
-  }
-
-  output: Output {
-    shape: document
-    style.fill: "#FFFFFF"
-    label: "n evaluation prompts"
-  }
-
-  input -> task -> output
-}
-
-scoring.output -> success: Analyze
-generation.output -> scoring.task: Responses
 dataset.output -> generation.task: Prompts
+generation.output -> scoring.task: Responses

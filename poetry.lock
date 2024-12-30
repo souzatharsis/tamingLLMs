@@ -7449,6 +7449,20 @@ rtd = ["myst-parser", "sphinx-book-theme", "sphinx-design", "sphinx-jupyterbook-
 testing = ["coverage (>=6.0)", "myst-nb (>=1.0.0)", "pytest (>=7.1)", "pytest-cov (>=3)", "pytest-regressions", "sphinx-external-toc (>=1.0.0)", "sphinxcontrib-bibtex (>=2.6.0)", "texsoup"]
 
 [[package]]
+name = "sphinx-math-dollar"
+version = "1.2.1"
+description = "Sphinx extension to let you write LaTeX math using $$"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "sphinx-math-dollar-1.2.1.tar.gz", hash = "sha256:03427240f21fdf23c7b8415289aa1a0e307ac32c198e02f840c59a4b1b0d950c"},
+    {file = "sphinx_math_dollar-1.2.1-py3-none-any.whl", hash = "sha256:0b1523a4d7023b9020ddf3a9301f651d64427a0f1d802af534a87eaf24fbdf19"},
+]
+
+[package.dependencies]
+sphinx = "*"
+
+[[package]]
 name = "sphinx-multitoc-numbering"
 version = "0.1.3"
 description = "Supporting continuous HTML section numbering"
@@ -9005,4 +9019,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.11,<3.13"
-content-hash = "d2f8e27dc9bc0d7500fbb1657fb4513031c324901c2dcbef65b42e5a6bbbed4d"
+content-hash = "267d5b89cbb904d2eef66000c38aa60c7357ee191ddee1c8b417de7960ff261c"

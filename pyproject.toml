@@ -48,6 +48,7 @@ accelerate = "^1.2.1"
 markitdown = "^0.0.1a3"
 docling = "^2.14.0"
 python-levenshtein = "^0.26.1"
+sphinx-math-dollar = "^1.2.1"
 
 
 [build-system]
