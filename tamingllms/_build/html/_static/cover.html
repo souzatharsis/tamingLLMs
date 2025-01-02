@@ -18,11 +18,17 @@
       crossorigin
       src="https://unpkg.com/@babel/standalone@7.17.9/babel.min.js"
     ></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
       body {
         margin: 0;
         padding: 0;
-        font-family: sans-serif;
+        font-family: 'Source Sans Pro', sans-serif;
       }
       #root {
         display: flex;
@@ -35,52 +41,34 @@
     <div id="root"></div>
 
     <script type="text/babel">
-      /**
-       * A more "open" swirl from top-right to bottom-left.
-       * - Larger amplitude: 100 * (1 - t)
-       * - Slightly higher frequency: 3 * Math.PI
-       * - More lines: 25
-       */
       function GreenSwirl({ width, height }) {
-        const NUM_LINES = 55; // Number of wave lines
-        const STEPS = 400;    // Points per line
+        const NUM_LINES = 55;
+        const STEPS = 400;
 
-        // Start (top-right) and end (bottom-left)
-        const x0 = width - 50;   
-        const y0 = 50;           
-        const x1 = 50;           
-        const y1 = height - 50;  
+        const x0 = width - 50;
+        const y0 = 50;
+        const x1 = 50;
+        const y1 = height - 50;
 
-        // Main diagonal vector
         const dx = x1 - x0;
         const dy = y1 - y0;
         const diagLength = Math.sqrt(dx * dx + dy * dy);
 
-        // Unit perpendicular to the diagonal
-        // If diag = (dx, dy), perp = (dy, -dx) normalized
         const perpUnitX = dy / diagLength;
         const perpUnitY = -dx / diagLength;
 
         const swirlPaths = [];
 
         for (let lineIdx = 0; lineIdx < NUM_LINES; lineIdx++) {
-          const phase = (Math.PI * lineIdx) / NUM_LINES; // offset each line
+          const phase = (Math.PI * lineIdx) / NUM_LINES;
           let d = "";
 
           for (let step = 0; step <= STEPS; step++) {
             const t = step / STEPS;
-
-            // Linear interpolation along the diagonal
             const baseX = x0 + dx * t;
             const baseY = y0 + dy * t;
-
-            // Larger amplitude for a more open swirl
             const amplitude = 100 * (1 - t);
-
-            // Slightly higher frequency: sin(3πt + phase)
             const offset = amplitude * Math.sin(3 * Math.PI * t + phase);
-
-            // Perp offset added to the base diagonal point
             const x = baseX + offset * perpUnitX;
             const y = baseY + offset * perpUnitY;
 
@@ -96,7 +84,7 @@
               key={lineIdx}
               d={d}
               fill="none"
-              stroke="green"
+              stroke="green"  
               strokeWidth="1"
               opacity={0.1 + 0.9 * (lineIdx / NUM_LINES)}
             />
@@ -125,55 +113,65 @@
           height: COVER_HEIGHT,
           margin: "auto",
           border: "1px solid #ccc",
-          backgroundColor: "#fff",
+          backgroundColor: "#fafafa",  // Subtle off-white background
           overflow: "hidden",
+          boxShadow: "0 4px 8px rgba(0,0,0,0.1)",  // Subtle shadow for depth
         };
 
         return (
           <div style={coverStyle}>
-            {/* Open diagonal swirl from top-right to bottom-left */}
             <GreenSwirl width={COVER_WIDTH} height={COVER_HEIGHT} />
 
-            {/* Title: top-left area */}
+            {/* Title */}
             <div
               style={{
                 position: "absolute",
                 top: "80px",
                 left: "40px",
                 width: "350px",
-                fontSize: "48px",
-                fontWeight: "bold",
+                fontSize: "56px",  // Increased from 48px
+                fontWeight: "700",
                 color: "#1C1C1C",
+                letterSpacing: "-0.02em",  // Slight negative tracking for large text
+                lineHeight: "1.1",
+                fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+                //fontFamily: "'Source Sans Pro', sans-serif",
               }}
             >
               Taming LLMs
             </div>
 
-            {/* Subtitle: below the title */}
+            {/* Subtitle */}
             <div
               style={{
                 position: "absolute",
-                top: "160px",
+                top: "170px",
                 left: "40px",
                 width: "300px",
-                fontSize: "20px",
-                color: "#555",
-                lineHeight: 1.4,
+                fontSize: "22px",  // Increased from 20px
+                fontWeight: "400",
+                color: "#333333",  // Darker gray for better contrast
+                lineHeight: "1.6",  // Increased from 1.4
+                letterSpacing: "0.01em",  // Slight positive tracking
+                fontFamily: "'Source Sans Pro', sans-serif",
               }}
             >
               A Practical Guide to LLM Pitfalls <br />
               with Open Source Software
             </div>
 
-            {/* Author: now aligned bottom-right */}
+            {/* Author */}
             <div
               style={{
                 position: "absolute",
                 bottom: "50px",
                 right: "40px",
-                fontSize: "16px",
+                fontSize: "18px",  // Slightly increased from 16px
+                fontWeight: "600",  // Semi-bold weight
                 color: "#1C1C1C",
-                textAlign: "right", // optional, if you have multiple lines
+                textAlign: "right",
+                letterSpacing: "0.02em",
+                fontFamily: "'Source Sans Pro', sans-serif",
               }}
             >
               Thársis Souza, Ph.D.
@@ -190,4 +188,3 @@
     </script>
   </body>
 </html>
-
