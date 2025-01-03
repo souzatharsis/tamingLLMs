@@ -247,7 +247,7 @@
           <div class="content" role="main" v-pre>
             
   <section class="tex2jax_ignore mathjax_ignore" id="the-falling-cost-paradox">
-<span id="cost"></span><h1><a class="toc-backref" href="#id208" role="doc-backlink"><span class="section-number">9. </span>The Falling Cost Paradox</a><a class="headerlink" href="#the-falling-cost-paradox" title="Permalink to this heading">¶</a></h1>
+<span id="cost"></span><h1><a class="toc-backref" href="#id210" role="doc-backlink"><span class="section-number">9. </span>The Falling Cost Paradox</a><a class="headerlink" href="#the-falling-cost-paradox" title="Permalink to this heading">¶</a></h1>
 <blockquote class="epigraph">
 <div><p>It is a confusion of ideas to suppose that the economical use of fuel is equivalent to diminished consumption. <br>
 The very contrary is the truth.</p>
@@ -256,26 +256,26 @@ The very contrary is the truth.</p>
 <nav class="contents" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#the-falling-cost-paradox" id="id208">The Falling Cost Paradox</a></p>
+<li><p><a class="reference internal" href="#the-falling-cost-paradox" id="id210">The Falling Cost Paradox</a></p>
 <ul>
-<li><p><a class="reference internal" href="#why-optimization-matters-more-than-ever" id="id209">Why Optimization Matters More Than Ever</a></p></li>
-<li><p><a class="reference internal" href="#right-sizing-llms-a-strategic-approach" id="id210">Right-Sizing LLMs: A Strategic Approach</a></p>
+<li><p><a class="reference internal" href="#why-optimization-matters-more-than-ever" id="id211">Why Optimization Matters More Than Ever</a></p></li>
+<li><p><a class="reference internal" href="#right-sizing-llms-a-strategic-approach" id="id212">Right-Sizing LLMs: A Strategic Approach</a></p>
 <ul>
-<li><p><a class="reference internal" href="#metrics" id="id211">Metrics</a></p></li>
-<li><p><a class="reference internal" href="#requirements" id="id212">Requirements</a></p>
+<li><p><a class="reference internal" href="#metrics" id="id213">Metrics</a></p></li>
+<li><p><a class="reference internal" href="#requirements" id="id214">Requirements</a></p>
 <ul>
-<li><p><a class="reference internal" href="#business-requirements" id="id213">Business Requirements</a></p></li>
-<li><p><a class="reference internal" href="#performance-requirements" id="id214">Performance Requirements</a></p></li>
-<li><p><a class="reference internal" href="#operational-requirements" id="id215">Operational Requirements</a></p></li>
-<li><p><a class="reference internal" href="#technical-requirements" id="id216">Technical Requirements</a></p></li>
+<li><p><a class="reference internal" href="#business-requirements" id="id215">Business Requirements</a></p></li>
+<li><p><a class="reference internal" href="#performance-requirements" id="id216">Performance Requirements</a></p></li>
+<li><p><a class="reference internal" href="#operational-requirements" id="id217">Operational Requirements</a></p></li>
+<li><p><a class="reference internal" href="#technical-requirements" id="id218">Technical Requirements</a></p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#quantization" id="id217">Quantization</a></p></li>
-<li><p><a class="reference internal" href="#check-list" id="id218">Check-list</a></p></li>
-<li><p><a class="reference internal" href="#conclusion" id="id219">Conclusion</a></p></li>
-<li><p><a class="reference internal" href="#references" id="id220">References</a></p></li>
+<li><p><a class="reference internal" href="#quantization" id="id219">Quantization</a></p></li>
+<li><p><a class="reference internal" href="#check-list" id="id220">Check-list</a></p></li>
+<li><p><a class="reference internal" href="#conclusion" id="id221">Conclusion</a></p></li>
+<li><p><a class="reference internal" href="#references" id="id222">References</a></p></li>
 </ul>
 </li>
 </ul>
@@ -285,12 +285,12 @@ The very contrary is the truth.</p>
 <p>This Chapter is Work-in-Progress.</p>
 </div>
 <section id="why-optimization-matters-more-than-ever">
-<h2><a class="toc-backref" href="#id209" role="doc-backlink"><span class="section-number">9.1. </span>Why Optimization Matters More Than Ever</a><a class="headerlink" href="#why-optimization-matters-more-than-ever" title="Permalink to this heading">¶</a></h2>
-<p>According to recent analysis from a16z <span id="id1">[<a class="reference internal" href="#id98" title="Andreessen Horowitz. Llmflation: understanding and mitigating llm inference cost. Blog Post, 2024. Analysis of LLM inference costs and strategies for optimization. URL: https://a16z.com/llmflation-llm-inference-cost/.">Andreessen Horowitz, 2024</a>]</span>, the cost of LLM inference is decreasing by approximately 10x every year - a rate that outpaces even Moore’s Law in the PC revolution or Edholm’s Law during the bandwidth explosion of the dot-com era.</p>
+<h2><a class="toc-backref" href="#id211" role="doc-backlink"><span class="section-number">9.1. </span>Why Optimization Matters More Than Ever</a><a class="headerlink" href="#why-optimization-matters-more-than-ever" title="Permalink to this heading">¶</a></h2>
+<p>According to recent analysis from a16z <span id="id1">[<a class="reference internal" href="#id100" title="Andreessen Horowitz. Llmflation: understanding and mitigating llm inference cost. Blog Post, 2024. Analysis of LLM inference costs and strategies for optimization. URL: https://a16z.com/llmflation-llm-inference-cost/.">Andreessen Horowitz, 2024</a>]</span>, the cost of LLM inference is decreasing by approximately 10x every year - a rate that outpaces even Moore’s Law in the PC revolution or Edholm’s Law during the bandwidth explosion of the dot-com era.</p>
 <figure class="align-center" id="llmflation">
 <a class="reference internal image-reference" href="../_images/llmflation.png"><img alt="LLMflation" src="../_images/llmflation.png" style="width: 900.0px; height: 663.9px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 9.1 </span><span class="caption-text">LLMflation <span id="id2">[<a class="reference internal" href="#id98" title="Andreessen Horowitz. Llmflation: understanding and mitigating llm inference cost. Blog Post, 2024. Analysis of LLM inference costs and strategies for optimization. URL: https://a16z.com/llmflation-llm-inference-cost/.">Andreessen Horowitz, 2024</a>]</span>: The cost of LLM inference is decreasing by approximately 10x every year.</span><a class="headerlink" href="#llmflation" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 9.1 </span><span class="caption-text">LLMflation <span id="id2">[<a class="reference internal" href="#id100" title="Andreessen Horowitz. Llmflation: understanding and mitigating llm inference cost. Blog Post, 2024. Analysis of LLM inference costs and strategies for optimization. URL: https://a16z.com/llmflation-llm-inference-cost/.">Andreessen Horowitz, 2024</a>]</span>: The cost of LLM inference is decreasing by approximately 10x every year.</span><a class="headerlink" href="#llmflation" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>A model achieving an MMLU score of 42 that cost <span class="math notranslate nohighlight">\(60 per million tokens in late 2021 can now be run for just \)</span>0.06 per million tokens. For higher-capability models scoring 83 on MMLU, prices have fallen by a factor of 62 since GPT-4’s introduction in March 2023.</p>
@@ -345,16 +345,16 @@ The very contrary is the truth.</p>
 <p>Motivated by this insight, in the next sections we will dive into the factors that drive LLM cost decay and how to optimize LLM usage in practical applications. The discussion will explore key optimization areas including inference optimization through techniques like Flash Attention and cached prompts, model compression via quantization and distillation, and practical implementation patterns such as response caching, batch processing, and early stopping - all aimed at achieving efficient usage and cost reductions while maintaining model performance and reliability.</p>
 </section>
 <section id="right-sizing-llms-a-strategic-approach">
-<h2><a class="toc-backref" href="#id210" role="doc-backlink"><span class="section-number">9.2. </span>Right-Sizing LLMs: A Strategic Approach</a><a class="headerlink" href="#right-sizing-llms-a-strategic-approach" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id212" role="doc-backlink"><span class="section-number">9.2. </span>Right-Sizing LLMs: A Strategic Approach</a><a class="headerlink" href="#right-sizing-llms-a-strategic-approach" title="Permalink to this heading">¶</a></h2>
 <p>Before implementing cost optimization strategies for LLMs, organizations must develop a comprehensive understanding of their own requirements and constraints. This systematic approach prevents both over-engineering and under-provisioning, leading to more efficient and cost-effective implementations.</p>
 <p>In this section, we define key performance and cost related metrics that will guide our discussion. Then we propose a set of requirements practitioners should consider before we dive into cost optimization techniques.</p>
 <section id="metrics">
-<h3><a class="toc-backref" href="#id211" role="doc-backlink"><span class="section-number">9.2.1. </span>Metrics</a><a class="headerlink" href="#metrics" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id213" role="doc-backlink"><span class="section-number">9.2.1. </span>Metrics</a><a class="headerlink" href="#metrics" title="Permalink to this heading">¶</a></h3>
 </section>
 <section id="requirements">
-<h3><a class="toc-backref" href="#id212" role="doc-backlink"><span class="section-number">9.2.2. </span>Requirements</a><a class="headerlink" href="#requirements" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id214" role="doc-backlink"><span class="section-number">9.2.2. </span>Requirements</a><a class="headerlink" href="#requirements" title="Permalink to this heading">¶</a></h3>
 <section id="business-requirements">
-<h4><a class="toc-backref" href="#id213" role="doc-backlink"><span class="section-number">9.2.2.1. </span>Business Requirements</a><a class="headerlink" href="#business-requirements" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id215" role="doc-backlink"><span class="section-number">9.2.2.1. </span>Business Requirements</a><a class="headerlink" href="#business-requirements" title="Permalink to this heading">¶</a></h4>
 <p>First, one needs to define the problem to be solved and to what extent it is worth to be solved. Use case requirements form the foundation of any LLM implementation project. A clear definition of the specific business problema and task to be accomplished must be established upfront, along with concrete performance metrics covering accuracy, latency and throughput. This should be accompanied by well-defined cost-per-transaction targets, clear ROI expectations, and a strategic allocation of budgets across different use cases to ensure resources are optimally distributed.</p>
 <p>Budget and ROI considerations are critical for ensuring the long-term viability of LLM implementations. Organizations must establish clear spending limits that align with their financial capabilities while defining realistic cost-per-transaction targets. ROI expectations need to be carefully established through detailed analysis, followed by a strategic allocation of budgets across various use cases based on their business impact and priority.</p>
 <p>Compliance and security requirements cannot be overlooked. This involves a thorough identification of all applicable regulatory requirements and the establishment of robust data handling standards. Organizations must specify comprehensive audit requirements to maintain transparency and accountability, while implementing appropriate security controls to protect sensitive data and system access.</p>
@@ -362,17 +362,17 @@ The very contrary is the truth.</p>
 <p>Chapter <a class="reference internal" href="local.html#local"><span class="std std-ref">Local LLMs in Practice</span></a> provides a detailed discussion on relevant considerations when <a class="reference internal" href="local.html#local-model-selection"><span class="std std-ref">Choosing your Model</span></a>.</p>
 </section>
 <section id="performance-requirements">
-<h4><a class="toc-backref" href="#id214" role="doc-backlink"><span class="section-number">9.2.2.2. </span>Performance Requirements</a><a class="headerlink" href="#performance-requirements" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id216" role="doc-backlink"><span class="section-number">9.2.2.2. </span>Performance Requirements</a><a class="headerlink" href="#performance-requirements" title="Permalink to this heading">¶</a></h4>
 <p>Accuracy and quality form the foundation of any LLM deployment’s performance requirements. At its core, this involves determining the minimum level of accuracy that the model must achieve to be considered successful. This serves as a critical baseline for evaluating model performance and making deployment decisions. Establishing clear evaluation metrics, whether through automated measures or human evaluation processes, provides concrete ways to assess if these thresholds are being met. Continuous monitoring of these accuracy metrics ensures the system maintains its performance over time as usage patterns and data distributions evolve. Chapter <a class="reference internal" href="evals.html#evals"><span class="std std-ref">The Evals Gap</span></a> provides a detailed discussion on how to evaluate the performance of LLM-based applications.</p>
 <p>Latency and throughput requirements are equally crucial for ensuring a positive user experience and system reliability. These specifications define how quickly the system must respond to requests and how many concurrent users it can handle. Response time requirements must be carefully balanced against the computational resources available, while peak load capabilities need to account for usage spikes and growth patterns. The decision between real-time processing for immediate responses versus batch processing for efficiency depends heavily on the use case and user expectations.</p>
 </section>
 <section id="operational-requirements">
-<h4><a class="toc-backref" href="#id215" role="doc-backlink"><span class="section-number">9.2.2.3. </span>Operational Requirements</a><a class="headerlink" href="#operational-requirements" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id217" role="doc-backlink"><span class="section-number">9.2.2.3. </span>Operational Requirements</a><a class="headerlink" href="#operational-requirements" title="Permalink to this heading">¶</a></h4>
 <p>Scale and capacity planning forms the foundation of operational requirements for LLM deployments. This involves a comprehensive analysis of expected system usage and growth patterns to ensure the infrastructure can handle both current and future demands. Organizations must carefully project their daily and monthly API call volumes while calculating the average number of tokens per request to accurately estimate resource needs. Understanding usage patterns, including seasonal variations, enables proper capacity planning. Additionally, developing 12-24 month growth projections helps ensure the infrastructure can scale appropriately as demand increases.</p>
 <p>Reliability and availability requirements are equally critical for maintaining consistent service quality. These specifications define the expected uptime percentage that the system must maintain, typically expressed as a percentage of total operational time. Organizations need to establish clear maintenance windows that minimize disruption to users while ensuring necessary system updates and optimizations can be performed. Comprehensive backup and failover requirements must be specified to ensure business continuity in case of failures. High availability needs should be clearly defined, including redundancy levels and recovery time objectives, to maintain service quality even during unexpected events.</p>
 </section>
 <section id="technical-requirements">
-<h4><a class="toc-backref" href="#id216" role="doc-backlink"><span class="section-number">9.2.2.4. </span>Technical Requirements</a><a class="headerlink" href="#technical-requirements" title="Permalink to this heading">¶</a></h4>
+<h4><a class="toc-backref" href="#id218" role="doc-backlink"><span class="section-number">9.2.2.4. </span>Technical Requirements</a><a class="headerlink" href="#technical-requirements" title="Permalink to this heading">¶</a></h4>
 <p>System integration requirements define how the LLM system will interact and communicate with existing infrastructure and applications. This involves carefully mapping all integration points where the LLM system needs to connect with other systems, establishing standardized data formats and interfaces for seamless communication, implementing robust security measures to protect data in transit, and identifying any technical constraints that could impact integration. Getting these integration requirements right is crucial for ensuring the LLM system can function effectively within the broader technical ecosystem.</p>
 <p>Data management requirements address how information will be stored, processed, and maintained within the LLM system. This encompasses determining appropriate storage solutions for maintaining conversation context and history, selecting and configuring vector databases to enable efficient retrieval-augmented generation (RAG), creating comprehensive data retention policies that balance operational needs with resource constraints, and ensuring all data handling practices comply with relevant privacy regulations. Proper data management is essential for both system performance and regulatory compliance, making it a critical consideration in any LLM implementation.</p>
 <p>This structured approach to requirements analysis enables organizations to:</p>
@@ -387,7 +387,7 @@ The very contrary is the truth.</p>
 </section>
 </section>
 <section id="quantization">
-<h2><a class="toc-backref" href="#id217" role="doc-backlink"><span class="section-number">9.3. </span>Quantization</a><a class="headerlink" href="#quantization" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id219" role="doc-backlink"><span class="section-number">9.3. </span>Quantization</a><a class="headerlink" href="#quantization" title="Permalink to this heading">¶</a></h2>
 <p>Quantization is a common and relevant technique in making LLMs more efficient and accessible. At a high level, quantization reduces the number of bits used to represent a model’s parameters. The most common form of quantization is to represent model’s weights at lower precision at post-training phase. It has become a standard technique to generate a series of quantized models given a large pre-trained base model.</p>
 <p>While a standard pre-trained LLM might use 32-bit floating-point (FP32) or 16-bit floating-point (FP16) numbers to store its weights, quantized versions can operate at lower precision levels such as 8, 4 or even 2 bits per parameter, reducing memory footprint without proportional losses in performance, necessarily. For instance, for a model of 30 billion parameters, using FP32 means 4 bytes per weight or 120 GB for the whole weights. If the model is quantized such that weights are represented in 1 byte, the memory needed for the model’s weights decreases to 30 GB, hence potentially fitting into consumer grade hardware. This is done at the cost of precision loss, but the trade-off is often worth it though require careful analysis.</p>
 <p>Let’s take a look at model weights of a language model (<code class="docutils literal notranslate"><span class="pre">SmolLM2-135M-Instruct</span></code>) that has been quantized to 2-bit and 16-bit precisions. We will use an utility function <code class="docutils literal notranslate"><span class="pre">load_gguf</span></code> from the <code class="docutils literal notranslate"><span class="pre">taming_utils</span></code> package to load model weights of the quantized models directly from Hugging Face.</p>
@@ -483,7 +483,7 @@ tensor([[-0.0028,  0.1852,  0.1396,  ...,  0.1506, -0.1635, -0.0043],
 </div>
 </div>
 </div>
-<p>Quantization is a powerful technique for reducing the memory footprint of LLMs. This can be exemplified by the case of LLaMa 3.3 70B as quantized by <span id="id4">[<a class="reference internal" href="#id87" title="Unsloth. Llama-3.3-70b-instruct-gguf. Hugging Face Model, 2024. GGUF quantized version of Meta's Llama 3.3 70B instruction-tuned model. URL: https://huggingface.co/unsloth/Llama-3.3-70B-Instruct-GGUF.">Unsloth, 2024</a>]</span> <a class="footnote-reference brackets" href="#unsloth" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>. The model’s memory requirements vary significantly based on the quantization level used as demonstrated in <a class="reference internal" href="#quantized"><span class="std std-numref">Fig. 9.2</span></a>.</p>
+<p>Quantization is a powerful technique for reducing the memory footprint of LLMs. This can be exemplified by the case of LLaMa 3.3 70B as quantized by <span id="id4">[<a class="reference internal" href="#id89" title="Unsloth. Llama-3.3-70b-instruct-gguf. Hugging Face Model, 2024. GGUF quantized version of Meta's Llama 3.3 70B instruction-tuned model. URL: https://huggingface.co/unsloth/Llama-3.3-70B-Instruct-GGUF.">Unsloth, 2024</a>]</span> <a class="footnote-reference brackets" href="#unsloth" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>. The model’s memory requirements vary significantly based on the quantization level used as demonstrated in <a class="reference internal" href="#quantized"><span class="std std-numref">Fig. 9.2</span></a>.</p>
 <figure class="align-center" id="quantized">
 <a class="reference internal image-reference" href="../_images/quantized.png"><img alt="Quantized Model Size" src="../_images/quantized.png" style="width: 867.5px; height: 338.0px;" /></a>
 <figcaption>
@@ -492,12 +492,12 @@ tensor([[-0.0028,  0.1852,  0.1396,  ...,  0.1506, -0.1635, -0.0043],
 </figure>
 <p>We observe that the quantization process yields remarkable reductions in model size, demonstrating a clear trade-off between precision and memory requirements. The transition from F16 (141.1 GB) to Q8_0 (75 GB) achieves a dramatic 47% reduction in model size while maintaining relatively high numerical precision. Further quantization levels reveal an interesting pattern of diminishing returns - each step down in precision yields progressively smaller absolute size reductions, though the cumulative effect remains significant. At the extreme end, the Q2_K model (26.4 GB) requires only 19% of the storage space of its F16 counterpart <a class="footnote-reference brackets" href="#quantization-levels" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>.</p>
 <p>This wide spectrum of model sizes enables deployment across diverse hardware environments. The lightweight Q2_K variant opens possibilities for running inference on consumer-grade hardware like high-end laptops or desktop computers. In contrast, the full-precision F16 model demands enterprise-grade computing resources with substantial memory capacity. This flexibility in deployment options makes quantization a powerful tool for democratizing access to large language models while managing computational costs.</p>
-<p>While quantization has proven highly effective, there is a limit to how far it can be pushed - specifically, the 1-bit ceiling. A notable advancement in this space is BitNet <span id="id7">[<a class="reference internal" href="#id93" title="Jinheng Wang, Hansong Zhou, Ting Song, Shaoguang Mao, Shuming Ma, Hongyu Wang, Yan Xia, and Furu Wei. 1-bit ai infra: part 1.1, fast and lossless bitnet b1.58 inference on cpus. 2024. URL: https://arxiv.org/abs/2410.16144, arXiv:2410.16144.">Wang <em>et al.</em>, 2024</a>]</span> which pushes the boundaries of extreme quantization.</p>
+<p>While quantization has proven highly effective, there is a limit to how far it can be pushed - specifically, the 1-bit ceiling. A notable advancement in this space is BitNet <span id="id7">[<a class="reference internal" href="#id95" title="Jinheng Wang, Hansong Zhou, Ting Song, Shaoguang Mao, Shuming Ma, Hongyu Wang, Yan Xia, and Furu Wei. 1-bit ai infra: part 1.1, fast and lossless bitnet b1.58 inference on cpus. 2024. URL: https://arxiv.org/abs/2410.16144, arXiv:2410.16144.">Wang <em>et al.</em>, 2024</a>]</span> which pushes the boundaries of extreme quantization.</p>
 <p>BitNet’s implementation, bitnet.cpp, has demonstrated significant performance improvements across both ARM and x86 architectures (see <a class="reference internal" href="#bitnet"><span class="std std-numref">Fig. 9.3</span></a>). When compared to llama.cpp, the framework achieves speedups ranging from 1.37x to 5.07x on ARM processors and 2.37x to 6.17x on x86 systems. These performance gains scale with model size - larger models benefit more substantially from BitNet’s optimizations. The efficiency improvements extend beyond raw speed: energy consumption drops by 55-70% on ARM and 71-82% on x86 processors. Perhaps most impressively, bitnet.cpp enables running a 100B parameter BitNet b1.58 model on a single CPU at speeds matching human reading pace (5-7 tokens per second).</p>
 <figure class="align-center" id="bitnet">
 <a class="reference internal image-reference" href="../_images/bitnet.png"><img alt="BitNet" src="../_images/bitnet.png" style="width: 787.5px; height: 436.8px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 9.3 </span><span class="caption-text">BitNet: <span id="id8">[<a class="reference internal" href="#id93" title="Jinheng Wang, Hansong Zhou, Ting Song, Shaoguang Mao, Shuming Ma, Hongyu Wang, Yan Xia, and Furu Wei. 1-bit ai infra: part 1.1, fast and lossless bitnet b1.58 inference on cpus. 2024. URL: https://arxiv.org/abs/2410.16144, arXiv:2410.16144.">Wang <em>et al.</em>, 2024</a>]</span></span><a class="headerlink" href="#bitnet" title="Permalink to this image">¶</a></p>
+<p><span class="caption-number">Fig. 9.3 </span><span class="caption-text">BitNet: <span id="id8">[<a class="reference internal" href="#id95" title="Jinheng Wang, Hansong Zhou, Ting Song, Shaoguang Mao, Shuming Ma, Hongyu Wang, Yan Xia, and Furu Wei. 1-bit ai infra: part 1.1, fast and lossless bitnet b1.58 inference on cpus. 2024. URL: https://arxiv.org/abs/2410.16144, arXiv:2410.16144.">Wang <em>et al.</em>, 2024</a>]</span></span><a class="headerlink" href="#bitnet" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>The framework’s initial release focused on CPU inference optimization, with particular emphasis on 1-bit LLM architectures (BitNet b1.58). While initial testing shows promising results, these findings are specific to the tested models and kernels (its specialized kernels are carefully crafted to exploit the unique characteristics of these extremely quantized models). Further validation is needed before generalizing these results across different architectures and use cases.</p>
@@ -506,7 +506,7 @@ tensor([[-0.0028,  0.1852,  0.1396,  ...,  0.1506, -0.1635, -0.0043],
 <p>Each reduction in precision risks performance degradation. Finding optimal quantization schemes remains an active research area. See Case Study on Quantization for Local Models in Chapter <a class="reference internal" href="local.html#local"><span class="std std-ref">Local LLMs in Practice</span></a> for more details.</p>
 </section>
 <section id="check-list">
-<h2><a class="toc-backref" href="#id218" role="doc-backlink"><span class="section-number">9.4. </span>Check-list</a><a class="headerlink" href="#check-list" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id220" role="doc-backlink"><span class="section-number">9.4. </span>Check-list</a><a class="headerlink" href="#check-list" title="Permalink to this heading">¶</a></h2>
 <p><strong>Planning and Requirements</strong></p>
 <ul class="contains-task-list simple">
 <li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Start with a clear understanding of your application’s needs and the factors that contribute to LLM costs</p></li>
@@ -540,7 +540,7 @@ tensor([[-0.0028,  0.1852,  0.1396,  ...,  0.1506, -0.1635, -0.0043],
 </ul>
 </section>
 <section id="conclusion">
-<h2><a class="toc-backref" href="#id219" role="doc-backlink"><span class="section-number">9.5. </span>Conclusion</a><a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id221" role="doc-backlink"><span class="section-number">9.5. </span>Conclusion</a><a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
 <p><a class="reference external" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="CC BY-NC-SA 4.0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" /></a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@misc</span><span class="p">{</span><span class="n">tharsistpsouza2024tamingllms</span><span class="p">,</span>
   <span class="n">author</span> <span class="o">=</span> <span class="p">{</span><span class="n">Tharsis</span> <span class="n">T</span><span class="o">.</span> <span class="n">P</span><span class="o">.</span> <span class="n">Souza</span><span class="p">},</span>
@@ -554,23 +554,23 @@ tensor([[-0.0028,  0.1852,  0.1396,  ...,  0.1506, -0.1635, -0.0043],
 </div>
 </section>
 <section id="references">
-<h2><a class="toc-backref" href="#id220" role="doc-backlink"><span class="section-number">9.6. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id222" role="doc-backlink"><span class="section-number">9.6. </span>References</a><a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
 <div class="docutils container" id="id9">
-<div class="citation" id="id93" role="doc-biblioentry">
+<div class="citation" id="id95" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>WZS+24<span class="fn-bracket">]</span></span>
 <span class="backrefs">(<a role="doc-backlink" href="#id7">1</a>,<a role="doc-backlink" href="#id8">2</a>)</span>
 <p>Jinheng Wang, Hansong Zhou, Ting Song, Shaoguang Mao, Shuming Ma, Hongyu Wang, Yan Xia, and Furu Wei. 1-bit ai infra: part 1.1, fast and lossless bitnet b1.58 inference on cpus. 2024. URL: <a class="reference external" href="https://arxiv.org/abs/2410.16144">https://arxiv.org/abs/2410.16144</a>, <a class="reference external" href="https://arxiv.org/abs/2410.16144">arXiv:2410.16144</a>.</p>
 </div>
-<div class="citation" id="id98" role="doc-biblioentry">
+<div class="citation" id="id100" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>AndreessenHorowitz24<span class="fn-bracket">]</span></span>
 <span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>)</span>
 <p>Andreessen Horowitz. Llmflation: understanding and mitigating llm inference cost. Blog Post, 2024. Analysis of LLM inference costs and strategies for optimization. URL: <a class="reference external" href="https://a16z.com/llmflation-llm-inference-cost/">https://a16z.com/llmflation-llm-inference-cost/</a>.</p>
 </div>
-<div class="citation" id="id99" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id207">HuggingFace4w</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id101" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id209">HuggingFace4w</a><span class="fn-bracket">]</span></span>
 <p>Hugging Face. Gguf quantization types. Online Documentation, 2024w. Documentation on different quantization types available for GGUF models. URL: <a class="reference external" href="https://huggingface.co/docs/hub/gguf#quantization-types">https://huggingface.co/docs/hub/gguf#quantization-types</a>.</p>
 </div>
-<div class="citation" id="id87" role="doc-biblioentry">
+<div class="citation" id="id89" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">Unsloth24</a><span class="fn-bracket">]</span></span>
 <p>Unsloth. Llama-3.3-70b-instruct-gguf. Hugging Face Model, 2024. GGUF quantized version of Meta's Llama 3.3 70B instruction-tuned model. URL: <a class="reference external" href="https://huggingface.co/unsloth/Llama-3.3-70B-Instruct-GGUF">https://huggingface.co/unsloth/Llama-3.3-70B-Instruct-GGUF</a>.</p>
 </div>
@@ -588,7 +588,7 @@ tensor([[-0.0028,  0.1852,  0.1396,  ...,  0.1506, -0.1635, -0.0043],
 </aside>
 <aside class="footnote brackets" id="quantization-levels" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">3</a><span class="fn-bracket">]</span></span>
-<p>You may have noticed quantization levels have a special notation. Including the bit width in the name of the model but also quantization types (e.g. _K, _0). You can find more information about the quantization levels in <span id="id207">[<a class="reference internal" href="local.html#id131" title="Hugging Face. Gguf quantization types. Online Documentation, 2024w. Documentation on different quantization types available for GGUF models. URL: https://huggingface.co/docs/hub/gguf#quantization-types.">Hugging Face, 2024w</a>]</span>.</p>
+<p>You may have noticed quantization levels have a special notation. Including the bit width in the name of the model but also quantization types (e.g. _K, _0). You can find more information about the quantization levels in <span id="id209">[<a class="reference internal" href="local.html#id133" title="Hugging Face. Gguf quantization types. Online Documentation, 2024w. Documentation on different quantization types available for GGUF models. URL: https://huggingface.co/docs/hub/gguf#quantization-types.">Hugging Face, 2024w</a>]</span>.</p>
 </aside>
 </aside>
 </section>

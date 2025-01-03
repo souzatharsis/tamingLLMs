@@ -1,0 +1,185 @@
+\chapter{About the Book}
+
+\begin{epigraph}
+I am always doing that which I cannot do, in order that I may learn how to do it.
+
+-- Pablo Picasso
+\end{epigraph}
+
+\tableofcontents
+
+\section{Core Challenges We'll Address}
+
+In recent years, Large Language Models (LLMs) have emerged as a transformative force in technology, promising to revolutionize how we build products and interact with computers. From ChatGPT and LLama to GitHub Copilot and Claude Artifacts these systems have captured the public imagination and sparked a gold rush of AI-powered applications. However, beneath the surface of this technological revolution lies a complex landscape of challenges that software developers and tech leaders must navigate.
+
+This book focuses on bringing awareness to key LLM limitations and harnessing open source solutions to overcome them for building robust AI-powered products. It offers a critical perspective on implementation challenges, backed by practical and reproducible Python examples. While many resources cover the capabilities of LLMs, this book specifically addresses the hidden complexities and pitfalls that engineers and technical leaders face when building LLM-powered applications while offering a comprehensive guide on how to leverage battle-tested open source tools and solutions.
+
+Throughout this book, we'll tackle the following (non-exhaustive) list of critical challenges:
+
+\begin{enumerate}
+\item \textbf{Structural (un)Reliability}: LLMs struggle to maintain consistent output formats, complicating their integration into larger systems and making error handling more complex.
+
+\item \textbf{Input Data Management}: LLMs are sensitive to input data format, operate with stale data and struggle with long-context requiring careful input data management and retrieval strategies.
+
+\item \textbf{Testing Complexity}: Traditional software testing methodologies break down when dealing with non-deterministic and generative systems, requiring new approaches.
+
+\item \textbf{Safety and Alignment}: LLMs can generate harmful, biased, or inappropriate content, requiring robust safeguards and monitoring systems to ensure safe deployment.
+
+\item \textbf{Vendor Lock-in}: Cloud-based LLM providers can create significant dependencies and lock-in through their proprietary APIs and infrastructure, making it difficult to switch providers or self-host solutions.
+
+\item \textbf{Cost Optimization}: The computational and financial costs of operating LLM-based systems can quickly become prohibitive without careful management, and optimization.
+\end{enumerate}
+
+\section{A Practical Approach}
+
+This book takes a hands-on approach to these challenges, with a focus on accessibility and reproducibility. 
+All examples and code are:
+
+\begin{itemize}
+\item Fully reproducible and documented, allowing readers to replicate results exactly
+\item Designed to run on consumer-grade hardware without requiring expensive resources
+\item Available as open source Python notebooks that can be modified and extended
+\item Structured to minimize computational costs while maintaining effectiveness
+\end{itemize}
+
+\section{An Open Source Approach}
+
+Throughout this book, we'll leverage open source tools and frameworks to address common LLM challenges. In that way, we are prioritizing:
+
+\begin{itemize}
+\item \textbf{Transparency}: Open source solutions provide visibility into how challenges are being addressed, allowing for better understanding and customization of solutions.
+\item \textbf{Flexibility}: Open source tools can be modified and adapted to specific use cases, unlike black-box commercial solutions.
+\item \textbf{Cost-Effectiveness}: Most of open source tools we will cover are freely available, fostering accessibility and reducing costs.
+\item \textbf{Vendor Independence}: Open source solutions reduce dependency on specific providers, offering more freedom in architectural decisions.
+\end{itemize}
+
+\section{Open Source Book}
+
+In keeping with these open source principles, this book itself is open source and available on GitHub. It's designed to be a living document that evolves with the changing landscape of LLM technology and implementation practices. Readers are encouraged to:
+
+\begin{itemize}
+\item Report issues or suggest improvements through GitHub Issues
+\item Contribute new examples or solutions via Pull Requests
+\item Share their own experiences and solutions with the community
+\item Propose new chapters or sections that address emerging challenges
+\end{itemize}
+
+The repository can be found at \url{https://github.com/souzatharsis/tamingllms}. Whether you've found a typo, have a better solution to share, or want to contribute, your contributions are welcome. Please feel free to open an issue in the book repository.
+
+\section{A Note on Perspective}
+
+While this book takes a critical look at LLM limitations, our goal is not to discourage their use but to enable more robust and reliable implementations. By understanding these challenges upfront, you'll be better equipped to build systems that leverage LLMs effectively while avoiding common pitfalls.
+
+The current discourse around LLMs tends toward extremes - either uncritical enthusiasm or wholesale dismissal. This book takes a different approach:
+
+\begin{itemize}
+\item \textbf{Practical Implementation Focus}: Rather than theoretical capabilities, we examine practical challenges and their solutions.
+\item \textbf{Code-First Learning}: Every concept is illustrated with executable Python examples, enabling immediate practical application.
+\item \textbf{Critical Analysis}: We provide a balanced examination of both capabilities and limitations, helping readers make informed decisions about LLM integration.
+\end{itemize}
+
+\section{Who This Book Is For}
+
+This book is designed for:
+
+\begin{itemize}
+\item Software/AI Engineers building LLM-powered applications 
+\item Technical Product Managers leading GenAI initiatives 
+\item Technical Leaders making architectural decisions
+\item Open Source advocates and/or developers building LLM Applications 
+\item Anyone seeking to understand the practical challenges of working with LLMs 
+\end{itemize}
+
+Typical job roles:
+
+\begin{itemize}
+\item Software/AI Engineers building AI-powered platforms
+\item Backend Developers integrating LLMs into existing systems
+\item ML Engineers transitioning to LLM implementation
+\item Technical Leads making architectural decisions
+\item Product Managers overseeing GenAI initiatives
+\end{itemize}
+
+Reader motivation:
+
+\begin{itemize}
+\item Need to build reliable, production-ready LLM applications
+\item Desire to understand and overcome common LLM implementation challenges
+\item Requirement to optimize costs and performance
+\item Need to ensure safety and reliability in LLM-powered systems
+\end{itemize}
+
+The goal is to help readers understand and address these challenges early, before they become costly problems too late in the software development lifecycle.
+
+\section{Outcomes}
+
+After reading this book, the reader will understand critical LLM limitations and their implications and have practical experience on recommended open source tools and frameworks to help navigate common LLM pitfalls. The reader will be able to:
+
+\begin{itemize}
+\item Implement effective strategies for managing LLMs limitations
+\item Build reliable LLM-powered applications
+\item Create robust testing frameworks for LLM-based systems
+\item Deploy proper LLM safeguards
+\item Make realistic effort estimations for LLM-based projects
+\item Understand the hidden complexities that impact development timelines
+\end{itemize}
+
+\section{Prerequisites}
+
+To make the most of this book, you should have:
+
+\begin{itemize}
+\item Basic Python programming experience
+\item Basic knowledge of LLMs and their capabilities
+\item Access to and basic knowledge of LLM APIs (Mistral, OpenAI, Anthropic, or similar)
+\item A desire to build reliable LLM-based applications
+\end{itemize}
+
+\section{Setting Up Your Environment}
+
+Before diving into the examples in this book, you'll need to set up your development environment. Here's how to get started:
+
+\subsection{Code Repository}
+Clone the book's companion repository:
+\begin{verbatim}
+git clone https://github.com/souzatharsis/tamingllms.git
+cd tamingllms/notebooks
+\end{verbatim}
+
+\subsection{Python Environment Setup}
+\begin{verbatim}
+# Create and activate a virtual environment
+python -m venv taming-llms-env
+source taming-llms-env/bin/activate  # On Windows, use: taming-llms-env\Scripts\activate
+\end{verbatim}
+We will try and make each Chapter as self-contained as possible, including all necessary installs as we go through the examples.
+Feel free to use your preferred package manager to install the dependencies (e.g. \texttt{pip}). We used \texttt{poetry} to manage dependencies and virtual environments.
+
+\subsection{API Keys Configuration}
+\begin{enumerate}
+\item Create a \texttt{.env} file in the root directory of the project.
+\item Add your API keys and other sensitive information to the \texttt{.env} file. For example:
+
+\begin{verbatim}
+OPENAI_API_KEY=your_openai_api_key_here
+\end{verbatim}
+\end{enumerate}
+
+\begin{note}
+Never share your \texttt{.env} file or commit it to version control. It contains sensitive information that should be kept private.
+\end{note}
+
+\subsection{Troubleshooting Common Issues}
+\begin{itemize}
+\item If you encounter API rate limits, consider using smaller examples or implementing retry logic
+\item For package conflicts, try creating a fresh virtual environment or use a package manager like \texttt{poetry}
+\item Check the book's repository issues page for known problems and solutions
+\end{itemize}
+
+Now that your environment is set up, let's begin our exploration of LLM challenges.
+
+\section{About the Author}
+
+Tharsis Souza (Ph.D. Computer Science, UCL University of London) is a computer scientist and product leader specializing in AI-based products. He is a Lecturer at Columbia University's Master of Science program in Applied Analytics, (\textit{incoming}) Head of Product, Equities at Citadel, and former Senior VP at Two Sigma Investments. He mentors under-represented students \& working professionals to help create a more diverse global AI1 ecosystem.
+
+With over 15 years of experience delivering technology products across startups and Fortune 500 companies, he is also an author of numerous scholarly publications and a frequent speaker at academic and business conferences. Grounded on academic background and drawing from practical experience building and scaling up products powered by language models at early-stage startups, major institutions as well as contributing to open source projects, he brings a unique perspective on bridging the gap between LLMs promised potential and their practical implementation challenges to enable the next generation of AI-powered products.
