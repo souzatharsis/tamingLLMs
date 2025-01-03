@@ -1,3 +1,13 @@
 jupyter-book
 matplotlib
 numpy
+jupyter 
+ipython 
+python-dotenv 
+pandas 
+openai 
+evaluate 
+absl-py 
+rouge_score 
+langsmith 
+lighteval\[accelerate\]
