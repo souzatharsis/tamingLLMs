@@ -1,0 +1,38 @@
+container: {
+  shape: rectangle
+  style.stroke: "#D5DBDB"
+  style.stroke-width: 2
+  style.fill: "#F7FBFF"
+
+  input: "Who is the Author of..." {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+    style.stroke: "#2ECC71"
+    style.font-color: "#2ECC71"
+  }
+
+  model: {
+    shape: rectangle
+    style.fill: "#FEF9E7"
+    style.stroke: "#F4D03F"
+
+    network: "all-MiniLM-L6-v2" {
+      style.font-size: 24
+    }
+  }
+
+  output: "[0.123, 0.456, 0.789, ...]" {
+    shape: rectangle
+    style.fill: "#FFFFFF"
+    style.stroke: "#E74C3C"
+    style.font-color: "#E74C3C"
+  }
+
+  # Connections
+  input -> model -> output
+
+  # Label below model
+  label: "Embedding"
+}
+
+direction: right

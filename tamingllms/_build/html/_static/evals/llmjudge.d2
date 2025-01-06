@@ -14,6 +14,22 @@ container: {
     label: "LLM-Judge"
   }
 
+  # Evaluation results
+  results: {
+    score: Score {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+      style.stroke: "#2ECC71"
+    }
+
+    explanation: Explanation {
+      shape: rectangle
+      style.fill: "#FFFFFF"
+      style.stroke: "#2ECC71"
+      label: "Reasoning for score"
+    }
+  }
+
   # Evaluation components section
   components: {
     prompt: Evaluation Prompt {
@@ -51,9 +67,7 @@ container: {
       style.stroke: "#3498DB"
     }
 
-    dots: |md
-      ...
-    |
+    dots: "..."
 
     appN: LLM App N {
       shape: rectangle
@@ -62,22 +76,9 @@ container: {
     }
   }
 
-  # Output section
-  output: Evaluation Results {
-    shape: page
-    style.fill: "#EAFAF1"
-    style.stroke: "#2ECC71"
-    label: |md
-      ```
-      App Rankings
-      Detailed Scores
-      Analysis Report
-      ```
-    |
-  }
-
   # Connections between components
-  base_llm -> output: Generate Evaluation
+  base_llm -> results.score
+  base_llm -> results.explanation
 
   components.prompt -> base_llm: Prompt
   components.reference -> base_llm: Compare Results {

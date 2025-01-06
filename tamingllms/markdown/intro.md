@@ -35,11 +35,15 @@ Throughout this book, we'll tackle the following (non-exhaustive) list of critic
 
 3. **Testing Complexity**: Traditional software testing methodologies break down when dealing with non-deterministic and generative systems, requiring new approaches.
 
-4. **Safety and Alignment**: LLMs can generate harmful, biased, or inappropriate content, requiring robust safeguards and monitoring systems to ensure safe deployment.
+4. **Safety**: LLMs can generate harmful, biased, or inappropriate content, requiring robust safeguards and monitoring systems to ensure safe deployment.
 
-5. **Vendor Lock-in**: Cloud-based LLM providers can create significant dependencies and lock-in through their proprietary APIs and infrastructure, making it difficult to switch providers or self-host solutions.
+5. **Alignment**: LLMs are next-token prediction models, which means they are not aligned with the user's preferences by default.
 
-6. **Cost Optimization**: The computational and financial costs of operating LLM-based systems can quickly become prohibitive without careful management, and optimization.
+6. **Vendor Lock-in**: Cloud-based LLM providers can create significant dependencies and lock-in through their proprietary APIs and infrastructure, making it difficult to switch providers or self-host solutions.
+
+7. **Cost Optimization**: The computational and financial costs of operating LLM-based systems can quickly become prohibitive without careful management, and optimization.
+
+We conclude with a discussion on the future of LLMs and the challenges that will arise as we move forward.
 
 
 ## A Practical Approach
@@ -171,7 +175,7 @@ Now that your environment is set up, let's begin our exploration of LLM challeng
 
 ## About the Author
 
-Tharsis Souza (Ph.D. Computer Science, UCL University of London) is a computer scientist and product leader specializing in AI-based products. He is a Lecturer at Columbia University's Master of Science program in Applied Analytics, (*incoming*) Head of Product, Equities at Citadel, and former Senior VP at Two Sigma Investments. He mentors under-represented students & working professionals to help create a more diverse global AI1 ecosystem.
+Tharsis Souza (Ph.D. Computer Science, UCL University of London) is a computer scientist and product leader specializing in AI-based products. He is a Lecturer at Columbia University's Master of Science program in Applied Analytics, (*incoming*) Head of Product, Equities at Citadel, and former Senior VP at Two Sigma Investments. He mentors under-represented students & working professionals to help create a more diverse global AI ecosystem.
 
 With over 15 years of experience delivering technology products across startups and Fortune 500 companies, he is also an author of numerous scholarly publications and a frequent speaker at academic and business conferences. Grounded on academic background and drawing from practical experience building and scaling up products powered by language models at early-stage startups, major institutions as well as contributing to open source projects, he brings a unique perspective on bridging the gap between LLMs promised potential and their practical implementation challenges to enable the next generation of AI-powered products.
 

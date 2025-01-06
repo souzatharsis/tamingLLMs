@@ -1,3 +1,7 @@
+we live in the sample, not the universe
+-- Professor Christopher C. Geczy, Wharton 
+
+
 
 
 Trends
@@ -21,5 +25,7 @@ A New World
 
 https://learning.oreilly.com/library/view/designing-large-language/9781098150495/ch09.html#id275
 
+
+HBR: https://www.linkedin.com/posts/norbertgehrke_hbr-generative-ai-activity-7281253868238188544-k9MI?utm_source=share&utm_medium=member_desktop
 
 
