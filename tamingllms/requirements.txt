@@ -1,3 +1,4 @@
+# Chapter 3: The Evals Group (evals.ipynb)
 jupyter-book
 matplotlib
 numpy
@@ -11,3 +12,16 @@ absl-py
 rouge_score 
 langsmith 
 lighteval\[accelerate\]
+
+#  Chapter 5: Managing Input Data (input.ipynb)
+docling
+markitdown
+Levenshtein
+sentence_transformers
+chromadb
+llama_index
+langchain_text_splitters
+langchain_core
+langchain_community
+google-genai
+google-cloud-texttospeech
