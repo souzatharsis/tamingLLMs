@@ -21,6 +21,13 @@ bibtex_bibfiles:
   - references.bib
 
 
+repository:
+  url: https://github.com/souzatharsis/tamingllms
+
+html:
+  use_repository_button: true
+  favicon: "_static/taming.ico"
+
 only_build_toc_files: true
 
 
