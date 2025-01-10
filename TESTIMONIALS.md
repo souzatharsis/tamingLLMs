@@ -3,3 +3,6 @@
 
 > This is amazing content, thank you so much for sharing!!! 
 -- Didier Lopes, Founder of OpenBB
+
+> Easily one of the best resources on structured generation so far. Great resource for the AI engineer in your life!
+-- Cameron, Outlines, .txt
