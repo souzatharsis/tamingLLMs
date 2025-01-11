@@ -1,6 +1,6 @@
 ---
-name: Review Template
-about: Book chapter review
+name: Chapter Review Template
+about: Any feedback on a specific Book Chapter
 title: "[Review] "
 labels: ''
 assignees: ''
