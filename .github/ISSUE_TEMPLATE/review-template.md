@@ -10,9 +10,9 @@ assignees: ''
 ## Format
 
 What's the book format where you found this issue? 
-[] pdf 
-[] web 
-[] ipynb
+[ ] pdf 
+[ ] web 
+[ ] ipynb
 
 ## Chapter
 
