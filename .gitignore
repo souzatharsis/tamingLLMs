@@ -5,7 +5,15 @@ evals/
 evals2/
 .pypirc
 
+_minted-main/
+svg-inkscape/
+
 main.pdf
+main.aux
+main.log
+main.out
+main.toc
+
 
 research/
 
