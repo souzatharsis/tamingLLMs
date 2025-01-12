@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{DPO\PYGZus{}DATASET} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}thatupiso/dpo\PYGZhy{}smolK12\PYGZhy{}5000\PYGZdq{}}
+\PYG{n}{dpo\PYGZus{}dataset} \PYG{o}{=} \PYG{n}{generate\PYGZus{}dpo\PYGZus{}dataset}\PYG{p}{(}\PYG{n}{CHOSEN\PYGZus{}RESPONSES\PYGZus{}PATH}\PYG{p}{,} \PYG{n}{REJECTED\PYGZus{}RESPONSES\PYGZus{}PATH}\PYG{p}{,} \PYG{n}{repo\PYGZus{}id}\PYG{o}{=}\PYG{n}{DPO\PYGZus{}DATASET}\PYG{p}{)}
+\end{Verbatim}

@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Calculate and print statistics per source and type}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{Statistics by Source:\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{source\PYGZus{}stats} \PYG{o}{=} \PYG{n}{prompt\PYGZus{}samples}\PYG{o}{.}\PYG{n}{groupby}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}source\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{size}\PYG{p}{()}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{source\PYGZus{}stats}\PYG{p}{)}
+
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{Statistics by Type:\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{type\PYGZus{}stats} \PYG{o}{=} \PYG{n}{prompt\PYGZus{}samples}\PYG{o}{.}\PYG{n}{groupby}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}type\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{size}\PYG{p}{()}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{type\PYGZus{}stats}\PYG{p}{)}
+\end{Verbatim}

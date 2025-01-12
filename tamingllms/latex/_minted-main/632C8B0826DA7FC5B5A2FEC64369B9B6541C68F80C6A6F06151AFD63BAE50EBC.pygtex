@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{dataset\PYGZus{}k12} \PYG{o}{=} \PYG{n}{load\PYGZus{}dataset}\PYG{p}{(}\PYG{n}{path}\PYG{o}{=}\PYG{n}{DPO\PYGZus{}DATASET}\PYG{p}{,} \PYG{n}{split}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}train\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{dataset\PYGZus{}ultra} \PYG{o}{=} \PYG{n}{load\PYGZus{}dataset}\PYG{p}{(}\PYG{n}{path}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}trl\PYGZhy{}lib/ultrafeedback\PYGZus{}binarized\PYGZdq{}} \PYG{p}{,} \PYG{n}{split}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}train[:10\PYGZpc{}]\PYGZsq{}}\PYG{p}{)}
+\end{Verbatim}

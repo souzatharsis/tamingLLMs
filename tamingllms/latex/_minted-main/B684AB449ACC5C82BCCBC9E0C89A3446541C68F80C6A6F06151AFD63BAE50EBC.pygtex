@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{score\PYGZus{}mapping} \PYG{o}{=} \PYG{p}{\PYGZob{}}
+    \PYG{l+m+mf}{0.1}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Not Aligned\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+m+mf}{0.5}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Somewhat Aligned\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+m+mf}{1.0}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Aligned\PYGZdq{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{n}{score\PYGZus{}base\PYGZus{}freq} \PYG{o}{=} \PYG{n}{evals\PYGZus{}df\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}score\PYGZus{}base\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{map}\PYG{p}{(}\PYG{n}{score\PYGZus{}mapping}\PYG{p}{)}\PYG{o}{.}\PYG{n}{value\PYGZus{}counts}\PYG{p}{()}\PYG{o}{.}\PYG{n}{reindex}\PYG{p}{(}\PYG{n}{score\PYGZus{}mapping}\PYG{o}{.}\PYG{n}{values}\PYG{p}{(),} \PYG{n}{fill\PYGZus{}value}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{n}{score\PYGZus{}base\PYGZus{}pct} \PYG{o}{=} \PYG{p}{(}\PYG{n}{score\PYGZus{}base\PYGZus{}freq} \PYG{o}{/} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{evals\PYGZus{}df\PYGZus{}results}\PYG{p}{)} \PYG{o}{*} \PYG{l+m+mi}{100}\PYG{p}{)}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{n}{score\PYGZus{}aligned\PYGZus{}freq} \PYG{o}{=} \PYG{n}{evals\PYGZus{}df\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}score\PYGZus{}aligned\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{map}\PYG{p}{(}\PYG{n}{score\PYGZus{}mapping}\PYG{p}{)}\PYG{o}{.}\PYG{n}{value\PYGZus{}counts}\PYG{p}{()}\PYG{o}{.}\PYG{n}{reindex}\PYG{p}{(}\PYG{n}{score\PYGZus{}mapping}\PYG{o}{.}\PYG{n}{values}\PYG{p}{(),} \PYG{n}{fill\PYGZus{}value}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{n}{score\PYGZus{}aligned\PYGZus{}pct} \PYG{o}{=} \PYG{p}{(}\PYG{n}{score\PYGZus{}aligned\PYGZus{}freq} \PYG{o}{/} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{evals\PYGZus{}df\PYGZus{}results}\PYG{p}{)} \PYG{o}{*} \PYG{l+m+mi}{100}\PYG{p}{)}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}
+\end{Verbatim}

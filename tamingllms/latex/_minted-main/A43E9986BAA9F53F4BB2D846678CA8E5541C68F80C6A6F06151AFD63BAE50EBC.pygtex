@@ -1,0 +1,24 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{openai} \PYG{k+kn}{import} \PYG{n}{OpenAI}
+\PYG{n}{client} \PYG{o}{=} \PYG{n}{OpenAI}\PYG{p}{()}
+
+\PYG{k}{def} \PYG{n+nf}{generate\PYGZus{}summary}\PYG{p}{(}\PYG{n}{model}\PYG{p}{,} \PYG{n+nb}{input}\PYG{p}{):}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    Generate a 1\PYGZhy{}linear summary of input text using a given model}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+
+    \PYG{n}{TASK} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Generate a 1\PYGZhy{}liner summary of the following excerpt from an SEC filing.\PYGZdq{}}
+
+    \PYG{n}{prompt} \PYG{o}{=} \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+s2}{    ROLE: You are an expert analyst tasked with summarizing SEC filings.}
+\PYG{l+s+s2}{    TASK: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{TASK}\PYG{l+s+si}{\PYGZcb{}}
+\PYG{l+s+s2}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+
+    \PYG{n}{response} \PYG{o}{=} \PYG{n}{client}\PYG{o}{.}\PYG{n}{chat}\PYG{o}{.}\PYG{n}{completions}\PYG{o}{.}\PYG{n}{create}\PYG{p}{(}
+    \PYG{n}{model}\PYG{o}{=}\PYG{n}{model}\PYG{p}{,}
+        \PYG{n}{messages}\PYG{o}{=}\PYG{p}{[\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}system\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{n}{prompt}\PYG{p}{\PYGZcb{},}
+                 \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}user\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{n+nb}{input}\PYG{p}{\PYGZcb{}]}
+    \PYG{p}{)}
+
+    \PYG{k}{return} \PYG{n}{response}\PYG{o}{.}\PYG{n}{choices}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{message}\PYG{o}{.}\PYG{n}{content}
+\end{Verbatim}

@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{df\PYGZus{}eval\PYGZus{}responses} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{merge}\PYG{p}{(}\PYG{n}{base\PYGZus{}model\PYGZus{}responses}\PYG{p}{,} \PYG{n}{aligned\PYGZus{}model\PYGZus{}responses}\PYG{p}{,}
+                       \PYG{n}{on}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}user\PYGZus{}prompts\PYGZsq{}}\PYG{p}{,}
+                       \PYG{n}{suffixes}\PYG{o}{=}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}\PYGZus{}base\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}\PYGZus{}aligned\PYGZsq{}}\PYG{p}{))}
+\end{Verbatim}

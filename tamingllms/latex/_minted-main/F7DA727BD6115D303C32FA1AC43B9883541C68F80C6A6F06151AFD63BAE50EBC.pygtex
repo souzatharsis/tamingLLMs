@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{dotenv} \PYG{k+kn}{import} \PYG{n}{load\PYGZus{}dotenv}
+\PYG{k+kn}{import} \PYG{n+nn}{os}
+
+\PYG{c+c1}{\PYGZsh{} Load environment variables from .env file}
+\PYG{n}{load\PYGZus{}dotenv}\PYG{p}{()}
+\end{Verbatim}

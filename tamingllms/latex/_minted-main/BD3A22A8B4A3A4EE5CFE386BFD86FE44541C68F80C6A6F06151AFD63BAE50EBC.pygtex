@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{sentence\PYGZus{}transformers} \PYG{k+kn}{import} \PYG{n}{SentenceTransformer}
+
+\PYG{n}{embedding\PYGZus{}model} \PYG{o}{=} \PYG{n}{SentenceTransformer}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}all\PYGZhy{}MiniLM\PYGZhy{}L6\PYGZhy{}v2\PYGZsq{}}\PYG{p}{)}
+\end{Verbatim}

@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{md\PYGZus{}llm} \PYG{o}{=} \PYG{n}{MarkItDown}\PYG{p}{(}\PYG{n}{llm\PYGZus{}client}\PYG{o}{=}\PYG{n}{client}\PYG{p}{,} \PYG{n}{llm\PYGZus{}model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}gpt\PYGZhy{}4o\PYGZhy{}mini\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

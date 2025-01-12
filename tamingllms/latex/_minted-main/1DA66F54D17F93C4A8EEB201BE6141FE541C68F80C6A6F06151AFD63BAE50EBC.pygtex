@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{study\PYGZus{}references} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}https://www.gutenberg.org/cache/epub/10000/pg10000.txt\PYGZdq{}}\PYG{p}{,}
+\PYG{l+s+s2}{\PYGZdq{}https://www.gutenberg.org/cache/epub/65363/pg65363.txt\PYGZdq{}}\PYG{p}{]}
+
+\PYG{n}{duo}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{study\PYGZus{}references}\PYG{p}{)}
+\end{Verbatim}

@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{inputs} \PYG{o}{=} \PYG{n}{tokenizer}\PYG{p}{(}\PYG{n}{PROMPT}\PYG{p}{,} \PYG{n}{return\PYGZus{}tensors}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}pt\PYGZdq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{to}\PYG{p}{(}\PYG{n}{model}\PYG{o}{.}\PYG{n}{device}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Get logits}
+\PYG{k}{with} \PYG{n}{torch}\PYG{o}{.}\PYG{n}{inference\PYGZus{}mode}\PYG{p}{():}
+    \PYG{n}{outputs} \PYG{o}{=} \PYG{n}{model}\PYG{p}{(}\PYG{o}{**}\PYG{n}{inputs}\PYG{p}{)}
+    \PYG{n}{logits} \PYG{o}{=} \PYG{n}{outputs}\PYG{o}{.}\PYG{n}{logits}
+
+\PYG{c+c1}{\PYGZsh{} Logits for the last token}
+\PYG{n}{last\PYGZus{}token\PYGZus{}logits} \PYG{o}{=} \PYG{n}{logits}\PYG{p}{[:,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{p}{:]}
+
+\PYG{n}{next\PYGZus{}token\PYGZus{}probs} \PYG{o}{=} \PYG{n}{torch}\PYG{o}{.}\PYG{n}{nn}\PYG{o}{.}\PYG{n}{functional}\PYG{o}{.}\PYG{n}{softmax}\PYG{p}{(}\PYG{n}{last\PYGZus{}token\PYGZus{}logits}\PYG{p}{,} \PYG{n}{dim}\PYG{o}{=\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}
+
+\PYG{n}{k} \PYG{o}{=} \PYG{l+m+mi}{10}
+\PYG{n}{top\PYGZus{}k\PYGZus{}probs}\PYG{p}{,} \PYG{n}{top\PYGZus{}k\PYGZus{}indices} \PYG{o}{=} \PYG{n}{torch}\PYG{o}{.}\PYG{n}{topk}\PYG{p}{(}\PYG{n}{next\PYGZus{}token\PYGZus{}probs}\PYG{p}{,} \PYG{n}{k}\PYG{p}{,} \PYG{n}{dim}\PYG{o}{=\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Print the actual tokens, skipping special tokens}
+\PYG{n}{top\PYGZus{}k\PYGZus{}tokens} \PYG{o}{=} \PYG{p}{[}\PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{decode}\PYG{p}{(}\PYG{n}{idx}\PYG{p}{,} \PYG{n}{skip\PYGZus{}special\PYGZus{}tokens}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+                \PYG{k}{for} \PYG{n}{idx} \PYG{o+ow}{in} \PYG{n}{top\PYGZus{}k\PYGZus{}indices}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]]}
+
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}Top predicted tokens and probabilities:\PYGZdq{}}\PYG{p}{)}
+\PYG{k}{for} \PYG{n}{prob}\PYG{p}{,} \PYG{n}{token} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{top\PYGZus{}k\PYGZus{}probs}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{][:}\PYG{n}{k}\PYG{p}{],} \PYG{n}{top\PYGZus{}k\PYGZus{}tokens}\PYG{p}{[:}\PYG{n}{k}\PYG{p}{]):}
+    \PYG{k}{if} \PYG{n}{token}\PYG{o}{.}\PYG{n}{strip}\PYG{p}{():}  \PYG{c+c1}{\PYGZsh{} Only print non\PYGZhy{}empty tokens}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{token}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZsq{}: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{prob}\PYG{l+s+si}{:}\PYG{l+s+s2}{.4f}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

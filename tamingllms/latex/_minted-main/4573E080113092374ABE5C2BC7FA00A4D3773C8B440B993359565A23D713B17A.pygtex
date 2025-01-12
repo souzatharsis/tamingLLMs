@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+./build/bin/llama\PYGZhy{}server\PYG{+w}{ }\PYGZhy{}m\PYG{+w}{ }./models/qwen2.5\PYGZhy{}0.5b\PYGZhy{}instruct\PYGZhy{}q8\PYGZus{}0.gguf\PYG{+w}{ }\PYGZhy{}\PYGZhy{}port\PYG{+w}{ }\PYG{l+m}{8080}
+\end{Verbatim}

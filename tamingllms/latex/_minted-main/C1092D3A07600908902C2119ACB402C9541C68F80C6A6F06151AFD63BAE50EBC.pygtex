@@ -1,0 +1,26 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{prompt} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+s2}{Generate a two\PYGZhy{}person discussion about the key financial data from the following text in JSON format.}
+
+\PYG{l+s+s2}{\PYGZlt{}JSON\PYGZus{}FORMAT\PYGZgt{}}
+\PYG{l+s+s2}{\PYGZob{}}
+\PYG{l+s+s2}{   \PYGZdq{}Person1\PYGZdq{}: \PYGZob{}}
+\PYG{l+s+s2}{     \PYGZdq{}name\PYGZdq{}: \PYGZdq{}Alice\PYGZdq{},}
+\PYG{l+s+s2}{     \PYGZdq{}statement\PYGZdq{}: \PYGZdq{}The revenue for Q1 has increased by 20}\PYG{l+s+si}{\PYGZpc{} c}\PYG{l+s+s2}{ompared to last year.\PYGZdq{}}
+\PYG{l+s+s2}{   \PYGZcb{},}
+\PYG{l+s+s2}{   \PYGZdq{}Person2\PYGZdq{}: \PYGZob{}}
+\PYG{l+s+s2}{     \PYGZdq{}name\PYGZdq{}: \PYGZdq{}Bob\PYGZdq{},}
+\PYG{l+s+s2}{     \PYGZdq{}statement\PYGZdq{}: \PYGZdq{}That\PYGZsq{}s great news! What about the net profit margin?\PYGZdq{}}
+\PYG{l+s+s2}{   \PYGZcb{}}
+\PYG{l+s+s2}{\PYGZcb{}}
+\PYG{l+s+s2}{\PYGZlt{}/JSON\PYGZus{}FORMAT\PYGZgt{}}
+\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+
+\PYG{n}{response} \PYG{o}{=} \PYG{n}{client}\PYG{o}{.}\PYG{n}{chat}\PYG{o}{.}\PYG{n}{completions}\PYG{o}{.}\PYG{n}{create}\PYG{p}{(}
+    \PYG{n}{model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}gpt\PYGZhy{}4o\PYGZhy{}mini\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{messages}\PYG{o}{=}\PYG{p}{[}
+        \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}system\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{n}{prompt}\PYG{p}{\PYGZcb{},}
+        \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}user\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{n}{sec\PYGZus{}filing}\PYG{p}{\PYGZcb{}}
+    \PYG{p}{]}
+\PYG{p}{)}
+\end{Verbatim}

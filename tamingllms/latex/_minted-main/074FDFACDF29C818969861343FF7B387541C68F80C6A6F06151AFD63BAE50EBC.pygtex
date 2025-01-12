@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{policy} \PYG{o}{=} \PYG{n}{load\PYGZus{}policy}\PYG{p}{()}
+\PYG{n}{COMPANY\PYGZus{}NAME} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Acme Inc.\PYGZdq{}}
+\PYG{n}{process\PYGZus{}aligned\PYGZus{}responses}\PYG{p}{(}\PYG{n}{policy}\PYG{p}{,} \PYG{n}{COMPANY\PYGZus{}NAME}\PYG{p}{,} \PYG{n}{user\PYGZus{}prompts}\PYG{p}{,} \PYG{n}{CHOSEN\PYGZus{}RESPONSES\PYGZus{}JSONL\PYGZus{}PATH}\PYG{p}{,} \PYG{n}{model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}gpt\PYGZhy{}4o\PYGZhy{}mini\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

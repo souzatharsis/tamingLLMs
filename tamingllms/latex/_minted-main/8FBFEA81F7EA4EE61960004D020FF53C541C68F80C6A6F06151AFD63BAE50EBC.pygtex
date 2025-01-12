@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{scores} \PYG{o}{=} \PYG{n}{model}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{([(}\PYG{n}{q}\PYG{p}{,} \PYG{n}{doc}\PYG{p}{)} \PYG{k}{for} \PYG{n}{doc} \PYG{o+ow}{in} \PYG{n}{res}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}documents\PYGZdq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{][:}\PYG{n}{TOPK}\PYG{p}{]])}
+\end{Verbatim}

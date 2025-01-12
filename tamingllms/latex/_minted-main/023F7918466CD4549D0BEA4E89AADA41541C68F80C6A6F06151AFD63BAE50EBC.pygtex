@@ -1,0 +1,38 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{ollama} \PYG{k+kn}{import} \PYG{n}{chat}
+\PYG{k+kn}{from} \PYG{n+nn}{pydantic} \PYG{k+kn}{import} \PYG{n}{BaseModel}
+
+\PYG{k}{class} \PYG{n+nc}{SECExtraction}\PYG{p}{(}\PYG{n}{BaseModel}\PYG{p}{):}
+    \PYG{n}{mentioned\PYGZus{}entities}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{[}\PYG{n+nb}{str}\PYG{p}{]}
+    \PYG{n}{mentioned\PYGZus{}places}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{[}\PYG{n+nb}{str}\PYG{p}{]}
+
+\PYG{n}{OLLAMA\PYGZus{}STRUCTURED\PYGZus{}OUTPUT\PYGZus{}PROMPT\PYGZus{}SUFFIX} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Return as JSON.\PYGZdq{}}
+\PYG{n}{OLLAMA\PYGZus{}STRUCTURED\PYGZus{}OUTPUT\PYGZus{}TEMPERATURE} \PYG{o}{=} \PYG{l+m+mi}{0}
+
+\PYG{k}{def} \PYG{n+nf}{extract\PYGZus{}entities\PYGZus{}from\PYGZus{}sec\PYGZus{}filing}\PYG{p}{(}\PYG{n}{doc}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{model}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n+nb}{dict}\PYG{p}{:}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    Extract entities and places from an SEC filing using Ollama chat.}
+
+\PYG{l+s+sd}{    Args:}
+\PYG{l+s+sd}{        doc: The SEC filing text to analyze}
+\PYG{l+s+sd}{        model: The Ollama model to use for extraction}
+
+\PYG{l+s+sd}{    Returns:}
+\PYG{l+s+sd}{        The raw response from the chat model}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{n}{response} \PYG{o}{=} \PYG{n}{chat}\PYG{p}{(}
+        \PYG{n}{messages}\PYG{o}{=}\PYG{p}{[}
+            \PYG{p}{\PYGZob{}}
+                \PYG{l+s+s1}{\PYGZsq{}role\PYGZsq{}}\PYG{p}{:} \PYG{l+s+s1}{\PYGZsq{}user\PYGZsq{}}\PYG{p}{,}
+                \PYG{l+s+s1}{\PYGZsq{}content\PYGZsq{}}\PYG{p}{:} \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{BASE\PYGZus{}PROMPT}\PYG{l+s+si}{\PYGZcb{}}
+\PYG{l+s+s2}{                }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{OLLAMA\PYGZus{}STRUCTURED\PYGZus{}OUTPUT\PYGZus{}PROMPT\PYGZus{}SUFFIX}\PYG{l+s+si}{\PYGZcb{}}
+
+\PYG{l+s+s2}{                Document: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{doc}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{],}
+        \PYG{n}{model}\PYG{o}{=}\PYG{n}{model}\PYG{p}{,}  \PYG{c+c1}{\PYGZsh{} You can also use other models like \PYGZsq{}mistral\PYGZsq{} or \PYGZsq{}llama2\PYGZhy{}uncensored\PYGZsq{}}
+        \PYG{n+nb}{format}\PYG{o}{=}\PYG{n}{SECExtraction}\PYG{o}{.}\PYG{n}{model\PYGZus{}json\PYGZus{}schema}\PYG{p}{(),}
+        \PYG{n}{options}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}temperature\PYGZsq{}}\PYG{p}{:} \PYG{n}{OLLAMA\PYGZus{}STRUCTURED\PYGZus{}OUTPUT\PYGZus{}TEMPERATURE}\PYG{p}{\PYGZcb{}}  \PYG{c+c1}{\PYGZsh{} Set to 0 for more deterministic output}
+    \PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{response}
+\end{Verbatim}

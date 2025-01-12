@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{sentence1} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}the cat sat on the mat\PYGZdq{}}
+\PYG{n}{sentence2} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}the cat ate the mat\PYGZdq{}}
+\PYG{n}{evaluate\PYGZus{}summaries}\PYG{p}{(}\PYG{n}{sentence1}\PYG{p}{,} \PYG{n}{sentence2}\PYG{p}{)}
+\end{Verbatim}

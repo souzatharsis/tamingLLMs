@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{prompt\PYGZus{}extraction} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}You are an expert at structured data extraction.}
+\PYG{l+s+s2}{You will be given unstructured text from a SEC filing and}
+\PYG{l+s+s2}{extracted names of mentioned entities and places and should convert the response into the given structure.\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{n}{sec\PYGZus{}extraction\PYGZus{}langchain} \PYG{o}{=} \PYG{n}{extract\PYGZus{}from\PYGZus{}sec\PYGZus{}filing\PYGZus{}langchain}\PYG{p}{(}
+    \PYG{n}{sec\PYGZus{}filing}\PYG{p}{,} \PYG{n}{prompt\PYGZus{}extraction}\PYG{p}{)}
+\end{Verbatim}

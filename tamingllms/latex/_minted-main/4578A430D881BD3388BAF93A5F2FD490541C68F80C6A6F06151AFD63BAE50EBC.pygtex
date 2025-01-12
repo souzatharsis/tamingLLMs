@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{BASE\PYGZus{}MODEL} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}HuggingFaceTB/SmolLM2\PYGZhy{}360M\PYGZhy{}Instruct\PYGZdq{}} \PYG{c+c1}{\PYGZsh{} Base model to evaluate}
+\PYG{n}{ALIGNED\PYGZus{}MODEL} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}thatupiso/SmolLM2\PYGZhy{}360M\PYGZhy{}Instruct\PYGZhy{}K12\PYGZhy{}5000\PYGZdq{}} \PYG{c+c1}{\PYGZsh{} Aligned model to evaluate}
+\PYG{n}{BASE\PYGZus{}MODEL\PYGZus{}API\PYGZus{}URL} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZlt{}BASE\PYGZus{}MODEL\PYGZus{}API\PYGZus{}URL\PYGZgt{}\PYGZdq{}} \PYG{c+c1}{\PYGZsh{} Base model API URL}
+\PYG{n}{ALIGNED\PYGZus{}MODEL\PYGZus{}API\PYGZus{}URL} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZlt{}ALIGNED\PYGZus{}MODEL\PYGZus{}API\PYGZus{}URL\PYGZgt{}\PYGZdq{}} \PYG{c+c1}{\PYGZsh{} Aligned model API URL}
+\PYG{n}{DPO\PYGZus{}DATASET} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}thatupiso/dpo\PYGZhy{}smolK12\PYGZhy{}5000\PYGZdq{}} \PYG{c+c1}{\PYGZsh{} DPO dataset to evaluate}
+\PYG{n}{BASE\PYGZus{}MODEL\PYGZus{}RESPONSES\PYGZus{}PATH} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}../data/alignment/evals\PYGZus{}base\PYGZus{}model\PYGZus{}responses.csv\PYGZdq{}} \PYG{c+c1}{\PYGZsh{} Path to store base model responses}
+\PYG{n}{ALIGNED\PYGZus{}MODEL\PYGZus{}RESPONSES\PYGZus{}PATH} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}../data/alignment/evals\PYGZus{}aligned\PYGZus{}model\PYGZus{}responses.csv\PYGZdq{}} \PYG{c+c1}{\PYGZsh{} Path to store aligned model responses}
+\PYG{n}{NUM\PYGZus{}SAMPLES} \PYG{o}{=} \PYG{l+m+mi}{100} \PYG{c+c1}{\PYGZsh{} Number of samples to evaluate}
+\end{Verbatim}

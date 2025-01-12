@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{task} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}leaderboard|mmlu:econometrics|0|0\PYGZdq{}}
+\end{Verbatim}

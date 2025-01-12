@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{TOP} \PYG{o}{=} \PYG{l+m+mi}{100}
+\PYG{n}{prompt} \PYG{o}{=} \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}You are a sentiment\PYGZhy{}labelling assistant specialized in Financial Statements.}
+\PYG{l+s+s2}{Is the following document positive or negative?}
+
+\PYG{l+s+s2}{Document: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{sec\PYGZus{}filing}\PYG{p}{[:}\PYG{n}{TOP}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}
+\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+
+\PYG{n}{generator} \PYG{o}{=} \PYG{n}{outlines}\PYG{o}{.}\PYG{n}{generate}\PYG{o}{.}\PYG{n}{choice}\PYG{p}{(}\PYG{n}{model}\PYG{p}{,} \PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}Positive\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}Negative\PYGZdq{}}\PYG{p}{])}
+\PYG{n}{answer} \PYG{o}{=} \PYG{n}{generator}\PYG{p}{(}\PYG{n}{prompt}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{answer}\PYG{p}{)}
+\end{Verbatim}

@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{query\PYGZus{}collection}\PYG{p}{(}\PYG{n}{collection}\PYG{p}{,} \PYG{n}{query\PYGZus{}text}\PYG{p}{,} \PYG{n}{n\PYGZus{}results}\PYG{o}{=}\PYG{l+m+mi}{3}\PYG{p}{):}
+    \PYG{n}{results} \PYG{o}{=} \PYG{n}{collection}\PYG{o}{.}\PYG{n}{query}\PYG{p}{(}
+        \PYG{n}{query\PYGZus{}texts}\PYG{o}{=}\PYG{p}{[}\PYG{n}{query\PYGZus{}text}\PYG{p}{],}
+        \PYG{n}{n\PYGZus{}results}\PYG{o}{=}\PYG{n}{n\PYGZus{}results}
+    \PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{results}
+\end{Verbatim}

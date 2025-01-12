@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{user\PYGZus{}prompts\PYGZus{}df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{read\PYGZus{}csv}\PYG{p}{(}\PYG{n}{USER\PYGZus{}PROMPTS\PYGZus{}PATH}\PYG{p}{)}
+\PYG{n}{user\PYGZus{}prompts} \PYG{o}{=} \PYG{n}{user\PYGZus{}prompts\PYGZus{}df}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[:,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{tolist}\PYG{p}{()}
+\end{Verbatim}

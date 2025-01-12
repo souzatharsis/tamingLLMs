@@ -1,0 +1,47 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{dotenv} \PYG{k+kn}{import} \PYG{n}{load\PYGZus{}dotenv}
+\PYG{k+kn}{import} \PYG{n+nn}{os}
+\PYG{n}{load\PYGZus{}dotenv}\PYG{p}{()}
+
+\PYG{k+kn}{from} \PYG{n+nn}{openai} \PYG{k+kn}{import} \PYG{n}{OpenAI}
+\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
+\PYG{k+kn}{from} \PYG{n+nn}{typing} \PYG{k+kn}{import} \PYG{n}{List}
+
+\PYG{k}{def} \PYG{n+nf}{generate\PYGZus{}responses}\PYG{p}{(}
+    \PYG{n}{model\PYGZus{}name}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,}
+    \PYG{n}{prompt}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,}
+    \PYG{n}{temperatures}\PYG{p}{:} \PYG{n}{List}\PYG{p}{[}\PYG{n+nb}{float}\PYG{p}{],}
+    \PYG{n}{attempts}\PYG{p}{:} \PYG{n+nb}{int} \PYG{o}{=} \PYG{l+m+mi}{3}
+\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{:}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    Generate multiple responses at different temperature settings}
+\PYG{l+s+sd}{    to demonstrate non\PYGZhy{}deterministic behavior.}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{n}{client} \PYG{o}{=} \PYG{n}{OpenAI}\PYG{p}{()}
+    \PYG{n}{results} \PYG{o}{=} \PYG{p}{[]}
+
+    \PYG{k}{for} \PYG{n}{temp} \PYG{o+ow}{in} \PYG{n}{temperatures}\PYG{p}{:}
+        \PYG{k}{for} \PYG{n}{attempt} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{attempts}\PYG{p}{):}
+            \PYG{n}{response} \PYG{o}{=} \PYG{n}{client}\PYG{o}{.}\PYG{n}{chat}\PYG{o}{.}\PYG{n}{completions}\PYG{o}{.}\PYG{n}{create}\PYG{p}{(}
+                \PYG{n}{model}\PYG{o}{=}\PYG{n}{model\PYGZus{}name}\PYG{p}{,}
+                \PYG{n}{messages}\PYG{o}{=}\PYG{p}{[\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}user\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{n}{prompt}\PYG{p}{\PYGZcb{}],}
+                \PYG{n}{temperature}\PYG{o}{=}\PYG{n}{temp}\PYG{p}{,}
+                \PYG{n}{max\PYGZus{}tokens}\PYG{o}{=}\PYG{l+m+mi}{50}
+            \PYG{p}{)}
+
+            \PYG{n}{results}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(\PYGZob{}}
+                \PYG{l+s+s1}{\PYGZsq{}temperature\PYGZsq{}}\PYG{p}{:} \PYG{n}{temp}\PYG{p}{,}
+                \PYG{l+s+s1}{\PYGZsq{}attempt\PYGZsq{}}\PYG{p}{:} \PYG{n}{attempt} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{,}
+                \PYG{l+s+s1}{\PYGZsq{}response\PYGZsq{}}\PYG{p}{:} \PYG{n}{response}\PYG{o}{.}\PYG{n}{choices}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{message}\PYG{o}{.}\PYG{n}{content}
+            \PYG{p}{\PYGZcb{})}
+
+    \PYG{n}{df\PYGZus{}results} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{n}{results}\PYG{p}{)}
+    \PYG{k}{for} \PYG{n}{temp} \PYG{o+ow}{in} \PYG{n}{temperatures}\PYG{p}{:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{Temperature = }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{temp}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZdq{}} \PYG{o}{*} \PYG{l+m+mi}{40}\PYG{p}{)}
+        \PYG{n}{temp\PYGZus{}responses} \PYG{o}{=} \PYG{n}{df\PYGZus{}results}\PYG{p}{[}\PYG{n}{df\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}temperature\PYGZsq{}}\PYG{p}{]} \PYG{o}{==} \PYG{n}{temp}\PYG{p}{]}
+        \PYG{k}{for} \PYG{n}{\PYGZus{}}\PYG{p}{,} \PYG{n}{row} \PYG{o+ow}{in} \PYG{n}{temp\PYGZus{}responses}\PYG{o}{.}\PYG{n}{iterrows}\PYG{p}{():}
+            \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}Attempt }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{row}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}attempt\PYGZsq{}}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{row}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}response\PYGZsq{}}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+
+    \PYG{k}{return} \PYG{n}{df\PYGZus{}results}
+\end{Verbatim}

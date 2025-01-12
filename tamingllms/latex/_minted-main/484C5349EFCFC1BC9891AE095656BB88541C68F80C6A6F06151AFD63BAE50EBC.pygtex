@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{answer} \PYG{o}{=} \PYG{n}{RAG\PYGZus{}qa}\PYG{p}{(}\PYG{n}{model}\PYG{p}{,} \PYG{n}{res\PYGZus{}reranked}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{n}{question}\PYG{p}{)}
+\PYG{n}{answer}
+\end{Verbatim}

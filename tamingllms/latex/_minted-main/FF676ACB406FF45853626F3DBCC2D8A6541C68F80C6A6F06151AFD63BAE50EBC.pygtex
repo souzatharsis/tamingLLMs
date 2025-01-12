@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{NUM\PYGZus{}PROMPTS} \PYG{o}{=} \PYG{l+m+mi}{100}
+\PYG{n}{MIN\PYGZus{}PROMPT\PYGZus{}LENGTH} \PYG{o}{=} \PYG{l+m+mi}{100}
+\PYG{n}{MAX\PYGZus{}PROMPT\PYGZus{}LENGTH} \PYG{o}{=} \PYG{l+m+mi}{1000}
+\end{Verbatim}

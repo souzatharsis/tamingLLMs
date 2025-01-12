@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{llm} \PYG{o}{=} \PYG{n}{LLMBackend}\PYG{p}{(}\PYG{n+nb}{input}\PYG{o}{=}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{input\PYGZus{}memory}\PYG{p}{)}
+\end{Verbatim}

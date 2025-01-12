@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{df\PYGZus{}results} \PYG{o}{=} \PYG{n}{generate\PYGZus{}responses}\PYG{p}{(}\PYG{n}{model\PYGZus{}name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}gpt\PYGZhy{}3.5\PYGZhy{}turbo\PYGZdq{}}\PYG{p}{,}
+                              \PYG{n}{prompt}\PYG{o}{=}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}Write a single\PYGZhy{}statement executive summary of the following text: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{sec\PYGZus{}filing}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+                              \PYG{n}{temperatures}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mf}{0.0}\PYG{p}{,} \PYG{l+m+mf}{1.0}\PYG{p}{,} \PYG{l+m+mf}{2.0}\PYG{p}{])}
+\end{Verbatim}

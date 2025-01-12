@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{dataset\PYGZus{}k12} \PYG{o}{=} \PYG{n}{load\PYGZus{}dataset}\PYG{p}{(}\PYG{n}{path}\PYG{o}{=}\PYG{n}{DPO\PYGZus{}DATASET}\PYG{p}{,} \PYG{n}{split}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}train\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{eval\PYGZus{}dataset} \PYG{o}{=} \PYG{n}{dataset\PYGZus{}k12}
+\end{Verbatim}

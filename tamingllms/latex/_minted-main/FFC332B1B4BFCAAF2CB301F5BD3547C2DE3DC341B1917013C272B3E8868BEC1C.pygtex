@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nt}{description}\PYG{p}{:}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{Best model eval}
+\PYG{n+nt}{prompts}\PYG{p}{:}
+\PYG{p+pIndicator}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{file://prompt1.txt}
+\PYG{n+nt}{providers}\PYG{p}{:}
+\PYG{p+pIndicator}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{openai:gpt\PYGZhy{}4o\PYGZhy{}mini}
+\PYG{p+pIndicator}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{openai:gpt\PYGZhy{}4}
+\PYG{p+pIndicator}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{openai:gpt\PYGZhy{}3.5\PYGZhy{}turbo}
+\PYG{n+nt}{defaultTest}\PYG{p}{:}
+\PYG{+w}{  }\PYG{n+nt}{assert}\PYG{p}{:}
+\PYG{+w}{  }\PYG{p+pIndicator}{\PYGZhy{}}\PYG{+w}{ }\PYG{n+nt}{type}\PYG{p}{:}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{cost}
+\PYG{+w}{    }\PYG{n+nt}{threshold}\PYG{p}{:}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{0.001}
+\PYG{+w}{  }\PYG{p+pIndicator}{\PYGZhy{}}\PYG{+w}{ }\PYG{n+nt}{type}\PYG{p}{:}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{latency}
+\PYG{+w}{    }\PYG{n+nt}{threshold}\PYG{p}{:}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{1000}
+\PYG{+w}{  }\PYG{p+pIndicator}{\PYGZhy{}}\PYG{+w}{ }\PYG{n+nt}{type}\PYG{p}{:}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{python}
+\PYG{+w}{    }\PYG{n+nt}{value}\PYG{p}{:}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{len(output) \PYGZlt{} 200}
+\PYG{+w}{  }\PYG{p+pIndicator}{\PYGZhy{}}\PYG{+w}{ }\PYG{n+nt}{type}\PYG{p}{:}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{llm\PYGZhy{}rubric}
+\PYG{+w}{    }\PYG{n+nt}{value}\PYG{p}{:}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{Does the summary look like it was written by an expert analyst [Yes/No]?}
+\PYG{n+nt}{tests}\PYG{p}{:}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{file://tests.csv}
+\end{Verbatim}

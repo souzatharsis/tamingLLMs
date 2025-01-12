@@ -1,0 +1,44 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{pydantic} \PYG{k+kn}{import} \PYG{n}{BaseModel}
+\PYG{k+kn}{from} \PYG{n+nn}{typing} \PYG{k+kn}{import} \PYG{n}{List}\PYG{p}{,} \PYG{n}{Dict}
+
+\PYG{k}{class} \PYG{n+nc}{JudgeEvaluation}\PYG{p}{(}\PYG{n}{BaseModel}\PYG{p}{):}
+    \PYG{n}{expertise}\PYG{p}{:} \PYG{n+nb}{int}
+    \PYG{n}{coherence}\PYG{p}{:} \PYG{n+nb}{int}
+    \PYG{n}{fluency}\PYG{p}{:} \PYG{n+nb}{int}
+    \PYG{n}{similarity}\PYG{p}{:} \PYG{n+nb}{int}
+\PYG{k}{def} \PYG{n+nf}{evaluate\PYGZus{}with\PYGZus{}llm}\PYG{p}{(}\PYG{n}{judge\PYGZus{}model}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{candidate\PYGZus{}summary}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{reference\PYGZus{}summary}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{Dict}\PYG{p}{[}\PYG{n+nb}{str}\PYG{p}{,} \PYG{n+nb}{float}\PYG{p}{]:}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    Use an LLM to evaluate a candidate summary against a reference summary.}
+
+\PYG{l+s+sd}{    Args:}
+\PYG{l+s+sd}{        judge\PYGZus{}model (str): Name of the model to use as the judge.}
+\PYG{l+s+sd}{        candidate\PYGZus{}summary (str): Generated summary to evaluate.}
+\PYG{l+s+sd}{        reference\PYGZus{}summary (str): Ground truth or benchmark summary.}
+
+\PYG{l+s+sd}{    Returns:}
+\PYG{l+s+sd}{        dict: Dictionary containing evaluation scores for specified criteria.}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{n}{prompt} \PYG{o}{=} \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+s2}{    ROLE: You are an expert evaluator of SEC Filing summaries. Evaluate the following candidate summary against the reference summary on a scale of 1 to 10 for the following criteria:}
+\PYG{l+s+s2}{    \PYGZhy{} Expertise: Does the summary look like it was written by an expert analyst?}
+\PYG{l+s+s2}{    \PYGZhy{} Coherence: Is the candidate summary logically organized and easy to understand?}
+\PYG{l+s+s2}{    \PYGZhy{} Fluency: Is the language of the candidate summary clear and grammatically correct?}
+\PYG{l+s+s2}{    \PYGZhy{} Similarity: How similar is the candidate summary compared to the reference summary?}
+
+\PYG{l+s+s2}{    Reference Summary:}
+\PYG{l+s+s2}{    \PYGZdq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{reference\PYGZus{}summary}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{l+s+s2}{    Candidate Summary:}
+\PYG{l+s+s2}{    \PYGZdq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{candidate\PYGZus{}summary}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{l+s+s2}{    Provide scores in this format:}
+\PYG{l+s+s2}{    Expertise: X, Coherence: Y, Fluency: Z, Similarity: W}
+\PYG{l+s+s2}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{n}{completion} \PYG{o}{=} \PYG{n}{client}\PYG{o}{.}\PYG{n}{beta}\PYG{o}{.}\PYG{n}{chat}\PYG{o}{.}\PYG{n}{completions}\PYG{o}{.}\PYG{n}{parse}\PYG{p}{(}
+        \PYG{n}{model}\PYG{o}{=}\PYG{n}{judge\PYGZus{}model}\PYG{p}{,}
+        \PYG{n}{messages}\PYG{o}{=}\PYG{p}{[\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}system\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{n}{prompt}\PYG{p}{\PYGZcb{}],}
+        \PYG{n}{response\PYGZus{}format}\PYG{o}{=}\PYG{n}{JudgeEvaluation}
+    \PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{completion}\PYG{o}{.}\PYG{n}{choices}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{message}\PYG{o}{.}\PYG{n}{parsed}
+\end{Verbatim}

@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{safety\PYGZus{}judge} \PYG{o}{=} \PYG{n}{SafetyJudge}\PYG{p}{(}\PYG{n}{model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}gpt\PYGZhy{}4o\PYGZhy{}mini\PYGZdq{}}\PYG{p}{,} \PYG{n}{policy\PYGZus{}content}\PYG{o}{=}\PYG{n}{load\PYGZus{}policy}\PYG{p}{())}
+\end{Verbatim}

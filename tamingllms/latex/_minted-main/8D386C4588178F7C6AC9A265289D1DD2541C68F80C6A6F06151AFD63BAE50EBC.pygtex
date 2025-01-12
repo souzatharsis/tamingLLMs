@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{chromadb}
+\PYG{n}{chroma\PYGZus{}client} \PYG{o}{=} \PYG{n}{chromadb}\PYG{o}{.}\PYG{n}{Client}\PYG{p}{()}
+\end{Verbatim}

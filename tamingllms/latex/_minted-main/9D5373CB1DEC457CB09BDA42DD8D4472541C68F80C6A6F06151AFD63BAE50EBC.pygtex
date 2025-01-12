@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{evaluate} \PYG{k}{as} \PYG{n+nn}{hf\PYGZus{}evaluate}  \PYG{c+c1}{\PYGZsh{} HuggingFace\PYGZsq{}s evaluate}
+\PYG{k+kn}{from} \PYG{n+nn}{langsmith} \PYG{k+kn}{import} \PYG{n}{evaluate} \PYG{k}{as} \PYG{n}{langsmith\PYGZus{}evaluate}  \PYG{c+c1}{\PYGZsh{} LangSmith\PYGZsq{}s evaluate}
+\PYG{k+kn}{from} \PYG{n+nn}{langsmith} \PYG{k+kn}{import} \PYG{n}{Client}
+\PYG{k+kn}{from} \PYG{n+nn}{typing} \PYG{k+kn}{import} \PYG{n}{Dict}\PYG{p}{,} \PYG{n}{Any}
+
+\PYG{n}{ls\PYGZus{}client} \PYG{o}{=} \PYG{n}{Client}\PYG{p}{()}
+\end{Verbatim}

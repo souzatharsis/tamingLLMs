@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+pip\PYG{+w}{ }install\PYG{+w}{ }outlines
+pip\PYG{+w}{ }install\PYG{+w}{ }transformers
+\end{Verbatim}

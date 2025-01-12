@@ -1,0 +1,50 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{taming\PYGZus{}utils} \PYG{k+kn}{import} \PYG{n}{OpenAIBatchProcessor}
+
+\PYG{k}{async} \PYG{k}{def} \PYG{n+nf}{process\PYGZus{}aligned\PYGZus{}responses}\PYG{p}{(}\PYG{n}{policy}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{company\PYGZus{}name}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{user\PYGZus{}prompts}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{,} \PYG{n}{save\PYGZus{}filepath}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{model}\PYG{p}{:} \PYG{n+nb}{str} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}gpt\PYGZhy{}4o\PYGZhy{}mini\PYGZdq{}}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n+nb}{dict}\PYG{p}{:}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}Process a batch of prompts to generate aligned responses.}
+
+\PYG{l+s+sd}{    Args:}
+\PYG{l+s+sd}{        policy: Content of the policy to enforce}
+\PYG{l+s+sd}{        company\PYGZus{}name: Name of the company whose policy is being enforced}
+\PYG{l+s+sd}{        user\PYGZus{}prompts: List of user prompts to process}
+\PYG{l+s+sd}{        save\PYGZus{}filepath: Path to save the batch results}
+
+\PYG{l+s+sd}{    Returns:}
+\PYG{l+s+sd}{        Dictionary containing the batch processing results}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{n}{ALIGNED\PYGZus{}SUFFIX} \PYG{o}{=} \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}I\PYGZsq{}m sorry, but I can\PYGZsq{}t help with that since it violates }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{company\PYGZus{}name}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZsq{}s policy.\PYGZdq{}}
+    \PYG{n}{system\PYGZus{}prompt} \PYG{o}{=} \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+s2}{    ROLE: You are a helpful assistant.}
+\PYG{l+s+s2}{    TASK: Generate a response to the user prompt}
+\PYG{l+s+s2}{    REQUIREMENTS:}
+\PYG{l+s+s2}{    \PYGZhy{} Response must comply with the provided POLICY}
+\PYG{l+s+s2}{    \PYGZhy{} If chat is not aligned with POLICY, you MUST return your response with the following suffix: \PYGZdq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{ALIGNED\PYGZus{}SUFFIX}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{} and explain why it violates the POLICY.}
+\PYG{l+s+s2}{    \PYGZhy{} Keep the response short}
+\PYG{l+s+s2}{    POLICY: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{policy}\PYG{l+s+si}{\PYGZcb{}}
+\PYG{l+s+s2}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+
+    \PYG{n}{requests} \PYG{o}{=} \PYG{p}{[}
+        \PYG{p}{\PYGZob{}}
+            \PYG{l+s+s2}{\PYGZdq{}model\PYGZdq{}}\PYG{p}{:} \PYG{n}{model}\PYG{p}{,}
+            \PYG{l+s+s2}{\PYGZdq{}messages\PYGZdq{}}\PYG{p}{:} \PYG{p}{[}
+                \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}system\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{n}{system\PYGZus{}prompt}\PYG{p}{\PYGZcb{},}
+                \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}user\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{n}{prompt}\PYG{p}{\PYGZcb{}}
+            \PYG{p}{]}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{for} \PYG{n}{prompt} \PYG{o+ow}{in} \PYG{n}{user\PYGZus{}prompts}
+    \PYG{p}{]}
+
+    \PYG{n}{processor} \PYG{o}{=} \PYG{n}{OpenAIBatchProcessor}\PYG{p}{(}
+        \PYG{n}{api\PYGZus{}key}\PYG{o}{=}\PYG{n}{os}\PYG{o}{.}\PYG{n}{getenv}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}OPENAI\PYGZus{}API\PYGZus{}KEY\PYGZdq{}}\PYG{p}{),}
+        \PYG{n}{max\PYGZus{}requests\PYGZus{}per\PYGZus{}minute}\PYG{o}{=}\PYG{l+m+mi}{1500}\PYG{p}{,}
+        \PYG{n}{max\PYGZus{}tokens\PYGZus{}per\PYGZus{}minute}\PYG{o}{=}\PYG{l+m+mi}{125000}
+    \PYG{p}{)}
+
+    \PYG{n}{results} \PYG{o}{=} \PYG{k}{await} \PYG{n}{processor}\PYG{o}{.}\PYG{n}{process\PYGZus{}batch}\PYG{p}{(}
+        \PYG{n}{requests}\PYG{o}{=}\PYG{n}{requests}\PYG{p}{,}
+        \PYG{n}{save\PYGZus{}filepath}\PYG{o}{=}\PYG{n}{save\PYGZus{}filepath}
+    \PYG{p}{)}
+
+    \PYG{k}{return} \PYG{n}{results}
+\end{Verbatim}

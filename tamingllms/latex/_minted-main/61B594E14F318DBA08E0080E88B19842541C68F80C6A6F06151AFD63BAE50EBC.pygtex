@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Calculate mean and std for both models}
+\PYG{n}{base\PYGZus{}mean} \PYG{o}{=} \PYG{n}{evals\PYGZus{}df\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}score\PYGZus{}base\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{()}
+\PYG{n}{aligned\PYGZus{}mean} \PYG{o}{=} \PYG{n}{evals\PYGZus{}df\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}score\PYGZus{}aligned\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{()}
+\end{Verbatim}

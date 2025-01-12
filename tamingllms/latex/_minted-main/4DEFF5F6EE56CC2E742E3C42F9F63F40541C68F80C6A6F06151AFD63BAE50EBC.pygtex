@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{sentence\PYGZus{}transformers} \PYG{k+kn}{import} \PYG{n}{CrossEncoder}
+\PYG{n}{model} \PYG{o}{=} \PYG{n}{CrossEncoder}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}cross\PYGZhy{}encoder/ms\PYGZhy{}marco\PYGZhy{}MiniLM\PYGZhy{}L\PYGZhy{}6\PYGZhy{}v2\PYGZsq{}}\PYG{p}{,} \PYG{n}{max\PYGZus{}length}\PYG{o}{=}\PYG{l+m+mi}{512}\PYG{p}{)}
+\end{Verbatim}

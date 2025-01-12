@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{yaml}
+
+\PYG{c+c1}{\PYGZsh{} Read the YAML file}
+\PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}promptfoo/model\PYGZus{}comparison/promptfooconfig.yaml\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}r\PYGZsq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{f}\PYG{p}{:}
+    \PYG{n}{config} \PYG{o}{=} \PYG{n}{yaml}\PYG{o}{.}\PYG{n}{safe\PYGZus{}load}\PYG{p}{(}\PYG{n}{f}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Pretty print the YAML content}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{yaml}\PYG{o}{.}\PYG{n}{dump}\PYG{p}{(}\PYG{n}{config}\PYG{p}{,} \PYG{n}{default\PYGZus{}flow\PYGZus{}style}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{,} \PYG{n}{sort\PYGZus{}keys}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{))}
+\end{Verbatim}

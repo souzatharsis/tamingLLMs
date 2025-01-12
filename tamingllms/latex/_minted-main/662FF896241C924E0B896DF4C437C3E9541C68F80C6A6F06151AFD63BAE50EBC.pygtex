@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{BASE\PYGZus{}PROMPT} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}You are an expert at structured data extraction. You will be given unstructured text from a SEC filing and extracted names of mentioned entities and places and should convert the response into the given structure.\PYGZdq{}}
+\end{Verbatim}

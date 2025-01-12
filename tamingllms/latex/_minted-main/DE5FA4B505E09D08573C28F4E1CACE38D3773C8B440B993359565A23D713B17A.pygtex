@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+curl\PYG{+w}{ }\PYGZhy{}fsSL\PYG{+w}{ }https://ollama.com/install.sh\PYG{+w}{ }\PYG{p}{|}\PYG{+w}{ }sh
+pip\PYG{+w}{ }install\PYG{+w}{ }ollama
+\end{Verbatim}

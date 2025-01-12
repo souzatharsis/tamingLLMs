@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+curl\PYG{+w}{ }http://localhost:11434/api/chat\PYG{+w}{ }\PYGZhy{}d\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}\PYGZob{}}
+\PYG{l+s+s1}{  \PYGZdq{}model\PYGZdq{}: \PYGZdq{}qwen2:0.5b\PYGZdq{},}
+\PYG{l+s+s1}{  \PYGZdq{}messages\PYGZdq{}: [}
+\PYG{l+s+s1}{    \PYGZob{} \PYGZdq{}role\PYGZdq{}: \PYGZdq{}user\PYGZdq{}, \PYGZdq{}content\PYGZdq{}: \PYGZdq{}What is the meaning of life?\PYGZdq{} \PYGZcb{}}
+\PYG{l+s+s1}{  ]}
+\PYG{l+s+s1}{\PYGZcb{}\PYGZsq{}}
+\end{Verbatim}

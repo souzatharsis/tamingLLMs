@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nt}{model}\PYG{p}{:}
+\PYG{+w}{  }\PYG{n+nt}{type}\PYG{p}{:}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}tgi\PYGZdq{}}
+\PYG{+w}{  }\PYG{n+nt}{instance}\PYG{p}{:}
+\PYG{+w}{    }\PYG{n+nt}{inference\PYGZus{}server\PYGZus{}address}\PYG{p}{:}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}https://api\PYGZhy{}inference.huggingface.co/models/\PYGZlt{}MODEL\PYGZhy{}ID\PYGZgt{}\PYGZdq{}}
+\PYG{+w}{    }\PYG{n+nt}{inference\PYGZus{}server\PYGZus{}auth}\PYG{p}{:}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}\PYGZlt{}HUGGINGFACE\PYGZhy{}TOKEN\PYGZgt{}\PYGZdq{}}
+\PYG{+w}{    }\PYG{n+nt}{model\PYGZus{}id}\PYG{p}{:}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{null}
+\end{Verbatim}

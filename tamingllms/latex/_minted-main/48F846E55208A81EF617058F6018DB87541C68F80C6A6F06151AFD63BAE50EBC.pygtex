@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PYG{k}{def} \PYG{n+nf}{quiz}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{add\PYGZus{}citations}\PYG{p}{:} \PYG{n+nb}{bool} \PYG{o}{=} \PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{num\PYGZus{}questions}\PYG{p}{:} \PYG{n+nb}{int} \PYG{o}{=} \PYG{l+m+mi}{10}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n+nb}{str}\PYG{p}{:}
+\PYG{+w}{        }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{        Returns a quiz instance based on full input memory.}
+\PYG{l+s+sd}{        \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{quiz\PYGZus{}instance} \PYG{o}{=} \PYG{n}{Quiz}\PYG{p}{(}
+                         \PYG{n+nb}{input}\PYG{o}{=}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{input\PYGZus{}memory}\PYG{p}{,}
+                         \PYG{n}{add\PYGZus{}citations}\PYG{o}{=}\PYG{n}{add\PYGZus{}citations}\PYG{p}{,}
+                         \PYG{n}{num\PYGZus{}questions}\PYG{o}{=}\PYG{n}{num\PYGZus{}questions}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{quiz\PYGZus{}instance}
+\end{Verbatim}

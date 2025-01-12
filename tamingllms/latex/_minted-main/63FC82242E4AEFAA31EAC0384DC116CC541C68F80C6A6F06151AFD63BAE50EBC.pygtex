@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{outlines}
+
+\PYG{n}{model} \PYG{o}{=} \PYG{n}{outlines}\PYG{o}{.}\PYG{n}{models}\PYG{o}{.}\PYG{n}{transformers}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Qwen/Qwen2.5\PYGZhy{}0.5B\PYGZhy{}Instruct\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

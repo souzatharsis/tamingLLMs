@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{export}\PYG{+w}{ }\PYG{n+nv}{LANGCHAIN\PYGZus{}TRACING\PYGZus{}V2}\PYG{o}{=}\PYG{n+nb}{true}
+\PYG{n+nb}{export}\PYG{+w}{ }\PYG{n+nv}{LANGCHAIN\PYGZus{}API\PYGZus{}KEY}\PYG{o}{=}\PYGZlt{}your\PYGZhy{}api\PYGZhy{}key\PYGZgt{}
+\end{Verbatim}

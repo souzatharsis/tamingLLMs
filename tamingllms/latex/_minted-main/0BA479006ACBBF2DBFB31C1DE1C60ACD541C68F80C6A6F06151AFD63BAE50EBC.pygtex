@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{models} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}gpt\PYGZhy{}3.5\PYGZhy{}turbo\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}gpt\PYGZhy{}4\PYGZhy{}turbo\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}gpt\PYGZhy{}4o\PYGZhy{}mini\PYGZdq{}}\PYG{p}{]}
+\PYG{n}{results} \PYG{o}{=} \PYG{p}{[}\PYG{n}{run\PYGZus{}evaluation}\PYG{p}{(}\PYG{n}{app}\PYG{p}{,} \PYG{n}{model}\PYG{p}{,} \PYG{n}{dataset}\PYG{o}{=}\PYG{n}{dataset\PYGZus{}name}\PYG{p}{,} \PYG{n}{evaluators}\PYG{o}{=}\PYG{p}{[}\PYG{n}{calculate\PYGZus{}scores}\PYG{p}{],} \PYG{n}{upload\PYGZus{}results}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)} \PYG{k}{for} \PYG{n}{model} \PYG{o+ow}{in} \PYG{n}{models}\PYG{p}{]}
+\end{Verbatim}

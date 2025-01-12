@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{profanity\PYGZus{}samples} \PYG{o}{=} \PYG{n}{get\PYGZus{}profanity\PYGZus{}samples}\PYG{p}{(}\PYG{n}{num\PYGZus{}samples}\PYG{o}{=}\PYG{n}{BAD\PYGZus{}SAMPLES}\PYG{o}{//}\PYG{l+m+mi}{2}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{Sample Questions:\PYGZdq{}}\PYG{p}{)}
+\PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{q} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{profanity\PYGZus{}samples}\PYG{p}{[:}\PYG{l+m+mi}{5}\PYG{p}{],} \PYG{l+m+mi}{1}\PYG{p}{):}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{i}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{. }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{q}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

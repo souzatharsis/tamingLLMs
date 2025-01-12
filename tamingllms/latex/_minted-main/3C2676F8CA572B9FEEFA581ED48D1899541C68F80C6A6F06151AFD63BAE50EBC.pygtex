@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{similarities} \PYG{o}{=} \PYG{n}{embedding\PYGZus{}model}\PYG{o}{.}\PYG{n}{similarity}\PYG{p}{(}\PYG{n}{embeddings}\PYG{p}{,} \PYG{n}{embeddings}\PYG{p}{)}
+\PYG{n}{similarities}
+\end{Verbatim}

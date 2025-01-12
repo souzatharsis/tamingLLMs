@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+./build/bin/llama\PYGZhy{}bench\PYG{+w}{ }\PYGZhy{}r\PYG{+w}{ }\PYG{l+m}{10}\PYG{+w}{ }\PYGZhy{}t\PYG{+w}{ }\PYG{l+m}{4}\PYG{+w}{ }\PYGZhy{}m\PYG{+w}{ }./models/qwen2.5\PYGZhy{}0.5b\PYGZhy{}instruct\PYGZhy{}fp16.gguf\PYG{+w}{ }\PYGZhy{}m\PYG{+w}{ }./models/qwen2.5\PYGZhy{}0.5b\PYGZhy{}instruct\PYGZhy{}q2\PYGZus{}k.gguf\PYG{+w}{ }\PYGZhy{}m\PYG{+w}{ }./models/qwen2.5\PYGZhy{}0.5b\PYGZhy{}instruct\PYGZhy{}q4\PYGZus{}k\PYGZus{}m.gguf\PYG{+w}{ }\PYGZhy{}m\PYG{+w}{ }./models/qwen2.5\PYGZhy{}0.5b\PYGZhy{}instruct\PYGZhy{}q6\PYGZus{}k.gguf
+\end{Verbatim}

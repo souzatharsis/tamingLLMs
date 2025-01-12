@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Define dataset: these are your test cases}
+\PYG{n}{dataset\PYGZus{}name} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Golden SEC Summary Dataset\PYGZdq{}}
+\PYG{n}{dataset} \PYG{o}{=} \PYG{n}{ls\PYGZus{}client}\PYG{o}{.}\PYG{n}{create\PYGZus{}dataset}\PYG{p}{(}\PYG{n}{dataset\PYGZus{}name}\PYG{p}{)}
+\PYG{n}{ls\PYGZus{}client}\PYG{o}{.}\PYG{n}{create\PYGZus{}examples}\PYG{p}{(}
+    \PYG{n}{inputs}\PYG{o}{=}\PYG{p}{[}
+        \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}sec\PYGZus{}filing\PYGZdq{}}\PYG{p}{:} \PYG{n}{sec\PYGZus{}filing}\PYG{p}{\PYGZcb{},}
+    \PYG{p}{],}
+    \PYG{n}{outputs}\PYG{o}{=}\PYG{p}{[}
+        \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}summary\PYGZdq{}}\PYG{p}{:} \PYG{n}{benchmark\PYGZus{}summary}\PYG{p}{\PYGZcb{},}
+    \PYG{p}{],}
+    \PYG{n}{dataset\PYGZus{}id}\PYG{o}{=}\PYG{n}{dataset}\PYG{o}{.}\PYG{n}{id}\PYG{p}{,}
+\PYG{p}{)}
+\end{Verbatim}

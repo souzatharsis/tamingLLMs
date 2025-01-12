@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{extract\PYGZus{}prompt} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Economic Forecasts for 2025E\PYGZdq{}}
+\PYG{n}{md\PYGZus{}financials} \PYG{o}{=} \PYG{n}{extract\PYGZus{}from\PYGZus{}doc}\PYG{p}{(}\PYG{n}{extract\PYGZus{}prompt}\PYG{p}{,} \PYG{n}{forecast\PYGZus{}result\PYGZus{}md}\PYG{p}{,} \PYG{n}{client}\PYG{p}{)}
+\PYG{n}{docling\PYGZus{}financials} \PYG{o}{=} \PYG{n}{extract\PYGZus{}from\PYGZus{}doc}\PYG{p}{(}\PYG{n}{extract\PYGZus{}prompt}\PYG{p}{,} \PYG{n}{forecast\PYGZus{}result\PYGZus{}docling}\PYG{p}{,} \PYG{n}{client}\PYG{p}{)}
+\end{Verbatim}

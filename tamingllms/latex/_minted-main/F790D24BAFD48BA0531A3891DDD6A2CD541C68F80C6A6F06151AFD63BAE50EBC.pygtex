@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{csv}
+\PYG{n}{res}\PYG{o}{.}\PYG{n}{to\PYGZus{}csv}\PYG{p}{(}\PYG{n}{CHOSEN\PYGZus{}RESPONSES\PYGZus{}PATH}\PYG{p}{,} \PYG{n}{quoting}\PYG{o}{=}\PYG{n}{csv}\PYG{o}{.}\PYG{n}{QUOTE\PYGZus{}ALL}\PYG{p}{,} \PYG{n}{index}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
+\end{Verbatim}

@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{llama\PYGZus{}parse} \PYG{k+kn}{import} \PYG{n}{LlamaParse}
+
+\PYG{c+c1}{\PYGZsh{} Initialize the parser}
+\PYG{n}{parser} \PYG{o}{=} \PYG{n}{LlamaParse}\PYG{p}{(}
+    \PYG{n}{api\PYGZus{}key}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}llx\PYGZhy{}your\PYGZhy{}api\PYGZhy{}key\PYGZhy{}here\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{result\PYGZus{}type}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}markdown\PYGZdq{}}\PYG{p}{,}  \PYG{c+c1}{\PYGZsh{} Can be \PYGZdq{}markdown\PYGZdq{} or \PYGZdq{}text\PYGZdq{}}
+    \PYG{n}{verbose}\PYG{o}{=}\PYG{k+kc}{True}
+\PYG{p}{)}
+
+\PYG{n}{documents} \PYG{o}{=} \PYG{n}{parser}\PYG{o}{.}\PYG{n}{load\PYGZus{}data}\PYG{p}{([}\PYG{l+s+s2}{\PYGZdq{}./doc1.pdf\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}./doc2.pdf\PYGZdq{}}\PYG{p}{])}
+\end{Verbatim}

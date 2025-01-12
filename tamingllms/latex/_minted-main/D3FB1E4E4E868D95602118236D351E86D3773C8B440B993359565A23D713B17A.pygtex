@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Create and activate a virtual environment}
+python\PYG{+w}{ }\PYGZhy{}m\PYG{+w}{ }venv\PYG{+w}{ }taming\PYGZhy{}llms\PYGZhy{}env
+\PYG{n+nb}{source}\PYG{+w}{ }taming\PYGZhy{}llms\PYGZhy{}env/bin/activate\PYG{+w}{  }\PYG{c+c1}{\PYGZsh{} On Windows, use: taming\PYGZhy{}llms\PYGZhy{}env\PYGZbs{}Scripts\PYGZbs{}activate}
+\end{Verbatim}

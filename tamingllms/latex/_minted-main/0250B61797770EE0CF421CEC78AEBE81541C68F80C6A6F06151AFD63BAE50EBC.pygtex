@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{API\PYGZus{}URL} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZlt{}YOUR\PYGZus{}API\PYGZus{}URL\PYGZgt{}\PYGZdq{}}
+
+\PYG{n}{evaluator} \PYG{o}{=} \PYG{n}{ResponseGenerator}\PYG{p}{(}
+    \PYG{n}{api\PYGZus{}url}\PYG{o}{=}\PYG{n}{API\PYGZus{}URL}
+\PYG{p}{)}
+\end{Verbatim}

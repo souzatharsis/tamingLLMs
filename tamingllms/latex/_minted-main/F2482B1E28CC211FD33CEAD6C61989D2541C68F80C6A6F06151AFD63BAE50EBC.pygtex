@@ -1,0 +1,29 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{chromadb}
+\PYG{k+kn}{from} \PYG{n+nn}{llama\PYGZus{}index.core} \PYG{k+kn}{import} \PYG{n}{VectorStoreIndex}\PYG{p}{,} \PYG{n}{SimpleDirectoryReader}
+\PYG{k+kn}{from} \PYG{n+nn}{llama\PYGZus{}index.vector\PYGZus{}stores.chroma} \PYG{k+kn}{import} \PYG{n}{ChromaVectorStore}
+\PYG{k+kn}{from} \PYG{n+nn}{llama\PYGZus{}index.core} \PYG{k+kn}{import} \PYG{n}{StorageContext}
+
+\PYG{c+c1}{\PYGZsh{} load some documents}
+\PYG{n}{documents} \PYG{o}{=} \PYG{n}{SimpleDirectoryReader}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}./data\PYGZdq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{load\PYGZus{}data}\PYG{p}{()}
+
+\PYG{c+c1}{\PYGZsh{} initialize client, setting path to save data}
+\PYG{n}{db} \PYG{o}{=} \PYG{n}{chromadb}\PYG{o}{.}\PYG{n}{PersistentClient}\PYG{p}{(}\PYG{n}{path}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}./chroma\PYGZus{}db\PYGZdq{}}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} create collection}
+\PYG{n}{chroma\PYGZus{}collection} \PYG{o}{=} \PYG{n}{db}\PYG{o}{.}\PYG{n}{get\PYGZus{}or\PYGZus{}create\PYGZus{}collection}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}tamingllms\PYGZdq{}}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} assign chroma as the vector\PYGZus{}store to the context}
+\PYG{n}{vector\PYGZus{}store} \PYG{o}{=} \PYG{n}{ChromaVectorStore}\PYG{p}{(}\PYG{n}{chroma\PYGZus{}collection}\PYG{o}{=}\PYG{n}{chroma\PYGZus{}collection}\PYG{p}{)}
+\PYG{n}{storage\PYGZus{}context} \PYG{o}{=} \PYG{n}{StorageContext}\PYG{o}{.}\PYG{n}{from\PYGZus{}defaults}\PYG{p}{(}\PYG{n}{vector\PYGZus{}store}\PYG{o}{=}\PYG{n}{vector\PYGZus{}store}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} create your index}
+\PYG{n}{index} \PYG{o}{=} \PYG{n}{VectorStoreIndex}\PYG{o}{.}\PYG{n}{from\PYGZus{}documents}\PYG{p}{(}
+    \PYG{n}{documents}\PYG{p}{,} \PYG{n}{storage\PYGZus{}context}\PYG{o}{=}\PYG{n}{storage\PYGZus{}context}
+\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} create a query engine and query}
+\PYG{n}{query\PYGZus{}engine} \PYG{o}{=} \PYG{n}{index}\PYG{o}{.}\PYG{n}{as\PYGZus{}query\PYGZus{}engine}\PYG{p}{()}
+\PYG{n}{response} \PYG{o}{=} \PYG{n}{query\PYGZus{}engine}\PYG{o}{.}\PYG{n}{query}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Who is the author of Taming LLMs?\PYGZdq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{response}\PYG{p}{)}
+\end{Verbatim}

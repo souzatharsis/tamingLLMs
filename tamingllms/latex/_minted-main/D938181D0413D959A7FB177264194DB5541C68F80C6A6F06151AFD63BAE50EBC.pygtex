@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{base\PYGZus{}model\PYGZus{}responses} \PYG{o}{=} \PYG{n}{ParallelEvaluator}\PYG{p}{(}\PYG{n}{ResponseGenerator}\PYG{p}{(}
+    \PYG{n}{api\PYGZus{}url}\PYG{o}{=}\PYG{n}{BASE\PYGZus{}MODEL\PYGZus{}API\PYGZus{}URL}
+\PYG{p}{))}\PYG{o}{.}\PYG{n}{evaluate}\PYG{p}{(}\PYG{n}{prompts}\PYG{o}{=}\PYG{n}{prompts\PYGZus{}eval}\PYG{p}{[:}\PYG{n}{NUM\PYGZus{}SAMPLES}\PYG{p}{],}
+           \PYG{n}{n\PYGZus{}parts}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{,}
+           \PYG{n}{save\PYGZus{}to\PYGZus{}csv}\PYG{o}{=}\PYG{n}{BASE\PYGZus{}MODEL\PYGZus{}RESPONSES\PYGZus{}PATH}\PYG{p}{)}
+\end{Verbatim}

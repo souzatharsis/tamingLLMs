@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+pip\PYG{+w}{ }install\PYG{+w}{ }\PYGZhy{}qU\PYG{+w}{ }langchain\PYGZhy{}openai
+\end{Verbatim}

@@ -1,0 +1,120 @@
+\begin{theindex}
+
+  \item ChatGPT, \hyperpage{75}, \hyperpage{92}
+  \item ChromaDB, \hyperpage{96}
+  \item Chunking, \hyperpage{109}
+  \item Claude, \hyperpage{237}
+  \item Controlled text generation, \hyperpage{53}
+  \item Corpus-in-Context Prompting (CiC), \hyperpage{122}
+  \item Cross-Encoder, \hyperpage{101}
+
+  \indexspace
+
+  \item DeepSeek, \hyperpage{234}
+  \item Docling, \hyperpage{80}
+
+  \indexspace
+
+  \item Embeddings, \hyperpage{98}
+
+  \indexspace
+
+  \item FineWeb, \hyperpage{240}
+
+  \indexspace
+
+  \item Gemini, \hyperpage{106}, \hyperpage{120}, \hyperpage{237}
+  \item Gemma, \hyperpage{75}
+  \item GGUF, \hyperpage{245}
+  \item GPT, \hyperpage{106}, \hyperpage{237}
+
+  \indexspace
+
+  \item Hallucination, \hyperpage{105}
+  \item HuggingFace, \hyperpage{231}, \hyperpage{240--242}, 
+		\hyperpage{245}, \hyperpage{250}
+
+  \indexspace
+
+  \item Indexing, \hyperpage{99}
+
+  \indexspace
+
+  \item Jan, \hyperpage{254}
+  \item JSON Mode, \hyperpage{57}
+
+  \indexspace
+
+  \item KL Divergence, \hyperpage{260}
+
+  \indexspace
+
+  \item LangChain, \hyperpage{70}, \hyperpage{108}, \hyperpage{112}
+  \item Levenshtein distance, \hyperpage{81}
+  \item Llama, \hyperpage{232}, \hyperpage{237}, \hyperpage{239}, 
+		\hyperpage{244}
+  \item LLama.cpp, \hyperpage{71}, \hyperpage{244}, \hyperpage{252}
+  \item Llamafile, \hyperpage{249}, \hyperpage{252}
+  \item LlamaIndex, \hyperpage{108}
+  \item LM Studio, \hyperpage{253}
+  \item Logit post-processing, \hyperpage{60}
+  \item Long-context language models, \hyperpage{79}, \hyperpage{106}
+
+  \indexspace
+
+  \item MarkItDown, \hyperpage{80}, \hyperpage{125}
+  \item Microsoft Phi, \hyperpage{239}
+  \item Mistral, \hyperpage{75}, \hyperpage{239}, \hyperpage{242}
+
+  \indexspace
+
+  \item Next-token prediction, \hyperpage{52}
+  \item Nova, \hyperpage{237}
+
+  \indexspace
+
+  \item Ollama, \hyperpage{71}, \hyperpage{252}
+  \item Open WebUI, \hyperpage{255}
+  \item Outlines, \hyperpage{65}
+
+  \indexspace
+
+  \item Perplexity, \hyperpage{259}
+  \item preface, \hyperpage{v}
+  \item Prompt Caching, \hyperpage{123}
+  \item Prompt Engineering, \hyperpage{54}
+  \item Pydantic, \hyperpage{60}, \hyperpage{74}, \hyperpage{84}
+
+  \indexspace
+
+  \item Quantization, \hyperpage{245}, \hyperpage{257}
+  \item Qwen, \hyperpage{68}, \hyperpage{232, 233}, \hyperpage{237}, 
+		\hyperpage{239}, \hyperpage{246}, \hyperpage{257}
+
+  \indexspace
+
+  \item Reranking, \hyperpage{100}
+  \item Retrieval-Augmented Generation (RAG), \hyperpage{92}
+
+  \indexspace
+
+  \item SmolLM, \hyperpage{242}
+  \item Structured output, \hyperpage{58}, \hyperpage{81}
+  \item Synthetic Data, \hyperpage{51}
+
+  \indexspace
+
+  \item Toxigen, \hyperpage{232}
+  \item Transformer Reinforcement Learning (TRL), \hyperpage{241}
+  \item Transformers, \hyperpage{62}, \hyperpage{241}
+  \item TruthfulQA, \hyperpage{232}
+
+  \indexspace
+
+  \item Ultrachat dataset, \hyperpage{241}
+
+  \indexspace
+
+  \item VectorDB, \hyperpage{96}
+
+\end{theindex}

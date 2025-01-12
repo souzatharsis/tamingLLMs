@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{yaml}
+\PYG{k+kn}{from} \PYG{n+nn}{pathlib} \PYG{k+kn}{import} \PYG{n}{Path}
+
+\PYG{c+c1}{\PYGZsh{} Load configuration from YAML}
+\PYG{n}{config\PYGZus{}path} \PYG{o}{=} \PYG{n}{Path}\PYG{p}{(}\PYG{n}{DPO\PYGZus{}CONFIG\PYGZus{}PATH}\PYG{p}{)}
+\PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{n}{config\PYGZus{}path}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}r\PYGZsq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{f}\PYG{p}{:}
+    \PYG{n}{config} \PYG{o}{=} \PYG{n}{yaml}\PYG{o}{.}\PYG{n}{safe\PYGZus{}load}\PYG{p}{(}\PYG{n}{f}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Add runtime parameters}
+\PYG{n}{config}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}training\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}hub\PYGZus{}model\PYGZus{}id\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{finetune\PYGZus{}name}
+\PYG{n}{config}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}training\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}use\PYGZus{}mps\PYGZus{}device\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{device} \PYG{o}{==} \PYG{l+s+s2}{\PYGZdq{}mps\PYGZdq{}}
+\PYG{n}{config}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}training\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}output\PYGZus{}dir\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{TRAINING\PYGZus{}RESULTS\PYGZus{}DIR}
+\PYG{n}{config}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}training\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}max\PYGZus{}steps\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{MAX\PYGZus{}STEPS}
+\PYG{n}{config}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}training\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}warmup\PYGZus{}steps\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{WARMUP\PYGZus{}STEPS}
+
+\PYG{c+c1}{\PYGZsh{} Create DPOConfig from loaded configuration}
+\PYG{n}{training\PYGZus{}args} \PYG{o}{=} \PYG{n}{DPOConfig}\PYG{p}{(}\PYG{o}{**}\PYG{n}{config}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}training\PYGZsq{}}\PYG{p}{])}
+\end{Verbatim}

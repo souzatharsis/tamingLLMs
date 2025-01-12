@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{openai} \PYG{k+kn}{import} \PYG{n}{OpenAI}
+\PYG{n}{oai\PYGZus{}client} \PYG{o}{=} \PYG{n}{OpenAI}\PYG{p}{()}
+
+\PYG{n}{xp\PYGZus{}model\PYGZus{}name} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}} \PYG{c+c1}{\PYGZsh{} global variable for model to be tested later}
+
+\PYG{k}{def} \PYG{n+nf}{generate\PYGZus{}summary}\PYG{p}{(}\PYG{n}{inputs}\PYG{p}{:} \PYG{n+nb}{dict}\PYG{p}{):}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    Generate a summary of input using a given model}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{n}{TASK} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Generate a 1\PYGZhy{}liner summary of the following excerpt from an SEC filing.\PYGZdq{}}
+
+    \PYG{n}{response} \PYG{o}{=} \PYG{n}{oai\PYGZus{}client}\PYG{o}{.}\PYG{n}{chat}\PYG{o}{.}\PYG{n}{completions}\PYG{o}{.}\PYG{n}{create}\PYG{p}{(}
+    \PYG{n}{model}\PYG{o}{=}\PYG{n}{xp\PYGZus{}model\PYGZus{}name}\PYG{p}{,} \PYG{c+c1}{\PYGZsh{} model\PYGZus{}name is a global variable}
+        \PYG{n}{messages}\PYG{o}{=}\PYG{p}{[\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}system\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{n}{PROMPT}\PYG{p}{\PYGZcb{},}
+                 \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}user\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{n}{inputs}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}sec\PYGZus{}filing\PYGZdq{}}\PYG{p}{)\PYGZcb{}]}
+    \PYG{p}{)}
+    \PYG{k}{return} \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}summary\PYGZdq{}}\PYG{p}{:} \PYG{n}{response}\PYG{o}{.}\PYG{n}{choices}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{message}\PYG{o}{.}\PYG{n}{content}\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}The most relevant document is: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{res}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}ids\PYGZsq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{n}{np}\PYG{o}{.}\PYG{n}{argmax}\PYG{p}{(}\PYG{n}{scores}\PYG{p}{)]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

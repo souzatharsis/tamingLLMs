@@ -1,0 +1,32 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{langchain\PYGZus{}core.output\PYGZus{}parsers} \PYG{k+kn}{import} \PYG{n}{StrOutputParser}
+\PYG{k+kn}{from} \PYG{n+nn}{langchain\PYGZus{}community.chat\PYGZus{}models} \PYG{k+kn}{import} \PYG{n}{ChatLiteLLM}
+
+\PYG{k}{def} \PYG{n+nf}{get\PYGZus{}llm\PYGZus{}chain}\PYG{p}{(}\PYG{n}{prompt\PYGZus{}template}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{model\PYGZus{}name}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{temperature}\PYG{p}{:} \PYG{n+nb}{float} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{):}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    Returns an LLMChain instance using langchain.}
+
+\PYG{l+s+sd}{    Args:}
+\PYG{l+s+sd}{        prompt\PYGZus{}template (str): The prompt template to use.}
+\PYG{l+s+sd}{        model\PYGZus{}name (str): The name of the model to use.}
+\PYG{l+s+sd}{        temperature (float): The temperature setting for the model.}
+
+\PYG{l+s+sd}{    Returns:}
+\PYG{l+s+sd}{        llm\PYGZus{}chain: An instance of the LLMChain.}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+
+    \PYG{k+kn}{from} \PYG{n+nn}{dotenv} \PYG{k+kn}{import} \PYG{n}{load\PYGZus{}dotenv}
+    \PYG{k+kn}{import} \PYG{n+nn}{os}
+
+    \PYG{c+c1}{\PYGZsh{} Load environment variables from .env file}
+    \PYG{n}{load\PYGZus{}dotenv}\PYG{p}{()}
+
+    \PYG{n}{api\PYGZus{}key\PYGZus{}label} \PYG{o}{=} \PYG{n}{model\PYGZus{}name}\PYG{o}{.}\PYG{n}{split}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}/\PYGZdq{}}\PYG{p}{)[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{upper}\PYG{p}{()} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{}\PYGZus{}API\PYGZus{}KEY\PYGZdq{}}
+    \PYG{n}{llm} \PYG{o}{=} \PYG{n}{ChatLiteLLM}\PYG{p}{(}
+        \PYG{n}{model}\PYG{o}{=}\PYG{n}{model\PYGZus{}name}\PYG{p}{,}
+        \PYG{n}{temperature}\PYG{o}{=}\PYG{n}{temperature}\PYG{p}{,}
+        \PYG{n}{api\PYGZus{}key}\PYG{o}{=}\PYG{n}{os}\PYG{o}{.}\PYG{n}{environ}\PYG{p}{[}\PYG{n}{api\PYGZus{}key\PYGZus{}label}\PYG{p}{],}
+    \PYG{p}{)}
+    \PYG{n}{llm\PYGZus{}chain} \PYG{o}{=} \PYG{n}{prompt\PYGZus{}template} \PYG{o}{|} \PYG{n}{llm} \PYG{o}{|} \PYG{n}{StrOutputParser}\PYG{p}{()}
+    \PYG{k}{return} \PYG{n}{llm\PYGZus{}chain}
+\end{Verbatim}

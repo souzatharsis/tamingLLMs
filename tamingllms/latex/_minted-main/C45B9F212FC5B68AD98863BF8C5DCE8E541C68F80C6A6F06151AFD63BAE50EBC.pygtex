@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{transformers} \PYG{k+kn}{import} \PYG{n}{pipeline}
+
+\PYG{n}{base\PYGZus{}generator} \PYG{o}{=} \PYG{n}{pipeline}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}text\PYGZhy{}generation\PYGZdq{}}\PYG{p}{,} \PYG{n}{model}\PYG{o}{=}\PYG{n}{BASE\PYGZus{}MODEL}\PYG{p}{,} \PYG{n}{device}\PYG{o}{=}\PYG{n}{device}\PYG{p}{)}
+\PYG{n}{aligned\PYGZus{}generator} \PYG{o}{=} \PYG{n}{pipeline}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}text\PYGZhy{}generation\PYGZdq{}}\PYG{p}{,} \PYG{n}{model}\PYG{o}{=}\PYG{n}{ALIGNED\PYGZus{}MODEL}\PYG{p}{,} \PYG{n}{device}\PYG{o}{=}\PYG{n}{device}\PYG{p}{)}
+\end{Verbatim}

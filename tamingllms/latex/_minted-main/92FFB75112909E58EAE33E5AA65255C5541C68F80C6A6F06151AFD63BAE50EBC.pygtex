@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{doc} \PYG{o}{=} \PYG{n}{sec\PYGZus{}filing}\PYG{p}{[:}\PYG{n}{TOP}\PYG{p}{]}
+\PYG{n}{model} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}qwen2.5:0.5b\PYGZdq{}}
+
+\PYG{n}{response} \PYG{o}{=} \PYG{n}{extract\PYGZus{}entities\PYGZus{}from\PYGZus{}sec\PYGZus{}filing}\PYG{p}{(}\PYG{n}{doc}\PYG{p}{,} \PYG{n}{model}\PYG{p}{)}
+
+\PYG{k+kn}{import} \PYG{n+nn}{json}
+\PYG{n}{response\PYGZus{}json} \PYG{o}{=} \PYG{n}{json}\PYG{o}{.}\PYG{n}{loads}\PYG{p}{(}\PYG{n}{response}\PYG{o}{.}\PYG{n}{message}\PYG{o}{.}\PYG{n}{content}\PYG{p}{)}
+\end{Verbatim}

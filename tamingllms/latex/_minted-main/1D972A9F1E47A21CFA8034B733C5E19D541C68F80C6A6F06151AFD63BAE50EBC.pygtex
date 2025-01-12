@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{collection} \PYG{o}{=} \PYG{n}{chroma\PYGZus{}client}\PYG{o}{.}\PYG{n}{create\PYGZus{}collection}\PYG{p}{(}\PYG{n}{name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}taming\PYGZus{}llms\PYGZdq{}}\PYG{p}{)}
+
+\PYG{n}{collection}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}
+    \PYG{n}{documents}\PYG{o}{=}\PYG{n}{chapters}\PYG{p}{,}
+    \PYG{n}{ids}\PYG{o}{=}\PYG{n}{chapter\PYGZus{}ids}
+\PYG{p}{)}
+\end{Verbatim}

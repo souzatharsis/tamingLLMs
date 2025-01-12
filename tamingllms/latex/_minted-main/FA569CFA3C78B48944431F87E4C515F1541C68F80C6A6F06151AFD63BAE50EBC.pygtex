@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{Levenshtein}
+\PYG{k}{def} \PYG{n+nf}{levenshtein\PYGZus{}similarity}\PYG{p}{(}\PYG{n}{text1}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{text2}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n+nb}{float}\PYG{p}{:}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    Calculate normalized Levenshtein distance}
+\PYG{l+s+sd}{    Returns value between 0 (completely different) and 1 (identical)}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{n}{distance} \PYG{o}{=} \PYG{n}{Levenshtein}\PYG{o}{.}\PYG{n}{distance}\PYG{p}{(}\PYG{n}{text1}\PYG{p}{,} \PYG{n}{text2}\PYG{p}{)}
+    \PYG{n}{max\PYGZus{}len} \PYG{o}{=} \PYG{n+nb}{max}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{text1}\PYG{p}{),} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{text2}\PYG{p}{))}
+    \PYG{k}{return} \PYG{l+m+mi}{1} \PYG{o}{\PYGZhy{}} \PYG{p}{(}\PYG{n}{distance} \PYG{o}{/} \PYG{n}{max\PYGZus{}len}\PYG{p}{)}
+
+\PYG{k+kn}{from} \PYG{n+nn}{difflib} \PYG{k+kn}{import} \PYG{n}{SequenceMatcher}
+\PYG{k}{def} \PYG{n+nf}{simple\PYGZus{}similarity}\PYG{p}{(}\PYG{n}{text1}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{text2}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n+nb}{float}\PYG{p}{:}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    Calculate similarity ratio using SequenceMatcher}
+\PYG{l+s+sd}{    Returns value between 0 (completely different) and 1 (identical)}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{k}{return} \PYG{n}{SequenceMatcher}\PYG{p}{(}\PYG{k+kc}{None}\PYG{p}{,} \PYG{n}{text1}\PYG{p}{,} \PYG{n}{text2}\PYG{p}{)}\PYG{o}{.}\PYG{n}{ratio}\PYG{p}{()}
+\end{Verbatim}

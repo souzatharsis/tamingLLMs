@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Convert evaluation objects to dictionaries}
+\PYG{n}{evals\PYGZus{}list} \PYG{o}{=} \PYG{p}{[}
+    \PYG{p}{\PYGZob{}}
+        \PYG{l+s+s2}{\PYGZdq{}expertise\PYGZdq{}}\PYG{p}{:} \PYG{n+nb}{eval}\PYG{o}{.}\PYG{n}{expertise}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}coherence\PYGZdq{}}\PYG{p}{:} \PYG{n+nb}{eval}\PYG{o}{.}\PYG{n}{coherence}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}fluency\PYGZdq{}}\PYG{p}{:} \PYG{n+nb}{eval}\PYG{o}{.}\PYG{n}{fluency}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}similarity\PYGZdq{}}\PYG{p}{:} \PYG{n+nb}{eval}\PYG{o}{.}\PYG{n}{similarity}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{for} \PYG{n+nb}{eval} \PYG{o+ow}{in} \PYG{n}{evals}
+\PYG{p}{]}
+
+\PYG{c+c1}{\PYGZsh{} Visualize results}
+\PYG{n}{plot} \PYG{o}{=} \PYG{n}{visualize\PYGZus{}prompt\PYGZus{}comparison}\PYG{p}{(}\PYG{n}{evals\PYGZus{}list}\PYG{p}{,} \PYG{n}{models\PYGZus{}test}\PYG{p}{)}
+\PYG{n}{plot}\PYG{o}{.}\PYG{n}{show}\PYG{p}{()}
+\end{Verbatim}

@@ -1,0 +1,42 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{YesNoLogitsProcessor}\PYG{p}{(}\PYG{n}{LogitsProcessor}\PYG{p}{):}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{yes}\PYG{p}{,} \PYG{n}{no}\PYG{p}{,} \PYG{n}{tokenizer}\PYG{p}{,} \PYG{n}{initial\PYGZus{}length}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{yes} \PYG{o}{=} \PYG{n}{yes}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{no} \PYG{o}{=} \PYG{n}{no}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{tokenizer} \PYG{o}{=} \PYG{n}{tokenizer}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{initial\PYGZus{}length} \PYG{o}{=} \PYG{n}{initial\PYGZus{}length}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}call\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{input\PYGZus{}ids}\PYG{p}{:} \PYG{n}{torch}\PYG{o}{.}\PYG{n}{LongTensor}\PYG{p}{,} \PYG{n}{scores}\PYG{p}{:} \PYG{n}{torch}\PYG{o}{.}\PYG{n}{FloatTensor}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{torch}\PYG{o}{.}\PYG{n}{FloatTensor}\PYG{p}{:}
+        \PYG{c+c1}{\PYGZsh{} If we already generated a response, mask everything}
+        \PYG{k}{if} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{input\PYGZus{}ids}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])} \PYG{o}{\PYGZgt{}} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{initial\PYGZus{}length}\PYG{p}{:}
+            \PYG{n}{scores}\PYG{o}{.}\PYG{n}{fill\PYGZus{}}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{n+nb}{float}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}inf\PYGZsq{}}\PYG{p}{))}
+            \PYG{k}{return} \PYG{n}{scores}
+
+        \PYG{c+c1}{\PYGZsh{} Debug prints}
+        \PYG{n}{yes\PYGZus{}tokens} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{encode}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{yes}\PYG{p}{,} \PYG{n}{add\PYGZus{}special\PYGZus{}tokens}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
+        \PYG{n}{no\PYGZus{}tokens} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{encode}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{no}\PYG{p}{,} \PYG{n}{add\PYGZus{}special\PYGZus{}tokens}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}Yes token ID: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{yes\PYGZus{}tokens}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}No token ID: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{no\PYGZus{}tokens}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+
+
+        \PYG{c+c1}{\PYGZsh{} Extract original logits for yes/no}
+        \PYG{n}{yes\PYGZus{}no\PYGZus{}logits} \PYG{o}{=} \PYG{n}{scores}\PYG{p}{[:,} \PYG{p}{[}\PYG{n}{yes\PYGZus{}tokens}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{n}{no\PYGZus{}tokens}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]]]}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}[Yes, No] logits: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{yes\PYGZus{}no\PYGZus{}logits}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+
+        \PYG{c+c1}{\PYGZsh{} Get probabilities using softmax}
+        \PYG{n}{yes\PYGZus{}no\PYGZus{}probs} \PYG{o}{=} \PYG{n}{torch}\PYG{o}{.}\PYG{n}{nn}\PYG{o}{.}\PYG{n}{functional}\PYG{o}{.}\PYG{n}{softmax}\PYG{p}{(}\PYG{n}{yes\PYGZus{}no\PYGZus{}logits}\PYG{p}{,} \PYG{n}{dim}\PYG{o}{=\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}
+        \PYG{n}{yes\PYGZus{}prob} \PYG{o}{=} \PYG{n}{yes\PYGZus{}no\PYGZus{}probs}\PYG{p}{[:,} \PYG{l+m+mi}{0}\PYG{p}{]}
+        \PYG{n}{no\PYGZus{}prob} \PYG{o}{=} \PYG{n}{yes\PYGZus{}no\PYGZus{}probs}\PYG{p}{[:,} \PYG{l+m+mi}{1}\PYG{p}{]}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}Yes prob: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{yes\PYGZus{}prob}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}No prob: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{no\PYGZus{}prob}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+
+        \PYG{c+c1}{\PYGZsh{} Mask all tokens with \PYGZhy{}inf}
+        \PYG{n}{scores}\PYG{o}{.}\PYG{n}{fill\PYGZus{}}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{n+nb}{float}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}inf\PYGZsq{}}\PYG{p}{))}
+
+        \PYG{c+c1}{\PYGZsh{} Set the higher probability choice to 0}
+        \PYG{n}{yes\PYGZus{}mask} \PYG{o}{=} \PYG{n}{yes\PYGZus{}prob} \PYG{o}{\PYGZgt{}} \PYG{n}{no\PYGZus{}prob}
+        \PYG{n}{scores}\PYG{p}{[:,} \PYG{n}{yes\PYGZus{}tokens}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]]} \PYG{o}{=} \PYG{n}{torch}\PYG{o}{.}\PYG{n}{where}\PYG{p}{(}\PYG{n}{yes\PYGZus{}mask}\PYG{p}{,} \PYG{n}{torch}\PYG{o}{.}\PYG{n}{tensor}\PYG{p}{(}\PYG{l+m+mf}{1e4}\PYG{p}{),} \PYG{n}{torch}\PYG{o}{.}\PYG{n}{tensor}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{n+nb}{float}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}inf\PYGZsq{}}\PYG{p}{)))}
+        \PYG{n}{scores}\PYG{p}{[:,} \PYG{n}{no\PYGZus{}tokens}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]]} \PYG{o}{=} \PYG{n}{torch}\PYG{o}{.}\PYG{n}{where}\PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{n}{yes\PYGZus{}mask}\PYG{p}{,} \PYG{n}{torch}\PYG{o}{.}\PYG{n}{tensor}\PYG{p}{(}\PYG{l+m+mf}{1e4}\PYG{p}{),} \PYG{n}{torch}\PYG{o}{.}\PYG{n}{tensor}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{n+nb}{float}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}inf\PYGZsq{}}\PYG{p}{)))}
+
+        \PYG{k}{return} \PYG{n}{scores}
+\end{Verbatim}

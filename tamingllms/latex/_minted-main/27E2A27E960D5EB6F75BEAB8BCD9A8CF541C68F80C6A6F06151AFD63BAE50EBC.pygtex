@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
+
+\PYG{c+c1}{\PYGZsh{} Create list of dataframes from results}
+\PYG{n}{dfs} \PYG{o}{=} \PYG{p}{[}\PYG{n}{result}\PYG{o}{.}\PYG{n}{to\PYGZus{}pandas}\PYG{p}{()} \PYG{k}{for} \PYG{n}{result} \PYG{o+ow}{in} \PYG{n}{results}\PYG{p}{]}
+
+\PYG{k}{for} \PYG{n}{df}\PYG{p}{,} \PYG{n}{model} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{dfs}\PYG{p}{,} \PYG{n}{models}\PYG{p}{):}
+    \PYG{n}{df}\PYG{o}{.}\PYG{n}{insert}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}model\PYGZsq{}}\PYG{p}{,} \PYG{n}{model}\PYG{p}{)}
+
+\PYG{n}{combined\PYGZus{}df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{concat}\PYG{p}{(}\PYG{n}{dfs}\PYG{p}{,} \PYG{n}{ignore\PYGZus{}index}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+\end{Verbatim}

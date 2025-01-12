@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{base\PYGZus{}df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}model\PYGZus{}type\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}base\PYGZus{}model\PYGZsq{}}
+\PYG{n}{base\PYGZus{}df}\PYG{o}{.}\PYG{n}{head}\PYG{p}{()}
+\end{Verbatim}

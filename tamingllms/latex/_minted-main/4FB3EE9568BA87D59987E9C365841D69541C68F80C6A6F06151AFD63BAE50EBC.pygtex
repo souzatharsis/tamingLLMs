@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{dotenv} \PYG{k+kn}{import} \PYG{n}{load\PYGZus{}dotenv}
+\PYG{k+kn}{import} \PYG{n+nn}{os}
+
+\PYG{c+c1}{\PYGZsh{} Load environment variables from .env file}
+\PYG{n}{load\PYGZus{}dotenv}\PYG{p}{(}\PYG{n}{override}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+\PYG{k+kn}{from} \PYG{n+nn}{openai} \PYG{k+kn}{import} \PYG{n}{OpenAI}
+\PYG{n}{client} \PYG{o}{=} \PYG{n}{OpenAI}\PYG{p}{()}
+\end{Verbatim}

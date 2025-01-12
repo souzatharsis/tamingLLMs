@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+lighteval\PYG{+w}{ }accelerate\PYG{+w}{ }\PYGZhy{}\PYGZhy{}model\PYGZus{}args\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}pretrained=meta\PYGZhy{}llama/Llama\PYGZhy{}3.2\PYGZhy{}1B\PYGZhy{}Instruct\PYGZdq{}}\PYG{+w}{ }\PYGZhy{}\PYGZhy{}tasks\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}leaderboard|mmlu:econometrics|0|0\PYGZdq{}}\PYG{+w}{ }\PYGZhy{}\PYGZhy{}override\PYGZus{}batch\PYGZus{}size\PYG{+w}{ }\PYG{l+m}{1}\PYG{+w}{ }\PYGZhy{}\PYGZhy{}output\PYGZus{}dir\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}./evals/\PYGZdq{}}
+\end{Verbatim}

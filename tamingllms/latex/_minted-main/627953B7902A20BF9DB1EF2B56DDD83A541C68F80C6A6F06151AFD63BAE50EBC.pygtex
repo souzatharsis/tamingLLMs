@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Load prompt samples from CSV}
+\PYG{n}{prompt\PYGZus{}samples} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{read\PYGZus{}csv}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}../data/safety/prompt\PYGZus{}samples.csv\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

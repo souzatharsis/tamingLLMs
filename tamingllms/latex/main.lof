@@ -1,0 +1,96 @@
+\babel@toc {english}{}\relax
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Part of Apple Inc's SEC Filing. November 1, 2024 - 10-K: Annual report for year ending September 28, 2024}}{4}{figure.caption.6}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Emergent abilities of large language models and the scale \blx@tocontentsinit {0}\cite {wei2022emergentabilitieslargelanguage}}}{5}{figure.caption.7}%
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Conceptual overview of LLM-based application evaluation.}}{9}{figure.caption.9}%
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Conceptual overview of Multiple LLM-based applications evaluation.}}{10}{figure.caption.10}%
+\contentsline {figure}{\numberline {1.5}{\ignorespaces Radar plot comparing model performance across evaluation metrics}}{19}{figure.caption.12}%
+\contentsline {figure}{\numberline {1.6}{\ignorespaces Conceptual overview of LLM-as-a-Judge evaluation.}}{21}{figure.caption.13}%
+\contentsline {figure}{\numberline {1.7}{\ignorespaces Evaluation metrics comparison across test models}}{25}{figure.caption.14}%
+\contentsline {figure}{\numberline {1.8}{\ignorespaces Conceptual overview of LLMs Meta Evaluation}}{27}{figure.caption.15}%
+\contentsline {figure}{\numberline {1.9}{\ignorespaces Human-in-the-loop Meta Evaluation}}{28}{figure.caption.16}%
+\contentsline {figure}{\numberline {1.10}{\ignorespaces Sample ARC-AGI Task.}}{31}{figure.caption.17}%
+\contentsline {figure}{\numberline {1.11}{\ignorespaces LightEval Python SDK Sample Conceptual Overview.}}{35}{figure.caption.19}%
+\contentsline {figure}{\numberline {1.12}{\ignorespaces Model performance comparison on MMLU Econometrics task, showing accuracy scores across different model sizes and architectures.}}{37}{figure.caption.21}%
+\contentsline {figure}{\numberline {1.13}{\ignorespaces LangSmith Dataset}}{39}{figure.caption.22}%
+\contentsline {figure}{\numberline {1.14}{\ignorespaces Model Performance Comparison}}{42}{figure.caption.23}%
+\contentsline {figure}{\numberline {1.15}{\ignorespaces LangSmith Experiment Results}}{42}{figure.caption.25}%
+\contentsline {figure}{\numberline {1.16}{\ignorespaces PromptFoo evaluation results showing performance metrics across different models.}}{45}{figure.caption.27}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Conceptual overview of JSON mode.}}{57}{figure.caption.36}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Text Generation Process.}}{60}{figure.caption.40}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces DFA Example}}{67}{figure.caption.42}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Outlines State Machine \blx@tocontentsinit {0}\cite {vivien2024regex}}}{68}{figure.caption.43}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Structured vs Unstructured Results by .txt team \blx@tocontentsinit {0}\cite {dottxt2024demos}}}{76}{figure.caption.45}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Merrill Lynch's CIO Capital Market Outlook released on December 16, 2024 \blx@tocontentsinit {0}\cite {merrill2024}}}{82}{figure.caption.48}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces An extract of Docling's parsed result.}}{83}{figure.caption.49}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces An extract of MarkItDown's parsed result.}}{84}{figure.caption.50}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Merrill Lynch's CIO Economic Forecasts.}}{84}{figure.caption.51}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Asset Class Weightings}}{87}{figure.caption.54}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Simplified RAG Pipeline including a Vector Database with Embeddings and Indexing, a Retrieval System including re-ranking with LLM Augmented Generation via In-Context Learning.}}{95}{figure.caption.58}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Embedding: From text to vectors.}}{98}{figure.caption.65}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Similarity matrix heatmap showing relationships among query and chapters.}}{99}{figure.caption.66}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces RAG LLM with In-Context Learning}}{103}{figure.caption.69}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Long-Context LLMs demonstrate superior performance while RAGs are more cost-effective \blx@tocontentsinit {0}\cite {li2024retrievalaugmentedgenerationlongcontext}.}}{106}{figure.caption.70}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Content Chunking with Contextual Linking Schematic Representation.}}{111}{figure.caption.71}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Anthropic Contextual Linking \blx@tocontentsinit {0}\cite {anthropic2024contextualretrieval}}}{120}{figure.caption.80}%
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Harvard's Democratic Theory Class}}{121}{figure.caption.83}%
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Example of Corpus-in-Context Prompting for retrieval.}}{122}{figure.caption.92}%
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Sample Quiz with Citations.}}{126}{figure.caption.99}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Responses from Mistral (7B), Dolly v2 (12B), and Llama2 (13B) to a harmful user prompt \blx@tocontentsinit {0}\cite {vidgen2024simplesafetyteststestsuiteidentifying}.}}{130}{figure.caption.102}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Visualization of key LLM vulnerabilities discussed in SIAM News \blx@tocontentsinit {0}\cite {siam2024exploitllms}, including stealth edits, jailbreaking, and promptcrafting techniques that can exploit model weaknesses to generate undesirable content.}}{132}{figure.caption.109}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces OpenAI's Preparedness Framework risk scoring methodology showing the gradation scale from "low" to "critical" model autonomy risk \blx@tocontentsinit {0}\cite {openai2024preparedness}. }}{136}{figure.caption.112}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Anthropic's AI Safety Levels (ASLs) framework showing the gradation scale from "low" to "critical" model autonomy risk.}}{136}{figure.caption.115}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Google's Frontier Safety Framework Risk Scoring \blx@tocontentsinit {0}\cite {deepmind2024frontier}.}}{137}{figure.caption.118}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces MLCommons AI Safety Benchmark Results for Mistral Large 24.11 (API) \blx@tocontentsinit {0}\cite {vidgen2024introducingv05aisafety}.}}{139}{figure.caption.121}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Sample grading by the Centre for the Governance of AI Rubric \blx@tocontentsinit {0}\cite {alaga2024gradingrubricaisafety}.}}{140}{figure.caption.124}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Anthropic's Constitutional AI (CAI) achieves high scores in both helpfulness and harmlessness \blx@tocontentsinit {0}\cite {askell2023constitutionalai}.}}{144}{figure.caption.125}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Safety Plan Design Phases.}}{149}{figure.caption.126}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces SALAD-Bench's compact taxonomy with hierarchical levels \blx@tocontentsinit {0}\cite {li2024saladbenchhierarchicalcomprehensivesafety}.}}{151}{figure.caption.129}%
+\contentsline {figure}{\numberline {4.11}{\ignorespaces TruthfulQA's evaluation methodology \blx@tocontentsinit {0}\cite {2021truthfulqa}}}{153}{figure.caption.134}%
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Attack Success Rate (ASR) for different models. HarmBench's results suggest that robustness is independent of model size \blx@tocontentsinit {0}\cite {mazeika2024harmbenchstandardizedevaluationframework}.}}{155}{figure.caption.137}%
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Representative Safety Layer.}}{156}{figure.caption.138}%
+\contentsline {figure}{\numberline {4.14}{\ignorespaces IBM Granite Guardian performance is superior compared to Llama-Guard and ShieldGemma model families for the "Harm" risk dimension \blx@tocontentsinit {0}\cite {padhi2024graniteguardian}.}}{161}{figure.caption.146}%
+\contentsline {figure}{\numberline {4.15}{\ignorespaces LLM-as-a-judge as safety filter.}}{162}{figure.caption.147}%
+\contentsline {figure}{\numberline {4.16}{\ignorespaces Sample Scoring Prompts.}}{178}{figure.caption.155}%
+\contentsline {figure}{\numberline {4.17}{\ignorespaces Sample Scoring Results.}}{179}{figure.caption.156}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces OpenAI's RLHF pipeline for aligning language models with human preferences \blx@tocontentsinit {0}\cite {ouyang2022traininglanguagemodelsfollow}.}}{185}{figure.caption.159}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Simplified view of the alignment process showing the progression from base model to instruction-tuned model to aligned model \blx@tocontentsinit {0}\cite {ouyang2022traininglanguagemodelsfollow}.}}{186}{figure.caption.160}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Instruction fine-tuning process for aligning language models with human preferences.}}{186}{figure.caption.161}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Direct Preference Optimization (DPO) architecture showing how model outputs are compared against human preferences to optimize policy \blx@tocontentsinit {0}\cite {rafailov2024directpreferenceoptimizationlanguage}.}}{188}{figure.caption.162}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Fake Alignment \blx@tocontentsinit {0}\cite {askell2024alignmentfaking}}}{192}{figure.caption.163}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces DPO dataset generation process showing how policy-aligned preferences are generated using LLMs.}}{199}{figure.caption.165}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Model responses showing alignment with company policy.}}{208}{figure.caption.167}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Sample chosen and rejected responses from the DPO dataset. }}{209}{figure.caption.168}%
+\contentsline {figure}{\numberline {5.9}{\ignorespaces DPO Optimization by blending a policy-aligned synthetic dataset with the UltraFeedback binarized dataset from H4}}{211}{figure.caption.169}%
+\contentsline {figure}{\numberline {5.11}{\ignorespaces DPO fine-tuned model card on Hugging Face Hub}}{215}{figure.caption.171}%
+\contentsline {figure}{\numberline {5.10}{\ignorespaces DPO Training Rewards}}{215}{figure.caption.170}%
+\contentsline {figure}{\numberline {5.12}{\ignorespaces LLM-as-judge alignment evaluation methodology}}{218}{figure.caption.172}%
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Aligned Model Responses}}{220}{figure.caption.173}%
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Distribution of Safety Scores for Base vs Aligned Models}}{224}{figure.caption.174}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Number of models per task category from Hugging Face as of December 22, 2024 \blx@tocontentsinit {0}\cite {hf2024yearinreview}.}}{231}{figure.caption.179}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Model Types: From base models, to instruction-tuned and domain-adapted models.}}{232}{figure.caption.182}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Qwen Performance in comparison with key open source models \blx@tocontentsinit {0}\cite {qwen2024qwen25technicalreport}.}}{234}{figure.caption.186}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Performance Comparison including proprietary models as reported by Artificial Analysis in Nov'24.}}{234}{figure.caption.187}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces DeepSeek-V3 Performance Comparison \blx@tocontentsinit {0}\cite {deepseek2024tweet}.}}{235}{figure.caption.188}%
+\contentsline {figure}{\numberline {6.6}{\ignorespaces DeepSeek-V3 Cost Benefit Analysis \blx@tocontentsinit {0}\cite {deepseek2024tweet}.}}{236}{figure.caption.189}%
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Performance Comparison including proprietary models as reported by Artificial Analysis in Nov'24.}}{237}{figure.caption.190}%
+\contentsline {figure}{\numberline {6.8}{\ignorespaces Input and Output Prices Comparison as reported by Artificial Analysis in Nov'24.}}{238}{figure.caption.191}%
+\contentsline {figure}{\numberline {6.9}{\ignorespaces Latency Comparison as reported by Artificial Analysis in Nov'24.}}{238}{figure.caption.192}%
+\contentsline {figure}{\numberline {6.10}{\ignorespaces Simplified representation of local inference server.}}{244}{figure.caption.195}%
+\contentsline {figure}{\numberline {6.11}{\ignorespaces LM Studio Chat Interface.}}{253}{figure.caption.229}%
+\contentsline {figure}{\numberline {6.12}{\ignorespaces LM Studio Server.}}{254}{figure.caption.230}%
+\contentsline {figure}{\numberline {6.13}{\ignorespaces Jan Chat Interface.}}{255}{figure.caption.233}%
+\contentsline {figure}{\numberline {6.14}{\ignorespaces Open WebUI Chat Interface.}}{256}{figure.caption.236}%
+\contentsline {figure}{\numberline {6.16}{\ignorespaces Perplexity results for Quantization Q2, Q4, and Q6 quantized models.}}{261}{figure.caption.242}%
+\contentsline {figure}{\numberline {6.15}{\ignorespaces KL Divergence results for Quantization Q2, Q4, and Q6 quantized models.}}{261}{figure.caption.241}%
+\contentsline {figure}{\numberline {6.17}{\ignorespaces Text Generation Performance results for Quantization Q2, Q4, Q6 and base models.}}{262}{figure.caption.244}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file

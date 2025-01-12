@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+poetry\PYG{+w}{ }add\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}tiktoken@\PYGZgt{}=0.5,\PYGZlt{}0.8\PYGZdq{}}
+poetry\PYG{+w}{ }add\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}llm\PYGZhy{}guard==0.1.1\PYGZdq{}}
+poetry\PYG{+w}{ }add\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}mistralai\PYGZdq{}}
+\end{Verbatim}

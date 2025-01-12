@@ -1,0 +1,40 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{datasets} \PYG{k+kn}{import} \PYG{n}{Dataset}
+\PYG{k}{def} \PYG{n+nf}{generate\PYGZus{}dpo\PYGZus{}dataset}\PYG{p}{(}\PYG{n}{chosen\PYGZus{}responses\PYGZus{}path}\PYG{p}{,} \PYG{n}{rejected\PYGZus{}responses\PYGZus{}path}\PYG{p}{,} \PYG{n}{repo\PYGZus{}id}\PYG{p}{:} \PYG{n+nb}{str} \PYG{o}{=} \PYG{k+kc}{None}\PYG{p}{):}
+
+
+    \PYG{n}{push\PYGZus{}to\PYGZus{}hub} \PYG{o}{=} \PYG{n}{repo\PYGZus{}id} \PYG{o+ow}{is} \PYG{o+ow}{not} \PYG{k+kc}{None}
+
+    \PYG{n}{chosen\PYGZus{}responses} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{read\PYGZus{}csv}\PYG{p}{(}\PYG{n}{chosen\PYGZus{}responses\PYGZus{}path}\PYG{p}{)}
+    \PYG{n}{rejected\PYGZus{}responses} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{read\PYGZus{}csv}\PYG{p}{(}\PYG{n}{rejected\PYGZus{}responses\PYGZus{}path}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Join the chosen and rejected responses on user\PYGZus{}prompts}
+    \PYG{n}{dpo\PYGZus{}dataset} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{merge}\PYG{p}{(}
+        \PYG{n}{chosen\PYGZus{}responses}\PYG{p}{,}
+        \PYG{n}{rejected\PYGZus{}responses}\PYG{p}{,}
+        \PYG{n}{on}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}user\PYGZus{}prompts\PYGZdq{}}\PYG{p}{,}
+        \PYG{n}{suffixes}\PYG{o}{=}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}\PYGZus{}chosen\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}\PYGZus{}rejected\PYGZsq{}}\PYG{p}{)}
+    \PYG{p}{)}
+    \PYG{k}{def} \PYG{n+nf}{transform\PYGZus{}row}\PYG{p}{(}\PYG{n}{row}\PYG{p}{):}
+        \PYG{c+c1}{\PYGZsh{} Format the \PYGZsq{}chosen\PYGZsq{} column as per the chat structure}
+        \PYG{n}{chosen} \PYG{o}{=} \PYG{p}{[}
+            \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{n}{row}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}user\PYGZus{}prompts\PYGZdq{}}\PYG{p}{],} \PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}user\PYGZdq{}}\PYG{p}{\PYGZcb{},}
+            \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{n}{row}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}model\PYGZus{}responses\PYGZus{}chosen\PYGZdq{}}\PYG{p}{],} \PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}assistant\PYGZdq{}}\PYG{p}{\PYGZcb{}}
+        \PYG{p}{]}
+
+        \PYG{c+c1}{\PYGZsh{} Format the \PYGZsq{}rejected\PYGZsq{} column in the same way}
+        \PYG{n}{rejected} \PYG{o}{=} \PYG{p}{[}
+            \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{n}{row}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}user\PYGZus{}prompts\PYGZdq{}}\PYG{p}{],} \PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}user\PYGZdq{}}\PYG{p}{\PYGZcb{},}
+            \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{n}{row}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}model\PYGZus{}responses\PYGZus{}rejected\PYGZdq{}}\PYG{p}{],} \PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}assistant\PYGZdq{}}\PYG{p}{\PYGZcb{}}
+        \PYG{p}{]}
+
+        \PYG{k}{return} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{Series}\PYG{p}{([}\PYG{n}{chosen}\PYG{p}{,} \PYG{n}{rejected}\PYG{p}{],} \PYG{n}{index}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}chosen\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}rejected\PYGZdq{}}\PYG{p}{])}
+
+    \PYG{n}{dpo\PYGZus{}dataset}\PYG{p}{[[}\PYG{l+s+s2}{\PYGZdq{}chosen\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}rejected\PYGZdq{}}\PYG{p}{]]} \PYG{o}{=} \PYG{n}{dpo\PYGZus{}dataset}\PYG{o}{.}\PYG{n}{apply}\PYG{p}{(}\PYG{n}{transform\PYGZus{}row}\PYG{p}{,} \PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}
+    \PYG{n}{dpo\PYGZus{}dataset} \PYG{o}{=} \PYG{n}{dpo\PYGZus{}dataset}\PYG{o}{.}\PYG{n}{drop}\PYG{p}{(}\PYG{n}{columns}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}user\PYGZus{}prompts\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}model\PYGZus{}responses\PYGZus{}chosen\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}model\PYGZus{}responses\PYGZus{}rejected\PYGZdq{}}\PYG{p}{])}
+    \PYG{n}{hf\PYGZus{}dpo\PYGZus{}dataset} \PYG{o}{=} \PYG{n}{Dataset}\PYG{o}{.}\PYG{n}{from\PYGZus{}pandas}\PYG{p}{(}\PYG{n}{dpo\PYGZus{}dataset}\PYG{p}{)}
+    \PYG{k}{if} \PYG{n}{push\PYGZus{}to\PYGZus{}hub}\PYG{p}{:}
+        \PYG{n}{hf\PYGZus{}dpo\PYGZus{}dataset}\PYG{o}{.}\PYG{n}{push\PYGZus{}to\PYGZus{}hub}\PYG{p}{(}\PYG{n}{repo\PYGZus{}id}\PYG{p}{)}
+
+    \PYG{k}{return} \PYG{n}{hf\PYGZus{}dpo\PYGZus{}dataset}
+\end{Verbatim}

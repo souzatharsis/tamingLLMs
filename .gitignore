@@ -5,6 +5,8 @@ evals/
 evals2/
 .pypirc
 
+main.pdf
+
 research/
 
 *.whl

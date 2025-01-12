@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+./llama\PYGZhy{}quantize\PYG{+w}{ }\PYGZhy{}m\PYG{+w}{ }./models/qwen2.5\PYGZhy{}0.5b\PYGZhy{}instruct\PYGZhy{}fp16.gguf\PYG{+w}{ }./models/qwen2.5\PYGZhy{}0.5b\PYGZhy{}instruct\PYGZhy{}q8\PYGZus{}0.gguf\PYG{+w}{ }Q4\PYGZus{}K
+\end{Verbatim}

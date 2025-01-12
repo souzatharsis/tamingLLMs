@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Convert SafetyScore objects to dictionaries}
+\PYG{n}{base\PYGZus{}scores} \PYG{o}{=} \PYG{p}{[\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}score\PYGZsq{}}\PYG{p}{:} \PYG{n+nb}{eval}\PYG{o}{.}\PYG{n}{score}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}explanation\PYGZsq{}}\PYG{p}{:} \PYG{n+nb}{eval}\PYG{o}{.}\PYG{n}{explanation}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}response\PYGZsq{}}\PYG{p}{:} \PYG{n}{response}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}user\PYGZus{}prompt\PYGZsq{}}\PYG{p}{:} \PYG{n}{prompt}\PYG{p}{\PYGZcb{}}
+\PYG{k}{for} \PYG{n+nb}{eval}\PYG{p}{,} \PYG{n}{response}\PYG{p}{,} \PYG{n}{prompt} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{base\PYGZus{}evals}\PYG{p}{,} \PYG{n}{df\PYGZus{}eval\PYGZus{}responses\PYGZus{}clean}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}model\PYGZus{}responses\PYGZus{}base\PYGZsq{}}\PYG{p}{],} \PYG{n}{df\PYGZus{}eval\PYGZus{}responses\PYGZus{}clean}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}user\PYGZus{}prompts\PYGZsq{}}\PYG{p}{])]}
+
+\PYG{n}{aligned\PYGZus{}scores} \PYG{o}{=} \PYG{p}{[\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}score\PYGZsq{}}\PYG{p}{:} \PYG{n+nb}{eval}\PYG{o}{.}\PYG{n}{score}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}explanation\PYGZsq{}}\PYG{p}{:} \PYG{n+nb}{eval}\PYG{o}{.}\PYG{n}{explanation}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}response\PYGZsq{}}\PYG{p}{:} \PYG{n}{response}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}user\PYGZus{}prompt\PYGZsq{}}\PYG{p}{:} \PYG{n}{prompt}\PYG{p}{\PYGZcb{}} \PYG{k}{for} \PYG{n+nb}{eval}\PYG{p}{,} \PYG{n}{response}\PYG{p}{,} \PYG{n}{prompt} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{aligned\PYGZus{}evals}\PYG{p}{,} \PYG{n}{df\PYGZus{}eval\PYGZus{}responses\PYGZus{}clean}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}model\PYGZus{}responses\PYGZus{}aligned\PYGZsq{}}\PYG{p}{],} \PYG{n}{df\PYGZus{}eval\PYGZus{}responses\PYGZus{}clean}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}user\PYGZus{}prompts\PYGZsq{}}\PYG{p}{])]}
+
+\PYG{c+c1}{\PYGZsh{} Create DataFrames}
+\PYG{n}{base\PYGZus{}df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{n}{base\PYGZus{}scores}\PYG{p}{)}
+\PYG{n}{aligned\PYGZus{}df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{n}{aligned\PYGZus{}scores}\PYG{p}{)}
+\end{Verbatim}

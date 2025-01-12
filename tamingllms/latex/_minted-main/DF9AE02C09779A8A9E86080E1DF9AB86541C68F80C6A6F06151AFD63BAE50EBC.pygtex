@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{generate}\PYG{p}{(}\PYG{o}{**}\PYG{n+nb}{input}\PYG{p}{)}
+\end{Verbatim}

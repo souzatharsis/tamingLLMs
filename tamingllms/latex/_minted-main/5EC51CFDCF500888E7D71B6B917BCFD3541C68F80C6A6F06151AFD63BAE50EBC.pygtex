@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{IPython.display} \PYG{k+kn}{import} \PYG{n}{Markdown}
+
+\PYG{n}{display}\PYG{p}{(}\PYG{n}{Markdown}\PYG{p}{(}\PYG{n}{prompt\PYGZus{}samples}\PYG{o}{.}\PYG{n}{head}\PYG{p}{()}\PYG{o}{.}\PYG{n}{to\PYGZus{}markdown}\PYG{p}{()))}
+\end{Verbatim}

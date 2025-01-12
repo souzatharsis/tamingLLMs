@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{book\PYGZus{}url} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}https://www.tamingllms.com/\PYGZdq{}}
+\PYG{n}{chapters} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}markdown/intro.html\PYGZdq{}}\PYG{p}{,}
+            \PYG{l+s+s2}{\PYGZdq{}notebooks/structured\PYGZus{}output.html\PYGZdq{}}\PYG{p}{,}
+            \PYG{l+s+s2}{\PYGZdq{}notebooks/input.html\PYGZdq{}}\PYG{p}{]}
+
+\PYG{n}{chapter\PYGZus{}urls} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{book\PYGZus{}url}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{/}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{chapter}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}} \PYG{k}{for} \PYG{n}{chapter} \PYG{o+ow}{in} \PYG{n}{chapters}\PYG{p}{]}
+\PYG{n}{chapter\PYGZus{}ids} \PYG{o}{=} \PYG{p}{[}\PYG{n}{chapter}\PYG{o}{.}\PYG{n}{split}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}/\PYGZdq{}}\PYG{p}{)[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{replace}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}.html\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{)} \PYG{k}{for} \PYG{n}{chapter} \PYG{o+ow}{in} \PYG{n}{chapters}\PYG{p}{]}
+\end{Verbatim}

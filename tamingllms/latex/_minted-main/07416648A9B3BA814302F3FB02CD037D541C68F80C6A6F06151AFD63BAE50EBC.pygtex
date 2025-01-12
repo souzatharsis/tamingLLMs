@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Create a DataFrame with all samples and their sources}
+\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
+
+\PYG{c+c1}{\PYGZsh{} Create lists of dictionaries for each sample type}
+\PYG{n}{profanity\PYGZus{}data} \PYG{o}{=} \PYG{p}{[\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}prompt\PYGZsq{}}\PYG{p}{:} \PYG{n}{text}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}source\PYGZsq{}}\PYG{p}{:} \PYG{l+s+s1}{\PYGZsq{}profanity\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}type\PYGZsq{}}\PYG{p}{:} \PYG{l+s+s1}{\PYGZsq{}bad\PYGZsq{}}\PYG{p}{\PYGZcb{}} \PYG{k}{for} \PYG{n}{text} \PYG{o+ow}{in} \PYG{n}{profanity\PYGZus{}samples}\PYG{p}{]}
+\PYG{n}{salad\PYGZus{}data} \PYG{o}{=} \PYG{p}{[\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}prompt\PYGZsq{}}\PYG{p}{:} \PYG{n}{text}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}source\PYGZsq{}}\PYG{p}{:} \PYG{l+s+s1}{\PYGZsq{}salad\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}type\PYGZsq{}}\PYG{p}{:} \PYG{l+s+s1}{\PYGZsq{}bad\PYGZsq{}}\PYG{p}{\PYGZcb{}} \PYG{k}{for} \PYG{n}{text} \PYG{o+ow}{in} \PYG{n}{salad\PYGZus{}samples}\PYG{p}{]}
+\PYG{n}{good\PYGZus{}data} \PYG{o}{=} \PYG{p}{[\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}prompt\PYGZsq{}}\PYG{p}{:} \PYG{n}{text}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}source\PYGZsq{}}\PYG{p}{:} \PYG{l+s+s1}{\PYGZsq{}ultrafeedback\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}type\PYGZsq{}}\PYG{p}{:} \PYG{l+s+s1}{\PYGZsq{}good\PYGZsq{}}\PYG{p}{\PYGZcb{}} \PYG{k}{for} \PYG{n}{text} \PYG{o+ow}{in} \PYG{n}{good\PYGZus{}samples}\PYG{p}{]}
+
+\PYG{c+c1}{\PYGZsh{} Combine all data}
+\PYG{n}{all\PYGZus{}data} \PYG{o}{=} \PYG{n}{profanity\PYGZus{}data} \PYG{o}{+} \PYG{n}{salad\PYGZus{}data} \PYG{o}{+} \PYG{n}{good\PYGZus{}data}
+
+\PYG{c+c1}{\PYGZsh{} Create DataFrame}
+\PYG{n}{prompt\PYGZus{}samples} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{n}{all\PYGZus{}data}\PYG{p}{)}\PYG{o}{.}\PYG{n}{sample}\PYG{p}{(}\PYG{n}{frac}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{random\PYGZus{}state}\PYG{o}{=}\PYG{l+m+mi}{42}\PYG{p}{)}\PYG{o}{.}\PYG{n}{reset\PYGZus{}index}\PYG{p}{(}\PYG{n}{drop}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+\PYG{n}{prompt\PYGZus{}samples}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}is\PYGZus{}unsafe\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{prompt\PYGZus{}samples}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}type\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{apply}\PYG{p}{(}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{k+kc}{True} \PYG{k}{if} \PYG{n}{x} \PYG{o}{==} \PYG{l+s+s1}{\PYGZsq{}bad\PYGZsq{}} \PYG{k}{else} \PYG{k+kc}{False}\PYG{p}{)}
+\end{Verbatim}

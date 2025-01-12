@@ -1,0 +1,34 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
+
+\PYG{c+c1}{\PYGZsh{} Create a scoring method that runs each validator against each prompt in prompt\PYGZus{}samples}
+\PYG{k+kn}{import} \PYG{n+nn}{time}
+
+\PYG{k}{def} \PYG{n+nf}{score\PYGZus{}validators}\PYG{p}{(}\PYG{n}{prompt\PYGZus{}samples}\PYG{p}{,} \PYG{n}{validators}\PYG{p}{,} \PYG{n}{verbose}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{):}
+    \PYG{n}{results} \PYG{o}{=} \PYG{p}{[]}
+    \PYG{n}{prompt\PYGZus{}samples}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}id\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{prompt\PYGZus{}samples}\PYG{o}{.}\PYG{n}{index}
+
+    \PYG{k}{for} \PYG{n}{index}\PYG{p}{,} \PYG{n}{row} \PYG{o+ow}{in} \PYG{n}{prompt\PYGZus{}samples}\PYG{o}{.}\PYG{n}{iterrows}\PYG{p}{():}
+        \PYG{n}{prompt} \PYG{o}{=} \PYG{n}{row}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}prompt\PYGZsq{}}\PYG{p}{]}
+        \PYG{n}{id\PYGZus{}} \PYG{o}{=} \PYG{n}{row}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}id\PYGZsq{}}\PYG{p}{]}
+
+        \PYG{k}{for} \PYG{n}{validator\PYGZus{}instance} \PYG{o+ow}{in} \PYG{n}{validators}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} we alternate between validators to avoid rate limiting!}
+            \PYG{n}{start\PYGZus{}time} \PYG{o}{=} \PYG{n}{time}\PYG{o}{.}\PYG{n}{time}\PYG{p}{()}
+            \PYG{n}{validation\PYGZus{}result} \PYG{o}{=} \PYG{n}{validator\PYGZus{}instance}\PYG{o}{.}\PYG{n}{validate}\PYG{p}{(}\PYG{n}{prompt}\PYG{p}{)}
+            \PYG{n}{elapsed\PYGZus{}time} \PYG{o}{=} \PYG{n}{time}\PYG{o}{.}\PYG{n}{time}\PYG{p}{()} \PYG{o}{\PYGZhy{}} \PYG{n}{start\PYGZus{}time}
+
+            \PYG{n}{results}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(\PYGZob{}}
+                \PYG{l+s+s1}{\PYGZsq{}prompt\PYGZus{}sample\PYGZus{}id\PYGZsq{}}\PYG{p}{:} \PYG{n}{id\PYGZus{}}\PYG{p}{,}
+                \PYG{l+s+s1}{\PYGZsq{}validator\PYGZus{}name\PYGZsq{}}\PYG{p}{:} \PYG{n}{validator\PYGZus{}instance}\PYG{o}{.}\PYG{n}{name}\PYG{p}{,}
+                \PYG{l+s+s1}{\PYGZsq{}is\PYGZus{}unsafe\PYGZsq{}}\PYG{p}{:} \PYG{n}{validation\PYGZus{}result}\PYG{o}{.}\PYG{n}{is\PYGZus{}unsafe}\PYG{p}{,}
+                \PYG{l+s+s1}{\PYGZsq{}explanation\PYGZsq{}}\PYG{p}{:} \PYG{n}{validation\PYGZus{}result}\PYG{o}{.}\PYG{n}{explanation}\PYG{p}{,}
+                \PYG{l+s+s1}{\PYGZsq{}elapsed\PYGZus{}time\PYGZsq{}}\PYG{p}{:} \PYG{n}{elapsed\PYGZus{}time}
+            \PYG{p}{\PYGZcb{})}
+
+        \PYG{k}{if} \PYG{n}{verbose}\PYG{p}{:}
+            \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}Processed prompt }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{index}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Create DataFrames from the results}
+    \PYG{n}{results\PYGZus{}df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{n}{results}\PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{prompt\PYGZus{}samples}\PYG{p}{,} \PYG{n}{results\PYGZus{}df}
+\end{Verbatim}

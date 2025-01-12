@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{MODEL\PYGZus{}PATH} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}./models/qwen2.5\PYGZhy{}0.5b\PYGZhy{}instruct\PYGZhy{}q8\PYGZus{}0.gguf\PYGZdq{}}
+\end{Verbatim}

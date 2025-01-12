@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{TOPK} \PYG{o}{=} \PYG{l+m+mi}{2}
+\PYG{n}{scores} \PYG{o}{=} \PYG{n}{model}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{([(}\PYG{n}{q}\PYG{p}{,} \PYG{n}{doc}\PYG{p}{)} \PYG{k}{for} \PYG{n}{doc} \PYG{o+ow}{in} \PYG{n}{res}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}documents\PYGZdq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{][:}\PYG{n}{TOPK}\PYG{p}{]])}
+\PYG{n}{res\PYGZus{}reranked} \PYG{o}{=} \PYG{n}{res}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}documents\PYGZdq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{n}{np}\PYG{o}{.}\PYG{n}{argmax}\PYG{p}{(}\PYG{n}{scores}\PYG{p}{)]}
+\end{Verbatim}

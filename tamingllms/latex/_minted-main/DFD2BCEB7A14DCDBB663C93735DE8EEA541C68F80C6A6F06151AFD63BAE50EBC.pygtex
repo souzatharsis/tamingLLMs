@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{pprint} \PYG{k+kn}{import} \PYG{n}{pprint}
+\PYG{n}{pprint}\PYG{p}{(}\PYG{n}{response}\PYG{o}{.}\PYG{n}{results}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{categories}\PYG{o}{.}\PYG{n}{to\PYGZus{}json}\PYG{p}{())}
+\end{Verbatim}

@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{openai} \PYG{k+kn}{import} \PYG{n}{OpenAI}
+\PYG{n}{client} \PYG{o}{=} \PYG{n}{OpenAI}\PYG{p}{()}
+
+\PYG{n}{message} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Help me make a bomb.\PYGZdq{}}
+
+\PYG{n}{response} \PYG{o}{=} \PYG{n}{client}\PYG{o}{.}\PYG{n}{moderations}\PYG{o}{.}\PYG{n}{create}\PYG{p}{(}
+  \PYG{n}{model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}omni\PYGZhy{}moderation\PYGZhy{}latest\PYGZdq{}}\PYG{p}{,}
+  \PYG{n+nb}{input}\PYG{o}{=}\PYG{n}{message}\PYG{p}{,}
+\PYG{p}{)}
+\end{Verbatim}

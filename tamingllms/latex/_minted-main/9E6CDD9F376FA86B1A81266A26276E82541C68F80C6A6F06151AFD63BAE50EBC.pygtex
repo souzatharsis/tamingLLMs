@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Display the prompt variations}
+\PYG{k+kn}{from} \PYG{n+nn}{IPython.display} \PYG{k+kn}{import} \PYG{n}{display}\PYG{p}{,} \PYG{n}{Markdown}
+
+\PYG{n}{prompt\PYGZus{}files} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}prompt1.txt\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}prompt2.txt\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}prompt3.txt\PYGZsq{}}\PYG{p}{]}
+\PYG{n}{prompt\PYGZus{}content} \PYG{o}{=} \PYG{p}{[]}
+
+\PYG{k}{for} \PYG{n}{file} \PYG{o+ow}{in} \PYG{n}{prompt\PYGZus{}files}\PYG{p}{:}
+    \PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}promptfoo/prompt\PYGZus{}comparison/}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{file}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}r\PYGZsq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{f}\PYG{p}{:}
+        \PYG{n}{content} \PYG{o}{=} \PYG{n}{f}\PYG{o}{.}\PYG{n}{read}\PYG{p}{()}\PYG{o}{.}\PYG{n}{strip}\PYG{p}{()}
+        \PYG{n}{prompt\PYGZus{}content}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}\PYGZsh{}\PYGZsh{}\PYGZsh{} }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{file}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{\PYGZhy{}\PYGZhy{}\PYGZhy{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{content}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+
+\PYG{n}{display}\PYG{p}{(}\PYG{n}{Markdown}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n\PYGZbs{}n}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{prompt\PYGZus{}content}\PYG{p}{)))}
+\end{Verbatim}

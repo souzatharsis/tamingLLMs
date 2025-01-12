@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{transformers} \PYG{k+kn}{import} \PYG{n}{pipeline}
+
+\PYG{n}{pipe} \PYG{o}{=} \PYG{n}{pipeline}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}text\PYGZhy{}generation\PYGZdq{}}\PYG{p}{,} \PYG{n}{model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}openai\PYGZhy{}community/gpt2\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{msg} \PYG{o}{=} \PYG{p}{[}\PYG{n}{pipe}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Explain the moon landing to a 6 year old in a short sentence\PYGZdq{}}\PYG{p}{)} \PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{)]}
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{msg}\PYG{p}{)):}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{} }\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{ \PYGZsh{}\PYGZsh{} Response }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{: }\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{ }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{msg}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}generated\PYGZus{}text\PYGZsq{}}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

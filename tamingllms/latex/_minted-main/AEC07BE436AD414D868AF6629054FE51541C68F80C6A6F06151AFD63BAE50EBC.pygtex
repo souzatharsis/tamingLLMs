@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{q} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}What is the purpose of this book?\PYGZdq{}}
+\PYG{n}{docs\PYGZus{}to\PYGZus{}embed} \PYG{o}{=} \PYG{p}{[}\PYG{n}{q}\PYG{p}{]} \PYG{o}{+} \PYG{n}{chapters}
+\PYG{n}{embeddings} \PYG{o}{=} \PYG{n}{embedding\PYGZus{}model}\PYG{o}{.}\PYG{n}{encode}\PYG{p}{(}\PYG{n}{docs\PYGZus{}to\PYGZus{}embed}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{embeddings}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{)}
+\end{Verbatim}

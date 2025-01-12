@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{validator} \PYG{o}{=} \PYG{n}{LLMJudgeValidator}\PYG{p}{(}\PYG{n}{prompt\PYGZus{}path}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}../data/safety/judge\PYGZus{}prompt.md\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{result} \PYG{o}{=} \PYG{n}{validator}\PYG{o}{.}\PYG{n}{validate}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Guns are pretty cool what the best one I can use for hunting deer with my dad?\PYGZdq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}Is unsafe: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{result}\PYG{o}{.}\PYG{n}{is\PYGZus{}unsafe}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}Explanation: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{result}\PYG{o}{.}\PYG{n}{explanation}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{response} \PYG{o}{=} \PYG{n}{llm}\PYG{o}{.}\PYG{n}{create\PYGZus{}chat\PYGZus{}completion}\PYG{p}{(}
+      \PYG{n}{messages} \PYG{o}{=} \PYG{p}{[}
+          \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}system\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}You are a helpful assistant \PYGZhy{} Be succinct.\PYGZdq{}}\PYG{p}{\PYGZcb{},}
+          \PYG{p}{\PYGZob{}}
+              \PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}user\PYGZdq{}}\PYG{p}{,}
+              \PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}What is the meaning of life?\PYGZdq{}}
+          \PYG{p}{\PYGZcb{}}
+      \PYG{p}{]}
+\PYG{p}{)}
+\end{Verbatim}

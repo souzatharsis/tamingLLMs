@@ -1,0 +1,37 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{create\PYGZus{}evaluation\PYGZus{}pipeline}\PYG{p}{(}\PYG{n}{output\PYGZus{}dir}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{cache\PYGZus{}dir}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{pretrained}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{dtype}\PYG{p}{:} \PYG{n+nb}{str} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}float16\PYGZdq{}}\PYG{p}{,} \PYG{n}{max\PYGZus{}samples}\PYG{p}{:} \PYG{n+nb}{int} \PYG{o}{=} \PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{task}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{):}
+    \PYG{k}{if} \PYG{n}{is\PYGZus{}accelerate\PYGZus{}available}\PYG{p}{():}
+        \PYG{k+kn}{from} \PYG{n+nn}{accelerate} \PYG{k+kn}{import} \PYG{n}{Accelerator}\PYG{p}{,} \PYG{n}{InitProcessGroupKwargs}
+        \PYG{n}{accelerator} \PYG{o}{=} \PYG{n}{Accelerator}\PYG{p}{(}\PYG{n}{kwargs\PYGZus{}handlers}\PYG{o}{=}\PYG{p}{[}\PYG{n}{InitProcessGroupKwargs}\PYG{p}{(}\PYG{n}{timeout}\PYG{o}{=}\PYG{n}{timedelta}\PYG{p}{(}\PYG{n}{seconds}\PYG{o}{=}\PYG{l+m+mi}{3000}\PYG{p}{))])}
+    \PYG{k}{else}\PYG{p}{:}
+        \PYG{n}{accelerator} \PYG{o}{=} \PYG{k+kc}{None}
+
+    \PYG{n}{evaluation\PYGZus{}tracker} \PYG{o}{=} \PYG{n}{EvaluationTracker}\PYG{p}{(}
+        \PYG{n}{output\PYGZus{}dir}\PYG{o}{=}\PYG{n}{output\PYGZus{}dir}\PYG{p}{,}
+        \PYG{n}{save\PYGZus{}details}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,}
+        \PYG{n}{push\PYGZus{}to\PYGZus{}hub}\PYG{o}{=}\PYG{k+kc}{False}
+    \PYG{p}{)}
+
+    \PYG{n}{pipeline\PYGZus{}params} \PYG{o}{=} \PYG{n}{PipelineParameters}\PYG{p}{(}
+        \PYG{n}{launcher\PYGZus{}type}\PYG{o}{=}\PYG{n}{ParallelismManager}\PYG{o}{.}\PYG{n}{ACCELERATE}\PYG{p}{,}
+        \PYG{n}{env\PYGZus{}config}\PYG{o}{=}\PYG{n}{EnvConfig}\PYG{p}{(}\PYG{n}{cache\PYGZus{}dir}\PYG{o}{=}\PYG{n}{cache\PYGZus{}dir}\PYG{p}{),}
+        \PYG{n}{override\PYGZus{}batch\PYGZus{}size}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,}
+        \PYG{n}{max\PYGZus{}samples}\PYG{o}{=}\PYG{n}{max\PYGZus{}samples}
+    \PYG{p}{)}
+
+    \PYG{n}{model\PYGZus{}config} \PYG{o}{=} \PYG{n}{BaseModelConfig}\PYG{p}{(}
+        \PYG{n}{pretrained}\PYG{o}{=}\PYG{n}{pretrained}\PYG{p}{,}
+        \PYG{n}{dtype}\PYG{o}{=}\PYG{n}{dtype}\PYG{p}{,}
+        \PYG{n}{use\PYGZus{}chat\PYGZus{}template}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,}
+        \PYG{n}{trust\PYGZus{}remote\PYGZus{}code}\PYG{o}{=}\PYG{k+kc}{True}
+    \PYG{p}{)}
+
+    \PYG{n}{pipeline} \PYG{o}{=} \PYG{n}{Pipeline}\PYG{p}{(}
+        \PYG{n}{tasks}\PYG{o}{=}\PYG{n}{task}\PYG{p}{,}
+        \PYG{n}{pipeline\PYGZus{}parameters}\PYG{o}{=}\PYG{n}{pipeline\PYGZus{}params}\PYG{p}{,}
+        \PYG{n}{evaluation\PYGZus{}tracker}\PYG{o}{=}\PYG{n}{evaluation\PYGZus{}tracker}\PYG{p}{,}
+        \PYG{n}{model\PYGZus{}config}\PYG{o}{=}\PYG{n}{model\PYGZus{}config}
+    \PYG{p}{)}
+
+    \PYG{k}{return} \PYG{n}{pipeline}
+\end{Verbatim}

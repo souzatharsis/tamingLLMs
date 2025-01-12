@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Model to fine\PYGZhy{}tune}
+\PYG{n}{model} \PYG{o}{=} \PYG{n}{AutoModelForCausalLM}\PYG{o}{.}\PYG{n}{from\PYGZus{}pretrained}\PYG{p}{(}
+    \PYG{n}{pretrained\PYGZus{}model\PYGZus{}name\PYGZus{}or\PYGZus{}path}\PYG{o}{=}\PYG{n}{model\PYGZus{}name}\PYG{p}{,}
+    \PYG{n}{torch\PYGZus{}dtype}\PYG{o}{=}\PYG{n}{torch}\PYG{o}{.}\PYG{n}{float32}\PYG{p}{,}
+\PYG{p}{)}\PYG{o}{.}\PYG{n}{to}\PYG{p}{(}\PYG{n}{device}\PYG{p}{)}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{config}\PYG{o}{.}\PYG{n}{use\PYGZus{}cache} \PYG{o}{=} \PYG{k+kc}{False}
+\PYG{n}{tokenizer} \PYG{o}{=} \PYG{n}{AutoTokenizer}\PYG{o}{.}\PYG{n}{from\PYGZus{}pretrained}\PYG{p}{(}\PYG{n}{model\PYGZus{}name}\PYG{p}{)}
+\PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{pad\PYGZus{}token} \PYG{o}{=} \PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{eos\PYGZus{}token}
+
+\PYG{c+c1}{\PYGZsh{} Set our name for the finetune to be saved \PYGZam{}/ uploaded to}
+\PYG{n}{finetune\PYGZus{}name} \PYG{o}{=} \PYG{n}{ALIGNED\PYGZus{}MODEL}
+\PYG{n}{finetune\PYGZus{}tags} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}from\PYGZus{}SmolLM2\PYGZhy{}360M\PYGZhy{}Instruct\PYGZdq{}}\PYG{p}{]}
+\end{Verbatim}

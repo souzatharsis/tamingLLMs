@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{torch}
+\PYG{k+kn}{import} \PYG{n+nn}{os}
+\PYG{k+kn}{from} \PYG{n+nn}{transformers} \PYG{k+kn}{import} \PYG{n}{AutoModelForCausalLM}\PYG{p}{,} \PYG{n}{AutoTokenizer}
+\PYG{k+kn}{from} \PYG{n+nn}{datasets} \PYG{k+kn}{import} \PYG{n}{load\PYGZus{}dataset}
+\PYG{k+kn}{from} \PYG{n+nn}{trl} \PYG{k+kn}{import} \PYG{n}{DPOTrainer}\PYG{p}{,} \PYG{n}{DPOConfig}
+\end{Verbatim}

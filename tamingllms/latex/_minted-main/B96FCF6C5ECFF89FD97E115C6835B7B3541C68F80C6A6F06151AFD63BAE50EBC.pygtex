@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{prompt} \PYG{o}{=} \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{BASE\PYGZus{}PROMPT}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{ Document: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{sec\PYGZus{}filing}\PYG{p}{[:}\PYG{n}{TOP}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n}{generator} \PYG{o}{=} \PYG{n}{outlines}\PYG{o}{.}\PYG{n}{generate}\PYG{o}{.}\PYG{n}{json}\PYG{p}{(}\PYG{n}{model}\PYG{p}{,} \PYG{n}{SECExtraction}\PYG{p}{)}
+\PYG{n}{sec\PYGZus{}extraction\PYGZus{}outlines} \PYG{o}{=} \PYG{n}{generator}\PYG{p}{(}\PYG{n}{prompt}\PYG{p}{)}
+\end{Verbatim}

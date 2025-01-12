@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PYG{k}{def} \PYG{n+nf}{msg}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{msg}\PYG{p}{:} \PYG{n+nb}{str} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{,} \PYG{n}{add\PYGZus{}citations}\PYG{p}{:} \PYG{n+nb}{bool} \PYG{o}{=} \PYG{k+kc}{False}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n+nb}{str}\PYG{p}{:}
+        \PYG{k}{if} \PYG{n}{add\PYGZus{}citations}\PYG{p}{:}
+            \PYG{n}{msg} \PYG{o}{=} \PYG{n}{msg} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n\PYGZbs{}n}\PYG{l+s+s2}{ For key statements, add Input ID to the response.\PYGZdq{}}
+
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{response} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{content\PYGZus{}generator}\PYG{o}{.}\PYG{n}{generate}\PYG{p}{(}
+            \PYG{n}{input\PYGZus{}content}\PYG{o}{=}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{input}\PYG{p}{,}
+            \PYG{n}{user\PYGZus{}instructions}\PYG{o}{=}\PYG{n}{msg}
+        \PYG{p}{)}
+
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{response\PYGZus{}memory} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{response\PYGZus{}memory} \PYG{o}{+} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{response}\PYG{o}{.}\PYG{n}{text}
+
+        \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{response}\PYG{o}{.}\PYG{n}{text}
+\end{Verbatim}

@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Calculate statistics per model}
+\PYG{n}{stats} \PYG{o}{=} \PYG{n}{combined\PYGZus{}df}\PYG{o}{.}\PYG{n}{groupby}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}model\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{agg}\PYG{p}{(\PYGZob{}}
+    \PYG{l+s+s1}{\PYGZsq{}feedback.google\PYGZus{}bleu\PYGZsq{}}\PYG{p}{:} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}mean\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}std\PYGZsq{}}\PYG{p}{],}
+    \PYG{l+s+s1}{\PYGZsq{}execution\PYGZus{}time\PYGZsq{}}\PYG{p}{:} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}mean\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}std\PYGZsq{}}\PYG{p}{]}
+\PYG{p}{\PYGZcb{})}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Sort by execution time}
+\PYG{n}{stats} \PYG{o}{=} \PYG{n}{stats}\PYG{o}{.}\PYG{n}{sort\PYGZus{}values}\PYG{p}{((}\PYG{l+s+s1}{\PYGZsq{}execution\PYGZus{}time\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}mean\PYGZsq{}}\PYG{p}{))}
+\end{Verbatim}

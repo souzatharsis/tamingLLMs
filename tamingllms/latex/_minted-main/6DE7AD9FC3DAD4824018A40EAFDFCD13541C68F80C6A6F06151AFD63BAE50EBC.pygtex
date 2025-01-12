@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{compare\PYGZus{}model\PYGZus{}responses}\PYG{p}{(}\PYG{n}{base\PYGZus{}generator}\PYG{p}{,} \PYG{n}{aligned\PYGZus{}generator}\PYG{p}{,} \PYG{n}{question}\PYG{p}{):}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}Compare responses from base and aligned models for a given question.\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{c+c1}{\PYGZsh{} Get base model response}
+    \PYG{n}{base\PYGZus{}output} \PYG{o}{=} \PYG{n}{base\PYGZus{}generator}\PYG{p}{([\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}user\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{n}{question}\PYG{p}{\PYGZcb{}],} \PYG{n}{max\PYGZus{}new\PYGZus{}tokens}\PYG{o}{=}\PYG{l+m+mi}{128}\PYG{p}{)[}\PYG{l+m+mi}{0}\PYG{p}{]}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}\PYGZsh{}\PYGZsh{}\PYGZsh{} User prompt:\PYGZdq{}}\PYG{p}{)}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{question}\PYG{p}{)}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{\PYGZsh{}\PYGZsh{}\PYGZsh{} Base model response:\PYGZdq{}}\PYG{p}{)}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{base\PYGZus{}output}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}generated\PYGZus{}text\PYGZdq{}}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}content\PYGZsq{}}\PYG{p}{])}
+
+    \PYG{c+c1}{\PYGZsh{} Get aligned model response}
+    \PYG{n}{aligned\PYGZus{}output} \PYG{o}{=} \PYG{n}{aligned\PYGZus{}generator}\PYG{p}{([\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}user\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{n}{question}\PYG{p}{\PYGZcb{}],} \PYG{n}{max\PYGZus{}new\PYGZus{}tokens}\PYG{o}{=}\PYG{l+m+mi}{128}\PYG{p}{)[}\PYG{l+m+mi}{0}\PYG{p}{]}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{\PYGZsh{}\PYGZsh{}\PYGZsh{} Aligned model response:\PYGZdq{}}\PYG{p}{)}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{aligned\PYGZus{}output}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}generated\PYGZus{}text\PYGZdq{}}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}content\PYGZsq{}}\PYG{p}{])}
+\end{Verbatim}

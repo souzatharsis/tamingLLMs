@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{datasets}
+\PYG{n}{input\PYGZus{}texts\PYGZus{}raw} \PYG{o}{=} \PYG{n}{datasets}\PYG{o}{.}\PYG{n}{load\PYGZus{}dataset}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Salesforce/wikitext\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}wikitext\PYGZhy{}2\PYGZhy{}raw\PYGZhy{}v1\PYGZdq{}}\PYG{p}{,} \PYG{n}{split}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}train\PYGZdq{}}\PYG{p}{)[}\PYG{l+s+s2}{\PYGZdq{}text\PYGZdq{}}\PYG{p}{]}
+\end{Verbatim}

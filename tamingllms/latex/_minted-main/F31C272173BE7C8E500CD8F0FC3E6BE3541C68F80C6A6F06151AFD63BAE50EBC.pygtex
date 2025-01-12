@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{NUM\PYGZus{}SAMPLES} \PYG{o}{=} \PYG{l+m+mi}{1000}
+\PYG{n}{GOOD\PYGZus{}SAMPLES} \PYG{o}{=} \PYG{n}{BAD\PYGZus{}SAMPLES} \PYG{o}{=} \PYG{n}{NUM\PYGZus{}SAMPLES} \PYG{o}{//} \PYG{l+m+mi}{2}
+\end{Verbatim}

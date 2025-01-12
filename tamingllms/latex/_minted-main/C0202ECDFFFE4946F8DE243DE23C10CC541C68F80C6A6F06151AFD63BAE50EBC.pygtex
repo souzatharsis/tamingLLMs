@@ -1,0 +1,26 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{pathlib} \PYG{k+kn}{import} \PYG{n}{Path}
+\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
+\PYG{k+kn}{from} \PYG{n+nn}{docling.document\PYGZus{}converter} \PYG{k+kn}{import} \PYG{n}{DocumentConverter}
+
+\PYG{k}{def} \PYG{n+nf}{convert\PYGZus{}and\PYGZus{}export\PYGZus{}tables}\PYG{p}{(}\PYG{n}{file\PYGZus{}path}\PYG{p}{:} \PYG{n}{Path}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n+nb}{list}\PYG{p}{[}\PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{]:}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    Convert document and export tables to DataFrames.}
+
+\PYG{l+s+sd}{    Args:}
+\PYG{l+s+sd}{        file\PYGZus{}path: Path to input document}
+
+\PYG{l+s+sd}{    Returns:}
+\PYG{l+s+sd}{        List of pandas DataFrames containing the tables}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{n}{doc\PYGZus{}converter} \PYG{o}{=} \PYG{n}{DocumentConverter}\PYG{p}{()}
+    \PYG{n}{conv\PYGZus{}res} \PYG{o}{=} \PYG{n}{doc\PYGZus{}converter}\PYG{o}{.}\PYG{n}{convert}\PYG{p}{(}\PYG{n}{file\PYGZus{}path}\PYG{p}{)}
+
+    \PYG{n}{tables} \PYG{o}{=} \PYG{p}{[]}
+    \PYG{c+c1}{\PYGZsh{} Export tables}
+    \PYG{k}{for} \PYG{n}{table} \PYG{o+ow}{in} \PYG{n}{conv\PYGZus{}res}\PYG{o}{.}\PYG{n}{document}\PYG{o}{.}\PYG{n}{tables}\PYG{p}{:}
+        \PYG{n}{table\PYGZus{}df}\PYG{p}{:} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame} \PYG{o}{=} \PYG{n}{table}\PYG{o}{.}\PYG{n}{export\PYGZus{}to\PYGZus{}dataframe}\PYG{p}{()}
+        \PYG{n}{tables}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{table\PYGZus{}df}\PYG{p}{)}
+
+    \PYG{k}{return} \PYG{n}{tables}
+\end{Verbatim}

@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{input\PYGZus{}ids} \PYG{o}{=} \PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{encode}\PYG{p}{(}\PYG{n}{PROMPT}\PYG{p}{,} \PYG{n}{return\PYGZus{}tensors}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}pt\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{initial\PYGZus{}length} \PYG{o}{=} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{input\PYGZus{}ids}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])}
+
+\PYG{n}{YES} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}yes\PYGZdq{}}
+\PYG{n}{NO} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}no\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZsh{} Controlled generation}
+\PYG{n}{generation\PYGZus{}output\PYGZus{}controlled} \PYG{o}{=} \PYG{n}{model}\PYG{o}{.}\PYG{n}{generate}\PYG{p}{(}\PYG{o}{**}\PYG{n}{inputs}\PYG{p}{,} \PYG{n}{logits\PYGZus{}processor}\PYG{o}{=}\PYG{n}{LogitsProcessorList}\PYG{p}{([}\PYG{n}{YesNoLogitsProcessor}\PYG{p}{(}\PYG{n}{YES}\PYG{p}{,} \PYG{n}{NO}\PYG{p}{,} \PYG{n}{tokenizer}\PYG{p}{,} \PYG{n}{initial\PYGZus{}length}\PYG{p}{)]),} \PYG{n}{max\PYGZus{}length}\PYG{o}{=}\PYG{l+m+mi}{50}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Uncontrolled generation}
+\PYG{n}{generation\PYGZus{}output} \PYG{o}{=} \PYG{n}{model}\PYG{o}{.}\PYG{n}{generate}\PYG{p}{(}\PYG{o}{**}\PYG{n}{inputs}\PYG{p}{,} \PYG{n}{max\PYGZus{}length}\PYG{o}{=}\PYG{l+m+mi}{50}\PYG{p}{)}
+\end{Verbatim}

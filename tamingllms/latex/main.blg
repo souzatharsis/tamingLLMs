@@ -1,0 +1,50 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'main.blg'
+[126] biber:340> INFO - === Sun Jan 12, 2025, 12:59:20
+[162] Biber.pm:419> INFO - Reading 'main.bcf'
+[2119] Biber.pm:979> INFO - Found 250 citekeys in bib section 0
+[2140] Biber.pm:4419> INFO - Processing section 0
+[2160] Biber.pm:4610> INFO - Looking for bibtex file '../references.bib' for section 0
+[2181] bibtex.pm:1713> INFO - LaTeX decoding ...
+[2560] bibtex.pm:1519> INFO - Found BibTeX data source '../references.bib'
+[7657] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[7657] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[7658] Biber.pm:4239> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
+[7658] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[7911] bbl.pm:660> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[8260] bbl.pm:763> INFO - Output to main.bbl
+[8261] Biber.pm:131> WARN - legacy year field '12/08/2024' in entry 'arcprizeresults2024' is not an integer - this will probably not sort properly.
+[8261] Biber.pm:131> WARN - legacy year field '2024z' in entry 'langchain_github' is not an integer - this will probably not sort properly.
+[8261] Biber.pm:131> WARN - legacy year field '2024b' in entry 'langchain2024outlines' is not an integer - this will probably not sort properly.
+[8261] Biber.pm:131> WARN - legacy year field '2024a' in entry 'nvidia2024logitsprocessorzoo' is not an integer - this will probably not sort properly.
+[8261] Biber.pm:131> WARN - legacy year field '2024b' in entry 'chromadb2024docs' is not an integer - this will probably not sort properly.
+[8261] Biber.pm:131> WARN - legacy year field '2024i' in entry 'huggingface2024mteb' is not an integer - this will probably not sort properly.
+[8262] Biber.pm:131> WARN - legacy year field '2024f' in entry 'sentencetransformers2024website' is not an integer - this will probably not sort properly.
+[8262] Biber.pm:131> WARN - legacy year field '2024a' in entry 'chromadb2024hnsw' is not an integer - this will probably not sort properly.
+[8262] Biber.pm:131> WARN - legacy year field '2024a' in entry 'anthropic2024contextualretrieval' is not an integer - this will probably not sort properly.
+[8262] Biber.pm:131> WARN - legacy month field 'July' in entry 'china2023generativeai' is not an integer - this will probably not sort properly.
+[8262] Biber.pm:131> WARN - legacy year field '2024z' in entry 'ultrafeedback2024z' is not an integer - this will probably not sort properly.
+[8262] Biber.pm:131> WARN - legacy month field 'January' in entry 'lambert2025posttraining' is not an integer - this will probably not sort properly.
+[8262] Biber.pm:131> WARN - legacy year field '2024c' in entry 'huggingface2024rlhf' is not an integer - this will probably not sort properly.
+[8262] Biber.pm:131> WARN - legacy year field '2024d' in entry 'huggingface2024trl' is not an integer - this will probably not sort properly.
+[8262] Biber.pm:131> WARN - legacy year field '2024a' in entry 'askell2024alignmentfaking' is not an integer - this will probably not sort properly.
+[8262] Biber.pm:131> WARN - legacy year field '2024b' in entry 'askell2024alignmentfakingreviews' is not an integer - this will probably not sort properly.
+[8263] Biber.pm:131> WARN - legacy year field '2024i' in entry 'huggingface2024smolcourse' is not an integer - this will probably not sort properly.
+[8263] Biber.pm:131> WARN - legacy year field '2024b' in entry 'huggingfaceh42024' is not an integer - this will probably not sort properly.
+[8263] Biber.pm:131> WARN - legacy year field '2024a' in entry 'ultrafeedback2024' is not an integer - this will probably not sort properly.
+[8263] Biber.pm:131> WARN - legacy month field 'December' in entry 'huyen2024aiengineering' is not an integer - this will probably not sort properly.
+[8263] Biber.pm:131> WARN - legacy year field '2024t' in entry 'hf2024yearinreview' is not an integer - this will probably not sort properly.
+[8263] Biber.pm:131> WARN - legacy year field '2024c' in entry 'meta2024llama2chat70b' is not an integer - this will probably not sort properly.
+[8263] Biber.pm:131> WARN - legacy year field '2024c' in entry 'grattafiori2024llama3herdmodels' is not an integer - this will probably not sort properly.
+[8264] Biber.pm:131> WARN - legacy year field '2024b' in entry 'qwen25instruct2024' is not an integer - this will probably not sort properly.
+[8264] Biber.pm:131> WARN - legacy year field '2024u' in entry 'hf2024ultrachat200k' is not an integer - this will probably not sort properly.
+[8264] Biber.pm:131> WARN - legacy year field '2024a' in entry 'mistraltechnology2024' is not an integer - this will probably not sort properly.
+[8264] Biber.pm:131> WARN - legacy year field '2024v' in entry 'hf2024scalingtesttime' is not an integer - this will probably not sort properly.
+[8264] Biber.pm:131> WARN - legacy year field '2024a' in entry 'ggerganov2024llamacpp' is not an integer - this will probably not sort properly.
+[8264] Biber.pm:131> WARN - legacy year field '2024b' in entry 'ggerganov2024ggufspec' is not an integer - this will probably not sort properly.
+[8264] Biber.pm:131> WARN - legacy year field '2024x' in entry 'huggingface2024ggufmodels' is not an integer - this will probably not sort properly.
+[8264] Biber.pm:131> WARN - legacy year field '2024x' in entry 'huggingface2024llamafilemodels' is not an integer - this will probably not sort properly.
+[8265] Biber.pm:131> WARN - legacy year field '2024s' in entry 'hf2024quantization' is not an integer - this will probably not sort properly.
+[8265] Biber.pm:131> WARN - legacy year field '2024w' in entry 'huggingface2024quantization' is not an integer - this will probably not sort properly.
+[8265] Biber.pm:131> WARN - BibTeX subsystem: /tmp/biber_tmp_TYjF/33e59b5ca9ec342068223d604c3f8d55_305085.utf8, line 243, warning: 6 characters of junk seen at toplevel
+[8265] Biber.pm:133> INFO - WARNINGS: 34

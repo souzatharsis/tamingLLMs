@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{json}
+
+\PYG{k}{def} \PYG{n+nf}{is\PYGZus{}json}\PYG{p}{(}\PYG{n}{myjson}\PYG{p}{):}
+  \PYG{k}{try}\PYG{p}{:}
+    \PYG{n}{json}\PYG{o}{.}\PYG{n}{loads}\PYG{p}{(}\PYG{n}{myjson}\PYG{p}{)}
+  \PYG{k}{except} \PYG{n+ne}{ValueError} \PYG{k}{as} \PYG{n}{e}\PYG{p}{:}
+    \PYG{k}{return} \PYG{k+kc}{False}
+  \PYG{k}{return} \PYG{k+kc}{True}
+\end{Verbatim}

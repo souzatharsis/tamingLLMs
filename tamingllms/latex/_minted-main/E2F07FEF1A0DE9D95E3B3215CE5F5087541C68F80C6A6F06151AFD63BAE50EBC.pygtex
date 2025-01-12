@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Define the chunk and chunk overlap size}
+\PYG{n}{MAX\PYGZus{}CHUNK\PYGZus{}SIZE} \PYG{o}{=} \PYG{l+m+mi}{10000}
+\PYG{n}{MAX\PYGZus{}CHUNK\PYGZus{}OVERLAP} \PYG{o}{=} \PYG{l+m+mi}{0}
+\end{Verbatim}

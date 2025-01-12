@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{prompts\PYGZus{}eval} \PYG{o}{=} \PYG{n}{df\PYGZus{}eval}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}prompt\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{to\PYGZus{}list}\PYG{p}{()}
+\PYG{n}{prompts\PYGZus{}eval}\PYG{p}{[:}\PYG{l+m+mi}{1}\PYG{p}{]}
+\end{Verbatim}

@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{nemoguardrails} \PYG{k+kn}{import} \PYG{n}{LLMRails}\PYG{p}{,} \PYG{n}{RailsConfig}
+
+\PYG{c+c1}{\PYGZsh{} Load a guardrails configuration from the specified path.}
+\PYG{n}{config} \PYG{o}{=} \PYG{n}{RailsConfig}\PYG{o}{.}\PYG{n}{from\PYGZus{}path}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}PATH/TO/CONFIG\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{rails} \PYG{o}{=} \PYG{n}{LLMRails}\PYG{p}{(}\PYG{n}{config}\PYG{p}{)}
+
+\PYG{n}{completion} \PYG{o}{=} \PYG{n}{rails}\PYG{o}{.}\PYG{n}{generate}\PYG{p}{(}
+    \PYG{n}{messages}\PYG{o}{=}\PYG{p}{[\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}user\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Hello world!\PYGZdq{}}\PYG{p}{\PYGZcb{}]}
+\PYG{p}{)}
+\end{Verbatim}

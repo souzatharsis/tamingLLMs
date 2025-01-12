@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{os}
+\PYG{k+kn}{from} \PYG{n+nn}{IPython.display} \PYG{k+kn}{import} \PYG{n}{Markdown}
+
+\PYG{k}{def} \PYG{n+nf}{load\PYGZus{}policy}\PYG{p}{():}
+    \PYG{c+c1}{\PYGZsh{} Read the policy file}
+    \PYG{n}{policy\PYGZus{}path} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}..\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}data\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}alignment\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}genai\PYGZus{}policy.md\PYGZdq{}}\PYG{p}{)}
+    \PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{n}{policy\PYGZus{}path}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}r\PYGZdq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{f}\PYG{p}{:}
+        \PYG{n}{policy\PYGZus{}content} \PYG{o}{=} \PYG{n}{f}\PYG{o}{.}\PYG{n}{read}\PYG{p}{()}
+    \PYG{k}{return} \PYG{n}{policy\PYGZus{}content}
+
+\PYG{n}{policy\PYGZus{}content} \PYG{o}{=} \PYG{n}{load\PYGZus{}policy}\PYG{p}{()}
+
+\PYG{n}{display}\PYG{p}{(}\PYG{n}{Markdown}\PYG{p}{(}\PYG{n}{policy\PYGZus{}content}\PYG{p}{))}
+\end{Verbatim}

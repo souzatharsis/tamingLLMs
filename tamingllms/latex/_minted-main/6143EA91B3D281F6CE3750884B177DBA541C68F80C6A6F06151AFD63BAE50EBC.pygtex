@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{parallel\PYGZus{}evaluator} \PYG{o}{=} \PYG{n}{ParallelEvaluator}\PYG{p}{(}\PYG{n}{evaluator}\PYG{p}{)}
+\PYG{n}{rejected\PYGZus{}responses} \PYG{o}{=} \PYG{n}{parallel\PYGZus{}evaluator}\PYG{o}{.}\PYG{n}{evaluate}\PYG{p}{(}\PYG{n}{prompts}\PYG{o}{=}\PYG{n}{user\PYGZus{}prompts}\PYG{p}{,} \PYG{n}{n\PYGZus{}parts}\PYG{o}{=}\PYG{n}{NUM\PYGZus{}CHUNKS}\PYG{p}{,} \PYG{n}{save\PYGZus{}to\PYGZus{}csv}\PYG{o}{=}\PYG{n}{REJECTED\PYGZus{}RESPONSES\PYGZus{}PATH}\PYG{p}{)}
+\end{Verbatim}

@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{datasets} \PYG{k+kn}{import} \PYG{n}{concatenate\PYGZus{}datasets}
+
+\PYG{n}{dataset\PYGZus{}ultra} \PYG{o}{=} \PYG{n}{dataset\PYGZus{}ultra}\PYG{o}{.}\PYG{n}{remove\PYGZus{}columns}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}score\PYGZus{}chosen\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}score\PYGZus{}rejected\PYGZsq{}}\PYG{p}{])}
+\PYG{n}{dataset} \PYG{o}{=} \PYG{n}{concatenate\PYGZus{}datasets}\PYG{p}{([}\PYG{n}{dataset\PYGZus{}ultra}\PYG{p}{,} \PYG{n}{dataset\PYGZus{}k12}\PYG{p}{])}\PYG{o}{.}\PYG{n}{shuffle}\PYG{p}{(}\PYG{n}{seed}\PYG{o}{=}\PYG{l+m+mi}{42}\PYG{p}{)}
+\end{Verbatim}

@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{generate\PYGZus{}response}\PYG{p}{(}\PYG{n}{model\PYGZus{}output}\PYG{p}{,} \PYG{n}{tokenizer}\PYG{p}{):}
+    \PYG{n}{gen\PYGZus{}output} \PYG{o}{=} \PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{batch\PYGZus{}decode}\PYG{p}{(}\PYG{n}{model\PYGZus{}output}\PYG{p}{,} \PYG{n}{skip\PYGZus{}special\PYGZus{}tokens}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{clean\PYGZus{}up\PYGZus{}tokenization\PYGZus{}spaces}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
+    \PYG{n}{generated\PYGZus{}text} \PYG{o}{=} \PYG{n}{gen\PYGZus{}output}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{][}
+                \PYG{n+nb}{len}\PYG{p}{(}
+                    \PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{decode}\PYG{p}{(}
+                        \PYG{n}{inputs}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}input\PYGZus{}ids\PYGZdq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{n}{skip\PYGZus{}special\PYGZus{}tokens}\PYG{o}{=}\PYG{k+kc}{True}
+                    \PYG{p}{)}
+                \PYG{p}{)} \PYG{p}{:}
+            \PYG{p}{]}\PYG{o}{.}\PYG{n}{strip}\PYG{p}{()}
+    \PYG{k}{return} \PYG{n}{generated\PYGZus{}text}
+\end{Verbatim}

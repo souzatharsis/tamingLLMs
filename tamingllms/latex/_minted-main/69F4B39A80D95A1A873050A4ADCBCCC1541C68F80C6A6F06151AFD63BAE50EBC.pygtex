@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} List of validators to be passed by the user}
+\PYG{n}{validators} \PYG{o}{=} \PYG{p}{[}\PYG{n}{LLMJudgeValidator}\PYG{p}{(}\PYG{n}{prompt\PYGZus{}path}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}../data/safety/judge\PYGZus{}prompt.md\PYGZdq{}}\PYG{p}{),}
+              \PYG{n}{MistralValidator}\PYG{p}{(),}
+              \PYG{n}{OpenAIValidator}\PYG{p}{(),}
+              \PYG{n}{LLMGuardValidator}\PYG{p}{()]}
+
+\PYG{c+c1}{\PYGZsh{} Run the scoring method on prompt\PYGZus{}samples}
+\PYG{n}{scoring\PYGZus{}prompts}\PYG{p}{,} \PYG{n}{scoring\PYGZus{}results} \PYG{o}{=} \PYG{n}{score\PYGZus{}validators}\PYG{p}{(}\PYG{n}{prompt\PYGZus{}samples}\PYG{p}{,} \PYG{n}{validators}\PYG{p}{,} \PYG{k+kc}{True}\PYG{p}{)}
+\end{Verbatim}

@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{ollama} \PYG{k+kn}{import} \PYG{n}{chat}
+\PYG{k+kn}{from} \PYG{n+nn}{ollama} \PYG{k+kn}{import} \PYG{n}{ChatResponse}
+
+\PYG{n}{response}\PYG{p}{:} \PYG{n}{ChatResponse} \PYG{o}{=} \PYG{n}{chat}\PYG{p}{(}\PYG{n}{model}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}qwen2:0.5b\PYGZsq{}}\PYG{p}{,} \PYG{n}{messages}\PYG{o}{=}\PYG{p}{[}
+  \PYG{p}{\PYGZob{}}
+    \PYG{l+s+s1}{\PYGZsq{}role\PYGZsq{}}\PYG{p}{:} \PYG{l+s+s1}{\PYGZsq{}user\PYGZsq{}}\PYG{p}{,}
+    \PYG{l+s+s1}{\PYGZsq{}content\PYGZsq{}}\PYG{p}{:} \PYG{l+s+s1}{\PYGZsq{}What is the meaning of life?\PYGZsq{}}\PYG{p}{,}
+  \PYG{p}{\PYGZcb{},}
+\PYG{p}{])}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{response}\PYG{o}{.}\PYG{n}{message}\PYG{o}{.}\PYG{n}{content}\PYG{p}{)}
+\end{Verbatim}

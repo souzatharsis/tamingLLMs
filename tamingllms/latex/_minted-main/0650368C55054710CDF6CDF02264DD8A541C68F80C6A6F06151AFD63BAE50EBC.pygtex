@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{json}
+\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
+
+\PYG{c+c1}{\PYGZsh{} Read the JSON file}
+\PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}promptfoo/model\PYGZus{}comparison/eval.json\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}r\PYGZsq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{f}\PYG{p}{:}
+    \PYG{n}{eval\PYGZus{}data} \PYG{o}{=} \PYG{n}{json}\PYG{o}{.}\PYG{n}{load}\PYG{p}{(}\PYG{n}{f}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Extract results into a list of dictionaries}
+\PYG{n}{results} \PYG{o}{=} \PYG{p}{[]}
+\PYG{k}{for} \PYG{n}{prompt} \PYG{o+ow}{in} \PYG{n}{eval\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}results\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}prompts\PYGZsq{}}\PYG{p}{]:}
+    \PYG{n}{result} \PYG{o}{=} \PYG{p}{\PYGZob{}}
+        \PYG{l+s+s1}{\PYGZsq{}provider\PYGZsq{}}\PYG{p}{:} \PYG{n}{prompt}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}provider\PYGZsq{}}\PYG{p}{],}
+        \PYG{l+s+s1}{\PYGZsq{}latency\PYGZus{}ms\PYGZsq{}}\PYG{p}{:} \PYG{n}{prompt}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}metrics\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}totalLatencyMs\PYGZsq{}}\PYG{p}{],}
+        \PYG{l+s+s1}{\PYGZsq{}token\PYGZus{}usage\PYGZsq{}}\PYG{p}{:} \PYG{n}{prompt}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}metrics\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}tokenUsage\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}total\PYGZsq{}}\PYG{p}{],}
+        \PYG{l+s+s1}{\PYGZsq{}cost\PYGZsq{}}\PYG{p}{:} \PYG{n}{prompt}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}metrics\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}cost\PYGZsq{}}\PYG{p}{],}
+        \PYG{l+s+s1}{\PYGZsq{}assert\PYGZus{}pass\PYGZsq{}}\PYG{p}{:} \PYG{n}{prompt}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}metrics\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}assertPassCount\PYGZsq{}}\PYG{p}{],}
+        \PYG{l+s+s1}{\PYGZsq{}assert\PYGZus{}fail\PYGZsq{}}\PYG{p}{:} \PYG{n}{prompt}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}metrics\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}assertFailCount\PYGZsq{}}\PYG{p}{],}
+        \PYG{l+s+s1}{\PYGZsq{}prompt\PYGZus{}tokens\PYGZsq{}}\PYG{p}{:} \PYG{n}{prompt}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}metrics\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}tokenUsage\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}prompt\PYGZsq{}}\PYG{p}{],}
+        \PYG{l+s+s1}{\PYGZsq{}num\PYGZus{}requests\PYGZsq{}}\PYG{p}{:} \PYG{n}{prompt}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}metrics\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}tokenUsage\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}numRequests\PYGZsq{}}\PYG{p}{]}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{n}{results}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{result}\PYG{p}{)}
+\end{Verbatim}

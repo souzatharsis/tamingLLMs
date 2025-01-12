@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+./build/bin/llama\PYGZhy{}cli\PYG{+w}{ }\PYGZhy{}m\PYG{+w}{ }./models/qwen2.5\PYGZhy{}0.5b\PYGZhy{}instruct\PYGZhy{}q8\PYGZus{}0.gguf\PYG{+w}{ }\PYGZhy{}p\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}You are a helpful assistant \PYGZhy{} Be succinct.\PYGZdq{}}\PYG{+w}{ }\PYGZhy{}cnv
+\end{Verbatim}

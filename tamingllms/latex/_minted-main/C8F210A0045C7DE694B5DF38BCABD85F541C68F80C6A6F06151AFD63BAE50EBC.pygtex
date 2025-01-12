@@ -1,0 +1,28 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{get\PYGZus{}good\PYGZus{}samples}\PYG{p}{(}\PYG{n}{num\PYGZus{}samples}\PYG{p}{):}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    Get high\PYGZhy{}quality samples from the UltraFeedback dataset and optionally show score statistics.}
+
+\PYG{l+s+sd}{    Args:}
+\PYG{l+s+sd}{        num\PYGZus{}samples (int): Number of samples to return}
+\PYG{l+s+sd}{        show\PYGZus{}stats (bool): Whether to show score distribution statistics}
+
+\PYG{l+s+sd}{    Returns:}
+\PYG{l+s+sd}{        list: List of high\PYGZhy{}quality question samples}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{k+kn}{from} \PYG{n+nn}{datasets} \PYG{k+kn}{import} \PYG{n}{load\PYGZus{}dataset}
+    \PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
+
+    \PYG{n}{MIN\PYGZus{}SCORE} \PYG{o}{=} \PYG{l+m+mf}{7.0}
+    \PYG{c+c1}{\PYGZsh{} Load dataset}
+    \PYG{n}{dataset} \PYG{o}{=} \PYG{n}{load\PYGZus{}dataset}\PYG{p}{(}\PYG{n}{path}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}trl\PYGZhy{}lib/ultrafeedback\PYGZus{}binarized\PYGZdq{}}\PYG{p}{,} \PYG{n}{split}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}train\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{n}{dataset}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Extract content from chosen column}
+    \PYG{n}{df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}content\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}chosen\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{apply}\PYG{p}{(}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n}{x}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}content\PYGZsq{}}\PYG{p}{])}
+
+    \PYG{c+c1}{\PYGZsh{} Get samples with high scores}
+    \PYG{n}{samples} \PYG{o}{=} \PYG{n}{df}\PYG{p}{[}\PYG{n}{df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}score\PYGZus{}chosen\PYGZsq{}}\PYG{p}{]} \PYG{o}{\PYGZgt{}=} \PYG{n}{MIN\PYGZus{}SCORE}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}content\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{sample}\PYG{p}{(}\PYG{n}{n}\PYG{o}{=}\PYG{n}{num\PYGZus{}samples}\PYG{p}{,} \PYG{n}{random\PYGZus{}state}\PYG{o}{=}\PYG{l+m+mi}{42}\PYG{p}{)}\PYG{o}{.}\PYG{n}{tolist}\PYG{p}{()}
+
+    \PYG{k}{return} \PYG{n}{samples}
+\end{Verbatim}

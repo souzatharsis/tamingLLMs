@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{report} \PYG{o}{=} \PYG{n}{generate\PYGZus{}report}\PYG{p}{(}\PYG{n}{text}\PYG{p}{,} \PYG{n}{llm\PYGZus{}model\PYGZus{}name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}gemini/gemini\PYGZhy{}1.5\PYGZhy{}flash\PYGZhy{}latest\PYGZdq{}}\PYG{p}{,}
+                           \PYG{n}{role}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}Financial Analyst\PYGZdq{}}\PYG{p}{,}
+                           \PYG{n}{requirements}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}The report should be in a readable, structured format, easy to understand and follow. Focus on finding risk factors and market moving insights.\PYGZdq{}}\PYG{p}{,}
+                           \PYG{n}{chunk\PYGZus{}size}\PYG{o}{=}\PYG{n}{MAX\PYGZus{}CHUNK\PYGZus{}SIZE}\PYG{p}{,}
+                           \PYG{n}{chunk\PYGZus{}overlap}\PYG{o}{=}\PYG{n}{MAX\PYGZus{}CHUNK\PYGZus{}OVERLAP}\PYG{p}{)}
+\end{Verbatim}

@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{q} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}What is the purpose of this book?\PYGZdq{}}
+\PYG{n}{res} \PYG{o}{=} \PYG{n}{query\PYGZus{}collection}\PYG{p}{(}\PYG{n}{collection}\PYG{p}{,} \PYG{n}{q}\PYG{p}{)}
+\PYG{n}{res}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}ids\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

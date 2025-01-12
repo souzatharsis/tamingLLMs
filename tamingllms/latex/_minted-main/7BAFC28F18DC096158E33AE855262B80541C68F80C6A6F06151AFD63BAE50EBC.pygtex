@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{MAX\PYGZus{}STEPS} \PYG{o}{=} \PYG{l+m+mi}{200}
+\PYG{n}{WARMUP\PYGZus{}STEPS} \PYG{o}{=} \PYG{l+m+mi}{50}
+\PYG{n}{TRAINING\PYGZus{}RESULTS\PYGZus{}DIR} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}smolk12\PYGZus{}dpo\PYGZus{}output\PYGZdq{}}
+\PYG{n}{DPO\PYGZus{}CONFIG\PYGZus{}PATH} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}../data/alignment/dpo\PYGZus{}config.yaml\PYGZdq{}}
+\end{Verbatim}

@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+./build/bin/llama\PYGZhy{}perplexity\PYG{+w}{ }\PYGZhy{}m\PYG{+w}{ }./models/qwen2.5\PYGZhy{}0.5b\PYGZhy{}instruct\PYGZhy{}q2\PYGZus{}k.gguf\PYG{+w}{ }\PYGZhy{}f\PYG{+w}{ }../prompts.txt\PYG{+w}{ }\PYGZhy{}\PYGZhy{}kl\PYGZhy{}divergence\PYGZhy{}base\PYG{+w}{ }../logits.kld\PYG{+w}{ }\PYGZhy{}\PYGZhy{}kl\PYGZhy{}divergence\PYG{+w}{ }\PYG{p}{\PYGZam{}}\PYGZgt{}\PYG{+w}{ }../q2\PYGZus{}kresults.txt
+\end{Verbatim}

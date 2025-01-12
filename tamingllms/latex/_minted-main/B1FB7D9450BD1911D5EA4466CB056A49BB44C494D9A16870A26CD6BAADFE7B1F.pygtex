@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{   }\PYG{n+nt}{\PYGZdq{}choices\PYGZdq{}}\PYG{p}{:[}
+\PYG{+w}{      }\PYG{p}{\PYGZob{}}
+\PYG{+w}{         }\PYG{n+nt}{\PYGZdq{}finish\PYGZus{}reason\PYGZdq{}}\PYG{p}{:}\PYG{l+s+s2}{\PYGZdq{}stop\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{         }\PYG{n+nt}{\PYGZdq{}index\PYGZdq{}}\PYG{p}{:}\PYG{l+m+mi}{0}\PYG{p}{,}
+\PYG{+w}{         }\PYG{n+nt}{\PYGZdq{}message\PYGZdq{}}\PYG{p}{:\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nt}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:}\PYG{l+s+s2}{\PYGZdq{}The meaning of life is a question that has been debated throughout history. Some people believe it is to find happiness and purpose, while others believe it is to seek knowledge and knowledge. Ultimately, the meaning of life is a deeply personal and subjective question that cannot be answered universally.\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{            }\PYG{n+nt}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:}\PYG{l+s+s2}{\PYGZdq{}assistant\PYGZdq{}}
+\PYG{+w}{         }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{      }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{   }\PYG{p}{],}
+\PYG{+w}{   }\PYG{err}{(...)}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

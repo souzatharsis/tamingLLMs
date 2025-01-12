@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{visualize\PYGZus{}prompt\PYGZus{}comparison}\PYG{p}{(}\PYG{n}{evaluation\PYGZus{}results}\PYG{p}{,} \PYG{n}{model\PYGZus{}names}\PYG{p}{):}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    Create a radar plot comparing different prompt variations}
+
+\PYG{l+s+sd}{    Args:}
+\PYG{l+s+sd}{        evaluation\PYGZus{}results (list): List of dictionaries containing evaluation metrics}
+\PYG{l+s+sd}{        model\PYGZus{}names (list): List of names for each prompt variation}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{k+kn}{from} \PYG{n+nn}{evaluate.visualization} \PYG{k+kn}{import} \PYG{n}{radar\PYGZus{}plot}
+
+    \PYG{c+c1}{\PYGZsh{} Format data for visualization}
+    \PYG{n}{plot} \PYG{o}{=} \PYG{n}{radar\PYGZus{}plot}\PYG{p}{(}\PYG{n}{data}\PYG{o}{=}\PYG{n}{evaluation\PYGZus{}results}\PYG{p}{,} \PYG{n}{model\PYGZus{}names}\PYG{o}{=}\PYG{n}{model\PYGZus{}names}\PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{plot}
+
+\PYG{c+c1}{\PYGZsh{} Create and display visualization}
+\PYG{n}{plot} \PYG{o}{=} \PYG{n}{visualize\PYGZus{}prompt\PYGZus{}comparison}\PYG{p}{(}\PYG{n}{evals}\PYG{p}{,} \PYG{n}{models\PYGZus{}test}\PYG{p}{)}
+\PYG{n}{plot}\PYG{o}{.}\PYG{n}{show}\PYG{p}{()}
+\end{Verbatim}

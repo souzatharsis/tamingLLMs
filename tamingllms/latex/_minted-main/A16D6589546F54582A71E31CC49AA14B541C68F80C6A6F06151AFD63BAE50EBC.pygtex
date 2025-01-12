@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{rag\PYGZus{}system\PYGZus{}prompt\PYGZus{}template} \PYG{o}{=} \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+s2}{You are a helpful assistant that answers questions based on the provided CONTEXT.}
+
+\PYG{l+s+s2}{CONTEXT: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{context}\PYG{l+s+si}{\PYGZcb{}}
+\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+
+\PYG{n}{user\PYGZus{}prompt\PYGZus{}template} \PYG{o}{=} \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+s2}{QUESTION: }\PYG{l+s+si}{\PYGZob{}}\PYG{n+nb}{input}\PYG{l+s+si}{\PYGZcb{}}
+\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\end{Verbatim}

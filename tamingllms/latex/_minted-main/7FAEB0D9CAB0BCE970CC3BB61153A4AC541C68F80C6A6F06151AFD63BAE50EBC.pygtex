@@ -1,0 +1,58 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{huggingface\PYGZus{}hub} \PYG{k+kn}{import} \PYG{n}{InferenceClient}
+\PYG{k+kn}{from} \PYG{n+nn}{transformers} \PYG{k+kn}{import} \PYG{n}{pipeline}
+\PYG{k+kn}{import} \PYG{n+nn}{csv}
+\PYG{k+kn}{import} \PYG{n+nn}{os}
+
+\PYG{n}{os}\PYG{o}{.}\PYG{n}{environ}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}TOKENIZERS\PYGZus{}PARALLELISM\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}true\PYGZsq{}}
+\PYG{n}{SYSTEM\PYGZus{}PROMPT} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Keep the response short\PYGZdq{}}
+\PYG{n}{MAX\PYGZus{}NEW\PYGZus{}TOKENS} \PYG{o}{=} \PYG{l+m+mi}{500}
+\PYG{k}{class} \PYG{n+nc}{ResponseGenerator}\PYG{p}{:}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}Generates responses from a base unaligned LLM using either local transformers or remote inference.\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{model\PYGZus{}name}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{,} \PYG{n}{api\PYGZus{}url}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{):}
+\PYG{+w}{        }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}Initialize with either local model name or API endpoint URL.\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{model\PYGZus{}name} \PYG{o}{=} \PYG{n}{model\PYGZus{}name}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{api\PYGZus{}url} \PYG{o}{=} \PYG{n}{api\PYGZus{}url}
+
+        \PYG{k}{if} \PYG{n}{model\PYGZus{}name}\PYG{p}{:}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{pipe} \PYG{o}{=} \PYG{n}{pipeline}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}text\PYGZhy{}generation\PYGZdq{}}\PYG{p}{,} \PYG{n}{model}\PYG{o}{=}\PYG{n}{model\PYGZus{}name}\PYG{p}{,} \PYG{n}{max\PYGZus{}new\PYGZus{}tokens}\PYG{o}{=}\PYG{n}{MAX\PYGZus{}NEW\PYGZus{}TOKENS}\PYG{p}{)}
+        \PYG{k}{if} \PYG{n}{api\PYGZus{}url}\PYG{p}{:}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{client} \PYG{o}{=} \PYG{n}{InferenceClient}\PYG{p}{()}
+
+    \PYG{k}{def} \PYG{n+nf}{generate\PYGZus{}responses}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{prompts}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{[}\PYG{n+nb}{str}\PYG{p}{])} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{:}
+        \PYG{n}{responses} \PYG{o}{=} \PYG{p}{[]}
+
+        \PYG{k}{for} \PYG{n}{prompt} \PYG{o+ow}{in} \PYG{n}{prompts}\PYG{p}{:}
+
+            \PYG{n}{prompt} \PYG{o}{=} \PYG{n}{prompt}\PYG{o}{.}\PYG{n}{strip}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}\PYGZdq{}\PYGZsq{}}\PYG{p}{)}
+            \PYG{n}{messages} \PYG{o}{=} \PYG{p}{[\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}assistant\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{n}{SYSTEM\PYGZus{}PROMPT}\PYG{p}{\PYGZcb{},} \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}user\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{n}{prompt}\PYG{p}{\PYGZcb{}]}
+
+            \PYG{k}{try}\PYG{p}{:}
+                \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{model\PYGZus{}name}\PYG{p}{:}
+                    \PYG{n}{output} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{pipe}\PYG{p}{(}\PYG{n}{messages}\PYG{p}{)}
+                    \PYG{n}{response} \PYG{o}{=} \PYG{n}{output}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}generated\PYGZus{}text\PYGZsq{}}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}content\PYGZsq{}}\PYG{p}{]}
+                \PYG{k}{elif} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{api\PYGZus{}url}\PYG{p}{:}
+                    \PYG{n}{output} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{client}\PYG{o}{.}\PYG{n}{chat\PYGZus{}completion}\PYG{p}{(}
+                        \PYG{n}{messages}\PYG{p}{,}
+                        \PYG{n}{model}\PYG{o}{=}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{api\PYGZus{}url}\PYG{p}{,}
+                        \PYG{n}{seed}\PYG{o}{=}\PYG{l+m+mi}{42}
+                    \PYG{p}{)}
+                    \PYG{n}{response} \PYG{o}{=} \PYG{n}{output}\PYG{o}{.}\PYG{n}{choices}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{message}\PYG{o}{.}\PYG{n}{content}
+                \PYG{n}{responses}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{response}\PYG{p}{)}
+
+                \PYG{c+c1}{\PYGZsh{} Add delay to respect rate limits}
+                \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}
+
+            \PYG{k}{except} \PYG{n+ne}{Exception} \PYG{k}{as} \PYG{n}{e}\PYG{p}{:}
+                \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}Error generating response for prompt: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{prompt}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+                \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}Error: }\PYG{l+s+si}{\PYGZob{}}\PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{e}\PYG{p}{)}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+                \PYG{n}{responses}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{)}
+
+        \PYG{n}{results\PYGZus{}df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(\PYGZob{}}
+            \PYG{l+s+s2}{\PYGZdq{}user\PYGZus{}prompts\PYGZdq{}}\PYG{p}{:} \PYG{n}{prompts}\PYG{p}{,}
+            \PYG{l+s+s2}{\PYGZdq{}model\PYGZus{}responses\PYGZdq{}}\PYG{p}{:} \PYG{n}{responses}
+        \PYG{p}{\PYGZcb{})}
+
+        \PYG{k}{return} \PYG{n}{results\PYGZus{}df}
+\end{Verbatim}

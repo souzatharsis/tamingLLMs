@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{get\PYGZus{}chunks}\PYG{p}{(}\PYG{n}{text}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{chunk\PYGZus{}size}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{chunk\PYGZus{}overlap}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n+nb}{list}\PYG{p}{:}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    Split input text into chunks of specified size with specified overlap.}
+
+\PYG{l+s+sd}{    Args:}
+\PYG{l+s+sd}{        text (str): The input text to be chunked.}
+\PYG{l+s+sd}{        chunk\PYGZus{}size (int): The maximum size of each chunk in tokens.}
+\PYG{l+s+sd}{        chunk\PYGZus{}overlap (int): The number of tokens to overlap between chunks.}
+
+\PYG{l+s+sd}{    Returns:}
+\PYG{l+s+sd}{        list: A list of text chunks.}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{k+kn}{from} \PYG{n+nn}{langchain\PYGZus{}text\PYGZus{}splitters} \PYG{k+kn}{import} \PYG{n}{CharacterTextSplitter}
+
+    \PYG{n}{text\PYGZus{}splitter} \PYG{o}{=} \PYG{n}{CharacterTextSplitter}\PYG{o}{.}\PYG{n}{from\PYGZus{}tiktoken\PYGZus{}encoder}\PYG{p}{(}\PYG{n}{chunk\PYGZus{}size}\PYG{o}{=}\PYG{n}{chunk\PYGZus{}size}\PYG{p}{,} \PYG{n}{chunk\PYGZus{}overlap}\PYG{o}{=}\PYG{n}{chunk\PYGZus{}overlap}\PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{text\PYGZus{}splitter}\PYG{o}{.}\PYG{n}{split\PYGZus{}text}\PYG{p}{(}\PYG{n}{text}\PYG{p}{)}
+\end{Verbatim}

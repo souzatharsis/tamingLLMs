@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{user\PYGZus{}prompt\PYGZus{}generator} \PYG{o}{=} \PYG{n}{UserPromptGenerator}\PYG{p}{(}\PYG{n}{policy\PYGZus{}content}\PYG{p}{,} \PYG{n}{model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}gpt\PYGZhy{}4o\PYGZhy{}mini\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{USER\PYGZus{}PROMPTS\PYGZus{}PATH} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}../data/alignment/user\PYGZus{}prompts.csv\PYGZdq{}}
+\PYG{n}{user\PYGZus{}prompts} \PYG{o}{=} \PYG{n}{user\PYGZus{}prompt\PYGZus{}generator}\PYG{o}{.}\PYG{n}{generate\PYGZus{}prompts}\PYG{p}{(}\PYG{n}{num\PYGZus{}prompts}\PYG{o}{=}\PYG{n}{DPO\PYGZus{}DATASET\PYGZus{}SIZE}\PYG{p}{,} \PYG{n}{save\PYGZus{}to\PYGZus{}csv}\PYG{o}{=}\PYG{n}{USER\PYGZus{}PROMPTS\PYGZus{}PATH}\PYG{p}{)}
+\end{Verbatim}

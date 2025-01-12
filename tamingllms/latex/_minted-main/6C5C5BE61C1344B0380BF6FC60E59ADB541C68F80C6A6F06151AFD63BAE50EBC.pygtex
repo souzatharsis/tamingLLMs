@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Convert and export tables}
+\PYG{n}{tables} \PYG{o}{=} \PYG{n}{convert\PYGZus{}and\PYGZus{}export\PYGZus{}tables}\PYG{p}{(}\PYG{n}{Path}\PYG{p}{(}\PYG{n}{FORECAST\PYGZus{}FILE\PYGZus{}PATH}\PYG{p}{))}
+
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}Number of tables extracted: }\PYG{l+s+si}{\PYGZob{}}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{tables}\PYG{p}{)}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

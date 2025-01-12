@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{langchain\PYGZus{}openai} \PYG{k+kn}{import} \PYG{n}{ChatOpenAI}
+\PYG{k+kn}{from} \PYG{n+nn}{langchain\PYGZus{}core.prompts} \PYG{k+kn}{import} \PYG{n}{ChatPromptTemplate}
+\PYG{k}{def} \PYG{n+nf}{extract\PYGZus{}from\PYGZus{}sec\PYGZus{}filing\PYGZus{}langchain}\PYG{p}{(}\PYG{n}{sec\PYGZus{}filing\PYGZus{}text}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,}
+    \PYG{n}{prompt}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{SECExtraction}\PYG{p}{:}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    Extracts structured data from an input SEC filing text using LangChain.}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{n}{llm} \PYG{o}{=} \PYG{n}{ChatOpenAI}\PYG{p}{(}\PYG{n}{model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}gpt\PYGZhy{}4o\PYGZhy{}mini\PYGZdq{}}\PYG{p}{)}
+
+    \PYG{n}{structured\PYGZus{}llm} \PYG{o}{=} \PYG{n}{llm}\PYG{o}{.}\PYG{n}{with\PYGZus{}structured\PYGZus{}output}\PYG{p}{(}\PYG{n}{SECExtraction}\PYG{p}{)}
+
+    \PYG{n}{prompt\PYGZus{}template} \PYG{o}{=} \PYG{n}{ChatPromptTemplate}\PYG{o}{.}\PYG{n}{from\PYGZus{}messages}\PYG{p}{(}
+        \PYG{p}{[}
+            \PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}system\PYGZdq{}}\PYG{p}{,} \PYG{n}{prompt}\PYG{p}{),}
+            \PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}human\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}sec\PYGZus{}filing\PYGZus{}text\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{),}
+        \PYG{p}{]}
+    \PYG{p}{)}
+
+    \PYG{n}{llm\PYGZus{}chain} \PYG{o}{=} \PYG{n}{prompt\PYGZus{}template} \PYG{o}{|} \PYG{n}{structured\PYGZus{}llm}
+
+    \PYG{k}{return} \PYG{n}{llm\PYGZus{}chain}\PYG{o}{.}\PYG{n}{invoke}\PYG{p}{(}\PYG{n}{sec\PYGZus{}filing\PYGZus{}text}\PYG{p}{)}
+\end{Verbatim}

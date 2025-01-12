@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{quiz} \PYG{o}{=} \PYG{n}{duo}\PYG{o}{.}\PYG{n}{quiz}\PYG{p}{(}\PYG{n}{add\PYGZus{}citations}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+\PYG{n}{display}\PYG{p}{(}\PYG{n}{Markdown}\PYG{p}{(}\PYG{n}{quiz}\PYG{o}{.}\PYG{n}{generate}\PYG{p}{()))}
+\end{Verbatim}

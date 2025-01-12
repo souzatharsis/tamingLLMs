@@ -1,0 +1,253 @@
+%
+%	new email address: jeb@risc.com
+%
+% NAME THIS FILE: draft.sty (or name it draft.doc and run it through
+% doc2sty) AND PUT IT IN YOUR MACROS OR TEXFORMATS DIRECTORY
+%
+% This is a first attempt at a draft option for the standard LaTeX styles.
+% It still has several problems, which are detailed below.
+% The draft option attempts to accomplish the following:
+%  Without requiring any changes to a LaTeX file (other than specifying
+%  the draft option :-) and without changing the formatting of the 
+%  ``real'' text , mark the spots where \label, \cite, \ref, \index,
+%  or \glossary commands occur in text, and print the command arguments
+%  in the margin.
+%
+% USAGE:
+% Specify draft as an optional argument to the documentstyle command
+% e.g., \documentstyle[11pt,draft]{book}
+%
+% JUSTIFICATION:
+% Why am I submitting this, even though it still has some problems?
+%
+%     1) Even in its present shape, I think it is fairly useful.
+%        I was going crazy before, trying to remember labels, keys,
+%        and so forth.  I am still going crazy, but now for different
+%        reasons.
+%     2) I'm just learning TeX, and don't expect to know enough to do this
+%        correctly for a while.  Hopefully, someone who knows TeX will
+%        agree this is a useful option, and will point out my mistakes.
+%        Since the changes to the standard LateX routines are fairly minor,
+%        and my mistakes are probably silly and quite obvious, this
+%        may be easy to do.
+%     3) I am interested in hearing ideas for other features for this
+%        option.  This option includes some of the ideas of Dr. Rouben 
+%        Rostamian (rostamia@umbc3.UMD.EDU) and I am interested in 
+%        hearing from others.
+%     4) Because of 2) and 3), I think we will end up with a better
+%        draft option if I post this in its present form and ask for
+%        help.
+%
+%     Please send bugs, fixes, and suggestions to:
+%      Joe Baker 
+%      6731 Boelter Hall   UCLA   L.A., CA 90024   (213) 825-7079, 825-2327
+%      INTERNET: jbaker@ee.ucla.edu 
+%      UUCP: {ucbvax, or other backbone}!ucla-cs!uclaee!jbaker
+%
+% FINALLY, THE DETAILS
+%
+% The option marks \label,\cite,\ref,\index, and \glossary commands in the
+% text with a scriptsize calligraphic letter in the interline space 
+% (L for label,
+% C for cite, R for ref, I for index and G for glossary.
+% The label, citation, is printed in the margin in scriptsize bold letters.  
+%   
+% For items which are input in horizontal mode, a \marginpar box holding 
+% the text is put in the right margin (if there are no free boxes left, 
+% the next option is used.) 
+% 
+% Items which are input in display math mode are shoved into the left
+% margin (parboxes are not used, so it is possible for one label to 
+% overwrite another, or for a label to run off the left edge of the page.)
+% 
+% Items which are input in non-display math mode and equation arrays
+% are giving me problems.  The left margin code works fine for equations
+% in the middle of text, but doesn't produce anything for equation arrays.
+% Unfortunately, I haven't found a way to distinguish between the two
+% cases.  For now, I simply raise the item and print it in small letters,
+% and hope to avoid hitting any superscripts.
+% 
+% Right now, a space or extra bit of glue is getting inserted where the 
+% item is, and thus the ``real'' text is not formatted quite the same in
+% draft mode.  On the tests I've run so far, there hasn't been enough
+% added space to actually change any of the linebreaks, so it doesn't
+% seem to be a serious problem.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Okay, here it is %%%%%%%%%%%%%%%%%%%%%%%%%%
+% NOTE THIS:
+% force all marginpar items into the right margin, to leave the left 
+% margin for calls to marginalnote.
+\@mparswitchfalse
+%                     
+%
+% MARGINALNOTE
+%
+% The following is a slightly rewritten version of Knuth's marginalstar stuff
+% from the TeXBook, pg. 316.  It is used to put a marginalnote in the left
+% margin.  The note is just shoved out and made right justified w.r.t. the
+% left margin.  Two calls to marginalnote for the same line of text will
+% be written one over the other.  Long marginal notes will extend off the
+% page to the left.
+%
+\def\strutdepth{\dp\strutbox}%
+\def\marginalnote#1{\strut\vadjust{\kern-\strutdepth\specialnote{#1}}}%
+\def\specialnote#1{\vtop to \strutdepth{\baselineskip%
+\strutdepth\vss\llap{\hbox{\scriptsize \bf #1}}\null}}%
+%
+% NOTEMARK
+% This is used to put a little calligraphic letter in the text to mark
+% the spot where the item occurred.
+%
+\def\notemark#1{\rlap{%
+\specialnote{\raise8pt\hbox{$\scriptscriptstyle\cal#1$}}}}
+%
+% Since I haven't found one approach that works in all modes, I
+% have set up the makenote routine to use the following options
+% (draftimm, draftdmm, draftinm, drafthm) in inner math mode,
+% display math mode, inner non-math mode, and horizontal mode.
+% If you don't like one, redefine it before the begin{document}
+% line.
+\def\draftimm#1{\hbox{\bf \scriptsize #1}}
+\def\draftdmm#1{\marginalnote{#1}}
+\def\draftinm#1{\notemark{\bf \scriptsize #1}}
+\def\drafthm#1{\ifx\@freelist\@empty % if there are no boxes for a marginpar,
+                   \marginalnote{#1}  % use a marginalnote
+                 \else                  
+                   {\marginpar{\scriptsize \bf #1}}
+                 \fi}
+
+%
+% MAKENOTE
+% this routine prints the command argument.  It tries to do the best it
+% can for the given mode.
+%
+%\def\makenote#1{            
+%                            
+%                            
+%    \ifmmode                % In math mode, we can't use 
+%                            % \marginpar, so we use marginalnote
+%                            % in display mode, and for now,
+%                            % just use bold print in inner mode
+%                            % marginalnote works okay in regular
+%                            % non-display math, but not in
+%                            % eqnarrays. By redefining draft...
+%                            % you can change this behavior.
+%        \ifinner
+%           \draftimm{#1} 
+%        \else
+%           \draftdmm{#1} 
+%        \fi
+%    \else
+%        \ifinner
+%           \draftinm{#1} 
+%         \else
+%           \drafthm{#1} 
+%         \fi
+%    \fi}
+\def\makenote#1{\ifmmode\ifinner\draftimm{#1}%
+\else\draftdmm{#1}\fi%
+\else\ifinner\draftinm{#1}%
+\else%
+\drafthm{#1}%
+\fi\fi}
+%
+% MODIFIED LATEX ROUTINES
+% We add the \notemark and \makenote routines to the \ref, \pageref,
+% \label, \index, \glossary, and \cite commands.
+%
+% REF
+%
+%  \ref{FOO} ==
+%    BEGIN
+%         make a reference mark in the text (calligraphic R)
+%      if \r@foo undefined  
+%        then  ?? 
+%              Warning: 'reference foo on page ... undefined'
+%        else  \@car \eval(\r@FOO)\@nil
+%      fi
+%        make a reference note (hopefully in the margin) listing the
+%        reference key
+%    END
+%
+\def\ref#1{\notemark{R}%
+\@ifundefined{r@#1}{{\bf ??}\@warning%
+{Reference `#1' on page \thepage \space %
+undefined}}{\edef\@tempa{\@nameuse{r@#1}}\expandafter%
+\@car\@tempa \@nil\null}\makenote{R:#1}}
+%
+% PAGEREF
+%
+%  \pageref{foo} = 
+%    BEGIN
+%      make a page reference mark in the text (calligraphic PR)
+%      if \r@foo undefined  
+%        then  ?? 
+%              Warning: 'reference foo on page ... undefined'
+%        else  \@cdr \eval(\r@FOO)\@nil
+%      fi
+%      make a reference note (hopefully in the margin) listing the
+%      page reference key
+%    END
+%
+\def\pageref#1{\notemark{PR}%
+\@ifundefined{r@#1}{{\bf ??}\@warning%
+{Reference `#1' on page \thepage \space %
+undefined}}{\edef\@tempa{\@nameuse{r@#1}}\expandafter%
+\@cdr\@tempa\@nil\null}\makenote{PR:#1}}%
+%
+% LABEL
+%
+% same story for the label routine
+\def\label#1%
+{\notemark{L}\makenote{L:#1}\@bsphack%
+\if@filesw{\let\thepage\relax%
+\xdef\@gtempa{\write\@auxout{\string%
+\newlabel{#1}{{\@currentlabel}{\thepage}}}}}\@gtempa%
+\if@nobreak\ifvmode\nobreak\fi\fi\fi\@esphack}
+%
+% INDEX 
+%  note that \@wrindex is normally used by both the index and the 
+%  glossary commands.  We will make a new version for the glossary
+%  command that differs only in putting out a G instead of an I.
+%
+%  \@wrindex{ITEM} ==
+%    BEGIN
+%     make an I mark in the text, and put the index item in the margin
+%        write of {\indexentry{ITEM}{page number}}
+%      \endgroup
+%      \@esphack
+%    END
+%
+\def\@wrindex#1#2{\notemark{I}\makenote{I:#2}%
+\let\thepage\relax%
+\xdef\@gtempa{\write#1{\string \indexentry{#2}{\thepage}}}\endgroup\@gtempa%
+\if@nobreak \ifvmode\nobreak\fi\fi\@esphack}%
+%
+% GLOSSARY
+% version for use by glossary commands
+%
+\def\@wrindexg#1#2{\notemark{G}\makenote{G:#2}%
+\let\thepage\relax%
+\xdef\@gtempa{\write#1{\string \indexentry{#2}{\thepage}}}\endgroup\@gtempa%
+\if@nobreak \ifvmode\nobreak\fi\fi\@esphack}%
+%
+% new version of the glossary stuff: just changed @wrindex to @wrindexg
+%
+\def\makeglossary{\if@filesw \newwrite\@glossaryfile
+  \immediate\openout\@glossaryfile=\jobname.glo
+  \def\glossary{\@bsphack\begingroup\@sanitize\@wrindexg\@glossaryfile}\typeout
+  {Writing glossary file \jobname.glo }\fi}
+%
+% CITE
+%
+% citex is used by the bibliography citation routines
+% the second argument is the citation key
+%
+\def\@citex[#1]#2{\notemark{C}\makenote{C:#2}%
+\if@filesw\immediate\write\@auxout{\string\citation{#2}}\fi%
+\def\@citea{}\@cite{\@for\@citeb:=#2\do%
+{\@citea\def\@citea{,}\@ifundefined%
+{b@\@citeb}{{\bf ?}\@warning%
+{Citation `\@citeb' on page \thepage \space undefined}}%
+\hbox{\csname b@\@citeb\endcsname}}}{#1}}
+

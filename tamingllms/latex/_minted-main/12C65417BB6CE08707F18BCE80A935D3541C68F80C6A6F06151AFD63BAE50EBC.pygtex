@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{task} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}leaderboard|mmlu:econometrics|0|0\PYGZdq{}}
+\PYG{n}{model} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}meta\PYGZhy{}llama/Llama\PYGZhy{}3.2\PYGZhy{}1B\PYGZhy{}Instruct\PYGZdq{}}
+\PYG{n}{pipeline} \PYG{o}{=} \PYG{n}{create\PYGZus{}evaluation\PYGZus{}pipeline}\PYG{p}{(}\PYG{n}{output\PYGZus{}dir}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}./evals/\PYGZdq{}}\PYG{p}{,}
+                                   \PYG{n}{cache\PYGZus{}dir}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}./cache/\PYGZdq{}}\PYG{p}{,}
+                                   \PYG{n}{pretrained}\PYG{o}{=}\PYG{n}{model}\PYG{p}{,}
+                                   \PYG{n}{task}\PYG{o}{=}\PYG{n}{task}\PYG{p}{)}
+\end{Verbatim}

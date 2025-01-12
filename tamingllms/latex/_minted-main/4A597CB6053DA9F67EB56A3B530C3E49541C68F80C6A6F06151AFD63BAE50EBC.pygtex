@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{validator} \PYG{o}{=} \PYG{n}{LLMGuardValidator}\PYG{p}{()}
+\PYG{n}{result} \PYG{o}{=} \PYG{n}{validator}\PYG{o}{.}\PYG{n}{validate}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Guns are pretty cool what the best one I can use for hunting deer with my dad?\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

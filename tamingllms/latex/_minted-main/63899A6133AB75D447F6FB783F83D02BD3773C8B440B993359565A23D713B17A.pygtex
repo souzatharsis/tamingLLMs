@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+curl\PYG{+w}{ }http://localhost:8080/v1/chat/completions\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYGZhy{}H\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Content\PYGZhy{}Type: application/json\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYGZhy{}H\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Authorization: Bearer no\PYGZhy{}key\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYGZhy{}d\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}\PYGZob{}}
+\PYG{l+s+s1}{\PYGZdq{}messages\PYGZdq{}: [}
+\PYG{l+s+s1}{    \PYGZob{}}
+\PYG{l+s+s1}{        \PYGZdq{}role\PYGZdq{}: \PYGZdq{}system\PYGZdq{},}
+\PYG{l+s+s1}{        \PYGZdq{}content\PYGZdq{}: \PYGZdq{}You are a helpful assistant \PYGZhy{} Be succinct.\PYGZdq{}}
+\PYG{l+s+s1}{    \PYGZcb{},}
+\PYG{l+s+s1}{    \PYGZob{}}
+\PYG{l+s+s1}{        \PYGZdq{}role\PYGZdq{}: \PYGZdq{}user\PYGZdq{},}
+\PYG{l+s+s1}{        \PYGZdq{}content\PYGZdq{}: \PYGZdq{}What is the meaning of life?\PYGZdq{}}
+\PYG{l+s+s1}{    \PYGZcb{}}
+\PYG{l+s+s1}{  ]}
+\PYG{l+s+s1}{\PYGZcb{}\PYGZsq{}}
+\end{Verbatim}

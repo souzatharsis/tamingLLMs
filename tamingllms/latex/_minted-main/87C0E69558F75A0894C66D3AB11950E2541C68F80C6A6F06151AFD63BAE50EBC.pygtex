@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{display}\PYG{p}{(}\PYG{n}{Markdown}\PYG{p}{(}\PYG{n}{scoring\PYGZus{}results}\PYG{o}{.}\PYG{n}{groupby}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}validator\PYGZus{}name\PYGZsq{}}\PYG{p}{)[}\PYG{l+s+s1}{\PYGZsq{}elapsed\PYGZus{}time\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{agg}\PYG{p}{([}\PYG{l+s+s1}{\PYGZsq{}mean\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}std\PYGZsq{}}\PYG{p}{])}\PYG{o}{.}\PYG{n}{round}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{o}{.}\PYG{n}{to\PYGZus{}markdown}\PYG{p}{()))}
+\end{Verbatim}

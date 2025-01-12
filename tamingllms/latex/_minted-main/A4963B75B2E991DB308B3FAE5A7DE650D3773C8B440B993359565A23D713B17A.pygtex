@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+sudo\PYG{+w}{ }apt\PYG{+w}{ }install\PYG{+w}{ }cmake
+
+cmake\PYG{+w}{ }\PYGZhy{}B\PYG{+w}{ }build
+cmake\PYG{+w}{ }\PYGZhy{}\PYGZhy{}build\PYG{+w}{ }build\PYG{+w}{ }\PYGZhy{}\PYGZhy{}config\PYG{+w}{ }Release\PYG{+w}{ }\PYGZhy{}j\PYG{+w}{ }\PYG{l+m}{8}
+\end{Verbatim}

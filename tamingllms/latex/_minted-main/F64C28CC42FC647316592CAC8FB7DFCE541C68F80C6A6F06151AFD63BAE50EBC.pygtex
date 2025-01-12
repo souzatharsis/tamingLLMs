@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{LLMBackend}\PYG{p}{:}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{model\PYGZus{}name}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n+nb}{input}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{cache\PYGZus{}ttl}\PYG{p}{:} \PYG{n+nb}{int} \PYG{o}{=} \PYG{l+m+mi}{60}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cache} \PYG{o}{=} \PYG{n}{caching}\PYG{o}{.}\PYG{n}{CachedContent}\PYG{o}{.}\PYG{n}{create}\PYG{p}{(}
+            \PYG{n}{model}\PYG{o}{=}\PYG{n}{model\PYGZus{}name}\PYG{p}{,}
+            \PYG{n}{display\PYGZus{}name}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}due\PYGZus{}knowledge\PYGZus{}base\PYGZsq{}}\PYG{p}{,} \PYG{c+c1}{\PYGZsh{} used to identify the cache}
+            \PYG{n}{system\PYGZus{}instruction}\PYG{o}{=}\PYG{p}{(}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{compose\PYGZus{}prompt}\PYG{p}{(}\PYG{n+nb}{input}\PYG{p}{,} \PYG{n}{conversation\PYGZus{}config}\PYG{p}{)}
+        \PYG{p}{),}
+        \PYG{n}{ttl}\PYG{o}{=}\PYG{n}{datetime}\PYG{o}{.}\PYG{n}{timedelta}\PYG{p}{(}\PYG{n}{minutes}\PYG{o}{=}\PYG{n}{cache\PYGZus{}ttl}\PYG{p}{),}
+    \PYG{p}{)}
+
+    \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{model} \PYG{o}{=} \PYG{n}{genai}\PYG{o}{.}\PYG{n}{GenerativeModel}\PYG{o}{.}\PYG{n}{from\PYGZus{}cached\PYGZus{}content}\PYG{p}{(}\PYG{n}{cached\PYGZus{}content}\PYG{o}{=}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{cache}\PYG{p}{)}
+\end{Verbatim}

@@ -1,0 +1,43 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{os}
+\PYG{k+kn}{from} \PYG{n+nn}{dotenv} \PYG{k+kn}{import} \PYG{n}{load\PYGZus{}dotenv}
+\PYG{k+kn}{from} \PYG{n+nn}{mistralai} \PYG{k+kn}{import} \PYG{n}{Mistral}
+
+\PYG{c+c1}{\PYGZsh{} Load environment variables from .env file}
+\PYG{n}{load\PYGZus{}dotenv}\PYG{p}{(}\PYG{n}{override}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+
+\PYG{k}{class} \PYG{n+nc}{MistralValidator}\PYG{p}{(}\PYG{n}{SafetyValidator}\PYG{p}{):}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}Safety validator using Mistral\PYGZsq{}s moderation API.\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Mistral\PYGZdq{}}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{client} \PYG{o}{=} \PYG{n}{Mistral}\PYG{p}{(}\PYG{n}{api\PYGZus{}key}\PYG{o}{=}\PYG{n}{os}\PYG{o}{.}\PYG{n}{environ}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}MISTRAL\PYGZus{}API\PYGZus{}KEY\PYGZdq{}}\PYG{p}{])}
+
+    \PYG{k}{def} \PYG{n+nf}{validate}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{text}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{ValidationResult}\PYG{p}{:}
+\PYG{+w}{        }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{        Validate input text using Mistral\PYGZsq{}s moderation API.}
+
+\PYG{l+s+sd}{        Args:}
+\PYG{l+s+sd}{            text: Input text to validate}
+
+\PYG{l+s+sd}{        Returns:}
+\PYG{l+s+sd}{            ValidationResult with safety check results}
+\PYG{l+s+sd}{        \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+        \PYG{n}{response} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{client}\PYG{o}{.}\PYG{n}{classifiers}\PYG{o}{.}\PYG{n}{moderate}\PYG{p}{(}
+            \PYG{n}{model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}mistral\PYGZhy{}moderation\PYGZhy{}latest\PYGZdq{}}\PYG{p}{,}
+            \PYG{n}{inputs}\PYG{o}{=}\PYG{p}{[}\PYG{n}{text}\PYG{p}{]}
+        \PYG{p}{)}
+
+        \PYG{c+c1}{\PYGZsh{} Check if any category is flagged as unsafe}
+        \PYG{n}{categories} \PYG{o}{=} \PYG{n}{response}\PYG{o}{.}\PYG{n}{results}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{categories}
+        \PYG{n}{is\PYGZus{}unsafe} \PYG{o}{=} \PYG{n+nb}{any}\PYG{p}{(}\PYG{n}{categories}\PYG{o}{.}\PYG{n}{values}\PYG{p}{())}
+
+        \PYG{c+c1}{\PYGZsh{} Get explanation for unsafe categories}
+        \PYG{k}{if} \PYG{n}{is\PYGZus{}unsafe}\PYG{p}{:}
+            \PYG{n}{unsafe\PYGZus{}categories} \PYG{o}{=} \PYG{p}{[}\PYG{n}{cat} \PYG{k}{for} \PYG{n}{cat}\PYG{p}{,} \PYG{n}{flag} \PYG{o+ow}{in} \PYG{n}{categories}\PYG{o}{.}\PYG{n}{items}\PYG{p}{()} \PYG{k}{if} \PYG{n}{flag}\PYG{p}{]}
+            \PYG{n}{explanation} \PYG{o}{=} \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}Flagged categories: }\PYG{l+s+si}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}, \PYGZsq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{unsafe\PYGZus{}categories}\PYG{p}{)}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+        \PYG{k}{else}\PYG{p}{:}
+            \PYG{n}{explanation} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}No safety concerns detected\PYGZdq{}}
+
+        \PYG{k}{return} \PYG{n}{ValidationResult}\PYG{p}{(}\PYG{n}{is\PYGZus{}unsafe}\PYG{o}{=}\PYG{n}{is\PYGZus{}unsafe}\PYG{p}{,} \PYG{n}{explanation}\PYG{o}{=}\PYG{n}{explanation}\PYG{p}{)}
+\end{Verbatim}

@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{os}
+
+\PYG{n}{os}\PYG{o}{.}\PYG{n}{environ}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}HF\PYGZus{}TOKEN\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZlt{}your\PYGZhy{}huggingface\PYGZhy{}token\PYGZgt{}\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZsh{} Save to the huggingface hub}
+\PYG{k}{if} \PYG{n}{os}\PYG{o}{.}\PYG{n}{getenv}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}HF\PYGZus{}TOKEN\PYGZdq{}}\PYG{p}{):}
+    \PYG{n}{trainer}\PYG{o}{.}\PYG{n}{push\PYGZus{}to\PYGZus{}hub}\PYG{p}{(}\PYG{n}{tags}\PYG{o}{=}\PYG{n}{finetune\PYGZus{}tags}\PYG{p}{)}
+\end{Verbatim}

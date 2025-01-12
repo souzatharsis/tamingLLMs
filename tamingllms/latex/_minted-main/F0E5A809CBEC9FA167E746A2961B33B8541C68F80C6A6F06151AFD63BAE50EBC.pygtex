@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} create a fine\PYGZhy{}tuning job}
+\PYG{n}{created\PYGZus{}jobs} \PYG{o}{=} \PYG{n}{client}\PYG{o}{.}\PYG{n}{fine\PYGZus{}tuning}\PYG{o}{.}\PYG{n}{jobs}\PYG{o}{.}\PYG{n}{create}\PYG{p}{(}
+    \PYG{n}{model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}open\PYGZhy{}mistral\PYGZhy{}7b\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{training\PYGZus{}files}\PYG{o}{=}\PYG{p}{[\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}file\PYGZus{}id\PYGZdq{}}\PYG{p}{:} \PYG{n}{ultrachat\PYGZus{}chunk\PYGZus{}train}\PYG{o}{.}\PYG{n}{id}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}weight\PYGZdq{}}\PYG{p}{:} \PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{}],}
+    \PYG{n}{validation\PYGZus{}files}\PYG{o}{=}\PYG{p}{[}\PYG{n}{ultrachat\PYGZus{}chunk\PYGZus{}eval}\PYG{o}{.}\PYG{n}{id}\PYG{p}{],}
+    \PYG{n}{hyperparameters}\PYG{o}{=}\PYG{p}{\PYGZob{}}
+        \PYG{l+s+s2}{\PYGZdq{}training\PYGZus{}steps\PYGZdq{}}\PYG{p}{:} \PYG{l+m+mi}{10}\PYG{p}{,}
+        \PYG{l+s+s2}{\PYGZdq{}learning\PYGZus{}rate\PYGZdq{}}\PYG{p}{:}\PYG{l+m+mf}{0.0001}
+    \PYG{p}{\PYGZcb{},}
+    \PYG{n}{auto\PYGZus{}start}\PYG{o}{=}\PYG{k+kc}{False}
+\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} start a fine\PYGZhy{}tuning job}
+\PYG{n}{client}\PYG{o}{.}\PYG{n}{fine\PYGZus{}tuning}\PYG{o}{.}\PYG{n}{jobs}\PYG{o}{.}\PYG{n}{start}\PYG{p}{(}\PYG{n}{job\PYGZus{}id} \PYG{o}{=} \PYG{n}{created\PYGZus{}jobs}\PYG{o}{.}\PYG{n}{id}\PYG{p}{)}
+
+\PYG{n}{created\PYGZus{}jobs}
+\end{Verbatim}

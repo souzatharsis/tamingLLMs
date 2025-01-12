@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{IPython.display} \PYG{k+kn}{import} \PYG{n}{display}\PYG{p}{,} \PYG{n}{Markdown}
+\PYG{n}{display}\PYG{p}{(}\PYG{n}{Markdown}\PYG{p}{(}\PYG{n}{forecast\PYGZus{}result\PYGZus{}md}\PYG{p}{[:}\PYG{l+m+mi}{500}\PYG{p}{]))}
+\end{Verbatim}

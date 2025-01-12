@@ -1,0 +1,60 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{pydantic} \PYG{k+kn}{import} \PYG{n}{BaseModel}
+\PYG{k+kn}{from} \PYG{n+nn}{openai} \PYG{k+kn}{import} \PYG{n}{OpenAI}
+
+\PYG{k}{class} \PYG{n+nc}{SafetyScore}\PYG{p}{(}\PYG{n}{BaseModel}\PYG{p}{):}
+    \PYG{n}{safety\PYGZus{}score}\PYG{p}{:} \PYG{n+nb}{float}
+    \PYG{n}{verdict}\PYG{p}{:} \PYG{n+nb}{bool}
+    \PYG{n}{category}\PYG{p}{:} \PYG{n+nb}{str}
+    \PYG{n}{reason}\PYG{p}{:} \PYG{n+nb}{str}
+
+\PYG{k}{class} \PYG{n+nc}{ValidationResult}\PYG{p}{(}\PYG{n}{BaseModel}\PYG{p}{):}
+    \PYG{n}{is\PYGZus{}unsafe}\PYG{p}{:} \PYG{n+nb}{bool}
+    \PYG{n}{explanation}\PYG{p}{:} \PYG{n+nb}{str}
+
+\PYG{k}{class} \PYG{n+nc}{LLMJudgeValidator}\PYG{p}{(}\PYG{n}{SafetyValidator}\PYG{p}{):}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{prompt\PYGZus{}path}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{model}\PYG{p}{:} \PYG{n+nb}{str} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}gpt\PYGZhy{}4o\PYGZhy{}mini\PYGZdq{}}\PYG{p}{):}
+        \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}LLMJudge\PYGZdq{}}\PYG{p}{)}
+        \PYG{k}{try}\PYG{p}{:}
+            \PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{n}{prompt\PYGZus{}path}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}r\PYGZdq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{file}\PYG{p}{:}
+                \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{system\PYGZus{}prompt} \PYG{o}{=} \PYG{n}{file}\PYG{o}{.}\PYG{n}{read}\PYG{p}{()}
+        \PYG{k}{except} \PYG{n+ne}{Exception} \PYG{k}{as} \PYG{n}{e}\PYG{p}{:}
+            \PYG{k}{raise} \PYG{n+ne}{FileNotFoundError}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}Error reading prompt file: }\PYG{l+s+si}{\PYGZob{}}\PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{e}\PYG{p}{)}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{model} \PYG{o}{=} \PYG{n}{model}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{client} \PYG{o}{=} \PYG{n}{OpenAI}\PYG{p}{()}
+
+    \PYG{k}{def} \PYG{n+nf}{validate}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{text}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{ValidationResult}\PYG{p}{:}
+\PYG{+w}{        }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{        Validate input text using OpenAI\PYGZsq{}s API.}
+
+\PYG{l+s+sd}{        Args:}
+\PYG{l+s+sd}{            text: Input text to validate}
+
+\PYG{l+s+sd}{        Returns:}
+\PYG{l+s+sd}{            ValidationResult with safety check results}
+\PYG{l+s+sd}{        \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+        \PYG{k}{try}\PYG{p}{:}
+            \PYG{n}{completion} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{client}\PYG{o}{.}\PYG{n}{beta}\PYG{o}{.}\PYG{n}{chat}\PYG{o}{.}\PYG{n}{completions}\PYG{o}{.}\PYG{n}{parse}\PYG{p}{(}
+                \PYG{n}{model}\PYG{o}{=}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{model}\PYG{p}{,}
+                \PYG{n}{temperature}\PYG{o}{=}\PYG{l+m+mf}{0.0}\PYG{p}{,}
+                \PYG{n}{messages}\PYG{o}{=}\PYG{p}{[}
+                    \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}system\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{system\PYGZus{}prompt}\PYG{p}{\PYGZcb{},}
+                    \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}user\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}INPUT: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{text}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{\PYGZcb{}}
+                \PYG{p}{],}
+                \PYG{n}{response\PYGZus{}format}\PYG{o}{=}\PYG{n}{SafetyScore}
+            \PYG{p}{)}
+
+            \PYG{n}{result} \PYG{o}{=} \PYG{n}{completion}\PYG{o}{.}\PYG{n}{choices}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{message}\PYG{o}{.}\PYG{n}{parsed}
+
+            \PYG{k}{return} \PYG{n}{ValidationResult}\PYG{p}{(}
+                \PYG{n}{is\PYGZus{}unsafe}\PYG{o}{=}\PYG{n}{result}\PYG{o}{.}\PYG{n}{verdict} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{,}
+                \PYG{n}{explanation}\PYG{o}{=}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{result}\PYG{o}{.}\PYG{n}{category}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{result}\PYG{o}{.}\PYG{n}{reason}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+            \PYG{p}{)}
+
+        \PYG{k}{except} \PYG{n+ne}{Exception} \PYG{k}{as} \PYG{n}{e}\PYG{p}{:}
+            \PYG{k}{return} \PYG{n}{ValidationResult}\PYG{p}{(}
+                \PYG{n}{is\PYGZus{}unsafe}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,}
+                \PYG{n}{explanation}\PYG{o}{=}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}Error during validation: }\PYG{l+s+si}{\PYGZob{}}\PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{e}\PYG{p}{)}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+            \PYG{p}{)}
+\end{Verbatim}

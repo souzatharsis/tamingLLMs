@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{docling.document\PYGZus{}converter} \PYG{k+kn}{import} \PYG{n}{DocumentConverter}
+
+\PYG{n}{converter} \PYG{o}{=} \PYG{n}{DocumentConverter}\PYG{p}{()}
+\PYG{n}{forecast\PYGZus{}result\PYGZus{}docling} \PYG{o}{=} \PYG{n}{converter}\PYG{o}{.}\PYG{n}{convert}\PYG{p}{(}\PYG{n}{source}\PYG{p}{)}\PYG{o}{.}\PYG{n}{document}\PYG{o}{.}\PYG{n}{export\PYGZus{}to\PYGZus{}markdown}\PYG{p}{()}
+\end{Verbatim}

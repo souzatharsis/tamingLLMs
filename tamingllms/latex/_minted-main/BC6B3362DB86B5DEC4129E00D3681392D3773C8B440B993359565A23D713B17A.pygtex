@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Download a llamafile from HuggingFace}
+wget\PYG{+w}{ }https://huggingface.co/jartine/TinyLlama\PYGZhy{}1.1B\PYGZhy{}Chat\PYGZhy{}v1.0\PYGZhy{}GGUF/resolve/main/TinyLlama\PYGZhy{}1.1B\PYGZhy{}Chat\PYGZhy{}v1.0.Q5\PYGZus{}K\PYGZus{}M.llamafile
+
+\PYG{c+c1}{\PYGZsh{} Make the file executable. On Windows, instead just rename the file to end in \PYGZdq{}.exe\PYGZdq{}.}
+chmod\PYG{+w}{ }+x\PYG{+w}{ }TinyLlama\PYGZhy{}1.1B\PYGZhy{}Chat\PYGZhy{}v1.0.Q5\PYGZus{}K\PYGZus{}M.llamafile
+
+\PYG{c+c1}{\PYGZsh{} Start the model server. Listens at http://localhost:8080 by default.}
+./TinyLlama\PYGZhy{}1.1B\PYGZhy{}Chat\PYGZhy{}v1.0.Q5\PYGZus{}K\PYGZus{}M.llamafile\PYG{+w}{ }\PYGZhy{}\PYGZhy{}server\PYG{+w}{ }\PYGZhy{}\PYGZhy{}nobrowser
+\end{Verbatim}

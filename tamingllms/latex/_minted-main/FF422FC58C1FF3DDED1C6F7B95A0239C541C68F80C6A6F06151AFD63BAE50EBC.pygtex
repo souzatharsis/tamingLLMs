@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{run\PYGZus{}evaluation}\PYG{p}{(}\PYG{n}{app}\PYG{p}{,} \PYG{n}{model\PYGZus{}name}\PYG{p}{,} \PYG{n}{dataset}\PYG{p}{,}  \PYG{n}{evaluators}\PYG{p}{,} \PYG{n}{upload\PYGZus{}results}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{):}
+    \PYG{k}{global} \PYG{n}{xp\PYGZus{}model\PYGZus{}name}
+    \PYG{n}{xp\PYGZus{}model\PYGZus{}name} \PYG{o}{=} \PYG{n}{model\PYGZus{}name}
+    \PYG{n}{results} \PYG{o}{=} \PYG{n}{langsmith\PYGZus{}evaluate}\PYG{p}{(}
+        \PYG{n}{app}\PYG{p}{,}
+        \PYG{n}{client}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{,}
+        \PYG{n}{data}\PYG{o}{=}\PYG{n}{dataset}\PYG{p}{,}
+        \PYG{n}{evaluators}\PYG{o}{=}\PYG{n}{evaluators}\PYG{p}{,}
+        \PYG{n}{experiment\PYGZus{}prefix}\PYG{o}{=}\PYG{n}{model\PYGZus{}name}\PYG{p}{,}
+        \PYG{n}{num\PYGZus{}repetitions}\PYG{o}{=}\PYG{l+m+mi}{5}\PYG{p}{,}
+        \PYG{n}{upload\PYGZus{}results}\PYG{o}{=} \PYG{n}{upload\PYGZus{}results}\PYG{p}{,}  \PYG{c+c1}{\PYGZsh{} This is the key parameter for local evaluation}
+
+    \PYG{p}{)}
+
+    \PYG{k}{return} \PYG{n}{results}
+\end{Verbatim}

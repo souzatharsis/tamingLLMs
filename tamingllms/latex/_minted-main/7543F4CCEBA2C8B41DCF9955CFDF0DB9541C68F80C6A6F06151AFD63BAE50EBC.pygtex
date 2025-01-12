@@ -1,0 +1,36 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{get\PYGZus{}profanity\PYGZus{}samples}\PYG{p}{(}\PYG{n}{num\PYGZus{}samples}\PYG{p}{,} \PYG{n}{show\PYGZus{}stats}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{):}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    Get samples from the profanity dataset and optionally show category statistics.}
+
+\PYG{l+s+sd}{    Args:}
+\PYG{l+s+sd}{        num\PYGZus{}samples (int): Number of samples to return}
+\PYG{l+s+sd}{        show\PYGZus{}stats (bool): Whether to show category frequency statistics}
+
+\PYG{l+s+sd}{    Returns:}
+\PYG{l+s+sd}{        list: List of profanity text samples}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
+    \PYG{k+kn}{import} \PYG{n+nn}{os}
+    \PYG{k+kn}{from} \PYG{n+nn}{pathlib} \PYG{k+kn}{import} \PYG{n}{Path}
+
+    \PYG{c+c1}{\PYGZsh{} Get path to data file}
+    \PYG{n}{current\PYGZus{}dir} \PYG{o}{=} \PYG{n}{Path}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{getcwd}\PYG{p}{())}
+    \PYG{n}{data\PYGZus{}path} \PYG{o}{=} \PYG{n}{current\PYGZus{}dir}\PYG{o}{.}\PYG{n}{parent} \PYG{o}{/} \PYG{l+s+s1}{\PYGZsq{}data\PYGZsq{}} \PYG{o}{/} \PYG{l+s+s1}{\PYGZsq{}safety\PYGZsq{}} \PYG{o}{/} \PYG{l+s+s1}{\PYGZsq{}profanity\PYGZus{}en.csv\PYGZsq{}}
+
+    \PYG{c+c1}{\PYGZsh{} Load dataset}
+    \PYG{n}{df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{read\PYGZus{}csv}\PYG{p}{(}\PYG{n}{data\PYGZus{}path}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Get random samples}
+    \PYG{n}{samples} \PYG{o}{=} \PYG{n}{df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}text\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{sample}\PYG{p}{(}\PYG{n}{n}\PYG{o}{=}\PYG{n}{num\PYGZus{}samples}\PYG{p}{,} \PYG{n}{random\PYGZus{}state}\PYG{o}{=}\PYG{l+m+mi}{42}\PYG{p}{)}\PYG{o}{.}\PYG{n}{tolist}\PYG{p}{()}
+
+    \PYG{c+c1}{\PYGZsh{} Show category statistics if requested}
+    \PYG{k}{if} \PYG{n}{show\PYGZus{}stats}\PYG{p}{:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{Category Distribution:\PYGZdq{}}\PYG{p}{)}
+        \PYG{n}{category\PYGZus{}counts} \PYG{o}{=} \PYG{n}{df}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}category\PYGZus{}1\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{value\PYGZus{}counts}\PYG{p}{()}
+        \PYG{k}{for} \PYG{n}{category}\PYG{p}{,} \PYG{n}{count} \PYG{o+ow}{in} \PYG{n}{category\PYGZus{}counts}\PYG{o}{.}\PYG{n}{items}\PYG{p}{():}
+            \PYG{n}{percentage} \PYG{o}{=} \PYG{p}{(}\PYG{n}{count}\PYG{o}{/}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{df}\PYG{p}{))} \PYG{o}{*} \PYG{l+m+mi}{100}
+            \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{category}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{count}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{ (}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{percentage}\PYG{l+s+si}{:}\PYG{l+s+s2}{.1f}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZpc{})\PYGZdq{}}\PYG{p}{)}
+
+    \PYG{k}{return} \PYG{n}{samples}
+\end{Verbatim}

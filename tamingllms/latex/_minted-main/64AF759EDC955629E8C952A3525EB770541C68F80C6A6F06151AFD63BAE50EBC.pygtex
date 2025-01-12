@@ -1,0 +1,31 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{abc} \PYG{k+kn}{import} \PYG{n}{ABC}\PYG{p}{,} \PYG{n}{abstractmethod}
+\PYG{k+kn}{from} \PYG{n+nn}{dataclasses} \PYG{k+kn}{import} \PYG{n}{dataclass}
+
+\PYG{n+nd}{@dataclass}
+\PYG{k}{class} \PYG{n+nc}{ValidationResult}\PYG{p}{:}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}Result of a safety validation check.\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{n}{is\PYGZus{}unsafe}\PYG{p}{:} \PYG{n+nb}{bool}  \PYG{c+c1}{\PYGZsh{} True if content is unsafe}
+    \PYG{n}{explanation}\PYG{p}{:} \PYG{n+nb}{str} \PYG{c+c1}{\PYGZsh{} Explanation of why content was flagged as unsafe}
+
+\PYG{k}{class} \PYG{n+nc}{SafetyValidator}\PYG{p}{(}\PYG{n}{ABC}\PYG{p}{):}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}Abstract base class for safety validators.\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{name}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{name} \PYG{o}{=} \PYG{n}{name}
+
+    \PYG{n+nd}{@abstractmethod}
+    \PYG{k}{def} \PYG{n+nf}{validate}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{text}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{ValidationResult}\PYG{p}{:}
+\PYG{+w}{        }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{        Validate input text for safety concerns.}
+
+\PYG{l+s+sd}{        Args:}
+\PYG{l+s+sd}{            text: Input text to validate}
+
+\PYG{l+s+sd}{        Returns:}
+\PYG{l+s+sd}{            ValidationResult containing:}
+\PYG{l+s+sd}{                \PYGZhy{} is\PYGZus{}unsafe: True if content is unsafe}
+\PYG{l+s+sd}{                \PYGZhy{} explanation: Explanation of why content was flagged}
+\PYG{l+s+sd}{        \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+        \PYG{k}{pass}
+\end{Verbatim}

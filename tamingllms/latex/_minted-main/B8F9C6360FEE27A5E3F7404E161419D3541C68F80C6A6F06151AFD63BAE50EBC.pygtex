@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{MODEL\PYGZus{}NAME} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}HuggingFaceTB/SmolLM2\PYGZhy{}1.7B\PYGZhy{}Instruct\PYGZdq{}}
+\PYG{n}{PROMPT} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Is Enzo a good name for a baby?\PYGZdq{}}
+
+\PYG{k+kn}{from} \PYG{n+nn}{transformers} \PYG{k+kn}{import} \PYG{n}{AutoTokenizer}\PYG{p}{,} \PYG{n}{AutoModelForCausalLM}
+\PYG{k+kn}{import} \PYG{n+nn}{torch}
+
+\PYG{n}{tokenizer} \PYG{o}{=} \PYG{n}{AutoTokenizer}\PYG{o}{.}\PYG{n}{from\PYGZus{}pretrained}\PYG{p}{(}\PYG{n}{MODEL\PYGZus{}NAME}\PYG{p}{)}
+\PYG{n}{model} \PYG{o}{=} \PYG{n}{AutoModelForCausalLM}\PYG{o}{.}\PYG{n}{from\PYGZus{}pretrained}\PYG{p}{(}\PYG{n}{MODEL\PYGZus{}NAME}\PYG{p}{,}
+    \PYG{n}{torch\PYGZus{}dtype}\PYG{o}{=}\PYG{n}{torch}\PYG{o}{.}\PYG{n}{bfloat16}\PYG{p}{,} \PYG{n}{device\PYGZus{}map}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}auto\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

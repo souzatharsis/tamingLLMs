@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{pydantic} \PYG{k+kn}{import} \PYG{n}{BaseModel}
+\PYG{k}{class} \PYG{n+nc}{Forecast}\PYG{p}{(}\PYG{n}{BaseModel}\PYG{p}{):}
+    \PYG{n}{financial\PYGZus{}variable}\PYG{p}{:} \PYG{n+nb}{str}
+    \PYG{n}{financial\PYGZus{}forecast}\PYG{p}{:} \PYG{n+nb}{float}
+\PYG{k}{class} \PYG{n+nc}{EconForecast}\PYG{p}{(}\PYG{n}{BaseModel}\PYG{p}{):}
+    \PYG{n}{forecasts}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{[}\PYG{n}{Forecast}\PYG{p}{]}
+\end{Verbatim}

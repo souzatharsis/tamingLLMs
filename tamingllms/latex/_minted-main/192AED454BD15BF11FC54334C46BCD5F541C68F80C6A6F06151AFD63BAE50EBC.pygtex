@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{transformers} \PYG{k+kn}{import} \PYG{n}{pipeline}
+
+\PYG{n}{messages} \PYG{o}{=} \PYG{p}{[}
+    \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}user\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}Who are you?\PYGZdq{}}\PYG{p}{\PYGZcb{},}
+\PYG{p}{]}
+\PYG{n}{pipe} \PYG{o}{=} \PYG{n}{pipeline}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}text\PYGZhy{}generation\PYGZdq{}}\PYG{p}{,} \PYG{n}{model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}meta\PYGZhy{}llama/Llama\PYGZhy{}Guard\PYGZhy{}3\PYGZhy{}8B\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{pipe}\PYG{p}{(}\PYG{n}{messages}\PYG{p}{)}
+\end{Verbatim}

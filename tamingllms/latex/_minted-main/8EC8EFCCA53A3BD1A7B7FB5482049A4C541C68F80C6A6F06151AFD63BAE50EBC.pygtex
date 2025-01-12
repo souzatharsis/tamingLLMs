@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Extracted entities:\PYGZdq{}}\PYG{p}{,} \PYG{n}{response\PYGZus{}json}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}mentioned\PYGZus{}entities\PYGZsq{}}\PYG{p}{))}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Extracted places:\PYGZdq{}}\PYG{p}{,} \PYG{n}{response\PYGZus{}json}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}mentioned\PYGZus{}places\PYGZsq{}}\PYG{p}{))}
+\end{Verbatim}

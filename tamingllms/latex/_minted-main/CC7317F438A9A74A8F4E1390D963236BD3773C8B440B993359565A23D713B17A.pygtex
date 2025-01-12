@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+ollama\PYG{+w}{ }serve
+ollama\PYG{+w}{ }run\PYG{+w}{ }qwen2:0.5b
+\end{Verbatim}

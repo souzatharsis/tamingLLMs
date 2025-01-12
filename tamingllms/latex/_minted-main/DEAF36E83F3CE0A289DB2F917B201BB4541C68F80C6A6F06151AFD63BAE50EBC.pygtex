@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{pipeline}\PYG{o}{.}\PYG{n}{evaluate}\PYG{p}{()}
+\PYG{n}{pipeline}\PYG{o}{.}\PYG{n}{save\PYGZus{}and\PYGZus{}push\PYGZus{}results}\PYG{p}{()}
+\PYG{n}{pipeline}\PYG{o}{.}\PYG{n}{show\PYGZus{}results}\PYG{p}{()}
+\end{Verbatim}

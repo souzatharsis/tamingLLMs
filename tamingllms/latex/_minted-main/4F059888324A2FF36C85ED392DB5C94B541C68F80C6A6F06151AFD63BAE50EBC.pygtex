@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{df\PYGZus{}md\PYGZus{}forecasts} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{([(}\PYG{n}{f}\PYG{o}{.}\PYG{n}{financial\PYGZus{}variable}\PYG{p}{,} \PYG{n}{f}\PYG{o}{.}\PYG{n}{financial\PYGZus{}forecast}\PYG{p}{)} \PYG{k}{for} \PYG{n}{f} \PYG{o+ow}{in} \PYG{n}{md\PYGZus{}financials}\PYG{o}{.}\PYG{n}{forecasts}\PYG{p}{],}
+                      \PYG{n}{columns}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}Variable\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}Forecast\PYGZsq{}}\PYG{p}{])}
+\PYG{n}{df\PYGZus{}docling\PYGZus{}forecasts} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{([(}\PYG{n}{f}\PYG{o}{.}\PYG{n}{financial\PYGZus{}variable}\PYG{p}{,} \PYG{n}{f}\PYG{o}{.}\PYG{n}{financial\PYGZus{}forecast}\PYG{p}{)} \PYG{k}{for} \PYG{n}{f} \PYG{o+ow}{in} \PYG{n}{docling\PYGZus{}forecasts}\PYG{o}{.}\PYG{n}{forecasts}\PYG{p}{],}
+                      \PYG{n}{columns}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}Variable\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}Forecast\PYGZsq{}}\PYG{p}{])}
+
+\PYG{n}{df\PYGZus{}md\PYGZus{}forecasts}
+\end{Verbatim}

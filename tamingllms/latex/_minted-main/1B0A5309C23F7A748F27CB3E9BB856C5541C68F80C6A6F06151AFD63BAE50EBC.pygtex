@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{langchain\PYGZus{}core.prompts} \PYG{k+kn}{import} \PYG{n}{PromptTemplate}
+\PYG{k}{def} \PYG{n+nf}{get\PYGZus{}base\PYGZus{}prompt\PYGZus{}template}\PYG{p}{()} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n+nb}{str}\PYG{p}{:}
+
+    \PYG{n}{base\PYGZus{}prompt} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+s2}{    ROLE: }\PYG{l+s+si}{\PYGZob{}role\PYGZcb{}}
+\PYG{l+s+s2}{    CONTEXT: }\PYG{l+s+si}{\PYGZob{}context\PYGZcb{}}
+\PYG{l+s+s2}{    INSTRUCTION: }\PYG{l+s+si}{\PYGZob{}instruction\PYGZcb{}}
+\PYG{l+s+s2}{    INPUT: }\PYG{l+s+si}{\PYGZob{}input\PYGZcb{}}
+\PYG{l+s+s2}{    REQUIREMENTS: }\PYG{l+s+si}{\PYGZob{}requirements\PYGZcb{}}
+\PYG{l+s+s2}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+
+    \PYG{n}{prompt} \PYG{o}{=} \PYG{n}{PromptTemplate}\PYG{o}{.}\PYG{n}{from\PYGZus{}template}\PYG{p}{(}\PYG{n}{base\PYGZus{}prompt}\PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{prompt}
+\end{Verbatim}

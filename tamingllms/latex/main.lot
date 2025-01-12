@@ -1,0 +1,46 @@
+\babel@toc {english}{}\relax
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {1.1}{\ignorespaces Evals of Traditional Software vs LLMs}}{7}{table.caption.8}%
+\contentsline {table}{\numberline {1.2}{\ignorespaces Key Metrics for Evaluating Generative Tasks}}{14}{table.caption.11}%
+\contentsline {table}{\numberline {1.3}{\ignorespaces MMLU Econometrics Task Dataset sample}}{33}{table.caption.18}%
+\contentsline {table}{\numberline {1.4}{\ignorespaces Model Families Evaluated Using LightEval}}{37}{table.caption.20}%
+\contentsline {table}{\numberline {1.5}{\ignorespaces Detailed Model Performance Statistics}}{41}{table.caption.24}%
+\contentsline {table}{\numberline {1.6}{\ignorespaces Performance comparison across different OpenAI models}}{45}{table.caption.26}%
+\contentsline {table}{\numberline {1.7}{\ignorespaces Prompt evals per section.}}{48}{table.caption.28}%
+\contentsline {table}{\numberline {1.8}{\ignorespaces Comparison of Lighteval, LangSmith, and Promptfoo}}{49}{table.caption.29}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {2.1}{\ignorespaces Structured Output Frameworks Comparison}}{75}{table.caption.44}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {3.1}{\ignorespaces Economic Forecasts for 2025E using MarkItDown Parser}}{86}{table.caption.52}%
+\contentsline {table}{\numberline {3.2}{\ignorespaces Economic Forecasts for 2025E using Docling Parser}}{86}{table.caption.53}%
+\contentsline {table}{\numberline {3.3}{\ignorespaces Comparison of Asset Class Weightings Extraction Results. Highlighted rows indicate cases where there is parsed values did not match with true values: Green for Docling, Yellow for MarkItDown.}}{88}{table.caption.55}%
+\contentsline {table}{\numberline {3.4}{\ignorespaces Market Performance Summary (Total Return in USD \%)}}{90}{table.caption.56}%
+\contentsline {table}{\numberline {3.5}{\ignorespaces Sector Views and Recommendations}}{90}{table.caption.57}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces SALAD-Bench Dataset Statistics}}{152}{table.caption.131}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces Representative Safety Layer Risk Map.}}{156}{table.caption.139}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces Rules-Based Safety Filtering Tools}}{157}{table.caption.142}%
+\contentsline {table}{\numberline {4.4}{\ignorespaces Llama Guard Tokens Description}}{161}{table.caption.145}%
+\contentsline {table}{\numberline {4.5}{\ignorespaces Sample of the evaluation dataset}}{169}{table.caption.152}%
+\contentsline {table}{\numberline {4.6}{\ignorespaces Validator Performance Metrics. Sources are abbreviated as: p-u (profanity-ultrafeedback), s-u (salad-ultrafeedback), and p-s-u (profanity-salad-ultrafeedback)}}{180}{table.caption.157}%
+\contentsline {table}{\numberline {4.7}{\ignorespaces Mean Inference Time by Validator (in seconds)}}{180}{table.caption.158}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {5.1}{\ignorespaces Sample generated user prompts that test policy boundaries}}{202}{table.caption.166}%
+\contentsline {table}{\numberline {5.3}{\ignorespaces Mean Alignment Scores by Model Type}}{225}{table.caption.176}%
+\contentsline {table}{\numberline {5.2}{\ignorespaces Alignment Score Distribution}}{225}{table.caption.175}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {6.1}{\ignorespaces Benchmark results for Llama 2 family of models.}}{232}{table.caption.183}%
+\contentsline {table}{\numberline {6.2}{\ignorespaces Maximum Input Tokens for Selected Open Source Models. LLama as served by Ollama and Qwen as served by SambaNova sourced at \url {https://models.litellm.ai/} as of 01/09/2025.}}{233}{table.caption.184}%
+\contentsline {table}{\numberline {6.3}{\ignorespaces Maximum Output Tokens for Selected Open Source Models. LLama as served by Ollama and Qwen as served by SambaNova sourced at \url {https://models.litellm.ai/} as of 01/09/2025.}}{233}{table.caption.185}%
+\contentsline {table}{\numberline {6.4}{\ignorespaces Sample Open Source LLMs Licenses.}}{239}{table.caption.193}%
+\contentsline {table}{\numberline {6.5}{\ignorespaces Mistral fine-tuning costs as of December 22, 2024 (/M tokens) not including storage.}}{242}{table.caption.194}%
+\contentsline {table}{\numberline {6.6}{\ignorespaces lama.cpp vs Ollama vs Llamafile Comparison}}{252}{table.caption.226}%
+\contentsline {table}{\numberline {6.7}{\ignorespaces LM Studio vs Jan vs OpenWebUI Comparison}}{257}{table.caption.239}%
+\contentsline {table}{\numberline {6.8}{\ignorespaces Quantization Levels \blx@tocontentsinit {0}\cite {huggingface2024quantization}.}}{259}{table.caption.240}%
+\contentsline {table}{\numberline {6.9}{\ignorespaces Quantization Benchmark Results.}}{261}{table.caption.243}%
+\contentsline {table}{\numberline {6.10}{\ignorespaces Benchmarking Hardware}}{262}{table.caption.245}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file

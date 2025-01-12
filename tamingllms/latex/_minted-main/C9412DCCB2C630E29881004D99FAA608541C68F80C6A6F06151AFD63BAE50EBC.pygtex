@@ -1,0 +1,34 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Read the evaluation results from JSON file}
+\PYG{k+kn}{import} \PYG{n+nn}{json}
+\PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}promptfoo/prompt\PYGZus{}comparison/eval.json\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}r\PYGZsq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{f}\PYG{p}{:}
+    \PYG{n}{eval\PYGZus{}data} \PYG{o}{=} \PYG{n}{json}\PYG{o}{.}\PYG{n}{load}\PYG{p}{(}\PYG{n}{f}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Create a list to store the data}
+\PYG{n}{data} \PYG{o}{=} \PYG{p}{[]}
+
+\PYG{c+c1}{\PYGZsh{} Extract results for each test case}
+\PYG{k}{for} \PYG{n}{result} \PYG{o+ow}{in} \PYG{n}{eval\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}results\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}results\PYGZsq{}}\PYG{p}{]:}
+    \PYG{n}{section} \PYG{o}{=} \PYG{n}{result}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}vars\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}section\PYGZsq{}}\PYG{p}{]}
+    \PYG{n}{prompt\PYGZus{}id} \PYG{o}{=} \PYG{n}{result}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}promptId\PYGZsq{}}\PYG{p}{]}
+    \PYG{n}{score} \PYG{o}{=} \PYG{n}{result}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}gradingResult\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}score\PYGZsq{}}\PYG{p}{]} \PYG{k}{if} \PYG{l+s+s1}{\PYGZsq{}gradingResult\PYGZsq{}} \PYG{o+ow}{in} \PYG{n}{result} \PYG{k}{else} \PYG{l+m+mf}{0.0}
+
+    \PYG{c+c1}{\PYGZsh{} Find the corresponding prompt file}
+    \PYG{k}{for} \PYG{n}{prompt} \PYG{o+ow}{in} \PYG{n}{eval\PYGZus{}data}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}results\PYGZsq{}}\PYG{p}{][}\PYG{l+s+s1}{\PYGZsq{}prompts\PYGZsq{}}\PYG{p}{]:}
+        \PYG{k}{if} \PYG{n}{prompt}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}id\PYGZsq{}}\PYG{p}{]} \PYG{o}{==} \PYG{n}{prompt\PYGZus{}id}\PYG{p}{:}
+            \PYG{n}{prompt\PYGZus{}file} \PYG{o}{=} \PYG{n}{prompt}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}label\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{split}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}:\PYGZsq{}}\PYG{p}{)[}\PYG{l+m+mi}{0}\PYG{p}{]}
+            \PYG{k}{break}
+
+    \PYG{c+c1}{\PYGZsh{} Add to data list}
+    \PYG{n}{data}\PYG{o}{.}\PYG{n}{append}\PYG{p}{([}\PYG{n}{section}\PYG{p}{,} \PYG{n}{prompt\PYGZus{}file}\PYG{p}{,} \PYG{n}{score}\PYG{p}{])}
+
+\PYG{c+c1}{\PYGZsh{} Convert to DataFrame}
+\PYG{n}{df\PYGZus{}raw} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{n}{data}\PYG{p}{,} \PYG{n}{columns}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}Section\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}Prompt\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}Score\PYGZsq{}}\PYG{p}{])}
+
+\PYG{c+c1}{\PYGZsh{} Pivot to get desired format}
+\PYG{n}{df} \PYG{o}{=} \PYG{n}{df\PYGZus{}raw}\PYG{o}{.}\PYG{n}{pivot}\PYG{p}{(}\PYG{n}{index}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}Section\PYGZsq{}}\PYG{p}{,} \PYG{n}{columns}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}Prompt\PYGZsq{}}\PYG{p}{,} \PYG{n}{values}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}Score\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{reset\PYGZus{}index}\PYG{p}{()}
+\PYG{n}{df} \PYG{o}{=} \PYG{n}{df}\PYG{p}{[[}\PYG{l+s+s1}{\PYGZsq{}Section\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}prompt1.txt\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}prompt2.txt\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}prompt3.txt\PYGZsq{}}\PYG{p}{]]}
+
+\PYG{n}{display}\PYG{p}{(}\PYG{n}{Markdown}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}\PYGZsh{}\PYGZsh{}\PYGZsh{} Prompt Comparison Results by Section\PYGZdq{}}\PYG{p}{))}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{df}\PYG{p}{)}
+\end{Verbatim}

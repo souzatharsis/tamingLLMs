@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{trainer} \PYG{o}{=} \PYG{n}{DPOTrainer}\PYG{p}{(}
+    \PYG{n}{model}\PYG{o}{=}\PYG{n}{model}\PYG{p}{,}
+    \PYG{n}{args}\PYG{o}{=}\PYG{n}{training\PYGZus{}args}\PYG{p}{,}
+    \PYG{n}{train\PYGZus{}dataset}\PYG{o}{=}\PYG{n}{dataset}\PYG{p}{,}
+    \PYG{n}{processing\PYGZus{}class}\PYG{o}{=}\PYG{n}{tokenizer}\PYG{p}{,}
+    \PYG{n}{beta}\PYG{o}{=}\PYG{l+m+mf}{0.1}\PYG{p}{,}
+    \PYG{n}{max\PYGZus{}prompt\PYGZus{}length}\PYG{o}{=}\PYG{l+m+mi}{1024}\PYG{p}{,}
+    \PYG{n}{max\PYGZus{}length}\PYG{o}{=}\PYG{l+m+mi}{1536}\PYG{p}{,}
+\PYG{p}{)}
+\end{Verbatim}

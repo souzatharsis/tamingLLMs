@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Extracted entities:\PYGZdq{}}\PYG{p}{,} \PYG{n}{sec\PYGZus{}extraction\PYGZus{}langchain}\PYG{o}{.}\PYG{n}{mentioned\PYGZus{}entities}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Extracted places:\PYGZdq{}}\PYG{p}{,} \PYG{n}{sec\PYGZus{}extraction\PYGZus{}langchain}\PYG{o}{.}\PYG{n}{mentioned\PYGZus{}places}\PYG{p}{)}
+\end{Verbatim}

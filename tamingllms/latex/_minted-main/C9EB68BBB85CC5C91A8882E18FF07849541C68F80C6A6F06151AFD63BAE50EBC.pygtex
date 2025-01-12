@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{TRUTHFULQA\PYGZus{}DATASET} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}truthfulqa/truthful\PYGZus{}qa\PYGZdq{}}
+
+\PYG{k+kn}{from} \PYG{n+nn}{datasets} \PYG{k+kn}{import} \PYG{n}{load\PYGZus{}dataset}
+\PYG{n+nb}{type} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}generation\PYGZsq{}} \PYG{c+c1}{\PYGZsh{} \PYGZsq{}generation\PYGZsq{} or \PYGZsq{}multiple\PYGZus{}choice\PYGZsq{}}
+\PYG{n}{dataset} \PYG{o}{=} \PYG{n}{load\PYGZus{}dataset}\PYG{p}{(}\PYG{n}{TRUTHFULQA\PYGZus{}DATASET}\PYG{p}{,} \PYG{n}{name}\PYG{o}{=}\PYG{n+nb}{type}\PYG{p}{)}
+\end{Verbatim}

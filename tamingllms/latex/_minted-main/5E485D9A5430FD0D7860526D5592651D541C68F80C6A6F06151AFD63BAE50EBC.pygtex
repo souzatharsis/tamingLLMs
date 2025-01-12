@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{MAX\PYGZus{}LENGTH} \PYG{o}{=} \PYG{l+m+mi}{10000} \PYG{c+c1}{\PYGZsh{} We limit the input length to avoid token issues}
+\PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}../data/apple.txt\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}r\PYGZsq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{file}\PYG{p}{:}
+    \PYG{n}{sec\PYGZus{}filing} \PYG{o}{=} \PYG{n}{file}\PYG{o}{.}\PYG{n}{read}\PYG{p}{()}
+\PYG{n}{sec\PYGZus{}filing} \PYG{o}{=} \PYG{n}{sec\PYGZus{}filing}\PYG{p}{[:}\PYG{n}{MAX\PYGZus{}LENGTH}\PYG{p}{]}
+\end{Verbatim}

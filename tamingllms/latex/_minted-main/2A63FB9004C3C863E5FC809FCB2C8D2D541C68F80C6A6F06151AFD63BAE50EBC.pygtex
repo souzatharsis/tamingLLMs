@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{json}
+\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
+
+\PYG{c+c1}{\PYGZsh{} Read the JSONL file and extract responses using list comprehension}
+\PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{n}{CHOSEN\PYGZus{}RESPONSES\PYGZus{}JSONL\PYGZus{}PATH}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}r\PYGZdq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{f}\PYG{p}{:}
+    \PYG{n}{responses} \PYG{o}{=} \PYG{p}{[}\PYG{n}{json}\PYG{o}{.}\PYG{n}{loads}\PYG{p}{(}\PYG{n}{line}\PYG{p}{)} \PYG{k}{for} \PYG{n}{line} \PYG{o+ow}{in} \PYG{n}{f}\PYG{p}{]}
+
+\PYG{c+c1}{\PYGZsh{} Extract content using list comprehension}
+\PYG{n}{model\PYGZus{}responses} \PYG{o}{=} \PYG{p}{[}\PYG{n}{r}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}choices\PYGZdq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{l+s+s2}{\PYGZdq{}message\PYGZdq{}}\PYG{p}{][}\PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{]} \PYG{k}{for} \PYG{n}{r} \PYG{o+ow}{in} \PYG{n}{responses}\PYG{p}{]}
+
+\PYG{c+c1}{\PYGZsh{} Create dataframe}
+\PYG{n}{res} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(\PYGZob{}}
+    \PYG{l+s+s2}{\PYGZdq{}user\PYGZus{}prompts\PYGZdq{}}\PYG{p}{:} \PYG{n}{user\PYGZus{}prompts}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}model\PYGZus{}responses\PYGZdq{}}\PYG{p}{:} \PYG{n}{model\PYGZus{}responses}
+\PYG{p}{\PYGZcb{})}
+\end{Verbatim}

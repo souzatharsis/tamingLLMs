@@ -1,0 +1,398 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% kaobook
+% LaTeX Template
+% Version 1.3 (December 9, 2021)
+%
+% This template originates from:
+% https://www.LaTeXTemplates.com
+%
+% For the latest template development version and to make contributions:
+% https://github.com/fmarotta/kaobook
+%
+% Based on the doctoral thesis of Ken Arroyo Ohori (https://3d.bk.tudelft.nl/ken/en)
+% and on the Tufte-LaTeX class.
+% Modified for LaTeX Templates by Vel (vel@latextemplates.com)
+%
+% License:
+% CC0 1.0 Universal (see included MANIFEST.md file)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[
+	a4paper, % Page size
+	fontsize=10pt, % Base font size
+	twoside=true, % Use different layouts for even and odd pages (in particular, if twoside=true, the margin column will be always on the outside)
+	%open=any, % If twoside=true, uncomment this to force new chapters to start on any page, not only on right (odd) pages
+	%chapterentrydots=true, % Uncomment to output dots from the chapter name to the page number in the table of contents
+	numbers=noenddot, % Comment to output dots after chapter numbers; the most common values for this option are: enddot, noenddot and auto (see the KOMAScript documentation for an in-depth explanation)
+]{kaobook}
+
+% Choose the language
+\ifxetexorluatex
+	\usepackage{polyglossia}
+	\setmainlanguage{english}
+\else
+	\usepackage[english]{babel} % Load characters and hyphenation
+\fi
+
+
+%%%%%%%%%%%% CUSTOM PACKAGES
+%\setcounter{margintocdepth}{\sectiontocdepth}
+
+
+
+\usepackage{epigraph}
+\usepackage{minted}
+
+
+\usepackage{xcolor} % to access the named colour LightGray
+\definecolor{LightGray}{gray}{0.95}
+
+\setminted{
+    bgcolor=LightGray,
+    breaklines=true,
+    highlightcolor=yellow!50,
+    breakanywhere=true,        % Allow breaks anywhere
+    breakautoindent=true,     % Keep indentation after breaks
+    %frame=lines,              % Add frame around code
+    framesep=2mm,             % Spacing between frame and code
+    %xleftmargin=20pt,         % Left margin
+}
+
+% Required packages
+\usepackage{xcolor}
+\usepackage{fancyvrb}
+\usepackage{mdframed}
+
+% Define colors
+\definecolor{LightYellow}{RGB}{255, 255, 237}   % Light gray background
+
+% Configure only the verbatim environment
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{
+    breaklines=true,                % Enable line breaking
+    breakautoindent=true,          % Keep indentation after breaks
+    fontsize=\small                % Slightly smaller font
+}
+
+% Apply background color only to verbatim
+\surroundwithmdframed[
+    backgroundcolor=LightYellow,
+    linewidth=0pt,                % frame
+    innerleftmargin=5pt,         % extra margins
+    innerrightmargin=5pt,
+    innertopmargin=5pt,
+    innerbottommargin=5pt
+]{verbatim}
+
+\usepackage{caption}
+\captionsetup{
+    justification=centering,
+    singlelinecheck=true,
+    font=small,
+    labelfont=bf
+}
+
+\usepackage[inkscapelatex=false]{svg}
+\usepackage{float}
+\usepackage{here}
+
+\usepackage{eso-pic}
+\usepackage{datetime2}
+
+\usepackage{eso-pic}
+\usepackage{datetime2}
+
+% Bottom left
+\AddToShipoutPictureBG{%
+    \AtPageLowerLeft{%
+        \put(250,30){%    % Adjust (x,y) coordinates as needed
+            \textit{\color{black!30}{TAMING LLMS DRAFT}}%
+        }%
+    }%
+}
+
+\usepackage{rotating}  % Add this to your preamble if not already included
+
+\AddToShipoutPictureBG{%
+    \AtPageLowerLeft{%
+        \put(550,400){%    % Adjust coordinates as needed
+            \rotatebox{90}{%
+                \textit{\color{black!30}{TAMING LLMS DRAFT}}%
+            }%
+        }%
+    }%
+}
+
+\AddToShipoutPictureBG{%
+    \AtPageLowerLeft{%
+        \put(30,400){%    % Reduced from 550 to 30 for left margin
+            \rotatebox{90}{%
+                \textit{\color{black!30}{TAMING LLMS DRAFT}}%
+            }%
+        }%
+    }%
+}
+
+%\AddToShipoutPictureBG{%
+%    \AtPageLowerLeft{%
+%        \put(275,800){%    % Adjust (x,y) coordinates as needed
+%            \textbf{\color{black}{DRAFT}}%
+%        }%
+%    }%
+%}
+
+
+\usepackage{colortbl} % Required for coloring table cells
+\usepackage{booktabs} % For better looking tables
+\definecolor{lightgreen}{rgb}{0.56,0.93,0.56}
+\definecolor{lightyellow}{rgb}{1,1,0.6}
+%%%%%%%%%%%%
+
+
+
+
+
+\usepackage[english=british]{csquotes}	% English quotes
+
+
+% Load packages for testing
+\usepackage{blindtext}
+%\usepackage{showframe} % Uncomment to show boxes around the text area, margin, header and footer
+%\usepackage{showlabels} % Uncomment to output the content of \label commands to the document where they are used
+
+% Load the bibliography package
+\usepackage{kaobiblio}
+%\usepackage{lucida-otf}  % For text
+
+\addbibresource{../references.bib} % Bibliography file
+
+% Load mathematical packages for theorems and related environments
+\usepackage[framed=true]{kaotheorems}
+
+% Load the package for hyperreferences
+\usepackage{kaorefs}
+
+\graphicspath{{../_static/}} % Paths in which to look for images
+
+\makeindex[columns=3, title=Alphabetical Index, intoc] % Make LaTeX produce the files required to compile the index
+
+\makeglossaries % Make LaTeX produce the files required to compile the glossary
+\input{glossary.tex} % Include the glossary definitions
+
+\makenomenclature % Make LaTeX produce the files required to compile the nomenclature
+
+% Reset sidenote counter at chapters
+\counterwithin*{sidenote}{chapter}
+
+%----------------------------------------------------------------------------------------
+\usepackage{pdfpages}
+
+\begin{document}
+
+%[pages=1,scale=1,height=\paperheight,keepaspectratio]
+%\includepdf{_static/cover_curve.pdf}
+
+
+
+%----------------------------------------------------------------------------------------
+%	BOOK INFORMATION
+%----------------------------------------------------------------------------------------
+
+\titlehead{}
+\subject{A Practical Guide to LLM Pitfalls with Open Source Software}
+
+\title[TAMING LLMs]{TAMING LLMs}
+\subtitle{
+}
+
+\author[Thársis Souza, Ph.D.]{Thársis Souza, Ph.D.}
+
+\date{\today}
+
+\publishers{tamingllms.com}
+
+%----------------------------------------------------------------------------------------
+
+\frontmatter % Denotes the start of the pre-document content, uses roman numerals
+
+%----------------------------------------------------------------------------------------
+%	OPENING PAGE
+%----------------------------------------------------------------------------------------
+
+%\makeatletter
+%\extratitle{
+%	% In the title page, the title is vspaced by 9.5\baselineskip
+%	\vspace*{9\baselineskip}
+%	\vspace*{\parskip}
+%	\begin{center}
+%		% In the title page, \huge is set after the komafont for title
+%		\usekomafont{title}\huge\@title
+%	\end{center}
+%}
+%\makeatother
+
+%----------------------------------------------------------------------------------------
+%	COPYRIGHT PAGE
+%----------------------------------------------------------------------------------------
+
+\makeatletter
+\uppertitleback{\@titlehead} % Header
+
+\lowertitleback{
+	\textbf{Disclaimer}\\
+	The views and opinions expressed in this book are solely those of the author and do not reflect the views of any past or future employers.
+	
+	\medskip
+	
+\textbf{Copyright}\\ CC BY-NC-SA 4.0\\ This book is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit: \\ \url{http://creativecommons.org/licenses/by-nc-sa/4.0/}
+	
+	\medskip
+	
+	\textbf{Open Source} \\	
+	The source code of this book is available at:\\\url{https://github.com/souzatharsis/tamingllms}
+	
+	(You are welcome to contribute!)
+	
+	\medskip
+	
+	\textbf{Publisher} \\
+	First printed in January 2025 by \@publishers
+}
+\makeatother
+
+%----------------------------------------------------------------------------------------
+%	DEDICATION
+%----------------------------------------------------------------------------------------
+
+\dedication{
+	To my son - my knowledge seeking inspiration.
+}
+
+%----------------------------------------------------------------------------------------
+%	OUTPUT TITLE PAGE AND PREVIOUS
+%----------------------------------------------------------------------------------------
+
+% Note that \maketitle outputs the pages before here
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	PREFACE
+%----------------------------------------------------------------------------------------
+
+\input{chapters/preface.tex}
+\index{preface}
+
+\input{chapters/intro}
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS & LIST OF FIGURES/TABLES
+%----------------------------------------------------------------------------------------
+
+\begingroup % Local scope for the following commands
+
+% Define the style for the TOC, LOF, and LOT
+%\setstretch{1} % Uncomment to modify line spacing in the ToC
+%\hypersetup{linkcolor=blue} % Uncomment to set the colour of links in the ToC
+\setlength{\textheight}{230\hscale} % Manually adjust the height of the ToC pages
+
+% Turn on compatibility mode for the etoc package
+\etocstandarddisplaystyle % "toc display" as if etoc was not loaded
+\etocstandardlines % "toc lines" as if etoc was not loaded
+
+\tableofcontents % Output the table of contents
+
+\listoffigures % Output the list of figures
+
+% Comment both of the following lines to have the LOF and the LOT on different pages
+\let\cleardoublepage\bigskip
+\let\clearpage\bigskip
+
+\listoftables % Output the list of tables
+
+\endgroup
+
+%----------------------------------------------------------------------------------------
+%	MAIN BODY
+%----------------------------------------------------------------------------------------
+
+\mainmatter % Denotes the start of the main document content, resets page numbering and uses arabic numbers
+\setchapterstyle{kao} % Choose the default chapter heading style
+
+
+\input{chapters/evals}
+\input{chapters/structured_output}
+\input{chapters/input}
+\input{chapters/safety}
+\input{chapters/alignment}
+\input{chapters/local}
+\input{chapters/cost}
+\input{chapters/frontiers}
+%\input{chapters/introduction.tex}
+
+%\pagelayout{wide} % No margins
+%\addpart{Class Options, Commands and Environments}
+%\pagelayout{margin} % Restore margins
+
+%\input{chapters/options.tex}
+%\input{chapters/textnotes.tex}
+%\input{chapters/figsntabs.tex}
+%\input{chapters/references.tex}
+
+%\pagelayout{wide} % No margins
+%\addpart{Design and Additional Features}
+%\pagelayout{margin} % Restore margins
+
+%\input{chapters/layout.tex}
+%\input{chapters/mathematics.tex}
+
+\appendix % From here onwards, chapters are numbered with letters, as is the appendix convention
+
+\pagelayout{wide} % No margins
+\addpart{Appendix}
+\pagelayout{margin} % Restore margins
+
+\input{chapters/appendix.tex}
+
+%----------------------------------------------------------------------------------------
+
+\backmatter % Den otes the end of the main document content
+\setchapterstyle{plain} % Output plain chapters from this point onwards
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+% The bibliography needs to be compiled with biber using your LaTeX editor, or on the command line with 'biber main' from the template directory
+
+\defbibnote{bibnote}{References in citation order.\par\bigskip} % Prepend this text to the bibliography
+\printbibliography[heading=bibintoc, title=Bibliography, prenote=bibnote] % Add the bibliography heading to the ToC, set the title of the bibliography and output the bibliography note
+
+
+%----------------------------------------------------------------------------------------
+%	INDEX
+%----------------------------------------------------------------------------------------
+
+% The index needs to be compiled on the command line with 'makeindex main' from the template directory
+
+\printindex % Output the index
+
+%----------------------------------------------------------------------------------------
+%	BACK COVER
+%----------------------------------------------------------------------------------------
+
+% If you have a PDF/image file that you want to use as a back cover, uncomment the following lines
+
+%\clearpage
+%\thispagestyle{empty}
+%\null%
+%\clearpage
+%\includepdf{cover-back.pdf}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

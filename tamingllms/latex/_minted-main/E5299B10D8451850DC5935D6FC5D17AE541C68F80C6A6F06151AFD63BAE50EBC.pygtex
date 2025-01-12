@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Calculate accuracy for markitdown and docling}
+\PYG{n}{markitdown\PYGZus{}accuracy} \PYG{o}{=} \PYG{p}{(}\PYG{n}{df\PYGZus{}comparison}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}markitdown\PYGZsq{}}\PYG{p}{]} \PYG{o}{==} \PYG{n}{df\PYGZus{}comparison}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}true\PYGZus{}value\PYGZsq{}}\PYG{p}{])}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{()}
+\PYG{n}{docling\PYGZus{}accuracy} \PYG{o}{=} \PYG{p}{(}\PYG{n}{df\PYGZus{}comparison}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}docling\PYGZsq{}}\PYG{p}{]} \PYG{o}{==} \PYG{n}{df\PYGZus{}comparison}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}true\PYGZus{}value\PYGZsq{}}\PYG{p}{])}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{()}
+
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}Markitdown accuracy: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{markitdown\PYGZus{}accuracy}\PYG{l+s+si}{:}\PYG{l+s+s2}{.2\PYGZpc{}}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}Docling accuracy: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{docling\PYGZus{}accuracy}\PYG{l+s+si}{:}\PYG{l+s+s2}{.2\PYGZpc{}}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

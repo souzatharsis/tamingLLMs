@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{chapters} \PYG{o}{=} \PYG{p}{[}\PYG{n}{converter}\PYG{o}{.}\PYG{n}{convert}\PYG{p}{(}\PYG{n}{chapter\PYGZus{}url}\PYG{p}{)}\PYG{o}{.}\PYG{n}{document}\PYG{o}{.}\PYG{n}{export\PYGZus{}to\PYGZus{}markdown}\PYG{p}{()} \PYG{k}{for} \PYG{n}{chapter\PYGZus{}url} \PYG{o+ow}{in} \PYG{n}{chapter\PYGZus{}urls}\PYG{p}{]}
+\end{Verbatim}

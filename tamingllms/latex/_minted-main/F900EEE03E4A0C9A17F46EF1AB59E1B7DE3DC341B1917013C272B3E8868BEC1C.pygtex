@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nt}{description}\PYG{p}{:}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{Best model eval}
+\PYG{n+nt}{prompts}\PYG{p}{:}
+\PYG{p+pIndicator}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{file://prompt1.txt}
+\PYG{p+pIndicator}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{file://prompt2.txt}
+\PYG{p+pIndicator}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{file://prompt3.txt}
+\PYG{n+nt}{providers}\PYG{p}{:}
+\PYG{p+pIndicator}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{openai:gpt\PYGZhy{}3.5\PYGZhy{}turbo}
+\PYG{n+nt}{defaultTest}\PYG{p}{:}
+\PYG{+w}{  }\PYG{n+nt}{assert}\PYG{p}{:}
+\PYG{+w}{  }\PYG{p+pIndicator}{\PYGZhy{}}\PYG{+w}{ }\PYG{n+nt}{type}\PYG{p}{:}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{llm\PYGZhy{}rubric}
+\PYG{+w}{    }\PYG{n+nt}{value}\PYG{p}{:}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}Evaluate}\PYG{n+nv}{ }\PYG{l+s}{the}\PYG{n+nv}{ }\PYG{l+s}{output}\PYG{n+nv}{ }\PYG{l+s}{based}\PYG{n+nv}{ }\PYG{l+s}{on}\PYG{n+nv}{ }\PYG{l+s}{how}\PYG{n+nv}{ }\PYG{l+s}{detailed}\PYG{n+nv}{ }\PYG{l+s}{it}\PYG{n+nv}{ }\PYG{l+s}{is.}\PYG{n+nv}{  }\PYG{l+s}{Grade}\PYG{n+nv}{ }\PYG{l+s}{it}\PYG{n+nv}{ }\PYG{l+s}{on}\PYG{n+nv}{ }\PYG{l+s}{a}\PYG{n+nv}{ }\PYG{l+s}{scale}
+\PYG{+w}{      }\PYG{l+s}{of}\PYG{n+nv}{ }\PYG{l+s}{0.0}\PYG{n+nv}{ }\PYG{l+s}{to}\PYG{n+nv}{ }\PYG{l+s}{1.0,}\PYG{n+nv}{ }\PYG{l+s}{where:}
+
+\PYG{+w}{      }\PYG{l+s}{Score}\PYG{n+nv}{ }\PYG{l+s}{of}\PYG{n+nv}{ }\PYG{l+s}{0.1:}\PYG{n+nv}{ }\PYG{l+s}{Not}\PYG{n+nv}{ }\PYG{l+s}{much}\PYG{n+nv}{ }\PYG{l+s}{detail.}
+\PYG{+w}{      }\PYG{l+s}{Score}\PYG{n+nv}{ }\PYG{l+s}{of}\PYG{n+nv}{ }\PYG{l+s}{0.5:}\PYG{n+nv}{ }\PYG{l+s}{Some}\PYG{n+nv}{ }\PYG{l+s}{detail.}
+\PYG{+w}{      }\PYG{l+s}{Score}\PYG{n+nv}{ }\PYG{l+s}{of}\PYG{n+nv}{ }\PYG{l+s}{1.0:}\PYG{n+nv}{ }\PYG{l+s}{Very}\PYG{n+nv}{ }\PYG{l+s}{detailed.}
+\PYG{+w}{      }\PYG{l+s}{\PYGZsq{}}
+\PYG{n+nt}{tests}\PYG{p}{:}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{file://tests.csv}
+\end{Verbatim}

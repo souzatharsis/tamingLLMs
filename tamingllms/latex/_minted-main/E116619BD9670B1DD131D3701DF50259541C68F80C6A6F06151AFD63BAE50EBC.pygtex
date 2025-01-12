@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PYG{k}{def} \PYG{n+nf}{add}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{urls}\PYG{p}{:} \PYG{n}{List}\PYG{p}{[}\PYG{n+nb}{str}\PYG{p}{])} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{k+kc}{None}\PYG{p}{:}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{urls} \PYG{o}{=} \PYG{n}{urls}
+
+        \PYG{c+c1}{\PYGZsh{} Add new content to input following CIC format to enable citations}
+        \PYG{k}{for} \PYG{n}{url} \PYG{o+ow}{in} \PYG{n}{urls}\PYG{p}{:}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{urls\PYGZus{}memory}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{url}\PYG{p}{)}
+            \PYG{n}{content} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{extractor}\PYG{o}{.}\PYG{n}{convert}\PYG{p}{(}\PYG{n}{url}\PYG{p}{)}\PYG{o}{.}\PYG{n}{text\PYGZus{}content}
+            \PYG{n}{formatted\PYGZus{}content} \PYG{o}{=} \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}ID: }\PYG{l+s+si}{\PYGZob{}}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{reference\PYGZus{}id}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{ | }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{content}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{ | END ID: }\PYG{l+s+si}{\PYGZob{}}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{reference\PYGZus{}id}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{input} \PYG{o}{+=} \PYG{n}{formatted\PYGZus{}content} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{\PYGZdq{}}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{reference\PYGZus{}id} \PYG{o}{+=} \PYG{l+m+mi}{1}
+
+        \PYG{c+c1}{\PYGZsh{} Update memory}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{input\PYGZus{}memory} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{input\PYGZus{}memory} \PYG{o}{+} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{input}
+\end{Verbatim}

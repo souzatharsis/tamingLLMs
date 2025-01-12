@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{CHOSEN\PYGZus{}RESPONSES\PYGZus{}PATH} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}../data/alignment/chosen\PYGZus{}responses.csv\PYGZdq{}}
+\PYG{n}{REJECTED\PYGZus{}RESPONSES\PYGZus{}PATH} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}../data/alignment/rejected\PYGZus{}responses.csv\PYGZdq{}}
+\PYG{n}{CHOSEN\PYGZus{}RESPONSES\PYGZus{}JSONL\PYGZus{}PATH} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}../data/alignment/batch\PYGZus{}results.jsonl\PYGZdq{}}
+\PYG{n}{DPO\PYGZus{}DATASET\PYGZus{}SIZE} \PYG{o}{=} \PYG{l+m+mi}{5000}
+\end{Verbatim}

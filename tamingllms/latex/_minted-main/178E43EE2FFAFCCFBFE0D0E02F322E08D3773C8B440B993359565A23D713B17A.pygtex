@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{l+s+se}{\PYGZbs{}\PYGZob{}}suite\PYG{l+s+se}{\PYGZbs{}\PYGZcb{}}\PYG{p}{|}\PYG{l+s+se}{\PYGZbs{}\PYGZob{}}task\PYG{l+s+se}{\PYGZbs{}\PYGZcb{}}\PYG{p}{|}\PYG{l+s+se}{\PYGZbs{}\PYGZob{}}num\PYGZus{}few\PYGZus{}shot\PYG{l+s+se}{\PYGZbs{}\PYGZcb{}}\PYG{p}{|}\PYG{l+s+se}{\PYGZbs{}\PYGZob{}}\PYG{l+m}{0}\PYG{+w}{ }or\PYG{+w}{ }\PYG{l+m}{1}\PYG{+w}{ }to\PYG{+w}{ }automatically\PYG{+w}{ }reduce\PYG{+w}{ }num\PYGZus{}few\PYGZus{}shot\PYG{+w}{ }\PYG{k}{if}\PYG{+w}{ }prompt\PYG{+w}{ }is\PYG{+w}{ }too\PYG{+w}{ }long\PYG{l+s+se}{\PYGZbs{}\PYGZcb{}}
+\end{Verbatim}

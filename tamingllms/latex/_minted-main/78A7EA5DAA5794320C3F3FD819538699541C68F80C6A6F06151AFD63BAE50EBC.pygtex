@@ -1,0 +1,22 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{extract\PYGZus{}from\PYGZus{}doc}\PYG{p}{(}\PYG{n}{extract\PYGZus{}prompt}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,}  \PYG{n}{doc}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{client}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{EconForecast}\PYG{p}{:}
+
+    \PYG{n}{BASE\PYGZus{}PROMPT} \PYG{o}{=} \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+s2}{    ROLE: You are an expert at structured data extraction.}
+\PYG{l+s+s2}{    TASK: Extract the following data }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{extract\PYGZus{}prompt}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{ from input DOCUMENT}
+\PYG{l+s+s2}{    FORMAT: The output should be a JSON object with \PYGZsq{}financial\PYGZus{}variable\PYGZsq{} as key and \PYGZsq{}financial\PYGZus{}forecast\PYGZsq{} as value.}
+\PYG{l+s+s2}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{n}{prompt} \PYG{o}{=} \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{BASE\PYGZus{}PROMPT}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{ }\PYG{l+s+se}{\PYGZbs{}n\PYGZbs{}n}\PYG{l+s+s2}{ DOCUMENT: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{doc}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+    \PYG{n}{completion} \PYG{o}{=} \PYG{n}{client}\PYG{o}{.}\PYG{n}{beta}\PYG{o}{.}\PYG{n}{chat}\PYG{o}{.}\PYG{n}{completions}\PYG{o}{.}\PYG{n}{parse}\PYG{p}{(}
+        \PYG{n}{model}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}gpt\PYGZhy{}4o\PYGZhy{}mini\PYGZdq{}}\PYG{p}{,}
+        \PYG{n}{messages}\PYG{o}{=}\PYG{p}{[}
+            \PYG{p}{\PYGZob{}}
+                \PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}system\PYGZdq{}}\PYG{p}{,}
+                \PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{n}{prompt}
+            \PYG{p}{\PYGZcb{},}
+            \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}role\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}user\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}content\PYGZdq{}}\PYG{p}{:} \PYG{n}{doc}\PYG{p}{\PYGZcb{}}
+        \PYG{p}{],}
+        \PYG{n}{response\PYGZus{}format}\PYG{o}{=}\PYG{n}{EconForecast}
+    \PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{completion}\PYG{o}{.}\PYG{n}{choices}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{message}\PYG{o}{.}\PYG{n}{parsed}
+\end{Verbatim}

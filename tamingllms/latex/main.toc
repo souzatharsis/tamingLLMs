@@ -1,0 +1,437 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\babel@toc {english}{}\relax
+\contentsline {chapter}{Preface}{v}{chapter*.1}%
+\etoc@startlocaltoc {1}
+\etoc@startlocaltoc {2}
+\contentsline {chapter}{About the Book}{vii}{etoc@tocid.2}%
+\contentsline {section}{\numberline {1}Core Challenges We'll Address}{vii}{section.0.1}%
+\contentsline {mtocsection}{\numberline {1}Core Challenges We'll Address}{vii}{section.0.1}%
+\contentsline {section}{\numberline {2}A Practical Approach}{vii}{section.0.2}%
+\contentsline {mtocsection}{\numberline {2}A Practical Approach}{vii}{section.0.2}%
+\contentsline {section}{\numberline {3}An Open Source Approach}{viii}{section.0.3}%
+\contentsline {mtocsection}{\numberline {3}An Open Source Approach}{viii}{section.0.3}%
+\contentsline {section}{\numberline {4}Open Source Book}{viii}{section.0.4}%
+\contentsline {mtocsection}{\numberline {4}Open Source Book}{viii}{section.0.4}%
+\contentsline {section}{\numberline {5}A Note on Perspective}{viii}{section.0.5}%
+\contentsline {mtocsection}{\numberline {5}A Note on Perspective}{viii}{section.0.5}%
+\contentsline {section}{\numberline {6}Who This Book Is For}{ix}{section.0.6}%
+\contentsline {mtocsection}{\numberline {6}Who This Book Is For}{ix}{section.0.6}%
+\contentsline {section}{\numberline {7}Outcomes}{ix}{section.0.7}%
+\contentsline {mtocsection}{\numberline {7}Outcomes}{ix}{section.0.7}%
+\contentsline {section}{\numberline {8}Prerequisites}{ix}{section.0.8}%
+\contentsline {mtocsection}{\numberline {8}Prerequisites}{ix}{section.0.8}%
+\contentsline {section}{\numberline {9}Setting Up Your Environment}{x}{section.0.9}%
+\contentsline {mtocsection}{\numberline {9}Setting Up Your Environment}{x}{section.0.9}%
+\contentsline {subsection}{\numberline {9.1}Code Repository}{x}{subsection.0.9.1}%
+\contentsline {mtocsubsection}{\numberline {9.1}Code Repository}{x}{subsection.0.9.1}%
+\contentsline {subsection}{\numberline {9.2}Python Environment Setup}{x}{subsection.0.9.2}%
+\contentsline {mtocsubsection}{\numberline {9.2}Python Environment Setup}{x}{subsection.0.9.2}%
+\contentsline {subsection}{\numberline {9.3}API Keys Configuration}{x}{subsection.0.9.3}%
+\contentsline {mtocsubsection}{\numberline {9.3}API Keys Configuration}{x}{subsection.0.9.3}%
+\contentsline {subsection}{\numberline {9.4}Troubleshooting Common Issues}{x}{subsection.0.9.4}%
+\contentsline {mtocsubsection}{\numberline {9.4}Troubleshooting Common Issues}{x}{subsection.0.9.4}%
+\contentsline {section}{\numberline {10}About the Author}{xi}{section.0.10}%
+\contentsline {mtocsection}{\numberline {10}About the Author}{xi}{section.0.10}%
+\contentsline {section}{\numberline {11}Acknowledgements}{xi}{section.0.11}%
+\contentsline {mtocsection}{\numberline {11}Acknowledgements}{xi}{section.0.11}%
+\contentsline {chapter}{\nonumberline Contents}{xiii}{chapter*.3}%
+\contentsline {chapter}{\numberline {1}The Evals Gap}{1}{chapter.1}%
+\etoc@startlocaltoc {4}
+\etoc@startlocaltoc {5}
+\contentsline {section}{\numberline {1.1}Introduction}{1}{section.1.1}%
+\contentsline {mtocsection}{\numberline {1.1}Introduction}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Non-Deterministic Generative Machines}{1}{section.1.2}%
+\contentsline {mtocsection}{\numberline {1.2}Non-Deterministic Generative Machines}{1}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Emerging Properties}{5}{section.1.3}%
+\contentsline {mtocsection}{\numberline {1.3}Emerging Properties}{5}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Problem Statement}{5}{section.1.4}%
+\contentsline {mtocsection}{\numberline {1.4}Problem Statement}{5}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Evals Design}{7}{section.1.5}%
+\contentsline {mtocsection}{\numberline {1.5}Evals Design}{7}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Conceptual Overview}{9}{section.1.6}%
+\contentsline {mtocsection}{\numberline {1.6}Conceptual Overview}{9}{section.1.6}%
+\contentsline {section}{\numberline {1.7}Design Considerations}{11}{section.1.7}%
+\contentsline {mtocsection}{\numberline {1.7}Design Considerations}{11}{section.1.7}%
+\contentsline {section}{\numberline {1.8}Metrics}{12}{section.1.8}%
+\contentsline {mtocsection}{\numberline {1.8}Metrics}{12}{section.1.8}%
+\contentsline {section}{\numberline {1.9}Evaluators}{20}{section.1.9}%
+\contentsline {mtocsection}{\numberline {1.9}Evaluators}{20}{section.1.9}%
+\contentsline {subsection}{\numberline {1.9.1}Model-Based Evaluation}{20}{subsection.1.9.1}%
+\contentsline {mtocsubsection}{\numberline {1.9.1}Model-Based Evaluation}{20}{subsection.1.9.1}%
+\contentsline {subsection}{\numberline {1.9.2}Evaluating Evaluators}{26}{subsection.1.9.2}%
+\contentsline {mtocsubsection}{\numberline {1.9.2}Evaluating Evaluators}{26}{subsection.1.9.2}%
+\contentsline {section}{\numberline {1.10}Benchmarks and Leaderboards}{28}{section.1.10}%
+\contentsline {mtocsection}{\numberline {1.10}Benchmarks and Leaderboards}{28}{section.1.10}%
+\contentsline {section}{\numberline {1.11}Tools}{32}{section.1.11}%
+\contentsline {mtocsection}{\numberline {1.11}Tools}{32}{section.1.11}%
+\contentsline {subsection}{\numberline {1.11.1}LightEval}{32}{subsection.1.11.1}%
+\contentsline {mtocsubsection}{\numberline {1.11.1}LightEval}{32}{subsection.1.11.1}%
+\contentsline {subsection}{\numberline {1.11.2}LangSmith}{38}{subsection.1.11.2}%
+\contentsline {mtocsubsection}{\numberline {1.11.2}LangSmith}{38}{subsection.1.11.2}%
+\contentsline {subsection}{\numberline {1.11.3}PromptFoo}{43}{subsection.1.11.3}%
+\contentsline {mtocsubsection}{\numberline {1.11.3}PromptFoo}{43}{subsection.1.11.3}%
+\contentsline {subsection}{\numberline {1.11.4}Comparison}{48}{subsection.1.11.4}%
+\contentsline {mtocsubsection}{\numberline {1.11.4}Comparison}{48}{subsection.1.11.4}%
+\contentsline {section}{\numberline {1.12}Conclusion}{49}{section.1.12}%
+\contentsline {mtocsection}{\numberline {1.12}Conclusion}{49}{section.1.12}%
+\contentsline {chapter}{\numberline {2}Structured Output}{51}{chapter.2}%
+\etoc@startlocaltoc {6}
+\etoc@startlocaltoc {7}
+\contentsline {section}{\numberline {2.1}Introduction}{51}{section.2.1}%
+\contentsline {mtocsection}{\numberline {2.1}Introduction}{51}{section.2.1}%
+\contentsline {paragraph}{\nonumberline A) Improving Developer Efficiency and Workflow}{51}{paragraph*.31}%
+\contentsline {paragraph}{\nonumberline B) Meeting UI and Product Requirements}{51}{paragraph*.33}%
+\contentsline {paragraph}{\nonumberline C) Enhancing User Trust and Experience}{52}{paragraph*.35}%
+\contentsline {section}{\numberline {2.2}Problem Statement}{52}{section.2.2}%
+\contentsline {mtocsection}{\numberline {2.2}Problem Statement}{52}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Techniques}{53}{section.2.3}%
+\contentsline {mtocsection}{\numberline {2.3}Techniques}{53}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Prompt Engineering}{54}{subsection.2.3.1}%
+\contentsline {mtocsubsection}{\numberline {2.3.1}Prompt Engineering}{54}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}JSON Mode (Fine-Tuned)}{56}{subsection.2.3.2}%
+\contentsline {mtocsubsection}{\numberline {2.3.2}JSON Mode (Fine-Tuned)}{56}{subsection.2.3.2}%
+\contentsline {paragraph}{\nonumberline A Note on "Guaranteed" Structured Output Mode}{58}{paragraph*.39}%
+\contentsline {subsection}{\numberline {2.3.3}Logit Post-Processing}{60}{subsection.2.3.3}%
+\contentsline {mtocsubsection}{\numberline {2.3.3}Logit Post-Processing}{60}{subsection.2.3.3}%
+\contentsline {section}{\numberline {2.4}Tools}{65}{section.2.4}%
+\contentsline {mtocsection}{\numberline {2.4}Tools}{65}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Outlines}{65}{subsection.2.4.1}%
+\contentsline {mtocsubsection}{\numberline {2.4.1}Outlines}{65}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}LangChain}{70}{subsection.2.4.2}%
+\contentsline {mtocsubsection}{\numberline {2.4.2}LangChain}{70}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Ollama}{71}{subsection.2.4.3}%
+\contentsline {mtocsubsection}{\numberline {2.4.3}Ollama}{71}{subsection.2.4.3}%
+\contentsline {section}{\numberline {2.5}Discussion}{73}{section.2.5}%
+\contentsline {mtocsection}{\numberline {2.5}Discussion}{73}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Best Practices}{73}{subsection.2.5.1}%
+\contentsline {mtocsubsection}{\numberline {2.5.1}Best Practices}{73}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Comparing Solutions}{74}{subsection.2.5.2}%
+\contentsline {mtocsubsection}{\numberline {2.5.2}Comparing Solutions}{74}{subsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.5.3}Research and Ongoing Debate}{74}{subsection.2.5.3}%
+\contentsline {mtocsubsection}{\numberline {2.5.3}Research and Ongoing Debate}{74}{subsection.2.5.3}%
+\contentsline {section}{\numberline {2.6}Conclusion}{77}{section.2.6}%
+\contentsline {mtocsection}{\numberline {2.6}Conclusion}{77}{section.2.6}%
+\contentsline {chapter}{\numberline {3}Managing Input Data}{79}{chapter.3}%
+\etoc@startlocaltoc {8}
+\etoc@startlocaltoc {9}
+\contentsline {section}{\numberline {3.1}Introduction}{79}{section.3.1}%
+\contentsline {mtocsection}{\numberline {3.1}Introduction}{79}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Parsing Documents}{80}{section.3.2}%
+\contentsline {mtocsection}{\numberline {3.2}Parsing Documents}{80}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}MarkItDown}{80}{subsection.3.2.1}%
+\contentsline {mtocsubsection}{\numberline {3.2.1}MarkItDown}{80}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Docling}{80}{subsection.3.2.2}%
+\contentsline {mtocsubsection}{\numberline {3.2.2}Docling}{80}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Structured Data Extraction}{81}{subsection.3.2.3}%
+\contentsline {mtocsubsection}{\numberline {3.2.3}Structured Data Extraction}{81}{subsection.3.2.3}%
+\contentsline {section}{\numberline {3.3}Retrieval-Augmented Generation}{92}{section.3.3}%
+\contentsline {mtocsection}{\numberline {3.3}Retrieval-Augmented Generation}{92}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}RAG Pipeline}{94}{subsection.3.3.1}%
+\contentsline {mtocsubsection}{\numberline {3.3.1}RAG Pipeline}{94}{subsection.3.3.1}%
+\contentsline {subsubsection}{\nonumberline Preparing the Knowledge Base}{95}{subsubsection*.60}%
+\contentsline {subsubsection}{\nonumberline Vector Database}{96}{subsubsection*.62}%
+\contentsline {paragraph}{\nonumberline Embeddings}{98}{paragraph*.64}%
+\contentsline {paragraph}{\nonumberline Indexing}{99}{paragraph*.68}%
+\contentsline {subsection}{\numberline {3.3.2}Reranking}{100}{subsection.3.3.2}%
+\contentsline {mtocsubsection}{\numberline {3.3.2}Reranking}{100}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}LLMs with RAG}{102}{subsection.3.3.3}%
+\contentsline {mtocsubsection}{\numberline {3.3.3}LLMs with RAG}{102}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.4}Challenges and Limitations}{105}{subsection.3.3.4}%
+\contentsline {mtocsubsection}{\numberline {3.3.4}Challenges and Limitations}{105}{subsection.3.3.4}%
+\contentsline {subsection}{\numberline {3.3.5}Will RAGs exist in the future?}{106}{subsection.3.3.5}%
+\contentsline {mtocsubsection}{\numberline {3.3.5}Will RAGs exist in the future?}{106}{subsection.3.3.5}%
+\contentsline {section}{\numberline {3.4}A Note on Frameworks}{108}{section.3.4}%
+\contentsline {mtocsection}{\numberline {3.4}A Note on Frameworks}{108}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Case Studies}{109}{section.3.5}%
+\contentsline {mtocsection}{\numberline {3.5}Case Studies}{109}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Case Study I: Content Chunking with Contextual Linking}{110}{subsection.3.5.1}%
+\contentsline {mtocsubsection}{\numberline {3.5.1}Case Study I: Content Chunking with Contextual Linking}{110}{subsection.3.5.1}%
+\contentsline {paragraph}{\nonumberline Step 1: Chunking the Content}{112}{paragraph*.73}%
+\contentsline {paragraph}{\nonumberline Step 2: Writing the Base Prompt Template}{113}{paragraph*.75}%
+\contentsline {paragraph}{\nonumberline Step 4: Generating the Report}{115}{paragraph*.77}%
+\contentsline {subsubsection}{\nonumberline Discussion}{119}{subsubsection*.79}%
+\contentsline {subsection}{\numberline {3.5.2}Case Study II: Quiz Generation with Citations}{120}{subsection.3.5.2}%
+\contentsline {mtocsubsection}{\numberline {3.5.2}Case Study II: Quiz Generation with Citations}{120}{subsection.3.5.2}%
+\contentsline {subsubsection}{\nonumberline Use Case}{121}{subsubsection*.82}%
+\contentsline {subsubsection}{\nonumberline Implementation}{121}{subsubsection*.85}%
+\contentsline {paragraph}{\nonumberline Client Class}{121}{paragraph*.87}%
+\contentsline {paragraph}{\nonumberline Initialization}{121}{paragraph*.89}%
+\contentsline {paragraph}{\nonumberline Corpus-in-Context Prompting}{122}{paragraph*.91}%
+\contentsline {paragraph}{\nonumberline Prompt Caching}{123}{paragraph*.94}%
+\contentsline {subsubsection}{\nonumberline Example Usage}{125}{subsubsection*.96}%
+\contentsline {paragraph}{\nonumberline Dataset}{125}{paragraph*.98}%
+\contentsline {subsubsection}{\nonumberline Discussion}{127}{subsubsection*.101}%
+\contentsline {section}{\numberline {3.6}Conclusion}{127}{section.3.6}%
+\contentsline {mtocsection}{\numberline {3.6}Conclusion}{127}{section.3.6}%
+\contentsline {chapter}{\numberline {4}Safety}{129}{chapter.4}%
+\etoc@startlocaltoc {10}
+\etoc@startlocaltoc {11}
+\contentsline {section}{\numberline {4.1}Introduction}{129}{section.4.1}%
+\contentsline {mtocsection}{\numberline {4.1}Introduction}{129}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Safety Risks}{130}{section.4.2}%
+\contentsline {mtocsection}{\numberline {4.2}Safety Risks}{130}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}General AI Safety Risks}{130}{subsection.4.2.1}%
+\contentsline {mtocsubsection}{\numberline {4.2.1}General AI Safety Risks}{130}{subsection.4.2.1}%
+\contentsline {subsubsection}{\nonumberline Amplified Existing Harms and Novel Risks}{130}{subsubsection*.104}%
+\contentsline {subsubsection}{\nonumberline Risks Associated with Autonomous AI}{130}{subsubsection*.106}%
+\contentsline {subsubsection}{\nonumberline Exacerbating Factors}{131}{subsubsection*.108}%
+\contentsline {subsection}{\numberline {4.2.2}LLMs Specific Safety Risks}{131}{subsection.4.2.2}%
+\contentsline {mtocsubsection}{\numberline {4.2.2}LLMs Specific Safety Risks}{131}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}Guidance}{133}{section.4.3}%
+\contentsline {mtocsection}{\numberline {4.3}Guidance}{133}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Governments \& Organizations}{133}{subsection.4.3.1}%
+\contentsline {mtocsubsection}{\numberline {4.3.1}Governments \& Organizations}{133}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Private Sector}{134}{subsection.4.3.2}%
+\contentsline {mtocsubsection}{\numberline {4.3.2}Private Sector}{134}{subsection.4.3.2}%
+\contentsline {subsubsection}{\nonumberline OpenAI}{135}{subsubsection*.111}%
+\contentsline {subsubsection}{\nonumberline Anthropic}{135}{subsubsection*.114}%
+\contentsline {subsubsection}{\nonumberline Google}{137}{subsubsection*.117}%
+\contentsline {subsection}{\numberline {4.3.3}Rubrics}{138}{subsection.4.3.3}%
+\contentsline {mtocsubsection}{\numberline {4.3.3}Rubrics}{138}{subsection.4.3.3}%
+\contentsline {subsubsection}{\nonumberline MLCommons AI Safety Benchmark}{138}{subsubsection*.120}%
+\contentsline {subsubsection}{\nonumberline Centre for the Governance of AI Rubric}{140}{subsubsection*.123}%
+\contentsline {subsection}{\numberline {4.3.4}Pourquoi}{140}{subsection.4.3.4}%
+\contentsline {mtocsubsection}{\numberline {4.3.4}Pourquoi}{140}{subsection.4.3.4}%
+\contentsline {section}{\numberline {4.4}Approaches}{141}{section.4.4}%
+\contentsline {mtocsection}{\numberline {4.4}Approaches}{141}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Red Teaming}{142}{subsection.4.4.1}%
+\contentsline {mtocsubsection}{\numberline {4.4.1}Red Teaming}{142}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Constitutional AI}{143}{subsection.4.4.2}%
+\contentsline {mtocsubsection}{\numberline {4.4.2}Constitutional AI}{143}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Explainable AI (XAI)}{144}{subsection.4.4.3}%
+\contentsline {mtocsubsection}{\numberline {4.4.3}Explainable AI (XAI)}{144}{subsection.4.4.3}%
+\contentsline {section}{\numberline {4.5}Designing a Safety Plan}{145}{section.4.5}%
+\contentsline {mtocsection}{\numberline {4.5}Designing a Safety Plan}{145}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Phase 1. Policy Definition}{145}{subsection.4.5.1}%
+\contentsline {mtocsubsection}{\numberline {4.5.1}Phase 1. Policy Definition}{145}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Phase 2. User Research \& Risk Identification}{146}{subsection.4.5.2}%
+\contentsline {mtocsubsection}{\numberline {4.5.2}Phase 2. User Research \& Risk Identification}{146}{subsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.5.3}Phase 3. Evaluation Framework}{146}{subsection.4.5.3}%
+\contentsline {mtocsubsection}{\numberline {4.5.3}Phase 3. Evaluation Framework}{146}{subsection.4.5.3}%
+\contentsline {subsection}{\numberline {4.5.4}Phase 4. Safety Architecture Design}{146}{subsection.4.5.4}%
+\contentsline {mtocsubsection}{\numberline {4.5.4}Phase 4. Safety Architecture Design}{146}{subsection.4.5.4}%
+\contentsline {subsection}{\numberline {4.5.5}Phase 5. Implementation \& Tools Selection}{147}{subsection.4.5.5}%
+\contentsline {mtocsubsection}{\numberline {4.5.5}Phase 5. Implementation \& Tools Selection}{147}{subsection.4.5.5}%
+\contentsline {subsection}{\numberline {4.5.6}Phase 6. Go-to-Market}{147}{subsection.4.5.6}%
+\contentsline {mtocsubsection}{\numberline {4.5.6}Phase 6. Go-to-Market}{147}{subsection.4.5.6}%
+\contentsline {subsection}{\numberline {4.5.7}Common Pitfalls}{147}{subsection.4.5.7}%
+\contentsline {mtocsubsection}{\numberline {4.5.7}Common Pitfalls}{147}{subsection.4.5.7}%
+\contentsline {section}{\numberline {4.6}Technical Implementation Components}{150}{section.4.6}%
+\contentsline {mtocsection}{\numberline {4.6}Technical Implementation Components}{150}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Benchmarks \& Datasets}{150}{subsection.4.6.1}%
+\contentsline {mtocsubsection}{\numberline {4.6.1}Benchmarks \& Datasets}{150}{subsection.4.6.1}%
+\contentsline {subsubsection}{\nonumberline SALAD-Bench}{150}{subsubsection*.128}%
+\contentsline {subsubsection}{\nonumberline TruthfulQA}{152}{subsubsection*.133}%
+\contentsline {subsubsection}{\nonumberline HarmBench}{154}{subsubsection*.136}%
+\contentsline {subsection}{\numberline {4.6.2}SafeBench}{155}{subsection.4.6.2}%
+\contentsline {mtocsubsection}{\numberline {4.6.2}SafeBench}{155}{subsection.4.6.2}%
+\contentsline {subsection}{\numberline {4.6.3}Tools \& Techniques}{156}{subsection.4.6.3}%
+\contentsline {mtocsubsection}{\numberline {4.6.3}Tools \& Techniques}{156}{subsection.4.6.3}%
+\contentsline {subsubsection}{\nonumberline Rules-Based Safety Filtering}{156}{subsubsection*.141}%
+\contentsline {subsubsection}{\nonumberline LLM-Based Safety Filtering}{158}{subsubsection*.144}%
+\contentsline {subsection}{\numberline {4.6.4}Custom Moderation}{161}{subsection.4.6.4}%
+\contentsline {mtocsubsection}{\numberline {4.6.4}Custom Moderation}{161}{subsection.4.6.4}%
+\contentsline {section}{\numberline {4.7}Case Study: Implementing a Safety Filter}{164}{section.4.7}%
+\contentsline {mtocsection}{\numberline {4.7}Case Study: Implementing a Safety Filter}{164}{section.4.7}%
+\contentsline {subsection}{\numberline {4.7.1}Evals Dataset}{164}{subsection.4.7.1}%
+\contentsline {mtocsubsection}{\numberline {4.7.1}Evals Dataset}{164}{subsection.4.7.1}%
+\contentsline {subsubsection}{\nonumberline Bad Samples}{165}{subsubsection*.149}%
+\contentsline {subsubsection}{\nonumberline Good Samples}{167}{subsubsection*.151}%
+\contentsline {subsection}{\numberline {4.7.2}Safety Filters}{169}{subsection.4.7.2}%
+\contentsline {mtocsubsection}{\numberline {4.7.2}Safety Filters}{169}{subsection.4.7.2}%
+\contentsline {subsection}{\numberline {4.7.3}LLM-Guard}{170}{subsection.4.7.3}%
+\contentsline {mtocsubsection}{\numberline {4.7.3}LLM-Guard}{170}{subsection.4.7.3}%
+\contentsline {subsection}{\numberline {4.7.4}Mistral Moderation API}{172}{subsection.4.7.4}%
+\contentsline {mtocsubsection}{\numberline {4.7.4}Mistral Moderation API}{172}{subsection.4.7.4}%
+\contentsline {subsubsection}{\nonumberline OpenAI Moderation API}{174}{subsubsection*.154}%
+\contentsline {subsection}{\numberline {4.7.5}Custom Judge Validator}{175}{subsection.4.7.5}%
+\contentsline {mtocsubsection}{\numberline {4.7.5}Custom Judge Validator}{175}{subsection.4.7.5}%
+\contentsline {subsection}{\numberline {4.7.6}Benchmarking}{177}{subsection.4.7.6}%
+\contentsline {mtocsubsection}{\numberline {4.7.6}Benchmarking}{177}{subsection.4.7.6}%
+\contentsline {subsection}{\numberline {4.7.7}Takeaways}{182}{subsection.4.7.7}%
+\contentsline {mtocsubsection}{\numberline {4.7.7}Takeaways}{182}{subsection.4.7.7}%
+\contentsline {section}{\numberline {4.8}Conclusion}{182}{section.4.8}%
+\contentsline {mtocsection}{\numberline {4.8}Conclusion}{182}{section.4.8}%
+\contentsline {chapter}{\numberline {5}Preference-Based Alignment}{183}{chapter.5}%
+\etoc@startlocaltoc {12}
+\etoc@startlocaltoc {13}
+\contentsline {section}{\numberline {5.1}Introduction}{183}{section.5.1}%
+\contentsline {mtocsection}{\numberline {5.1}Introduction}{183}{section.5.1}%
+\contentsline {section}{\numberline {5.2}From Raw Capabilities to Preference Alignment}{183}{section.5.2}%
+\contentsline {mtocsection}{\numberline {5.2}From Raw Capabilities to Preference Alignment}{183}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}On the Misalignment of Language Models}{183}{subsection.5.2.1}%
+\contentsline {mtocsubsection}{\numberline {5.2.1}On the Misalignment of Language Models}{183}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Aligning Language Models with Human Preferences}{184}{subsection.5.2.2}%
+\contentsline {mtocsubsection}{\numberline {5.2.2}Aligning Language Models with Human Preferences}{184}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Supervised Fine-Tuning (SFT) for Model Alignment}{186}{subsection.5.2.3}%
+\contentsline {mtocsubsection}{\numberline {5.2.3}Supervised Fine-Tuning (SFT) for Model Alignment}{186}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}Augmenting SFT with Human Preferences}{187}{subsection.5.2.4}%
+\contentsline {mtocsubsection}{\numberline {5.2.4}Augmenting SFT with Human Preferences}{187}{subsection.5.2.4}%
+\contentsline {section}{\numberline {5.3}Is Post-Training the Answer?}{189}{section.5.3}%
+\contentsline {mtocsection}{\numberline {5.3}Is Post-Training the Answer?}{189}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Limitations}{189}{subsection.5.3.1}%
+\contentsline {mtocsubsection}{\numberline {5.3.1}Limitations}{189}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Model Collapse}{190}{subsection.5.3.2}%
+\contentsline {mtocsubsection}{\numberline {5.3.2}Model Collapse}{190}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}Faking Alignment}{191}{subsection.5.3.3}%
+\contentsline {mtocsubsection}{\numberline {5.3.3}Faking Alignment}{191}{subsection.5.3.3}%
+\contentsline {section}{\numberline {5.4}Case Study: Aligning a Language Model to a Policy}{194}{section.5.4}%
+\contentsline {mtocsection}{\numberline {5.4}Case Study: Aligning a Language Model to a Policy}{194}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Experimental Setup}{194}{subsection.5.4.1}%
+\contentsline {mtocsubsection}{\numberline {5.4.1}Experimental Setup}{194}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Deliverables}{195}{subsection.5.4.2}%
+\contentsline {mtocsubsection}{\numberline {5.4.2}Deliverables}{195}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}A Note on smolLM2 Models}{195}{subsection.5.4.3}%
+\contentsline {mtocsubsection}{\numberline {5.4.3}A Note on smolLM2 Models}{195}{subsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.4.4}Policy}{196}{subsection.5.4.4}%
+\contentsline {mtocsubsection}{\numberline {5.4.4}Policy}{196}{subsection.5.4.4}%
+\contentsline {subsection}{\numberline {5.4.5}Preference Dataset via Synthetic Dataset Generation}{197}{subsection.5.4.5}%
+\contentsline {mtocsubsection}{\numberline {5.4.5}Preference Dataset via Synthetic Dataset Generation}{197}{subsection.5.4.5}%
+\contentsline {subsection}{\numberline {5.4.6}User Prompts}{200}{subsection.5.4.6}%
+\contentsline {mtocsubsection}{\numberline {5.4.6}User Prompts}{200}{subsection.5.4.6}%
+\contentsline {subsection}{\numberline {5.4.7}Rejected Responses}{202}{subsection.5.4.7}%
+\contentsline {mtocsubsection}{\numberline {5.4.7}Rejected Responses}{202}{subsection.5.4.7}%
+\contentsline {subsection}{\numberline {5.4.8}Chosen Responses}{205}{subsection.5.4.8}%
+\contentsline {mtocsubsection}{\numberline {5.4.8}Chosen Responses}{205}{subsection.5.4.8}%
+\contentsline {subsection}{\numberline {5.4.9}Generate DPO Dataset}{208}{subsection.5.4.9}%
+\contentsline {mtocsubsection}{\numberline {5.4.9}Generate DPO Dataset}{208}{subsection.5.4.9}%
+\contentsline {subsection}{\numberline {5.4.10}DPO-Based Optimization}{210}{subsection.5.4.10}%
+\contentsline {mtocsubsection}{\numberline {5.4.10}DPO-Based Optimization}{210}{subsection.5.4.10}%
+\contentsline {subsection}{\numberline {5.4.11}Data Preparation}{211}{subsection.5.4.11}%
+\contentsline {mtocsubsection}{\numberline {5.4.11}Data Preparation}{211}{subsection.5.4.11}%
+\contentsline {subsection}{\numberline {5.4.12}Fine-Tuning}{212}{subsection.5.4.12}%
+\contentsline {mtocsubsection}{\numberline {5.4.12}Fine-Tuning}{212}{subsection.5.4.12}%
+\contentsline {subsection}{\numberline {5.4.13}Vibe Check}{215}{subsection.5.4.13}%
+\contentsline {mtocsubsection}{\numberline {5.4.13}Vibe Check}{215}{subsection.5.4.13}%
+\contentsline {subsection}{\numberline {5.4.14}Alignment Evaluation}{217}{subsection.5.4.14}%
+\contentsline {mtocsubsection}{\numberline {5.4.14}Alignment Evaluation}{217}{subsection.5.4.14}%
+\contentsline {section}{\numberline {5.5}Discussion}{225}{section.5.5}%
+\contentsline {mtocsection}{\numberline {5.5}Discussion}{225}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Synthetic Data Generation}{226}{subsection.5.5.1}%
+\contentsline {mtocsubsection}{\numberline {5.5.1}Synthetic Data Generation}{226}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}Choice of Base Model}{226}{subsection.5.5.2}%
+\contentsline {mtocsubsection}{\numberline {5.5.2}Choice of Base Model}{226}{subsection.5.5.2}%
+\contentsline {subsection}{\numberline {5.5.3}Evaluation Methodology}{227}{subsection.5.5.3}%
+\contentsline {mtocsubsection}{\numberline {5.5.3}Evaluation Methodology}{227}{subsection.5.5.3}%
+\contentsline {subsection}{\numberline {5.5.4}DPO Dataset Composition}{227}{subsection.5.5.4}%
+\contentsline {mtocsubsection}{\numberline {5.5.4}DPO Dataset Composition}{227}{subsection.5.5.4}%
+\contentsline {subsection}{\numberline {5.5.5}Fine-tuning Process}{228}{subsection.5.5.5}%
+\contentsline {mtocsubsection}{\numberline {5.5.5}Fine-tuning Process}{228}{subsection.5.5.5}%
+\contentsline {section}{\numberline {5.6}Conclusion}{228}{section.5.6}%
+\contentsline {mtocsection}{\numberline {5.6}Conclusion}{228}{section.5.6}%
+\contentsline {chapter}{\numberline {6}Local LLMs in Practice}{229}{chapter.6}%
+\etoc@startlocaltoc {14}
+\etoc@startlocaltoc {15}
+\contentsline {section}{\numberline {6.1}Introduction}{229}{section.6.1}%
+\contentsline {mtocsection}{\numberline {6.1}Introduction}{229}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Choosing your Model}{230}{section.6.2}%
+\contentsline {mtocsection}{\numberline {6.2}Choosing your Model}{230}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Task Suitability}{231}{subsection.6.2.1}%
+\contentsline {mtocsubsection}{\numberline {6.2.1}Task Suitability}{231}{subsection.6.2.1}%
+\contentsline {subsubsection}{\nonumberline Task Categories}{231}{subsubsection*.178}%
+\contentsline {subsubsection}{\nonumberline Model Types}{231}{subsubsection*.181}%
+\contentsline {subsection}{\numberline {6.2.2}Performance \& Cost}{233}{subsection.6.2.2}%
+\contentsline {mtocsubsection}{\numberline {6.2.2}Performance \& Cost}{233}{subsection.6.2.2}%
+\contentsline {subsection}{\numberline {6.2.3}Licensing}{238}{subsection.6.2.3}%
+\contentsline {mtocsubsection}{\numberline {6.2.3}Licensing}{238}{subsection.6.2.3}%
+\contentsline {subsection}{\numberline {6.2.4}Community Support}{240}{subsection.6.2.4}%
+\contentsline {mtocsubsection}{\numberline {6.2.4}Community Support}{240}{subsection.6.2.4}%
+\contentsline {subsection}{\numberline {6.2.5}Customization}{241}{subsection.6.2.5}%
+\contentsline {mtocsubsection}{\numberline {6.2.5}Customization}{241}{subsection.6.2.5}%
+\contentsline {section}{\numberline {6.3}Tools}{243}{section.6.3}%
+\contentsline {mtocsection}{\numberline {6.3}Tools}{243}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Serving Models}{243}{subsection.6.3.1}%
+\contentsline {mtocsubsection}{\numberline {6.3.1}Serving Models}{243}{subsection.6.3.1}%
+\contentsline {subsubsection}{\nonumberline LLama.cpp}{244}{subsubsection*.197}%
+\contentsline {paragraph}{\nonumberline GGUF}{245}{paragraph*.199}%
+\contentsline {paragraph}{\nonumberline Setup}{246}{paragraph*.201}%
+\contentsline {paragraph}{\nonumberline llama-cli}{246}{paragraph*.203}%
+\contentsline {paragraph}{\nonumberline llama-server}{247}{paragraph*.205}%
+\contentsline {paragraph}{\nonumberline Grammars}{248}{paragraph*.207}%
+\contentsline {subsubsection}{\nonumberline Python}{248}{subsubsection*.209}%
+\contentsline {subsubsection}{\nonumberline Llamafile}{249}{subsubsection*.212}%
+\contentsline {subsubsection}{\nonumberline Ollama}{250}{subsubsection*.214}%
+\contentsline {paragraph}{\nonumberline Setup}{251}{paragraph*.216}%
+\contentsline {paragraph}{\nonumberline Inference}{251}{paragraph*.218}%
+\contentsline {paragraph}{\nonumberline Server}{251}{paragraph*.221}%
+\contentsline {paragraph}{\nonumberline Python}{252}{paragraph*.223}%
+\contentsline {subsubsection}{\nonumberline Comparison}{252}{subsubsection*.225}%
+\contentsline {subsection}{\numberline {6.3.2}UI}{253}{subsection.6.3.2}%
+\contentsline {mtocsubsection}{\numberline {6.3.2}UI}{253}{subsection.6.3.2}%
+\contentsline {subsubsection}{\nonumberline LM Studio}{253}{subsubsection*.228}%
+\contentsline {subsubsection}{\nonumberline Jan}{254}{subsubsection*.232}%
+\contentsline {subsubsection}{\nonumberline Open WebUI}{255}{subsubsection*.235}%
+\contentsline {subsubsection}{\nonumberline Comparison}{256}{subsubsection*.238}%
+\contentsline {section}{\numberline {6.4}Case Study: The Effect of Quantization on LLM Performance}{257}{section.6.4}%
+\contentsline {mtocsection}{\numberline {6.4}Case Study: The Effect of Quantization on LLM Performance}{257}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Prompts Dataset}{258}{subsection.6.4.1}%
+\contentsline {mtocsubsection}{\numberline {6.4.1}Prompts Dataset}{258}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}Quantization}{259}{subsection.6.4.2}%
+\contentsline {mtocsubsection}{\numberline {6.4.2}Quantization}{259}{subsection.6.4.2}%
+\contentsline {subsection}{\numberline {6.4.3}Benchmarking}{259}{subsection.6.4.3}%
+\contentsline {mtocsubsection}{\numberline {6.4.3}Benchmarking}{259}{subsection.6.4.3}%
+\contentsline {subsection}{\numberline {6.4.4}Results}{261}{subsection.6.4.4}%
+\contentsline {mtocsubsection}{\numberline {6.4.4}Results}{261}{subsection.6.4.4}%
+\contentsline {subsection}{\numberline {6.4.5}Takeaways}{262}{subsection.6.4.5}%
+\contentsline {mtocsubsection}{\numberline {6.4.5}Takeaways}{262}{subsection.6.4.5}%
+\contentsline {section}{\numberline {6.5}Conclusion}{263}{section.6.5}%
+\contentsline {mtocsection}{\numberline {6.5}Conclusion}{263}{section.6.5}%
+\contentsline {chapter}{\numberline {7}The Falling Cost Paradox}{265}{chapter.7}%
+\etoc@startlocaltoc {16}
+\etoc@startlocaltoc {17}
+\contentsline {section}{\numberline {7.1}Why Optimization Matters More Than Ever}{267}{section.7.1}%
+\contentsline {mtocsection}{\numberline {7.1}Why Optimization Matters More Than Ever}{267}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Right-Sizing LLMs: A Strategic Approach}{267}{section.7.2}%
+\contentsline {mtocsection}{\numberline {7.2}Right-Sizing LLMs: A Strategic Approach}{267}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}Metrics}{267}{subsection.7.2.1}%
+\contentsline {mtocsubsection}{\numberline {7.2.1}Metrics}{267}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Requirements}{267}{subsection.7.2.2}%
+\contentsline {mtocsubsection}{\numberline {7.2.2}Requirements}{267}{subsection.7.2.2}%
+\contentsline {subsubsection}{\nonumberline Business Requirements}{267}{subsubsection*.247}%
+\contentsline {subsubsection}{\nonumberline Performance Requirements}{267}{subsubsection*.249}%
+\contentsline {subsubsection}{\nonumberline Operational Requirements}{267}{subsubsection*.251}%
+\contentsline {subsubsection}{\nonumberline Technical Requirements}{267}{subsubsection*.253}%
+\contentsline {section}{\numberline {7.3}Techniques}{267}{section.7.3}%
+\contentsline {mtocsection}{\numberline {7.3}Techniques}{267}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Model Compression}{267}{subsection.7.3.1}%
+\contentsline {mtocsubsection}{\numberline {7.3.1}Model Compression}{267}{subsection.7.3.1}%
+\contentsline {subsubsection}{\nonumberline Quantization}{267}{subsubsection*.255}%
+\contentsline {subsubsection}{\nonumberline Distillation}{267}{subsubsection*.257}%
+\contentsline {subsection}{\numberline {7.3.2}Inference Optimization}{267}{subsection.7.3.2}%
+\contentsline {mtocsubsection}{\numberline {7.3.2}Inference Optimization}{267}{subsection.7.3.2}%
+\contentsline {subsubsection}{\nonumberline Flash Attention}{267}{subsubsection*.259}%
+\contentsline {subsubsection}{\nonumberline Sparsified Attention}{267}{subsubsection*.261}%
+\contentsline {subsubsection}{\nonumberline Speculative Decoding}{267}{subsubsection*.263}%
+\contentsline {section}{\numberline {7.4}Usage Patterns}{267}{section.7.4}%
+\contentsline {mtocsection}{\numberline {7.4}Usage Patterns}{267}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Prompt Optimization}{267}{subsection.7.4.1}%
+\contentsline {mtocsubsection}{\numberline {7.4.1}Prompt Optimization}{267}{subsection.7.4.1}%
+\contentsline {subsection}{\numberline {7.4.2}Caching}{267}{subsection.7.4.2}%
+\contentsline {mtocsubsection}{\numberline {7.4.2}Caching}{267}{subsection.7.4.2}%
+\contentsline {subsection}{\numberline {7.4.3}Batching}{267}{subsection.7.4.3}%
+\contentsline {mtocsubsection}{\numberline {7.4.3}Batching}{267}{subsection.7.4.3}%
+\contentsline {subsection}{\numberline {7.4.4}Predicted Output}{267}{subsection.7.4.4}%
+\contentsline {mtocsubsection}{\numberline {7.4.4}Predicted Output}{267}{subsection.7.4.4}%
+\contentsline {subsection}{\numberline {7.4.5}Early Stopping}{267}{subsection.7.4.5}%
+\contentsline {mtocsubsection}{\numberline {7.4.5}Early Stopping}{267}{subsection.7.4.5}%
+\contentsline {section}{\numberline {7.5}Outro}{267}{section.7.5}%
+\contentsline {mtocsection}{\numberline {7.5}Outro}{267}{section.7.5}%
+\contentsline {subsection}{\numberline {7.5.1}Fine-Tuning}{267}{subsection.7.5.1}%
+\contentsline {mtocsubsection}{\numberline {7.5.1}Fine-Tuning}{267}{subsection.7.5.1}%
+\contentsline {subsection}{\numberline {7.5.2}RAGs}{267}{subsection.7.5.2}%
+\contentsline {mtocsubsection}{\numberline {7.5.2}RAGs}{267}{subsection.7.5.2}%
+\contentsline {section}{\numberline {7.6}A Developer's Check-list}{267}{section.7.6}%
+\contentsline {mtocsection}{\numberline {7.6}A Developer's Check-list}{267}{section.7.6}%
+\contentsline {section}{\numberline {7.7}Conclusion}{267}{section.7.7}%
+\contentsline {mtocsection}{\numberline {7.7}Conclusion}{267}{section.7.7}%
+\contentsline {chapter}{\numberline {8}Frontiers}{269}{chapter.8}%
+\etoc@startlocaltoc {18}
+\etoc@startlocaltoc {19}
+\contentsline {part}{\nonumberline Appendix}{271}{part*.265}%
+\contentsline {chapter}{\numberline {A}Tools \& Resources}{273}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Tools}{273}{section.A.1}%
+\contentsline {mtocsection}{\numberline {A.1}Tools}{273}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Resources}{273}{section.A.2}%
+\contentsline {mtocsection}{\numberline {A.2}Resources}{273}{section.A.2}%
+\contentsline {chapter}{\nonumberline Bibliography}{275}{chapter*.266}%
+\contentsline {chapter}{Alphabetical Index}{289}{section*.267}%

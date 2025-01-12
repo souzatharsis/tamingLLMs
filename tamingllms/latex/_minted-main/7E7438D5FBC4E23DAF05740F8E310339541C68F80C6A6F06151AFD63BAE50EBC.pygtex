@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{FORECAST\PYGZus{}FILE\PYGZus{}PATH} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}../data/input/forecast.pdf\PYGZdq{}}
+\end{Verbatim}

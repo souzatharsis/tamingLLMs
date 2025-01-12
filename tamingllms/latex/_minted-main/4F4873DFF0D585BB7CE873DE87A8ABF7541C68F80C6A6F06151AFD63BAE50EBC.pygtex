@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Example Usage}
+\PYG{n}{model\PYGZus{}benchmark} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}gpt\PYGZhy{}4o\PYGZdq{}}
+\PYG{n}{models\PYGZus{}test} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}gpt\PYGZhy{}4o\PYGZhy{}mini\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}gpt\PYGZhy{}4\PYGZhy{}turbo\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}gpt\PYGZhy{}3.5\PYGZhy{}turbo\PYGZdq{}}\PYG{p}{]}
+\PYG{n}{judge\PYGZus{}model} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}gpt\PYGZhy{}4o\PYGZdq{}}
+
+\PYG{n}{evals}\PYG{p}{,} \PYG{n}{model\PYGZus{}summaries}\PYG{p}{,} \PYG{n}{benchmark\PYGZus{}summary} \PYG{o}{=} \PYG{n}{evaluate\PYGZus{}summary\PYGZus{}models}\PYG{p}{(}
+    \PYG{n}{judge\PYGZus{}model}\PYG{p}{,} \PYG{n}{model\PYGZus{}benchmark}\PYG{p}{,} \PYG{n}{models\PYGZus{}test}\PYG{p}{,} \PYG{n}{sec\PYGZus{}filing}
+\PYG{p}{)}
+\end{Verbatim}

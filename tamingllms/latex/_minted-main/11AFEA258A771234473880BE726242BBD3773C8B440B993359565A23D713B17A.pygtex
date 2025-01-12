@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+curl\PYG{+w}{ }\PYGZhy{}sSfL\PYG{+w}{ }https://ollama.com/download\PYG{+w}{ }\PYG{p}{|}\PYG{+w}{ }sh
+\end{Verbatim}

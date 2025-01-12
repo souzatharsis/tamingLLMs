@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Create DataFrame with specified columns}
+\PYG{n}{df\PYGZus{}comparison} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(\PYGZob{}}
+    \PYG{l+s+s1}{\PYGZsq{}variable\PYGZsq{}}\PYG{p}{:} \PYG{n}{df\PYGZus{}docling}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}Variable\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{],}
+    \PYG{l+s+s1}{\PYGZsq{}markitdown\PYGZsq{}}\PYG{p}{:} \PYG{n}{df\PYGZus{}md}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}Forecast\PYGZsq{}}\PYG{p}{],}
+    \PYG{l+s+s1}{\PYGZsq{}docling\PYGZsq{}}\PYG{p}{:} \PYG{n}{df\PYGZus{}docling}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}Forecast\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{],}  \PYG{c+c1}{\PYGZsh{} Drop last row}
+    \PYG{l+s+s1}{\PYGZsq{}true\PYGZus{}value\PYGZsq{}}\PYG{p}{:} \PYG{p}{[}\PYG{l+m+mf}{1.0}\PYG{p}{,} \PYG{l+m+mf}{0.0}\PYG{p}{,} \PYG{l+m+mf}{1.0}\PYG{p}{,} \PYG{l+m+mf}{1.0}\PYG{p}{,} \PYG{l+m+mf}{1.0}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{1.0}\PYG{p}{,} \PYG{l+m+mf}{0.0}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{1.0}\PYG{p}{,} \PYG{l+m+mf}{1.0}\PYG{p}{,} \PYG{l+m+mf}{1.0}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{1.0}\PYG{p}{,} \PYG{l+m+mf}{0.0}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{1.0}\PYG{p}{,} \PYG{l+m+mf}{0.0}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{1.0}\PYG{p}{]}
+\PYG{p}{\PYGZcb{})}
+
+\PYG{n}{display}\PYG{p}{(}\PYG{n}{df\PYGZus{}comparison}\PYG{p}{)}
+\end{Verbatim}

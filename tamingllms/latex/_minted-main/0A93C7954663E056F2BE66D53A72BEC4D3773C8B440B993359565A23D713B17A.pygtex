@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+./build/bin/llama\PYGZhy{}cli\PYG{+w}{ }\PYGZhy{}m\PYG{+w}{ }./models/qwen2.5\PYGZhy{}0.5b\PYGZhy{}instruct\PYGZhy{}q8\PYGZus{}0.gguf\PYG{+w}{ }\PYGZhy{}\PYGZhy{}grammar\PYGZhy{}file\PYG{+w}{ }grammars/json.gbnf\PYG{+w}{ }\PYGZhy{}p\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}Request: schedule a call at 8pm; Command:\PYGZsq{}}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZob{}\PYGZdq{}appointmentTime\PYGZdq{}: \PYGZdq{}8pm\PYGZdq{}, \PYGZdq{}appointmentDetails\PYGZdq{}: \PYGZdq{}schedule a a call\PYGZdq{}\PYGZcb{}}
+\end{Verbatim}

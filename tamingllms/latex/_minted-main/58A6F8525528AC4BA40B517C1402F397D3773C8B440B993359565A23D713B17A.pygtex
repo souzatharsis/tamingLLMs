@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+git\PYG{+w}{ }clone\PYG{+w}{ }https://github.com/souzatharsis/tamingllms.git
+\PYG{n+nb}{cd}\PYG{+w}{ }tamingllms/notebooks
+\end{Verbatim}

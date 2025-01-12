@@ -1,0 +1,47 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{llm\PYGZus{}guard.input\PYGZus{}scanners} \PYG{k+kn}{import} \PYG{n}{BanTopics}\PYG{p}{,} \PYG{n}{Toxicity}
+\PYG{k+kn}{from} \PYG{n+nn}{llm\PYGZus{}guard} \PYG{k+kn}{import} \PYG{n}{scan\PYGZus{}prompt}
+\PYG{k+kn}{from} \PYG{n+nn}{llm\PYGZus{}guard.input\PYGZus{}scanners.toxicity} \PYG{k+kn}{import} \PYG{n}{MatchType}
+
+\PYG{k}{class} \PYG{n+nc}{LLMGuardValidator}\PYG{p}{(}\PYG{n}{SafetyValidator}\PYG{p}{):}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}Safety validator using LLM Guard scanners.\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+
+    \PYG{n}{DEFAULT\PYGZus{}BANNED\PYGZus{}TOPICS} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}Profanity\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}Violence\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}Sexuality\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}Racism\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}Drugs\PYGZdq{}}\PYG{p}{]}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{banned\PYGZus{}topics}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{[}\PYG{n+nb}{str}\PYG{p}{]} \PYG{o}{=} \PYG{k+kc}{None}\PYG{p}{):}
+\PYG{+w}{        }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{        Initialize LLM Guard validator with custom banned topics.}
+
+\PYG{l+s+sd}{        Args:}
+\PYG{l+s+sd}{            banned\PYGZus{}topics: List of topics to ban/flag in content. If None, uses default banned topics.}
+\PYG{l+s+sd}{        \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+        \PYG{n+nb}{super}\PYG{p}{()}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}LLM Guard\PYGZdq{}}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{banned\PYGZus{}topics} \PYG{o}{=} \PYG{n}{banned\PYGZus{}topics} \PYG{k}{if} \PYG{n}{banned\PYGZus{}topics} \PYG{k}{else} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{DEFAULT\PYGZus{}BANNED\PYGZus{}TOPICS}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{banned\PYGZus{}topics\PYGZus{}scanner} \PYG{o}{=} \PYG{n}{BanTopics}\PYG{p}{(}\PYG{n}{topics}\PYG{o}{=}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{banned\PYGZus{}topics}\PYG{p}{,} \PYG{n}{use\PYGZus{}onnx}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{toxicity\PYGZus{}scanner} \PYG{o}{=} \PYG{n}{Toxicity}\PYG{p}{(}\PYG{n}{match\PYGZus{}type}\PYG{o}{=}\PYG{n}{MatchType}\PYG{o}{.}\PYG{n}{SENTENCE}\PYG{p}{,} \PYG{n}{use\PYGZus{}onnx}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{scanners} \PYG{o}{=} \PYG{p}{[}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{banned\PYGZus{}topics\PYGZus{}scanner}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{toxicity\PYGZus{}scanner}\PYG{p}{]}
+
+    \PYG{k}{def} \PYG{n+nf}{validate}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{text}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{ValidationResult}\PYG{p}{:}
+\PYG{+w}{        }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{        Validate input text using LLM Guard scanners.}
+
+\PYG{l+s+sd}{        Args:}
+\PYG{l+s+sd}{            text: Input text to validate}
+
+\PYG{l+s+sd}{        Returns:}
+\PYG{l+s+sd}{            ValidationResult with safety check results}
+\PYG{l+s+sd}{        \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+        \PYG{n}{results} \PYG{o}{=} \PYG{n}{scan\PYGZus{}prompt}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{scanners}\PYG{p}{,} \PYG{n}{text}\PYG{p}{,} \PYG{n}{fail\PYGZus{}fast}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+        \PYG{c+c1}{\PYGZsh{} Extract flags from results tuple}
+        \PYG{n}{flags} \PYG{o}{=} \PYG{n}{results}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}
+        \PYG{n}{is\PYGZus{}unsafe} \PYG{o}{=} \PYG{n+nb}{any}\PYG{p}{(}\PYG{n}{flags}\PYG{o}{.}\PYG{n}{values}\PYG{p}{())}
+
+        \PYG{c+c1}{\PYGZsh{} Build explanation based on which scanners flagged issues}
+        \PYG{n}{unsafe\PYGZus{}scanners} \PYG{o}{=} \PYG{p}{[}\PYG{n}{scanner} \PYG{k}{for} \PYG{n}{scanner}\PYG{p}{,} \PYG{n}{flag} \PYG{o+ow}{in} \PYG{n}{flags}\PYG{o}{.}\PYG{n}{items}\PYG{p}{()} \PYG{k}{if} \PYG{n}{flag}\PYG{p}{]}
+        \PYG{k}{if} \PYG{n}{unsafe\PYGZus{}scanners}\PYG{p}{:}
+            \PYG{n}{explanation} \PYG{o}{=} \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}Flagged by: }\PYG{l+s+si}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}, \PYGZsq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{unsafe\PYGZus{}scanners}\PYG{p}{)}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+        \PYG{k}{else}\PYG{p}{:}
+            \PYG{n}{explanation} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}No safety concerns detected\PYGZdq{}}
+
+        \PYG{k}{return} \PYG{n}{ValidationResult}\PYG{p}{(}\PYG{n}{is\PYGZus{}unsafe}\PYG{o}{=}\PYG{n}{is\PYGZus{}unsafe}\PYG{p}{,} \PYG{n}{explanation}\PYG{o}{=}\PYG{n}{explanation}\PYG{p}{)}
+\end{Verbatim}

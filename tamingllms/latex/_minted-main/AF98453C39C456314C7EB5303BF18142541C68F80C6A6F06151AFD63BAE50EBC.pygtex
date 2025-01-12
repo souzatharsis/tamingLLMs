@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Get sample of good questions}
+\PYG{n}{good\PYGZus{}samples} \PYG{o}{=} \PYG{n}{get\PYGZus{}good\PYGZus{}samples}\PYG{p}{(}\PYG{n}{num\PYGZus{}samples}\PYG{o}{=}\PYG{n}{GOOD\PYGZus{}SAMPLES}\PYG{p}{)}
+\end{Verbatim}

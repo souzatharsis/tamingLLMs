@@ -1,0 +1,45 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{typing} \PYG{k+kn}{import} \PYG{n}{Dict}
+\PYG{k}{def} \PYG{n+nf}{get\PYGZus{}dynamic\PYGZus{}prompt\PYGZus{}params}\PYG{p}{(}\PYG{n}{prompt\PYGZus{}params}\PYG{p}{:} \PYG{n}{Dict}\PYG{p}{,}
+                            \PYG{n}{part\PYGZus{}idx}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{,}
+                            \PYG{n}{total\PYGZus{}parts}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{,}
+                            \PYG{n}{chat\PYGZus{}context}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,}
+                            \PYG{n}{chunk}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n+nb}{str}\PYG{p}{:}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    Construct prompt template dynamically per chunk while maintaining the chat context of the response generation.}
+
+\PYG{l+s+sd}{    Args:}
+\PYG{l+s+sd}{        prompt\PYGZus{}params (Dict): Original prompt parameters}
+\PYG{l+s+sd}{        part\PYGZus{}idx (int): Index of current conversation part}
+\PYG{l+s+sd}{        total\PYGZus{}parts (int): Total number of conversation parts}
+\PYG{l+s+sd}{        chat\PYGZus{}context (str): Chat context from previous parts}
+\PYG{l+s+sd}{        chunk (str): Current chunk of text to be processed}
+\PYG{l+s+sd}{    Returns:}
+\PYG{l+s+sd}{        str: Dynamically constructed prompt template with part\PYGZhy{}specific params}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{n}{dynamic\PYGZus{}prompt\PYGZus{}params} \PYG{o}{=} \PYG{n}{prompt\PYGZus{}params}\PYG{o}{.}\PYG{n}{copy}\PYG{p}{()}
+    \PYG{c+c1}{\PYGZsh{} saves the chat context from previous parts}
+    \PYG{n}{dynamic\PYGZus{}prompt\PYGZus{}params}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}context\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{chat\PYGZus{}context}
+    \PYG{c+c1}{\PYGZsh{} saves the current chunk of text to be processed as input}
+    \PYG{n}{dynamic\PYGZus{}prompt\PYGZus{}params}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}input\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{chunk}
+
+    \PYG{c+c1}{\PYGZsh{} Add part\PYGZhy{}specific instructions}
+    \PYG{k}{if} \PYG{n}{part\PYGZus{}idx} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} Introduction part}
+        \PYG{n}{dynamic\PYGZus{}prompt\PYGZus{}params}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}instruction\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+s2}{        You are generating the Introduction part of a long report.}
+\PYG{l+s+s2}{        Don\PYGZsq{}t cover any topics yet, just define the scope of the report.}
+\PYG{l+s+s2}{        \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{k}{elif} \PYG{n}{part\PYGZus{}idx} \PYG{o}{==} \PYG{n}{total\PYGZus{}parts} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} Conclusion part}
+        \PYG{n}{dynamic\PYGZus{}prompt\PYGZus{}params}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}instruction\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+s2}{        You are generating the last part of a long report.}
+\PYG{l+s+s2}{        For this part, first discuss the below INPUT. Second, write a \PYGZdq{}Conclusion\PYGZdq{} section summarizing the main points discussed given in CONTEXT.}
+\PYG{l+s+s2}{        \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{k}{else}\PYG{p}{:} \PYG{c+c1}{\PYGZsh{} Main analysis part}
+        \PYG{n}{dynamic\PYGZus{}prompt\PYGZus{}params}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}instruction\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+s2}{        You are generating part }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{part\PYGZus{}idx}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{ of }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{total\PYGZus{}parts}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{ parts of a long report.}
+\PYG{l+s+s2}{        For this part, analyze the below INPUT.}
+\PYG{l+s+s2}{        Organize your response in a way that is easy to read and understand either by creating new or merging with previously created structured sections given in CONTEXT.}
+\PYG{l+s+s2}{        \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+
+    \PYG{k}{return} \PYG{n}{dynamic\PYGZus{}prompt\PYGZus{}params}
+\end{Verbatim}

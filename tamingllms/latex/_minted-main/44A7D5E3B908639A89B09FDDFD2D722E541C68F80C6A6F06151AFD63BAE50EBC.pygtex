@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{extract\PYGZus{}prompt} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Asset Class Weightings (as of 12/3/2024) in a scale from \PYGZhy{}2 to 2\PYGZdq{}}
+\PYG{n}{asset\PYGZus{}class\PYGZus{}docling} \PYG{o}{=} \PYG{n}{extract\PYGZus{}from\PYGZus{}doc}\PYG{p}{(}\PYG{n}{extract\PYGZus{}prompt}\PYG{p}{,} \PYG{n}{forecast\PYGZus{}result\PYGZus{}docling}\PYG{p}{,} \PYG{n}{client}\PYG{p}{)}
+\PYG{n}{asset\PYGZus{}class\PYGZus{}md} \PYG{o}{=} \PYG{n}{extract\PYGZus{}from\PYGZus{}doc}\PYG{p}{(}\PYG{n}{extract\PYGZus{}prompt}\PYG{p}{,} \PYG{n}{forecast\PYGZus{}result\PYGZus{}md}\PYG{p}{,} \PYG{n}{client}\PYG{p}{)}
+\end{Verbatim}

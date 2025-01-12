@@ -1,0 +1,28 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{calculate\PYGZus{}scores}\PYG{p}{(}\PYG{n}{outputs}\PYG{p}{:} \PYG{n}{Dict}\PYG{p}{[}\PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{Any}\PYG{p}{],} \PYG{n}{reference\PYGZus{}outputs}\PYG{p}{:} \PYG{n}{Dict}\PYG{p}{[}\PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{Any}\PYG{p}{])} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n+nb}{dict}\PYG{p}{:}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    Custom evaluator that calculates BLEU and ROUGE scores between generated and reference summaries}
+\PYG{l+s+sd}{    using HuggingFace\PYGZsq{}s evaluate package}
+
+\PYG{l+s+sd}{    Args:}
+\PYG{l+s+sd}{        outputs (dict): Contains the generated summary}
+\PYG{l+s+sd}{        reference\PYGZus{}outputs (dict): Contains the reference summary}
+
+\PYG{l+s+sd}{    Returns:}
+\PYG{l+s+sd}{        dict: Dictionary containing Google BLEU score}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+    \PYG{n}{generated} \PYG{o}{=} \PYG{n}{outputs}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}summary\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{)}
+    \PYG{n}{reference} \PYG{o}{=} \PYG{n}{reference\PYGZus{}outputs}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}summary\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Initialize metrics from HuggingFace\PYGZsq{}s evaluate}
+    \PYG{n}{bleu} \PYG{o}{=} \PYG{n}{hf\PYGZus{}evaluate}\PYG{o}{.}\PYG{n}{load}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}google\PYGZus{}bleu\PYGZdq{}}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Format inputs for BLEU (expects list of str for predictions and list of list of str for references)}
+    \PYG{n}{predictions} \PYG{o}{=} \PYG{p}{[}\PYG{n}{generated}\PYG{p}{]}
+    \PYG{n}{references} \PYG{o}{=} \PYG{p}{[}\PYG{n}{reference}\PYG{p}{]}
+
+    \PYG{c+c1}{\PYGZsh{} Compute BLEU score}
+    \PYG{n}{bleu\PYGZus{}score} \PYG{o}{=} \PYG{n}{bleu}\PYG{o}{.}\PYG{n}{compute}\PYG{p}{(}\PYG{n}{predictions}\PYG{o}{=}\PYG{n}{predictions}\PYG{p}{,} \PYG{n}{references}\PYG{o}{=}\PYG{p}{[}\PYG{n}{references}\PYG{p}{])}
+
+    \PYG{k}{return} \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}key\PYGZdq{}}\PYG{p}{:} \PYG{l+s+s2}{\PYGZdq{}google\PYGZus{}bleu\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}score\PYGZdq{}}\PYG{p}{:} \PYG{n}{bleu\PYGZus{}score}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}google\PYGZus{}bleu\PYGZdq{}}\PYG{p}{]\PYGZcb{}}
+\end{Verbatim}

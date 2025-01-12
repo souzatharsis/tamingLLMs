@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Mistral\PYGZsq{}s Moderation API \PYGZhy{} Raw Text}
+\PYG{k+kn}{import} \PYG{n+nn}{os}
+\PYG{k+kn}{from} \PYG{n+nn}{mistralai} \PYG{k+kn}{import} \PYG{n}{Mistral}
+
+\PYG{n}{api\PYGZus{}key} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{environ}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}MISTRAL\PYGZus{}API\PYGZus{}KEY\PYGZdq{}}\PYG{p}{]}
+
+\PYG{n}{client} \PYG{o}{=} \PYG{n}{Mistral}\PYG{p}{(}\PYG{n}{api\PYGZus{}key}\PYG{o}{=}\PYG{n}{api\PYGZus{}key}\PYG{p}{)}
+
+\PYG{n}{response} \PYG{o}{=} \PYG{n}{client}\PYG{o}{.}\PYG{n}{classifiers}\PYG{o}{.}\PYG{n}{moderate}\PYG{p}{(}
+    \PYG{n}{model} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}mistral\PYGZhy{}moderation\PYGZhy{}latest\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{inputs}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}...text to classify...\PYGZdq{}}\PYG{p}{]}
+\PYG{p}{)}
+
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{response}\PYG{p}{)}
+\end{Verbatim}

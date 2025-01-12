@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{results\PYGZus{}df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{concat}\PYG{p}{([}
+    \PYG{n}{calculate\PYGZus{}validator\PYGZus{}metrics}\PYG{p}{(}\PYG{n}{scoring\PYGZus{}results}\PYG{p}{,} \PYG{n}{scoring\PYGZus{}prompts}\PYG{p}{,} \PYG{n}{bad\PYGZus{}sources}\PYG{o}{=}\PYG{n}{source}\PYG{p}{,} \PYG{n}{good\PYGZus{}sources}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}ultrafeedback\PYGZdq{}}\PYG{p}{])}
+    \PYG{k}{for} \PYG{n}{source} \PYG{o+ow}{in} \PYG{p}{[[}\PYG{l+s+s2}{\PYGZdq{}profanity\PYGZdq{}}\PYG{p}{],} \PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}salad\PYGZdq{}}\PYG{p}{],} \PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}profanity\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}salad\PYGZdq{}}\PYG{p}{]]}
+\PYG{p}{],} \PYG{n}{ignore\PYGZus{}index}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+\end{Verbatim}

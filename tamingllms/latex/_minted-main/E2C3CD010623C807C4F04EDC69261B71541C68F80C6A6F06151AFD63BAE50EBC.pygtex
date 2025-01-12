@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{device} \PYG{o}{=} \PYG{p}{(}
+    \PYG{l+s+s2}{\PYGZdq{}cuda\PYGZdq{}}
+    \PYG{k}{if} \PYG{n}{torch}\PYG{o}{.}\PYG{n}{cuda}\PYG{o}{.}\PYG{n}{is\PYGZus{}available}\PYG{p}{()}
+    \PYG{k}{else} \PYG{l+s+s2}{\PYGZdq{}mps\PYGZdq{}}
+    \PYG{k}{if} \PYG{n}{torch}\PYG{o}{.}\PYG{n}{backends}\PYG{o}{.}\PYG{n}{mps}\PYG{o}{.}\PYG{n}{is\PYGZus{}available}\PYG{p}{()}
+    \PYG{k}{else} \PYG{l+s+s2}{\PYGZdq{}cpu\PYGZdq{}}
+\PYG{p}{)}
+\end{Verbatim}

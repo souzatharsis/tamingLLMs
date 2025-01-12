@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{llama\PYGZus{}cpp} \PYG{k+kn}{import} \PYG{n}{Llama}
+\PYG{n}{llm} \PYG{o}{=} \PYG{n}{Llama}\PYG{p}{(}
+      \PYG{n}{model\PYGZus{}path}\PYG{o}{=}\PYG{n}{MODEL\PYGZus{}PATH}
+\PYG{p}{)}
+\end{Verbatim}

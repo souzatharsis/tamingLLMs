@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{gemini\PYGZus{}duo} \PYG{k}{as} \PYG{n+nn}{genai\PYGZus{}duo}
+\PYG{k+kn}{from} \PYG{n+nn}{IPython.display} \PYG{k+kn}{import} \PYG{n}{Markdown}\PYG{p}{,} \PYG{n}{display}
+\end{Verbatim}

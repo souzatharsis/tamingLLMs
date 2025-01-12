@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+pip\PYG{+w}{ }install\PYG{+w}{ }torch\PYG{+w}{ }transformers\PYG{+w}{ }trl
+\end{Verbatim}

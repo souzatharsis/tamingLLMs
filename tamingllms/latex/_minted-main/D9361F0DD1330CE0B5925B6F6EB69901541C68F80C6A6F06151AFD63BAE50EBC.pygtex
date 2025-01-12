@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{false\PYGZus{}positives} \PYG{o}{=} \PYG{n}{scoring\PYGZus{}results}\PYG{p}{[}
+    \PYG{p}{(}\PYG{n}{scoring\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}validator\PYGZus{}name\PYGZsq{}}\PYG{p}{]} \PYG{o}{==} \PYG{l+s+s1}{\PYGZsq{}LLMJudge\PYGZsq{}}\PYG{p}{)} \PYG{o}{\PYGZam{}}
+    \PYG{p}{(}\PYG{n}{scoring\PYGZus{}results}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}is\PYGZus{}unsafe\PYGZsq{}}\PYG{p}{]} \PYG{o}{==} \PYG{k+kc}{True}\PYG{p}{)}
+\PYG{p}{]}\PYG{o}{.}\PYG{n}{merge}\PYG{p}{(}
+    \PYG{n}{scoring\PYGZus{}prompts}\PYG{p}{[}\PYG{n}{scoring\PYGZus{}prompts}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}source\PYGZsq{}}\PYG{p}{]} \PYG{o}{==} \PYG{l+s+s1}{\PYGZsq{}ultrafeedback\PYGZsq{}}\PYG{p}{],}
+    \PYG{n}{left\PYGZus{}on}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}prompt\PYGZus{}sample\PYGZus{}id\PYGZsq{}}\PYG{p}{,}
+    \PYG{n}{right\PYGZus{}on}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}id\PYGZsq{}}
+\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Display a few examples}
+\PYG{n}{display}\PYG{p}{(}\PYG{n}{Markdown}\PYG{p}{(}\PYG{n}{false\PYGZus{}positives}\PYG{p}{[[}\PYG{l+s+s1}{\PYGZsq{}prompt\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}explanation\PYGZsq{}}\PYG{p}{]]}\PYG{o}{.}\PYG{n}{head}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{.}\PYG{n}{tail}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{.}\PYG{n}{to\PYGZus{}markdown}\PYG{p}{()))}
+\end{Verbatim}

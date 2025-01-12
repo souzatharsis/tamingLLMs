@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{BASE\PYGZus{}PROMPT} \PYG{o}{=} \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+s2}{    ROLE: You are an expert at structured data extraction.}
+\PYG{l+s+s2}{    TASK: Extract the following data }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{extract\PYGZus{}prompt}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{ from input DOCUMENT}
+\PYG{l+s+s2}{    FORMAT: The output should be a JSON object with \PYGZsq{}financial\PYGZus{}variable\PYGZsq{} as key and \PYGZsq{}financial\PYGZus{}forecast\PYGZsq{} as value.}
+\PYG{l+s+s2}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{n}{prompt} \PYG{o}{=} \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{BASE\PYGZus{}PROMPT}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{ }\PYG{l+s+se}{\PYGZbs{}n\PYGZbs{}n}\PYG{l+s+s2}{ DOCUMENT: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{doc}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+\end{Verbatim}

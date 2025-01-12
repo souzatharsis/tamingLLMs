@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Filter rows where both response columns have strings longer than 10 characters}
+\PYG{n}{df\PYGZus{}eval\PYGZus{}responses\PYGZus{}clean} \PYG{o}{=} \PYG{n}{df\PYGZus{}eval\PYGZus{}responses}\PYG{p}{[}
+    \PYG{p}{(}\PYG{n}{df\PYGZus{}eval\PYGZus{}responses}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}model\PYGZus{}responses\PYGZus{}base\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{str}\PYG{o}{.}\PYG{n}{len}\PYG{p}{()} \PYG{o}{\PYGZgt{}=} \PYG{n}{MIN\PYGZus{}RESPONSE\PYGZus{}LENGTH}\PYG{p}{)} \PYG{o}{\PYGZam{}}
+    \PYG{p}{(}\PYG{n}{df\PYGZus{}eval\PYGZus{}responses}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}model\PYGZus{}responses\PYGZus{}aligned\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{str}\PYG{o}{.}\PYG{n}{len}\PYG{p}{()} \PYG{o}{\PYGZgt{}=} \PYG{n}{MIN\PYGZus{}RESPONSE\PYGZus{}LENGTH}\PYG{p}{)}
+\PYG{p}{]}
+\end{Verbatim}

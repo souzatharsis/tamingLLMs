@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{markitdown} \PYG{k+kn}{import} \PYG{n}{MarkItDown}
+
+\PYG{n}{md} \PYG{o}{=} \PYG{n}{MarkItDown}\PYG{p}{()}
+\PYG{n}{forecast\PYGZus{}result\PYGZus{}md} \PYG{o}{=} \PYG{n}{md}\PYG{o}{.}\PYG{n}{convert}\PYG{p}{(}\PYG{n}{FORECAST\PYGZus{}FILE\PYGZus{}PATH}\PYG{p}{)}\PYG{o}{.}\PYG{n}{text\PYGZus{}content}
+\end{Verbatim}
