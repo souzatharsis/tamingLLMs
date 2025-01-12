@@ -117,7 +117,7 @@ Next, we will do the same with Docling.
 from docling.document_converter import DocumentConverter
 
 converter = DocumentConverter()
-forecast_result_docling = converter.convert(source).document.export_to_markdown()
+forecast_result_docling = converter.convert(FORECAST_FILE_PATH).document.export_to_markdown()
 \end{minted}
 How similar are the two results? We can use use Levenshtein distance\index{Levenshtein distance}~\sidecite{10.5555/1822502} to measure the similarity between the two results. We will also calculate a naive score using the \texttt{SequenceMatcher} from the \texttt{difflib} package, which is a simple measure of similarity between two strings based on the number of matches in the longest common subsequence.
 
