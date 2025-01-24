@@ -16,20 +16,19 @@ Abstract: *The current discourse around Large Language Models (LLMs) tends to fo
 
 ---
 
-(*) *The pdf version is preferred as it contains corrections and side notes.*
-| Chapter                                   | PDF          | Podcast      | Website      | Notebook      | Status               |
-|-------------------------------------------|--------------|--------------|--------------|---------------|----------------------|
-| Preface                   | [pdf](https://docsend.com/view/vdnwucxnpbtzu9pk) | | [html](https://www.tamingllms.com/markdown/preface.html) | N/A           | *Ready for Review*                   |
-| About the Book                  | [pdf](https://docsend.com/view/h9zrk4su559d2mmk) | | [html](https://www.tamingllms.com/markdown/intro.html) | N/A           | *Ready for Review*                   |
-| Chapter 1: The Evals Gap                | [pdf](https://docsend.com/view/a3s9qk8ix3btaa3u)  | [podcast](https://tamingllm.substack.com/p/chapter-1-podcast-the-evals-gap) | [html](https://www.tamingllms.com/notebooks/evals.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/evals.ipynb) | *Ready for Review*     |
-| Chapter 2: Structured Output| [pdf](https://docsend.com/view/5i88kgvkvtxucj3b) | [podcast](https://tamingllm.substack.com/p/chapter-2-podcast-structured-output) | [html](https://www.tamingllms.com/notebooks/structured_output.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/structured_output.ipynb) |  *Ready for Review*  |
-| Chapter 3: Managing Input Data | [pdf](https://docsend.com/view/dp8b6j8jgpexkvkx) | | [html](https://www.tamingllms.com/notebooks/input.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/input.ipynb) |   *Ready for Review*   | 
-| Chapter 4: Safety              | [pdf](https://docsend.com/view/xzb3f6fqvy5cjzps) | | [html](https://www.tamingllms.com/notebooks/safety.html)  |  [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/safety.ipynb) |  *Ready for Review*   |
-| Chapter 5: Preference-Based Alignment     | [pdf](https://docsend.com/view/fi4z8c4jmzncviwa) | | [html](https://www.tamingllms.com/notebooks/alignment.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/alignment.ipynb) |  *Ready for Review*   |
-| Chapter 6: Local LLMs in Practice | [pdf](https://docsend.com/view/ybbh5nifcazw3bdh) | | [html](https://www.tamingllms.com/notebooks/local.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/local.ipynb) |  *Ready for Review*  |
-| Chapter 7: The Falling Cost Paradox               | | |              |               |        WIP              |
-| Chapter 8: Frontiers                | | |              |               |                 |
-| Appendix A: Tools and Resources           | | |              |               |                      |
+| Chapter                                   | Website      | Notebook      |
+|-------------------------------------------|--------------|---------------|
+| Preface                   | [html](https://www.tamingllms.com/markdown/preface.html) | N/A           |
+| About the Book                  | [html](https://www.tamingllms.com/markdown/intro.html) | N/A           |
+| Chapter 1: The Evals Gap                | [html](https://www.tamingllms.com/notebooks/evals.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/evals.ipynb) |
+| Chapter 2: Structured Output| [html](https://www.tamingllms.com/notebooks/structured_output.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/structured_output.ipynb) |
+| Chapter 3: Managing Input Data | [html](https://www.tamingllms.com/notebooks/input.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/input.ipynb) |
+| Chapter 4: Safety              | [html](https://www.tamingllms.com/notebooks/safety.html)  |  [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/safety.ipynb) |
+| Chapter 5: Preference-Based Alignment     | [html](https://www.tamingllms.com/notebooks/alignment.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/alignment.ipynb) |
+| Chapter 6: Local LLMs in Practice | [html](https://www.tamingllms.com/notebooks/local.html) | [ipynb](https://github.com/souzatharsis/tamingLLMs/blob/master/tamingllms/notebooks/local.ipynb) |
+| Chapter 7: The Falling Cost Paradox               |              |               |
+| Chapter 8: Frontiers                |              |               |
+| Appendix A: Tools and Resources           |              |               |
 
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa]

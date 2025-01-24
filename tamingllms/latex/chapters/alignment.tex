@@ -723,7 +723,7 @@ Index & User Prompts \\
 \subsection{Rejected Responses}
 
 
-We create sample rejected responses from an unaligned base model, which here we use\texttt{SmolLM2-360M-Instruct}~\sidenote[][*1]{
+We create sample rejected responses from an unaligned base model, which here we use \texttt{SmolLM2-360M-Instruct}~\sidenote[][*1]{
 The \texttt{ResponseGenerator} class creates a dataset of responses from an unaligned base model that we aim to improve through fine-tuning. These responses serve as ``rejected'' examples in our training data since they may not properly align with safety policies and guidelines. The class supports both local model inference using the Hugging Face Transformers library and remote inference through the Hugging Face Inference API. When instantiated with a model name, it loads the model locally. Otherwise, if a cloud API URL is provided, it connects to the remote API endpoint for inference.
 }.
 
