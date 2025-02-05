@@ -33,12 +33,10 @@ Abstract: *The current discourse around Large Language Models (LLMs) tends to fo
 [cc-by-nc-sa-image]: https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png
 [cc-by-nc-sa-shield]: https://img.shields.io/badge/License-CC-BY--NC--SA-4.0-lightgrey.svg
 
-```
-@misc{tharsistpsouza2024tamingllms,
+<!-- @misc{tharsistpsouza2024tamingllms,
   author = {Tharsis T. P. Souza},
   title = {Taming LLMs: A Practical Guide to LLM Pitfalls with Open Source Software},
   year = {2024},
   journal = {GitHub repository},
   url = {https://github.com/souzatharsis/tamingLLMs)
-}
-```
+} -->

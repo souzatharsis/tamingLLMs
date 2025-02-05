@@ -172,10 +172,3 @@ Never share your `.env` file or commit it to version control. It contains sensit
 - Check the book's repository issues page for known problems and solutions
 
 Now that your environment is set up, let's begin our exploration of LLM challenges.
-
-## About the Author
-
-Tharsis Souza (Ph.D. Computer Science, UCL University of London) is a computer scientist and product leader specializing in AI-based products. He is a Lecturer at Columbia University's Master of Science program in Applied Analytics, (*incoming*) Head of Product, Equities at Citadel, and former Senior VP at Two Sigma Investments. He mentors under-represented students & working professionals to help create a more diverse global AI ecosystem.
-
-With over 15 years of experience delivering technology products across startups and Fortune 500 companies, he is also an author of numerous scholarly publications and a frequent speaker at academic and business conferences. Grounded on academic background and drawing from practical experience building and scaling up products powered by language models at early-stage startups, major institutions as well as contributing to open source projects, he brings a unique perspective on bridging the gap between LLMs promised potential and their practical implementation challenges to enable the next generation of AI-powered products.
-
